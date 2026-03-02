@@ -1,0 +1,537 @@
+{
+  "CJ_PRODUCTS": {
+    "default": [
+      {
+        "title": "Premium Web Hosting (CJ)",
+        "url": "https://www.cj.com/example",
+        "description": "High performance hosting"
+      }
+    ]
+  },
+  "DIGISTORE_PRODUCTS": {
+    "default": [
+      {
+        "title": "Digital Mastery Course (Digistore24)",
+        "url": "https://www.digistore24.com/redir/example",
+        "description": "Learn digital marketing"
+      }
+    ]
+  },
+  "IMPACT_PRODUCTS": {
+    "default": [
+      {
+        "title": "Graphic Design Pro (Impact)",
+        "url": "https://impact.com/example",
+        "description": "Design like a pro"
+      }
+    ]
+  },
+  "CLICKBANK_PRODUCTS": {
+    "health": [
+      {
+        "title": "Custom Keto Diet",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "Personalized keto nutrition for rapid health transformation."
+      },
+      {
+        "title": "Dentitox Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A natural formula for healthy teeth and gums."
+      },
+      {
+        "title": "Exipure",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A healthy weight loss support with alpine nutrients."
+      },
+      {
+        "title": "Ikaria Lean Belly Juice",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A potent morning juice for metabolism support."
+      },
+      {
+        "title": "Prostadine",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A mineral-rich dropper for prostate health."
+      },
+      {
+        "title": "Liv Pure",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "Optimizing liver health for fat burning."
+      },
+      {
+        "title": "Alpilean",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A leading metabolic support using alpine secrets."
+      },
+      {
+        "title": "GlucoTrust",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "Supports healthy blood sugar and deep sleep."
+      },
+      {
+        "title": "Java Burn",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A coffee-mixing formula for metabolism boosting."
+      },
+      {
+        "title": "Tea Burn",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "A natural tea additive for health and energy."
+      }
+    ],
+    "local": [
+      {
+        "title": "Ted's Woodworking",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "The world's largest collection of woodworking plans."
+      }
+    ],
+    "tech": [
+      {
+        "title": "AI Masterclass",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "leveraging AI for business and productivity."
+      }
+    ],
+    "default": [
+      {
+        "title": "Manifestation Miracle",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "Transform your life with the law of attraction."
+      }
+    ],
+    "streaming": [
+      {
+        "title": "Ultimate Streaming Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "complete streaming and tv guide."
+      }
+    ],
+    "finance": [
+      {
+        "title": "Crypto Secrets",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "bitcoin and cryptocurrency investment guide."
+      }
+    ]
+  },
+  "SUBSCRIPTION_OFFERS": {
+    "tech": [
+      {
+        "title": "Jasper AI Writing",
+        "url": "https://jasper.ai/?fpr=knotstranded",
+        "description": "top-rated AI content assistant"
+      },
+      {
+        "title": "NordVPN Security",
+        "url": "https://nordvpn.com/knotstranded",
+        "description": "industry-leading privacy protection"
+      },
+      {
+        "title": "SEMrush SEO Tool",
+        "url": "https://semrush.sjv.io/knotstranded",
+        "description": "professional market intelligence"
+      }
+    ],
+    "finance": [
+      {
+        "title": "Coinbase Trading",
+        "url": "https://coinbase.com/join/knotstranded",
+        "description": "secure crypto exchange"
+      },
+      {
+        "title": "Robinhood Investing",
+        "url": "https://robinhood.com/referral/knotstranded",
+        "description": "commission-free stock trading"
+      },
+      {
+        "title": "eToro Social Trading",
+        "url": "https://etoro.com/knotstranded",
+        "description": "copy top-performing investors"
+      }
+    ],
+    "health": [
+      {
+        "title": "Performance Lab Nucleus",
+        "url": "https://performancelab.com/knotstranded",
+        "description": "world's cleanest supplements"
+      },
+      {
+        "title": "Fitbit Premium",
+        "url": "https://fitbit.com/knotstranded",
+        "description": "advanced health metrics"
+      },
+      {
+        "title": "Peloton App",
+        "url": "https://onepeloton.com/knotstranded",
+        "description": "expert-led fitness classes"
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "Disney+ Bundle",
+        "url": "https://disneyplus.com/knotstranded",
+        "description": "Disney, Pixar, Marvel, & Star Wars"
+      },
+      {
+        "title": "Paramount+ Global",
+        "url": "https://paramountplus.com/knotstranded",
+        "description": "live sports & breaking news"
+      },
+      {
+        "title": "Apple One",
+        "url": "https://apple.com/knotstranded",
+        "description": "all Apple services in one simplified plan"
+      }
+    ],
+    "politics": [
+      {
+        "title": "NYT Digital Subscription",
+        "url": "https://nytimes.com/knotstranded",
+        "description": "independent journalism & analysis"
+      },
+      {
+        "title": "Bookshop.org",
+        "url": "https://bookshop.org/shop/knotstranded",
+        "description": "support local independent bookstores"
+      },
+      {
+        "title": "WSJ Digital Access",
+        "url": "https://wsj.com/knotstranded",
+        "description": "business and political intelligence"
+      }
+    ],
+    "us_politics": [
+      {
+        "title": "The Washington Post",
+        "url": "https://washingtonpost.com/knotstranded",
+        "description": "democracy dies in darkness"
+      },
+      {
+        "title": "Politico Pro Sub",
+        "url": "https://politico.com/knotstranded",
+        "description": "insider access to washington"
+      },
+      {
+        "title": "Axios Pro",
+        "url": "https://axios.com/knotstranded",
+        "description": "smart brevity on capitol hill"
+      }
+    ],
+    "default": [
+      {
+        "title": "KnotStranded Media VIP",
+        "url": "https://knotstranded.com/vip",
+        "description": "exclusive membership & reports"
+      }
+    ]
+  },
+  "AMAZON_PRODUCTS": {
+    "movies": [
+      {
+        "title": "4K Projector for Home Cinema",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "bring the theater home"
+      },
+      {
+        "title": "Movie Poster Collection",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "decorate your film room"
+      },
+      {
+        "title": "Classic Cinema Blu-ray Box Set",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "must-see film collection"
+      }
+    ],
+    "tv": [
+      {
+        "title": "OLED Smart TV 65-inch",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "ultimate binge watching experience"
+      },
+      {
+        "title": "Universal Remote Control",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "manage all your devices"
+      },
+      {
+        "title": "TV Backlight Ambient Lighting",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "immersive viewing setup"
+      }
+    ],
+    "music": [
+      {
+        "title": "Noise Cancelling Headphones",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "pure audio bliss"
+      },
+      {
+        "title": "Vinyl Record Player",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "classic sound experience"
+      },
+      {
+        "title": "Portable Bluetooth Speaker",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "music wherever you go"
+      }
+    ],
+    "celebrity": [
+      {
+        "title": "Designer Sunglasses",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "star-quality eye protection"
+      },
+      {
+        "title": "Luxury Skincare Kit",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "red carpet ready skin"
+      },
+      {
+        "title": "Professional Ring Light",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "look like an influencer"
+      }
+    ],
+    "awards": [
+      {
+        "title": "Evening Gown Designer Book",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "history of red carpet fashion"
+      },
+      {
+        "title": "Crystal Trophy Award Decor",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "elegant shelf piece"
+      },
+      {
+        "title": "Smart Watch for Event Tracking",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "stay on schedule in style"
+      }
+    ],
+    "streaming": [
+      {
+        "title": "Streaming Media Player Pro",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "fastest content access"
+      },
+      {
+        "title": "Ethernet Adapter for TV",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "lag-free 4K streaming"
+      },
+      {
+        "title": "Ergonomic Binge Pillow",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "ultimate comfort for marathons"
+      }
+    ],
+    "books": [
+      {
+        "title": "Kindle Paperwhite",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "read thousands of books anywhere"
+      },
+      {
+        "title": "Adjustable Book Stand",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "comfortable reading posture"
+      },
+      {
+        "title": "Reading Lamp with Eye Protection",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "perfect night-time lighting"
+      }
+    ],
+    "gaming": [
+      {
+        "title": "Mechanical Gaming Keyboard",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "ultra-fast response time"
+      },
+      {
+        "title": "High-Precision Gaming Mouse",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "perfect accuracy in game"
+      },
+      {
+        "title": "Gaming Headset with 7.1 Surround",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "hear everything in the game"
+      }
+    ],
+    "local": [
+      {
+        "title": "Local Smart Home Security",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "top-rated local protection"
+      },
+      {
+        "title": "Regional Weather Station",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "precise local climate tracking"
+      },
+      {
+        "title": "Neighborhood Crisis Radio",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "stay informed in your area"
+      }
+    ],
+    "default": [
+      {
+        "title": "Digital Content Creator Kit",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "everything you need to start"
+      },
+      {
+        "title": "Ergonomic Workspace Desk",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "write in comfort"
+      },
+      {
+        "title": "Portable Power Bank",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "stay charged on the move"
+      }
+    ],
+    "tech": [
+      {
+        "title": "Latest Mechanical Keyboard",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "premium typing experience"
+      },
+      {
+        "title": "Smart Home Hub",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "center of your smart home"
+      },
+      {
+        "title": "Noise Cancelling Earbuds",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "pure audio focus"
+      }
+    ],
+    "finance": [
+      {
+        "title": "Hardcover Ledger Nano",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "secure your crypto assets"
+      },
+      {
+        "title": "Dual Screen Monitor Setup",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "maximize trading productivity"
+      },
+      {
+        "title": "Finance Management Journal",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "track your wealth building"
+      }
+    ],
+    "health": [
+      {
+        "title": "Smart Fitness Watch",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "track every heartbeat"
+      },
+      {
+        "title": "Premium Yoga Mat",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "ultimate comfort for practice"
+      },
+      {
+        "title": "High-Speed Nutrient Blender",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "perfect smoothies every time"
+      }
+    ],
+    "lifestyle": [
+      {
+        "title": "Carry-on Travel Backpack",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "organized travel perfection"
+      },
+      {
+        "title": "Aesthetic Coffee Maker",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "morning ritual upgrade"
+      },
+      {
+        "title": "Organic Essential Oil Diffuser",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "relaxing home atmosphere"
+      }
+    ],
+    "science": [
+      {
+        "title": "Reflector Telescope Kit",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "explore the night sky"
+      },
+      {
+        "title": "Microscope for Hobbyists",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "discover hidden worlds"
+      },
+      {
+        "title": "Weather Monitoring Station",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "professional climate data"
+      }
+    ],
+    "sports": [
+      {
+        "title": "Adjustable Dumbbell Set",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "versatile home strength training"
+      },
+      {
+        "title": "Portable Basketball Hoop",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "game on anywhere"
+      },
+      {
+        "title": "Agility Training Kit",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "improve your performance"
+      }
+    ],
+    "politics": [
+      {
+        "title": "Political Strategy Hardcover",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "essential reading for leaders"
+      },
+      {
+        "title": "Noise-Cancelling Privacy Booth",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "secure workspace for sensitive work"
+      },
+      {
+        "title": "World History Encyclopedia",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "context for modern global events"
+      }
+    ],
+    "us_politics": [
+      {
+        "title": "US Constitution Leatherbound",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "the foundation of US law"
+      },
+      {
+        "title": "Presidential Biographies Collection",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "learn from past leaders"
+      },
+      {
+        "title": "Washington DC Framed Map",
+        "url": "https://amazon.com/dp/B00EXAMPLES?tag=knotstranded-20",
+        "description": "capital city decor"
+      }
+    ]
+  }
+}

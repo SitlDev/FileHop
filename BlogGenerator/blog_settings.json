@@ -1,0 +1,41 @@
+{
+  "ai_provider": "ollama",
+  "anthropic_api_key": "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",
+  "gemini_api_key": "AIzaSyA0TfsYCmo7tpAuGS-fHn8nL_FrpzwGhHM",
+  "openai_api_key": "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",
+  "clickbank_affiliate_id": "l4j4n",
+  "amazon_tag": "knotstranded-20",
+  "num_articles": 2,
+  "query_filter": "",
+  "temperature": "0.7",
+  "max_tokens": "2000",
+  "selected_categories": [
+    "movies",
+    "tv",
+    "music",
+    "celebrity",
+    "awards",
+    "streaming",
+    "gaming",
+    "local",
+    "tech",
+    "finance",
+    "health",
+    "lifestyle",
+    "science",
+    "sports",
+    "politics",
+    "us_politics"
+  ],
+  "detected_location": "Camarillo, California",
+  "postal_hint": "93010",
+  "admin_password": "!H14Sua12",
+  "categories": [
+    "tech"
+  ],
+  "num_results": 1,
+  "is_trending": true,
+  "word_count": 500,
+  "auto_pilot": "enabled",
+  "image_provider": "gemini"
+}

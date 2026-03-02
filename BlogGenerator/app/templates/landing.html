@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnotStranded Media | US Trending News</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#dc2626',
+                        'bg-dark': '#0a0a0a',
+                        'bg-card': '#141414',
+                        'border-dim': '#222222',
+                        'text-muted': '#888888'
+                    },
+                    fontFamily: {
+                        'serif': ['Fraunces', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        .nyt-sidebar {
+            border-right: 1px solid #222;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-clamp: 2;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-clamp: 3;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .search-results-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 100px 20px;
+        }
+
+        /* Hero Article Body Styling */
+        #hero-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #d1d1d1;
+        }
+
+        #hero-content p {
+            margin-bottom: 1.75rem;
+        }
+
+        #hero-content h2,
+        #hero-content h3 {
+            font-family: 'Fraunces', serif;
+            color: white;
+            margin: 2.5rem 0 1rem;
+            line-height: 1.2;
+        }
+
+        #hero-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        #hero-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        #hero-content .product-recommendation {
+            background: #111;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: left;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        #hero-content .rec-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #dc2626;
+            color: white;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 2px 8px;
+        }
+
+        #hero-content .rec-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        #hero-content .rec-button {
+            display: inline-block;
+            background: white;
+            color: black;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.2s;
+        }
+
+        #hero-content .rec-button:hover {
+            background: #dc2626;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="search-results-modal">
+        <div class="max-w-2xl mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-serif italic">Search Results</h2>
+                <button onclick="closeSearch()" class="text-text-muted hover:text-white">&times; Close</button>
+            </div>
+            <div id="search-results-list" class="space-y-4">
+                <!-- Results go here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="flex min-h-screen">
+
+        <!-- NYT Sidebar Navigation -->
+        <aside class="w-64 nyt-sidebar fixed h-full overflow-y-auto hidden lg:block p-6">
+            <div class="mb-12">
+                <a href="{{ url_for('blog.home') }}" class="block hover:opacity-80 transition-opacity">
+                    <img src="/static/img/logo_red_dark.png" alt="KnotStranded Media"
+                        class="w-full h-auto max-w-[200px]">
+                </a>
+            </div>
+
+            <!-- Search Feature -->
+            <div class="mb-10">
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="Search news..."
+                        class="w-full bg-bg-card border border-border-dim rounded-lg px-4 py-2 text-sm outline-none focus:border-brand-primary transition-all">
+                    <button onclick="performSearch()" class="absolute right-3 top-2 text-text-muted hover:text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="space-y-6">
+                <div>
+                    <h3 class="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">News Categories
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-sm font-bold hover:text-brand-primary transition-colors">Top
+                                Stories</a></li>
+                        {% for cat_id, info in cat_info.items() %}
+                        <li><a href="#cat-{{ cat_id }}"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">{{
+                                info.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="pt-6 border-t border-border-dim">
+                    <h3 class="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">Staff</h3>
+                    <ul class="space-y-3 text-sm font-medium text-text-muted">
+                        <li><a href="{{ url_for('dashboard.login') }}" class="hover:text-white">Writer Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-6 lg:p-12">
+
+            <!-- Date & Header info -->
+            <div class="flex justify-between items-center mb-12 pb-6 border-b border-border-dim">
+                <div class="text-[11px] font-black uppercase tracking-[0.2em] text-text-muted">
+                    {{ now_date }} &centerdot; Today's Top National News
+                </div>
+                <div class="flex gap-4">
+                    <span
+                        class="text-[10px] font-bold text-brand-primary px-2 py-1 bg-brand-primary/10 rounded">BREAKING</span>
+                </div>
+            </div>
+
+            <!-- Main Feature Grid (NYT Style) -->
+            <div class="grid lg:grid-cols-12 gap-12">
+
+                <!-- Center: Hero Article -->
+                <div class="lg:col-span-8">
+                    {% if latest_posts %}
+                    <article class="group" id="hero-article">
+                        <a href="{{ url_for('blog.view_post', filename=latest_posts[0].filename) }}" id="hero-link">
+                            <div id="hero-img-container"
+                                class="aspect-[16/9] overflow-hidden rounded-sm mb-6 bg-bg-card border border-border-dim">
+                                {% if latest_posts[0].img %}
+                                <img id="hero-img" src="{{ latest_posts[0].img }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    alt="Hero">
+                                {% endif %}
+                            </div>
+                            <div class="max-w-3xl mx-auto text-center">
+                                <h1 id="hero-title"
+                                    class="font-serif text-5xl lg:text-7xl font-black mb-6 leading-[0.9] tracking-tighter">
+                                    {{ latest_posts[0].title }}
+                                </h1>
+                                <p class="text-xl text-text-muted mb-6 leading-relaxed">
+                                    America's top trending headline for today. Real-time updates and breaking national
+                                    news from the KnotStranded Media reporting team.
+                                </p>
+                                <div id="hero-meta"
+                                    class="text-[11px] font-black uppercase tracking-widest text-brand-primary">
+                                    By News Desk &centerdot; {{ latest_posts[0].date }}
+                                </div>
+
+                                <!-- Injected Article Content -->
+                                <div id="hero-content"
+                                    class="max-w-2xl mx-auto text-left mt-16 pb-20 border-b border-border-dim">
+                                    {{ latest_posts[0].content | safe if latest_posts[0].content else "" }}
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {% else %}
+                    <div class="py-20 text-center border border-dashed border-border-dim rounded-3xl">
+                        <h2 class="text-2xl font-serif text-text-muted italic">No headlines published today yet. Check
+                            the
+                            recent news archive below.</h2>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Right Sidebar: Secondary Stories -->
+                <div class="lg:col-span-4 space-y-10">
+                    <h2
+                        class="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted mb-6 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span> Top Stories Today
+                    </h2>
+
+                    {% for post in latest_posts[1:6] %}
+                    <article class="group pb-8 border-b border-border-dim last:border-0">
+                        <a href="{{ url_for('blog.view_post', filename=post.filename) }}" class="flex gap-4">
+                            <div class="flex-1">
+                                <h3
+                                    class="font-serif text-xl font-bold leading-tight mb-2 group-hover:text-brand-primary transition-colors">
+                                    {{ post.title }}
+                                </h3>
+                                <div class="text-[10px] font-bold text-text-muted uppercase tracking-widest">
+                                    {{ post.category_name }} &centerdot; {{ post.date }}
+                                </div>
+                            </div>
+                            <div class="w-24 h-24 rounded bg-bg-card border border-border-dim overflow-hidden">
+                                {% if post.img %}
+                                <img src="{{ post.img }}" class="w-full h-full object-cover">
+                                {% endif %}
+                            </div>
+                        </a>
+                    </article>
+                    {% endfor %}
+
+                    <!-- Newsletter -->
+                    <div class="bg-bg-card p-6 border border-border-dim rounded-sm">
+                        <h4 class="font-serif text-lg italic mb-2">Daily News Alert</h4>
+                        <p class="text-xs text-text-muted mb-4 leading-relaxed">Get the top US trending stories
+                            delivered directly to your inbox every morning.</p>
+                        <div class="flex gap-2">
+                            <input type="email" id="subscriber-email-home" placeholder="Email address"
+                                class="flex-1 bg-[#050505] border border-border-dim px-3 py-2 text-xs outline-none focus:border-brand-primary rounded">
+                            <button onclick="handleHomeSubscribe()"
+                                class="bg-white text-black px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded hover:bg-brand-primary hover:text-white transition-all">Join</button>
+                        </div>
+                    </div>
+
+                    <!-- Partner Offers / Ads -->
+                    <div class="mt-10 space-y-6">
+                        <h4
+                            class="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span> Featured Partners
+                        </h4>
+
+                        {% for ad in ads.subscriptions %}
+                        <a href="{{ ad.url }}" target="_blank"
+                            class="block bg-bg-card p-4 border border-brand-primary/50 hover:bg-brand-primary/10 transition-colors rounded-sm group">
+                            <h5
+                                class="font-serif text-lg font-bold mb-1 group-hover:text-brand-primary transition-colors">
+                                {{ ad.title }}</h5>
+                            <p class="text-xs text-text-muted">{{ ad.description }}</p>
+                        </a>
+                        {% endfor %}
+
+                        {% for ad in ads.clickbank %}
+                        <a href="{{ ad.url }}" target="_blank"
+                            class="block bg-bg-card p-4 border border-border-dim hover:border-text-muted transition-colors rounded-sm group">
+                            <h5 class="font-serif text-lg font-bold mb-1 group-hover:text-white transition-colors">{{
+                                ad.title }}</h5>
+                            <p class="text-xs text-text-muted">{{ ad.description }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Sections (Category Grids) -->
+            <div class="mt-32 space-y-32">
+                {% for cat_id, data in categories.items() %}
+                {% if data.active or data.archived %}
+                <section id="cat-{{ cat_id }}" class="category-block">
+                    <div class="flex items-center gap-4 mb-12">
+                        <h2 class="font-serif text-4xl italic">{{ cat_info[cat_id].name if cat_id in cat_info else
+                            cat_id | capitalize }} News</h2>
+                        <div class="h-[1px] bg-border-dim flex-1"></div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {% for post in data.active[:8] %}
+                        <article class="group">
+                            <a href="{{ url_for('blog.view_post', filename=post.filename) }}">
+                                <div
+                                    class="aspect-[3/2] overflow-hidden rounded-sm mb-4 border border-border-dim bg-bg-card">
+                                    {% if post.img %}
+                                    <img src="{{ post.img }}"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    {% endif %}
+                                </div>
+                                <h3
+                                    class="font-serif text-xl font-bold leading-tight mb-2 group-hover:text-brand-primary transition-colors line-clamp-2">
+                                    {{ post.title }}
+                                </h3>
+                                <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">{{ post.date
+                                    }}</p>
+                            </a>
+                        </article>
+                        {% endfor %}
+                    </div>
+
+                    {% if data.archived %}
+                    <div class="mt-12 bg-bg-card/30 p-8 border border-border-dim border-dashed">
+                        <h4 class="text-[10px] font-black uppercase tracking-widest text-text-muted mb-6">Recent
+                            Headlines
+                        </h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            {% for post in data.archived[:10] %}
+                            <a href="{{ url_for('blog.view_post', filename=post.filename) }}"
+                                class="text-sm font-medium hover:text-brand-primary transition-colors flex justify-between items-center group">
+                                <span
+                                    class="line-clamp-1 flex-1 underline decoration-border-dim group-hover:decoration-brand-primary">{{
+                                    post.title }}</span>
+                                <span class="text-[9px] text-text-muted ml-4">{{ post.date }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </section>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-60 pt-20 border-t border-border-dim pb-20">
+                <div class="flex flex-col lg:flex-row justify-between items-start gap-20">
+                    <div class="max-w-md">
+                        <a href="{{ url_for('blog.home') }}" class="block mb-6 hover:opacity-80 transition-opacity">
+                            <img src="/static/img/logo_red_dark.png" alt="KnotStranded Media" class="h-12 w-auto">
+                        </a>
+                        <p class="text-text-muted leading-relaxed mb-8">
+                            Dissecting the biggest trending stories and breaking news across the United States.
+                        </p>
+                        <div class="flex gap-6 text-[10px] font-black uppercase tracking-widest text-text-muted">
+                            <a href="#" class="hover:text-white">X / Twitter</a>
+                            <a href="#" class="hover:text-white">Instagram</a>
+                            <a href="#" class="hover:text-white">News Desk</a>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-12 w-full lg:w-auto">
+                        <div>
+                            <h5 class="text-[10px] font-black uppercase text-brand-primary mb-6">Niches</h5>
+                            <ul class="space-y-3 text-sm text-text-muted">
+                                {% for cat_id, info in cat_info.items() %}
+                                {% if loop.index <= 6 %} <li><a href="#cat-{{ cat_id }}" class="hover:text-white">{{
+                                        info.name }}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-[10px] font-black uppercase text-brand-primary mb-6">Resources</h5>
+                            <ul class="space-y-3 text-sm text-text-muted">
+                                <li><a href="/robots.txt" class="hover:text-white">Robots.txt</a></li>
+                                <li><a href="/sitemap.xml" class="hover:text-white">Sitemap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-20 text-[10px] font-black uppercase tracking-widest text-text-muted opacity-50">
+                    &copy; 2026 KnotStranded Media News Network. Top US Trending Stories.
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        async function performSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            if (!query) return;
+
+            const modal = document.getElementById('search-modal');
+            const list = document.getElementById('search-results-list');
+
+            list.innerHTML = '<p class="text-text-muted animate-pulse italic">Scanning intelligence databases...</p>';
+            modal.style.display = 'block';
+
+            try {
+                const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+                const data = await res.json();
+
+                if (data.results.length === 0) {
+                    list.innerHTML = '<p class="text-white">No matches found for that keyword.</p>';
+                    return;
+                }
+
+                list.innerHTML = data.results.map(r => `
+                    <a href="/post/${r.filename}" class="block group p-4 border border-border-dim rounded hover:border-brand-primary transition-all bg-bg-card">
+                        <div class="text-[10px] font-bold text-brand-primary uppercase mb-1">News Match</div>
+                        <h4 class="text-xl font-serif font-bold group-hover:text-brand-primary transition-colors">${r.title}</h4>
+                    </a>
+                `).join('');
+            } catch (e) {
+                list.innerHTML = '<p class="text-red-500">Search engine error.</p>';
+            }
+        }
+
+        function closeSearch() {
+            document.getElementById('search-modal').style.display = 'none';
+        }
+
+        async function handleHomeSubscribe() {
+            const email = document.getElementById('subscriber-email-home').value.trim();
+            if (!email) return;
+            try {
+                const res = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                alert(data.message);
+            } catch (e) { alert('Failed to subscribe.'); }
+        }
+
+        // Handle Enter key for search
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        // Setup dynamic hero loader
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroLink = document.getElementById('hero-link');
+            const heroTitle = document.getElementById('hero-title');
+            const heroMeta = document.getElementById('hero-meta');
+            const imgContainer = document.getElementById('hero-img-container');
+            const searchModal = document.getElementById('search-modal');
+
+            if (!heroLink) return;
+
+            // Target all valid article links except the hero link and the back/menu links
+            document.querySelectorAll('a[href^="/post/"]').forEach(link => {
+                if (link.id === 'hero-link') return;
+
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Basic extraction
+                    const url = link.getAttribute('href');
+
+                    // Try to grab Title
+                    const titleEl = link.querySelector('h3, span.line-clamp-1, h4');
+                    const title = titleEl ? titleEl.innerText.trim() : 'Breaking News';
+
+                    // Try to grab Image
+                    const imgEl = link.querySelector('img');
+                    const img = imgEl ? imgEl.getAttribute('src') : null;
+
+                    // Try to grab Date
+                    const dateEl = link.querySelector('.text-\\[10px\\], .text-\\[9px\\]');
+                    let displayDate = 'Recent';
+                    if (dateEl) {
+                        const txt = dateEl.innerText;
+                        if (txt.includes('·')) displayDate = txt.split('·').pop().trim();
+                        else if (txt.includes('•')) displayDate = txt.split('•').pop().trim();
+                        else displayDate = txt;
+                    }
+
+                    // Update Hero Block DOM
+                    heroLink.href = "{{ url_for('blog.view_post', filename='') }}" + filename;
+                    heroTitle.innerText = title;
+                    heroMeta.innerHTML = `By News Desk &centerdot; ${displayDate}`;
+
+                    // Fetch and update body content
+                    const filename = url.split('/').pop();
+                    const heroContent = document.getElementById('hero-content');
+                    heroContent.innerHTML = '<p class="text-text-muted animate-pulse italic">Retrieving full reporting...</p>';
+
+                    fetch(`/api/post-content/${filename}`)
+                        .then(r => r.json())
+                        .then(data => {
+                            if (data.content) {
+                                heroContent.innerHTML = data.content;
+                                // Handle any [PHOTOX] placeholders if they exist
+                                heroContent.innerHTML = heroContent.innerHTML.replace(/\[PHOTO\d+.*?\]/g, '');
+                            } else {
+                                heroContent.innerHTML = '<p class="text-text-muted">Content unavailable for this summary.</p>';
+                            }
+                        })
+                        .catch(e => {
+                            heroContent.innerHTML = '<p class="text-text-muted">Error loading article content.</p>';
+                        });
+
+                    // Update Hero Image dynamically
+                    if (imgContainer) {
+                        imgContainer.innerHTML = ''; // wipe old
+                        if (img) {
+                            imgContainer.innerHTML = `<img src="${img}" id="hero-img" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Hero">`;
+                        }
+                    }
+
+                    // Hide search modal if it was open
+                    if (searchModal.style.display === 'block') {
+                        searchModal.style.display = 'none';
+                    }
+
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

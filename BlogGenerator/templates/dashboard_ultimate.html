@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KnotStranded Blog Generator - Ultimate Edition</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Bricolage+Grotesque:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Bricolage+Grotesque:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -25,23 +29,45 @@
         }
     </script>
     <style>
-        .search-card { transition: all 0.3s ease; }
-        .search-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(127, 19, 236, 0.2); }
-        .search-card.selected { border-color: #7f13ec; background: rgba(127, 19, 236, 0.05); }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .search-card {
+            transition: all 0.3s ease;
+        }
+
+        .search-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(127, 19, 236, 0.2);
+        }
+
+        .search-card.selected {
+            border-color: #7f13ec;
+            background: rgba(127, 19, 236, 0.05);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
+
 <body class="bg-background-dark text-slate-100 antialiased overflow-hidden h-screen flex flex-col">
-    
+
     <!-- Header -->
-    <header class="h-16 border-b border-border-dark flex items-center justify-between px-8 bg-panel-dark/50 backdrop-blur-md">
+    <header
+        class="h-16 border-b border-border-dark flex items-center justify-between px-8 bg-panel-dark/50 backdrop-blur-md">
         <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary text-3xl">terminal</span>
-            <h1 class="font-bold text-xl tracking-tight">KnotStranded</h1>
+            <img src="/static/img/logo_light.png" alt="KnotStranded" class="h-8 w-auto">
             <span class="text-xs text-slate-500 ml-2">Ultimate Edition</span>
         </div>
         <div class="flex items-center gap-4">
+            <a href="/dashboard"
+                class="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-border-dark rounded-lg text-[10px] font-bold uppercase transition-colors">
+                <span class="material-symbols-outlined text-[14px]">grid_view</span> Standard V2
+            </a>
             <div id="status-indicator" class="text-xs font-mono text-slate-400"></div>
             <div id="api-status" class="flex items-center gap-2 text-xs">
                 <span class="w-2 h-2 rounded-full bg-slate-600"></span>
@@ -52,55 +78,125 @@
 
     <!-- Main Content -->
     <main class="flex-1 flex overflow-hidden">
-        
+
         <!-- Main Panel -->
         <section class="flex-1 overflow-y-auto p-8">
-            
-            <!-- Welcome -->
+
+            <!-- STATUS DASHBOARD -->
             <div id="welcome-section">
-                <div class="max-w-2xl mx-auto text-center py-20">
-                    <div class="mb-6">
-                        <span class="material-symbols-outlined text-primary" style="font-size: 80px;">smart_toy</span>
+                <!-- Live generation banner (visible only while generating) -->
+                <div id="gen-banner"
+                    class="hidden mb-6 p-4 bg-primary/10 border border-primary/40 rounded-xl flex items-center gap-4">
+                    <span class="material-symbols-outlined text-primary animate-spin">autorenew</span>
+                    <div class="flex-1">
+                        <p class="text-sm font-bold text-primary">Generating articles&hellip;</p>
+                        <p class="text-xs text-slate-400 mt-0.5" id="gen-banner-detail">Starting&hellip;</p>
                     </div>
-                    <h2 class="text-4xl font-bold mb-4">Complete Blog Generation System</h2>
-                    <p class="text-lg text-slate-400 mb-8">
-                        Categories • Multi-AI • Images • Affiliate Links • Auto-Posting
-                    </p>
-                    <div class="grid grid-cols-3 gap-4 text-left text-sm">
-                        <div class="bg-panel-dark border border-primary/30 rounded-xl p-4">
-                            <div class="text-2xl mb-2">📁</div>
-                            <h3 class="font-bold mb-1">8 Categories</h3>
-                            <p class="text-slate-500">Movies, TV, Music, Celebrity & more</p>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-mono bg-primary/20 text-primary px-3 py-1 rounded-full"
+                            id="gen-banner-count">0 / 0</span>
+                        <button onclick="stopGeneration()"
+                            class="text-[10px] font-bold uppercase tracking-wider bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/30 px-3 py-1.5 rounded-lg transition-all">
+                            Stop Pipeline
+                        </button>
+                    </div>
+                </div>
+                <!-- KPI tiles -->
+                <div class="grid grid-cols-4 gap-4 mb-6">
+                    <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span
+                                class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Auto-Pilot</span>
+                            <span class="material-symbols-outlined text-[18px]"
+                                id="kpi-pilot-icon">radio_button_unchecked</span>
                         </div>
-                        <div class="bg-panel-dark border border-gemini/30 rounded-xl p-4">
-                            <div class="text-2xl mb-2">🤖</div>
-                            <h3 class="font-bold mb-1">3 AI Providers</h3>
-                            <p class="text-slate-500">Claude, Gemini & ChatGPT</p>
+                        <p class="text-2xl font-bold" id="kpi-pilot-label">&mdash;</p>
+                        <p class="text-[10px] text-slate-500 mt-1" id="kpi-pilot-sub">loading&hellip;</p>
+                    </div>
+                    <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Next
+                                Generate</span>
+                            <span class="material-symbols-outlined text-[18px] text-slate-500">schedule</span>
                         </div>
-                        <div class="bg-panel-dark border border-openai/30 rounded-xl p-4">
-                            <div class="text-2xl mb-2">🎨</div>
-                            <h3 class="font-bold mb-1">AI Images</h3>
-                            <p class="text-slate-500">DALL-E featured images</p>
+                        <p class="text-xl font-bold font-mono" id="kpi-gen-time">&mdash;</p>
+                        <p class="text-[10px] text-slate-500 mt-1" id="kpi-gen-label">loading&hellip;</p>
+                    </div>
+                    <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Release
+                                Time</span>
+                            <span class="material-symbols-outlined text-[18px] text-slate-500">publish</span>
                         </div>
-                        <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
-                            <div class="text-2xl mb-2">💰</div>
-                            <h3 class="font-bold mb-1">ClickBank Links</h3>
-                            <p class="text-slate-500">3 affiliate links per blog</p>
+                        <p class="text-xl font-bold font-mono" id="kpi-release-time">&mdash;</p>
+                        <p class="text-[10px] text-slate-500 mt-1" id="kpi-release-label">loading&hellip;</p>
+                    </div>
+                    <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Total
+                                Articles</span>
+                            <span class="material-symbols-outlined text-[18px] text-slate-500">folder_open</span>
                         </div>
-                        <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
-                            <div class="text-2xl mb-2">🚀</div>
-                            <h3 class="font-bold mb-1">Auto-Posting</h3>
-                            <p class="text-slate-500">One-click Squarespace</p>
+                        <p class="text-2xl font-bold" id="kpi-total">&mdash;</p>
+                        <p class="text-[10px] text-slate-500 mt-1">in archive</p>
+                    </div>
+                </div>
+                <!-- Queue + Squarespace row -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-panel-dark border border-border-dark rounded-xl p-5">
+                        <h3 class="text-sm font-bold flex items-center gap-2 mb-4">
+                            <span class="material-symbols-outlined text-[18px] text-amber-400">pending_actions</span>
+                            Queued for Release
+                        </h3>
+                        <p class="text-4xl font-bold font-mono" id="kpi-pending">&mdash;</p>
+                        <p class="text-xs text-slate-500 mt-2">articles waiting to post to Squarespace</p>
+                        <div id="kpi-pending-note"
+                            class="hidden mt-3 text-[10px] p-2 bg-amber-500/10 border border-amber-500/30 rounded text-amber-400">
+                            &#9888; Auto-post is disabled — enable it in the Squarespace section.
                         </div>
-                        <div class="bg-panel-dark border border-border-dark rounded-xl p-4">
-                            <div class="text-2xl mb-2">✍️</div>
-                            <h3 class="font-bold mb-1">5 Writers</h3>
-                            <p class="text-slate-500">Distinct personalities</p>
+                    </div>
+                    <div class="bg-panel-dark border border-border-dark rounded-xl p-5">
+                        <h3 class="text-sm font-bold flex items-center gap-2 mb-4">
+                            <span class="material-symbols-outlined text-[18px] text-blue-400">cloud_upload</span>
+                            Squarespace Status
+                        </h3>
+                        <div class="space-y-2.5 text-xs">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Auto-post</span>
+                                <span id="kpi-sq-autopost"
+                                    class="font-mono px-2 py-0.5 rounded-full text-[10px]">-</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">API key</span>
+                                <span id="kpi-sq-key" class="font-mono px-2 py-0.5 rounded-full text-[10px]">-</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400">Last generated</span>
+                                <span id="kpi-last-gen" class="text-slate-300 text-[10px]">never</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Quick actions -->
+                <div class="flex gap-3">
+                    <button onclick="searchArticles()"
+                        class="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/30 rounded-lg text-sm font-medium text-primary transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">search</span> Search Now
+                    </button>
+                    <button onclick="showArchive()"
+                        class="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-border-dark rounded-lg text-sm font-medium transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">folder_open</span> View Archive
+                    </button>
+                    <button onclick="refreshStatus()"
+                        class="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-border-dark rounded-lg text-sm font-medium transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">refresh</span> Refresh
+                    </button>
+                    <span class="ml-auto text-[10px] text-slate-700 self-center font-mono"
+                        id="status-last-refresh"></span>
+                </div>
             </div>
-            
+
+
             <!-- Search Results -->
             <div id="search-results-section" class="hidden">
                 <div class="flex items-center justify-between mb-6">
@@ -117,21 +213,23 @@
                         <button onclick="selectAll()" class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm">
                             Select All
                         </button>
-                        <button onclick="deselectAll()" class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm">
+                        <button onclick="deselectAll()"
+                            class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm">
                             Clear
                         </button>
                     </div>
                 </div>
-                
+
                 <div id="search-results-grid" class="space-y-4"></div>
-                
+
                 <div id="generate-section" class="hidden mt-8 p-6 bg-panel-dark border border-border-dark rounded-xl">
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="font-bold text-lg">Ready to Generate</h3>
                             <p class="text-sm text-slate-400 mt-1" id="generate-summary">0 articles selected</p>
                         </div>
-                        <button onclick="generateFromSelected()" id="generate-btn" class="px-6 py-3 bg-primary hover:bg-primary/90 rounded-lg font-bold flex items-center gap-2 shadow-xl shadow-primary/30">
+                        <button onclick="generateFromSelected()" id="generate-btn"
+                            class="px-6 py-3 bg-primary hover:bg-primary/90 rounded-lg font-bold flex items-center gap-2 shadow-xl shadow-primary/30">
                             <span class="material-symbols-outlined">auto_awesome</span>
                             Generate Blogs
                         </button>
@@ -156,70 +254,242 @@
                 </div>
                 <div id="files-grid" class="grid grid-cols-2 gap-4"></div>
             </div>
+
+            <!-- ═══════════════════════════════ ARCHIVE SECTION ══ -->
+            <div id="archive-section" class="hidden">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">folder_open</span>
+                            Article Archive
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1 font-mono" id="archive-subtitle">Loading…</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <!-- Search box -->
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined text-slate-500 absolute left-2 top-1.5 text-[18px]">search</span>
+                            <input type="text" id="archive-search" placeholder="Filter titles…"
+                                oninput="filterArchive()"
+                                class="bg-background-dark border border-border-dark rounded-lg pl-8 pr-3 py-1.5 text-xs w-48 focus:outline-none focus:border-primary/60">
+                        </div>
+                        <button onclick="loadArchive()" class="p-2 hover:bg-white/10 rounded-lg" title="Refresh">
+                            <span class="material-symbols-outlined text-[18px]">refresh</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty state -->
+                <div id="archive-empty" class="hidden">
+                    <div class="max-w-lg mx-auto text-center py-16">
+                        <div class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-6">
+                            <span class="material-symbols-outlined text-slate-500"
+                                style="font-size:40px">folder_off</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-300 mb-2">No articles generated yet</h3>
+                        <p class="text-sm text-slate-500 mb-8">All blogs you generate will appear here with their title
+                            and creation date.</p>
+
+                        <div class="bg-panel-dark border border-border-dark rounded-xl p-5 text-left space-y-3">
+                            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Possible reasons
+                                &amp; fixes</p>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-amber-400 text-[18px] mt-0.5">key</span>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-200">Missing API key for AI generation</p>
+                                    <p class="text-xs text-slate-500">Add your Anthropic, Gemini, or OpenAI key in the
+                                        right panel to enable blog writing.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-blue-400 text-[18px] mt-0.5">search_off</span>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-200">Search hasn't been run yet</p>
+                                    <p class="text-xs text-slate-500">Select categories, click <strong
+                                            class="text-slate-300">SEARCH</strong>, choose articles, then click <strong
+                                            class="text-slate-300">Generate Blogs</strong>.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="material-symbols-outlined text-purple-400 text-[18px] mt-0.5">smart_toy</span>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-200">Auto-Pilot is disabled</p>
+                                    <p class="text-xs text-slate-500">Enable Auto-Pilot in Settings to have articles
+                                        generated automatically on a schedule.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-red-400 text-[18px] mt-0.5">error</span>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-200">A generation error occurred</p>
+                                    <p class="text-xs text-slate-500">Check the terminal / server logs for error
+                                        details. Common causes: expired API key, rate limit, or network timeout.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No-filter-match state -->
+                <div id="archive-no-match" class="hidden text-center py-12 text-slate-500 text-sm">
+                    No articles match your filter.
+                </div>
+
+                <!-- Table -->
+                <div id="archive-table-wrap" class="hidden">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-border-dark text-left">
+                                <th class="pb-3 text-xs font-bold uppercase tracking-widest text-slate-500 w-8">#</th>
+                                <th class="pb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Title</th>
+                                <th
+                                    class="pb-3 text-xs font-bold uppercase tracking-widest text-slate-500 text-right pr-4">
+                                    Created</th>
+                                <th
+                                    class="pb-3 text-xs font-bold uppercase tracking-widest text-slate-500 text-right pr-4">
+                                    Read</th>
+                                <th class="pb-3 text-xs font-bold uppercase tracking-widest text-slate-500 text-right">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="archive-tbody" class="divide-y divide-border-dark/50"></tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    <div id="archive-pagination" class="flex items-center justify-between mt-6 text-xs text-slate-500">
+                    </div>
+                </div>
+            </div>
+            <!-- ═══════════════════════════════════════════════════ -->
+
         </section>
 
         <!-- Right Panel: Controls -->
-        <section class="w-96 border-l border-border-dark bg-panel-dark p-6 flex flex-col gap-6 overflow-y-auto hide-scrollbar">
-            
+        <section
+            class="w-96 border-l border-border-dark bg-panel-dark p-6 flex flex-col gap-6 overflow-y-auto hide-scrollbar">
+
             <!-- Category Selection -->
             <div>
                 <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-[18px]">category</span>
                     Select Categories
                 </h2>
-                
+
                 <!-- Trending News - Select All -->
-                <div class="mb-3 p-3 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg">
+                <div
+                    class="mb-3 p-3 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="selectAllCategories" onchange="toggleAllCategories()" class="w-4 h-4 accent-orange-500">
+                        <input type="checkbox" id="selectAllCategories" onchange="toggleAllCategories()"
+                            class="w-4 h-4 accent-orange-500">
                         <div class="flex-1">
                             <div class="flex items-center gap-2">
                                 <span class="text-sm font-bold text-orange-400">🔥 All Trending News</span>
-                                <span class="text-[10px] px-2 py-0.5 bg-orange-500/20 text-orange-300 rounded-full">HOT</span>
+                                <span
+                                    class="text-[10px] px-2 py-0.5 bg-orange-500/20 text-orange-300 rounded-full">HOT</span>
                             </div>
-                            <div class="text-[10px] text-slate-400 mt-1">Get top trending stories across all 8 entertainment categories</div>
+                            <div class="text-[10px] text-slate-400 mt-1">Get top trending stories across all 17 target
+                                categories</div>
                         </div>
                     </label>
                 </div>
-                
+
                 <!-- Individual Categories -->
-                <div class="space-y-2" id="category-checkboxes">
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="movies" checked class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">🎬 Movies</span>
+                <div class="grid grid-cols-1 gap-1" id="category-checkboxes">
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="movies" checked
+                            class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🎬 Movies</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="tv" checked class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">📺 TV Shows</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="tv" checked class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">📺 TV Shows</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="music" class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">🎵 Music</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="music" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🎵 Music</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="celebrity" checked class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">⭐ Celebrity News</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="celebrity" checked
+                            class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">⭐ Celebrity News</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="awards" class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">🏆 Awards & Events</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="awards" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🏆 Awards & Events</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="streaming" class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">📡 Streaming</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="streaming" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">📡 Streaming Services</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="books" class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">📚 Books</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="books" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">📚 Books & Literature</span>
                     </label>
-                    <label class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-2 rounded">
-                        <input type="checkbox" value="gaming" class="w-4 h-4 accent-primary category-checkbox">
-                        <span class="text-sm">🎮 Gaming</span>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="gaming" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🎮 Gaming & Esports</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="local" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">📍 Local Pulse</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="tech" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">💻 Tech & AI</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="finance" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">💰 Finance & Business</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="health" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🌿 Health & Wellness</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="lifestyle" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">✈️ Lifestyle & Travel</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="science" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🧪 Science & Nature</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="sports" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🌍 Sports World</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="politics" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🏛️ Global Politics</span>
+                    </label>
+                    <label
+                        class="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors">
+                        <input type="checkbox" value="us_politics" class="w-3.5 h-3.5 accent-primary category-checkbox">
+                        <span class="text-xs">🦅 US Politics</span>
                     </label>
                 </div>
                 <p class="text-xs text-slate-500 mt-3" id="category-hint">
-                    <span id="category-count">3 selected</span> • 
-                    <span id="category-suggestion">Select 2-3 for focused results or all for trending</span>
+                    <span id="category-count">3 selected</span> •
+                    <span id="category-suggestion">Select 1-3 for focused results or all for general trending</span>
                 </p>
             </div>
 
@@ -232,10 +502,14 @@
                     <span class="material-symbols-outlined text-[18px]">smart_toy</span>
                     AI Provider
                 </h2>
-                <select id="aiProvider" onchange="updateAIProvider()" class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-3">
+                <select id="aiProvider" onchange="updateAIProvider()"
+                    class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-3">
                     <option value="claude">Claude (Anthropic)</option>
                     <option value="gemini">Gemini (Google)</option>
                     <option value="chatgpt">ChatGPT (OpenAI)</option>
+                    <option value="groq">Groq (Open Source Fast)</option>
+                    <option value="openrouter">OpenRouter (Any Open Model)</option>
+                    <option value="ollama">Ollama (Local LLM)</option>
                 </select>
                 <div id="ai-description" class="text-xs text-slate-500">
                     Best for quality writing and deep analysis
@@ -248,41 +522,77 @@
                     <span class="material-symbols-outlined text-[18px]">key</span>
                     API Keys
                 </h2>
-                
+
                 <div id="claude-key-section">
                     <label class="text-xs text-slate-400 mb-1 block">Anthropic API Key</label>
-                    <input type="password" id="anthropicApiKey" placeholder="sk-ant-..." 
-                           class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
-                           onchange="checkConfig()">
+                    <input type="password" id="anthropicApiKey" placeholder="sk-ant-..."
+                        class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
+                        onchange="checkConfig()">
                     <p class="text-xs text-slate-500 mb-3">
-                        <a href="https://console.anthropic.com" target="_blank" class="text-primary hover:underline">Get key</a>
+                        <a href="https://console.anthropic.com" target="_blank" class="text-primary hover:underline">Get
+                            key</a>
                     </p>
                 </div>
-                
+
                 <div id="gemini-key-section" class="hidden">
                     <label class="text-xs text-slate-400 mb-1 block">Gemini API Key</label>
-                    <input type="password" id="geminiApiKey" placeholder="AIza..." 
-                           class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
-                           onchange="checkConfig()">
+                    <input type="password" id="geminiApiKey" placeholder="AIza..."
+                        class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
+                        onchange="checkConfig()">
                     <p class="text-xs text-slate-500 mb-3">
-                        <a href="https://makersuite.google.com/app/apikey" target="_blank" class="text-gemini hover:underline">Get key</a>
+                        <a href="https://makersuite.google.com/app/apikey" target="_blank"
+                            class="text-gemini hover:underline">Get key</a>
                     </p>
                 </div>
-                
+
                 <div id="openai-key-section" class="hidden">
                     <label class="text-xs text-slate-400 mb-1 block">OpenAI API Key</label>
-                    <input type="password" id="openaiApiKey" placeholder="sk-proj-..." 
-                           class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
-                           onchange="checkConfig()">
+                    <input type="password" id="openaiApiKey" placeholder="sk-proj-..."
+                        class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
+                        onchange="checkConfig()">
                     <p class="text-xs text-slate-500 mb-3">
-                        <a href="https://platform.openai.com/api-keys" target="_blank" class="text-openai hover:underline">Get key</a>
+                        <a href="https://platform.openai.com/api-keys" target="_blank"
+                            class="text-openai hover:underline">Get key</a>
+                    </p>
+                </div>
+
+                <div id="groq-key-section" class="hidden">
+                    <label class="text-xs text-slate-400 mb-1 block">Groq API Key</label>
+                    <input type="password" id="groqApiKey" placeholder="gsk_..."
+                        class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
+                        onchange="checkConfig()">
+                    <p class="text-xs text-slate-500 mb-3">
+                        <a href="https://console.groq.com/keys" target="_blank" class="text-primary hover:underline">Get
+                            key</a>
+                    </p>
+                </div>
+
+                <div id="openrouter-key-section" class="hidden">
+                    <label class="text-xs text-slate-400 mb-1 block">OpenRouter API Key</label>
+                    <input type="password" id="openrouterApiKey" placeholder="sk-or-..."
+                        class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
+                        onchange="checkConfig()">
+                    <p class="text-xs text-slate-500 mb-3">
+                        <a href="https://openrouter.ai/keys" target="_blank" class="text-primary hover:underline">Get
+                            key</a>
+                    </p>
+                </div>
+
+                <div id="ollama-config-section" class="hidden">
+                    <label class="text-xs text-slate-400 mb-1 block">Ollama Model Name</label>
+                    <input type="text" id="ollamaModel" placeholder="llama3"
+                        class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm mb-2"
+                        onchange="saveConfig()">
+                    <p class="text-[10px] text-slate-500">
+                        Type the name of the model you downloaded (e.g., llama3, mistral).
                     </p>
                 </div>
             </div>
 
             <!-- Squarespace Config (Collapsible) -->
             <div>
-                <button onclick="toggleSquarespaceConfig()" class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
+                <button onclick="toggleSquarespaceConfig()"
+                    class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
                         <span class="text-sm font-bold uppercase tracking-widest">Squarespace</span>
@@ -297,7 +607,8 @@
                             <span class="text-xs font-medium text-blue-300">Setup Required</span>
                         </div>
                         <details class="text-[10px] text-slate-400">
-                            <summary class="cursor-pointer hover:text-slate-300 mb-2">📋 Step-by-Step Setup Guide</summary>
+                            <summary class="cursor-pointer hover:text-slate-300 mb-2">📋 Step-by-Step Setup Guide
+                            </summary>
                             <div class="space-y-3 mt-2 pl-2">
                                 <div>
                                     <div class="font-medium text-slate-300 mb-1">Step 1: Get API Key</div>
@@ -335,42 +646,132 @@
                             </div>
                         </details>
                     </div>
-                    
+
+                    <!-- Auto-post enable toggle -->
+                    <div class="p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <div class="relative">
+                                <input type="checkbox" id="autoPostSquarespace" class="sr-only peer"
+                                    onchange="saveConfig(); refreshStatus()">
+                                <div
+                                    class="w-9 h-5 bg-slate-700 peer-checked:bg-green-500 rounded-full transition-colors">
+                                </div>
+                                <div
+                                    class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4">
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-200">Auto-post to Squarespace</p>
+                                <p class="text-[10px] text-slate-500">Articles will be posted at your release time</p>
+                            </div>
+                        </label>
+                    </div>
+
                     <!-- API Key -->
                     <div>
                         <label class="text-xs text-slate-400 mb-1 block">API Key</label>
-                        <input type="password" id="squarespaceApiKey" placeholder="sqsp_..." 
-                               class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm"
-                               onchange="saveConfig()">
+                        <input type="password" id="squarespaceApiKey" placeholder="sqsp_..."
+                            class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm"
+                            onchange="saveConfig()">
                     </div>
-                    
+
                     <!-- Site ID -->
                     <div>
                         <label class="text-xs text-slate-400 mb-1 block">Site ID</label>
-                        <input type="text" id="squarespaceSiteId" placeholder="abc123..." 
-                               class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm"
-                               onchange="saveConfig()">
+                        <input type="text" id="squarespaceSiteId" placeholder="abc123..."
+                            class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm"
+                            onchange="saveConfig()">
                     </div>
-                    
+
                     <!-- Collection ID -->
                     <div>
                         <label class="text-xs text-slate-400 mb-1 block">Collection ID (Blog)</label>
-                        <input type="text" id="squarespaceCollectionId" placeholder="blog789..." 
-                               class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm"
-                               onchange="saveConfig()">
+                        <input type="text" id="squarespaceCollectionId" placeholder="blog789..."
+                            class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm"
+                            onchange="saveConfig()">
                     </div>
-                    
+
                     <!-- Requirements Note -->
                     <p class="text-[10px] text-slate-500">
-                        Requires Squarespace Business plan or higher. 
-                        <a href="https://developers.squarespace.com" target="_blank" class="text-primary hover:underline">API Docs</a>
+                        Requires Squarespace Business plan or higher.
+                        <a href="https://developers.squarespace.com" target="_blank"
+                            class="text-primary hover:underline">API Docs</a>
                     </p>
+                </div>
+            </div>
+
+            <!-- ── Auto-Pilot Schedule ──────────────────────────────────── -->
+            <div>
+                <button onclick="toggleScheduleConfig()"
+                    class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">alarm</span>
+                        <span class="text-sm font-bold uppercase tracking-widest">Auto-Pilot Schedule</span>
+                    </div>
+                    <span id="schedule-toggle-icon" class="material-symbols-outlined text-sm">expand_more</span>
+                </button>
+                <div id="schedule-config" class="hidden mt-3 space-y-4">
+                    <!-- Enable auto-pilot -->
+                    <div class="p-3 bg-purple-500/10 border border-purple-500/30 rounded-lg">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <div class="relative">
+                                <input type="checkbox" id="autoPilotEnabled" class="sr-only peer"
+                                    onchange="saveConfig(); refreshStatus()">
+                                <div
+                                    class="w-9 h-5 bg-slate-700 peer-checked:bg-purple-500 rounded-full transition-colors">
+                                </div>
+                                <div
+                                    class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4">
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-200">Enable Auto-Pilot</p>
+                                <p class="text-[10px] text-slate-500">Generates &amp; queues articles on schedule</p>
+                            </div>
+                        </label>
+                    </div>
+                    <!-- Generate hour -->
+                    <div>
+                        <label class="text-xs font-bold uppercase text-slate-300 mb-1 block">Generate at</label>
+                        <select id="generateHour" onchange="saveConfig(); refreshStatus()"
+                            class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm">
+                        </select>
+                        <p class="text-[10px] text-slate-600 mt-1">Articles are written at this time — max 2 per run</p>
+                    </div>
+
+                    <!-- One-Click Population Tool -->
+                    <div class="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg mt-4">
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-blue-400 text-[18px]">build</span>
+                            <div>
+                                <p class="text-xs font-bold text-slate-200">Bulk Category Population Tool</p>
+                                <p class="text-[10px] text-slate-500 mt-1 mb-2">
+                                    Need to populate 10+ articles for every single category instantly so your Blog menus
+                                    work?
+                                    We added an automated script to do this safely in the background.
+                                </p>
+                                <p class="text-[10px] font-mono bg-black/40 px-2 py-1 rounded text-slate-400">
+                                    Run: python3 populate_blog.py
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Release hour -->
+                    <div>
+                        <label class="text-xs font-bold uppercase text-slate-300 mb-1 block">Publish to Squarespace
+                            at</label>
+                        <select id="releaseHour" onchange="saveConfig(); refreshStatus()"
+                            class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm">
+                        </select>
+                        <p class="text-[10px] text-slate-600 mt-1">Queued articles go live at this time</p>
+                    </div>
                 </div>
             </div>
 
             <!-- ClickBank Products (Collapsible) -->
             <div>
-                <button onclick="toggleClickBankProducts()" class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
+                <button onclick="toggleClickBankProducts()"
+                    class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-[18px]">monetization_on</span>
                         <span class="text-sm font-bold uppercase tracking-widest">ClickBank Links</span>
@@ -381,15 +782,16 @@
                     <!-- Affiliate ID Input -->
                     <div class="mb-3 p-3 bg-background-dark border border-border-dark rounded-lg">
                         <label class="text-xs text-slate-400 mb-1 block">Your Affiliate ID (Optional)</label>
-                        <input type="text" id="clickbankAffiliateId" placeholder="yourname123" 
-                               class="w-full bg-panel-dark border border-border-dark rounded px-3 py-2 text-sm mb-1"
-                               onchange="saveConfig()">
+                        <input type="text" id="clickbankAffiliateId" placeholder="yourname123"
+                            class="w-full bg-panel-dark border border-border-dark rounded px-3 py-2 text-sm mb-1"
+                            onchange="saveConfig()">
                         <p class="text-[10px] text-slate-500">
-                            Used to replace YOURID in placeholder links. 
-                            <a href="https://accounts.clickbank.com/signup" target="_blank" class="text-primary hover:underline">Get ID</a>
+                            Used to replace YOURID in placeholder links.
+                            <a href="https://accounts.clickbank.com/signup" target="_blank"
+                                class="text-primary hover:underline">Get ID</a>
                         </p>
                     </div>
-                    
+
                     <div id="clickbank-status" class="text-xs text-slate-500 mb-3">
                         Select categories to see affiliate products...
                     </div>
@@ -399,7 +801,8 @@
 
             <!-- Image Generation (Collapsible) -->
             <div>
-                <button onclick="toggleImageRequirements()" class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
+                <button onclick="toggleImageRequirements()"
+                    class="w-full flex items-center justify-between p-3 bg-white/5 hover:bg-white/10 rounded-lg transition-colors">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-[18px]">image</span>
                         <span class="text-sm font-bold uppercase tracking-widest">AI Images</span>
@@ -431,21 +834,25 @@
                     <span class="material-symbols-outlined text-[18px]">tune</span>
                     Search Settings
                 </h2>
-                
+
                 <div class="space-y-4">
                     <div>
                         <div class="flex justify-between mb-2">
-                            <label class="text-xs font-bold uppercase text-slate-300">Number of Articles</label>
-                            <span class="text-[10px] font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded" id="articles-value">3</span>
+                            <label class="text-xs font-bold uppercase text-slate-300">Search results</label>
+                            <span class="text-[10px] font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded"
+                                id="articles-value">5</span>
                         </div>
-                        <input type="range" id="numArticles" min="1" max="10" value="3" 
-                               class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary">
+                        <input type="range" id="numArticles" min="1" max="10" value="5"
+                            class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary">
+                        <p class="text-[10px] text-slate-600 mt-1.5">
+                            How many articles to find · you choose which to generate
+                        </p>
                     </div>
 
                     <div>
                         <label class="text-xs font-bold uppercase text-slate-300 mb-2 block">Topic Filter</label>
-                        <input type="text" id="queryFilter" placeholder="Optional: specific topic" 
-                               class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm">
+                        <input type="text" id="queryFilter" placeholder="Optional: specific topic"
+                            class="w-full bg-background-dark border border-border-dark rounded-lg px-3 py-2 text-sm">
                     </div>
                 </div>
             </div>
@@ -461,30 +868,42 @@
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs font-bold uppercase text-slate-300">Tone</label>
-                            <span class="text-[10px] font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded" id="temp-label">Balanced</span>
+                            <span class="text-[10px] font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded"
+                                id="temp-label">Balanced</span>
                         </div>
-                        <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7" 
-                               class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary">
+                        <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7"
+                            class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary">
                     </div>
 
                     <div>
                         <div class="flex justify-between mb-2">
                             <label class="text-xs font-bold uppercase text-slate-300">Length</label>
-                            <span class="text-[10px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded" id="tokens-value">2000</span>
+                            <span class="text-[10px] font-mono text-slate-400 bg-white/5 px-1.5 py-0.5 rounded"
+                                id="tokens-value">2000</span>
                         </div>
-                        <input type="range" id="maxTokens" min="500" max="3000" step="100" value="2000" 
-                               class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary">
+                        <input type="range" id="maxTokens" min="500" max="3000" step="100" value="2000"
+                            class="w-full h-1 bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary">
                     </div>
                 </div>
             </div>
 
             <!-- Search Button -->
             <div class="mt-auto space-y-3">
-                <button onclick="searchArticles()" id="searchBtn" class="w-full py-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-sm shadow-xl shadow-primary/30 flex items-center justify-center gap-2 transition-all">
+                <button onclick="searchArticles()" id="searchBtn"
+                    class="w-full py-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-sm shadow-xl shadow-primary/30 flex items-center justify-center gap-2 transition-all">
                     <span class="material-symbols-outlined">search</span>
                     <span id="search-btn-text">SEARCH</span>
                 </button>
-                
+
+                <!-- Archive Button -->
+                <button onclick="showArchive()" id="archiveBtn"
+                    class="w-full py-3 bg-white/5 hover:bg-white/10 border border-border-dark rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all">
+                    <span class="material-symbols-outlined text-[18px]">folder_open</span>
+                    <span>ARCHIVE</span>
+                    <span id="archive-badge"
+                        class="ml-auto text-[10px] font-mono bg-primary/20 text-primary px-2 py-0.5 rounded-full hidden">0</span>
+                </button>
+
                 <p class="text-xs text-center text-slate-500" id="ai-status-text">
                     Configure API keys to start
                 </p>
@@ -494,14 +913,16 @@
 
     <!-- Blog Preview Modal -->
     <div id="blog-preview-modal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-        <div class="bg-background-dark border border-border-dark rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl">
+        <div
+            class="bg-background-dark border border-border-dark rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl">
             <div class="flex items-center justify-between p-6 border-b border-border-dark">
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-primary text-2xl">article</span>
                     <h3 class="font-bold text-lg">Blog Preview</h3>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="downloadCurrentBlog()" class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm flex items-center gap-2">
+                    <button onclick="downloadCurrentBlog()"
+                        class="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm flex items-center gap-2">
                         <span class="material-symbols-outlined text-[18px]">download</span>
                         Download
                     </button>
@@ -522,7 +943,332 @@
         let generatedBlogs = [];
         let clickbankProducts = {};
         let imageRequirements = {};
-        
+        let archivePosts = [];      // full list from API
+        let archivePage = 1;
+        const ARCHIVE_PAGE_SIZE = 20;
+
+        // ── Archive ────────────────────────────────────────────────────────
+        async function loadArchive() {
+            try {
+                const res = await fetch('/api/archive');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                archivePosts = data.posts || [];
+                archivePage = 1;
+                renderArchive();
+                // Update sidebar badge
+                const badge = document.getElementById('archive-badge');
+                if (archivePosts.length > 0) {
+                    badge.textContent = archivePosts.length;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            } catch (e) {
+                console.error('Archive load failed:', e);
+            }
+        }
+
+        function filterArchive() {
+            archivePage = 1;
+            renderArchive();
+        }
+
+        function renderArchive() {
+            const q = (document.getElementById('archive-search')?.value || '').toLowerCase();
+            const filtered = q
+                ? archivePosts.filter(p => p.title.toLowerCase().includes(q))
+                : archivePosts;
+
+            const empty = document.getElementById('archive-empty');
+            const noMatch = document.getElementById('archive-no-match');
+            const tableWrap = document.getElementById('archive-table-wrap');
+            const subtitle = document.getElementById('archive-subtitle');
+
+            subtitle.textContent = `${archivePosts.length} article${archivePosts.length !== 1 ? 's' : ''} · sorted newest first`;
+
+            if (archivePosts.length === 0) {
+                empty.classList.remove('hidden');
+                noMatch.classList.add('hidden');
+                tableWrap.classList.add('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            if (filtered.length === 0) {
+                noMatch.classList.remove('hidden');
+                tableWrap.classList.add('hidden');
+                return;
+            }
+            noMatch.classList.add('hidden');
+            tableWrap.classList.remove('hidden');
+
+            // Paginate
+            const totalPages = Math.ceil(filtered.length / ARCHIVE_PAGE_SIZE);
+            const start = (archivePage - 1) * ARCHIVE_PAGE_SIZE;
+            const page = filtered.slice(start, start + ARCHIVE_PAGE_SIZE);
+
+            tbody.innerHTML = page.map((p, i) => {
+                const num = start + i + 1;
+                const titleSafe = p.title.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const imageStatus = p.has_images
+                    ? '<span class="text-[10px] text-green-500/50">✓ Img</span>'
+                    : '<span class="text-[10px] text-amber-500 animate-pulse">⚠ No Img</span>';
+
+                return `
+                <tr class="group hover:bg-white/[0.03] transition-colors border-b border-white/[0.02]">
+                    <td class="py-3 pr-2 text-slate-600 text-xs font-mono">${num}</td>
+                    <td class="py-3 pr-4">
+                        <div class="flex flex-col">
+                            <a href="${p.url}" target="_blank"
+                               class="text-slate-200 hover:text-primary transition-colors line-clamp-1 leading-snug font-medium"
+                               title="${titleSafe}">
+                                ${titleSafe.length > 90 ? titleSafe.slice(0, 90) + '…' : titleSafe}
+                            </a>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                ${imageStatus}
+                                <span class="text-[10px] text-slate-600 font-mono">${p.word_count || 0} words</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3 pr-4 text-right whitespace-nowrap">
+                        <span class="text-xs font-mono text-slate-500">${p.created_display}</span>
+                    </td>
+                    <td class="py-3 text-right whitespace-nowrap">
+                        <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0">
+                            ${!p.has_images ? `
+                            <button onclick="refreshImages('${p.filename}', this)"
+                                    class="p-1.5 hover:bg-green-500/10 rounded text-green-500" title="Fix Missing Images">
+                                <span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>
+                            </button>` : ''}
+                            <a href="${p.url}" target="_blank"
+                               class="p-1.5 hover:bg-white/10 rounded text-slate-400 hover:text-white" title="View">
+                                <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                            </a>
+                            <a href="/api/download/${p.filename}"
+                               class="p-1.5 hover:bg-white/10 rounded text-slate-400 hover:text-white" title="Download">
+                                <span class="material-symbols-outlined text-[16px]">download</span>
+                            </a>
+                            <button onclick="deleteArchivePost('${p.filename}', this)"
+                                class="p-1.5 hover:bg-red-500/20 rounded text-slate-500 hover:text-red-400" title="Delete">
+                                <span class="material-symbols-outlined text-[16px]">delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+            }).join('');
+
+            // Pagination controls
+            const pag = document.getElementById('archive-pagination');
+            pag.innerHTML = totalPages <= 1 ? '' : `
+                    < span > ${filtered.length} articles${q ? ' matching filter' : ''}</span >
+                <div class="flex items-center gap-2">
+                    <button onclick="archivePage=${archivePage > 1 ? archivePage - 1 : 1};renderArchive()"
+                        class="px-3 py-1 bg-white/5 hover:bg-white/10 rounded ${archivePage === 1 ? 'opacity-30 cursor-default' : ''}">
+                        ← Prev
+                    </button>
+                    <span class="font-mono">${archivePage} / ${totalPages}</span>
+                    <button onclick="archivePage=${archivePage < totalPages ? archivePage + 1 : totalPages};renderArchive()"
+                        class="px-3 py-1 bg-white/5 hover:bg-white/10 rounded ${archivePage === totalPages ? 'opacity-30 cursor-default' : ''}">
+                        Next →
+                    </button>
+                </div>`;
+        }
+
+        async function refreshImages(filename, btn) {
+            const originalIcon = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">sync</span>';
+
+            try {
+                const res = await fetch(`/api/archive/refresh_images/${filename}`, { method: 'POST' });
+                const data = await res.json();
+
+                if (!res.ok) throw new Error(data.error || 'Refresh failed');
+
+                // Show success, then reload
+                btn.innerHTML = '<span class="material-symbols-outlined text-[16px] text-green-500">check_circle</span>';
+                setTimeout(() => loadArchive(), 1500);
+            } catch (e) {
+                alert('Regeneration failed: ' + e.message);
+                btn.disabled = false;
+                btn.innerHTML = originalIcon;
+            }
+        }
+
+        async function deleteArchivePost(filename, btn) {
+            if (!confirm(`Delete "${filename}"? This cannot be undone.`)) return;
+            btn.disabled = true;
+            btn.querySelector('span').textContent = 'hourglass_empty';
+            try {
+                // Fixed fetch URL (removed spaces)
+                const res = await fetch(`/api/archive/delete/${filename}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error('Delete failed');
+                archivePosts = archivePosts.filter(p => p.filename !== filename);
+                renderArchive();
+                // Update badge
+                const badge = document.getElementById('archive-badge');
+                if (archivePosts.length > 0) { badge.textContent = archivePosts.length; }
+                else { badge.classList.add('hidden'); }
+            } catch (e) {
+                alert('Could not delete: ' + e.message);
+                btn.disabled = false;
+                btn.querySelector('span').textContent = 'delete';
+            }
+        }
+
+        async function replaceArchivePost(filename, title, btn) {
+            if (!confirm(`Replace "${title}" with a brand new AI-generated version?\nThis follows all latest monetization rules. The old file will be deleted.`)) return;
+
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">sync</span> Regenerating...';
+
+            try {
+                const res = await fetch(`/api/archive/replace/${filename}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: title })
+                });
+                const data = await res.json();
+
+                if (!res.ok || data.error) throw new Error(data.error || 'Replacement failed');
+
+                alert(`Success! ${data.message}`);
+                loadArchive(); // reload the whole table
+            } catch (e) {
+                alert('Could not replace: ' + e.message);
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            }
+        }
+
+        function showArchive() {
+            // Hide other sections
+            ['welcome-section', 'search-results-section', 'status-section', 'files-section']
+                .forEach(id => document.getElementById(id)?.classList.add('hidden'));
+            document.getElementById('archive-section').classList.remove('hidden');
+            loadArchive();
+        }
+
+        function hideArchive() {
+            document.getElementById('archive-section').classList.add('hidden');
+            document.getElementById('welcome-section').classList.remove('hidden');
+        }
+        // ── End Archive ────────────────────────────────────────────────────
+
+        // ── Hour select helpers ────────────────────────────────────────────────────
+        function initHourSelects(genHour = 5, releaseHour = 8) {
+            const labels = [
+                '12:00 AM', '1:00 AM', '2:00 AM', '3:00 AM', '4:00 AM', '5:00 AM',
+                '6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM',
+                '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
+                '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM'
+            ];
+            ['generateHour', 'releaseHour'].forEach(id => {
+                const sel = document.getElementById(id);
+                if (!sel) return;
+                sel.innerHTML = labels.map((l, i) => `<option value="${i}">${l}</option>`).join('');
+            });
+            document.getElementById('generateHour').value = genHour;
+            document.getElementById('releaseHour').value = releaseHour;
+        }
+
+        function toggleScheduleConfig() {
+            const el = document.getElementById('schedule-config');
+            const icon = document.getElementById('schedule-toggle-icon');
+            if (el.classList.contains('hidden')) { el.classList.remove('hidden'); icon.textContent = 'expand_less'; }
+            else { el.classList.add('hidden'); icon.textContent = 'expand_more'; }
+        }
+
+        // ── Status dashboard polling ──────────────────────────────────────────
+        let _statusTimer = null;
+
+        async function refreshStatus() {
+            try {
+                const [apRes, cfgRes] = await Promise.all([
+                    fetch('/api/autopilot-status'),
+                    fetch('/api/config')
+                ]);
+                if (!apRes.ok || !cfgRes.ok) return;
+                const ap = await apRes.json();
+                const cfg = await cfgRes.json();
+
+                // ─ KPI: Auto-Pilot tile
+                const pilotIcon = document.getElementById('kpi-pilot-icon');
+                const pilotLabel = document.getElementById('kpi-pilot-label');
+                const pilotSub = document.getElementById('kpi-pilot-sub');
+                if (ap.enabled) {
+                    pilotIcon.textContent = 'check_circle';
+                    pilotIcon.className = 'material-symbols-outlined text-[18px] text-green-400';
+                    pilotLabel.textContent = 'ON';
+                    pilotLabel.className = 'text-2xl font-bold text-green-400';
+                    pilotSub.textContent = `Gen ${ap.gen_hour}:00 • Release ${ap.release_hour}:00`;
+                } else {
+                    pilotIcon.textContent = 'radio_button_unchecked';
+                    pilotIcon.className = 'material-symbols-outlined text-[18px] text-slate-600';
+                    pilotLabel.textContent = 'OFF';
+                    pilotLabel.className = 'text-2xl font-bold text-slate-500';
+                    pilotSub.textContent = 'Enable in Auto-Pilot Schedule';
+                }
+
+                // ─ KPI: Next Generate
+                document.getElementById('kpi-gen-time').textContent = ap.next_generate?.time || '—';
+                document.getElementById('kpi-gen-label').textContent = ap.enabled
+                    ? (ap.next_generate?.label || '') : 'Auto-Pilot disabled';
+
+                // ─ KPI: Release time
+                document.getElementById('kpi-release-time').textContent = ap.next_release?.time || '—';
+                document.getElementById('kpi-release-label').textContent = ap.auto_post
+                    ? (ap.next_release?.label || '') : 'Auto-post disabled';
+
+                // ─ KPI: Total articles
+                document.getElementById('kpi-total').textContent = ap.total_articles ?? '—';
+
+                // ─ Queue tile
+                document.getElementById('kpi-pending').textContent = ap.pending_count ?? '—';
+                const noteEl = document.getElementById('kpi-pending-note');
+                if (ap.pending_count > 0 && !ap.auto_post) noteEl.classList.remove('hidden');
+                else noteEl.classList.add('hidden');
+
+                // ─ Squarespace tile
+                const badge = (ok, yes, no) => ok
+                    ? `<span class="bg-green-500/20 text-green-400 font-mono px-2 py-0.5 rounded-full text-[10px]">${yes}</span>`
+                    : `<span class="bg-red-500/20 text-red-400 font-mono px-2 py-0.5 rounded-full text-[10px]">${no}</span>`;
+                document.getElementById('kpi-sq-autopost').outerHTML = `<span id="kpi-sq-autopost">${badge(ap.auto_post, 'ENABLED', 'DISABLED')}</span>`;
+                const hasKey = !!(cfg.squarespace_api_key);
+                document.getElementById('kpi-sq-key').outerHTML = `<span id="kpi-sq-key">${badge(hasKey, 'configured', 'missing')}</span>`;
+                document.getElementById('kpi-last-gen').textContent = ap.last_generated || 'never';
+
+                // ─ Generation banner
+                const gs = ap.generation_state;
+                const banner = document.getElementById('gen-banner');
+                if (gs.status === 'generating') {
+                    banner.classList.remove('hidden');
+                    document.getElementById('gen-banner-detail').textContent = gs.current_article || 'Working…';
+                    document.getElementById('gen-banner-count').textContent = `${gs.progress} / ${gs.total}`;
+                } else {
+                    banner.classList.add('hidden');
+                }
+
+                // ─ Archive badge
+                const abadge = document.getElementById('archive-badge');
+                if (ap.total_articles > 0) { abadge.textContent = ap.total_articles; abadge.classList.remove('hidden'); }
+                else abadge.classList.add('hidden');
+
+                document.getElementById('status-last-refresh').textContent =
+                    'Updated ' + new Date().toLocaleTimeString();
+
+            } catch (e) { console.warn('Status refresh failed:', e); }
+        }
+
+        function startStatusPolling() {
+            refreshStatus();
+            if (_statusTimer) clearInterval(_statusTimer);
+            _statusTimer = setInterval(refreshStatus, 15000);
+        }
+        // ──────────────────────────────────────────────────────────────────────
+
         function toggleSquarespaceConfig() {
             const config = document.getElementById('squarespace-config');
             const icon = document.getElementById('squarespace-toggle-icon');
@@ -534,7 +1280,7 @@
                 icon.textContent = 'expand_more';
             }
         }
-        
+
         function toggleClickBankProducts() {
             const products = document.getElementById('clickbank-products');
             const icon = document.getElementById('clickbank-toggle-icon');
@@ -547,7 +1293,7 @@
                 icon.textContent = 'expand_more';
             }
         }
-        
+
         function toggleImageRequirements() {
             const requirements = document.getElementById('image-requirements');
             const icon = document.getElementById('image-toggle-icon');
@@ -560,7 +1306,7 @@
                 icon.textContent = 'expand_more';
             }
         }
-        
+
         async function checkImageRequirements() {
             try {
                 const response = await fetch('/api/image-requirements');
@@ -572,11 +1318,11 @@
                 console.error('Failed to check image requirements:', e);
             }
         }
-        
+
         function updateImageRequirementsDisplay() {
             const statusIcon = document.getElementById('image-status-icon');
             const statusText = document.getElementById('image-status-text');
-            
+
             if (imageRequirements.can_generate_images) {
                 statusIcon.textContent = 'check_circle';
                 statusIcon.className = 'material-symbols-outlined text-green-400';
@@ -587,7 +1333,7 @@
                 statusText.innerHTML = '<span class="text-amber-400">⚠ Add OpenAI API key to enable images</span>';
             }
         }
-        
+
         async function loadClickBankProducts() {
             try {
                 const response = await fetch('/api/clickbank-products');
@@ -598,34 +1344,34 @@
                 console.error('Failed to load ClickBank products:', e);
             }
         }
-        
+
         function updateClickBankDisplay() {
             const selectedCategories = getSelectedCategories();
             const statusDiv = document.getElementById('clickbank-status');
             const listDiv = document.getElementById('clickbank-products-list');
-            
+
             if (selectedCategories.length === 0) {
                 statusDiv.textContent = 'Select categories to see affiliate products...';
                 statusDiv.className = 'text-xs text-slate-500 mb-3';
                 listDiv.innerHTML = '';
                 return;
             }
-            
+
             // Count configured vs placeholder
             let totalProducts = 0;
             let configuredProducts = 0;
             let html = '';
-            
+
             selectedCategories.forEach(catId => {
                 const catData = clickbankProducts[catId];
                 if (!catData) return;
-                
+
                 const categoryProducts = catData.products || [];
                 totalProducts += categoryProducts.length;
-                
+
                 const configured = categoryProducts.filter(p => !p.is_placeholder).length;
                 configuredProducts += configured;
-                
+
                 const categoryIcon = {
                     'movies': '🎬',
                     'tv': '📺',
@@ -636,7 +1382,7 @@
                     'books': '📚',
                     'gaming': '🎮'
                 }[catId] || '📁';
-                
+
                 html += `
                     <div class="bg-panel-dark border border-border-dark rounded-lg p-3 mb-3">
                         <div class="flex items-center gap-2 mb-2">
@@ -656,10 +1402,10 @@
                                         <div class="flex-1">
                                             <div class="font-medium text-slate-200">${product.title}</div>
                                             <div class="text-slate-500 text-[10px] mt-1">${product.description}</div>
-                                            ${product.is_placeholder ? 
-                                                '<div class="text-amber-400 text-[10px] mt-1">⚠ Placeholder - needs configuration</div>' : 
-                                                '<div class="text-green-400 text-[10px] mt-1">✓ Configured</div>'
-                                            }
+                                            ${product.is_placeholder ?
+                        '<div class="text-amber-400 text-[10px] mt-1">⚠ Placeholder - needs configuration</div>' :
+                        '<div class="text-green-400 text-[10px] mt-1">✓ Configured</div>'
+                    }
                                         </div>
                                     </div>
                                 </div>
@@ -668,7 +1414,7 @@
                     </div>
                 `;
             });
-            
+
             // Update status
             if (configuredProducts === totalProducts) {
                 statusDiv.innerHTML = `<span class="text-green-400">✓ All ${totalProducts} products configured!</span>`;
@@ -677,10 +1423,10 @@
                 statusDiv.innerHTML = `<span class="text-amber-400">⚠ ${totalProducts - configuredProducts} of ${totalProducts} need configuration</span>`;
                 statusDiv.className = 'text-xs mb-3';
             }
-            
+
             listDiv.innerHTML = html;
         }
-        
+
         // Add event listeners to category checkboxes
         function initCategoryListeners() {
             const checkboxes = document.querySelectorAll('#category-checkboxes input[type="checkbox"]');
@@ -694,35 +1440,35 @@
             });
             updateCategoryCount();
         }
-        
+
         function toggleAllCategories() {
             const selectAll = document.getElementById('selectAllCategories');
             const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
-            
+
             categoryCheckboxes.forEach(checkbox => {
                 checkbox.checked = selectAll.checked;
             });
-            
+
             updateCategoryCount();
             if (!document.getElementById('clickbank-products').classList.contains('hidden')) {
                 updateClickBankDisplay();
             }
         }
-        
+
         function updateCategoryCount() {
             const selectedCategories = getSelectedCategories();
             const count = selectedCategories.length;
             const countEl = document.getElementById('category-count');
             const suggestionEl = document.getElementById('category-suggestion');
             const selectAll = document.getElementById('selectAllCategories');
-            
+
             if (count === 0) {
                 countEl.textContent = 'None selected';
                 suggestionEl.textContent = 'Select categories to search';
                 selectAll.checked = false;
-            } else if (count === 8) {
-                countEl.textContent = '🔥 All 8 categories';
-                suggestionEl.textContent = 'Searching all trending entertainment news';
+            } else if (count === 17) {
+                countEl.textContent = '🚀 Full Global Feed (All 17)';
+                suggestionEl.textContent = 'Searching all trending news across niches';
                 selectAll.checked = true;
             } else {
                 countEl.textContent = `${count} selected`;
@@ -730,32 +1476,39 @@
                 selectAll.checked = false;
             }
         }
-        
+
         function updateAIProvider() {
             const provider = document.getElementById('aiProvider').value;
-            
+
             document.getElementById('claude-key-section').style.display = provider === 'claude' ? 'block' : 'none';
             document.getElementById('gemini-key-section').style.display = provider === 'gemini' ? 'block' : 'none';
             document.getElementById('openai-key-section').style.display = provider === 'chatgpt' ? 'block' : 'none';
-            
+            document.getElementById('groq-key-section').style.display = provider === 'groq' ? 'block' : 'none';
+            document.getElementById('openrouter-key-section').style.display = provider === 'openrouter' ? 'block' : 'none';
+            document.getElementById('ollama-config-section').style.display = provider === 'ollama' ? 'block' : 'none';
+
             const descriptions = {
                 claude: 'Best for quality writing and deep analysis',
                 gemini: 'Fast with generous free tier',
-                chatgpt: 'Best for image generation with DALL-E'
+                chatgpt: 'Best for image generation with DALL-E',
+                groq: 'Blazing fast open-source Llama 3',
+                openrouter: 'Access to any model (DeepSeek, Qwen, etc)',
+                ollama: 'Run locally on your machine (No costs/API keys)'
             };
             document.getElementById('ai-description').textContent = descriptions[provider];
-            
+
             const btnText = {
-                claude: 'SEARCH WITH CLAUDE',
-                gemini: 'SEARCH WITH GEMINI',
-                chatgpt: 'SEARCH (Note: Use Claude/Gemini for search)'
+                claude: 'SEARCH TRENDS',
+                gemini: 'SEARCH TRENDS',
+                chatgpt: 'SEARCH TRENDS',
+                groq: 'SEARCH TRENDS',
+                openrouter: 'SEARCH TRENDS',
+                ollama: 'SEARCH TRENDS'
             };
             document.getElementById('search-btn-text').textContent = btnText[provider];
-            
-            document.getElementById('ai-status-text').textContent = provider === 'chatgpt' 
-                ? 'ChatGPT for generation only. Use Claude/Gemini to search.'
-                : `${provider.charAt(0).toUpperCase() + provider.slice(1)} will search the web`;
-            
+
+            document.getElementById('ai-status-text').textContent = 'Fetching trending news via RSS real-time feeds.';
+
             const searchBtn = document.getElementById('searchBtn');
             searchBtn.className = 'w-full py-4 text-white rounded-lg font-bold text-sm shadow-xl flex items-center justify-center gap-2 transition-all';
             searchBtn.classList.add(
@@ -763,67 +1516,64 @@
                 provider === 'gemini' ? 'hover:bg-gemini/90' : provider === 'chatgpt' ? 'hover:bg-openai/90' : 'hover:bg-primary/90',
                 provider === 'gemini' ? 'shadow-gemini/30' : provider === 'chatgpt' ? 'shadow-openai/30' : 'shadow-primary/30'
             );
-            
+
             checkConfig();
         }
-        
+
         document.getElementById('numArticles').addEventListener('input', (e) => {
             document.getElementById('articles-value').textContent = e.target.value;
         });
-        
+
         document.getElementById('temperature').addEventListener('input', (e) => {
             const val = parseFloat(e.target.value);
             const label = val < 0.4 ? 'Mild' : val < 0.7 ? 'Balanced' : 'Bold';
             document.getElementById('temp-label').textContent = label;
         });
-        
+
         document.getElementById('maxTokens').addEventListener('input', (e) => {
             document.getElementById('tokens-value').textContent = e.target.value;
         });
-        
+
         async function loadConfig() {
             try {
                 const response = await fetch('/api/config');
                 if (response.ok) {
                     const savedConfig = await response.json();
-                    if (savedConfig.anthropic_api_key) {
-                        document.getElementById('anthropicApiKey').value = savedConfig.anthropic_api_key;
-                    }
-                    if (savedConfig.gemini_api_key) {
-                        document.getElementById('geminiApiKey').value = savedConfig.gemini_api_key;
-                    }
-                    if (savedConfig.openai_api_key) {
-                        document.getElementById('openaiApiKey').value = savedConfig.openai_api_key;
-                    }
-                    if (savedConfig.clickbank_affiliate_id) {
-                        document.getElementById('clickbankAffiliateId').value = savedConfig.clickbank_affiliate_id;
-                    }
-                    if (savedConfig.squarespace_api_key) {
-                        document.getElementById('squarespaceApiKey').value = savedConfig.squarespace_api_key;
-                    }
-                    if (savedConfig.squarespace_site_id) {
-                        document.getElementById('squarespaceSiteId').value = savedConfig.squarespace_site_id;
-                    }
-                    if (savedConfig.squarespace_collection_id) {
-                        document.getElementById('squarespaceCollectionId').value = savedConfig.squarespace_collection_id;
-                    }
-                    if (savedConfig.ai_provider) {
-                        document.getElementById('aiProvider').value = savedConfig.ai_provider;
-                        updateAIProvider();
-                    }
+                    if (savedConfig.anthropic_api_key) document.getElementById('anthropicApiKey').value = savedConfig.anthropic_api_key;
+                    if (savedConfig.gemini_api_key) document.getElementById('geminiApiKey').value = savedConfig.gemini_api_key;
+                    if (savedConfig.openai_api_key) document.getElementById('openaiApiKey').value = savedConfig.openai_api_key;
+                    if (savedConfig.clickbank_affiliate_id) document.getElementById('clickbankAffiliateId').value = savedConfig.clickbank_affiliate_id;
+                    if (savedConfig.squarespace_api_key) document.getElementById('squarespaceApiKey').value = savedConfig.squarespace_api_key;
+                    if (savedConfig.squarespace_site_id) document.getElementById('squarespaceSiteId').value = savedConfig.squarespace_site_id;
+                    if (savedConfig.squarespace_collection_id) document.getElementById('squarespaceCollectionId').value = savedConfig.squarespace_collection_id;
+                    if (savedConfig.ai_provider) { document.getElementById('aiProvider').value = savedConfig.ai_provider; updateAIProvider(); }
+                    document.getElementById('anthropicApiKey').value = savedConfig.anthropic_api_key || '';
+                    document.getElementById('geminiApiKey').value = savedConfig.gemini_api_key || '';
+                    document.getElementById('openaiApiKey').value = savedConfig.openai_api_key || '';
+                    document.getElementById('groqApiKey').value = savedConfig.groq_api_key || '';
+                    document.getElementById('openrouterApiKey').value = savedConfig.openrouter_api_key || '';
+                    document.getElementById('ollamaModel').value = savedConfig.ollama_model || 'llama3';
+
+                    // Auto-pilot / schedule
+                    document.getElementById('autoPilotEnabled').checked = savedConfig.auto_pilot === 'enabled';
+                    document.getElementById('autoPostSquarespace').checked = savedConfig.auto_post_squarespace === 'enabled';
+                    initHourSelects(
+                        parseInt(savedConfig.auto_pilot_generate_hour ?? 5),
+                        parseInt(savedConfig.auto_pilot_release_hour ?? 8)
+                    );
                     checkConfig();
                 }
-            } catch (e) {
-                console.log('No saved config');
-            }
+            } catch (e) { console.log('No saved config'); }
         }
-        
+
         async function saveConfig() {
             const config = {
                 ai_provider: document.getElementById('aiProvider').value,
                 anthropic_api_key: document.getElementById('anthropicApiKey').value.trim(),
                 gemini_api_key: document.getElementById('geminiApiKey').value.trim(),
                 openai_api_key: document.getElementById('openaiApiKey').value.trim(),
+                groq_api_key: document.getElementById('groqApiKey').value.trim(),
+                openrouter_api_key: document.getElementById('openrouterApiKey').value.trim(),
                 clickbank_affiliate_id: document.getElementById('clickbankAffiliateId').value.trim(),
                 squarespace_api_key: document.getElementById('squarespaceApiKey').value.trim(),
                 squarespace_site_id: document.getElementById('squarespaceSiteId').value.trim(),
@@ -831,71 +1581,65 @@
                 num_articles: document.getElementById('numArticles').value,
                 query_filter: document.getElementById('queryFilter').value.trim(),
                 temperature: document.getElementById('temperature').value,
-                max_tokens: document.getElementById('maxTokens').value
+                max_tokens: document.getElementById('maxTokens').value,
+                // Auto-pilot
+                auto_pilot: document.getElementById('autoPilotEnabled')?.checked ? 'enabled' : 'disabled',
+                auto_post_squarespace: document.getElementById('autoPostSquarespace')?.checked ? 'enabled' : 'disabled',
+                auto_pilot_generate_hour: parseInt(document.getElementById('generateHour')?.value ?? 5),
+                auto_pilot_release_hour: parseInt(document.getElementById('releaseHour')?.value ?? 8),
+                ollama_model: document.getElementById('ollamaModel').value.trim() || 'llama3',
             };
-            
             try {
                 await fetch('/api/config', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(config)
                 });
-            } catch (e) {
-                console.error('Failed to save config:', e);
-            }
+            } catch (e) { console.error('Failed to save config:', e); }
         }
-        
+
         function checkConfig() {
             const provider = document.getElementById('aiProvider').value;
             let hasKey = false;
-            
+
             if (provider === 'claude') {
                 hasKey = document.getElementById('anthropicApiKey').value.trim() !== '';
             } else if (provider === 'gemini') {
                 hasKey = document.getElementById('geminiApiKey').value.trim() !== '';
             } else if (provider === 'chatgpt') {
                 hasKey = document.getElementById('openaiApiKey').value.trim() !== '';
+            } else if (provider === 'groq') {
+                hasKey = document.getElementById('groqApiKey').value.trim() !== '';
+            } else if (provider === 'openrouter') {
+                hasKey = document.getElementById('openrouterApiKey').value.trim() !== '';
+            } else if (provider === 'ollama') {
+                hasKey = true; // No key needed for local ollama
             }
-            
+
             const status = document.getElementById('api-status');
             const color = provider === 'claude' ? 'primary' : provider === 'gemini' ? 'gemini' : 'openai';
-            
+
             if (hasKey) {
                 status.innerHTML = `<span class="w-2 h-2 rounded-full bg-${color} animate-pulse"></span><span class="text-${color}">Ready</span>`;
             } else {
                 status.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-600"></span><span class="text-slate-400">No API key</span>';
             }
         }
-        
+
         function getSelectedCategories() {
             const checkboxes = document.querySelectorAll('#category-checkboxes input[type="checkbox"]:checked');
             return Array.from(checkboxes).map(cb => cb.value);
         }
-        
+
         async function searchArticles() {
             const provider = document.getElementById('aiProvider').value;
-            
-            // ChatGPT can't search, must use Claude or Gemini
-            if (provider === 'chatgpt') {
-                alert('ChatGPT cannot search the web. Please select Claude or Gemini for searching, then use ChatGPT for generation.');
-                return;
-            }
-            
-            const apiKey = provider === 'claude' 
-                ? document.getElementById('anthropicApiKey').value.trim()
-                : document.getElementById('geminiApiKey').value.trim();
-            
-            if (!apiKey) {
-                alert(`Please enter your ${provider === 'claude' ? 'Anthropic' : 'Gemini'} API key`);
-                return;
-            }
-            
+
             const selectedCategories = getSelectedCategories();
             if (selectedCategories.length === 0) {
-                alert('Please select at least one category');
+                alert('Please select at least one category to search for trending topics');
                 return;
             }
-            
+
             config = {
                 ai_provider: provider,
                 anthropic_api_key: document.getElementById('anthropicApiKey').value.trim(),
@@ -911,37 +1655,37 @@
                 max_tokens: document.getElementById('maxTokens').value,
                 selected_categories: selectedCategories
             };
-            
+
             const btn = document.getElementById('searchBtn');
             btn.disabled = true;
-            
+
             // Check if trending mode (6+ categories)
             const isTrending = selectedCategories.length >= 6;
             const searchText = isTrending ? '🔥 SEARCHING TRENDING...' : 'SEARCHING...';
-            
+
             document.getElementById('search-btn-text').textContent = searchText;
             document.getElementById('welcome-section').style.display = 'none';
             document.getElementById('status-indicator').textContent = searchText;
-            
+
             try {
                 const response = await fetch('/api/search', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(config)
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (!response.ok) {
                     alert('Search failed: ' + (data.error || 'Unknown error'));
                     document.getElementById('status-indicator').textContent = '';
                     return;
                 }
-                
+
                 searchResults = data.news_items || [];
                 displaySearchResults(searchResults, data.ai_used);
                 checkConfig();
-                
+
             } catch (error) {
                 alert('Error: ' + error.message);
                 document.getElementById('status-indicator').textContent = '';
@@ -950,25 +1694,25 @@
                 document.getElementById('search-btn-text').textContent = 'SEARCH';
             }
         }
-        
+
         function displaySearchResults(items, aiUsed) {
             const section = document.getElementById('search-results-section');
             const grid = document.getElementById('search-results-grid');
-            
+
             document.getElementById('welcome-section').style.display = 'none';
             section.classList.remove('hidden');
-            
+
             // Check if in trending mode
             const selectedCategories = getSelectedCategories();
             const isTrending = selectedCategories.length >= 6;
-            
-            const countText = isTrending 
-                ? `🔥 ${items.length} Trending Stories` 
+
+            const countText = isTrending
+                ? `🔥 ${items.length} Trending Stories`
                 : `${items.length} Articles`;
-            
+
             document.getElementById('results-count').textContent = countText;
             document.getElementById('status-indicator').textContent = '';
-            
+
             let html = '';
             items.forEach(item => {
                 const categoryBadge = item.category ? `<span class="text-xs px-2 py-1 bg-primary/20 text-primary rounded">${item.category}</span>` : '';
@@ -996,15 +1740,15 @@
                     </div>
                 `;
             });
-            
+
             grid.innerHTML = html;
             selectAll();
         }
-        
+
         function toggleSelection(id) {
             const checkbox = document.getElementById(`check-${id}`);
             const card = document.querySelector(`[data-id="${id}"]`);
-            
+
             if (selectedIds.has(id)) {
                 selectedIds.delete(id);
                 checkbox.checked = false;
@@ -1014,10 +1758,10 @@
                 checkbox.checked = true;
                 card.classList.add('selected');
             }
-            
+
             updateSelectionUI();
         }
-        
+
         function selectAll() {
             searchResults.forEach(item => {
                 selectedIds.add(item.id);
@@ -1028,7 +1772,7 @@
             });
             updateSelectionUI();
         }
-        
+
         function deselectAll() {
             selectedIds.clear();
             searchResults.forEach(item => {
@@ -1039,28 +1783,28 @@
             });
             updateSelectionUI();
         }
-        
+
         function updateSelectionUI() {
             const count = selectedIds.size;
             document.getElementById('generate-summary').textContent = `${count} article${count !== 1 ? 's' : ''} selected`;
-            
+
             if (count > 0) {
                 document.getElementById('generate-section').classList.remove('hidden');
             } else {
                 document.getElementById('generate-section').classList.add('hidden');
             }
         }
-        
+
         async function generateFromSelected() {
             if (selectedIds.size === 0) {
                 alert('Please select at least one article');
                 return;
             }
-            
+
             const btn = document.getElementById('generate-btn');
             btn.disabled = true;
             btn.innerHTML = '<span class="material-symbols-outlined animate-spin">autorenew</span> Generating...';
-            
+
             try {
                 const response = await fetch('/api/generate', {
                     method: 'POST',
@@ -1070,14 +1814,14 @@
                         selected_ids: Array.from(selectedIds)
                     })
                 });
-                
+
                 if (response.ok) {
                     startStatusPolling();
                 } else {
                     const error = await response.json();
                     alert('Error: ' + error.error);
                 }
-                
+
             } catch (error) {
                 alert('Error: ' + error.message);
             } finally {
@@ -1085,7 +1829,20 @@
                 btn.innerHTML = '<span class="material-symbols-outlined">auto_awesome</span> Generate Blogs';
             }
         }
-        
+
+        async function stopGeneration() {
+            if (!confirm('Are you sure you want to stop the current generation pipeline?')) return;
+            try {
+                const response = await fetch('/api/stop-generation', { method: 'POST' });
+                if (response.ok) {
+                    // Force refresh status immediately
+                    refreshStatus();
+                }
+            } catch (err) {
+                console.error('Stop request failed:', err);
+            }
+        }
+
         let statusInterval;
         function startStatusPolling() {
             if (statusInterval) clearInterval(statusInterval);
@@ -1093,29 +1850,29 @@
             statusInterval = setInterval(updateStatus, 1000);
             updateStatus();
         }
-        
+
         async function updateStatus() {
             try {
                 const response = await fetch('/api/status');
                 const state = await response.json();
-                
+
                 updateStatusDisplay(state);
-                
+
                 if (state.status === 'complete' || state.status === 'error') {
                     clearInterval(statusInterval);
                 }
-                
+
             } catch (error) {
                 console.error('Status update error:', error);
             }
         }
-        
+
         function updateStatusDisplay(state) {
             const content = document.getElementById('status-content');
             const indicator = document.getElementById('status-indicator');
-            
+
             let html = '';
-            
+
             if (state.status === 'generating') {
                 const progress = (state.progress / state.total) * 100;
                 html = `
@@ -1135,29 +1892,29 @@
                 html = '<div class="flex items-center gap-3 text-primary"><span class="material-symbols-outlined text-3xl">check_circle</span><span class="font-bold">All blogs generated!</span></div>';
                 indicator.textContent = 'COMPLETE ✓';
             }
-            
+
             if (state.error) {
                 html = `<div class="text-rose-400">${state.error}</div>`;
                 indicator.textContent = 'ERROR';
             }
-            
+
             content.innerHTML = html;
-            
+
             if (state.generated_files && state.generated_files.length > 0) {
                 generatedBlogs = state.generated_files;
                 updateFilesList(state.generated_files);
             }
         }
-        
+
         function updateFilesList(files) {
             document.getElementById('files-section').classList.remove('hidden');
             const grid = document.getElementById('files-grid');
-            
+
             let html = '';
             files.forEach((file, i) => {
                 const writerBadge = file.writer ? `<div class="text-xs text-slate-500">By ${file.writer}</div>` : '';
                 const categoryBadge = file.category ? `<span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">${file.category}</span>` : '';
-                
+
                 // Image preview if available
                 const imagePreview = file.featured_image ? `
                     <div class="mb-3 -mx-4 -mt-4">
@@ -1172,7 +1929,7 @@
                         </div>
                     </div>
                 ` : '';
-                
+
                 html += `
                     <div class="bg-panel-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/40 transition-colors">
                         ${imagePreview}
@@ -1182,7 +1939,7 @@
                                     <span class="material-symbols-outlined text-primary">description</span>
                                     ${categoryBadge}
                                 </div>
-                                <span class="text-[10px] font-mono text-slate-500">Blog ${i+1}</span>
+                                <span class="text-[10px] font-mono text-slate-500">Blog ${i + 1}</span>
                             </div>
                             <h3 class="text-sm font-bold mb-2 line-clamp-2">${file.title}</h3>
                             ${writerBadge}
@@ -1205,25 +1962,25 @@
                     </div>
                 `;
             });
-            
+
             grid.innerHTML = html;
         }
-        
+
         async function postToSquarespace(filename) {
             if (!config.squarespace_api_key) {
                 alert('Please configure Squarespace credentials in the settings panel');
                 return;
             }
-            
+
             if (!confirm('Post this blog to Squarespace? It will be published immediately.')) {
                 return;
             }
-            
+
             const btn = event.target;
             const originalText = btn.textContent;
             btn.disabled = true;
             btn.textContent = 'Posting...';
-            
+
             try {
                 const response = await fetch('/api/post-to-squarespace', {
                     method: 'POST',
@@ -1233,9 +1990,9 @@
                         filename: filename
                     })
                 });
-                
+
                 const result = await response.json();
-                
+
                 if (result.success) {
                     alert(`✅ Posted successfully!\n\nLive URL: ${result.url}`);
                     btn.textContent = '✓ Posted';
@@ -1246,61 +2003,64 @@
                     btn.textContent = originalText;
                     btn.disabled = false;
                 }
-                
+
             } catch (error) {
                 alert(`❌ Error: ${error.message}`);
                 btn.textContent = originalText;
                 btn.disabled = false;
             }
         }
-        
+
         async function previewBlog(filename) {
             currentBlogFilename = filename;
-            
+
             try {
                 const response = await fetch(`/api/view/${filename}`);
                 const html = await response.text();
-                
+
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 const container = doc.querySelector('.container');
-                
+
                 if (container) {
                     document.getElementById('blog-preview-content').innerHTML = container.innerHTML;
                     document.getElementById('blog-preview-modal').classList.remove('hidden');
                 }
-                
+
             } catch (error) {
                 alert('Error loading blog: ' + error.message);
             }
         }
-        
+
         function closePreview() {
             document.getElementById('blog-preview-modal').classList.add('hidden');
         }
-        
+
         function downloadCurrentBlog() {
             if (currentBlogFilename) {
                 window.location.href = `/api/download/${currentBlogFilename}`;
             }
         }
-        
+
         document.getElementById('blog-preview-modal').addEventListener('click', (e) => {
             if (e.target.id === 'blog-preview-modal') {
                 closePreview();
             }
         });
-        
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closePreview();
             }
         });
-        
+
         loadConfig();
         loadClickBankProducts();
         checkImageRequirements();
         initCategoryListeners();
+        initHourSelects(); // populate dropdowns with defaults; loadConfig overrides from saved config
+        startStatusPolling(); // live status dashboard + archive badge
     </script>
 </body>
+
 </html>

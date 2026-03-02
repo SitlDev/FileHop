@@ -23,6 +23,11 @@ COPY --from=frontend-builder /app/webapp/dist ./webapp/dist
 # Ensure start script is executable
 RUN chmod +x start.sh
 
+# Create persistent data directory (Railway Volume mounts here at /data)
+# NOTE: Do NOT use the VOLUME keyword — Railway bans it.
+# Mount the Volume at /data via the Railway dashboard instead.
+RUN mkdir -p /data
+
 # Expose port (Railway sets $PORT)
 EXPOSE 5000
 

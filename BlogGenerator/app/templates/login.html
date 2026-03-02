@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Login | KnotStranded</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at top left, #1a1a1a, #000);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .glow-button {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #333, #111);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glow-button:hover {
+            background: linear-gradient(135deg, #444, #222);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full max-w-md p-8">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold tracking-tight mb-2">KnotStranded</h1>
+            <p class="text-slate-400 text-sm">Media Intelligence Dashboard</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-8">
+            <h2 class="text-xl font-semibold mb-6">Restricted Access</h2>
+
+            {% if error %}
+            <div class="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="POST">
+                <div class="mb-6">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Dashboard
+                        Password</label>
+                    <input type="password" name="password" required
+                        class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white transition-all focus:ring-0"
+                        placeholder="••••••••">
+                </div>
+
+                <button type="submit"
+                    class="glow-button w-full py-4 rounded-xl font-bold text-sm tracking-widest uppercase">
+                    Initialize Session
+                </button>
+            </form>
+        </div>
+
+        <div class="mt-8 text-center text-xs text-slate-600">
+            <a href="/" class="hover:text-slate-400 transition-colors">← Back to Public Blog</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnotStranded | Article</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#4f46e5',
+                        'bg-dark': '#0a0a0a',
+                        'bg-card': '#141414',
+                        'border-dim': '#222222',
+                        'text-muted': '#888888'
+                    },
+                    fontFamily: {
+                        'serif': ['Fraunces', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        .nyt-sidebar {
+            border-right: 1px solid #222;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+    </style>
+    <!-- INJECTED ARTICLE STYLES -->
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg-body: #0a0a0a;
+            --bg-card: #141414;
+            --text-main: #ffffff;
+            --text-body: #bbbbbb;
+            --max-width: 800px;
+            --border: #222222;
+            --accent: #4f46e5;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header / Nav Area */
+        .site-nav {
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 6rem;
+            background: var(--bg-body);
+        }
+        .site-logo {
+            font-family: 'Fraunces', serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: -2px;
+        }
+
+        /* Main Article Layout */
+        .article-header {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .kicker {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 3rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+        }
+        .author-meta span { color: var(--primary); font-weight: 800; }
+
+        .hero-image-container {
+            max-width: 1200px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .article-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-body);
+            line-height: 1.8;
+        }
+
+        .article-content p { margin-bottom: 2.5rem; }
+
+        .editorial-heading {
+            font-family: 'Fraunces', serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 5rem 0 2rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .editorial-subheading {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem;
+        }
+
+        .inline-photo {
+            margin: 5rem 0;
+            width: 100%;
+        }
+        .inline-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        /* High-End Affiliate Callouts */
+        .product-recommendation {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            margin: 5rem 0;
+            padding: 3rem;
+            position: relative;
+        }
+        .rec-label {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: #000;
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .rec-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        .rec-info .rec-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+        }
+        .rec-button {
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 24px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: transform 0.2s;
+        }
+        .rec-button:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
+
+        .subscription-card {
+            background: #1a1c2e;
+            border-color: #4f46e5;
+        }
+        .subscription-card .rec-label { background: #4f46e5; }
+        .subscription-card .rec-button { background: #4f46e5; color: #fff; }
+
+        /* Author Bio Block */
+        .author-card {
+            max-width: var(--max-width);
+            margin: 8rem auto;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+        .author-info h4 { font-size: 14px; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; color: #fff; }
+        .author-info p { font-size: 16px; color: var(--text-body); line-height: 1.6; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 { font-size: 3rem; letter-spacing: -2px; }
+            .rec-content { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+    </style>
+    <!-- Overrides to prevent injected styles from ruining the sidebar -->
+    <style>
+        .nyt-sidebar * {
+            font-family: inherit;
+        }
+
+        .nyt-sidebar h3 {
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        main article {
+            background: transparent !important;
+            padding-top: 0 !important;
+        }
+
+        main .article-header {
+            margin-top: 2rem !important;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+    <div class="flex min-h-screen">
+        <!-- NYT Sidebar Navigation -->
+        <aside class="w-64 nyt-sidebar fixed h-full overflow-y-auto hidden lg:block p-6">
+            <div class="mb-12">
+                <a href="/" class="font-serif text-3xl font-black tracking-tighter hover:opacity-80 transition-opacity">
+                    Knot<span class="text-brand-primary">Stranded</span>
+                </a>
+            </div>
+
+            <nav class="space-y-6">
+                <div>
+                    <h3 class="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">Core Intel</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">&larr;
+                                Back to Home</a></li>
+                        
+                        <li><a href="/#cat-movies"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Movies</a></li>
+                        
+                        <li><a href="/#cat-tv"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">TV Shows</a></li>
+                        
+                        <li><a href="/#cat-music"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Music</a></li>
+                        
+                        <li><a href="/#cat-celebrity"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Celebrity News</a></li>
+                        
+                        <li><a href="/#cat-awards"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Awards &amp; Events</a></li>
+                        
+                        <li><a href="/#cat-streaming"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Streaming Services</a></li>
+                        
+                        <li><a href="/#cat-books"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Books &amp; Literature</a></li>
+                        
+                        <li><a href="/#cat-gaming"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Gaming &amp; Esports</a></li>
+                        
+                        <li><a href="/#cat-local"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Local Pulse</a></li>
+                        
+                        <li><a href="/#cat-tech"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Tech &amp; AI</a></li>
+                        
+                        <li><a href="/#cat-finance"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Finance &amp; Business</a></li>
+                        
+                        <li><a href="/#cat-health"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Health &amp; Wellness</a></li>
+                        
+                        <li><a href="/#cat-lifestyle"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Lifestyle &amp; Travel</a></li>
+                        
+                        <li><a href="/#cat-science"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Science &amp; Nature</a></li>
+                        
+                        <li><a href="/#cat-sports"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Sports World</a></li>
+                        
+                        <li><a href="/#cat-politics"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">Global Politics</a></li>
+                        
+                        <li><a href="/#cat-us_politics"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">US Politics</a></li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-6 lg:p-12">
+            <!-- Article Wrapper -->
+            <div
+                class="max-w-4xl mx-auto border border-border-dim bg-[#0d0d0d] rounded-sm shadow-xl overflow-hidden pb-10">
+                <!-- Inner Article -->
+                <article>
+        <header class="article-header">
+            <div class="kicker">Viral Intelligence Report</div>
+            <h1>HARD Summer drops Kali Uchis, Zedd for 2026, tickets on sale today</h1>
+            <div class="author-meta">
+                <span>The Librarian</span> &centerdot; February 27, 2026 &centerdot; 5 min read
+            </div>
+        </header>
+
+        <div class="hero-image-container"><img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&q=80&w=1200&seed=1955" class="hero-image" alt="HARD Summer drops Kali Uchis, Zedd for 2026, tickets on sale today"></div>
+
+        
+
+        <div class="article-content">
+            <p>**HARD Summer 2026 Drops Kali Uchis, Zedd for a Sizzling Summer of Music**</p><p>As the sun begins to shine brighter on the horizon, music festival enthusiasts are gearing up for another electrifying summer. HARD Summer, one of the most anticipated electronic dance music (EDM) events in the country, has just dropped its 2026 lineup, and it's shaping up to be a wild ride.</p><p>Headlining the two-day extravaganza will be none other than Kali Uchis, the sultry R&B songstress known for her smooth vocals and genre-bending beats. With <div class="product-recommendation ">
+                <div class="rec-label">Editor's Choice</div>
+                <div class="rec-content-wrapper" style="display:flex; align-items:center; gap:2rem;">
+                    <div class="rec-image"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=200&q=80" alt="Media Discovery Tool" style="max-width:100px; height:auto; object-fit:cover;"></div>
+                    <div class="rec-content" style="flex:1;">
+                        <div class="rec-info">
+                            <span class="rec-title">Media Discovery Tool</span>
+                        </div>
+                        <a href="https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n" target="_blank" class="rec-button" style="white-space:nowrap;">Check Price</a>
+                    </div>
+                </div>
+            </div> Media Discovery Tool, you can dig deeper into her discography and discover why she's become a favorite among music lovers.</p><p>But that's not all – Zedd, the German DJ and producer extraordinaire, is also joining the party. This Grammy-winning artist has been making waves in the EDM scene for years with his unique blend of progressive house and electro pop. Use [Pop Culture Toolkit] to analyze his top tracks and get ready to dance the night away.</p><p><div class="inline-photo"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=1200" alt="Editorial Detail 1"></div></p><p>Other notable acts on the bill include [insert other performers, e.g., Flume, Disclosure, etc.]. With [Digital Content Creator Kit] from Amazon, you can create your own beats and remixes inspired by these talented artists.</p><p>As the summer heat approaches, make sure to stay charged with [Portable Power Bank], a must-have for any music festival-goer. Whether you're capturing memories on camera or streaming live updates, this reliable power has got you covered.</p><p>Tickets for HARD Summer 2026 are now available online, so don't wait – secure your spot today and get ready to experience the ultimate summer of music!</p>
+        </div>
+
+        <section class="author-card">
+            <div class="author-avatar"><img src="/avatars/writer_1.jpg" alt="The Librarian" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+            <div class="author-info">
+                <h4>Written by The Librarian</h4>
+                <p>History doesn't repeat, it rhymes. The Librarian finds the historical echoes in today's headlines.</p>
+            </div>
+        </section>
+    </article>
+
+                
+                <div class="px-8 pt-4 border-t border-border-dim mt-8">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-text-muted">Original Release: February 28, 2026 - 02:16 PM</p>
+                </div>
+                
+            </div>
+
+            <!-- Footer -->
+            <footer class="max-w-4xl mx-auto mt-20 pt-10 border-t border-border-dim pb-10 flex flex-col items-center">
+                <a href="/" class="font-serif text-3xl font-black mb-4">KnotStranded</a>
+                <p class="text-[10px] font-black uppercase tracking-widest text-text-muted opacity-50 text-center">
+                    &copy; 2026 Viral Intelligence Group.<br />Fully Automated Editorial System.
+                </p>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

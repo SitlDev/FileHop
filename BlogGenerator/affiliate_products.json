@@ -1,0 +1,478 @@
+{
+  "clickbank": {
+    "movies": [
+      {
+        "title": "Ultimate Streaming Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "comprehensive streaming platform guide",
+        "image": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Cinematography Masterclass",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "film appreciation course",
+        "image": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Home Theater Setup",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "home entertainment system",
+        "image": "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "tv": [
+      {
+        "title": "TV Series Database",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "complete series guide",
+        "image": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Streaming Optimizer",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "streaming service comparison",
+        "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Binge Guide Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "TV recommendation engine",
+        "image": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "music": [
+      {
+        "title": "Music Production Mastery",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "music creation course",
+        "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Concert Finder Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "live music tracker",
+        "image": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Music Theory Complete",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "music education",
+        "image": "https://images.unsplash.com/photo-1507838596357-a921d83708e1?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "celebrity": [
+      {
+        "title": "Celebrity Style Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "fashion course",
+        "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Entertainment News Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "news aggregator",
+        "image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Social Influence Course",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "influencer training",
+        "image": "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "awards": [
+      {
+        "title": "Red Carpet Styling",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "fashion analysis tool"
+      },
+      {
+        "title": "Event Planning Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "ceremony guide"
+      },
+      {
+        "title": "Industry Insider Access",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "exclusive event reports"
+      }
+    ],
+    "streaming": [
+      {
+        "title": "VPN for Streaming",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "unlock global content"
+      },
+      {
+        "title": "Smart DNS Setup",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "high-speed streaming tool"
+      },
+      {
+        "title": "Content Discovery App",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "find trending shows fast"
+      }
+    ],
+    "books": [
+      {
+        "title": "Author Success Blueprint",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "writing and publishing course",
+        "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Speed Reading Mastery",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "read more books faster",
+        "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Literary Analysis Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "deep book study tool",
+        "image": "https://images.unsplash.com/photo-1474366521946-c3d4b507ad92?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "gaming": [
+      {
+        "title": "Pro Gamer Reflexes",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "competitive gaming training"
+      },
+      {
+        "title": "Game Dev Fundamentals",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "create your own games"
+      },
+      {
+        "title": "E-sports Betting Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "gaming analysis resource"
+      }
+    ],
+    "local": [
+      {
+        "title": "Home Security Mastery",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "protect your local residence"
+      },
+      {
+        "title": "Organic Gardening Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "grow your own local food"
+      },
+      {
+        "title": "Emergency Preparedness Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "stay safe in your region"
+      }
+    ],
+    "default": [
+      {
+        "title": "Entertainment Insider",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "industry guide",
+        "image": "https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Pop Culture Toolkit",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "analysis resource",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Media Discovery Tool",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "content finder",
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "tech": [
+      {
+        "title": "AI Profit Masterclass",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "leverage AI for business",
+        "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Smart Home Automation",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "complete automation guide",
+        "image": "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Coding Bootcamp Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "professional dev training",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "finance": [
+      {
+        "title": "Crypto Wealth Secrets",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "cryptocurrency trading course",
+        "image": "https://images.unsplash.com/photo-1621416848440-236914c74472?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Passive Income Blueprint",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "build wealth automatically",
+        "image": "https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Forex Trading Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "expert market analysis",
+        "image": "https://images.unsplash.com/photo-1611974714028-ac6027a7d51b?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "health": [
+      {
+        "title": "Custom Keto Plan",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "personalized nutrition"
+      },
+      {
+        "title": "Mindfulness Mastery",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "mental wellness training"
+      },
+      {
+        "title": "21-Day Workout Challenge",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "fitness transformation"
+      }
+    ],
+    "lifestyle": [
+      {
+        "title": "Vagabond Travel Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "budget luxury travel",
+        "image": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Interior Design Course",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "transform your space",
+        "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Gourmet Home Cooking",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "chef-level recipes",
+        "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "science": [
+      {
+        "title": "Astronomy Essentials",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "guide to the cosmos"
+      },
+      {
+        "title": "Sustainability Handbook",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "green living guide"
+      },
+      {
+        "title": "Bio-Age Optimizer",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "science of longevity"
+      }
+    ],
+    "sports": [
+      {
+        "title": "Vertical Jump Training",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "explosive athletic power",
+        "image": "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Golf Swing Secret",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "pro-level golf training",
+        "image": "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=200&q=80"
+      },
+      {
+        "title": "Sports Nutrition Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "fuel for performance",
+        "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=200&q=80"
+      }
+    ],
+    "politics": [
+      {
+        "title": "Political Intelligence Brief",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "insider power reports"
+      },
+      {
+        "title": "Crisis Management Course",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "leadership in turmoil"
+      },
+      {
+        "title": "Debate Mastery Pro",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "advanced persuasion tactics"
+      }
+    ],
+    "us_politics": [
+      {
+        "title": "Campaign Strategy Course",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "win local and state races"
+      },
+      {
+        "title": "Lobbying Insider Guide",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "understand Washington influence"
+      },
+      {
+        "title": "Policy Analysis Toolkit",
+        "url": "https://YOURVENDOR.hop.clickbank.net/?affiliate=l4j4n",
+        "description": "break down federal legislation"
+      }
+    ]
+  },
+  "cj": {
+    "default": [
+      {
+        "title": "Premium Web Hosting (CJ)",
+        "url": "https://www.cj.com/example",
+        "description": "High performance hosting"
+      }
+    ]
+  },
+  "digistore": {
+    "default": [
+      {
+        "title": "Digital Mastery Course (Digistore24)",
+        "url": "https://www.digistore24.com/redir/example",
+        "description": "Learn digital marketing"
+      }
+    ]
+  },
+  "impact": {
+    "default": [
+      {
+        "title": "Graphic Design Pro (Impact)",
+        "url": "https://impact.com/example",
+        "description": "Design like a pro"
+      }
+    ]
+  },
+  "subscription": {
+    "tech": [
+      {
+        "title": "Jasper AI Writing",
+        "url": "https://jasper.ai/?fpr=knotstranded",
+        "description": "top-rated AI content assistant"
+      },
+      {
+        "title": "NordVPN Security",
+        "url": "https://nordvpn.com/knotstranded",
+        "description": "industry-leading privacy protection"
+      },
+      {
+        "title": "SEMrush SEO Tool",
+        "url": "https://semrush.sjv.io/knotstranded",
+        "description": "professional market intelligence"
+      }
+    ],
+    "finance": [
+      {
+        "title": "Coinbase Trading",
+        "url": "https://coinbase.com/join/knotstranded",
+        "description": "secure crypto exchange"
+      },
+      {
+        "title": "Robinhood Investing",
+        "url": "https://robinhood.com/referral/knotstranded",
+        "description": "commission-free stock trading"
+      },
+      {
+        "title": "eToro Social Trading",
+        "url": "https://etoro.com/knotstranded",
+        "description": "copy top-performing investors"
+      }
+    ],
+    "health": [
+      {
+        "title": "Performance Lab Nucleus",
+        "url": "https://performancelab.com/knotstranded",
+        "description": "world's cleanest supplements"
+      },
+      {
+        "title": "Fitbit Premium",
+        "url": "https://fitbit.com/knotstranded",
+        "description": "advanced health metrics"
+      },
+      {
+        "title": "Peloton App",
+        "url": "https://onepeloton.com/knotstranded",
+        "description": "expert-led fitness classes"
+      }
+    ],
+    "entertainment": [
+      {
+        "title": "Disney+ Bundle",
+        "url": "https://disneyplus.com/knotstranded",
+        "description": "Disney, Pixar, Marvel, & Star Wars"
+      },
+      {
+        "title": "Paramount+ Global",
+        "url": "https://paramountplus.com/knotstranded",
+        "description": "live sports & breaking news"
+      },
+      {
+        "title": "Apple One",
+        "url": "https://apple.com/knotstranded",
+        "description": "all Apple services in one simplified plan"
+      }
+    ],
+    "politics": [
+      {
+        "title": "NYT Digital Subscription",
+        "url": "https://nytimes.com/knotstranded",
+        "description": "independent journalism & analysis"
+      },
+      {
+        "title": "Bookshop.org",
+        "url": "https://bookshop.org/shop/knotstranded",
+        "description": "support local independent bookstores"
+      },
+      {
+        "title": "WSJ Digital Access",
+        "url": "https://wsj.com/knotstranded",
+        "description": "business and political intelligence"
+      }
+    ],
+    "us_politics": [
+      {
+        "title": "The Washington Post",
+        "url": "https://washingtonpost.com/knotstranded",
+        "description": "democracy dies in darkness"
+      },
+      {
+        "title": "Politico Pro Sub",
+        "url": "https://politico.com/knotstranded",
+        "description": "insider access to washington"
+      },
+      {
+        "title": "Axios Pro",
+        "url": "https://axios.com/knotstranded",
+        "description": "smart brevity on capitol hill"
+      }
+    ],
+    "default": [
+      {
+        "title": "KnotStranded VIP",
+        "url": "https://knotstranded.com/vip",
+        "description": "exclusive membership & reports"
+      }
+    ]
+  }
+}

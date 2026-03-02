@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnotStranded | Control Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --brand: #ffffff;
+            --bg: #080808;
+            --panel: #111111;
+            --border: #1e1e1e;
+            --muted: #555;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: #e5e7eb;
+        }
+
+        .glass {
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+        }
+
+        input,
+        select {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            outline: none;
+            transition: all .2s;
+            width: 100%;
+            color: #e5e7eb;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        select option {
+            background: #111;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-size: 13px;
+            transition: all .2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px -8px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-white:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e5e7eb;
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #444;
+        }
+
+        .btn-green {
+            background: #16a34a;
+            color: #fff;
+        }
+
+        .btn-green:hover {
+            background: #15803d;
+        }
+
+        .btn-red {
+            background: #dc2626;
+            color: #fff;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all .2s;
+        }
+
+        .tab.active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .pill-green {
+            background: rgba(34, 197, 94, .15);
+            color: #22c55e;
+        }
+
+        .pill-red {
+            background: rgba(239, 68, 68, .1);
+            color: #ef4444;
+        }
+
+        .pill-yellow {
+            background: rgba(234, 179, 8, .1);
+            color: #eab308;
+        }
+
+        .pill-blue {
+            background: rgba(59, 130, 246, .1);
+            color: #60a5fa;
+        }
+
+        .pill-gray {
+            background: rgba(255, 255, 255, .06);
+            color: #888;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 10px;
+        }
+
+        .toggle-track {
+            width: 44px;
+            height: 24px;
+            border-radius: 99px;
+            background: #222;
+            border: 1px solid var(--border);
+            transition: all .3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-track.on {
+            background: rgba(34, 197, 94, .2);
+            border-color: #16a34a;
+        }
+
+        .toggle-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #555;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: all .3s;
+        }
+
+        .toggle-track.on .toggle-thumb {
+            background: #22c55e;
+            transform: translateX(20px);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            position: relative;
+        }
+
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(34, 197, 94, .4);
+            animation: ping 1.5s ease-out infinite;
+        }
+
+        @keyframes ping {
+            0% {
+                transform: scale(1);
+                opacity: .8;
+            }
+
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+
+        .category-chip {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            border: 1px solid var(--border);
+            color: #666;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .category-chip.on {
+            background: rgba(255, 255, 255, .08);
+            border-color: #555;
+            color: #fff;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .stat-num {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #1a1a1a;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #fff;
+            border-radius: 99px;
+            transition: width .5s;
+        }
+
+        .archive-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .02);
+            transition: all .2s;
+        }
+
+        .archive-row:hover {
+            background: rgba(255, 255, 255, .04);
+            border-color: #333;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: #fff;
+            color: #000;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .5);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div id="toast"></div>
+
+    <!-- Top Bar -->
+    <header
+        class="h-14 px-6 flex items-center justify-between border-b border-[#1e1e1e] bg-[#090909] sticky top-0 z-30">
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <i data-lucide="zap" class="w-4 h-4 text-black fill-current"></i>
+            </div>
+            <span class="font-bold text-sm uppercase tracking-widest">KnotStranded</span>
+            <span class="text-[#333] hidden sm:block">|</span>
+            <span class="text-xs font-mono text-[#555] hidden sm:block">Control Center</span>
+        </div>
+        <div class="flex items-center gap-5">
+            <div id="hdr-status" class="flex items-center gap-2 text-xs text-[#555]">
+                <div class="live-dot"></div>
+                <span id="hdr-status-text">Online</span>
+            </div>
+            <a href="/" target="_blank" class="btn btn-ghost text-xs py-2 px-3">
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Site
+            </a>
+            <a href="/logout"
+                class="text-xs text-[#555] hover:text-white transition-colors uppercase tracking-widest">Logout</a>
+        </div>
+    </header>
+
+    <!-- Tab Nav -->
+    <div class="border-b border-[#1e1e1e] bg-[#090909] px-6 flex gap-0 sticky top-14 z-20">
+        <div class="tab active" data-tab="autopilot" onclick="switchTab('autopilot')">
+            <i data-lucide="cpu" class="w-3.5 h-3.5 inline mr-1.5"></i>Auto-Pilot
+        </div>
+        <div class="tab" data-tab="generate" onclick="switchTab('generate')">
+            <i data-lucide="wand-2" class="w-3.5 h-3.5 inline mr-1.5"></i>Generate
+        </div>
+        <div class="tab" data-tab="archive" onclick="switchTab('archive')">
+            <i data-lucide="archive" class="w-3.5 h-3.5 inline mr-1.5"></i>Archive
+        </div>
+        <div class="tab" data-tab="settings" onclick="switchTab('settings')">
+            <i data-lucide="settings" class="w-3.5 h-3.5 inline mr-1.5"></i>Config
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto p-6 overflow-y-auto" style="max-height: calc(100vh - 112px); overflow-y: auto;">
+
+        <!-- ===================== AUTO-PILOT TAB ===================== -->
+        <div id="tab-autopilot" class="tab-panel active space-y-6">
+
+            <!-- Stats Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="card">
+                    <div class="text-xs font-bold uppercase tracking-widest text-[#555] mb-3">Total Articles</div>
+                    <div class="stat-num" id="stat-total">—</div>
+                </div>
+                <div class="card">
+                    <div class="text-xs font-bold uppercase tracking-widest text-[#555] mb-3">Pending Queue</div>
+                    <div class="stat-num" id="stat-pending">—</div>
+                </div>
+                <div class="card">
+                    <div class="text-xs font-bold uppercase tracking-widest text-[#555] mb-3">Next Generate</div>
+                    <div class="text-sm font-mono font-bold mt-2" id="stat-next-gen">—</div>
+                    <div class="text-xs text-[#555] mt-1" id="stat-next-gen-label">—</div>
+                </div>
+                <div class="card">
+                    <div class="text-xs font-bold uppercase tracking-widest text-[#555] mb-3">Next Publish</div>
+                    <div class="text-sm font-mono font-bold mt-2" id="stat-next-rel">—</div>
+                    <div class="text-xs text-[#555] mt-1" id="stat-next-rel-label">—</div>
+                </div>
+            </div>
+
+            <!-- Auto-Pilot Master Toggle -->
+            <div class="card">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="font-bold text-lg">Auto-Pilot Scheduler</h2>
+                        <p class="text-xs text-[#555] mt-1">Automatically generates and publishes articles on a daily
+                            schedule.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="ap-status-pill" class="pill pill-gray">Disabled</span>
+                        <div class="toggle-track" id="ap-toggle" onclick="toggleAutoPilot()">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Phase 1: Generate -->
+                    <div class="p-5 rounded-xl border border-[#1e1e1e] bg-[#0d0d0d]">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="pill pill-blue">Phase 1</div>
+                            <span class="text-sm font-bold">Generate</span>
+                        </div>
+                        <p class="text-xs text-[#555] mb-4">Searches for trending news and generates articles, saving
+                            them to the pending queue.</p>
+                        <div>
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Run At
+                                (24h)</label>
+                            <input type="number" id="gen-hour" min="0" max="23" value="5" class="w-full"
+                                placeholder="Hour (0-23)">
+                        </div>
+                        <div class="mt-3">
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Articles
+                                Per Run</label>
+                            <input type="number" id="max-articles" min="1" max="20" value="5">
+                        </div>
+                    </div>
+
+                    <!-- Phase 2: Release -->
+                    <div class="p-5 rounded-xl border border-[#1e1e1e] bg-[#0d0d0d]">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="pill pill-green">Phase 2</div>
+                            <span class="text-sm font-bold">Publish</span>
+                        </div>
+                        <p class="text-xs text-[#555] mb-4">Picks up queued articles and publishes them to Squarespace
+                            at the set time.</p>
+                        <div>
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Release
+                                At (24h)</label>
+                            <input type="number" id="rel-hour" min="0" max="23" value="8" class="w-full"
+                                placeholder="Hour (0-23)">
+                        </div>
+                        <div
+                            class="mt-3 flex items-center justify-between p-3 bg-[#111] rounded-xl border border-[#1e1e1e]">
+                            <span class="text-xs font-bold text-[#777]">Auto-Post to Squarespace</span>
+                            <div class="toggle-track" id="sq-toggle" onclick="toggleSquarespace()">
+                                <div class="toggle-thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 flex flex-wrap gap-3">
+                    <button class="btn btn-white" onclick="saveAutoPilotSettings()">
+                        <i data-lucide="save" class="w-4 h-4"></i> Save Schedule
+                    </button>
+                    <button class="btn btn-ghost" id="run-now-btn" onclick="runNow()">
+                        <i data-lucide="play" class="w-4 h-4"></i> Run Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Generation Status -->
+            <div class="card" id="live-status-card">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold">Generation Status</h3>
+                    <span id="gen-status-pill" class="pill pill-gray">Idle</span>
+                </div>
+                <div class="progress-bar mb-3">
+                    <div class="progress-fill" id="gen-progress-fill" style="width:0%"></div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <p class="text-xs font-mono text-[#555]" id="gen-current-title">—</p>
+                    <span class="text-sm font-mono font-bold" id="gen-pct-text">0%</span>
+                </div>
+                <div id="gen-complete-files" class="mt-4 space-y-2 hidden"></div>
+            </div>
+
+            <!-- Last Generated Info -->
+            <div class="card">
+                <div class="text-xs font-bold uppercase tracking-widest text-[#555] mb-2">Last Generated</div>
+                <div class="text-sm font-mono" id="stat-last-gen">—</div>
+            </div>
+        </div>
+
+
+        <!-- ===================== GENERATE TAB ===================== -->
+        <div id="tab-generate" class="tab-panel space-y-6">
+            <div class="card">
+                <h2 class="font-bold text-lg mb-1">Feed Engine</h2>
+                <p class="text-xs text-[#555] mb-5">Crawl, select, and publish articles manually.</p>
+
+                <!-- Provider + Filter Grid -->
+                <div class="grid md:grid-cols-3 gap-4 mb-5">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">AI
+                            Provider</label>
+                        <select id="ai-provider">
+                            <option value="claude">Anthropic Claude</option>
+                            <option value="gemini">Google Gemini</option>
+                            <option value="chatgpt">OpenAI GPT-4</option>
+                            <option value="ollama">Local LLM (Ollama)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Photo
+                            Engine</label>
+                        <select id="image-provider">
+                            <option value="auto">Auto-Prioritize (Gemini First)</option>
+                            <option value="gemini" selected>Always Google Gemini (Imagen-3)</option>
+                            <option value="openai">Always OpenAI DALL-E 3</option>
+                            <option value="none">No AI Images (Fastest)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Topic
+                            Filter</label>
+                        <input type="text" id="query-filter" placeholder="e.g. AI, Tesla, Economy">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Batch
+                            Size</label>
+                        <input type="number" id="num-articles" value="5" min="1" max="20">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Word
+                            Count</label>
+                        <select id="word-count">
+                            <option value="300">Short (~300 words)</option>
+                            <option value="500" selected>Medium (~500 words)</option>
+                            <option value="1000">Long (~1000 words)</option>
+                            <option value="2000">Epic (~2000 words)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="mb-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555]">Categories</label>
+                        <div class="flex gap-3">
+                            <button onclick="selectAllCats()"
+                                class="text-[10px] text-[#555] hover:text-white uppercase tracking-widest">All</button>
+                            <button onclick="clearAllCats()"
+                                class="text-[10px] text-[#555] hover:text-white uppercase tracking-widest">None</button>
+                        </div>
+                    </div>
+                    <div id="category-grid" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <button class="btn btn-white w-full justify-center py-3 text-sm" id="search-btn"
+                    onclick="handleSearch()">
+                    <i data-lucide="globe" class="w-4 h-4"></i> Crawl Web for Trending News
+                </button>
+            </div>
+
+            <!-- Results -->
+            <div id="results-container" class="card hidden">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold">Headlines Found</h3>
+                    <div class="flex gap-3">
+                        <button onclick="selectAllResults()"
+                            class="text-[10px] text-[#555] hover:text-white uppercase tracking-widest">Select
+                            All</button>
+                        <button onclick="clearAllResults()"
+                            class="text-[10px] text-[#555] hover:text-white uppercase tracking-widest">Clear</button>
+                    </div>
+                </div>
+                <div id="results-list" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- FAB-style generate button appears inline -->
+            <div id="generate-bar" class="hidden card border-white/20 bg-white/5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="font-bold">Ready to Generate</div>
+                        <div class="text-xs text-[#555]"><span id="selected-count">0</span> articles selected</div>
+                    </div>
+                    <button class="btn btn-white" onclick="handleGenerate()" id="gen-btn">
+                        <i data-lucide="wand-2" class="w-4 h-4"></i> Generate & Publish
+                    </button>
+                </div>
+            </div>
+
+            <!-- Generation Progress (inline) -->
+            <div id="gen-progress-panel" class="card hidden">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-bold" id="gen-status-title2">Generating...</h3>
+                    <span class="text-lg font-mono font-bold" id="gen-pct2">0%</span>
+                </div>
+                <div class="progress-bar mb-3">
+                    <div class="progress-fill" id="gen-bar2" style="width:0%"></div>
+                </div>
+                <p class="text-xs font-mono text-[#555]" id="gen-current2">Initializing pipeline...</p>
+
+                <!-- Live console log -->
+                <div class="mt-4 p-3 rounded-xl bg-black border border-[#1e1e1e]">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-[#555]">Live Console</span>
+                        <span class="text-[10px] font-mono text-[#555]"><span id="disk-count">0</span> files on
+                            disk</span>
+                    </div>
+                    <div id="gen-console" class="space-y-0.5 max-h-36 overflow-y-auto font-mono text-[11px]">
+                        <div class="text-[#555]">Waiting for pipeline output...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generated Results -->
+            <div id="latest-gens" class="hidden">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-[#555] mb-4">Published Editions</h3>
+                <div id="gens-list" class="grid md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <!-- Push to Homepage banner (appears after generation) -->
+            <div id="push-homepage-bar" class="hidden card border-white/20 bg-white/5">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <div class="font-bold mb-1">Push New Stories to Homepage</div>
+                        <div class="text-xs text-[#555] leading-relaxed">Rebuild the front page index so your newly
+                            generated articles appear in Top Stories right now.</div>
+                    </div>
+                    <button class="btn btn-white flex-shrink-0" id="btn-push-homepage" onclick="pushToHomepage()">
+                        <i data-lucide="globe" class="w-4 h-4"></i> Update Homepage
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===================== ARCHIVE TAB ===================== -->
+        <div id="tab-archive" class="tab-panel space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="font-bold text-lg">Article Archive</h2>
+                <div class="flex gap-2">
+                    <button class="btn btn-ghost text-xs" onclick="buildStaticSite()" id="btn-build">
+                        <i data-lucide="layout-template" class="w-3.5 h-3.5"></i> Rebuild Landing & Posts
+                    </button>
+                    <button class="btn btn-ghost text-xs" onclick="loadArchive()">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh
+                    </button>
+                </div>
+            </div>
+            <div id="archive-list" class="space-y-2">
+                <div class="text-xs text-[#555] text-center py-12 font-mono">Loading archive...</div>
+            </div>
+        </div>
+
+
+        <!-- ===================== CONFIG TAB ===================== -->
+        <div id="tab-settings" class="tab-panel space-y-6">
+            <div class="card">
+                <h2 class="font-bold text-lg mb-5">API Keys</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Anthropic
+                            API Key</label>
+                        <input type="password" id="cfg-anthropic" placeholder="sk-ant-...">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Google
+                            Gemini API Key</label>
+                        <input type="password" id="cfg-gemini" placeholder="AIza...">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">OpenAI API
+                            Key</label>
+                        <input type="password" id="cfg-openai" placeholder="sk-proj-...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="font-bold text-lg mb-5 flex items-center gap-2">
+                    <i data-lucide="cpu" class="w-5 h-5"></i> Local AI (Ollama)
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Ollama
+                            Model</label>
+                        <input type="text" id="cfg-ollama-model" placeholder="e.g. llama3, mistral, phi3">
+                        <p class="text-[10px] text-[#444] mt-2 italic">Requires Ollama running on your Mac. Example:
+                            `ollama run llama3`</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="font-bold text-lg mb-5">Monetization</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">ClickBank
+                            ID</label>
+                        <input type="text" id="cfg-clickbank" placeholder="yourID">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Amazon
+                            Tag</label>
+                        <input type="text" id="cfg-amazon" placeholder="yourtag-20">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="font-bold text-lg mb-5">Squarespace</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">API
+                            Key</label>
+                        <input type="password" id="cfg-sq-key" placeholder="Squarespace API key">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Site
+                            ID</label>
+                        <input type="text" id="cfg-sq-site" placeholder="yoursite.squarespace.com">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Blog
+                            Collection ID</label>
+                        <input type="text" id="cfg-sq-coll" placeholder="Collection ID from Squarespace API">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="font-bold text-lg mb-5">Local Context</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label
+                            class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">Location</label>
+                        <input type="text" id="cfg-location" placeholder="City, State">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-[#555] block mb-2">ZIP
+                            Code</label>
+                        <input type="text" id="cfg-zip" placeholder="90210">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="font-bold text-lg mb-5">Subscribers</h2>
+                <div class="flex items-center justify-between p-4 bg-[#0d0d0d] rounded-xl border border-[#1e1e1e] mb-4">
+                    <span class="text-sm text-[#777]">Total Subscribers</span>
+                    <span class="font-mono font-bold text-lg" id="sub-count">—</span>
+                </div>
+                <button class="btn btn-white" onclick="pushNewsletter()">
+                    <i data-lucide="send" class="w-4 h-4"></i> Push Daily Recap Email
+                </button>
+            </div>
+
+            <div class="card">
+                <h2 class="font-bold text-lg mb-1">Site Tools</h2>
+                <p class="text-xs text-[#555] mb-5">Utility actions for keeping the live site in sync with generated
+                    content.</p>
+
+                <!-- Auto-update toggle -->
+                <div class="flex items-center justify-between p-4 bg-[#0d0d0d] rounded-xl border border-[#1e1e1e] mb-4">
+                    <div>
+                        <div class="text-sm font-bold">Auto-Update Homepage After Generation</div>
+                        <div class="text-[11px] text-[#555] mt-0.5">Automatically refreshes Top Stories with the latest
+                            articles every time a generation run completes.</div>
+                    </div>
+                    <div class="flex items-center gap-3 flex-shrink-0">
+                        <span id="au-status-pill" class="pill pill-gray">Off</span>
+                        <div class="toggle-track" id="au-toggle" onclick="toggleAutoUpdate()">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="p-4 rounded-xl border border-[#1e1e1e] bg-[#0d0d0d]">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="pill pill-blue">Index</div>
+                            <span class="text-sm font-bold">Landing Page Index</span>
+                        </div>
+                        <p class="text-[11px] text-[#555] mb-4 leading-relaxed">Scans all generated posts and rebuilds
+                            the homepage story index. Run this if the front page is missing stories or showing stale
+                            content.</p>
+                        <button class="btn btn-white w-full justify-center" id="btn-rebuild-index"
+                            onclick="rebuildLandingIndex()">
+                            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Rebuild Landing Index
+                        </button>
+                    </div>
+                    <div class="p-4 rounded-xl border border-[#1e1e1e] bg-[#0d0d0d]">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="pill pill-gray">Static</div>
+                            <span class="text-sm font-bold">Static Site Build</span>
+                        </div>
+                        <p class="text-[11px] text-[#555] mb-4 leading-relaxed">Regenerates the full static <code
+                                class="text-[#777]">static_site/</code> folder — landing page and all post wrappers —
+                            from current content.</p>
+                        <button class="btn btn-ghost w-full justify-center" id="btn-build-cfg"
+                            onclick="buildStaticSiteFromConfig()">
+                            <i data-lucide="layout-template" class="w-4 h-4"></i> Rebuild Static Site
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-white w-full justify-center py-4 text-sm" onclick="saveAllConfig()">
+                <i data-lucide="save" class="w-4 h-4"></i> Save All Settings
+            </button>
+        </div>
+
+    </div><!-- /container -->
+
+    <script>
+        // ─── Global State ───────────────────────────────────────────────────────────
+        let config = {};
+        let categories = [];
+        let selectedCategories = [];
+        let searchResults = [];
+        let selectedResults = new Set();
+        let pollTimer = null;
+
+        // ─── Init ───────────────────────────────────────────────────────────────────
+        window.addEventListener('load', async () => {
+            lucide.createIcons();
+            await fetchConfig();
+            await fetchCategories();
+            await fetchSubscribers();
+            await refreshAutopilotStatus();
+            setInterval(refreshAutopilotStatus, 15000);
+            switchTab('autopilot');
+        });
+
+        // ─── Tab Routing ────────────────────────────────────────────────────────────
+        function switchTab(name) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+            if (name === 'archive') loadArchive();
+            lucide.createIcons();
+        }
+
+        // ─── Toast ───────────────────────────────────────────────────────────────────
+        function toast(msg, isErr = false) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.style.display = 'block';
+            el.style.background = isErr ? '#dc2626' : '#fff';
+            el.style.color = isErr ? '#fff' : '#000';
+            setTimeout(() => el.style.display = 'none', 3200);
+        }
+
+        // ─── Config ──────────────────────────────────────────────────────────────────
+        async function fetchConfig() {
+            try {
+                const r = await fetch('/api/config');
+                config = await r.json();
+                // Populate Settings tab
+                document.getElementById('cfg-anthropic').value = config.anthropic_api_key || '';
+                document.getElementById('cfg-gemini').value = config.gemini_api_key || '';
+                document.getElementById('cfg-openai').value = config.openai_api_key || '';
+                document.getElementById('cfg-clickbank').value = config.clickbank_affiliate_id || '';
+                document.getElementById('cfg-amazon').value = config.amazon_tag || '';
+                document.getElementById('cfg-ollama-model').value = config.ollama_model || 'llama3';
+                document.getElementById('cfg-sq-key').value = config.squarespace_api_key || '';
+                document.getElementById('cfg-sq-site').value = config.squarespace_site_id || '';
+                document.getElementById('cfg-sq-coll').value = config.squarespace_collection_id || '';
+                document.getElementById('cfg-ollama-model').value = config.ollama_model || 'llama3';
+                document.getElementById('cfg-location').value = config.detected_location || '';
+                document.getElementById('cfg-zip').value = config.postal_hint || '';
+                // Generate tab
+                const prov = document.getElementById('ai-provider');
+                if (prov) prov.value = config.ai_provider || 'gemini';
+                const imgProv = document.getElementById('image-provider');
+                if (imgProv) imgProv.value = config.image_provider || 'gemini';
+                document.getElementById('num-articles').value = config.num_articles || 5;
+                // Auto-pilot tab
+                document.getElementById('gen-hour').value = config.auto_pilot_generate_hour ?? 5;
+                document.getElementById('rel-hour').value = config.auto_pilot_release_hour ?? 8;
+                document.getElementById('max-articles').value = config.auto_pilot_max_articles || 5;
+                if (config.selected_categories) selectedCategories = [...config.selected_categories];
+                updateAutoPilotToggles();
+                updateAutoUpdateToggle();
+            } catch (e) { console.error(e); }
+        }
+
+        async function saveAllConfig() {
+            const updated = {
+                ...config,
+                anthropic_api_key: document.getElementById('cfg-anthropic').value,
+                gemini_api_key: document.getElementById('cfg-gemini').value,
+                openai_api_key: document.getElementById('cfg-openai').value,
+                clickbank_affiliate_id: document.getElementById('cfg-clickbank').value,
+                amazon_tag: document.getElementById('cfg-amazon').value,
+                ollama_model: document.getElementById('cfg-ollama-model').value,
+                squarespace_api_key: document.getElementById('cfg-sq-key').value,
+                squarespace_site_id: document.getElementById('cfg-sq-site').value,
+                squarespace_collection_id: document.getElementById('cfg-sq-coll').value,
+                ollama_model: document.getElementById('cfg-ollama-model').value,
+                detected_location: document.getElementById('cfg-location').value,
+                postal_hint: document.getElementById('cfg-zip').value,
+                auto_update_homepage: config.auto_update_homepage || 'disabled',
+            };
+            try {
+                await fetch('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updated) });
+                config = updated;
+                toast('Settings saved ✓');
+            } catch (e) { toast('Save failed', true); }
+        }
+
+        async function postConfig(partial) {
+            try {
+                const updated = { ...config, ...partial };
+                await fetch('/api/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updated) });
+                config = updated;
+            } catch (e) { console.error(e); }
+        }
+
+        // ─── Auto-Pilot ───────────────────────────────────────────────────────────────
+        function updateAutoPilotToggles() {
+            const apOn = config.auto_pilot === 'enabled';
+            document.getElementById('ap-toggle').classList.toggle('on', apOn);
+            document.getElementById('ap-status-pill').className = 'pill ' + (apOn ? 'pill-green' : 'pill-gray');
+            document.getElementById('ap-status-pill').textContent = apOn ? 'Active' : 'Disabled';
+
+            const sqOn = config.auto_post_squarespace === 'enabled';
+            document.getElementById('sq-toggle').classList.toggle('on', sqOn);
+        }
+
+        async function toggleAutoPilot() {
+            const next = config.auto_pilot === 'enabled' ? 'disabled' : 'enabled';
+            await postConfig({ auto_pilot: next });
+            updateAutoPilotToggles();
+            toast(`Auto-Pilot ${next === 'enabled' ? 'enabled ✓' : 'disabled'}`);
+        }
+
+        async function toggleSquarespace() {
+            const next = config.auto_post_squarespace === 'enabled' ? 'disabled' : 'enabled';
+            await postConfig({ auto_post_squarespace: next });
+            updateAutoPilotToggles();
+            toast(`Squarespace auto-post ${next === 'enabled' ? 'enabled \u2713' : 'disabled'}`);
+        }
+
+        function updateAutoUpdateToggle() {
+            const on = config.auto_update_homepage === 'enabled';
+            const track = document.getElementById('au-toggle');
+            const pill = document.getElementById('au-status-pill');
+            if (!track || !pill) return;
+            track.classList.toggle('on', on);
+            pill.className = 'pill ' + (on ? 'pill-green' : 'pill-gray');
+            pill.textContent = on ? 'On' : 'Off';
+        }
+
+        async function toggleAutoUpdate() {
+            const next = config.auto_update_homepage === 'enabled' ? 'disabled' : 'enabled';
+            await postConfig({ auto_update_homepage: next });
+            updateAutoUpdateToggle();
+            toast(`Auto-update homepage ${next === 'enabled' ? 'enabled \u2713' : 'disabled'}`);
+        }
+
+        async function pushToHomepage() {
+            const btn = document.getElementById('btn-push-homepage');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Updating...';
+            lucide.createIcons();
+            try {
+                const r = await fetch('/api/rebuild-landing-index', { method: 'POST' });
+                const d = await r.json();
+                if (d.success) {
+                    toast('Homepage updated \u2014 ' + d.indexed + ' posts now live \u2713');
+                    document.getElementById('push-homepage-bar').classList.add('hidden');
+                } else {
+                    toast('Update failed', true);
+                }
+            } catch (e) { toast('Error: ' + e.message, true); }
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="globe" class="w-4 h-4"></i> Update Homepage';
+            lucide.createIcons();
+        }
+
+        async function saveAutoPilotSettings() {
+            const genH = parseInt(document.getElementById('gen-hour').value);
+            const relH = parseInt(document.getElementById('rel-hour').value);
+            const maxA = parseInt(document.getElementById('max-articles').value);
+            if (isNaN(genH) || genH < 0 || genH > 23) { toast('Invalid generate hour (0-23)', true); return; }
+            if (isNaN(relH) || relH < 0 || relH > 23) { toast('Invalid release hour (0-23)', true); return; }
+            await postConfig({ auto_pilot_generate_hour: genH, auto_pilot_release_hour: relH, auto_pilot_max_articles: maxA });
+            toast('Schedule saved ✓');
+            await refreshAutopilotStatus();
+        }
+
+        async function refreshAutopilotStatus() {
+            try {
+                const r = await fetch('/api/autopilot-status');
+                const d = await r.json();
+                document.getElementById('stat-total').textContent = d.total_articles ?? '—';
+                document.getElementById('stat-pending').textContent = d.pending_count ?? '—';
+                document.getElementById('stat-next-gen').textContent = d.next_generate?.time || '—';
+                document.getElementById('stat-next-gen-label').textContent = d.next_generate?.label || '';
+                document.getElementById('stat-next-rel').textContent = d.next_release?.time || '—';
+                document.getElementById('stat-next-rel-label').textContent = d.next_release?.label || '';
+                document.getElementById('stat-last-gen').textContent = d.last_generated || 'No articles yet';
+
+                const gs = d.generation_state;
+                if (gs) {
+                    const pct = gs.total > 0 ? Math.round((gs.progress / gs.total) * 100) : 0;
+                    updateGenStatus(gs.status, pct, gs.current_article);
+                }
+            } catch (e) { }
+        }
+
+        function updateGenStatus(status, pct, title) {
+            const pill = document.getElementById('gen-status-pill');
+            const fill = document.getElementById('gen-progress-fill');
+            const pctEl = document.getElementById('gen-pct-text');
+            const titleEl = document.getElementById('gen-current-title');
+            const pillMap = { idle: ['pill-gray', 'Idle'], generating: ['pill-yellow', 'Generating'], complete: ['pill-green', 'Complete'], error: ['pill-red', 'Error'] };
+            const [cls, label] = pillMap[status] || ['pill-gray', 'Unknown'];
+            pill.className = 'pill ' + cls;
+            pill.textContent = label;
+            fill.style.width = pct + '%';
+            pctEl.textContent = pct + '%';
+            titleEl.textContent = title || (status === 'idle' ? 'No active run' : '');
+        }
+
+        // Run Now — triggers an immediate on-demand generation
+        async function runNow() {
+            const btn = document.getElementById('run-now-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Starting...';
+            lucide.createIcons();
+
+            try {
+                // Build a mini search first using current settings
+                const searchPayload = {
+                    ai_provider: config.ai_provider || 'gemini',
+                    categories: selectedCategories.length ? selectedCategories : (config.selected_categories || ['tech', 'finance']),
+                    num_results: parseInt(document.getElementById('max-articles').value) || 3,
+                    is_trending: true,
+                    query_filter: ''
+                };
+                const sr = await fetch('/api/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(searchPayload) });
+                const sd = await sr.json();
+                if (!sd.news_items || !sd.news_items.length) { toast('No articles found to generate', true); return; }
+
+                const ids = sd.news_items.slice(0, parseInt(document.getElementById('max-articles').value) || 3).map(x => x.id);
+                const gr = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ config: searchPayload, selected_ids: ids })
+                });
+                if (!gr.ok) { toast('Generate request failed', true); return; }
+                toast(`Generating ${ids.length} articles...`);
+
+                // Poll for completion
+                if (pollTimer) clearInterval(pollTimer);
+                pollTimer = setInterval(async () => {
+                    const st = await (await fetch('/api/status')).json();
+                    const pct = st.total > 0 ? Math.round((st.progress / st.total) * 100) : 0;
+                    updateGenStatus(st.status, pct, st.current_article);
+                    if (st.status === 'complete' || st.status === 'error') {
+                        clearInterval(pollTimer);
+                        await refreshAutopilotStatus();
+                        if (st.status === 'complete') {
+                            toast(`✓ Generated ${st.generated_files?.length || 0} articles`);
+                            showCompletedFiles(st.generated_files || []);
+                        } else {
+                            toast('Error: ' + st.error, true);
+                        }
+                        btn.disabled = false;
+                        btn.innerHTML = '<i data-lucide="play" class="w-4 h-4"></i> Run Now';
+                        lucide.createIcons();
+                    }
+                }, 2500);
+            } catch (e) {
+                toast('Run failed: ' + e.message, true);
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="play" class="w-4 h-4"></i> Run Now';
+                lucide.createIcons();
+            }
+        }
+
+        function showCompletedFiles(files) {
+            const container = document.getElementById('gen-complete-files');
+            if (!files.length) return;
+            container.innerHTML = files.map(f => `
+        <div class="archive-row">
+            <span class="pill pill-green">${f.category || '—'}</span>
+            <span class="flex-1 text-sm font-medium truncate">${f.title || f.filename}</span>
+            <a href="/post/${f.filename}" target="_blank" class="btn btn-ghost text-xs py-1.5 px-3">
+                <i data-lucide="eye" class="w-3 h-3"></i> View
+            </a>
+        </div>
+    `).join('');
+            container.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        // ─── Categories ───────────────────────────────────────────────────────────────
+        async function fetchCategories() {
+            try {
+                const r = await fetch('/api/categories');
+                const d = await r.json();
+                categories = d.categories;
+                renderCategories();
+            } catch (e) { }
+        }
+
+        function renderCategories() {
+            const grid = document.getElementById('category-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            categories.forEach(c => {
+                const el = document.createElement('button');
+                el.id = 'cat-' + c.id;
+                el.className = 'category-chip ' + (selectedCategories.includes(c.id) ? 'on' : '');
+                el.textContent = c.name;
+                el.onclick = () => toggleCat(c.id);
+                grid.appendChild(el);
+            });
+        }
+
+        function toggleCat(id) {
+            if (selectedCategories.includes(id)) selectedCategories = selectedCategories.filter(x => x !== id);
+            else selectedCategories.push(id);
+            renderCategories();
+        }
+        function selectAllCats() { selectedCategories = categories.map(c => c.id); renderCategories(); }
+        function clearAllCats() { selectedCategories = []; renderCategories(); }
+
+        // ─── Search ───────────────────────────────────────────────────────────────────
+        async function handleSearch() {
+            const btn = document.getElementById('search-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Crawling...';
+            lucide.createIcons();
+            try {
+                const payload = {
+                    ...config,
+                    ai_provider: document.getElementById('ai-provider').value,
+                    num_articles: parseInt(document.getElementById('num-articles').value),
+                    selected_categories: selectedCategories,
+                    query_filter: document.getElementById('query-filter').value,
+                    is_trending: true
+                };
+                const r = await fetch('/api/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const d = await r.json();
+                searchResults = d.news_items || [];
+                selectedResults.clear();
+                renderSearchResults();
+                document.getElementById('results-container').classList.remove('hidden');
+            } catch (e) { toast('Search failed', true); }
+            finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="globe" class="w-4 h-4"></i> Crawl Web for Trending News';
+                lucide.createIcons();
+            }
+        }
+
+        function renderSearchResults() {
+            const list = document.getElementById('results-list');
+            list.innerHTML = '';
+            searchResults.forEach(item => {
+                const sel = selectedResults.has(item.id);
+                const div = document.createElement('div');
+                div.className = 'archive-row cursor-pointer ' + (sel ? 'border-white/30 bg-white/5' : '');
+                div.onclick = () => { if (selectedResults.has(item.id)) selectedResults.delete(item.id); else selectedResults.add(item.id); renderSearchResults(); updateGenBar(); };
+                div.innerHTML = `
+            <div class="w-5 h-5 rounded-full border border-[#333] flex items-center justify-center flex-shrink-0 ${sel ? 'bg-white border-white' : ''}">
+                ${sel ? '<i data-lucide="check" class="w-3 h-3 text-black"></i>' : ''}
+            </div>
+            <span class="pill pill-gray">${item.category}</span>
+            <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium truncate">${item.title}</div>
+                <div class="text-[10px] text-[#555] font-mono">${item.source || ''}</div>
+            </div>
+        `;
+                list.appendChild(div);
+            });
+            lucide.createIcons();
+            updateGenBar();
+        }
+        function selectAllResults() { searchResults.forEach(i => selectedResults.add(i.id)); renderSearchResults(); }
+        function clearAllResults() { selectedResults.clear(); renderSearchResults(); }
+        function updateGenBar() {
+            const bar = document.getElementById('generate-bar');
+            document.getElementById('selected-count').textContent = selectedResults.size;
+            bar.classList.toggle('hidden', selectedResults.size === 0);
+        }
+
+        // ─── Generate ─────────────────────────────────────────────────────────────────
+        async function handleGenerate() {
+            document.getElementById('generate-bar').classList.add('hidden');
+            document.getElementById('gen-progress-panel').classList.remove('hidden');
+            const btn = document.getElementById('gen-btn');
+            if (btn) { btn.disabled = true; }
+
+            try {
+                const payload = {
+                    selected_ids: Array.from(selectedResults),
+                    config: {
+                        ...config,
+                        ai_provider: document.getElementById('ai-provider').value,
+                        image_provider: document.getElementById('image-provider').value,
+                        word_count: parseInt(document.getElementById('word-count').value)
+                    }
+                };
+                const r = await fetch('/api/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!r.ok) { toast('Generate failed', true); return; }
+
+                let consoleLines = [];
+                function appendConsole(line, color = '#888') {
+                    consoleLines.push({ line, color });
+                    if (consoleLines.length > 50) consoleLines.shift();
+                    const el = document.getElementById('gen-console');
+                    if (!el) return;
+                    el.innerHTML = consoleLines.map(l =>
+                        `<div style="color:${l.color}">${l.line}</div>`
+                    ).join('');
+                    el.scrollTop = el.scrollHeight;
+                }
+
+                const LEVEL_COLORS = { info: '#6b7280', ok: '#22c55e', err: '#ef4444', writing: '#f59e0b' };
+                let logCursor = 0;        // index of last log line we've shown
+                let lastArticle = '';     // suppress repeated article titles
+                let lastFileCount = 0;
+
+                appendConsole('▶ Generation started…', '#555');
+
+                const poll2 = setInterval(async () => {
+                    // ── Progress bar ──────────────────────────────────────────
+                    const st = await (await fetch('/api/status')).json();
+                    const pct = st.total > 0 ? Math.round((st.progress / st.total) * 100) : 0;
+                    document.getElementById('gen-pct2').textContent = pct + '%';
+                    document.getElementById('gen-bar2').style.width = pct + '%';
+                    document.getElementById('gen-current2').textContent = st.current_article || 'Writing...';
+                    document.getElementById('gen-status-title2').textContent =
+                        st.status === 'complete' ? '✓ Done' : 'AI Pipeline Running...';
+
+                    // ── Live log from server (no duplicates) ─────────────────
+                    try {
+                        const logResp = await (await fetch(`/api/generation-log?since=${logCursor}`)).json();
+                        if (logResp.lines && logResp.lines.length) {
+                            logResp.lines.forEach(entry => {
+                                const color = LEVEL_COLORS[entry.level] || '#6b7280';
+                                appendConsole(`[${entry.ts}] ${entry.msg}`, color);
+                            });
+                            logCursor = logResp.total;
+                        } else {
+                            // Fallback: if server log has zero lines but generation is active,
+                            // only log the current article title ONCE.
+                            if (st.current_article && st.current_article !== lastArticle) {
+                                lastArticle = st.current_article;
+                                appendConsole('✏ ' + st.current_article, '#aaa');
+                            }
+                        }
+                    } catch (_) {
+                        if (st.current_article && st.current_article !== lastArticle) {
+                            lastArticle = st.current_article;
+                            appendConsole('✏ ' + st.current_article, '#aaa');
+                        }
+                    }
+
+                    // ── Disk file count ───────────────────────────────────────
+                    try {
+                        const dbg = await (await fetch('/api/debug-status')).json();
+                        const fc = dbg.file_count || 0;
+                        const diskEl = document.getElementById('disk-count');
+                        if (diskEl) diskEl.textContent = fc;
+                        lastFileCount = fc;
+                    } catch (_) { }
+
+                    // ── Completion ────────────────────────────────────────────
+                    if (st.status === 'complete' || st.status === 'error') {
+                        clearInterval(poll2);
+                        if (st.status === 'complete') {
+                            appendConsole(`✓ Done — ${st.generated_files?.length || 0} article(s) saved`, '#22c55e');
+                            toast(`✓ Published ${st.generated_files?.length || 0} articles`);
+                            renderGens(st.generated_files || []);
+                            await refreshAutopilotStatus();
+                            document.getElementById('push-homepage-bar').classList.remove('hidden');
+                            document.getElementById('push-homepage-bar').scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            appendConsole('❌ Pipeline error: ' + (st.error || 'unknown'), '#ef4444');
+                            toast('Error: ' + (st.error || 'unknown'), true);
+                        }
+                    }
+                }, 2000);
+            } catch (e) { toast('Error: ' + e.message, true); }
+        }
+
+        function renderGens(files) {
+            const container = document.getElementById('latest-gens');
+            const list = document.getElementById('gens-list');
+            container.classList.remove('hidden');
+            list.innerHTML = files.map(f => `
+        <div class="card hover:border-white/30 transition-all">
+            <div class="flex gap-2 mb-3">
+                <span class="pill pill-blue">${f.category || '—'}</span>
+                <span class="pill pill-gray">${f.writer || '—'}</span>
+            </div>
+            <h4 class="font-bold text-sm mb-4 leading-snug">${f.title || f.filename}</h4>
+            <div class="flex items-center gap-2 pt-3 border-t border-[#1e1e1e]">
+                <a href="/post/${f.filename}" target="_blank" class="btn btn-ghost text-xs py-2">
+                    <i data-lucide="eye" class="w-3.5 h-3.5"></i> View
+                </a>
+                <a href="/api/download/${f.filename}" class="btn btn-ghost text-xs py-2">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Download
+                </a>
+                <button onclick="postToSquarespace('${f.filename}')" id="sq-${f.filename}" class="btn btn-white text-xs py-2 ml-auto">
+                    <i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i> Publish
+                </button>
+            </div>
+        </div>
+    `).join('');
+            lucide.createIcons();
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ─── Archive ─────────────────────────────────────────────────────────────────
+        async function loadArchive() {
+            const list = document.getElementById('archive-list');
+            list.innerHTML = '<div class="text-xs text-[#555] text-center py-8 font-mono">Loading...</div>';
+            try {
+                const r = await fetch('/api/archive');
+                const d = await r.json();
+                const posts = d.posts || [];
+                if (!posts.length) { list.innerHTML = '<div class="text-xs text-[#555] text-center py-12 font-mono">No articles in archive.</div>'; return; }
+                list.innerHTML = posts.sort((a, b) => new Date(b.created_iso || 0) - new Date(a.created_iso || 0)).map(p => `
+            <div class="archive-row group">
+                <span class="pill pill-gray text-[9px]">${p.category || '—'}</span>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-medium truncate">${p.title}</div>
+                    <div class="text-[10px] text-[#555] font-mono">${p.created_display || ''} · ${p.read_mins || '?'} min read</div>
+                </div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <a href="/post/${p.filename}" target="_blank" class="btn btn-ghost text-xs py-1.5 px-3">
+                        <i data-lucide="eye" class="w-3 h-3"></i>
+                    </a>
+                    <button onclick="deletePost('${p.filename}', this)" class="btn btn-ghost text-xs py-1.5 px-3 hover:border-red-600 hover:text-red-500">
+                        <i data-lucide="trash-2" class="w-3 h-3"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+                lucide.createIcons();
+            } catch (e) { list.innerHTML = '<div class="text-xs text-red-500 text-center py-8">Failed to load archive.</div>'; }
+        }
+
+        async function deletePost(filename, btn) {
+            if (!confirm(`Delete "${filename}"?`)) return;
+            btn.disabled = true;
+            try {
+                await fetch('/api/archive/delete/' + filename, { method: 'DELETE' });
+                toast('Deleted ✓');
+                await loadArchive();
+                await refreshAutopilotStatus();
+            } catch (e) { toast('Delete failed', true); btn.disabled = false; }
+        }
+
+        async function buildStaticSite() {
+            const btn = document.getElementById('btn-build');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-3.5 h-3.5 animate-spin"></i> Building...';
+            lucide.createIcons();
+            try {
+                const r = await fetch('/api/build-static', { method: 'POST' });
+                const d = await r.json();
+                if (d.success) toast('Static site generated successfully ✓');
+                else toast('Build failed', true);
+            } catch (e) { toast('Error generating site', true); }
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="layout-template" class="w-3.5 h-3.5"></i> Rebuild Landing & Posts';
+            lucide.createIcons();
+        }
+
+        // Called from Config → Site Tools card
+        async function buildStaticSiteFromConfig() {
+            const btn = document.getElementById('btn-build-cfg');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Building...';
+            lucide.createIcons();
+            try {
+                const r = await fetch('/api/build-static', { method: 'POST' });
+                const d = await r.json();
+                if (d.success) toast('Static site rebuilt successfully \u2713');
+                else toast('Build failed', true);
+            } catch (e) { toast('Error rebuilding site', true); }
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="layout-template" class="w-4 h-4"></i> Rebuild Static Site';
+            lucide.createIcons();
+        }
+
+        async function rebuildLandingIndex() {
+            const btn = document.getElementById('btn-rebuild-index');
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Scanning posts...';
+            lucide.createIcons();
+            try {
+                const r = await fetch('/api/rebuild-landing-index', { method: 'POST' });
+                const d = await r.json();
+                if (d.success) {
+                    toast('Index rebuilt \u2014 ' + d.indexed + ' posts indexed, ' + d.latest_count + ' on homepage \u2713');
+                } else {
+                    toast('Rebuild failed', true);
+                }
+            } catch (e) { toast('Error: ' + e.message, true); }
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="refresh-cw" class="w-4 h-4"></i> Rebuild Landing Index';
+            lucide.createIcons();
+        }
+
+        // ─── Squarespace ─────────────────────────────────────────────────────────────
+        async function postToSquarespace(filename) {
+            const btn = document.getElementById('sq-' + filename);
+            if (!btn) return;
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader" class="w-3.5 h-3.5 animate-spin"></i> Posting...';
+            lucide.createIcons();
+            try {
+                const r = await fetch('/api/post-to-squarespace', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ filename, config }) });
+                const d = await r.json();
+                if (d.success) {
+                    btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i> Published';
+                    btn.className = 'btn btn-green text-xs py-2 ml-auto';
+                    toast('Published to Squarespace ✓');
+                } else {
+                    toast('Failed: ' + (d.error || 'unknown'), true);
+                    btn.disabled = false;
+                    btn.innerHTML = '<i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i> Publish';
+                }
+            } catch (e) { toast('Error: ' + e.message, true); btn.disabled = false; }
+            lucide.createIcons();
+        }
+
+        // ─── Subscribers / Newsletter ─────────────────────────────────────────────────
+        async function fetchSubscribers() {
+            try {
+                const r = await fetch('/api/subscribers');
+                const d = await r.json();
+                const el = document.getElementById('sub-count');
+                if (el) el.textContent = d.subscribers?.length ?? 0;
+            } catch (e) { }
+        }
+
+        async function pushNewsletter() {
+            try {
+                const r = await fetch('/api/push-newsletter', { method: 'POST' });
+                const d = await r.json();
+                toast(d.success ? d.message : ('Error: ' + d.error), !d.success);
+            } catch (e) { toast('Failed', true); }
+        }
+    </script>
+</body>
+
+</html>

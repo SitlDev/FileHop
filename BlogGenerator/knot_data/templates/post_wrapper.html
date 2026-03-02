@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnotStranded | Article</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#4f46e5',
+                        'bg-dark': '#0a0a0a',
+                        'bg-card': '#141414',
+                        'border-dim': '#222222',
+                        'text-muted': '#888888'
+                    },
+                    fontFamily: {
+                        'serif': ['Fraunces', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        .nyt-sidebar {
+            border-right: 1px solid #222;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+    </style>
+    <!-- INJECTED ARTICLE STYLES -->
+    {{ custom_styles | safe }}
+    <!-- Overrides to prevent injected styles from ruining the sidebar -->
+    <style>
+        .nyt-sidebar * {
+            font-family: inherit;
+        }
+
+        .nyt-sidebar h3 {
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        main article {
+            background: transparent !important;
+            padding-top: 0 !important;
+        }
+
+        main .article-header {
+            margin-top: 2rem !important;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+    <div class="flex min-h-screen">
+        <!-- NYT Sidebar Navigation -->
+        <aside class="w-64 nyt-sidebar fixed h-full overflow-y-auto hidden lg:block p-6">
+            <div class="mb-12">
+                <a href="/" class="font-serif text-3xl font-black tracking-tighter hover:opacity-80 transition-opacity">
+                    Knot<span class="text-brand-primary">Stranded</span>
+                </a>
+            </div>
+
+            <nav class="space-y-6">
+                <div>
+                    <h3 class="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">Core Intel</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">&larr;
+                                Back to Home</a></li>
+                        {% for cat_id, info in cat_info.items() %}
+                        <li><a href="/#cat-{{ cat_id }}"
+                                class="text-sm font-medium text-text-muted hover:text-white transition-colors">{{
+                                info.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-6 lg:p-12">
+            <!-- Article Wrapper -->
+            <div
+                class="max-w-4xl mx-auto border border-border-dim bg-[#0d0d0d] rounded-sm shadow-xl overflow-hidden pb-10">
+                <!-- Inner Article -->
+                {{ article_html | safe }}
+
+                {% if release_date %}
+                <div class="px-8 pt-4 border-t border-border-dim mt-8">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-text-muted">Original Release: {{
+                        release_date }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Footer -->
+            <footer class="max-w-4xl mx-auto mt-20 pt-10 border-t border-border-dim pb-10 flex flex-col items-center">
+                <a href="/" class="font-serif text-3xl font-black mb-4">KnotStranded</a>
+                <p class="text-[10px] font-black uppercase tracking-widest text-text-muted opacity-50 text-center">
+                    &copy; 2026 Viral Intelligence Group.<br />Fully Automated Editorial System.
+                </p>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>
