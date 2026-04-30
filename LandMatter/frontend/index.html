@@ -210,9 +210,17 @@ body { height: 100vh; background: var(--bg-p); color: var(--tx-p); font-family: 
 </script>
 <script type="module">
   import('./src/app.js').catch(e => {
-    console.error('App load failed:', e);
+    console.error('App load failed:', e.message, e.stack);
     const content = document.getElementById('content');
-    if (content) content.innerHTML = `<div style="padding:40px;color:#ff6b6b">ERROR: ${e.message}</div>`;
+    if (content) {
+      content.innerHTML = `
+        <div style="padding:40px;color:#ff6b6b;font-family:monospace;font-size:11px;line-height:1.6">
+          <div style="font-weight:bold;margin-bottom:16px">ERROR LOADING APP</div>
+          <div style="white-space:pre-wrap;word-break:break-all">${e.message}</div>
+          <div style="margin-top:16px;opacity:0.6;font-size:10px">${e.stack?.split('\n').slice(0,5).join('\n') || ''}</div>
+        </div>
+      `;
+    }
   });
 </script>
 </body>
