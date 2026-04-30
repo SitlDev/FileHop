@@ -988,5 +988,4 @@ function renderAlerts(root) {
   }, 150);
 }
 
-console.log('App.js loaded, calling init()');
 init();

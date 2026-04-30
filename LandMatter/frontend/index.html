@@ -205,14 +205,22 @@ body { height: 100vh; background: var(--bg-p); color: var(--tx-p); font-family: 
 </div>
 <div id="mdl-root"></div>
 <script>
-  // Global error handler for debugging
+  // Error handler for module loading
   window.addEventListener('error', (e) => {
-    console.error('Global Error:', e.message, e.filename, e.lineno);
+    console.error('Error:', e.message);
   });
   window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled Promise Rejection:', e.reason);
+    console.error('Promise rejection:', e.reason);
   });
 </script>
-<script type="module" src="src/app.js"></script>
+<script type="module">
+  try {
+    await import('./src/app.js');
+  } catch (e) {
+    console.error('Failed to load app:', e.message, e.stack);
+    // Fallback: render error message
+    document.getElementById('content').innerHTML = `<div style="padding:20px; color:red">Error loading app: ${e.message}</div>`;
+  }
+</script>
 </body>
 </html>
