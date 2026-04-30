@@ -762,14 +762,14 @@ function renderRedemp(root) {
                       <div style="font-size:28px; font-weight:600; color:${rp.days === 0 ? '#1a7f5a' : rp.days <= 365 ? '#b07a00' : '#1a4fa0'}">${rp.days}</div>
                       <div style="font-size:11px; color:var(--tx-t)">days</div>
                     </div>
-                    ${rp.rate ? `<div style="font-size:10px; color:var(--tx-s); margin-bottom:8px">Rate: <strong>${rp.rate}%</strong></div>` : ''}
+                    ${rp.rate ? '<div style="font-size:10px; color:var(--tx-s); margin-bottom:8px">Rate: <strong>' + rp.rate + '%</strong></div>' : ''}
                     <div style="font-size:9px; line-height:1.4; color:var(--tx-t); font-style:italic">${rp.notes}</div>
                   </div>
                 `).join('')}
             </div>
           </div>
         </div>
-      \`;
+      `;
       
       // Attach filter listeners
       document.getElementById('filter-all').onclick = () => { taxLienOnly = false; render(); };
