@@ -198,7 +198,10 @@ body { height: 100vh; background: var(--bg-p); color: var(--tx-p); font-family: 
         <h2 id="pg-t">Dashboard</h2>
         <p id="pg-s">Real-time auction signal aggregation</p>
       </div>
-      <div style="font-size:9px; color:var(--tx-t)">EST. SYNC: 2026-04-29 08:52:26</div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px">
+        <div id="sync-status" style="font-size:8px; color:var(--gr-tx); font-weight:500; text-transform:uppercase; letter-spacing:0.05em">● Live Connected</div>
+        <div id="sync-time" style="font-size:9px; color:var(--tx-t)">EST. SYNC: 2026-04-29 08:52:26</div>
+      </div>
     </header>
     <div class="page-content" id="content"></div>
   </main>
