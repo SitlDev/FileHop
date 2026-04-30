@@ -155,6 +155,10 @@ function renderDash(root) {
   const deep = LISTINGS.filter(l => l.parcel && utils.bidDiscount(l.price, l.parcel.assessedValue) >= 50).length;
   const risk = LISTINGS.filter(l => l.parcel && utils.calcTitleRisk(l.parcel, l).level === 'HIGH').length;
 
+  // Separate deed sales from auctions
+  const deedSales = LISTINGS.filter(l => l.source === 'County Deed Recordings');
+  const auctions = LISTINGS.filter(l => l.source !== 'County Deed Recordings');
+
   root.innerHTML = `
     <div class="m-row m-4">
       ${mCard('ACTIVE LISTINGS', LISTINGS.length, 'Total tracked')}
@@ -178,24 +182,49 @@ function renderDash(root) {
       </div>
     </div>
 
+    <div class="sec-t"><span>SEARCH & FILTER</span></div>
+    <div class="fltr-row" style="margin-bottom:24px">
+      <input type="text" class="fltr-in" id="dash-sr" placeholder="SEARCH TITLE, COUNTY..." value="${state.fltrs.search}" style="flex:1; max-width:300px">
+      <select class="fltr-sl" id="dash-tp">
+        <option value="">ALL TYPES (BOTH)</option>
+        <option value="deed" ${state.fltrs.type === 'deed' ? 'selected' : ''}>DEED SALES ONLY</option>
+        <option value="auction" ${state.fltrs.type === 'auction' ? 'selected' : ''}>AUCTIONS ONLY</option>
+      </select>
+      <select class="fltr-sl" id="dash-st">
+        <option value="">ALL STATES</option>
+        ${[...new Set(LISTINGS.map(l => l.state))].sort().map(s => `<option value="${s}" ${state.fltrs.state === s ? 'selected' : ''}>${s}</option>`).join('')}
+      </select>
+      <select class="fltr-sl" id="dash-so">
+        <option value="sc" ${state.fltrs.sort === 'sc' ? 'selected' : ''}>SCORE ↓</option>
+        <option value="dc" ${state.fltrs.sort === 'dc' ? 'selected' : ''}>DISCOUNT ↓</option>
+        <option value="price" ${state.fltrs.sort === 'price' ? 'selected' : ''}>PRICE ↑</option>
+      </select>
+    </div>
+
+    <div class="sec-t"><span>COMPARISON TABLE</span></div>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl" id="dash-tbl">
+        <thead>
+          <tr>
+            <th style="width:200px">PROPERTY</th>
+            <th style="width:80px">TYPE</th>
+            <th style="width:100px">LOCATION</th>
+            <th style="width:80px">PRICE</th>
+            <th style="width:100px">ASSESSED</th>
+            <th style="width:60px">DISCOUNT</th>
+            <th style="width:50px">SCORE</th>
+            <th style="width:60px">CLOSING</th>
+          </tr>
+        </thead>
+        <tbody id="dash-rows"></tbody>
+      </table>
+    </div>
+
     <div class="sec-t"><span>SIGNAL FEED — HIGHEST OPPORTUNITY</span> <span>${deals} TOTAL</span></div>
     <div class="l-grid">
       ${LISTINGS.filter(l => l.score >= 80).sort((a,b)=>b.score-a.score).slice(0,4).map(l => lCard(l)).join('')}
     </div>
     
-    <!-- ... (rest of dashboard) -->
-`;
-  
-  // Attach map listeners
-  root.querySelectorAll('.state-tile.has-data').forEach(el => {
-    el.onclick = () => {
-      state.fltrs.state = el.dataset.st;
-      setPage('browse');
-    };
-  });
-
-  // Re-render table part (fixing the truncated part from template)
-  const tablePart = `
     <div class="sec-t" style="margin-top:32px"><span>SCRAPER INDEX STATUS</span></div>
     <div class="tbl-wrap">
       <table class="tbl">
@@ -214,7 +243,76 @@ function renderDash(root) {
       </table>
     </div>
   `;
-  root.insertAdjacentHTML('beforeend', tablePart);
+
+  // Populate comparison table
+  const updateTable = () => {
+    let filtered = LISTINGS.filter(l => {
+      const s = state.fltrs;
+      const matchSearch = l.title.toLowerCase().includes(s.search.toLowerCase()) || l.county.toLowerCase().includes(s.search.toLowerCase());
+      const matchState = !s.state || l.state === s.state;
+      const matchType = !s.type || (s.type === 'deed' && l.source === 'County Deed Recordings') || (s.type === 'auction' && l.source !== 'County Deed Recordings');
+      return matchSearch && matchState && matchType;
+    });
+
+    if (state.fltrs.sort === 'sc') filtered.sort((a,b) => b.score - a.score);
+    else if (state.fltrs.sort === 'dc') filtered.sort((a,b) => (b.parcel ? utils.bidDiscount(b.price, b.parcel.assessedValue) : 0) - (a.parcel ? utils.bidDiscount(a.price, a.parcel.assessedValue) : 0));
+    else if (state.fltrs.sort === 'price') filtered.sort((a,b) => a.price - b.price);
+
+    const tbody = document.getElementById('dash-rows');
+    tbody.innerHTML = filtered.slice(0, 15).map(l => {
+      const dc = l.parcel ? utils.bidDiscount(l.price, l.parcel.assessedValue) : 0;
+      const typeLabel = l.source === 'County Deed Recordings' ? 'DEED SALE' : 'AUCTION';
+      const typeColor = l.source === 'County Deed Recordings' ? 'fl' : 'dc';
+      return `
+        <tr data-id="${l.id}" style="cursor:pointer; transition:background 0.2s">
+          <td style="font-weight:500; color:var(--bl-tx)">${l.title.substring(0,25)}...</td>
+          <td><span class="tag ${typeColor}">${typeLabel}</span></td>
+          <td>${l.county}, ${l.state}</td>
+          <td>${utils.fmt(l.price)}</td>
+          <td>${l.parcel ? utils.fmt(l.parcel.assessedValue) : 'N/A'}</td>
+          <td>${dc ? dc + '%' : 'N/A'}</td>
+          <td style="color:${utils.scoreColor(l.score)}; font-weight:500">${l.score}</td>
+          <td>${utils.daysLabel(l.closingDays)}</td>
+        </tr>
+      `;
+    }).join('');
+
+    // Add click listeners to table rows
+    tbody.querySelectorAll('tr').forEach(tr => {
+      tr.onclick = () => openMdl(parseInt(tr.dataset.id));
+      tr.onmouseover = () => tr.style.backgroundColor = 'rgba(255,255,255,0.02)';
+      tr.onmouseout = () => tr.style.backgroundColor = '';
+    });
+  };
+
+  updateTable();
+
+  // Attach event listeners
+  const searchIn = document.getElementById('dash-sr');
+  searchIn.oninput = (e) => {
+    state.fltrs.search = e.target.value;
+    updateTable();
+  };
+  document.getElementById('dash-st').onchange = (e) => {
+    state.fltrs.state = e.target.value;
+    updateTable();
+  };
+  document.getElementById('dash-tp').onchange = (e) => {
+    state.fltrs.type = e.target.value;
+    updateTable();
+  };
+  document.getElementById('dash-so').onchange = (e) => {
+    state.fltrs.sort = e.target.value;
+    updateTable();
+  };
+
+  // Attach map listeners
+  root.querySelectorAll('.state-tile.has-data').forEach(el => {
+    el.onclick = () => {
+      state.fltrs.state = el.dataset.st;
+      setPage('browse');
+    };
+  });
 
   attachListeners();
 }
