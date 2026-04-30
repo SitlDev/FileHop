@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How to Calculate Your FIRE Number | YourCalc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../global.css">
+    <script src="../sidebar.js" defer></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('calcTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+    <style>
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; padding: 160px 40px 80px 40px; display: flex; flex-direction: column; align-items: center; }
+        .article-container { max-width: 800px; width: 100%; }
+        .article-header { margin-bottom: 40px; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+        .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 14px; color: var(--muted); }
+        .category-tag { background: rgba(245, 166, 35, 0.1); color: var(--accent); font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; font-size: 11px; }
+        h1 { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .content { line-height: 1.7; font-size: 18px; color: var(--text); }
+        .content h2 { font-size: 28px; margin: 48px 0 24px; color: var(--text); font-weight: 700; }
+        .content p { margin-bottom: 24px; opacity: 0.9; }
+        .content ul { margin-bottom: 24px; padding-left: 24px; }
+        .content li { margin-bottom: 12px; }
+        .example-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin: 40px 0; }
+        .example-box h3 { margin-top: 0; color: var(--accent); font-size: 20px; margin-bottom: 16px; }
+        .cta-box { background: linear-gradient(135deg, var(--surface), #1a1d26); border: 1px solid var(--accent); border-radius: 24px; padding: 40px; text-align: center; margin-top: 64px; }
+        .cta-box h3 { font-size: 24px; margin-bottom: 16px; }
+        .cta-btn { background: var(--accent); color: #000; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; display: inline-block; transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.05); }
+        @media (max-width: 768px) { main { padding: 100px 20px 60px 20px; } h1 { font-size: 32px; } }
+    </style>
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <main>
+        <div class="article-container">
+            <div class="article-header">
+                <div class="article-meta">
+                    <span class="category-tag">Finance</span>
+                    <span>&bull;</span> <span>Jan 06, 2026</span> <span>&bull;</span> <span>9 min read</span>
+                </div>
+                <h1>How to Calculate Your FIRE Number</h1>
+                <p style="font-size: 20px; color: var(--muted); line-height: 1.5;">Discover the math behind financial independence and the 4% safe withdrawal rule.</p>
+            </div>
+            <div class="content">
+            <h2>The Evolution of Financial Independence</h2>
+            <p>The "FIRE" movement (Financial Independence, Retire Early) is often portrayed as a modern trend born in the age of Silicon Valley and Reddit. However, its roots go back to the 1992 classic <i>Your Money or Your Life</i> by Vicki Robin and Joe Dominguez. Their core message—that we trade our "life energy" for money—laid the foundation for a global community dedicated to decoupling labor from survival. Today, FIRE is not just about quitting a job; it’s about reclaiming sovereignty over your time.</p>
+            <p>Achieving FIRE is a journey of two phases: the <b>Accumulation Phase</b>, where you maximize your savings rate, and the <b>Distribution Phase</b>, where you live off the harvest of your investments. The bridge between these two phases is your <b>FIRE Number</b>.</p>
+
+            <h2>The Trinity Study: The Foundation of the 4% Rule</h2>
+            <p>To understand how much is "enough," we must look at the Trinity Study (1998), conducted by three professors at Trinity University. They analyzed historical market data from 1926 to 1995 to determine the "Safe Withdrawal Rate" (SWR) for a retirement portfolio. They found that a portfolio consisting of at least 50% stocks had a 95% success rate over a 30-year period when withdrawing 4% annually, adjusted for inflation.</p>
+            <p>The <b>25x Rule</b> is simply the inverse of this: if you can live on 4% of your portfolio, your portfolio needs to be 25 times your annual expenses. However, for those retiring in their 30s or 40s, a 30-year success rate is insufficient. Early retirees need a portfolio that can last 50 or 60 years, which often requires a more conservative multiplier of 28x or even 33x.</p>
+
+            <h2>Sequence of Returns Risk (SORR): The Silent Killer</h2>
+            <p>The greatest threat to an early retiree is not a market crash in year 20; it is a market crash in year one. This is known as <b>Sequence of Returns Risk</b>. If the market drops 20% immediately after you retire and you continue to withdraw 4%, you are selling shares at the bottom, permanently depleting your portfolio's ability to recover.</p>
+            <p>To mitigate SORR, advanced FIRE practitioners use several strategies:</p>
+            <ul>
+                <li><strong>The "Bond Tent":</strong> Increasing your allocation to bonds/cash in the years immediately surrounding your retirement date to provide a buffer during a downturn.</li>
+                <li><strong>The "Cash Buffer":</strong> Keeping 1–2 years of living expenses in high-yield savings or money market accounts to avoid selling equities during a bear market.</li>
+                <li><strong>Guyton-Klinger Guardrails:</strong> A dynamic withdrawal strategy where you reduce your spending during market lows and increase it during market highs.</li>
+            </ul>
+
+            <div class='example-box'>
+                <h3>Calculating Your Net Needs</h3>
+                <p>When calculating your FIRE number, you must account for "The Gap." This is the difference between your gross withdrawal and your net spendable income. Factors that increase your number include:</p>
+                <ul>
+                    <li><strong>Taxes:</strong> If your money is in a Pre-Tax 401(k), a $100,000 withdrawal might only net you $75,000 after federal and state taxes.</li>
+                    <li><strong>Healthcare:</strong> Before age 65 (Medicare), you must pay for private health insurance. For a family, this can add $15,000–$25,000 to your annual expense line.</li>
+                    <li><strong>One-Offs:</strong> Home repairs, new cars, and family emergencies must be "amortized" into your annual budget.</li>
+                </ul>
+            </div>
+
+            <h2>Lean FIRE vs. Barista FIRE vs. Fat FIRE</h2>
+            <p>There is no single "correct" FIRE number. The community has categorized various lifestyles based on the level of financial security provided:</p>
+            <h3>1. Lean FIRE</h3>
+            <p>Focuses on extreme frugality. Annual expenses are typically under $40,000. It is the fastest path to freedom but offers the least margin for error if inflation spikes or a major health issue arises.</p>
+            <h3>2. Barista FIRE</h3>
+            <p>You have enough saved to cover your core living expenses, but you still work a low-stress part-time job (like at a coffee shop) to cover "extra" spending or to gain access to employer-sponsored health insurance. This significantly lowers your required FIRE number.</p>
+            <h3>3. Coast FIRE</h3>
+            <p>You have enough in your retirement accounts <i>now</i> that, even if you never contribute another dollar, your investments will grow to provide a full retirement by age 65. This allows you to stop saving and spend 100% of your current income on your lifestyle.</p>
+            <h3>4. Fat FIRE</h3>
+            <p>The luxury version. Annual budgets of $100,000 to $250,000+. This requires a nest egg of $2.5M to $6M+ but provides a life of travel, fine dining, and zero financial compromise.</p>
+
+            <h2>Geographic Arbitrage: The Ultimate Multiplier</h2>
+            <p>Your FIRE number is entirely dependent on where you live. This is known as <b>Geographic Arbitrage</b>. If you live in San Francisco and spend $120,000 a year, your FIRE number is $3M. If you move to a beautiful town in Portugal or Costa Rica where that same quality of life costs $40,000 a year, your FIRE number drops to $1M. By changing your zip code, you can often "buy" 10–15 years of your life back.</p>
+
+            <h2>Accessing the Money: The Roth Conversion Ladder</h2>
+            <p>A common myth is that you can't access retirement funds until age 59.5 without a penalty. Early retirees use the <b>Roth Conversion Ladder</b> to move money from traditional IRAs to Roth IRAs. After a five-year waiting period, the <i>contributions</i> can be withdrawn tax-and-penalty-free. This allows for a steady stream of income throughout the decades of early retirement.</p>
+
+            <h2>The Psychological Shift: From Saving to Spending</h2>
+            <p>The hardest part of FIRE is often not the math, but the mindset. After 20 years of aggressive saving and "frugality muscle" building, it is psychologically difficult to stop. This is where the <i>Die with Zero</i> philosophy comes in—the idea that you should aim to spend your wealth on experiences while you are young enough and healthy enough to enjoy them. Your FIRE number is a tool to facilitate a rich life, not a high-score in a video game.</p>
+
+            <h2>Conclusion: Designing Your Post-FIRE Life</h2>
+            <p>The most successful early retirees are not those who are "running away" from a bad job, but those who are "running toward" a meaningful life. Once you hit your number, the question changes from "How do I make money?" to "What do I want to do with my one wild and precious life?"</p>
+            <p>Start your journey by defining your target. Use our <a href="../finance.html#fire">Comprehensive FIRE Calculator</a> to model your savings rate, expected returns, and multiple withdrawal scenarios. The road to freedom is long, but it is paved with math.</p>
+        </div>
+            <div class="cta-box">
+                <h3>Ready to calculate your own numbers?</h3>
+                <p style="margin-bottom: 24px; color: var(--muted);">Use our free professional tool to get instant, accurate results.</p>
+                <a href="../finance.html#fire" class="cta-btn">Try the Calculator →</a>
+            </div>
+            <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+                <a href="index.html" style="color: var(--muted); text-decoration: none;">&larr; Back to Guides</a>
+                <a href="mortgage-amortization-explained.html" style="color: var(--accent); text-decoration: none;">Next Guide: Mortgage Amortization Explained &rarr;</a>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer" style="margin-top: 80px; padding: 40px 20px; border-top: 1px solid var(--border); text-align: center;">
+        <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 24px; font-size: 14px;">
+            <a href="../index.html" style="color: var(--muted); text-decoration: none;">Home</a>
+            <a href="../about.html" style="color: var(--muted); text-decoration: none;">About</a>
+            <a href="../privacy.html" style="color: var(--muted); text-decoration: none;">Privacy</a>
+            <a href="../contact.html" style="color: var(--muted); text-decoration: none;">Contact</a>
+        </div>
+        <p style="color: var(--muted); font-size: 12px;">&copy; 2026 YourCalc — A KnotStranded LLC Product.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.logo-container').forEach(el => el.onclick = () => location.href='../index.html');
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+                document.querySelectorAll('.header-links a').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href === 'blog/index.html') el.setAttribute('href', 'index.html');
+                    else if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

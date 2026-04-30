@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Test and debug regular expressions with real-time matching, global flag, case-insensitive, and multiline support. Perfect for developers." />
+  <meta name="keywords" content="regex tester, regular expression tester, regex debugger, regex tool, pattern tester, regex validator, JavaScript regex, developer tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Regex Tester</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Regex Tester</h1>
+      <p>Test and debug regular expressions with instant matching feedback.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Settings</h2>
+        <div class="form-container">
+          <label for="regex-pattern">Pattern</label>
+          <input id="regex-pattern" type="text" placeholder="e.g., ^\w+@\w+\.\w+$" value="^\w+@\w+\.\w+$">
+        </div>
+
+        <div class="form-container">
+          <label><input id="regex-global" type="checkbox" checked> Global (g)</label>
+        </div>
+        <div class="form-container">
+          <label><input id="regex-insensitive" type="checkbox"> Case-insensitive (i)</label>
+        </div>
+        <div class="form-container">
+          <label><input id="regex-multiline" type="checkbox"> Multiline (m)</label>
+        </div>
+
+        <h3>Test String</h3>
+        <textarea id="regex-text" rows="6" placeholder="Enter text to test..." style="width:100%; padding:12px; font-family: monospace;">test@example.com
+user@domain.org
+invalid.email
+john.doe@company.co.uk</textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-test">Test Pattern</button>
+          <button id="btn-copy-result">Copy Matches</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Results</h2>
+        <textarea id="regex-output" rows="10" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+
+      <section class="info-section">
+        <h2>About Regular Expressions</h2>
+        
+        <h3>What is Regex?</h3>
+        <p>Regular expressions (regex or regexp) are patterns used to match, find, and manipulate text. They consist of a sequence of characters defining a search pattern. First formalized in the 1950s by Stephen Kleene, regex is now a standard feature in virtually every programming language and text editor (JavaScript, Python, Java, Perl, etc.).</p>
+        
+        <h3>Common Use Cases</h3>
+        <ul>
+          <li><strong>Email Validation:</strong> Verify user email addresses during registration</li>
+          <li><strong>URL Matching:</strong> Extract URLs from text or validate URL formats</li>
+          <li><strong>Phone Numbers:</strong> Match and format international phone numbers</li>
+          <li><strong>Password Rules:</strong> Enforce complexity requirements (uppercase, numbers, symbols)</li>
+          <li><strong>Find & Replace:</strong> Bulk text replacements in code editors</li>
+          <li><strong>Log Analysis:</strong> Extract specific information from application logs</li>
+        </ul>
+        
+        <h3>Real-World Examples</h3>
+        <ul>
+          <li><strong>Email Pattern:</strong> ^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$ → Matches valid emails</li>
+          <li><strong>Phone Pattern:</strong> ^\\d{3}-\\d{3}-\\d{4}$ → Matches ###-###-####</li>
+          <li><strong>URL Pattern:</strong> https?://[^\\s]+ → Matches HTTP/HTTPS URLs</li>
+          <li><strong>Hex Color:</strong> ^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$ → Matches color codes</li>
+        </ul>
+        
+        <h3>Regex Components</h3>
+        <ul>
+          <li><strong>\\d</strong> = digits (0-9)</li>
+          <li><strong>\\w</strong> = word characters (a-z, A-Z, 0-9, _)</li>
+          <li><strong>\\s</strong> = whitespace (spaces, tabs, newlines)</li>
+          <li><strong>.</strong> = any character (except newline)</li>
+          <li><strong>*</strong> = 0 or more times</li>
+          <li><strong>+</strong> = 1 or more times</li>
+          <li><strong>?</strong> = 0 or 1 time</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Regex Tester</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

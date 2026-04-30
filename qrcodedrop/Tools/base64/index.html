@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Encode and decode text to/from Base64 format instantly. Perfect for web development, API integration, and data encoding." />
+  <meta name="keywords" content="base64 encoder, base64 decoder, base64 encoding, base64 decoding, text encoding, data encoding, web development tool, API tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Base64 Encoder/Decoder</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Base64 Encoder/Decoder</h1>
+      <p>Encode text to Base64 or decode Base64 strings instantly.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <textarea id="b64-input" rows="8" placeholder="Enter text to encode or Base64 to decode..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-encode">Encode to Base64</button>
+          <button id="btn-decode">Decode from Base64</button>
+          <button id="btn-copy">Copy Output</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Output</h2>
+        <textarea id="b64-output" rows="10" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+
+      <section class="info-section">
+        <h2>About Base64 Encoding</h2>
+        
+        <h3>What is Base64?</h3>
+        <p>Base64 is a binary-to-text encoding scheme that converts binary data into a text format using 64 printable ASCII characters (A-Z, a-z, 0-9, +, /). Developed in 1996 for MIME email attachments, Base64 ensures data integrity across systems that only handle text safely.</p>
+        
+        <h3>Why Use Base64?</h3>
+        <ul>
+          <li><strong>Data Transmission:</strong> Encodes binary files (images, PDFs) for safe transmission over text-only channels</li>
+          <li><strong>Data URLs:</strong> Embed images directly in HTML/CSS without separate file requests</li>
+          <li><strong>API Integration:</strong> Transmit binary data through APIs that expect text responses</li>
+          <li><strong>Database Storage:</strong> Store binary content in text-only database fields</li>
+          <li><strong>Authentication:</strong> Encode credentials for HTTP Basic Authentication headers</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>Email:</strong> Encode attachments (MIME standard) for transmission through email servers</li>
+          <li><strong>Web Development:</strong> Embed small images in CSS (data URIs) to reduce HTTP requests</li>
+          <li><strong>APIs:</strong> Encode authentication tokens and credentials for REST API calls</li>
+          <li><strong>Certificates:</strong> X.509 digital certificates and PEM keys use Base64 encoding</li>
+          <li><strong>QR Codes:</strong> Encode URLs with special characters safely in QR code data</li>
+        </ul>
+        
+        <h3>Example</h3>
+        <p><strong>Plain Text:</strong> Hello, World!</p>
+        <p><strong>Base64 Encoded:</strong> SGVsbG8sIFdvcmxkIQ==</p>
+        <p style="margin-top: 12px;"><strong>Use in HTML Data URI:</strong></p>
+        <code>&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." /&gt;</code>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Base64 Encoder/Decoder</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

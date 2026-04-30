@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival & Tactical Logic Calculators — Ballistics & Water 2026 — YourCalc</title>
+    <meta name="keywords" content="ballistics calculator, bullet drop math, water purification calculator, tactical math, survival tools">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/survival.html" />
+    <meta name="description" content="Mission-critical survival tools: Ballistics drop and Water Purification (bleach) calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Survival & <span style="color: var(--error);">Tactical Logic</span></h1>
+            <p class="subtitle">Mission-critical math for extreme scenarios.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Tactical <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Ballistics</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Gravity affects every projectile. Understanding "bullet drop" over distance is critical for long-range precision and tactical planning.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Water Safety</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The CDC recommendation for emergency purification is 8 drops of unscented 6% bleach per gallon of clear water (16 for cloudy).</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Rule of 3s</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">General survival baseline: 3 minutes without air, 3 hours without shelter, 3 days without water, 3 weeks without food.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('ballistics', event)">Ballistics</button>
+                <button class="tab-btn" onclick="showTab('water', event)">Water Purification</button>
+            </div>
+
+            <div id="ballistics" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Muzzle Velocity (fps)</label><div class="input-wrapper"><input type="number" id="su-v" value="2700"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Target Distance (yards)</label><div class="input-wrapper"><input type="number" id="su-d" value="300"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDrop()">Calculate Drop →</button>
+                <div id="drop-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Approx Bullet Drop</span><span class="result-value" id="su-out">0.0 inches</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="water" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Volume (Gallons)</label><div class="input-wrapper"><input type="number" id="wa-v" value="1.0"></div></div>
+                    <div class="input-group"><label>Water Clarity</label><div class="input-wrapper"><select id="wa-c"><option value="8">Clear</option><option value="16">Cloudy / Cold</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateWater()">Find Dosage →</button>
+                <div id="water-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Bleach Dosage</span><span class="result-value" id="wa-out">0 drops</span></div>
+                        <div class="result-item"><span class="result-label">Wait Time</span><span class="result-value">30 Minutes</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Principles of <span style="color: var(--accent);">Emergency Preparedness</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Water Purification: The 30-Minute Rule</h3>
+                        <p>In a survival situation, water is your most critical asset. While boiling is the "gold standard" for purification, it is not always possible. Our <strong>Water Purification Ratio Tool</strong> calculates the correct dosage of common household bleach (unscented, 5.25% to 8.25% sodium hypochlorite) to make water safe for consumption. For clear water, the standard is 8 drops per gallon; for cloudy or very cold water, the dosage is doubled to 16 drops. Crucially, you must wait at least <strong>30 minutes</strong> after mixing before drinking to allow the chlorine to effectively neutralize harmful pathogens.</p>
+                        <p style="margin-top: 16px;">It's important to remember that chemical purification only targets biological contaminants (bacteria and viruses). It does not remove chemical toxins, heavy metals, or physical debris. If the water is murky, filter it through a clean cloth or a paper coffee filter before treating it. Always carry a small dropper of bleach in your emergency kit—it is one of the most lightweight and effective life-saving tools you can own.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Ballistics Math: Understanding Bullet Drop</h3>
+                        <p>For those in tactical or hunting scenarios, understanding <strong>External Ballistics</strong> is essential for accuracy at long ranges. As soon as a bullet leaves the muzzle, gravity begins to pull it toward the earth. Our <strong>Ballistics Drop Tool</strong> uses the standard gravitational constant (32.17 ft/s²) to calculate the physical drop in inches over a specific distance and muzzle velocity. This is the "holdover" you must account for to ensure your projectile reaches its intended target.</p>
+                        <p style="margin-top: 16px;">In the field, environmental factors like wind, humidity, and air density (altitude) also play a role in trajectory. While our tool provides the foundational gravitational drop, experienced marksmen use these numbers as a baseline and then adjust for local conditions. Mastering the math of ballistics turns "guessing" into "precision," which is critical for both safety and effectiveness in high-stakes environments.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Rule of Three</h3>
+                        <p>Survival priorities are often summarized by the "Rule of Three": You can survive 3 minutes without air, 3 hours without shelter (in extreme conditions), 3 days without water, and 3 weeks without food. Our <strong>Survival Math Suite</strong> focuses on the middle two priorities—shelter (implied by preparedness) and water. By quantifying your needs and knowing the correct ratios for treatment, you move from a state of reactive panic to proactive management.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Field Preparedness and Data</h3>
+                        <p>Information is just as valuable as gear in the field. Knowing how to calculate a dosage or predict a trajectory is a "skill that doesn't take up room in your pack." Our tools are designed to work entirely in your browser, meaning they can be used offline if you have already loaded the page. Use these resources to build your mental kit, ensuring that you are ready for whatever challenges the environment may present.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+    <script>
+        function calculateDrop() {
+            const v = parseFloat(document.getElementById('su-v').value);
+const d = parseFloat(document.getElementById('su-d').value) * 3; // yards to feet
+const time = d / v;
+const drop = 0.5 * 32.17 * Math.pow(time, 2) * 12; // in inches
+document.getElementById('su-out').innerText = drop.toFixed(1) + " inches";
+document.getElementById('drop-results').classList.add('visible');
+saveActivity('survival', { type: 'ballistics', velocity: v, distance_yds: d/3 }, { drop_in: drop });
+        }
+
+        function calculateWater() {
+            const v = parseFloat(document.getElementById('wa-v').value);
+const rate = parseFloat(document.getElementById('wa-c').value);
+const drops = Math.round(v * rate);
+document.getElementById('wa-out').innerText = drops + " drops";
+document.getElementById('water-results').classList.add('visible');
+saveActivity('survival', { type: 'water-purification', volume: v, clarity_rate: rate }, { drops });
+        }
+    </script>
+</body>
+</html>

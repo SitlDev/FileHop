@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Format, validate, minify, and download JSON quickly. Perfect for developers, API testing, and data validation." />
+  <meta name="keywords" content="JSON formatter, JSON validator, JSON minifier, JSON beautifier, format JSON, validate JSON, JSON tool, developer tool, API tool, code formatter" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>JSON Formatter & Validator</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>JSON Formatter & Validator</h1>
+      <p>Paste JSON to format, minify, validate, or download.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <textarea id="json-input" rows="12" placeholder="Paste JSON here..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-format">Format (Pretty)</button>
+          <button id="btn-minify">Minify</button>
+          <button id="btn-validate">Validate</button>
+          <button id="btn-copy">Copy Output</button>
+          <button id="btn-download">Download .json</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Output / Result</h2>
+        <textarea id="json-output" rows="14" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+
+      <section class="info-section">
+        <h2>About JSON Formatter</h2>
+        
+        <h3>What is JSON?</h3>
+        <p>JSON (JavaScript Object Notation) is a lightweight, text-based data format designed for easy human readability and efficient machine processing. Created by Douglas Crockford in the early 2000s, JSON has become the standard for data interchange across web applications, APIs, and databases.</p>
+        
+        <h3>Why Format JSON?</h3>
+        <ul>
+          <li><strong>Readability:</strong> Pretty-printed JSON makes it easier to understand complex data structures during development and debugging</li>
+          <li><strong>Validation:</strong> Identifies syntax errors before integration with applications</li>
+          <li><strong>Minification:</strong> Reduces file size by 20-40%, improving API response times and bandwidth usage</li>
+          <li><strong>Integration:</strong> Ensures proper formatting for seamless data exchange between systems</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>API Development:</strong> Format and validate API responses from services like Twitter, GitHub, and OpenAI</li>
+          <li><strong>Web Development:</strong> Process configuration files, i18n data, and dynamic content in web applications</li>
+          <li><strong>Data Analysis:</strong> Clean and validate datasets for machine learning and analytics pipelines</li>
+          <li><strong>Mobile Apps:</strong> Optimize API payloads to reduce data consumption on mobile networks</li>
+        </ul>
+        
+        <h3>Example</h3>
+        <p><strong>Minified JSON (340 bytes):</strong></p>
+        <code>{"users":[{"id":1,"name":"Alice","email":"alice@example.com","role":"admin","active":true,"lastLogin":"2026-04-19T10:30:00Z"},{"id":2,"name":"Bob","email":"bob@example.com","role":"user","active":true,"lastLogin":"2026-04-18T15:45:00Z"}]}</code>
+        <p style="margin-top: 12px;"><strong>Formatted JSON (Same data, easier to read):</strong></p>
+        <pre style="background: var(--card-bg); padding: 12px; border-radius: 6px; overflow-x: auto;">{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "email": "alice@example.com",
+      "role": "admin",
+      "active": true,
+      "lastLogin": "2026-04-19T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "email": "bob@example.com",
+      "role": "user",
+      "active": true,
+      "lastLogin": "2026-04-18T15:45:00Z"
+    }
+  ]
+}</pre>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 JSON Formatter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

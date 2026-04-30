@@ -1,0 +1,35 @@
+:root {
+  --forge-gold: #C9963A;
+  --forge-dark-gold: #8B6914;
+  --forge-bg-dark: #130b04;
+  --forge-bg-light: #faf3e0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--forge-bg-dark);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Custom scrollbar to match the liturgical aesthetic */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 150, 58, 0.28);
+  border-radius: 3px;
+}

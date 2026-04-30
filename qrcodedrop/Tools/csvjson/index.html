@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert CSV data to JSON format instantly with header detection. Perfect for data transformation and API development." />
+  <meta name="keywords" content="csv to json converter, CSV converter, JSON converter, data transformation, CSV to JSON, format converter, data migration, API tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>CSV to JSON Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>CSV to JSON Converter</h1>
+      <p>Convert CSV data to JSON format with a single click.</p>
+    </header>
+
+    <main>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <section class="input-section">
+          <h2>CSV Input</h2>
+          <textarea id="csv-input" rows="12" placeholder="Name,Age,Email&#10;John,30,john@example.com&#10;Jane,25,jane@example.com" style="width:100%; padding:12px; font-family: monospace;"></textarea>
+
+          <div class="form-container" style="margin-top:12px;">
+            <label><input id="csv-headers" type="checkbox" checked> First row is headers</label>
+          </div>
+
+          <div class="actions">
+            <button id="btn-convert">Convert</button>
+            <button id="btn-copy">Copy JSON</button>
+          </div>
+        </section>
+
+        <section class="preview-section">
+          <h2>JSON Output</h2>
+          <textarea id="csv-output" rows="14" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+        </section>
+
+        <section class="info-section">
+          <h2>About CSV to JSON Conversion</h2>
+          
+          <h3>Why Convert CSV to JSON?</h3>
+          <ul>
+            <li><strong>CSV:</strong> Spreadsheet format (Excel, Google Sheets) - human readable but limited structure</li>
+            <li><strong>JSON:</strong> Web standard - supports nested objects, arrays, and complex data</li>
+          </ul>
+          
+          <h3>Use Cases</h3>
+          <ul>
+            <li><strong>Data Import:</strong> Convert exported spreadsheet data for APIs</li>
+            <li><strong>Web Apps:</strong> Use JSON data in JavaScript applications</li>
+            <li><strong>Database Seeding:</strong> Bulk insert data from CSV</li>
+            <li><strong>Data Exchange:</strong> Share structured data between systems</li>
+          </ul>
+          
+          <h3>Example</h3>
+          <p><strong>CSV:</strong></p>
+          <code>name,email,age\nJohn,john@example.com,30\nJane,jane@example.com,28</code>
+          <p><strong>JSON:</strong></p>
+          <code>[{"name":"John","email":"john@example.com","age":"30"},{"name":"Jane","email":"jane@example.com","age":"28"}]</code>
+        </section>
+      </div>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 CSV to JSON Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

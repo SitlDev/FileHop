@@ -1,0 +1,21 @@
+{
+  "name": "calcpro-calculator-suite",
+  "version": "1.0.0",
+  "description": "Professional calculator suite with email gating and activity tracking.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.0",
+    "@vercel/postgres": "^0.9.0",
+    "next": "^16.2.4",
+    "vercel": "^52.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

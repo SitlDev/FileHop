@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Minify HTML and CSS code to reduce file sizes and improve performance. Shows compression statistics and bytes saved." />
+  <meta name="keywords" content="HTML minifier, CSS minifier, code minifier, minify HTML, minify CSS, code compression, file size reduction, performance optimization, web optimization" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>HTML/CSS Minifier</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>HTML/CSS Minifier</h1>
+      <p>Minify HTML and CSS code to reduce file sizes and improve performance.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input Code</h2>
+        <textarea id="minify-input" rows="12" placeholder="Paste HTML or CSS code here..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-minify">Minify</button>
+          <button id="btn-copy">Copy Output</button>
+        </div>
+
+        <div style="margin-top:12px; padding:12px; background: var(--panel); border-radius: 8px;">
+          <p><strong>Original size:</strong> <span id="size-original">0</span> bytes</p>
+          <p><strong>Minified size:</strong> <span id="size-minified">0</span> bytes</p>
+          <p><strong>Saved:</strong> <span id="size-saved">0</span> bytes (<span id="size-percent">0</span>%)</p>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Minified Output</h2>
+        <textarea id="minify-output" rows="12" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 HTML/CSS Minifier</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

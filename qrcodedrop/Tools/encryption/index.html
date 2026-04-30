@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Encrypt and decrypt text using Caesar cipher with adjustable shift values. Perfect for learning cryptography and encoding messages." />
+  <meta name="keywords" content="text encryption, text decryption, Caesar cipher, text encryptor, message encryption, simple cipher, cryptography tool, educational tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Text Encryption</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Text Encryption</h1>
+      <p>Encrypt and decrypt text using Caesar cipher (simple educational tool).</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Settings</h2>
+        <div class="form-container">
+          <label for="enc-mode">Mode</label>
+          <select id="enc-mode">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+          </select>
+        </div>
+
+        <div class="form-container">
+          <label for="enc-shift">Caesar Shift (0-25)</label>
+          <input id="enc-shift" type="number" min="0" max="25" value="3">
+        </div>
+
+        <h3>Input Text</h3>
+        <textarea id="enc-input" rows="8" placeholder="Enter text to encrypt or decrypt..." style="width:100%; padding:12px;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-process">Process</button>
+          <button id="btn-copy">Copy Output</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Output</h2>
+        <textarea id="enc-output" rows="10" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+      <section class="info-section">
+        <h2>About Caesar Cipher Encryption</h2>
+        
+        <h3>What is Caesar Cipher?</h3>
+        <p>Caesar Cipher is one of the simplest encryption methods, used by Julius Caesar in ancient Rome. It shifts each letter by a fixed number of positions (typically 3). While historically important, it's not secure for modern use due to easy brute-force attacks.</p>
+        
+        <h3>How It Works</h3>
+        <ul>
+          <li><strong>Encryption:</strong> Shift each letter forward by N positions (A→D with shift 3)</li>
+          <li><strong>Decryption:</strong> Shift each letter backward by N positions (D→A with shift 3)</li>
+          <li><strong>Non-letters:</strong> Numbers and symbols remain unchanged</li>
+        </ul>
+        
+        <h3>Historical Significance</h3>
+        <ul>
+          <li>Used by Julius Caesar for military communications</li>
+          <li>Foundation for modern cryptography study</li>
+          <li>Easily broken (only 26 possible shifts for English)</li>
+          <li>Good for learning encryption concepts</li>
+        </ul>
+        
+        <h3>Example</h3>
+        <p><strong>Plain text:</strong> HELLO (shift 3) → KHOOR</p>
+      </section>      <section class="info-section">
+        <h2>About Caesar Cipher Encryption</h2>
+        
+        <h3>What is Caesar Cipher?</h3>
+        <p>Caesar Cipher is one of the simplest encryption methods, used by Julius Caesar in ancient Rome. It shifts each letter by a fixed number of positions (typically 3). While historically important, it's not secure for modern use due to easy brute-force attacks.</p>
+        
+        <h3>How It Works</h3>
+        <ul>
+          <li><strong>Encryption:</strong> Shift each letter forward by N positions (A→D with shift 3)</li>
+          <li><strong>Decryption:</strong> Shift each letter backward by N positions (D→A with shift 3)</li>
+          <li><strong>Non-letters:</strong> Numbers and symbols remain unchanged</li>
+        </ul>
+        
+        <h3>Historical Significance</h3>
+        <ul>
+          <li>Used by Julius Caesar for military communications</li>
+          <li>Foundation for modern cryptography study</li>
+          <li>Easily broken (only 26 possible shifts for English)</li>
+          <li>Good for learning encryption concepts</li>
+        </ul>
+        
+        <h3>Example</h3>
+        <p><strong>Plain text:</strong> HELLO (shift 3) → KHOOR</p>
+      </section>    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Text Encryption</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

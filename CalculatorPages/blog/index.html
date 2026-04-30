@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guides & Resources | YourCalc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../global.css">
+    <script src="../sidebar.js" defer></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('calcTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+    <style>
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; padding: 160px 40px 40px 40px; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 1000px; width: 100%; }
+        .blog-header { text-align: center; margin-bottom: 64px; }
+        .blog-header h1 { font-size: 48px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.03em; }
+        .blog-header p { font-size: 18px; color: var(--muted); max-width: 600px; margin: 0 auto; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
+        .blog-card { 
+            background: var(--surface); border: 1px solid var(--border); border-radius: 20px; 
+            padding: 32px; text-decoration: none; color: inherit; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .blog-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .category-tag { background: rgba(245, 166, 35, 0.1); color: var(--accent); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .publish-date { font-size: 12px; color: var(--muted); }
+        .blog-card h2 { font-size: 22px; font-weight: 600; line-height: 1.3; margin-bottom: 12px; transition: color 0.2s; }
+        .blog-card:hover h2 { color: var(--accent); }
+        .blog-card p { font-size: 15px; color: var(--muted); line-height: 1.6; flex: 1; }
+        .read-more { margin-top: 24px; font-size: 14px; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+        .read-more svg { width: 16px; height: 16px; transition: transform 0.2s; }
+        .blog-card:hover .read-more svg { transform: translateX(4px); }
+        @media (max-width: 768px) { main { padding: 100px 20px 40px 20px; } .blog-header h1 { font-size: 32px; } .blog-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <main>
+        <div class="container">
+            <div class="blog-header">
+                <h1>Guides & <span style="color:var(--accent)">Resources</span></h1>
+                <p>In-depth breakdowns behind every calculator on YourCalc.</p>
+            </div>
+            <div class="blog-grid" id="blog-grid">
+                <a href="how-to-calculate-your-fire-number.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Finance</span>
+                        <span class="publish-date">Jan 06, 2026</span>
+                    </div>
+                    <h2>How to Calculate Your FIRE Number</h2>
+                    <p>Discover the math behind financial independence and the 4% safe withdrawal rule.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="mortgage-amortization-explained.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Finance</span>
+                        <span class="publish-date">Jan 12, 2026</span>
+                    </div>
+                    <h2>Mortgage Amortization Explained</h2>
+                    <p>Understand how principal and interest shift over the life of your home loan.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="what-is-tdee-and-why-it-matters.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Health</span>
+                        <span class="publish-date">Jan 20, 2026</span>
+                    </div>
+                    <h2>What Is TDEE and Why It Matters</h2>
+                    <p>Total Daily Energy Expenditure is the key to managing weight and fitness goals.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="understanding-llm-api-costs.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">AI & Tech</span>
+                        <span class="publish-date">Feb 02, 2026</span>
+                    </div>
+                    <h2>Understanding LLM API Costs in 2026</h2>
+                    <p>A deep dive into token pricing for GPT-4, Claude 3, and Gemini 1.5.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="debt-snowball-vs-avalanche.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Finance</span>
+                        <span class="publish-date">Feb 10, 2026</span>
+                    </div>
+                    <h2>Debt Snowball vs. Avalanche: The Real Difference</h2>
+                    <p>Comparing the two most popular debt payoff strategies for speed and psychology.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="how-to-read-your-burn-rate.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Business</span>
+                        <span class="publish-date">Feb 18, 2026</span>
+                    </div>
+                    <h2>How to Read Your Startup Burn Rate</h2>
+                    <p>Learn how to calculate your runway and manage cash flow as a founder.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="ev-vs-gas-true-cost-breakdown.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Auto</span>
+                        <span class="publish-date">Mar 01, 2026</span>
+                    </div>
+                    <h2>EV vs. Gas: The True Cost Breakdown</h2>
+                    <p>Beyond the sticker price: factoring in electricity, maintenance, and resale.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="bmi-limitations-what-it-misses.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Health</span>
+                        <span class="publish-date">Mar 08, 2026</span>
+                    </div>
+                    <h2>BMI's Limitations: What the Number Misses</h2>
+                    <p>Why body composition matters more than the simple ratio of height to weight.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="schengen-90-180-rule-explained.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Travel</span>
+                        <span class="publish-date">Mar 15, 2026</span>
+                    </div>
+                    <h2>The Schengen 90/180 Rule Explained</h2>
+                    <p>A guide for digital nomads and travelers navigating European visa-free stays.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="llc-vs-scorp-which-saves-more-tax.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Legal & Tax</span>
+                        <span class="publish-date">Mar 22, 2026</span>
+                    </div>
+                    <h2>LLC vs. S-Corp: Which Saves More in Taxes?</h2>
+                    <p>Understanding self-employment tax and how an S-Corp election can help.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="solar-panel-roi-what-to-expect.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Green</span>
+                        <span class="publish-date">Mar 30, 2026</span>
+                    </div>
+                    <h2>Solar Panel ROI: What to Realistically Expect</h2>
+                    <p>Calculating payback periods and the impact of incentives on solar investments.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="how-compounding-frequency-affects-returns.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Finance</span>
+                        <span class="publish-date">Apr 04, 2026</span>
+                    </div>
+                    <h2>How Compounding Frequency Affects Your Returns</h2>
+                    <p>Daily vs. annual compounding: see how small differences add up over time.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="1rm-testing-protocols-and-formulas.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Fitness</span>
+                        <span class="publish-date">Apr 08, 2026</span>
+                    </div>
+                    <h2>1RM Testing Protocols and the Formulas Behind Them</h2>
+                    <p>How to safely estimate your one-rep max using the Brzycki or Epley equations.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="rent-vs-buy-the-real-math.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Real Estate</span>
+                        <span class="publish-date">Apr 12, 2026</span>
+                    </div>
+                    <h2>Rent vs. Buy: The Real Math Most People Skip</h2>
+                    <p>Factoring in opportunity costs, maintenance, and property taxes.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="emergency-prep-survival-calories.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Survival</span>
+                        <span class="publish-date">May 06, 2026</span>
+                    </div>
+                    <h2>Emergency Prep: Survival Calories</h2>
+                    <p>Calculating nutrient density and duration for your emergency food supply.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="economics-of-loot-boxes.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Gaming</span>
+                        <span class="publish-date">May 10, 2026</span>
+                    </div>
+                    <h2>The Economics of Loot Boxes</h2>
+                    <p>Understanding probability and the variable ratio reinforcement in gaming.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="gpa-math-recovery-guide.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Academic</span>
+                        <span class="publish-date">May 12, 2026</span>
+                    </div>
+                    <h2>GPA Math: How to Recover</h2>
+                    <p>Strategies for raising your grade point average after a difficult semester.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="bitrate-and-storage-audiophile-guide.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Audio</span>
+                        <span class="publish-date">May 14, 2026</span>
+                    </div>
+                    <h2>Bitrate and Storage: Audiophile Guide</h2>
+                    <p>Balancing audio quality and file size for local and streaming libraries.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="dividend-reinvestment-drip-explained.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Invest</span>
+                        <span class="publish-date">May 16, 2026</span>
+                    </div>
+                    <h2>Dividend Reinvestment (DRIP) Explained</h2>
+                    <p>How to harness the power of dividends to accelerate portfolio growth.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="emergency-fund-3-vs-6-months.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Savings</span>
+                        <span class="publish-date">May 18, 2026</span>
+                    </div>
+                    <h2>The Emergency Fund: 3 vs 6 Months?</h2>
+                    <p>Determining the right cash buffer for your specific lifestyle and risk tolerance.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="scale-of-the-universe-scientific-notation.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Science</span>
+                        <span class="publish-date">May 20, 2026</span>
+                    </div>
+                    <h2>The Scale of the Universe: Notation</h2>
+                    <p>How scientific notation helps us comprehend the impossibly large and small.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="the-math-of-tithing-faith-finance.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Spiritual</span>
+                        <span class="publish-date">May 22, 2026</span>
+                    </div>
+                    <h2>The Math of Tithing: Faith & Finance</h2>
+                    <p>Calculating charitable giving based on gross vs. net income.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="pythagoras-in-the-real-world.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Math</span>
+                        <span class="publish-date">May 24, 2026</span>
+                    </div>
+                    <h2>Pythagoras in the Real World</h2>
+                    <p>From construction to navigation: why a² + b² = c² still matters.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="metric-vs-imperial-global-divide.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Unit Converters</span>
+                        <span class="publish-date">May 26, 2026</span>
+                    </div>
+                    <h2>Metric vs. Imperial: Global Divide</h2>
+                    <p>Navigating the confusing world of pounds, kilos, miles, and meters.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="scaling-recipes-bakers-percentage.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Culinary</span>
+                        <span class="publish-date">May 28, 2026</span>
+                    </div>
+                    <h2>Scaling Recipes: Baker's Percentage</h2>
+                    <p>The mathematical secret to perfect bread and pastry consistency.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="sleep-cycles-the-90-minute-rule.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Health</span>
+                        <span class="publish-date">May 30, 2026</span>
+                    </div>
+                    <h2>Sleep Cycles: The 90-Minute Rule</h2>
+                    <p>Why waking up at the right time is more important than how long you sleep.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="true-cost-of-credit-card-debt.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Finance</span>
+                        <span class="publish-date">Jun 02, 2026</span>
+                    </div>
+                    <h2>The True Cost of Credit Card Debt</h2>
+                    <p>Why making only the minimum payment is a 20-year financial trap.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="retirement-age-ss-optimization.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Life</span>
+                        <span class="publish-date">Jun 04, 2026</span>
+                    </div>
+                    <h2>Retirement Age: SS Optimization</h2>
+                    <p>When to take Social Security: 62 vs. 67 vs. 70 explained.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="depreciation-hidden-cost-of-cars.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Auto</span>
+                        <span class="publish-date">Jun 06, 2026</span>
+                    </div>
+                    <h2>Depreciation: Hidden Cost of Cars</h2>
+                    <p>Understanding why your car loses 20% of its value the moment you drive away.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="baggage-fees-airline-margin-game.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Travel</span>
+                        <span class="publish-date">Jun 08, 2026</span>
+                    </div>
+                    <h2>Baggage Fees: Airline Margin Game</h2>
+                    <p>How 'Basic Economy' pricing makes baggage fees their primary profit driver.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="cost-of-litigation-small-claims.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Legal</span>
+                        <span class="publish-date">Jun 10, 2026</span>
+                    </div>
+                    <h2>The Cost of Litigation: Small Claims</h2>
+                    <p>Is it worth suing? Factoring in filing fees, service of process, and time.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="customer-churn-the-growth-killer.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Business</span>
+                        <span class="publish-date">Jun 12, 2026</span>
+                    </div>
+                    <h2>Customer Churn: The Growth Killer</h2>
+                    <p>Why retaining one customer is worth more than acquiring three new ones.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="pareto-principle-80-20-rule.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Productivity</span>
+                        <span class="publish-date">Jun 14, 2026</span>
+                    </div>
+                    <h2>The Pareto Principle (80/20 Rule)</h2>
+                    <p>How to identify the 20% of efforts that produce 80% of your results.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="science-of-body-fat-percentage.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Fitness</span>
+                        <span class="publish-date">Jun 16, 2026</span>
+                    </div>
+                    <h2>The Science of Body Fat Percentage</h2>
+                    <p>Why body fat % is a better health marker than weight or BMI.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="one-percent-rule-of-real-estate.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Real Estate</span>
+                        <span class="publish-date">Jun 18, 2026</span>
+                    </div>
+                    <h2>The 1% Rule of Real Estate</h2>
+                    <p>The quick 'back of the envelope' calculation for rental property potential.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="the-hidden-cost-of-burnout.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Psychology</span>
+                        <span class="publish-date">Apr 18, 2026</span>
+                    </div>
+                    <h2>The Hidden Cost of Burnout</h2>
+                    <p>Quantifying the mental and financial impact of workplace stress.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="home-renovation-roi.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">DIY</span>
+                        <span class="publish-date">Apr 20, 2026</span>
+                    </div>
+                    <h2>Home Renovation ROI: Which Projects Pay Off?</h2>
+                    <p>A guide to maximizing your property value with strategic DIY upgrades.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="the-1000-dollar-hour.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Productivity</span>
+                        <span class="publish-date">Apr 22, 2026</span>
+                    </div>
+                    <h2>The $1,000 Hour: Calculating Task Value</h2>
+                    <p>Stop managing time and start managing value using the $1k Hour framework.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="college-savings-101-the-529-plan.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Parenting</span>
+                        <span class="publish-date">Apr 24, 2026</span>
+                    </div>
+                    <h2>College Savings 101: The 529 Plan</h2>
+                    <p>Navigating the complexities of education funding and tax-advantaged growth.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="lifetime-cost-of-a-dog.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Pets</span>
+                        <span class="publish-date">Apr 26, 2026</span>
+                    </div>
+                    <h2>The Lifetime Cost of a Dog</h2>
+                    <p>Budgeting for food, vet bills, and the 'extras' that come with man's best friend.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="roas-vs-roi-marketing-metrics.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Marketing</span>
+                        <span class="publish-date">Apr 28, 2026</span>
+                    </div>
+                    <h2>ROAS vs. ROI: Which Metric Matters?</h2>
+                    <p>Don't be fooled by high ad returns; learn how to calculate true profitability.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="fuel-surcharges-in-logistics.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Logistics</span>
+                        <span class="publish-date">Apr 30, 2026</span>
+                    </div>
+                    <h2>Fuel Surcharges in Modern Logistics</h2>
+                    <p>How carriers protect margins and how shippers can predict costs.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="salary-vs-hourly-tradeoffs.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Career</span>
+                        <span class="publish-date">May 02, 2026</span>
+                    </div>
+                    <h2>Salary vs. Hourly: The Hidden Trade-offs</h2>
+                    <p>Navigating the pros and cons of fixed income vs. overtime eligibility.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="voltage-drop-efficiency-killer.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Engineering</span>
+                        <span class="publish-date">May 04, 2026</span>
+                    </div>
+                    <h2>Voltage Drop: The Silent Efficiency Killer</h2>
+                    <p>Understanding Ohm's law in practice and the importance of wire sizing.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a>
+                <a href="emergency-prep-survival-calories.html" class="blog-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Survival</span>
+                        <span class="publish-date">May 06, 2026</span>
+                    </div>
+                    <h2>Emergency Prep: Survival Calories</h2>
+                    <p>Calculating nutrient density and duration for your emergency food supply.</p>
+                    <div class="read-more">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+                </a></div>
+        </div>
+    </main>
+    <footer class="page-footer" style="margin-top: 80px; padding: 40px 20px; border-top: 1px solid var(--border); text-align: center;">
+        <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 24px; font-size: 14px;">
+            <a href="../index.html" style="color: var(--muted); text-decoration: none;">Home</a>
+            <a href="../about.html" style="color: var(--muted); text-decoration: none;">About</a>
+            <a href="../privacy.html" style="color: var(--muted); text-decoration: none;">Privacy</a>
+            <a href="../contact.html" style="color: var(--muted); text-decoration: none;">Contact</a>
+        </div>
+        <p style="color: var(--muted); font-size: 12px;">&copy; 2026 YourCalc — A KnotStranded LLC Product.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.logo-container').forEach(el => el.onclick = () => location.href='../index.html');
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+                document.querySelectorAll('.header-links a').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href === 'blog/index.html') el.setAttribute('href', 'index.html');
+                    else if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

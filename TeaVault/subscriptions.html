@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscribe — TeaVault | Monthly Tea Subscriptions</title>
+  <meta name="description" content="Choose your subscription tier — Wanderer, Connoisseur, or Reserve. Monthly curated teas, gift options, and a subscriber dashboard." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body>
+
+<nav class="nav scrolled" id="main-nav" style="background:rgba(245,237,214,0.96)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-leaf">🍃</span><span class="logo-text" style="color:var(--umber)">TeaVault</span></a>
+    <ul class="nav-links">
+      <li><a href="catalog.html" class="nav-link">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link">Education</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link" style="color:var(--terra)">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link nav-b2b">For Business</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-account">Account</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a><a href="education.html">Education</a>
+    <a href="gallery.html">Gallery</a><a href="events.html">Events</a>
+    <a href="subscriptions.html">Subscribe</a>
+  </div>
+</nav>
+
+<div class="sub-page" id="subscriptions">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header reveal" style="margin-bottom:3rem">
+      <p class="section-eyebrow">Monthly Discovery</p>
+      <h1 class="section-title">A Subscription as Refined as the Tea</h1>
+      <p class="section-subtitle">Three tiers designed for every stage of the tea journey — from first sip to sommelier-level mastery.</p>
+    </div>
+
+    <!-- Builder -->
+    <div class="subscription-builder">
+      <div class="sub-builder-steps">
+        <div class="sub-step active" data-step="1"><span class="sub-step-num">01</span>Choose Tier</div>
+        <div class="sub-step" data-step="2"><span class="sub-step-num">02</span>Customise</div>
+        <div class="sub-step" data-step="3"><span class="sub-step-num">03</span>Checkout</div>
+      </div>
+
+      <!-- Step 1: Choose Tier -->
+      <div class="sub-step-content active" id="step-1">
+        <h2 class="sub-step-title">Choose Your Tier</h2>
+        <p class="sub-step-desc">Select the subscription that fits your journey. Cancel or change tier anytime.</p>
+        <div class="tier-selector">
+          <div class="tier-option" data-tier="wanderer" id="wanderer">
+            <div style="font-size:2rem;margin-bottom:.75rem">🌿</div>
+            <div class="tier-option-name">Wanderer</div>
+            <div class="tier-option-price">$28 / month · 2 teas</div>
+            <p style="font-size:.8rem;color:rgba(28,18,8,.55);margin-top:.75rem;line-height:1.5;">Perfect for beginners. Curated surprise teas monthly, with tasting cards.</p>
+          </div>
+          <div class="tier-option selected" data-tier="connoisseur" id="connoisseur">
+            <div style="position:absolute;top:-.6rem;left:50%;transform:translateX(-50%);background:var(--terra);color:white;font-size:.62rem;padding:.2rem .75rem;border-radius:100px;font-family:var(--font-ui);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Most Popular</div>
+            <div style="font-size:2rem;margin-bottom:.75rem;margin-top:.5rem">🫖</div>
+            <div class="tier-option-name">Connoisseur</div>
+            <div class="tier-option-price">$58 / month · 4 teas</div>
+            <p style="font-size:.8rem;color:rgba(28,18,8,.55);margin-top:.75rem;line-height:1.5;">Full provenance notes, brew guides, pairing cards, and education hub access.</p>
+          </div>
+          <div class="tier-option" data-tier="reserve" id="reserve">
+            <div style="font-size:2rem;margin-bottom:.75rem">💎</div>
+            <div class="tier-option-name">Reserve</div>
+            <div class="tier-option-price">$128 / quarter · rare teas</div>
+            <p style="font-size:.8rem;color:rgba(28,18,8,.55);margin-top:.75rem;line-height:1.5;">Direct-from-estate rare teas, sommelier concierge, collector packaging.</p>
+          </div>
+        </div>
+        <div class="sub-builder-nav">
+          <button class="btn btn-primary sub-next-btn">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Customise -->
+      <div class="sub-step-content" id="step-2">
+        <h2 class="sub-step-title">Customise Your Box</h2>
+        <p class="sub-step-desc">Tell us your preferences and set delivery options.</p>
+
+        <!-- Gift toggle -->
+        <div class="gift-toggle-wrap" id="gift-section">
+          <span style="font-size:1.5rem;">🎁</span>
+          <div class="gift-toggle-text">
+            <strong>Send as a gift?</strong>
+            <p>Choose a recipient, write a personal message, and we'll handle the rest.</p>
+          </div>
+          <div class="toggle-switch" id="gift-toggle" style="margin-left:auto"></div>
+        </div>
+        <div class="gift-form" id="gift-form">
+          <div class="form-group"><label class="form-label">Recipient Name</label><input class="form-input" placeholder="Their full name" /></div>
+          <div class="form-group"><label class="form-label">Recipient Email</label><input class="form-input" type="email" placeholder="their@email.com" /></div>
+          <div class="form-group"><label class="form-label">Duration</label><select class="form-select"><option>3 months</option><option>6 months</option><option>1 year</option></select></div>
+          <div class="form-group"><label class="form-label">Delivery Date</label><input class="form-input" type="date" /></div>
+          <div class="form-group full"><label class="form-label">Personal Message</label><textarea class="form-textarea" placeholder="Write a short note for the recipient..."></textarea></div>
+        </div>
+
+        <!-- Taste Preferences -->
+        <div style="background:white;border:1px solid var(--border-lt);border-radius:var(--radius-lg);padding:1.75rem;margin-top:1.5rem;">
+          <h4 style="font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--umber);margin-bottom:1.25rem;">Taste Preferences <span style="font-family:var(--font-ui);font-size:.72rem;color:var(--warm-grey);font-weight:400;">(helps our curators)</span></h4>
+          <div class="form-group" style="margin-bottom:1rem"><label class="form-label">Preferred flavour profiles</label>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem;">
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌿 Fresh & Grassy</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌺 Floral & Aromatic</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🍯 Rich & Sweet</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🍂 Earthy & Deep</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">⚡ Bold & Robust</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌸 Light & Delicate</span>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Regions you'd love to explore</label>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem;">
+              <span class="med-tag" onclick="this.classList.toggle('active')">🇯🇵 Japan</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🇨🇳 China</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🇹🇼 Taiwan</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🇮🇳 India</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌍 Africa</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌐 Surprise me</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-builder-nav" style="margin-top:2rem">
+          <button class="btn btn-outline-dark sub-back-btn">← Back</button>
+          <button class="btn btn-primary sub-next-btn">Review Order →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Summary/Checkout -->
+      <div class="sub-step-content" id="step-3">
+        <h2 class="sub-step-title">Review & Subscribe</h2>
+        <p class="sub-step-desc">Confirm your subscription details before checkout.</p>
+
+        <div class="sub-summary">
+          <h3 class="sub-summary-title">Order Summary</h3>
+          <div class="sub-summary-row"><span>Plan</span><span id="sub-summary-tier">Connoisseur</span></div>
+          <div class="sub-summary-row"><span>Teas per delivery</span><span>4 premium teas</span></div>
+          <div class="sub-summary-row"><span>Frequency</span><span>Monthly</span></div>
+          <div class="sub-summary-row"><span>Gift subscription</span><span>No</span></div>
+          <div class="sub-summary-row" style="padding-top:.85rem;margin-top:.35rem;border-top:1px solid rgba(245,237,214,.2);border-bottom:none">
+            <span style="font-size:.85rem">Total</span>
+            <div class="sub-summary-total" id="sub-summary-price">$58/month</div>
+          </div>
+        </div>
+
+        <div style="background:rgba(92,122,78,.08);border:1px solid rgba(92,122,78,.2);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1.5rem;font-family:var(--font-ui);font-size:.82rem;color:rgba(28,18,8,.65);">
+          🌱 <strong style="color:var(--sage)">Sustainable Packaging:</strong> All TeaVault boxes use compostable materials. Your teas arrive in biodegradable pouches with a reusable linen bag.
+        </div>
+
+        <div class="sub-builder-nav">
+          <button class="btn btn-outline-dark sub-back-btn">← Back</button>
+          <a href="#" class="btn btn-primary btn-lg" onclick="alert('Stripe checkout would open here.');return false;">Subscribe with Stripe →</a>
+        </div>
+        <p style="font-family:var(--font-ui);font-size:.7rem;color:var(--warm-grey);text-align:center;margin-top:1rem;">Secured by Stripe · Cancel anytime · First box ships within 3 business days</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="logo-leaf">🍃</span><span class="logo-text">TeaVault</span></a><p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p></div>
+      <div class="footer-col"><h4 class="footer-col-title">Subscriptions</h4><ul class="footer-links"><li><a href="subscriptions.html#wanderer">Wanderer</a></li><li><a href="subscriptions.html#connoisseur">Connoisseur</a></li><li><a href="subscriptions.html#reserve">Reserve</a></li><li><a href="subscriptions.html#gift">Gift</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="catalog.html">All Teas</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="b2b.html">For Business</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2025 TeaVault Inc.</p><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

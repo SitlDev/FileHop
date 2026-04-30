@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance & Capital Math — Mortgages, FIRE & Tax 2026 — YourCalc</title>
+    <meta name="keywords" content="mortgage calculator, compound interest, FIRE calculator, 401k, salary calculator, tax estimator, debt payoff, student loan, heloc, inflation">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/finance.html" />
+    <meta name="description" content="Professional financial tools: Mortgage, Compound Interest, FIRE, 401k, Tax, Debt, Student Loans, and Inflation calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Finance & <span style="color: var(--accent2);">Capital Math</span></h1>
+            <p class="subtitle">Auditing debt, growth, and cash flow for the long term.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Capital <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">The 25x FIRE Rule</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The "Safe Withdrawal Rate" (SWR) suggests you need 25 times your annual expenses invested to retire indefinitely without depleting your principal.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Rule of 72</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Divide 72 by your annual return to estimate how many years it will take to double your money. At 7% interest, your capital doubles every 10.3 years.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Amortization Impact</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">On a standard 30-year mortgage at 6.5%, you will pay nearly 1.3x the home's price in interest alone over the life of the loan.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('mortgage', event)">Mortgage</button>
+                <button class="tab-btn" onclick="showTab('compound', event)">Compound</button>
+                <button class="tab-btn" onclick="showTab('fire', event)">FIRE</button>
+                <button class="tab-btn" onclick="showTab('retirement401k', event)">401k</button>
+                <button class="tab-btn" onclick="showTab('tax', event)">Tax Est.</button>
+                <button class="tab-btn" onclick="showTab('debt', event)">Debt Payoff</button>
+                <button class="tab-btn" onclick="showTab('student', event)">Student Loan</button>
+                <button class="tab-btn" onclick="showTab('heloc', event)">HELOC</button>
+                <button class="tab-btn" onclick="showTab('inflation', event)">Inflation</button>
+                <button class="tab-btn" onclick="showTab('worth', event)">Net Worth</button>
+            </div>
+
+            <div id="mortgage" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Home Price</label><div class="input-wrapper"><input type="number" id="m-p" value="450000"></div></div>
+                    <div class="input-group"><label>Down (%)</label><div class="input-wrapper"><input type="number" id="m-d" value="20"></div></div>
+                    <div class="input-group"><label>Rate (%)</label><div class="input-wrapper"><input type="number" id="m-r" value="6.5" step="0.1"></div></div>
+                    <div class="input-group"><label>Term (Yrs)</label><div class="input-wrapper"><input type="number" id="m-t" value="30"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateMortgage()">Calculate Payment →</button>
+                <div id="mortgage-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Monthly P&I</span><span class="result-value" id="m-out">$0</span></div>
+                        <div class="result-item"><span class="result-label">Total Interest</span><span class="result-value" id="m-int">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="compound" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Initial Principal</label><div class="input-wrapper"><input type="number" id="c-i" value="10000"></div></div>
+                    <div class="input-group"><label>Monthly Add</label><div class="input-wrapper"><input type="number" id="c-m" value="500"></div></div>
+                    <div class="input-group"><label>Rate (%)</label><div class="input-wrapper"><input type="number" id="c-r" value="7" step="0.1"></div></div>
+                    <div class="input-group"><label>Years</label><div class="input-wrapper"><input type="number" id="c-y" value="20"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCompound()">Calculate Growth →</button>
+                <div id="compound-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Final Balance</span><span class="result-value" id="c-out">$0</span></div>
+                        <div class="result-item"><span class="result-label">Interest Earned</span><span class="result-value" id="c-int">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="fire" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Annual Spend</label><div class="input-wrapper"><input type="number" id="f-spend" value="60000"></div></div>
+                    <div class="input-group"><label>Current Saved</label><div class="input-wrapper"><input type="number" id="f-saved" value="100000"></div></div>
+                    <div class="input-group"><label>Monthly Add</label><div class="input-wrapper"><input type="number" id="f-add" value="2000"></div></div>
+                    <div class="input-group"><label>Return (%)</label><div class="input-wrapper"><input type="number" id="f-rate" value="7"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateFIRE()">Find Freedom Date →</button>
+                <div id="fire-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">FIRE Target</span><span class="result-value" id="f-target">$0</span></div>
+                        <div class="result-item"><span class="result-label">Years to FIRE</span><span class="result-value" id="f-yrs">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="retirement401k" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Annual Salary</label><div class="input-wrapper"><input type="number" id="r-sal" value="80000"></div></div>
+                    <div class="input-group"><label>Contribution (%)</label><div class="input-wrapper"><input type="number" id="r-pct" value="10"></div></div>
+                    <div class="input-group"><label>Employer Match (%)</label><div class="input-wrapper"><input type="number" id="r-match" value="4"></div></div>
+                    <div class="input-group"><label>Years</label><div class="input-wrapper"><input type="number" id="r-y" value="30"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculate401k()">Project Balance →</button>
+                <div id="401k-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Est. Balance</span><span class="result-value" id="r-out">$0</span></div>
+                        <div class="result-item"><span class="result-label">Total Match</span><span class="result-value" id="r-totm">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="tax" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Gross Income</label><div class="input-wrapper"><input type="number" id="t-inc" value="75000"></div></div>
+                    <div class="input-group"><label>Status</label><div class="input-wrapper"><select id="t-stat"><option value="s">Single</option><option value="m">Married</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateTax()">Estimate Tax →</button>
+                <div id="tax-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Federal + FICA</span><span class="result-value" id="t-fed">$0</span></div>
+                        <div class="result-item"><span class="result-label">Take-Home</span><span class="result-value" id="t-net">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="debt" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Debt Balance</label><div class="input-wrapper"><input type="number" id="d-b" value="20000"></div></div>
+                    <div class="input-group"><label>Interest (%)</label><div class="input-wrapper"><input type="number" id="d-r" value="18"></div></div>
+                    <div class="input-group"><label>Monthly Payment</label><div class="input-wrapper"><input type="number" id="d-m" value="500"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDebt()">Find Payoff Date →</button>
+                <div id="debt-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Months to Zero</span><span class="result-value" id="d-mo">0</span></div>
+                        <div class="result-item"><span class="result-label">Total Interest</span><span class="result-value" id="d-int">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="student" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Loan Balance</label><div class="input-wrapper"><input type="number" id="sl-b" value="30000"></div></div>
+                    <div class="input-group"><label>Interest Rate (%)</label><div class="input-wrapper"><input type="number" id="sl-r" value="5.5" step="0.1"></div></div>
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Monthly Payment</label><div class="input-wrapper"><input type="number" id="sl-m" value="400"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateStudent()">Payoff Timeline →</button>
+                <div id="student-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Months to Zero</span><span class="result-value" id="sl-mo">0</span></div>
+                        <div class="result-item"><span class="result-label">Total Interest</span><span class="result-value" id="sl-int">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="heloc" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>HELOC Balance</label><div class="input-wrapper"><input type="number" id="hl-b" value="25000"></div></div>
+                    <div class="input-group"><label>Current APR (%)</label><div class="input-wrapper"><input type="number" id="hl-r" value="8.5" step="0.1"></div></div>
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Monthly Budget</label><div class="input-wrapper"><input type="number" id="hl-m" value="500"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateHELOC()">HELOC Roadmap →</button>
+                <div id="heloc-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Months to Payoff</span><span class="result-value" id="hl-mo">0</span></div>
+                        <div class="result-item"><span class="result-label">Total Interest</span><span class="result-value" id="hl-int">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="inflation" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Current Buying Power</label><div class="input-wrapper"><input type="number" id="in-v" value="100000"></div></div>
+                    <div class="input-group"><label>Inflation Rate (%)</label><div class="input-wrapper"><input type="number" id="in-r" value="2.5" step="0.1"></div></div>
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Years</label><div class="input-wrapper"><input type="number" id="in-y" value="10"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateInflation()">Project Loss →</button>
+                <div id="inf-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Future Value Cost</span><span class="result-value" id="in-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="worth" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Total Assets</label><div class="input-wrapper"><input type="number" id="nw-a" value="500000"></div></div>
+                    <div class="input-group"><label>Total Liabilities</label><div class="input-wrapper"><input type="number" id="nw-l" value="250000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateNetWorth()">Calculate Net Worth →</button>
+                <div id="worth-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Net Worth</span><span class="result-value" id="nw-out" style="color:var(--accent2)">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Roadmap to <span style="color: var(--accent);">Financial Independence</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Compound Interest: The Eighth Wonder of the World</h3>
+                        <p>Albert Einstein reportedly called compound interest the "eighth wonder of the world," and for good reason. It is the process where the value of an investment increases because the earnings on an investment, both from original principal and the same earnings, also earn interest. Our <strong>Compound Interest Calculator</strong> helps you visualize how even small monthly contributions can grow into a massive nest egg over 30 or 40 years. The most important variable in this equation isn't the amount of money you invest; it's <em>time</em>. Starting to save in your 20s rather than your 30s can double or triple your final retirement balance, even if you invest less total money.</p>
+                        <p style="margin-top: 16px;">This is the foundation of the <strong>FIRE Movement (Financial Independence, Retire Early)</strong>. By maintaining a high savings rate and investing in low-cost index funds, individuals can reach a point where their investments generate enough income to cover their living expenses. Our FIRE calculator uses the "4% Rule," which suggests that if you can live on 4% of your total portfolio value per year, your money will likely last for at least 30 years. Achieving this milestone provides the ultimate freedom: the ability to work because you want to, not because you have to.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Strategic Debt Management: Snowball vs. Avalanche</h3>
+                        <p>Not all debt is created equal. "Good debt," like a mortgage or a low-interest student loan, can help you build wealth or increase your earning potential. "Bad debt," like high-interest credit cards, is a wealth-killer. When tackling multiple debts, there are two primary strategies: the <strong>Snowball Method</strong> (paying off the smallest balance first for psychological wins) and the <strong>Avalanche Method</strong> (paying off the highest interest rate first to save the most money). Our <strong>Debt Payoff Tool</strong> helps you see the light at the end of the tunnel, showing you exactly when you'll be debt-free based on your current budget.</p>
+                        <p style="margin-top: 16px;">One often overlooked debt is the <strong>HELOC (Home Equity Line of Credit)</strong>. While useful for home improvements, many people treat it as a revolving credit card. Because HELOCs often have variable interest rates, a sudden spike in market rates can significantly increase your monthly payment. Using our roadmap tool to stay ahead of these payments is essential for protecting your home's equity and your overall financial stability.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Hidden Tax: Understanding Inflation</h3>
+                        <p>Inflation is the gradual decrease in the purchasing power of your money. If inflation is 3% per year, what costs $100 today will cost $103 next year. Over 20 years, that same $100 will only buy what $55 buys today. Our <strong>Inflation Projector</strong> is a sobering reminder that "saving" money in a low-interest checking account is actually a guaranteed way to lose value over time. To combat inflation, your investments must earn a rate of return that exceeds the inflation rate. This is why investing in assets like stocks or real estate is a critical component of any long-term financial plan.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Net Worth: Your Financial Scorecard</h3>
+                        <p>Your <strong>Net Worth</strong> is the single most important number in your financial life. It is the sum of everything you own (assets) minus everything you owe (liabilities). While income is important, net worth is what actually dictates your financial security. You can earn $500,000 a year, but if you spend $501,000, your net worth is decreasing. Tracking your net worth annually—or even quarterly—provides a high-level view of your progress. As you pay down debt and your investments grow, your net worth should trend upward, eventually reaching the point of financial independence.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+    <script>
+        const fmt = { format: (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v) };
+
+        function calculateMortgage() {
+            const p = parseFloat(document.getElementById('m-p').value);
+const d = parseFloat(document.getElementById('m-d').value) / 100;
+const r = parseFloat(document.getElementById('m-r').value) / 100 / 12;
+const n = parseInt(document.getElementById('m-t').value) * 12;
+const loan = p * (1 - d);
+const m = (loan * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+const totInt = (m * n) - loan;
+document.getElementById('m-out').innerText = fmt.format(m);
+document.getElementById('m-int').innerText = fmt.format(totInt);
+document.getElementById('mortgage-results').classList.add('visible');
+saveActivity('finance', { type: 'mortgage', price: p }, { monthly: m, interest: totInt });
+        }
+
+        function calculateCompound() {
+            const i = parseFloat(document.getElementById('c-i').value);
+const m = parseFloat(document.getElementById('c-m').value);
+const r = parseFloat(document.getElementById('c-r').value) / 100 / 12;
+const y = parseInt(document.getElementById('c-y').value) * 12;
+const fv = i * Math.pow(1 + r, y) + m * ((Math.pow(1 + r, y) - 1) / r);
+const totalInvested = i + (m * y);
+document.getElementById('c-out').innerText = fmt.format(fv);
+document.getElementById('c-int').innerText = fmt.format(fv - totalInvested);
+document.getElementById('compound-results').classList.add('visible');
+saveActivity('finance', { type: 'compound-int', initial: i }, { fv });
+        }
+
+        function calculateFIRE() {
+            const spend = parseFloat(document.getElementById('f-spend').value);
+const saved = parseFloat(document.getElementById('f-saved').value);
+const monthly = parseFloat(document.getElementById('f-add').value);
+const r = parseFloat(document.getElementById('f-rate').value) / 100 / 12;
+const target = spend * 25;
+document.getElementById('f-target').innerText = fmt.format(target);
+if (saved >= target) { document.getElementById('f-yrs').innerText = 'Reached!'; return; }
+const n = Math.log((target * r + monthly) / (saved * r + monthly)) / Math.log(1 + r);
+document.getElementById('f-yrs').innerText = (n / 12).toFixed(1) + ' Years';
+document.getElementById('fire-results').classList.add('visible');
+saveActivity('finance', { type: 'fire', spend, saved }, { target, years: n / 12 });
+        }
+
+        function calculate401k() {
+            const sal = parseFloat(document.getElementById('r-sal').value);
+const pct = parseFloat(document.getElementById('r-pct').value) / 100;
+const match = parseFloat(document.getElementById('r-match').value) / 100;
+const y = parseInt(document.getElementById('r-y').value) * 12;
+const r = 0.07 / 12; 
+const monthlyIn = (sal / 12) * (pct + Math.min(pct, match));
+const fv = monthlyIn * ((Math.pow(1 + r, y) - 1) / r);
+document.getElementById('r-out').innerText = fmt.format(fv);
+document.getElementById('r-totm').innerText = fmt.format((sal/12 * Math.min(pct, match)) * y);
+document.getElementById('401k-results').classList.add('visible');
+saveActivity('finance', { type: '401k', salary: sal }, { fv });
+        }
+
+        function calculateTax() {
+            const inc = parseFloat(document.getElementById('t-inc').value);
+const stat = document.getElementById('t-stat').value;
+const standard = (stat === 's') ? 14600 : 29200;
+const taxable = Math.max(0, inc - standard);
+const fed = taxable * 0.18; 
+const fica = inc * 0.0765;
+const tax = fed + fica;
+document.getElementById('t-fed').innerText = fmt.format(tax);
+document.getElementById('t-net').innerText = fmt.format(inc - tax);
+document.getElementById('tax-results').classList.add('visible');
+saveActivity('finance', { type: 'tax-est', income: inc }, { tax });
+        }
+
+        function calculateDebt() {
+            const b = parseFloat(document.getElementById('d-b').value);
+const r = parseFloat(document.getElementById('d-r').value) / 100 / 12;
+const m = parseFloat(document.getElementById('d-m').value);
+if (m <= b * r) { alert("Monthly payment must cover interest."); return; }
+const n = Math.log(m / (m - b * r)) / Math.log(1 + r);
+document.getElementById('d-mo').innerText = Math.ceil(n);
+document.getElementById('d-int').innerText = fmt.format((m * n) - b);
+document.getElementById('debt-results').classList.add('visible');
+saveActivity('finance', { type: 'debt-payoff', balance: b }, { months: n });
+        }
+
+        function calculateStudent() {
+            const b = parseFloat(document.getElementById('sl-b').value);
+const r = parseFloat(document.getElementById('sl-r').value) / 100 / 12;
+const m = parseFloat(document.getElementById('sl-m').value);
+if (m <= b * r) { alert("Monthly payment must cover interest."); return; }
+const n = Math.log(m / (m - b * r)) / Math.log(1 + r);
+document.getElementById('sl-mo').innerText = Math.ceil(n);
+document.getElementById('sl-int').innerText = fmt.format((m * n) - b);
+document.getElementById('student-results').classList.add('visible');
+saveActivity('finance', { type: 'student-loan', balance: b }, { months: n });
+        }
+
+        function calculateHELOC() {
+            const b = parseFloat(document.getElementById('hl-b').value);
+const r = parseFloat(document.getElementById('hl-r').value) / 100 / 12;
+const m = parseFloat(document.getElementById('hl-m').value);
+if (m <= b * r) { alert("Monthly payment must cover interest."); return; }
+const n = Math.log(m / (m - b * r)) / Math.log(1 + r);
+document.getElementById('hl-mo').innerText = Math.ceil(n);
+document.getElementById('hl-int').innerText = fmt.format((m * n) - b);
+document.getElementById('heloc-results').classList.add('visible');
+saveActivity('finance', { type: 'heloc', balance: b }, { months: n });
+        }
+
+        function calculateInflation() {
+            const v = parseFloat(document.getElementById('in-v').value);
+const r = parseFloat(document.getElementById('in-r').value) / 100;
+const y = parseFloat(document.getElementById('in-y').value);
+const fv = v * Math.pow(1 + r, y);
+document.getElementById('in-out').innerText = fmt.format(fv);
+document.getElementById('inf-results').classList.add('visible');
+saveActivity('finance', { type: 'inflation', value: v, rate: r, years: y }, { future_value: fv });
+        }
+
+        function calculateNetWorth() {
+            const a = parseFloat(document.getElementById('nw-a').value) || 0;
+const l = parseFloat(document.getElementById('nw-l').value) || 0;
+const val = a - l;
+document.getElementById('nw-out').innerText = fmt.format(val);
+document.getElementById('worth-results').classList.add('visible');
+saveActivity('finance', { type: 'net-worth', assets: a, liabilities: l }, { worth: val });
+        }
+    </script>
+</body>
+</html>

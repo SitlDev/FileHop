@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science & Lab Calculators — Molarity, Dilution, Gas Law 2026 — YourCalc</title>
+    <meta name="keywords" content="molarity calculator, dilution calculator, c1v1 formula, ideal gas law calculator, chemistry lab tools">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/science.html" />
+    <meta name="description" content="Professional science tools: Molarity, Dilution (C1V1), Ideal Gas Law, and Molar Mass calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Science & <span style="color: var(--accent2);">Lab Math</span></h1>
+            <p class="subtitle">Aqueous solutions, dilutions, and stoichiometric math.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Lab & Chemical <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Molarity (M)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Calculated as moles of solute per liter of solution. Essential for preparing precise chemical concentrations in research and clinical settings.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">C1V1 Dilution</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The conservation of moles (n1=n2) allows for precise titration and serial dilutions from concentrated stock solutions.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Ideal Gas PV=nRT</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Predicts the behavior of most gases under non-extreme temperatures and pressures. Uses the gas constant R = 0.08206 L·atm/mol·K.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('molarity', event)">Molarity</button>
+                <button class="tab-btn" onclick="showTab('dilution', event)">Dilution (C1V1)</button>
+                <button class="tab-btn" onclick="showTab('gas', event)">Ideal Gas Law</button>
+                <button class="tab-btn" onclick="showTab('mass', event)">Molar Mass</button>
+            </div>
+
+            <div id="molarity" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Mass of Solute (g)</label><div class="input-wrapper"><input type="number" id="mo-m" value="58.44"></div></div>
+                    <div class="input-group"><label>Molar Mass (g/mol)</label><div class="input-wrapper"><input type="number" id="mo-mm" value="58.44"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Volume of Solvent (L)</label><div class="input-wrapper"><input type="number" id="mo-v" value="1.0"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateMolarity()">Calculate Conc. →</button>
+                <div id="molarity-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Molarity (M)</span><span class="result-value" id="mo-out">0.0</span></div>
+                        <div class="result-item"><span class="result-label">Total Moles</span><span class="result-value" id="mo-moles">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="dilution" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Stock Conc. (C1)</label><div class="input-wrapper"><input type="number" id="di-c1" value="10.0"></div></div>
+                    <div class="input-group"><label>Target Conc. (C2)</label><div class="input-wrapper"><input type="number" id="di-c2" value="1.0"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Final Volume (V2)</label><div class="input-wrapper"><input type="number" id="di-v2" value="500"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDilution()">Find V1 →</button>
+                <div id="dilution-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Required Stock (V1)</span><span class="result-value" id="di-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="gas" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Pressure (atm)</label><div class="input-wrapper"><input type="number" id="ga-p" value="1.0"></div></div>
+                    <div class="input-group"><label>Volume (L)</label><div class="input-wrapper"><input type="number" id="ga-v" value="22.4"></div></div>
+                    <div class="input-group"><label>Temp (K)</label><div class="input-wrapper"><input type="number" id="ga-t" value="298"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateGas()">Find Moles (n) →</button>
+                <div id="gas-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Moles (n)</span><span class="result-value" id="ga-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="mass" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Mass (g)</label><div class="input-wrapper"><input type="number" id="tm-g" value="100"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Molar Mass (g/mol)</label><div class="input-wrapper"><input type="number" id="tm-mm" value="58.44"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateMass()">Find Moles →</button>
+                <div id="mass-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Total Moles</span><span class="result-value" id="tm-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Language of <span style="color: var(--accent);">Modern Chemistry</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Molarity: Quantifying Concentration</h3>
+                        <p>In chemistry, <strong>Molarity (M)</strong> is the standard unit of concentration, defined as the number of moles of solute per liter of solution. It is the fundamental metric used to describe the "strength" of a chemical mixture. Our <strong>Molarity Analyzer</strong> allows you to calculate the molar concentration by inputting the mass of your solute, its molar mass, and the final volume of the solution. This is an essential step in preparing reagents for laboratory work, ensuring that reactions proceed as predicted by stoichiometric ratios.</p>
+                        <p style="margin-top: 16px;">Precision in molarity is critical. A small error in mass or volume can lead to a significant difference in the concentration of active ions or molecules, which can alter the rate and outcome of a reaction. When performing these calculations, always double-check your molar mass values—the sum of the atomic weights of all atoms in the chemical formula. Our tool automates the math, but the accuracy of the final result depends on the quality of your measurements.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Ideal Gas Law: Predicting Behavior</h3>
+                        <p>The behavior of gases is governed by the <strong>Ideal Gas Law</strong>: PV = nRT. This equation relates the pressure (P), volume (V), temperature (T), and amount in moles (n) of a gas, using the ideal gas constant (R). Our <strong>Gas Law Tool</strong> provides a quick way to find the number of moles of a gas when the other variables are known. While no gas is perfectly "ideal," this law provides a remarkably accurate approximation for most gases under standard conditions of temperature and pressure (STP).</p>
+                        <p style="margin-top: 16px;">Understanding gas behavior is foundational to everything from atmospheric science to scuba diving and engine design. By manipulating one variable—such as increasing the temperature of a fixed volume—you can predict the resulting increase in pressure. This predictive power is what allows scientists and engineers to design safe and efficient systems that handle gases in various environments.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Dilution Equation: Scaling Solutions</h3>
+                        <p>Often in the lab, you start with a concentrated "stock solution" and need to dilute it to a lower concentration for use. This is managed by the <strong>Dilution Equation</strong>: C1V1 = C2V2. Our <strong>Dilution Auditor</strong> helps you find exactly how much of your stock solution (V1) you need to reach your target volume (V2) at your target concentration (C2). This principle is based on the fact that the total amount of solute (moles) remains constant throughout the dilution process; only the volume of the solvent changes.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Molecular Math and Molar Mass</h3>
+                        <p>The <strong>Mole</strong> is the bridge between the microscopic world of atoms and the macroscopic world we can measure on a scale. One mole contains exactly 6.022 x 10²³ particles (Avogadro's Number). Our <strong>Molar Mass Tool</strong> simplifies the conversion between grams and moles, a calculation performed thousands of times a day in labs around the world. Whether you are balancing a complex equation or simply preparing a saline solution, mastering these basic chemical metrics is the first step toward scientific literacy.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateMolarity() {
+            const m = parseFloat(document.getElementById('mo-m').value);
+const mm = parseFloat(document.getElementById('mo-mm').value);
+const v = parseFloat(document.getElementById('mo-v').value);
+const moles = m / mm;
+const mol = moles / v;
+document.getElementById('mo-out').innerText = mol.toFixed(4);
+document.getElementById('mo-moles').innerText = moles.toFixed(4);
+document.getElementById('molarity-results').classList.add('visible');
+saveActivity('science', { type: 'molarity', m, mm, v }, { mol, moles });
+        }
+
+        function calculateDilution() {
+            const c1 = parseFloat(document.getElementById('di-c1').value);
+const c2 = parseFloat(document.getElementById('di-c2').value);
+const v2 = parseFloat(document.getElementById('di-v2').value);
+const v1 = (c2 * v2) / c1;
+document.getElementById('di-out').innerText = v1.toFixed(2);
+document.getElementById('dilution-results').classList.add('visible');
+saveActivity('science', { type: 'dilution', c1, c2, v2 }, { v1 });
+        }
+
+        function calculateGas() {
+            const p = parseFloat(document.getElementById('ga-p').value);
+const v = parseFloat(document.getElementById('ga-v').value);
+const t = parseFloat(document.getElementById('ga-t').value);
+const r = 0.08206;
+const n = (p * v) / (r * t);
+document.getElementById('ga-out').innerText = n.toFixed(4);
+document.getElementById('gas-results').classList.add('visible');
+saveActivity('science', { type: 'gas-law', p, v, t }, { n });
+        }
+
+        function calculateMass() {
+            const g = parseFloat(document.getElementById('tm-g').value);
+const mm = parseFloat(document.getElementById('tm-mm').value);
+const moles = g / mm;
+document.getElementById('tm-out').innerText = moles.toFixed(4);
+document.getElementById('mass-results').classList.add('visible');
+saveActivity('science', { type: 'molar-mass', g, mm }, { moles });
+        }
+    </script>
+</body>
+</html>

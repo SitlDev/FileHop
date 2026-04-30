@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Preview Markdown with live rendering. Support for headings, bold, italic, lists, code blocks, and links. Perfect for content creators." />
+  <meta name="keywords" content="markdown preview, markdown viewer, markdown renderer, markdown to HTML preview, live markdown preview, markdown editor, content creation tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Markdown Preview</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  <style>
+    .md-preview { background: var(--panel); padding: 16px; border-radius: 8px; line-height: 1.6; }
+    .md-preview h1, .md-preview h2, .md-preview h3 { margin-top: 16px; margin-bottom: 8px; }
+    .md-preview p { margin: 8px 0; }
+    .md-preview code { background: #333; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    .md-preview pre { background: #333; padding: 12px; border-radius: 8px; overflow-x: auto; }
+    .md-preview a { color: var(--accent); text-decoration: none; }
+    .md-preview a:hover { text-decoration: underline; }
+    .md-preview ul, .md-preview ol { margin-left: 20px; }
+    .md-preview blockquote { border-left: 4px solid var(--accent); padding-left: 12px; margin-left: 0; color: #999; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Markdown Preview</h1>
+      <p>Write Markdown and see live preview instantly.</p>
+    </header>
+
+    <main>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <section class="input-section">
+          <h2>Markdown Input</h2>
+          <textarea id="md-input" rows="16" placeholder="# Heading&#10;&#10;**bold** *italic*&#10;&#10;- List item" style="width:100%; padding:12px; font-family: monospace;"></textarea>
+        </section>
+
+        <section class="preview-section">
+          <h2>Live Preview</h2>
+          <div id="md-preview" class="md-preview"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Markdown Preview</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

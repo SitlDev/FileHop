@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychology & Habit Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="habit formation calculator, decision matrix tool, psychology math, behavioral science, cognitive load">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/psych.html" />
+    <meta name="description" content="Behavioral science frameworks: Habit Formation and Weighted Decision Matrix tools." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Behavioral & <span style="color: var(--accent);">Psychology Math</span></h1>
+            <p class="subtitle">Scientific frameworks for habits and decision making.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Psychology <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Automaticity</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The average time for a behavior to become automatic is 66 days, depending on complexity.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Decision Weights</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Using weighted criteria reduces cognitive bias by forcing objective comparison of trade-offs.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Habit Loops</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Sustainable change relies on small, consistent increments rather than massive, sporadic efforts.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('habit', event)">Habit Timeline</button>
+                <button class="tab-btn" onclick="showTab('matrix', event)">Decision Matrix</button>
+            </div>
+
+            <div id="habit" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Task Complexity</label><div class="input-wrapper">
+                        <select id="ps-co"><option value="18">Simple (Drinking water)</option><option value="66" selected>Moderate (Daily jog)</option><option value="254">Difficult (New language)</option></select>
+                    </div></div>
+                    <div class="input-group"><label>Commitment Level</label><div class="input-wrapper">
+                        <select id="ps-ci"><option value="1.5">Casual (3x Week)</option><option value="1.0" selected>Daily</option><option value="0.7">Extreme Focus</option></select>
+                    </div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateHabit()">Calculate Days →</button>
+                <div id="habit-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Est. Days to Automaticity</span><span class="result-value" id="ps-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="matrix" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Option A: Impact (1-10)</label><div class="input-wrapper"><input type="number" id="dm-a1" value="8"></div></div>
+                    <div class="input-group"><label>Option A: Ease (1-10)</label><div class="input-wrapper"><input type="number" id="dm-a2" value="5"></div></div>
+                    <div class="input-group"><label>Option B: Impact (1-10)</label><div class="input-wrapper"><input type="number" id="dm-b1" value="6"></div></div>
+                    <div class="input-group"><label>Option B: Ease (1-10)</label><div class="input-wrapper"><input type="number" id="dm-b2" value="9"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateMatrix()">Score Options →</button>
+                <div id="matrix-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Winner</span><span class="result-value" id="dm-win">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Mechanics of <span style="color: var(--accent);">Human Behavior</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Habit Formation: Beyond the 21-Day Myth</h3>
+                        <p>The common belief that it takes exactly 21 days to form a habit is a psychological myth. In reality, habit formation is a spectrum. Research from University College London suggests that it takes anywhere from 18 to 254 days for a behavior to become automatic, with the average being around 66 days. Our <strong>Habit Formation Timer</strong> accounts for <strong>Behavior Complexity</strong> and <strong>Consistency Intensity</strong>. A simple habit like drinking a glass of water is much easier to automate than a complex one like a daily 5-mile run. By understanding the real timeline, you can set realistic expectations and stay the course when the initial motivation wanes.</p>
+                        <p style="margin-top: 16px;">The core of habit formation is the "Habit Loop": Trigger, Action, and Reward. To make a habit stick, you must have a clear environmental cue (trigger) and an immediate positive reinforcement (reward). Our tool helps you visualize the long-term commitment required, shifting your focus from "short-term bursts" to "long-term consistency." Remember that missing a single day does not reset your progress; what matters is the overall trend of your behavior over time.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Decision Matrix: Overcoming Analysis Paralysis</h3>
+                        <p>When faced with complex choices, our brains often suffer from <strong>Analysis Paralysis</strong>. We get bogged down in emotional weight and lose sight of objective criteria. The <strong>Decision Matrix</strong> is a tool used by management consultants and psychologists to clarify thinking. By assigning weights to different criteria (e.g., "Long-Term Impact" vs. "Ease of Implementation"), you can score competing options objectively. Our <strong>Weighted Matrix Tool</strong> automates this process, providing a numerical "winner" that can help cut through the mental fog and lead to more decisive action.</p>
+                        <p style="margin-top: 16px;">Using a matrix doesn't mean you should ignore your intuition. Instead, it provides a framework to see <em>why</em> you feel a certain way. If the matrix identifies Option A as the winner, but you feel a sense of disappointment, it may indicate that your subconscious values a criterion you didn't include in the model. Use the matrix as a dialogue partner to refine your values and achieve higher clarity in your personal and professional life.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Cognitive Load and Mental Energy</h3>
+                        <p>Our willpower is a finite resource, often described as <strong>Cognitive Load</strong>. Every decision we make, from what to wear to how to solve a complex problem, drains this reservoir. By automating simple decisions through habits and using structured tools for complex ones, you preserve your mental energy for the tasks that truly matter. Our <strong>Psychological Tools Suite</strong> is designed to act as an "external brain," handling the quantitative side of behavior so you can focus on the qualitative side of living.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Path to Behavioral Change</h3>
+                        <p>Real change is a slow, iterative process. It requires self-compassion, data-driven planning, and a deep understanding of your own mental patterns. Whether you are building a new life habit or making a pivot in your career, having the right framework makes all the difference. Stay curious about your own mind, use the tools available to you, and remember that the goal is progress, not perfection.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateHabit() {
+            const co = parseFloat(document.getElementById('ps-co').value);
+const ci = parseFloat(document.getElementById('ps-ci').value);
+const days = Math.round(co * ci);
+document.getElementById('ps-out').innerText = days;
+document.getElementById('habit-results').classList.add('visible');
+saveActivity('psych', { type: 'habit-timeline', co, ci }, { days });
+        }
+
+        function calculateMatrix() {
+            const a1 = parseInt(document.getElementById('dm-a1').value);
+const a2 = parseInt(document.getElementById('dm-a2').value);
+const b1 = parseInt(document.getElementById('dm-b1').value);
+const b2 = parseInt(document.getElementById('dm-b2').value);
+const scoreA = (a1 * 0.7) + (a2 * 0.3);
+const scoreB = (b1 * 0.7) + (b2 * 0.3);
+const winner = scoreA >= scoreB ? "Option A" : "Option B";
+document.getElementById('dm-win').innerText = winner;
+document.getElementById('matrix-results').classList.add('visible');
+saveActivity('psych', { type: 'decision-matrix', a1, a2, b1, b2 }, { winner });
+        }
+    </script>
+</body>
+</html>

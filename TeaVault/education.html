@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education Hub — TeaVault | Learn the Art & Science of Tea</title>
+  <meta name="description" content="The world's most comprehensive tea education resource. Deep dives on tea types, brewing science, world cultures, wellness benefits, and artisan vessels." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body>
+
+<nav class="nav scrolled" id="main-nav" style="background:rgba(245,237,214,0.96)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-leaf">🍃</span><span class="logo-text" style="color:var(--umber)">TeaVault</span></a>
+    <ul class="nav-links">
+      <li><a href="catalog.html" class="nav-link">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link" style="color:var(--terra)">Education</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link nav-b2b">For Business</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-account">Account</a>
+      <a href="subscriptions.html" class="btn btn-primary btn-sm">Subscribe</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a><a href="education.html">Education Hub</a>
+    <a href="gallery.html">Gallery</a><a href="events.html">Events</a>
+    <a href="subscriptions.html">Subscribe</a><a href="b2b.html" class="mobile-b2b">For Business</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-hero-content">
+    <p class="section-eyebrow">TeaVault Knowledge Hub</p>
+    <h1 class="section-title" style="color:var(--cream);font-size:clamp(2.5rem,5vw,4rem)">The Art & Science of Tea</h1>
+    <p class="section-subtitle" style="color:rgba(245,237,214,.65)">42 varieties · 8 world traditions · Evidence-based wellness · Brewing science</p>
+  </div>
+</header>
+
+<div class="edu-hub-layout">
+
+  <!-- Sidebar Nav -->
+  <aside class="edu-nav">
+    <div class="edu-nav-title">Chapters</div>
+    <nav class="edu-nav-links">
+      <a href="#types" class="active">🍵 Tea Types</a>
+      <a href="#vessels">🫖 Vessels & Tools</a>
+      <a href="#cultures">🌏 World Cultures</a>
+      <a href="#wellness">🌿 Wellness & Medicinal</a>
+      <a href="#brewing">🔬 Brewing Science</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Tea Types -->
+    <section class="edu-section" id="types">
+      <div class="edu-section-header reveal">
+        <span class="edu-section-icon">🍵</span>
+        <h2 class="edu-section-title">Tea Types</h2>
+      </div>
+      <p class="edu-section-desc reveal">All tea — from the lightest silver needle to the oldest aged pu-erh — comes from a single plant: <em>Camellia sinensis</em>. What varies is the region, altitude, terroir, processing method, and the hands of the artisan. Here are the major families.</p>
+      <div class="tea-types-grid reveal">
+        <a href="catalog.html?type=green" class="tea-type-card tt-green"><div class="tea-type-icon">🍃</div><div class="tea-type-name">Green</div><div class="tea-type-desc">Unoxidized · Steamed or pan-fired</div></a>
+        <a href="catalog.html?type=oolong" class="tea-type-card tt-oolong"><div class="tea-type-icon">🌺</div><div class="tea-type-name">Oolong</div><div class="tea-type-desc">Partial oxidation · Wildly varied</div></a>
+        <a href="catalog.html?type=puerh" class="tea-type-card tt-puerh"><div class="tea-type-icon">🍂</div><div class="tea-type-name">Pu-erh</div><div class="tea-type-desc">Post-fermented · Aged & compressed</div></a>
+        <a href="catalog.html?type=white" class="tea-type-card tt-white"><div class="tea-type-icon">🌸</div><div class="tea-type-name">White</div><div class="tea-type-desc">Minimal processing · Delicate</div></a>
+        <a href="catalog.html?type=black" class="tea-type-card tt-black"><div class="tea-type-icon">☕</div><div class="tea-type-name">Black</div><div class="tea-type-desc">Fully oxidized · Bold flavour</div></a>
+        <a href="catalog.html?type=yellow" class="tea-type-card tt-yellow"><div class="tea-type-icon">✨</div><div class="tea-type-name">Yellow</div><div class="tea-type-desc">Sweltering step · Rare</div></a>
+        <a href="catalog.html?type=herbal" class="tea-type-card tt-herbal"><div class="tea-type-icon">🌿</div><div class="tea-type-name">Herbal</div><div class="tea-type-desc">Tisanes · Caffeine-free blends</div></a>
+      </div>
+      <div class="edu-grid reveal">
+        <div class="edu-card" data-benefits="focus,antioxidant">
+          <div class="edu-card-img" style="background:linear-gradient(135deg,#1C3310,#5C7A4E)"></div>
+          <div class="edu-card-body">
+            <div class="edu-card-cat">Green Tea</div>
+            <h3 class="edu-card-title">Gyokuro vs Sencha: A Shade-Grown Difference</h3>
+            <p class="edu-card-excerpt">Understand why shade-growing for 20+ days transforms green tea's flavour profile — from grassy brightness to deep oceanic umami.</p>
+            <div class="edu-card-meta"><span>8 min read</span><span>🌿 Green Tea</span></div>
+          </div>
+        </div>
+        <div class="edu-card" data-benefits="digestion,antioxidant">
+          <div class="edu-card-img" style="background:linear-gradient(135deg,#3D1A00,#8B4513)"></div>
+          <div class="edu-card-body">
+            <div class="edu-card-cat">Pu-erh</div>
+            <h3 class="edu-card-title">The Complete Guide to Pu-erh: Ancient Tea, Living History</h3>
+            <p class="edu-card-excerpt">How microbial fermentation transforms Yunnan tea into one of the world's most complex and collectible beverages.</p>
+            <div class="edu-card-meta"><span>14 min read</span><span>🍂 Pu-erh</span></div>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-card-img" style="background:linear-gradient(135deg,#2E1A3A,#6B3A8A)"></div>
+          <div class="edu-card-body">
+            <div class="edu-card-cat">Oolong</div>
+            <h3 class="edu-card-title">From 15% to 85%: The Oxidation Spectrum of Oolong</h3>
+            <p class="edu-card-excerpt">Why oolong is the most diverse family in tea — spanning fresh floral greens to roasted dark amber expressions.</p>
+            <div class="edu-card-meta"><span>10 min read</span><span>🌺 Oolong</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vessels & Tools -->
+    <section class="edu-section" id="vessels">
+      <div class="edu-section-header reveal">
+        <span class="edu-section-icon">🫖</span>
+        <h2 class="edu-section-title">Vessels & Tools</h2>
+      </div>
+      <p class="edu-section-desc reveal">The vessel is not merely a container — it is an active participant in the tea experience. Clay absorbs flavour over years. Water temperature determines character. The pour changes the liquor.</p>
+      <div class="edu-grid reveal">
+        <div class="edu-card"><div class="edu-card-img" style="background:linear-gradient(135deg,#3D1A0A,#7A3A20);font-size:3rem;display:flex;align-items:center;justify-content:center;">🫖</div><div class="edu-card-body"><div class="edu-card-cat">Vessels</div><h3 class="edu-card-title">Yixing Clay: Why Serious Collectors Obsess</h3><p class="edu-card-excerpt">The porous purple clay of Jiangsu province seasons with every brew, developing a patina that improves for decades.</p><div class="edu-card-meta"><span>11 min read</span></div></div></div>
+        <div class="edu-card"><div class="edu-card-img" style="background:linear-gradient(135deg,#1C2E3A,#2E5568);font-size:3rem;display:flex;align-items:center;justify-content:center;">🏺</div><div class="edu-card-body"><div class="edu-card-cat">Vessels</div><h3 class="edu-card-title">The Gaiwan: China's Timeless All-Rounder</h3><p class="edu-card-excerpt">Bowl, lid, saucer — three pieces, infinite versatility. The gaiwan lets you brew any tea without colour bias.</p><div class="edu-card-meta"><span>7 min read</span></div></div></div>
+        <div class="edu-card"><div class="edu-card-img" style="background:linear-gradient(135deg,#1A1A1A,#3A3A3A);font-size:3rem;display:flex;align-items:center;justify-content:center;">⚫</div><div class="edu-card-body"><div class="edu-card-cat">Vessels</div><h3 class="edu-card-title">Tetsubin & Cast Iron: The Japanese Art of Heated Water</h3><p class="edu-card-excerpt">Why Japanese cast iron pots heat water more evenly, retain heat longer, and add trace minerals to every cup.</p><div class="edu-card-meta"><span>9 min read</span></div></div></div>
+      </div>
+    </section>
+
+    <!-- World Cultures -->
+    <section class="edu-section" id="cultures">
+      <div class="edu-section-header reveal">
+        <span class="edu-section-icon">🌏</span>
+        <h2 class="edu-section-title">World Tea Cultures</h2>
+      </div>
+      <p class="edu-section-desc reveal">Tea is humanity's most universal ritual — yet each culture has made it utterly its own. Eight traditions, one leaf, infinite expression.</p>
+      <div class="cultures-grid reveal">
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#1C1A00,#3A3600);"><span class="culture-card-flag">🇯🇵</span></div>
+          <div class="culture-card-body"><div class="culture-name">Japanese Chadō</div><div class="culture-tradition">The Way of Tea</div><p class="culture-desc">A spiritual discipline through tea preparation — rooted in Zen Buddhism, expressing harmony, respect, purity, and tranquility.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#1A0C00,#3D1A00);"><span class="culture-card-flag">🇨🇳</span></div>
+          <div class="culture-card-body"><div class="culture-name">Chinese Gongfu Cha</div><div class="culture-tradition">Skill & Devotion</div><p class="culture-desc">The art of brewing tea with great skill — using small clay pots, multiple rapid steeps, and meditative focus to extract every nuance.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#001A10,#003D20);"><span class="culture-card-flag">🇲🇦</span></div>
+          <div class="culture-card-body"><div class="culture-name">Moroccan Atay</div><div class="culture-tradition">Hospitality as Ceremony</div><p class="culture-desc">Gunpowder green tea, spearmint, sugar — poured from height for froth. Three glasses: life, love, death. Refusal is impolite.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#1A0500,#3D1200);"><span class="culture-card-flag">🇮🇳</span></div>
+          <div class="culture-card-body"><div class="culture-name">Indian Chai Wallah</div><div class="culture-tradition">Tea of the Streets</div><p class="culture-desc">Spiced, milky, sweetened CTC black tea simmered roadside — the heartbeat of Indian daily life from Mumbai to Kolkata.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#150015,#300030);"><span class="culture-card-flag">🇬🇧</span></div>
+          <div class="culture-card-body"><div class="culture-name">British High Tea</div><div class="culture-tradition">Civilized Ritual</div><p class="culture-desc">The Victorian institution of afternoon tea — tiered stands, finger sandwiches, scones with clotted cream, and the eternal milk-first debate.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#0E1A00,#203A00);"><span class="culture-card-flag">🇹🇷</span></div>
+          <div class="culture-card-body"><div class="culture-name">Turkish Çay</div><div class="culture-tradition">The Social Glue</div><p class="culture-desc">Rize black tea brewed in a double-stacked çaydanlık — drunk from tulip glasses, offered everywhere from bazaars to barbershops.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#001518,#003040);"><span class="culture-card-flag">🇹🇼</span></div>
+          <div class="culture-card-body"><div class="culture-name">Taiwanese Tea Culture</div><div class="culture-tradition">From Tradition to Innovation</div><p class="culture-desc">Home of high-mountain oolongs and bubble tea — Taiwan seamlessly blends reverence for ancient gongfu cha with playful modern invention.</p></div>
+        </div>
+        <div class="culture-card">
+          <div class="culture-card-img" style="background:linear-gradient(145deg,#0A1500,#1A2E00);"><span class="culture-card-flag">🇰🇪</span></div>
+          <div class="culture-card-body"><div class="culture-name">Kenyan Chai</div><div class="culture-tradition">A New World Tradition</div><p class="culture-desc">Boiled black tea with milk and sugar — Kenya's own chai culture, borne of the colonial tea industry yet now wholly, joyfully Kenyan.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wellness -->
+    <section class="edu-section" id="wellness">
+      <div class="edu-section-header reveal">
+        <span class="edu-section-icon">🌿</span>
+        <h2 class="edu-section-title">Wellness & Medicinal</h2>
+      </div>
+      <p class="edu-section-desc reveal">Tea is not medicine — but it is medicinal. Evidence-based benefits, mapped to the teas that deliver them best.</p>
+      <p style="font-size:.8rem;color:var(--warm-grey);font-family:var(--font-ui);margin-bottom:1.5rem;font-style:italic;">Filter by benefit:</p>
+      <div class="medicinal-tags reveal">
+        <span class="med-tag med-tag-lg" data-benefit="focus">🧠 Focus & Clarity</span>
+        <span class="med-tag med-tag-lg" data-benefit="calm">🌿 Calm & Stress Relief</span>
+        <span class="med-tag med-tag-lg" data-benefit="sleep">🌙 Sleep Support</span>
+        <span class="med-tag med-tag-lg" data-benefit="energy">⚡ Natural Energy</span>
+        <span class="med-tag med-tag-lg" data-benefit="digestion">🔄 Digestion</span>
+        <span class="med-tag med-tag-lg" data-benefit="antioxidant">🛡️ Antioxidant</span>
+        <span class="med-tag med-tag-lg" data-benefit="immunity">💪 Immunity</span>
+      </div>
+      <div class="edu-grid reveal">
+        <div class="edu-card" data-benefits="focus,calm">
+          <div class="edu-card-img" style="background:linear-gradient(135deg,#1C3310,#3A6028);font-size:2rem;display:flex;align-items:center;justify-content:center;">🧬</div>
+          <div class="edu-card-body">
+            <div class="edu-card-cat">Focus & Calm</div>
+            <h3 class="edu-card-title">L-Theanine: The Molecule Behind Tea's Calm Alertness</h3>
+            <p class="edu-card-excerpt">Why tea provides focused energy without coffee's jitters — the science of L-theanine synergy with caffeine, and which teas deliver the most.</p>
+            <div class="edu-card-meta"><span>12 min read</span><span>🔬 Science</span></div>
+          </div>
+        </div>
+        <div class="edu-card" data-benefits="antioxidant,immunity">
+          <div class="edu-card-img" style="background:linear-gradient(135deg,#0A1A00,#1A3800);font-size:2rem;display:flex;align-items:center;justify-content:center;">🛡️</div>
+          <div class="edu-card-body">
+            <div class="edu-card-cat">Antioxidants</div>
+            <h3 class="edu-card-title">Catechins, EGCG & Polyphenols: What the Research Actually Says</h3>
+            <p class="edu-card-excerpt">A rigorous look at the antioxidant evidence — from green tea's EGCG to pu-erh's unique microbiome interactions.</p>
+            <div class="edu-card-meta"><span>15 min read</span><span>🔬 Research</span></div>
+          </div>
+        </div>
+        <div class="edu-card" data-benefits="sleep,calm">
+          <div class="edu-card-img" style="background:linear-gradient(135deg,#0A001A,#1A0038);font-size:2rem;display:flex;align-items:center;justify-content:center;">🌙</div>
+          <div class="edu-card-body">
+            <div class="edu-card-cat">Sleep</div>
+            <h3 class="edu-card-title">GABA Tea & Sleep: Taiwan's Fascinating Fermented Experiment</h3>
+            <p class="edu-card-excerpt">How anaerobic processing of Taiwanese oolongs creates measurably elevated GABA levels — and what that means for your sleep.</p>
+            <div class="edu-card-meta"><span>9 min read</span><span>🌙 Wellness</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brewing Science -->
+    <section class="edu-section" id="brewing">
+      <div class="edu-section-header reveal">
+        <span class="edu-section-icon">🔬</span>
+        <h2 class="edu-section-title">Brewing Science</h2>
+      </div>
+      <p class="edu-section-desc reveal">Every variable in brewing is a dial — adjust temperature, time, ratio, or water quality and the same leaf becomes a different experience. This is the science of extraction.</p>
+
+      <!-- Interactive Brew Guide -->
+      <div class="brew-guide reveal">
+        <h3 class="brew-guide-title">🎛️ Interactive Brew Calculator</h3>
+        <div class="brew-controls">
+          <div class="brew-control">
+            <label for="brew-temp">Water Temperature</label>
+            <input type="range" class="brew-slider" id="brew-temp" min="60" max="100" value="80" step="5" />
+            <div class="brew-slider-val" id="brew-temp-val">80°C</div>
+            <small style="font-size:.7rem;color:var(--warm-grey);font-family:var(--font-ui);">Green: 70-80°C · Oolong: 85-95°C · Black: 95-100°C</small>
+          </div>
+          <div class="brew-control">
+            <label for="brew-ratio">Leaf Ratio</label>
+            <input type="range" class="brew-slider" id="brew-ratio" min="1" max="10" value="3" step="0.5" />
+            <div class="brew-slider-val" id="brew-ratio-val">3g / 150ml</div>
+            <small style="font-size:.7rem;color:var(--warm-grey);font-family:var(--font-ui);">Western: 2-3g · Gongfu: 6-10g</small>
+          </div>
+          <div class="brew-control">
+            <label for="brew-time">Steep Time</label>
+            <input type="range" class="brew-slider" id="brew-time" min="15" max="300" value="90" step="15" />
+            <div class="brew-slider-val" id="brew-time-val">90s</div>
+            <small style="font-size:.7rem;color:var(--warm-grey);font-family:var(--font-ui);">Gongfu: 15-45s · Western: 2-5 min</small>
+          </div>
+        </div>
+        <div class="brew-steps">
+          <div class="brew-step"><div class="brew-step-num">1</div><div class="brew-step-content"><strong>Rinse the Vessel</strong><p>Pour boiling water into your teapot or gaiwan. Swirl and discard. This preheats the vessel and eliminates any unwanted aromas.</p></div></div>
+          <div class="brew-step"><div class="brew-step-num">2</div><div class="brew-step-content"><strong>Rinse the Leaf</strong><p>For compressed or aged teas only: add leaves, cover with hot water for 5–10 seconds, discard. This opens the leaf and removes surface dust.</p></div></div>
+          <div class="brew-step"><div class="brew-step-num">3</div><div class="brew-step-content"><strong>First Steep</strong><p>Pour water in a circular motion to agitate the leaves gently. Cover and wait your calculated steep time. Pour completely — residual water over-extracts.</p></div></div>
+          <div class="brew-step"><div class="brew-step-num">4</div><div class="brew-step-content"><strong>Subsequent Steeps</strong><p>Add 10–15 seconds per additional steep for Western method. Fine teas reward 5–10 re-steeps, each revealing a new facet of the leaf.</p></div></div>
+          <div class="brew-step"><div class="brew-step-num">5</div><div class="brew-step-content"><strong>Appreciate the Liquor</strong><p>Observe the colour. Smell before sipping. Feel the texture. Let the finish linger. Tea rewards those who slow down.</p></div></div>
+        </div>
+      </div>
+
+      <div class="edu-grid reveal">
+        <div class="edu-card"><div class="edu-card-img" style="background:linear-gradient(135deg,#1A1A3A,#2E2E6A);font-size:2rem;display:flex;align-items:center;justify-content:center;">💧</div><div class="edu-card-body"><div class="edu-card-cat">Water</div><h3 class="edu-card-title">Water Quality: The Invisible Ingredient That Changes Everything</h3><p class="edu-card-excerpt">TDS, pH, chlorine, mineral content — why the water you use matters as much as the leaf.</p><div class="edu-card-meta"><span>8 min read</span></div></div></div>
+        <div class="edu-card"><div class="edu-card-img" style="background:linear-gradient(135deg,#1A0D00,#4A2800);font-size:2rem;display:flex;align-items:center;justify-content:center;">🌡️</div><div class="edu-card-body"><div class="edu-card-cat">Temperature</div><h3 class="edu-card-title">The Chemistry of Extraction: How Heat Unlocks Different Compounds</h3><p class="edu-card-excerpt">Bitter catechins extract fast at high heat. Amino acids (umami) are slow. Understanding this lets you control every cup.</p><div class="edu-card-meta"><span>10 min read</span></div></div></div>
+        <div class="edu-card"><div class="edu-card-img" style="background:linear-gradient(135deg,#0A1500,#203800);font-size:2rem;display:flex;align-items:center;justify-content:center;">📅</div><div class="edu-card-body"><div class="edu-card-cat">Seasonal</div><h3 class="edu-card-title">Spring vs Autumn Harvest: How Seasonality Changes the Leaf</h3><p class="edu-card-excerpt">First flush exuberance vs autumnal depth — a guide to reading harvest dates and buying in season.</p><div class="edu-card-meta"><span>7 min read</span></div></div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="logo-leaf">🍃</span><span class="logo-text">TeaVault</span></a><p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p></div>
+      <div class="footer-col"><h4 class="footer-col-title">Learn</h4><ul class="footer-links"><li><a href="education.html#types">Tea Types</a></li><li><a href="education.html#vessels">Vessels</a></li><li><a href="education.html#cultures">Cultures</a></li><li><a href="education.html#wellness">Wellness</a></li><li><a href="education.html#brewing">Brewing</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="catalog.html">All Teas</a></li><li><a href="subscriptions.html">Subscribe</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links"><li><a href="about.html">Our Story</a></li><li><a href="b2b.html">For Business</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2025 TeaVault Inc.</p><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find valid Scrabble words and calculate scores. Perfect for Scrabble and word games.">
+    <meta name="keywords" content="scrabble word finder, scrabble score, word game, scrabble helper">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/scrabble-word-finder/">
+    <meta property="og:title" content="Scrabble Word Finder">
+    <meta property="og:description" content="Find valid Scrabble words and calculate scores instantly.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Scrabble Word Finder</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header { 
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            background: #0f0f0f;
+        }
+        header h1 { 
+            font-size: 2em; 
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        header p { 
+            font-size: 0.95em; 
+            color: #999;
+        }
+
+        main {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .search-hint {
+            font-size: 0.85em;
+            color: #666;
+            padding: 8px 4px;
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        button.primary {
+            background: #6366f1;
+            color: white;
+            flex: 1;
+            font-weight: 600;
+        }
+
+        button.primary:hover {
+            filter: brightness(0.9);
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: #1a1a1a;
+            color: #999;
+            padding: 10px 16px;
+        }
+
+        button.secondary:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        .results-section {
+            margin-top: 32px;
+        }
+
+        .results-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .result-pill {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-left: 3px solid #6366f1;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .result-pill:hover {
+            background: #2a2a2a;
+            border-left-color: #818cf8;
+            transform: translateY(-2px);
+        }
+
+        .result-pill.copied {
+            background: #6366f1;
+            color: white;
+            border-left-color: #6366f1;
+            animation: pulse 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+            font-size: 0.95em;
+        }
+
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            background: #0f0f0f;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 16px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            main {
+                padding: 24px 16px;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            button {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 12px;
+            }
+            header h1 {
+                font-size: 1.3em;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button.secondary {
+                width: 100%;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📝 Scrabble Word Finder</h1>
+        <p>Find valid Scrabble words from your letters</p>
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input type="text" id="input-word" placeholder="Enter a word to verify..." autofocus>
+            <div class="search-hint">Find if a word is valid in Scrabble</div>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="searchWord()">Search</button>
+            <button class="secondary" onclick="clearResults()">Clear</button>
+        </div>
+
+        <div class="results-section">
+            <div id="results-container"></div>
+        </div>
+
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 24px; margin: 32px 0; border: 1px solid #2a2a2a;">
+            <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #6366f1;">Mastering Scrabble</h2>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 16px;">
+                Scrabble is the classic word game where players score points by placing letter tiles on a game board. Valid Scrabble words are specific and governed by official dictionaries. This tool helps you verify if words are acceptable and calculate their point values.
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Understanding Scrabble Scoring:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>1 Point:</strong> A, E, I, O, U, L, N, S, T, R</li>
+                <li><strong>2 Points:</strong> D, G</li>
+                <li><strong>3 Points:</strong> B, C, M, P</li>
+                <li><strong>4 Points:</strong> F, H, V, W, Y</li>
+                <li><strong>5 Points:</strong> K</li>
+                <li><strong>8 Points:</strong> J, X</li>
+                <li><strong>10 Points:</strong> Q, Z</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Example: Calculating Word Scores</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Sample Scrabble words and their base point values:
+            </p>
+            <ul style="color: #999; margin-left: 20px; font-family: monospace; line-height: 2;">
+                <li><strong style="color: #6366f1;">CAT</strong> = C(3) + A(1) + T(1) = <strong>5 points</strong></li>
+                <li><strong style="color: #6366f1;">QUIZ</strong> = Q(10) + U(1) + I(1) + Z(10) = <strong>22 points</strong></li>
+                <li><strong style="color: #6366f1;">JUMPY</strong> = J(8) + U(1) + M(3) + P(3) + Y(4) = <strong>19 points</strong></li>
+                <li><strong style="color: #6366f1;">ZEBRA</strong> = Z(10) + E(1) + B(3) + R(1) + A(1) = <strong>16 points</strong></li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Pro Tips for Winning:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li>Use high-value letters like Q, Z, X, and J strategically</li>
+                <li>Place words on premium squares (double/triple letter and word)</li>
+                <li>Learn two-letter words for tactical board control</li>
+                <li>Study the official Scrabble dictionary (OSPD or TWL)</li>
+                <li>Build longer words for greater point accumulation</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Scrabble's Rich History:</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Scrabble was invented by Alfred Mosher Butts in 1938 as "Criss-Cross Words." It was commercialized in 1948 by James Brunot, who renamed it Scrabble. The game exploded in popularity in the 1950s and became a competitive sport by the 1970s. Official Scrabble tournaments began in 1973, with the first World Scrabble Championship in 1991. Digital Scrabble solvers emerged in the 1990s, revolutionizing competitive play and casual gameplay alike. Modern word validation tools use multiple dictionaries (TWL, SOWPODS, Collins) depending on tournament rules.
+            </p>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Scrabble Tool Variations:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Word Validators:</strong> Simply verify if a word is valid</li>
+                <li><strong>Scoring Calculators:</strong> Compute points based on board position</li>
+                <li><strong>High-Scoring Word Finders:</strong> Optimize for maximum points</li>
+                <li><strong>Dictionary-Specific Checkers:</strong> Different rules for TWL vs. Collins vs. SOWPODS</li>
+                <li><strong>Challenge Word Helpers:</strong> Find obscure valid words opponents won't know</li>
+                <li><strong>Board Analyzers:</strong> Suggest optimal moves for current game position</li>
+                <li><strong>Tournament-Grade Solvers:</strong> Used in competitive Scrabble analysis</li>
+            </ul>
+        </div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tools Suite. Master your word game strategy.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="../../theme-toggle.js"></script>
+</body>
+</html>

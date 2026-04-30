@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Analyze comprehensive text statistics including word count, character count, sentence count, reading time, and unique word analysis for content optimization." />
+  <meta name="keywords" content="text statistics, word counter, text analyzer, character counter, reading time calculator, sentence analyzer, paragraph counter, content analysis, writing tools, document statistics, SEO analysis, blog writing tools, word count checker" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Text Statistics Analyzer</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Text Statistics Analyzer</h1>
+      <p>Analyze word count, character count, readability, and more.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input Text</h2>
+        <textarea id="stats-input" rows="12" placeholder="Paste your text here..." style="width:100%; padding:12px;"></textarea>
+      </section>
+
+      <section class="preview-section">
+        <h2>Statistics</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <h4>Words</h4>
+            <input id="stat-words" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Characters (with spaces)</h4>
+            <input id="stat-chars" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Characters (no spaces)</h4>
+            <input id="stat-chars-no-space" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Sentences</h4>
+            <input id="stat-sentences" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Paragraphs</h4>
+            <input id="stat-paragraphs" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Avg Word Length</h4>
+            <input id="stat-avg-word" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Reading Time (min)</h4>
+            <input id="stat-reading-time" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+          <div>
+            <h4>Unique Words</h4>
+            <input id="stat-unique-words" readonly style="width:100%; padding:8px; font-size: 18px; font-weight: bold;">
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Text Statistics Analyzer</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Check if words, phrases, and texts are palindromes. Instant palindrome checker and analyzer.">
+    <meta name="keywords" content="palindrome checker, palindrome, reverse text, word palindrome">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/palindrome-checker/">
+    <meta property="og:title" content="Palindrome Checker">
+    <meta property="og:description" content="Check if text is a palindrome instantly.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header { 
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            background: #0f0f0f;
+        }
+        header h1 { 
+            font-size: 2em; 
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        header p { 
+            font-size: 0.95em; 
+            color: #999;
+        }
+
+        main {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #f97316;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .search-hint {
+            font-size: 0.85em;
+            color: #666;
+            padding: 8px 4px;
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        button.primary {
+            background: #f97316;
+            color: white;
+            flex: 1;
+            font-weight: 600;
+        }
+
+        button.primary:hover {
+            filter: brightness(0.9);
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: #1a1a1a;
+            color: #999;
+            padding: 10px 16px;
+        }
+
+        button.secondary:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        .results-section {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .result-box {
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .result-status {
+            font-size: 3em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .result-status.yes {
+            color: #10b981;
+        }
+
+        .result-status.no {
+            color: #ef4444;
+        }
+
+        .result-text {
+            font-size: 0.95em;
+            color: #999;
+            margin-bottom: 12px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .result-reversed {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+            font-size: 0.95em;
+        }
+
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            background: #0f0f0f;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 16px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            main {
+                padding: 24px 16px;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            button {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .result-status {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 12px;
+            }
+            header h1 {
+                font-size: 1.3em;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button.secondary {
+                width: 100%;
+            }
+
+            .result-status {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔄 Palindrome Checker</h1>
+        <p>Check if text reads the same forwards and backwards</p>
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input type="text" id="input-text" placeholder="Enter text to check..." autofocus>
+            <div class="search-hint">Try: RACECAR, LEVEL, CIVIC, KAYAK</div>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="checkPalindrome()">Check</button>
+            <button class="secondary" onclick="clearResults()">Clear</button>
+        </div>
+
+        <div class="results-section">
+            <div id="results-container"></div>
+        </div>
+
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 24px; margin: 32px 0; border: 1px solid #2a2a2a;">
+            <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #f97316;">Understanding Palindromes</h2>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 16px;">
+                A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization). Palindromes are fascinating examples of linguistic symmetry and mathematical beauty.
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Types of Palindromes:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Word Palindromes:</strong> Single words that read the same (LEVEL, RADAR)</li>
+                <li><strong>Phrase Palindromes:</strong> Sentences ignoring spaces and punctuation</li>
+                <li><strong>Numeric Palindromes:</strong> Numbers reading the same both ways (121, 1331)</li>
+                <li><strong>Date Palindromes:</strong> Special dates like 12/02/2021</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Famous Palindrome Examples:</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Common palindromes in English:
+            </p>
+            <ul style="color: #999; margin-left: 20px; font-family: monospace; line-height: 2;">
+                <li><strong style="color: #f97316;">RACECAR</strong> - a fast automobile</li>
+                <li><strong style="color: #f97316;">LEVEL</strong> - flat surface or position</li>
+                <li><strong style="color: #f97316;">CIVIC</strong> - relating to city government</li>
+                <li><strong style="color: #f97316;">KAYAK</strong> - small water vessel</li>
+                <li><strong style="color: #f97316;">NOON</strong> - midday time</li>
+                <li><strong style="color: #f97316;">A MAN A PLAN A CANAL PANAMA</strong> - famous phrase</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Palindrome Applications:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li>Linguistic puzzles and word games</li>
+                <li>Programming and algorithm development</li>
+                <li>Recreational mathematics</li>
+                <li>Poetry and creative writing</li>
+                <li>Memory and cognitive exercises</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Ancient Linguistic History:</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Palindromes appear in ancient Sanskrit texts and were used in palindromic names (ANNA, EVE). In Greek, the phrase "Ἄρα μῦς μήνυσέ μοι μανίαν ὦ νύξ" (approximately "A man, a plan, a canal, Panama") represented an ancient palindromic puzzle. Medieval Latin palindromes were inscribed in sacred buildings. The modern palindrome craze began in the Victorian era with linguistic puzzles, and reached new heights with computer algorithms that could generate and verify complex palindromes. Famous digital palindrome discoveries include the date 02/02/2020.
+            </p>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Palindrome Checker Variations:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Strict Palindrome Checkers:</strong> Every character must match exactly</li>
+                <li><strong>Lenient Palindrome Tools:</strong> Ignore spaces, punctuation, and capitalization</li>
+                <li><strong>Numeric Palindrome Finders:</strong> Check numbers and dates</li>
+                <li><strong>Palindrome Generators:</strong> Create palindromes from input text</li>
+                <li><strong>Partial Palindrome Finders:</strong> Identify palindromic substrings</li>
+                <li><strong>Longest Palindrome Detectors:</strong> Find the longest palindrome in text</li>
+                <li><strong>Palindromic Name Validators:</strong> Check if personal names form palindromes</li>
+            </ul>
+        </div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tools Suite. Discover palindromes and word patterns.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="../../theme-toggle.js"></script>
+</body>
+</html>

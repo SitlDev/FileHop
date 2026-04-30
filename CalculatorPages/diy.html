@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY & Construction Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="concrete calculator, paint calculator, board foot calculator, construction math">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/diy.html" />
+    <meta name="description" content="Professional DIY tools: Concrete volume, Paint coverage, and Lumber board foot calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>DIY & <span style="color: var(--accent);">Construction</span></h1>
+            <p class="subtitle">Material estimations for structural efficiency.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">DIY <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Concrete Bagging</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">A standard 80lb bag of pre-mix concrete yields approximately 0.6 cubic feet. For larger slabs, ordering by the cubic yard (27 cu ft) is more cost-effective.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">The 10% Rule</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Always order 10% more material than your calculation suggests. This account for waste, spills, and inaccuracies in wall measurements or ground leveling.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Board Foot (BF)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Lumber is sold by volume. One board foot is equal to 144 cubic inches (e.g., 12" x 12" x 1"). Thick lumber (over 1") is priced by the quarter-inch increment.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('conc', event)">Concrete</button>
+                <button class="tab-btn" onclick="showTab('paint', event)">Paint</button>
+                <button class="tab-btn" onclick="showTab('board', event)">Board Foot</button>
+            </div>
+
+            <div id="conc" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Length (ft)</label><div class="input-wrapper"><input type="number" id="cn-l" value="10"></div></div>
+                    <div class="input-group"><label>Width (ft)</label><div class="input-wrapper"><input type="number" id="cn-w" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Thickness (in)</label><div class="input-wrapper"><input type="number" id="cn-d" value="4"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateConcrete()">Find Volume →</button>
+                <div id="conc-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Cubic Yards</span><span class="result-value" id="cn-out">0.0</span></div>
+                        <div class="result-item"><span class="result-label">80lb Bags (Est)</span><span class="result-value" id="cn-bags" style="color:var(--accent)">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="paint" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Wall Height (ft)</label><div class="input-wrapper"><input type="number" id="pa-h" value="8"></div></div>
+                    <div class="input-group"><label>Wall Length (ft)</label><div class="input-wrapper"><input type="number" id="pa-l" value="24"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Number of Coats</label><div class="input-wrapper"><input type="number" id="pa-c" value="2"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculatePaint()">Find Gallons →</button>
+                <div id="paint-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Total Gallons Needed</span><span class="result-value" id="pa-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="board" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Thickness (in)</label><div class="input-wrapper"><input type="number" id="bf-t" value="1"></div></div>
+                    <div class="input-group"><label>Width (in)</label><div class="input-wrapper"><input type="number" id="bf-w" value="6"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Length (ft)</label><div class="input-wrapper"><input type="number" id="bf-l" value="8"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBoardFoot()">Calculate BF →</button>
+                <div id="board-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Total Board Feet</span><span class="result-value" id="bf-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">Mastering Your <span style="color: var(--accent);">Home Improvement Projects</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Concrete Calculations: Planning for Success</h3>
+                        <p>Concrete is one of the most durable building materials, but it's also one of the most unforgiving if you miscalculate your needs. Ordering too little concrete from a ready-mix truck results in "cold joints," where the new concrete doesn't bond perfectly with the old, creating a structural weak point. Ordering too much is simply a waste of money. Our <strong>Concrete Calculator</strong> provides results in cubic yards—the industry standard for large orders—and total 60lb bags for smaller, DIY-friendly projects.</p>
+                        <p style="margin-top: 16px;">When planning a slab, always add a 10% "spillage and waste" factor. Ground is rarely perfectly level, and forms can bulge slightly under the weight of wet concrete. If you're pouring a 4-inch sidewalk, calculate for 4.25 inches to ensure you don't run short. Remember, concrete is heavy; a single cubic yard weighs approximately 4,000 lbs. Ensure your sub-base is well-compacted and your forms are braced strongly enough to handle the hydrostatic pressure of the wet mix.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Painting: Precision Estimation</h3>
+                        <p>A fresh coat of paint is the highest ROI home improvement project you can undertake, but standing in the hardware store aisle trying to guess how many gallons you need is a recipe for multiple trips. Most high-quality paints cover approximately 350 to 400 square feet per gallon. However, this varies significantly based on the texture of the wall. A porous, "knockdown" texture or new, unprimed drywall will drink up paint much faster than a smooth, previously painted surface. Our <strong>Paint Estimator</strong> helps you find the right volume for single or double-coat applications, helping you buy just what you need.</p>
+                        <p style="margin-top: 16px;">Always remember: two thin coats are always better than one thick coat. Thin coats dry faster, harder, and provide a more even sheen. If you're changing colors drastically (like going from navy blue to off-white), a dedicated primer is essential. While "paint and primer in one" products are convenient, they often lack the "hide" capability of a specialized high-solids primer, meaning you might end up needing four coats instead of two.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Understanding Board Feet: The Woodworker's Metric</h3>
+                        <p>If you've spent any time in a hardwood lumber yard, you've seen prices listed by "BF" or <strong>Board Feet</strong>. Unlike construction lumber (like a 2x4), which is sold by the piece, hardwoods are sold by volume because the boards come in random widths and lengths. One board foot is equivalent to a volume of 144 cubic inches (typically 12" x 12" x 1"). Our <strong>Board Foot Calculator</strong> simplifies the math so you can quickly estimate the cost of your next furniture project. Don't forget to account for "snipe" and knots; most experienced woodworkers buy 15-20% more lumber than the final project dimensions require to account for defects and machining waste.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Safety First: The DIY Golden Rule</h3>
+                        <p>No project is worth an injury. Before you start any DIY task, ensure you have the correct Personal Protective Equipment (PPE). This includes safety glasses, hearing protection for power tools, and a respirator when sanding or painting. Always check for underground utilities before digging and never work on electrical or plumbing systems unless you are confident in your ability to do so safely and to code. A successful project is one that looks great and leaves the builder in one piece!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateConcrete() {
+            const l = parseFloat(document.getElementById('cn-l').value);
+const w = parseFloat(document.getElementById('cn-w').value);
+const d = parseFloat(document.getElementById('cn-d').value) / 12;
+const cuft = l * w * d;
+const yards = cuft / 27;
+document.getElementById('cn-out').innerText = yards.toFixed(2);
+document.getElementById('cn-bags').innerText = Math.ceil(cuft / 0.6); 
+document.getElementById('conc-results').classList.add('visible');
+saveActivity('diy', { type: 'concrete', l, w, d: d*12 }, { yards });
+        }
+
+        function calculatePaint() {
+            const h = parseFloat(document.getElementById('pa-h').value);
+const l = parseFloat(document.getElementById('pa-l').value);
+const c = parseInt(document.getElementById('pa-c').value);
+const sqft = (h * l) * c;
+const gals = sqft / 350; 
+document.getElementById('pa-out').innerText = gals.toFixed(1);
+document.getElementById('paint-results').classList.add('visible');
+saveActivity('diy', { type: 'paint', h, l, c }, { gallons: gals });
+        }
+
+        function calculateBoardFoot() {
+            const t = parseFloat(document.getElementById('bf-t').value);
+const w = parseFloat(document.getElementById('bf-w').value);
+const l = parseFloat(document.getElementById('bf-l').value);
+const bf = (t * w * l) / 12;
+document.getElementById('bf-out').innerText = bf.toFixed(1);
+document.getElementById('board-results').classList.add('visible');
+saveActivity('diy', { type: 'board-foot', t, w, l }, { bf });
+        }
+    </script>
+</body>
+</html>

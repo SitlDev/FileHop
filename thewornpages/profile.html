@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Profile | The Worn Pages Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+    <script src="js/butterflies.js" defer></script>
+    <style>
+        :root {
+            --pink: #B68D8D;    /* Dusty Rose */
+            --blush: #D4A3A3;   /* Blush Pink */
+            --pearl: #FAF6F5;   /* Pearlescent Pearl */
+            --cream: #F5EBE9;
+            --aged-paper: #EDE2E0;
+            --gold: #D4B982;
+            --text-dark: #5C4F4F;
+            --text-muted: #9E8B8B;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius: 32px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+        body {
+            background-color: var(--pearl);
+            color: var(--text-dark);
+            font-family: 'EB Garamond', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            position: relative;
+        }
+
+        nav {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4rem;
+            background: rgba(250, 246, 245, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 1rem; height: 60px; }
+            nav .logo { font-size: 1rem; }
+            nav .logo span { font-size: 1.8rem; margin-right: 0.4rem; }
+            
+            main { padding: 1rem 0; align-items: flex-start; }
+            .profile-card { padding: 1.5rem; max-width: 100%; width: 100%; border-radius: 0; border: none; box-shadow: none; }
+            .login-wrap { max-width: 100%; width: 100%; padding: 2rem 1.5rem; }
+            
+            .member-stat { grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; }
+            .stat-item { background: white; padding: 1.5rem; border: 1px solid var(--aged-paper); border-radius: 12px; }
+            .stat-item p { font-size: 1.2rem; }
+            
+            h1 { font-size: 2rem; }
+            .tab-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0 0 1.5rem 0; margin-bottom: 2rem; border-bottom: 1px solid var(--aged-paper); }
+            .tab-btn { padding: 0.8rem; background: var(--cream); border-radius: 8px; text-align: center; border: none; }
+            .tab-btn.active { background: var(--pink); color: white; }
+            
+            .social-login-grid { grid-template-columns: 1fr !important; }
+            .header-flex { flex-direction: column; gap: 1rem; text-align: center !important; }
+            .header-flex .btn { width: 100% !important; margin-top: 0.5rem; }
+            .pause-flex { flex-direction: column; }
+            .genre-grid { grid-template-columns: 1fr !important; }
+            .genre-chip { padding: 1.2rem; border-radius: 8px; justify-content: space-between; }
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            font-family: 'Caveat', cursive;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 2.2rem;
+            color: var(--blush);
+            margin-right: 0.8rem;
+            line-height: 0;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .profile-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 4rem;
+            border-radius: 8px;
+            border: 1px solid var(--aged-paper);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            text-align: center;
+            display: none;
+        }
+
+        .login-wrap {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem; }
+        .handwritten { font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.5rem; display: block; }
+
+        .form-group { margin: 2rem 0; text-align: left; }
+        label { display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 0.8rem; color: var(--gold); }
+        input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--aged-paper);
+            border-radius: 4px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            background: var(--cream);
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--pink);
+            color: white;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn:hover { background: var(--blush); transform: translateY(-2px); }
+
+        .member-stat {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .stat-item h4 { font-family: 'Inter', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 0.5rem; }
+        .stat-item p { font-size: 1.4rem; color: var(--forest-green); font-weight: bold; }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: #E7F3EF;
+            color: var(--forest-green);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .error-msg { color: var(--burgundy); font-size: 0.9rem; margin-top: 1rem; display: none; }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .tab-btn.active {
+            color: var(--forest-green);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .genre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .genre-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.2rem;
+            background: var(--cream);
+            border: 1px solid var(--aged-paper);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .genre-chip:hover { border-color: var(--gold); }
+        .genre-chip input { width: auto; }
+        .genre-chip span { font-size: 0.9rem; color: var(--text-dark); }
+        .genre-chip:has(input:checked) { background: #E7F3EF; border-color: var(--forest-green); }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo"><span>The</span> WORN PAGES CLUB</a>
+    </nav>
+
+    <main>
+        <!-- Login Section -->
+        <div id="login-section" class="login-wrap">
+            <span class="handwritten">Welcome Back</span>
+            <h1>Member Access</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Enter the email associated with your sanctuary to view your records.</p>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email-input" placeholder="collector@email.com">
+                <div id="login-error" class="error-msg"></div>
+            </div>
+            
+            <button class="btn" onclick="lookupMember()">Access Archive</button>
+
+            <div style="margin-top: 2.5rem; text-align: center;">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; opacity: 0.4;">
+                    <hr style="flex-grow: 1; border: 0; border-top: 1px solid var(--text-dark);">
+                    <span style="font-size: 0.7rem; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px;">or continue with</span>
+                    <hr style="flex-grow: 1; border: 0; border-top: 1px solid var(--text-dark);">
+                </div>
+                
+                <div class="social-login-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <button class="social-btn" id="google-login-btn" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; padding: 1rem; border: 1px solid var(--aged-paper); border-radius: 4px; background: white; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;">
+                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" style="width: 18px;" alt="Google">
+                        <span>Google</span>
+                    </button>
+                    <button class="social-btn" id="apple-login-btn" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; padding: 1rem; border: 1px solid var(--aged-paper); border-radius: 4px; background: white; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/mac-os.png" style="width: 18px;" alt="Apple">
+                        <span>Apple</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="profile-card">
+            <div class="header-flex" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+                <div style="text-align: left;">
+                    <span class="handwritten" id="member-since">Collector Since 2024</span>
+                    <h1 id="member-email" style="font-size: 1.8rem;">Loading...</h1>
+                    <div class="status-badge" id="member-status">Active Member</div>
+                </div>
+                <button class="btn" style="width: auto; padding: 0.6rem 1rem; background: var(--aged-paper); color: var(--text-dark); font-size: 0.65rem;" onclick="location.reload()">Sign Out</button>
+            </div>
+
+            <!-- Profile Navigation -->
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="preferences">Preferences</button>
+                <button class="tab-btn" data-tab="sanctuary">Sanctuary</button>
+                <a href="vault.html" style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--gold); margin-left: auto; align-self: center;">Browse the Vault →</a>
+            </div>
+
+            <!-- Tab: Overview -->
+            <div id="tab-overview" class="tab-content active">
+                <div class="member-stat">
+                    <div class="stat-item">
+                        <h4>Current Tier</h4>
+                        <p id="member-tier">Premium</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Billing Term</h4>
+                        <p id="member-term">6 Months</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Next Dispatch</h4>
+                        <p>April 1st, 2024</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Record ID</h4>
+                        <p id="member-order-id">#TWP-12345</p>
+                    </div>
+                </div>
+                <div style="background: var(--cream-dark); padding: 1.5rem; border-radius: 4px; text-align: left; border-left: 4px solid var(--gold);">
+                    <h5 style="font-family: 'Playfair Display', serif; color: var(--forest-green); margin-bottom: 0.5rem;">Membership Status</h5>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Your subscription is currently renewing automatically. To adjust your billing or pause your sanctuary, visit the Billing Portal.</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn" style="margin-top: 1rem; background: var(--gold); font-size: 0.7rem; padding: 0.8rem 1.2rem;" onclick="openBillingPortal()">Manage Billing & Tier</button>
+                        <button id="pause-btn" class="btn" style="margin-top: 1rem; background: var(--aged-paper); color: var(--text-dark); font-size: 0.7rem; padding: 0.8rem 1.2rem;" onclick="togglePauseUI()">Pause Sanctuary</button>
+                    </div>
+
+                    <!-- Pause UI -->
+                    <div id="pause-ui" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: white; border-radius: 4px; border: 1px solid var(--aged-paper);">
+                        <p style="font-size: 0.8rem; margin-bottom: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--gold);">Select Duration</p>
+                        <div class="pause-flex" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                            <select id="pause-duration" style="flex-grow: 1; padding: 0.5rem; border: 1px solid var(--aged-paper);">
+                                <option value="1">1 Month Delay</option>
+                                <option value="2">2 Month Delay</option>
+                                <option value="3">3 Month Delay</option>
+                            </select>
+                            <button class="btn" style="background: var(--forest-green); color: white; padding: 0.5rem 1rem; font-size: 0.7rem;" onclick="confirmPause()">Confirm</button>
+                        </div>
+                        <button class="btn" style="background: transparent; border: none; font-size: 0.65rem; text-decoration: underline; padding: 0;" onclick="togglePauseUI()">Cancel</button>
+                    </div>
+
+                    <!-- Resume UI -->
+                    <div id="resume-ui" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: var(--forest-green); color: white; border-radius: 4px;">
+                        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Your sanctuary is currently paused until <span id="resume-date-display" style="color: var(--gold); font-weight: bold;">—</span>.</p>
+                        <button class="btn" style="background: var(--gold); color: var(--forest-green); padding: 0.5rem 1.2rem; font-size: 0.7rem;" onclick="resumeSanctuary()">Resume Now</button>
+                    </div>
+                </div>
+
+                <!-- Fix: Rare Find Request for Devotees -->
+                <div id="rare-find-section" style="display: none; margin-top: 3rem; padding: 2rem; background: var(--forest-green); color: white; border-radius: 8px; text-align: left;">
+                    <span class="handwritten" style="color: var(--gold); font-size: 1.5rem;">A Devotee Privilege</span>
+                    <h4 style="font-family: 'Playfair Display', serif; color: white; margin-bottom: 1rem;">The Rare Find Hunt</h4>
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">As a Devotee, you may commission our curators to hunt for a specific rare edition. Provide the details below, and we will alert you the moment it enters our archive.</p>
+                    <div class="form-group" style="margin: 0 0 1rem 0;">
+                        <label style="color: var(--gold);">Book Title</label>
+                        <input type="text" id="hunt-title" placeholder="e.g. Moby Dick, 1851 Edition" style="background: rgba(255,255,255,0.05); border-color: rgba(197, 160, 89, 0.3); color: white;">
+                    </div>
+                    <div class="form-group" style="margin: 0 0 1.5rem 0;">
+                        <label style="color: var(--gold);">Author & Details</label>
+                        <input type="text" id="hunt-author" placeholder="Herman Melville" style="background: rgba(255,255,255,0.05); border-color: rgba(197, 160, 89, 0.3); color: white;">
+                    </div>
+                    <button class="btn" style="background: var(--gold); color: var(--forest-green);" onclick="submitRareHunt()">Launch the Hunt</button>
+                </div>
+            </div>
+
+            <!-- Tab: Preferences -->
+            <div id="tab-preferences" class="tab-content">
+                <div style="text-align: left;">
+                    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem;">Literary Interests</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Select the genres that should influence your next monthly curation. Our curators use these to map your profile.</p>
+                    
+                    <div class="genre-grid">
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Classics"> <span>Classics</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Gothic"> <span>Gothic & Mystery</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="History"> <span>History & Philosophy</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Nature"> <span>Nature & Science</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Poetry"> <span>Poetry & Plays</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Travel"> <span>Travel & Discovery</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Art"> <span>Art & Photography</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Biography"> <span>Biography & Letters</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Cooking"> <span>Cooking & Botanicals</span></label>
+                        <label class="genre-chip"><input type="checkbox" name="genre" value="Fiction"> <span>Modern Fiction</span></label>
+                    </div>
+
+                    <button class="btn" style="margin-top: 2rem;" onclick="savePreferences()">Update Literary Profile</button>
+                </div>
+            </div>
+
+            <!-- Tab: Sanctuary (Address/Account) -->
+            <div id="tab-sanctuary" class="tab-content">
+                <div style="text-align: left;">
+                    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem;">Dispatch Address</h3>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Shipping Destination</label>
+                        <input type="text" id="address-input" value="123 Bibliophile Way, London, UK" disabled style="opacity: 0.6;">
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">* To update your shipping address, please contact treasury@thewornpages.com or update via the billing portal.</p>
+                    </div>
+                    </div>
+                <!-- Profile Footer with Logout -->
+                <div style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--aged-paper); padding-top: 2rem;">
+                    <a href="#" onclick="abandonSanctuary()" style="color: var(--burgundy); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; font-weight: bold; text-transform: uppercase; opacity: 0.6; transition: var(--transition);">Abandon Sanctuary (Log Out)</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        async function lookupMember(storedEmail = null) {
+            const email = storedEmail || document.getElementById('email-input').value;
+            const errorEl = document.getElementById('login-error');
+            const btn = document.querySelector('#login-section .btn');
+
+            if (!email) {
+                errorEl.innerText = "Please provide an email address.";
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            btn.innerText = "Accessing Stacks...";
+            btn.disabled = true;
+            errorEl.style.display = 'none';
+
+            try {
+                const response = await fetch(`/api/member?email=${encodeURIComponent(email)}`);
+                
+                if (!response.ok) {
+                    const data = await response.json().catch(() => ({}));
+                    throw new Error(data.error || `Archive Unavailable (${response.status})`);
+                }
+
+                const data = await response.json();
+                
+                // Populate UI
+                document.getElementById('member-email').innerText = data.email;
+                document.getElementById('member-tier').innerText = data.plan_name;
+                document.getElementById('member-term').innerText = data.billing_term;
+                document.getElementById('member-status').innerText = `${data.status} Member`;
+                document.getElementById('member-order-id').innerText = `#TWP-${data.order_id}`;
+                
+                // Show Rare Find for Devotees
+                if (data.plan_name && data.plan_name.toLowerCase().includes('devotee')) {
+                    document.getElementById('rare-find-section').style.display = 'block';
+                // Handle Paused State
+                if (data.status === 'paused') {
+                    document.getElementById('pause-btn').style.display = 'none';
+                    document.getElementById('resume-ui').style.display = 'block';
+                    if (data.resume_at) {
+                        document.getElementById('resume-date-display').innerText = new Date(data.resume_at).toLocaleDateString();
+                    }
+                } else {
+                    document.getElementById('pause-btn').style.display = 'block';
+                    document.getElementById('resume-ui').style.display = 'none';
+                }
+                
+                // Populate shipping
+                if (data.shipping) {
+                    const addr = data.shipping;
+                    document.getElementById('address-input').value = `${addr.name}, ${addr.address}, ${addr.city}, ${addr.zip}, ${addr.country}`;
+                }
+
+                // Set genres if present
+                if (data.genres) {
+                    const checkboxes = document.querySelectorAll('input[name="genre"]');
+                    checkboxes.forEach(cb => {
+                        if (data.genres.includes(cb.value)) cb.checked = true;
+                    });
+                }
+
+                const joinDate = new Date(data.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+                document.getElementById('member-since').innerText = `Collector Since ${joinDate}`;
+
+                // Swap Sections
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('profile-section').style.display = 'block';
+
+                // Persist Session
+                localStorage.setItem('memberEmail', data.email);
+
+            } catch (err) {
+                console.error("Lookup failed:", err);
+                let message = err.message;
+                if (message === "Failed to fetch") {
+                    message = "Could not reach the archives. Please verify your Environment Variables are set in your hosting dashboard.";
+                }
+                errorEl.innerText = message;
+                errorEl.style.display = 'block';
+                btn.innerText = "Access Archive";
+                btn.disabled = false;
+            }
+        }
+
+        // Tab Switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+            }
+        });
+
+        async function savePreferences() {
+            const email = document.getElementById('member-email').innerText;
+            const genres = Array.from(document.querySelectorAll('input[name="genre"]:checked')).map(cb => cb.value);
+            const btn = document.querySelector('#tab-preferences .btn');
+
+            btn.innerText = "Archiving Tastes...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/update-member', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, genres })
+                });
+
+                if (!response.ok) throw new Error("Failed to update preferences.");
+
+                alert("Your literary profile has been updated. Our curators will reflect these changes in your next dispatch.");
+            } catch (err) {
+                alert(err.message);
+            } finally {
+                btn.innerText = "Update Literary Profile";
+                btn.disabled = false;
+            }
+        }
+
+        function abandonSanctuary() {
+            if (confirm("Are you sure you wish to abandon your sanctuary sessions? You will need to re-verify your email next time.")) {
+                localStorage.removeItem('memberEmail');
+                location.reload();
+            }
+        }
+
+        async function submitRareHunt() {
+            const email = document.getElementById('member-email').innerText;
+            const title = document.getElementById('hunt-title').value;
+            const author = document.getElementById('hunt-author').value;
+            const btn = document.querySelector('#rare-find-section .btn');
+
+            if (!title) return alert("Please specify the title you're seeking.");
+
+            btn.innerText = "Briefing Curators...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/member?action=rare-hunt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, title, author })
+                });
+
+                if (!response.ok) throw new Error("Hunt request failed.");
+
+                alert("The hunt is on. Our curators have been briefed on your request.");
+                document.getElementById('hunt-title').value = '';
+                document.getElementById('hunt-author').value = '';
+            } catch (err) {
+                alert(err.message);
+            } finally {
+                btn.innerText = "Launch the Hunt";
+                btn.disabled = false;
+            }
+        }
+
+        // Auto-login check on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedEmail = localStorage.getItem('memberEmail');
+            if (savedEmail) {
+                lookupMember(savedEmail);
+            }
+
+            // OAuth Setup
+            const GOOGLE_CLIENT_ID = "281484503905-hs0japlrq37c8hfsrorl51v5ucmr3nsk.apps.googleusercontent.com"; // Placeholder
+            const APPLE_CLIENT_ID = "com.thewornpages.service"; // Placeholder
+
+            if (typeof google !== 'undefined') {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: (res) => handleOAuthResponse(res.credential, 'google'),
+                });
+                document.getElementById('google-login-btn').onclick = () => google.accounts.id.prompt();
+            }
+
+            if (typeof AppleID !== 'undefined') {
+                AppleID.auth.init({
+                    clientId: APPLE_CLIENT_ID,
+                    scope: 'name email',
+                    redirectURI: window.location.origin + '/profile.html',
+                    usePopup: true
+                });
+                document.getElementById('apple-login-btn').onclick = async () => {
+                    const res = await AppleID.auth.signIn();
+                    handleOAuthResponse(res.authorization.id_token, 'apple');
+                };
+            }
+        });
+
+        async function handleOAuthResponse(token, provider) {
+            try {
+                const res = await fetch('/api/auth-user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token, provider })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    lookupMember(data.user.email);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Social login failed.');
+            }
+        }
+
+        async function openBillingPortal() {
+            const email = document.getElementById('member-email').innerText;
+            const btn = document.querySelector('button[onclick="openBillingPortal()"]');
+            
+            btn.innerText = "Securing Connection...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/checkout?action=portal', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.error || "Could not reach the billing portal.");
+                }
+            } catch (err) {
+                alert(err.message);
+                btn.innerText = "Manage Billing & Tier";
+                btn.disabled = false;
+            }
+        }
+        }
+
+        function togglePauseUI() {
+            const ui = document.getElementById('pause-ui');
+            ui.style.display = ui.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function confirmPause() {
+            const email = document.getElementById('member-email').innerText;
+            const months = document.getElementById('pause-duration').value;
+            
+            try {
+                const response = await fetch('/api/member?action=pause', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, months })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function resumeSanctuary() {
+            const email = document.getElementById('member-email').innerText;
+            try {
+                const response = await fetch('/api/member?action=resume', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+    </script>
+    <footer style="background: white; padding: 6rem 4rem 4rem; border-top: 1px solid var(--aged-paper);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto;">
+            <div>
+                <a href="/" class="logo" style="margin-bottom: 1.5rem;"><span>The</span> WORN PAGES CLUB</a>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; max-width: 400px;">Curating the world's most loved stories for the modern reader. Based in a small shop with big shelves.</p>
+            </div>
+            <div>
+                <h4 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem;">Information</h4>
+                <ul style="list-style: none; font-size: 0.9rem; line-height: 2;">
+                    <li><a href="mailto:hello@thewornpages.com" style="color: var(--text-dark); text-decoration: none;">General Inquiries</a></li>
+                    <li><a href="mailto:support@thewornpages.com" style="color: var(--text-dark); text-decoration: none;">Member Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem;">The Legal Sanctuary</h4>
+                <ul style="list-style: none; font-size: 0.9rem; line-height: 2;">
+                    <li><a href="privacy.html" style="color: var(--text-dark); text-decoration: none;">Privacy Policy</a></li>
+                    <li><a href="terms.html" style="color: var(--text-dark); text-decoration: none;">Terms of Service</a></li>
+                    <li><a href="accessibility.html" style="color: var(--text-dark); text-decoration: none;">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted); font-size: 0.8rem;">
+            &copy; 2026 The Worn Pages Club. A product of KnotStranded LLC, Camarillo CA. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>

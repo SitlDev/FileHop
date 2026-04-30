@@ -1,0 +1,390 @@
+/* ================================================================
+   TEAVAULT — Catalog Page Styles
+   ================================================================ */
+
+/* ── Page Header ── */
+.page-hero {
+  padding-top: calc(var(--nav-h) + 5rem);
+  padding-bottom: 4rem;
+  background: var(--umber);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(92,122,78,0.25) 0%, transparent 70%);
+}
+.page-hero .section-eyebrow { color: var(--gold-lt); }
+.page-hero .section-title { color: var(--cream); font-size: clamp(2.5rem, 5vw, 4rem); }
+.page-hero .section-subtitle { color: rgba(245,237,214,0.65); }
+.page-hero-content { position: relative; z-index: 1; }
+
+/* ── B2B Toggle ── */
+.b2b-toggle-bar {
+  background: white; border-bottom: 1px solid var(--border);
+  padding: 0.85rem 0; position: sticky; top: var(--nav-h); z-index: 100;
+}
+.b2b-toggle-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+.toggle-label-group { display: flex; align-items: center; gap: 1rem; }
+.toggle-label {
+  font-family: var(--font-ui); font-size: 0.8rem; color: rgba(28,18,8,0.55);
+  letter-spacing: 0.04em;
+}
+.toggle-label.active { color: var(--umber); font-weight: 500; }
+.toggle-switch {
+  position: relative; width: 52px; height: 28px;
+  background: var(--border); border-radius: 100px; cursor: pointer;
+  transition: background 0.3s;
+}
+.toggle-switch.on { background: var(--terra); }
+.toggle-switch::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: transform 0.3s var(--ease-silk);
+}
+.toggle-switch.on::after { transform: translateX(24px); }
+.b2b-mode-info {
+  font-family: var(--font-ui); font-size: 0.75rem;
+  color: var(--terra); display: none;
+}
+.b2b-mode-info.visible { display: block; }
+
+/* ── Catalog Layout ── */
+.catalog-layout {
+  display: grid; grid-template-columns: 260px 1fr;
+  gap: 2.5rem; max-width: var(--max-w); margin: 0 auto;
+  padding: 3rem 2rem 6rem; align-items: start;
+}
+
+/* ── Filter Sidebar ── */
+.filter-sidebar {
+  position: sticky; top: calc(var(--nav-h) + 80px);
+  background: white; border: 1px solid var(--border-lt);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.filter-title {
+  padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-lt);
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 600;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.filter-clear {
+  font-family: var(--font-ui); font-size: 0.68rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--terra); cursor: pointer;
+  background: none; border: none;
+}
+.filter-group { border-bottom: 1px solid var(--border-lt); }
+.filter-group-title {
+  padding: 1rem 1.5rem; font-family: var(--font-ui);
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--warm-grey); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  user-select: none;
+}
+.filter-group-title::after { content: '▾'; font-size: 0.8rem; transition: transform 0.2s; }
+.filter-group.collapsed .filter-group-title::after { transform: rotate(-90deg); }
+.filter-group-body { padding: 0.5rem 1.5rem 1rem; }
+.filter-group.collapsed .filter-group-body { display: none; }
+.filter-option {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.35rem 0; cursor: pointer;
+}
+.filter-option input[type="checkbox"] { display: none; }
+.filter-check {
+  width: 16px; height: 16px; border: 1.5px solid var(--border);
+  border-radius: 3px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.filter-option input:checked + .filter-check {
+  background: var(--terra); border-color: var(--terra);
+}
+.filter-option input:checked + .filter-check::after {
+  content: '✓'; color: white; font-size: 10px;
+}
+.filter-option-label {
+  font-family: var(--font-ui); font-size: 0.8rem;
+  color: rgba(28,18,8,0.75); transition: color 0.2s;
+}
+.filter-option:hover .filter-option-label { color: var(--umber); }
+.filter-option-count {
+  font-size: 0.65rem; color: var(--warm-grey); margin-left: auto;
+}
+
+/* Price range */
+.price-range { padding: 0.5rem 0; }
+.price-inputs { display: flex; gap: 0.75rem; }
+.price-input {
+  flex: 1; padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  font-family: var(--font-ui); font-size: 0.8rem; color: var(--umber);
+  background: white;
+}
+.price-input:focus { outline: none; border-color: var(--terra); }
+
+/* ── Catalog Grid ── */
+.catalog-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;
+}
+.catalog-count {
+  font-family: var(--font-ui); font-size: 0.8rem; color: var(--warm-grey);
+}
+.catalog-sort {
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.sort-label { font-family: var(--font-ui); font-size: 0.75rem; color: var(--warm-grey); }
+.sort-select {
+  padding: 0.4rem 0.85rem; border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-family: var(--font-ui); font-size: 0.8rem;
+  color: var(--umber); background: white; cursor: pointer;
+}
+.sort-select:focus { outline: none; border-color: var(--terra); }
+
+.tea-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Tea Card ── */
+.tea-card {
+  background: white; border-radius: var(--radius-lg);
+  border: 1px solid var(--border-lt); overflow: hidden;
+  transition: transform 0.35s var(--ease-silk), box-shadow 0.35s var(--ease-silk);
+  position: relative;
+}
+.tea-card:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(28,18,8,0.1); }
+.tea-card-img {
+  position: relative; height: 210px;
+  background-size: cover; background-position: center;
+  overflow: hidden;
+}
+.tea-card-img-inner {
+  position: absolute; inset: 0; transition: transform 0.55s var(--ease-silk);
+}
+.tea-card:hover .tea-card-img-inner { transform: scale(1.05); }
+.tea-card-actions {
+  position: absolute; top: 0.75rem; right: 0.75rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+  opacity: 0; transition: opacity 0.25s;
+}
+.tea-card:hover .tea-card-actions { opacity: 1; }
+.card-action-btn {
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  background: rgba(245,237,214,0.92); backdrop-filter: blur(8px);
+  border-radius: 50%; border: none; cursor: pointer;
+  transition: background 0.2s;
+}
+.card-action-btn:hover { background: var(--cream); }
+.tea-card-body { padding: 1.25rem; }
+.tea-card-region {
+  font-family: var(--font-ui); font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--warm-grey); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.tea-card-name {
+  font-family: var(--font-display); font-size: 1.2rem;
+  font-weight: 600; color: var(--umber); margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+.tea-card-supplier {
+  font-family: var(--font-ui); font-size: 0.72rem;
+  color: var(--warm-grey); margin-bottom: 0.85rem;
+}
+.tea-card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+.health-tag {
+  font-family: var(--font-ui); font-size: 0.63rem;
+  padding: 0.15rem 0.5rem; border-radius: 100px;
+  background: rgba(92,122,78,0.1); color: var(--sage);
+  border: 1px solid rgba(92,122,78,0.2); letter-spacing: 0.04em;
+}
+.tea-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 0.85rem; border-top: 1px solid var(--border-lt);
+}
+.tea-retail-price {
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 600;
+}
+.tea-wholesale-price {
+  font-family: var(--font-ui); font-size: 0.72rem;
+  color: var(--terra); display: none;
+}
+body.wholesale-mode .tea-retail-price { display: none; }
+body.wholesale-mode .tea-wholesale-price { display: block; font-size: 1rem; color: var(--terra); }
+.tea-card-buy {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  background: var(--umber); color: var(--cream); border-radius: 50%;
+  font-size: 1rem; transition: all 0.25s;
+}
+.tea-card-buy:hover { background: var(--terra); transform: rotate(10deg); }
+
+/* Tea card color variants */
+.tcard-green .tea-card-img-inner { background: linear-gradient(155deg, #1C3310 0%, #3A6028 60%, #5C7A4E 100%); }
+.tcard-green .tea-card-img-inner::after { content: '🍃'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.25; }
+.tcard-oolong .tea-card-img-inner { background: linear-gradient(155deg, #3D2010 0%, #6B4020 60%, #9A6040 100%); }
+.tcard-oolong .tea-card-img-inner::after { content: '🌺'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.22; }
+.tcard-puerh .tea-card-img-inner { background: linear-gradient(155deg, #1A0D00 0%, #3D1F00 60%, #5C3010 100%); }
+.tcard-puerh .tea-card-img-inner::after { content: '🍂'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.25; }
+.tcard-white .tea-card-img-inner { background: linear-gradient(155deg, #3A3020 0%, #6A5A40 60%, #9A8A6A 100%); }
+.tcard-white .tea-card-img-inner::after { content: '❄️'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.22; }
+.tcard-black .tea-card-img-inner { background: linear-gradient(155deg, #1A0A00 0%, #3D1A0A 60%, #6B2E10 100%); }
+.tcard-black .tea-card-img-inner::after { content: '♟'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.2; }
+.tcard-herbal .tea-card-img-inner { background: linear-gradient(155deg, #1A2E0A 0%, #3A5C20 60%, #6A8C50 100%); }
+.tcard-herbal .tea-card-img-inner::after { content: '🌸'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.22; }
+.tcard-yellow .tea-card-img-inner { background: linear-gradient(155deg, #2E2800 0%, #6B5F10 60%, #9A8C30 100%); }
+.tcard-yellow .tea-card-img-inner::after { content: '✨'; position: absolute; bottom: 1rem; right: 1rem; font-size: 2.5rem; opacity: 0.25; }
+
+/* ================================================================
+   PRODUCT DETAIL PAGE
+   ================================================================ */
+.product-detail {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: calc(var(--nav-h) + 3rem) 2rem 6rem;
+}
+.product-breadcrumb {
+  font-family: var(--font-ui); font-size: 0.72rem;
+  color: var(--warm-grey); margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.product-breadcrumb a:hover { color: var(--umber); }
+.breadcrumb-sep { opacity: 0.4; }
+.product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.product-gallery { position: sticky; top: calc(var(--nav-h) + 2rem); }
+.product-main-img {
+  width: 100%; height: 480px; border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, #1C3310, #3A6028); margin-bottom: 1rem;
+  position: relative; overflow: hidden;
+}
+.product-main-img::after { content: '🍵'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 8rem; opacity: 0.1; }
+.product-thumbs { display: flex; gap: 0.75rem; }
+.product-thumb {
+  width: 80px; height: 80px; border-radius: var(--radius);
+  cursor: pointer; border: 2px solid transparent; overflow: hidden; transition: border-color 0.2s;
+}
+.product-thumb.active { border-color: var(--terra); }
+.product-thumb-img { width: 100%; height: 100%; background: linear-gradient(145deg, #2E4A22, #5C7A4E); }
+
+.product-info { padding-top: 0.5rem; }
+.product-type-badge {
+  display: inline-block; margin-bottom: 1rem;
+  font-family: var(--font-ui); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--terra); border-bottom: 1px solid currentColor; padding-bottom: 0.1rem;
+}
+.product-name {
+  font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600; line-height: 1.1; color: var(--umber); margin-bottom: 0.5rem;
+}
+.product-origin {
+  font-family: var(--font-ui); font-size: 0.8rem; color: var(--warm-grey);
+  margin-bottom: 1.5rem;
+}
+.product-tasting-notes { margin-bottom: 2rem; }
+.tasting-notes-title {
+  font-family: var(--font-ui); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--warm-grey); margin-bottom: 0.75rem;
+}
+.tasting-notes-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tasting-chip {
+  padding: 0.3rem 0.85rem; border-radius: 100px;
+  border: 1px solid var(--border); background: white;
+  font-family: var(--font-ui); font-size: 0.75rem; color: rgba(28,18,8,0.7);
+}
+.product-price-row {
+  display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2rem;
+  padding: 1.5rem; background: rgba(245,237,214,0.5);
+  border-radius: var(--radius-lg); border: 1px solid var(--border-lt);
+}
+.product-price-retail .price-label {
+  font-family: var(--font-ui); font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--warm-grey); display: block; margin-bottom: 0.2rem;
+}
+.product-price-retail .price-value {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--umber);
+}
+.product-moq { font-family: var(--font-ui); font-size: 0.75rem; color: var(--warm-grey); }
+
+.product-buy-row { display: flex; gap: 1rem; margin-bottom: 2rem; align-items: center; }
+.qty-selector {
+  display: flex; align-items: center; gap: 0;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
+}
+.qty-btn {
+  padding: 0.6rem 1rem; background: none; border: none; cursor: pointer;
+  font-family: var(--font-ui); font-size: 1rem; color: var(--umber);
+  transition: background 0.2s;
+}
+.qty-btn:hover { background: rgba(28,18,8,0.06); }
+.qty-val { padding: 0.6rem 0.85rem; font-family: var(--font-ui); font-size: 0.9rem; color: var(--umber); }
+.sample-req-link {
+  font-family: var(--font-ui); font-size: 0.75rem; color: var(--terra);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ── Brew Info ── */
+.brew-info-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-bottom: 2rem;
+}
+.brew-stat {
+  text-align: center; padding: 1rem;
+  background: white; border-radius: var(--radius);
+  border: 1px solid var(--border-lt);
+}
+.brew-stat-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+.brew-stat-val {
+  font-family: var(--font-display); font-size: 1.3rem;
+  font-weight: 600; color: var(--umber); line-height: 1;
+}
+.brew-stat-label {
+  font-family: var(--font-ui); font-size: 0.65rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-grey);
+}
+
+/* ── Certifications ── */
+.cert-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.cert-pill {
+  padding: 0.3rem 0.85rem; border-radius: 100px;
+  border: 1px solid rgba(92,122,78,0.3); background: rgba(92,122,78,0.08);
+  font-family: var(--font-ui); font-size: 0.7rem; color: var(--sage);
+}
+
+/* ── Product Tabs ── */
+.product-tabs { margin-top: 4rem; border-top: 1px solid var(--border); }
+.tab-nav { display: flex; gap: 0; overflow-x: auto; border-bottom: 1px solid var(--border); }
+.tab-btn {
+  padding: 1rem 1.5rem; background: none; border: none; cursor: pointer;
+  font-family: var(--font-ui); font-size: 0.78rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--warm-grey); white-space: nowrap;
+  border-bottom: 2px solid transparent;  transition: all 0.25s;
+}
+.tab-btn.active { color: var(--umber); border-bottom-color: var(--terra); }
+.tab-content { display: none; padding: 2rem 0; }
+.tab-content.active { display: block; }
+.provenance-text { font-size: 0.95rem; line-height: 1.85; color: rgba(28,18,8,0.75); }
+
+/* ================================================================
+   RESPONSIVE — Catalog/Product
+   ================================================================ */
+@media (max-width: 1024px) {
+  .catalog-layout { grid-template-columns: 1fr; }
+  .filter-sidebar { position: static; }
+  .product-layout { grid-template-columns: 1fr; }
+  .product-gallery { position: static; }
+}
+@media (max-width: 768px) {
+  .tea-grid { grid-template-columns: repeat(2, 1fr); }
+  .brew-info-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .tea-grid { grid-template-columns: 1fr; }
+}

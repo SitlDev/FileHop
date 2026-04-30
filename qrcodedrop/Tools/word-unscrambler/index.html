@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find all possible words from scrambled letters and letter combinations. Perfect for word puzzles, games, and vocabulary discovery.">
+    <meta name="keywords" content="word unscrambler, unscramble letters, word solver, word finder, letter scrambler solver, anagrams from letters, word game solver, puzzle solver, letter combination tool, Wordle helper, online word finder">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/word-unscrambler/">
+    <meta property="og:title" content="Word Unscrambler">
+    <meta property="og:description" content="Find all possible words from scrambled letters.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Word Unscrambler</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header { 
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            background: #0f0f0f;
+        }
+        header h1 { 
+            font-size: 2em; 
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        header p { 
+            font-size: 0.95em; 
+            color: #999;
+        }
+
+        main {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            font-size: 16px;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #10b981;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .search-hint {
+            font-size: 0.85em;
+            color: #666;
+            padding: 8px 4px;
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        button.primary {
+            background: #10b981;
+            color: white;
+            flex: 1;
+            min-width: 80px;
+        }
+
+        button.primary:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: #1a1a1a;
+            color: #999;
+            padding: 12px 16px;
+        }
+
+        button.secondary:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        .results-section {
+            margin-top: 32px;
+        }
+
+        .results-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .result-pill {
+            padding: 10px 14px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.9em;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-word;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 24px 16px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .controls {
+                gap: 6px;
+            }
+
+            button {
+                padding: 11px 16px;
+                font-size: 13px;
+            }
+
+            button.primary {
+                min-width: 70px;
+                flex: 1 1 auto;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 6px;
+            }
+
+            .result-pill {
+                padding: 8px 10px;
+                font-size: 0.85em;
+                min-height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 24px 16px;
+            }
+
+            header h1 {
+                font-size: 1.3em;
+                margin-bottom: 4px;
+            }
+
+            header p {
+                font-size: 0.8em;
+            }
+
+            main {
+                padding: 16px;
+                max-width: 100%;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            .search-hint {
+                font-size: 0.8em;
+                margin-bottom: 16px;
+            }
+
+            .controls {
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 10px 12px;
+                font-size: 12px;
+                min-height: 42px;
+            }
+
+            button.primary {
+                min-width: auto;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                gap: 5px;
+                margin-bottom: 12px;
+            }
+
+            .result-pill {
+                padding: 6px 8px;
+                font-size: 0.75em;
+                min-height: 36px;
+                border-radius: 6px;
+            }
+
+            .results-section {
+                margin-top: 20px;
+            }
+        }
+            user-select: none;
+        }
+
+        .result-pill:hover {
+            background: #2a2a2a;
+            border-color: #10b981;
+            color: #10b981;
+            transform: translateY(-1px);
+        }
+
+        .result-pill.copied {
+            background: #10b981;
+            color: #0a0a0a;
+            border-color: #10b981;
+            animation: pulse 0.3s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+            font-size: 0.95em;
+        }
+
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            background: #0f0f0f;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 16px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+
+            main {
+                padding: 24px 16px;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            button {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            button.primary {
+                flex: 1;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 6px;
+            }
+
+            .result-pill {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 12px;
+            }
+            header h1 {
+                font-size: 1.3em;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button.secondary {
+                width: 100%;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔀 Word Unscrambler</h1>
+        <p>Find all words from scrambled letters</p>
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input type="text" id="input-letters" placeholder="Enter letters (e.g., 'listen')" autofocus>
+            <div class="search-hint">Try: LISTEN, PYTHON, HOUSE</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 120px; gap: 12px; align-items: center; margin-bottom: 20px;">
+            <div>
+                <label for="min-length" style="display: block; font-size: 0.9em; color: #999; margin-bottom: 6px;">Min Word Length:</label>
+                <select id="min-length" style="width: 100%; padding: 10px; background: #1a1a1a; color: #e0e0e0; border: 1px solid #2a2a2a; border-radius: 8px; font-size: 14px; cursor: pointer;">
+                    <option value="2">2+ letters</option>
+                    <option value="3">3+ letters</option>
+                    <option value="4">4+ letters</option>
+                    <option value="5">5+ letters</option>
+                    <option value="6">6+ letters</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="unscrambleWords()">Find Words</button>
+            <button class="secondary" onclick="clearResults()">Clear</button>
+        </div>
+
+        <div class="results-section">
+            <div id="results-container"></div>
+        </div>
+
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 24px; margin: 32px 0; border: 1px solid #2a2a2a;">
+            <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #10b981;">How Word Unscrambler Works</h2>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 16px;">
+                The Word Unscrambler is a powerful tool that helps you find all valid English words that can be made from a set of scrambled letters. Whether you're solving a word puzzle, playing Scrabble, or tackling a Wordle challenge, this tool provides instant solutions.
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Common Use Cases:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Word Games:</strong> Perfect for Scrabble, Words With Friends, and other word-based games</li>
+                <li><strong>Wordle Solver:</strong> Quickly find possible words when you know some letters</li>
+                <li><strong>Crossword Puzzles:</strong> Unscramble letters to solve crossword clues</li>
+                <li><strong>Anagram Solver:</strong> Discover hidden words within letter combinations</li>
+                <li><strong>Vocabulary Building:</strong> Learn new words and expand your vocabulary</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Example: Unscrambling LISTEN</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                When you enter the letters "LISTEN", the tool discovers all valid English words that can be formed using those letters:
+            </p>
+            <ul style="color: #999; margin-left: 20px; font-family: monospace; line-height: 2;">
+                <li><strong style="color: #10b981;">LISTEN</strong> (6 letters) - to hear attentively</li>
+                <li><strong style="color: #10b981;">SILENT</strong> (6 letters) - making no sound</li>
+                <li><strong style="color: #10b981;">ENLIST</strong> (6 letters) - to join the military</li>
+                <li><strong style="color: #10b981;">INLETS</strong> (6 letters) - narrow waterways</li>
+                <li><strong style="color: #10b981;">TINSEL</strong> (6 letters) - shiny decoration</li>
+                <li><strong style="color: #999;">LIST, LIES, LETS, LEST, ISLE, LITE...</strong> (and 30+ more)</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Tips for Best Results:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Use the Min Length filter</strong> to focus on longer, more valuable words</li>
+                <li><strong>Try common letter combinations</strong> like TH, CH, ST, ING</li>
+                <li><strong>Look for 6+ letter words</strong> for higher scores in word games</li>
+                <li><strong>Remember silent letters</strong> - they count! (e.g., K in "KNIFE")</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Historical Background:</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Word unscrambling has roots dating back to ancient word games played in Egypt and Rome. The modern digital word unscrambler evolved from software developed in the 1980s for word game enthusiasts. Early versions required computational dictionaries, which were revolutionized by online databases in the 1990s and 2000s.
+            </p>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Variations & Related Tools:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Anagram Solvers:</strong> Find exact letter matches (different from partial unscrambling)</li>
+                <li><strong>Wordle Solvers:</strong> Filter by known positions and eliminated letters</li>
+                <li><strong>Pattern Finders:</strong> Use wildcards and patterns (e.g., C_T matches CAT, CUT, COT)</li>
+                <li><strong>Scrabble Dictionary Tools:</strong> Verify words are valid in competitive play</li>
+                <li><strong>Crossword Solvers:</strong> Find words by clue and letter constraints</li>
+                <li><strong>Letter Combination Generators:</strong> Create all possible combinations from input letters</li>
+            </ul>
+        </div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tools Suite. Unscramble words, find solutions, discover vocabulary.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="../../theme-toggle.js"></script>
+</body>
+</html>

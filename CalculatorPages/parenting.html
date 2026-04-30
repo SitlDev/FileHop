@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parenting & Child Development Calculators — Baby Costs & More 2026 — YourCalc</title>
+    <meta name="keywords" content="parenting calculator, baby cost calculator, allowance calculator, school age, child bmi">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/parenting.html" />
+    <meta name="description" content="Professional parenting tools: Baby Costs, Allowance Projection, School Start Dates, and Child BMI." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Parenting & <span style="color: var(--accent2);">Development</span></h1>
+            <p class="subtitle">Financial and growth planning tools for every stage of childhood.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Parenting <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">First-Year Prep</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The average first-year cost exceeds $15,000. Planning for childcare, which accounts for ~60% of expenses, is critical for household stability.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Financial Literacy</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The "Age Rule" ($1/week per year of age) is a proven method to introduce children to budgeting and delayed gratification concepts.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Insurance Reality</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Adding a teen driver typically doubles premiums. Many providers offer "Good Student" discounts (3.0+ GPA) that can save over $500/year.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('babycost', event)">Baby Cost</button>
+                <button class="tab-btn" onclick="showTab('allowance', event)">Allowance</button>
+                <button class="tab-btn" onclick="showTab('schoolage', event)">School Age</button>
+                <button class="tab-btn" onclick="showTab('childbmi', event)">Child BMI</button>
+                <button class="tab-btn" onclick="showTab('teenins', event)">Teen Insurance</button>
+            </div>
+
+            <div id="babycost" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Location</label><div class="input-wrapper"><select id="bc-loc"><option value="1.0">Average US</option><option value="1.4">High-Cost City (NYC, SF, LA)</option><option value="0.75">Low-Cost Region</option></select></div></div>
+                    <div class="input-group"><label>Childcare Type</label><div class="input-wrapper"><select id="bc-care"><option value="15000">Daycare Center</option><option value="25000">Nanny / Au Pair</option><option value="0">Stay-at-Home Parent</option><option value="8000">Family / Part-Time</option></select></div></div>
+                    <div class="input-group"><label>Feeding Method</label><div class="input-wrapper"><select id="bc-feed"><option value="1800">Breastfeeding (pumping gear)</option><option value="2400">Formula (standard)</option><option value="3600">Formula (specialty)</option></select></div></div>
+                    <div class="input-group"><label>Delivery Type</label><div class="input-wrapper"><select id="bc-del"><option value="3000">Vaginal (with insurance)</option><option value="5000">C-Section (with insurance)</option><option value="0">Covered / Medicaid</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcBabyCost()">Estimate First-Year Cost →</button>
+                <div id="babycost-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">First Year Total</span><span class="result-value" id="bc-total">$0</span></div>
+                        <div class="result-item"><span class="result-label">Monthly Average</span><span class="result-value" id="bc-mo">$0</span></div>
+                        <div class="result-item"><span class="result-label">Childcare Portion</span><span class="result-value" id="bc-cc">$0</span></div>
+                        <div class="result-item"><span class="result-label">Age 18 Projection</span><span class="result-value" id="bc-18">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="allowance" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Child Age</label><div class="input-wrapper"><input type="number" id="al-age" value="8" min="3" max="17"></div></div>
+                    <div class="input-group"><label>Weekly Allowance ($)</label><div class="input-wrapper"><input type="number" id="al-amt" value="10"></div></div>
+                    <div class="input-group"><label>Annual Increase (%)</label><div class="input-wrapper"><input type="number" id="al-raise" value="10"></div></div>
+                    <div class="input-group"><label>Savings Rate (%)</label><div class="input-wrapper"><input type="number" id="al-save" value="30"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcAllowance()">Project to Age 18 →</button>
+                <div id="allowance-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Total at 18</span><span class="result-value" id="al-total">$0</span></div>
+                        <div class="result-item"><span class="result-label">Savings Pot</span><span class="result-value" id="al-saved">$0</span></div>
+                        <div class="result-item"><span class="result-label">Final Weekly Rate</span><span class="result-value" id="al-final">$0</span></div>
+                        <div class="result-item"><span class="result-label">Remaining Time</span><span class="result-value" id="al-yrs">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="schoolage" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Birthday</label><div class="input-wrapper"><input type="date" id="sa-dob"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>State Cutoff</label><div class="input-wrapper"><select id="sa-cutoff">
+                        <option value="9-1">September 1</option>
+                        <option value="10-1">October 1</option>
+                        <option value="11-1">November 1</option>
+                        <option value="12-1">December 1</option>
+                        <option value="8-1">August 1</option>
+                    </select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcSchoolAge()">Calculate Start Date →</button>
+                <div id="schoolage-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Kindergarten Start</span><span class="result-value" id="sa-kstart">—</span></div>
+                        <div class="result-item"><span class="result-label">Age at Start</span><span class="result-value" id="sa-age">—</span></div>
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Academic Note</span><span class="result-value" id="sa-tip" style="font-size:14px">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="childbmi" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Age (2-19)</label><div class="input-wrapper"><input type="number" id="cb-age" value="10"></div></div>
+                    <div class="input-group"><label>Sex</label><div class="input-wrapper"><select id="cb-sex"><option value="m">Male</option><option value="f">Female</option></select></div></div>
+                    <div class="input-group"><label>Weight (kg)</label><div class="input-wrapper"><input type="number" id="cb-w" value="35"></div></div>
+                    <div class="input-group"><label>Height (cm)</label><div class="input-wrapper"><input type="number" id="cb-h" value="140"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcChildBMI()">Analyze Growth →</button>
+                <div id="childbmi-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">BMI Score</span><span class="result-value" id="cb-bmi">0</span></div>
+                        <div class="result-item"><span class="result-label">Category</span><span class="result-value" id="cb-cat">—</span></div>
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">CDC Percentile Range</span><span class="result-value" id="cb-pct">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="teenins" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Current Premium</label><div class="input-wrapper"><input type="number" id="ti-prem" value="150"></div></div>
+                    <div class="input-group"><label>Teen Age</label><div class="input-wrapper"><select id="ti-age"><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option></select></div></div>
+                    <div class="input-group"><label>Teen Sex</label><div class="input-wrapper"><select id="ti-sex"><option value="m">Male (Higher Risk)</option><option value="f">Female</option></select></div></div>
+                    <div class="input-group"><label>GPA Discount (3.0+)</label><div class="input-wrapper"><select id="ti-gpa"><option value="0.15">Applied (15%)</option><option value="0">None</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcTeenIns()">Estimate Insurance →</button>
+                <div id="teenins-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">New Premium</span><span class="result-value" id="ti-new">$0</span></div>
+                        <div class="result-item"><span class="result-label">Total Increase</span><span class="result-value" id="ti-inc">$0</span></div>
+                        <div class="result-item"><span class="result-label">Monthly Impact</span><span class="result-value" id="ti-mo">$0</span></div>
+                        <div class="result-item"><span class="result-label">Est. GPA Savings</span><span class="result-value" id="ti-disc">$0/yr</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">Navigating the <span style="color: var(--accent);">Financial & Developmental</span> Milestones</h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Hidden Economics of Early Childhood</h3>
+                        <p>The first year of a child's life is often the most financially volatile. Between hospital delivery fees, specialized childcare, and the continuous need for diapers and formula, the "sticker shock" can be significant. Our <strong>Baby Cost Projection Tool</strong> accounts for regional cost-of-living adjustments and different childcare scenarios. In many urban areas, childcare alone can exceed the cost of a mortgage. By visualizing these expenses early, parents can build a realistic <strong>Emergency Fund</strong> and adjust their household budget before the baby arrives.</p>
+                        <p style="margin-top: 16px;">Long-term planning is equally vital. The "Cost to Raise a Child to 18" often excludes college tuition, yet it still reaches hundreds of thousands of dollars. Our calculator includes a 3% annual inflation adjustment to show the <em>real</em> future value of these costs. While these numbers can be intimidating, they serve as a roadmap for prioritizing savings and making informed lifestyle choices that support both the child's development and the parents' financial stability.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Growth Metrics: Understanding CDC Percentiles</h3>
+                        <p>Unlike adult BMI, which uses fixed categories, <strong>Childhood BMI</strong> is age and sex-specific. A child's body fatness changes significantly as they grow, and boys and girls develop at different rates. Our <strong>Growth Analysis Tool</strong> compares your child's data to the CDC's clinical growth charts. If a child is in the "85th percentile," it means they have a higher BMI than 85% of children of the same age and sex. These percentiles are screening tools used by pediatricians to track growth trends over time, rather than a diagnostic of health on a single day.</p>
+                        <p style="margin-top: 16px;">The focus in pediatric health is always on the "Growth Curve." A single high or low reading is less important than a sudden shift in percentile. Consistent tracking helps identify potential metabolic or nutritional issues early, allowing for gentle interventions that promote lifelong healthy habits. Always discuss these metrics with your pediatrician during routine wellness visits for a complete clinical picture.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Teen Years: Insurance and Financial Literacy</h3>
+                        <p>As children enter their teens, the financial focus shifts to independence. Adding a teen driver to an auto policy can increase premiums by 50% to 100%. Our <strong>Teen Insurance Estimator</strong> helps parents prepare for this "insurance spike" and identifies ways to mitigate it, such as "Good Student Discounts." Similarly, our <strong>Allowance Logic Tool</strong> provides a framework for teaching financial literacy. By linking allowance to savings goals, parents can teach the value of compound interest and delayed gratification—skills that are far more valuable than the money itself.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Data-Driven Parenting</h3>
+                        <p>Parenting is an art, but it's increasingly supported by science and data. Our <strong>Parenting Tools Suite</strong> is designed to provide clarity on everything from school start dates to long-term savings goals. By using data to handle the quantitative side of family life, you free up mental energy for the qualitative side—building memories and supporting your child's unique journey. Stay informed, stay prepared, and let the data support your intuition.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmtP = { format: (v) => '$' + Math.round(v).toLocaleString() };
+
+        function calcBabyCost() {
+            const loc = parseFloat(document.getElementById('bc-loc').value);
+const care = parseFloat(document.getElementById('bc-care').value);
+const feed = parseFloat(document.getElementById('bc-feed').value);
+const del = parseFloat(document.getElementById('bc-del').value);
+const base = 6000;
+const total = (base + care + feed + del) * loc;
+document.getElementById('bc-total').innerText = fmtP.format(total);
+document.getElementById('bc-mo').innerText = fmtP.format(total / 12);
+document.getElementById('bc-cc').innerText = fmtP.format(care * loc);
+document.getElementById('bc-18').innerText = fmtP.format(total * 14 * 1.03);
+document.getElementById('babycost-results').classList.add('visible');
+saveActivity('parenting', { type: 'baby-cost', location: loc, childcare: care }, { total: total.toFixed(0) });
+        }
+
+        function calcAllowance() {
+            const startAge = parseFloat(document.getElementById('al-age').value);
+const startAmt = parseFloat(document.getElementById('al-amt').value);
+const raise = parseFloat(document.getElementById('al-raise').value) / 100;
+const saveRate = parseFloat(document.getElementById('al-save').value) / 100;
+let totalGiven = 0, totalSaved = 0, weeklyRate = startAmt;
+for (let age = startAge; age < 18; age++) {
+    const annual = weeklyRate * 52;
+    totalGiven += annual;
+    totalSaved += annual * saveRate;
+    weeklyRate *= (1 + raise);
+}
+document.getElementById('al-total').innerText = fmtP.format(totalGiven);
+document.getElementById('al-saved').innerText = fmtP.format(totalSaved);
+document.getElementById('al-final').innerText = fmtP.format(weeklyRate) + '/wk';
+document.getElementById('al-yrs').innerText = (18 - startAge) + ' years';
+document.getElementById('allowance-results').classList.add('visible');
+saveActivity('parenting', { type: 'allowance', age: startAge, start: startAmt }, { total_given: totalGiven.toFixed(0) });
+        }
+
+        function calcSchoolAge() {
+            const dobInput = document.getElementById('sa-dob').value;
+if(!dobInput) return;
+const dob = new Date(dobInput);
+const cutoffStr = document.getElementById('sa-cutoff').value.split('-');
+const cutoffMo = parseInt(cutoffStr[0]) - 1;
+const cutoffDay = parseInt(cutoffStr[1]);
+let kYear = dob.getFullYear() + 5;
+const cutoffThisYear = new Date(kYear, cutoffMo, cutoffDay);
+if (dob > cutoffThisYear) kYear++;
+const ageAtStart = kYear - dob.getFullYear();
+document.getElementById('sa-kstart').innerText = 'Fall ' + kYear;
+document.getElementById('sa-age').innerText = ageAtStart + ' yrs';
+document.getElementById('sa-tip').innerText = ageAtStart <= 5 ? '📅 Early start — verify social readiness.' : '✅ Standard start age.';
+document.getElementById('schoolage-results').classList.add('visible');
+saveActivity('parenting', { type: 'school-age', dob: dobInput }, { k_start_year: kYear });
+        }
+
+        function calcChildBMI() {
+            const age = parseFloat(document.getElementById('cb-age').value);
+const w = parseFloat(document.getElementById('cb-w').value);
+const h = parseFloat(document.getElementById('cb-h').value) / 100;
+const sex = document.getElementById('cb-sex').value;
+const bmi = w / (h * h);
+const p5 = 13.5 + age * 0.1 + (sex === 'f' ? 0.3 : 0);
+const p85 = 17.5 + age * 0.3 + (sex === 'f' ? 0.5 : 0);
+const p95 = 19 + age * 0.4 + (sex === 'f' ? 0.6 : 0);
+let cat = '', pct = '';
+if (bmi < p5) { cat = 'Underweight'; pct = '< 5th percentile'; }
+else if (bmi < p85) { cat = 'Healthy'; pct = '5th–84th percentile'; }
+else if (bmi < p95) { cat = 'Overweight'; pct = '85th–94th percentile'; }
+else { cat = 'Obese'; pct = '≥ 95th percentile'; }
+document.getElementById('cb-bmi').innerText = bmi.toFixed(1);
+document.getElementById('cb-pct').innerText = pct;
+document.getElementById('cb-cat').innerText = cat;
+document.getElementById('childbmi-results').classList.add('visible');
+saveActivity('parenting', { type: 'child-bmi', age, weight: w }, { bmi: bmi.toFixed(1), category: cat });
+        }
+
+        function calcTeenIns() {
+            const base = parseFloat(document.getElementById('ti-prem').value);
+const age = parseInt(document.getElementById('ti-age').value);
+const sex = document.getElementById('ti-sex').value;
+const disc = parseFloat(document.getElementById('ti-gpa').value);
+const mults = { m: { 16: 1.0, 17: 0.85, 18: 0.75, 19: 0.60 }, f: { 16: 0.70, 17: 0.60, 18: 0.50, 19: 0.40 } };
+const increase = base * mults[sex][age];
+const discSaving = (base + increase) * disc;
+const newPrem = base + increase - discSaving;
+document.getElementById('ti-new').innerText = fmtP.format(newPrem);
+document.getElementById('ti-inc').innerText = fmtP.format(increase - discSaving);
+document.getElementById('ti-mo').innerText = fmtP.format(newPrem - base) + '/mo';
+document.getElementById('ti-disc').innerText = fmtP.format(discSaving * 12) + '/yr';
+document.getElementById('teenins-results').classList.add('visible');
+saveActivity('parenting', { type: 'teen-insurance', age, sex }, { premium: newPrem.toFixed(0) });
+        }
+    </script>
+</body>
+</html>

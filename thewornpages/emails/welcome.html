@@ -2,35 +2,52 @@
 <html>
 <head>
     <style>
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1B3022; background-color: #FDFBF7; margin: 0; padding: 0; }
-        .wrapper { max-width: 600px; margin: 40px auto; background: #ffffff; border: 1px solid #E9DCC9; }
-        .header { background: #1B3022; padding: 40px; text-align: center; }
-        .header h1 { color: #FDFBF7; font-family: 'Times New Roman', serif; margin: 0; letter-spacing: 2px; }
-        .content { padding: 40px; }
-        .footer { background: #F5F1E9; padding: 30px; text-align: center; font-size: 12px; color: #666; }
-        .button { display: inline-block; padding: 15px 30px; background: #6B1D1D; color: #ffffff !important; text-decoration: none; border-radius: 4px; border-bottom: 2px solid #4a1414; }
-        .handwritten { font-family: 'Cursive', cursive; color: #6B1D1D; font-size: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond&family=Caveat&display=swap');
+        
+        body { font-family: 'EB Garamond', serif; line-height: 1.8; color: #1B3022; background-color: #FDFBF7; margin: 0; padding: 0; }
+        .wrapper { max-width: 600px; margin: 40px auto; background: #ffffff; border: 1px solid #E9DCC9; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .header { background: #1B3022; padding: 70px 40px; text-align: center; background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); }
+        .header h1 { color: #C5A059; font-family: 'Playfair Display', serif; margin: 0; letter-spacing: 4px; text-transform: uppercase; font-size: 24px; }
+        .handwritten { font-family: 'Caveat', cursive; color: #C5A059; font-size: 22px; margin-bottom: 15px; display: block; }
+        .content { padding: 50px; text-align: center; }
+        .divider { width: 40px; height: 1px; background: #C5A059; margin: 30px auto; }
+        .footer { background: #F5F1E9; padding: 40px; text-align: center; font-size: 11px; color: #999; letter-spacing: 1px; }
+        .button { display: inline-block; padding: 18px 40px; background: #6B1D1D; color: #ffffff !important; text-decoration: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin: 20px 0; }
+        
+        @media only screen and (max-width: 600px) {
+            .wrapper { width: 100% !important; margin: 0 !important; border: none !important; }
+            .header, .content { padding: 30px !important; }
+            h1 { font-size: 20px !important; }
+        }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="header">
-            <h1>THE WORN PAGES CLUB</h1>
+            <span class="handwritten">Your Sanctuary Awaits</span>
+            <h1>Welcome to the Club</h1>
         </div>
         <div class="content">
-            <p>Dear Bibliophile,</p>
-            <p>Welcome to the sanctuary. You are now a member of <strong>The Worn Pages Club</strong>.</p>
-            <p>Our curators have received your preferences and are already scouting the shelves for titles that speak to your soul. Whether it's the scent of aged paper or the weight of a first-edition hardcover, your sanctuary is about to grow.</p>
-            <p>Your first curation will be prepared shortly.</p>
-            <div style="text-align: center; margin: 40px 0;">
-                <a href="https://thewornpages.com/vault.html" class="button">Visit the Curated Vault</a>
-            </div>
-            <p>Warmly,</p>
-            <p class="handwritten">The Curator</p>
+            <p style="font-size: 20px; color: #1B3022; font-family: 'Playfair Display', serif;">Greetings, fellow bibliophile.</p>
+            <p>You have successfully stepped through the veil into <strong>The Worn Pages Club</strong>. You are no longer just a reader; you are a collector of histories, a guardian of stories, and a member of our inner circle.</p>
+            
+            <div class="divider"></div>
+            
+            <p>Our scouts are already scouring the shelves of private libraries and estate sales to find the editions that will speak to your soul. Whether it is the scent of aged linen or the touch of a gold-leafed spine, your first dispatch is currently being dreamed into existence.</p>
+            
+            <a href="https://thewornpages.com/vault" class="button">Browse the Current Archive</a>
+            
+            <p style="margin-top: 30px;">Until your first package arrives, we invite you to explore the member-exclusive digital vault and preview our latest finds.</p>
+            
+            <p class="handwritten" style="font-size: 28px; color: #6B1D1D; margin-top: 40px;">The Curator</p>
         </div>
         <div class="footer">
-            <p>&copy; 2024 The Worn Pages Club • hello@thewornpages.com</p>
-            <p>If you no longer wish to receive our dispatches, <a href="#">unsubscribe here</a>.</p>
+            THE WORN PAGES CLUB • EST. 2024<br>
+            A LUXURY SANCTUARY FOR PRE-LOVED LITERATURE<br>
+            <div style="margin-top: 20px;">
+                <a href="#" style="color: #999; text-decoration: underline;">Preferences</a> • 
+                <a href="#" style="color: #999; text-decoration: underline;">Unsubscribe</a>
+            </div>
         </div>
     </div>
 </body>

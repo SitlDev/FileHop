@@ -4,727 +4,426 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Curator's Vault | The Worn Pages Club</title>
-    <meta name="description"
-        content="Explore our living collection of 500+ handpicked pre-loved titles. Select your preferences for your next curated box.">
-
-    <!-- Fonts -->
+    <title>The Vault | The Worn Pages Club</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
+    <script src="js/butterflies.js" defer></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
         :root {
-            --forest-green: #1B3022;
-            --forest-light: #2A4533;
-            --burgundy: #6B1D1D;
-            --burgundy-light: #8E2C2C;
-            --cream: #FDFBF7;
-            --cream-dark: #F5F1E9;
-            --aged-paper: #E9DCC9;
-            --gold: #C5A059;
-            --text-dark: #2C2C2C;
-            --text-muted: #666;
-            --glass: rgba(255, 255, 255, 0.85);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --pink: #B68D8D;    /* Dusty Rose */
+            --blush: #D4A3A3;   /* Blush Pink */
+            --pearl: #FAF6F5;   /* Pearlescent Pearl */
+            --cream: #F5EBE9;
+            --aged-paper: #EDE2E0;
+            --gold: #D4B982;
+            --text-dark: #5C4F4F;
+            --text-muted: #9E8B8B;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius: 32px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--cream);
             color: var(--text-dark);
             font-family: 'EB Garamond', serif;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            overflow-x: hidden;
+            line-height: 1.6;
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--forest-green);
-        }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Nav */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
             height: 90px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 4rem;
-            background: rgba(253, 251, 247, 0.85);
+            background: rgba(250, 246, 245, 0.85);
             backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(27, 48, 34, 0.05);
-            transition: var(--transition);
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--forest-green);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .btn-back {
-            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--text-dark);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            text-decoration: none;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 2px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
         }
 
-        .btn-back:hover { color: var(--gold); }
-
-        /* Vault Header */
-        .vault-hero {
-            padding: 180px 0 60px;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(27, 48, 34, 0.03), transparent);
-        }
-
-        .handwritten {
+        .logo span {
             font-family: 'Caveat', cursive;
-            color: var(--burgundy);
+            text-transform: none;
+            letter-spacing: 0;
             font-size: 2.2rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .vault-hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .manifesto-box {
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 3rem;
-            background: var(--glass);
-            border: 1px solid var(--aged-paper);
-            border-radius: 8px;
-            position: relative;
-            text-align: left;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-        }
-
-        .manifesto-box i {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
             color: var(--gold);
-            opacity: 0.3;
+            margin-right: 0.8rem;
+            line-height: 0;
         }
 
-        .manifesto-box h3 { font-size: 1.4rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
-        .manifesto-box p { font-style: italic; color: var(--text-muted); font-size: 1.2rem; }
+        .vault-hero {
+            padding: 8rem 4rem;
+            text-align: center;
+            background: var(--cream-dark);
+            color: var(--text-dark);
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--aged-paper);
+        }
 
-        /* Filter System */
-        .filter-wrap {
+        .vault-hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 1.5rem; color: var(--text-dark); }
+        .vault-hero p { font-size: 1.3rem; max-width: 700px; margin: 0 auto; color: var(--text-muted); }
+        .handwritten { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--burgundy); display: block; margin-bottom: 0.5rem; }
+
+        .filter-bar {
+            background: white;
+            padding: 1.5rem 4rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--aged-paper);
             position: sticky;
             top: 90px;
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(15px);
-            z-index: 900;
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--aged-paper);
-            margin-bottom: 4rem;
+            z-index: 999;
         }
 
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 1.5rem 1.2rem 3.5rem;
-            background: white;
+        .filter-group { display: flex; align-items: center; gap: 1rem; }
+        .filter-label { font-family: 'Inter', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--gold); }
+        
+        select, input {
+            padding: 0.6rem 1rem;
             border: 1px solid var(--aged-paper);
             border-radius: 4px;
             font-family: 'EB Garamond', serif;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gold);
-        }
-
-        /* Detail Modal */
-        .book-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(27, 48, 34, 0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            backdrop-filter: blur(15px);
-            padding: 2rem;
-        }
-
-        .modal-body {
+            font-size: 1rem;
             background: var(--cream);
-            width: 100%;
-            max-width: 1000px;
+            outline: none;
+        }
+
+        .vault-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 4rem;
+            padding: 6rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .vault-card {
+            background: white;
             border-radius: 8px;
             overflow: hidden;
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .modal-image {
-            background: var(--cream-dark);
-            height: 100%;
-            border-right: 1px solid var(--aged-paper);
-        }
-
-        .modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .modal-info {
-            padding: 4rem;
+            border: 1px solid var(--aged-paper);
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+        }
+        .vault-card:hover { transform: translateY(-10px); box-shadow: 0 40px 80px rgba(0,0,0,0.1); border-color: var(--gold); }
+
+        .vault-img {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
 
-        .close-detail {
+        .era-tag {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
-            cursor: pointer;
-            color: var(--forest-green);
-            z-index: 10;
-        }
-
-        .condition-badge {
-            display: inline-block;
-            background: var(--aged-paper);
-            color: var(--forest-green);
-            padding: 5px 12px;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(27, 48, 34, 0.9);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
             font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 2px;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-        }
-
-        .filter-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: white;
-            border: 1px solid var(--aged-paper);
-            padding: 0.6rem 1.5rem;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text-muted);
-        }
-
-        .filter-btn:hover { border-color: var(--gold); color: var(--forest-green); }
-        .filter-btn.active { background: var(--forest-green); color: white; border-color: var(--forest-green); }
-
-        /* Book Grid */
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 3rem;
-            margin-bottom: 120px;
-        }
-
-        .book-card {
-            background: white;
-            border: 1px solid var(--aged-paper);
-            border-radius: 4px;
-            padding: 1.5rem;
-            transition: var(--transition);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .book-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border: 2px solid var(--burgundy);
-            opacity: 0;
-            transition: var(--transition);
-            border-radius: 4px;
-        }
-
-        .book-card.selected::after { opacity: 1; transform: scale(1.02); }
-
-        .book-cover {
-            height: 350px;
-            background: var(--cream-dark);
-            margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid var(--aged-paper);
-        }
-
-        .book-cover img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .book-card:hover .book-cover img { transform: scale(1.05); }
-
-        .book-card.no-cover .book-cover { display: none; }
-        .book-card.no-cover { padding-top: 4rem; background: var(--aged-paper); height: 500px; justify-content: center; }
-
-        .book-cat { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: bold; }
-        .book-title { font-size: 1.6rem; margin-bottom: 0.5rem; line-height: 1.2; }
-        .book-author { font-style: italic; color: var(--text-muted); }
-
-        .interest-tag {
-            margin-top: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-
-        .book-card.selected .interest-tag { color: var(--burgundy); font-weight: bold; }
-
-        /* Floating Selection */
-        .selection-bar {
-            position: fixed;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(150px);
-            background: var(--forest-green);
-            color: white;
-            padding: 1.2rem 3rem;
+            letter-spacing: 2px;
             border-radius: 100px;
+        }
+
+        .vault-info { padding: 2.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .vault-info h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--forest-green); }
+        .vault-info p.author { color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; }
+        .vault-info p.note { font-size: 1rem; color: var(--text-muted); line-height: 1.8; position: relative; }
+        .vault-info p.note::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--aged-paper); position: absolute; top: -1rem; left: -1.5rem; opacity: 0.5; }
+
+        .vault-footer {
+            padding: 1.5rem 2.5rem;
+            border-top: 1px solid var(--cream-dark);
+            background: var(--cream);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 3rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            transition: var(--transition);
-            z-index: 1000;
+        }
+        .genre-tag { font-family: 'Inter', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); font-weight: bold; }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 100px 0;
         }
 
-        .selection-bar.visible { transform: translateX(-50%) translateY(0); }
-
-        .btn-update {
-            background: var(--gold);
-            color: var(--forest-green);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-update:hover { background: white; transform: translateY(-2px); }
-
-        /* Rare Hunt Form */
-        .hunt-section {
+        footer {
             background: var(--forest-green);
             color: white;
-            padding: 100px 0;
+            padding: 80px 4rem;
             text-align: center;
-            border-radius: 12px;
-            margin-bottom: 100px;
-            background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-        }
-
-        .hunt-section h2 { color: white; font-size: 3rem; margin-bottom: 1.5rem; }
-        .hunt-section .handwritten { color: var(--gold); }
-
-        .hunt-form {
-            max-width: 600px;
-            margin: 3rem auto 0;
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .hunt-form input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1.2rem;
-            color: white;
-            font-family: 'EB Garamond', serif;
-            font-size: 1.1rem;
-            border-radius: 4px;
-        }
-
-        .hunt-form input:focus { border-color: var(--gold); outline: none; background: rgba(255,255,255,0.1); }
-
-        /* Footer */
-        footer {
-            padding: 80px 0;
-            text-align: center;
-            border-top: 1px solid var(--aged-paper);
-            color: var(--text-muted);
-            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            .books-grid { grid-template-columns: 1fr; }
-            .vault-hero h1 { font-size: 2.5rem; }
-            nav { padding: 0 1rem; }
+            nav { padding: 0 1.5rem; height: 70px; }
+            nav div { gap: 1rem !important; }
+            nav a:last-child { display: none; } /* Hide secondary nav on tiny mobile */
+            
+            .vault-hero { padding: 6rem 1.5rem; }
+            .vault-hero h1 { font-size: 2.8rem; }
+            .vault-hero p { font-size: 1.1rem; }
+            
+            .filter-bar { padding: 1.5rem 1rem; flex-direction: column; gap: 1.5rem; top: 70px; }
+            .filter-group { width: 100%; }
+            .filter-group select, .filter-group input { width: 100%; }
+            
+            .vault-grid { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 3rem; }
+            .vault-img { height: 350px; }
+            .vault-info { padding: 1.5rem; }
+            .vault-info h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
 
 <body>
-
     <nav>
-        <a href="index.html" class="btn-back"><i data-lucide="arrow-left" size="18"></i> Back to Club</a>
-        <a href="index.html" class="logo">THE WORN PAGES CLUB</a>
-        <div style="width: 120px;"></div>
+        <a href="index.html" class="logo"><span>The</span> WORN PAGES CLUB</a>
+        <div style="display: flex; gap: 2rem;">
+            <a href="index.html#pricing" style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--forest-green);">Join the Club</a>
+            <a href="profile.html" style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--forest-green);">My Sanctuary</a>
+        </div>
     </nav>
 
-    <div class="container">
-        <header class="vault-hero">
-            <span class="handwritten">Inside the Curator’s Library</span>
-            <h1>The Collector’s Vault</h1>
-            
-            <div class="manifesto-box">
-                <i data-lucide="scroll" size="40"></i>
-                <h3>A Note on Curation</h3>
-                <p>inventory is alive and ever-shifting. While you may select your preferences below, specific titles are not guaranteed. We use your interests to map your literary profile, hand-sourcing the closest possible matches for your next box.</p>
-            </div>
-        </header>
+    <section class="vault-hero">
+        <span class="handwritten">Shared History</span>
+        <h1>The Vault</h1>
+        <p>A collective archive of the curated treasures delivered to our members, where the magic of a physical book continues through shared experiences.</p>
+    </section>
 
-        <div class="filter-wrap">
-            <div class="container">
-                <div class="search-container">
-                    <i data-lucide="search" class="search-icon" size="20"></i>
-                    <input type="text" id="vault-search" placeholder="Search by author, title, or genre..." class="search-input">
+    <!-- Member Recommendation Section -->
+    <section id="recommendation-ritual" class="container" style="margin-top: -3rem; position: relative; z-index: 100;">
+        <div style="background: white; padding: 3rem; border-radius: var(--radius); border: 1px solid var(--aged-paper); box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; max-width: 800px; margin: 0 auto;">
+            <span class="handwritten" style="color: var(--blush); font-size: 1.8rem;">Have a treasure to share?</span>
+            <h2 style="margin-bottom: 1.5rem;">Recommend a Book</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Suggest a vintage title you cherish for our curators to procure for the sanctuary.</p>
+            <form id="recommend-form" onsubmit="submitRecommendation(event)" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left;">
+                <div class="filter-group" style="flex-direction: column; align-items: flex-start; background: var(--pearl);">
+                    <label style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; color: var(--text-muted);">Title</label>
+                    <input type="text" id="rec-title" required style="width: 100%; border: none; background: none; padding: 0.5rem 0;">
                 </div>
-                <div class="filter-nav" id="filter-btns">
-                    <button class="filter-btn active" data-filter="all">All Genres</button>
-                    <button class="filter-btn" data-filter="Classics">Classics</button>
-                    <button class="filter-btn" data-filter="Gothic">Gothic & Mystery</button>
-                    <button class="filter-btn" data-filter="History">History & Thought</button>
-                    <button class="filter-btn" data-filter="Nature">Nature & Science</button>
-                    <button class="filter-btn" data-filter="Poetry">Poetry & Plays</button>
-                    <button class="filter-btn" data-filter="Travel">Travel & Discovery</button>
+                <div class="filter-group" style="flex-direction: column; align-items: flex-start; background: var(--pearl);">
+                    <label style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; color: var(--text-muted);">Author</label>
+                    <input type="text" id="rec-author" required style="width: 100%; border: none; background: none; padding: 0.5rem 0;">
                 </div>
-            </div>
-        </div>
-
-        <div class="books-grid" id="books-container">
-            <!-- Books injected via JS -->
-        </div>
-
-        <!-- Book Detail Modal -->
-        <div id="detail-modal" class="book-modal">
-            <div class="modal-body">
-                <i data-lucide="x" class="close-detail" id="close-detail"></i>
-                <div class="modal-image">
-                    <img id="detail-img" src="" alt="Book Cover">
+                <div class="filter-group" style="grid-column: span 2; flex-direction: column; align-items: flex-start; background: var(--pearl);">
+                    <label style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; color: var(--text-muted);">Why should we find this?</label>
+                    <textarea id="rec-why" rows="2" style="width: 100%; border: none; background: none; padding: 0.5rem 0; font-family: inherit; outline: none;"></textarea>
                 </div>
-                <div class="modal-info">
-                    <div id="detail-condition" class="condition-badge">Fine Edition</div>
-                    <div id="detail-cat" class="book-cat">Classics</div>
-                    <h2 id="detail-title" style="font-size: 3rem; margin-bottom: 1rem;">The Great Gatsby</h2>
-                    <p id="detail-author" class="book-author" style="font-size: 1.4rem; margin-bottom: 2rem;">F. Scott Fitzgerald</p>
-                    <div style="border-top: 1px solid var(--aged-paper); padding-top: 2rem;">
-                        <h4 style="margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Curator’s Synopsis</h4>
-                        <p id="detail-synopsis" style="color: var(--text-muted); line-height: 1.8;">A haunting exploration of the American Dream, set against the backdrop of the Roaring Twenties. This specific edition features the original 1925 typography and a beautifully preserved dust jacket with slight silvering on the edges.</p>
-                    </div>
-                    <button class="btn-update" style="margin-top: 3rem; width: 100%; padding: 1.2rem;" onclick="toggleCardSelectionFromModal()">Add to My Interests</button>
-                </div>
-            </div>
-        </div>
-
-        <section class="hunt-section">
-            <span class="handwritten">Search the Archives</span>
-            <h2>Request a Rare Treasure</h2>
-            <p style="max-width: 600px; margin: 0 auto; opacity: 0.8;">Seeking a specific edition, first printing, or obscure title? Our curators will scour estate sales and private collections for you.</p>
-            
-            <form class="hunt-form" action="https://formspree.io/f/mleyrpwa" method="POST">
-                <input type="text" name="requested_title" placeholder="Title of the Work" required>
-                <input type="text" name="requested_author" placeholder="Author (optional)">
-                <input type="email" name="email" placeholder="Your Notification Email" required>
-                <button type="submit" class="btn-update" style="padding: 1.2rem; font-size: 1rem;">Begin the Hunt</button>
+                <button type="submit" class="btn" style="grid-column: span 2; background: var(--pink); color: white; border: none; padding: 1rem; border-radius: 8px; cursor: pointer; font-weight: bold; letter-spacing: 1px;">Submit to Curators</button>
             </form>
-        </section>
+            <div id="rec-status" style="margin-top: 1rem; font-size: 0.9rem; display: none;"></div>
+        </div>
+    </section>
+
+    <div class="filter-bar">
+        <div class="filter-group">
+            <span class="filter-label">Genre</span>
+            <select id="genre-filter" onchange="loadVault()">
+                <option value="">All Genres</option>
+                <option value="Classics">Classics</option>
+                <option value="Gothic">Gothic & Mystery</option>
+                <option value="History">History & Philosophy</option>
+                <option value="Nature">Nature & Science</option>
+                <option value="Poetry">Poetry & Plays</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <span class="filter-label">Era</span>
+            <select id="era-filter" onchange="loadVault()">
+                <option value="">All Eras</option>
+                <option value="Pre-1900">Pre-1900</option>
+                <option value="1900-1950">1900–1950</option>
+                <option value="1950-2000">1950–2000</option>
+            </select>
+        </div>
+        <div class="filter-group" style="flex-grow: 1; max-width: 300px;">
+            <input type="text" id="vault-search" placeholder="Search by title or author..." style="width: 100%;" onkeyup="loadVault()">
+        </div>
     </div>
 
-    <div class="selection-bar" id="selection-bar">
-        <span>Selected: <strong id="count">0</strong> Interests</span>
-        <button class="btn-update" onclick="alert('Profile updated. Your next curation will reflect these tastes.');">Update Profile</button>
-    </div>
+    <main class="vault-grid" id="vault-grid">
+        <!-- Items loaded via JS -->
+    </main>
 
-    <footer>
-        <p>© 2024 The Worn Pages Club. Curating stories that endure.</p>
-    </footer>
+    <main class="vault-grid" id="vault-grid">
+        <!-- Items loaded via JS -->
+    </main>
 
     <script>
         lucide.createIcons();
 
-        // Book Data Logic
-        const categories = ["Classics", "Gothic", "History", "Nature", "Poetry", "Travel"];
-        const classicData = [
-            { title: "Persuasion", author: "Jane Austen" },
-            { title: "Emma", author: "Jane Austen" },
-            { title: "Great Expectations", author: "Charles Dickens" },
-            { title: "Anna Karenina", author: "Leo Tolstoy" },
-            { title: "The Great Gatsby", author: "F. Scott Fitzgerald" },
-            { title: "To the Lighthouse", author: "Virginia Woolf" },
-            { title: "Les Misérables", author: "Victor Hugo" },
-            { title: "Wuthering Heights", author: "Emily Brontë" },
-            { title: "The Picture of Dorian Gray", author: "Oscar Wilde" },
-            { title: "Jane Eyre", author: "Charlotte Brontë" },
-            { title: "Frankenstein", author: "Mary Shelley" },
-            { title: "Dracula", author: "Bram Stoker" }
-        ];
+        async function loadVault() {
+            const genre = document.getElementById('genre-filter').value;
+            const era = document.getElementById('era-filter').value;
+            const search = document.getElementById('vault-search').value;
+            const grid = document.getElementById('vault-grid');
 
-        const authors = {
-            "Classics": ["Jane Austen", "Charles Dickens", "Leo Tolstoy", "Oscar Wilde"],
-            "Gothic": ["Edgar Allan Poe", "Bram Stoker", "Mary Shelley", "Shirley Jackson"],
-            "History": ["Marcus Aurelius", "Plato", "Winston Churchill", "Mary Beard"],
-            "Nature": ["Henry David Thoreau", "Rachel Carson", "Charles Darwin", "John Muir"],
-            "Poetry": ["William Shakespeare", "Sylvia Plath", "Emily Dickinson", "Lord Byron"],
-            "Travel": ["Ernest Hemingway", "Bill Bryson", "Jack Kerouac", "Freya Stark"]
-        };
+            try {
+                const res = await fetch(`/api/public?action=vault&genre=${genre}&era=${era}&search=${search}`);
+                const data = await res.json();
+                
+                grid.innerHTML = data.items.map(item => `
+                    <div class="vault-card" style="background: white; border-radius: var(--radius); border: 1px solid var(--aged-paper); overflow: hidden;">
+                        <div style="height: 300px; background: url('${item.image}') no-repeat center/cover;"></div>
+                        <div class="vault-info" style="padding: 2.5rem;">
+                            <span class="handwritten" style="color: var(--blush); font-size: 1.2rem;">${item.genre} | ${item.era}</span>
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin: 0.5rem 0;">${item.title}</h3>
+                            <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-style: italic;">by ${item.author}</p>
+                            
+                            <p style="font-size: 1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 2rem;">${item.description || 'A timeless treasure curated for our members.'}</p>
 
-        const titles = {
-            "Gothic": ["The Tell-Tale Heart", "The Haunting of Hill House", "Rebecca", "Carmilla"],
-            "History": ["Meditations", "SPQR", "The Republic", "Beyond Good and Evil"],
-            "Nature": ["Walden", "Silent Spring", "On the Origin of Species", "Desert Solitaire"],
-            "Poetry": ["Hamlet", "Ariel", "Leaves of Grass", "The Waste Land"],
-            "Travel": ["A Moveable Feast", "On the Road", "West with the Night", "Notes from a Small Island"]
-        };
+                            <div class="experiences-section" style="border-top: 1px solid var(--aged-paper); padding-top: 1.5rem;">
+                                <h4 style="font-family: 'Inter', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; color: var(--text-muted);">Member Experiences</h4>
+                                <div id="comments-${item._id}" class="comments-list" style="margin-bottom: 1.5rem; max-height: 200px; overflow-y: auto;">
+                                    <p style="font-size: 0.9rem; color: var(--text-muted); font-style: italic;">Be the first to share your ritual with this title.</p>
+                                </div>
+                                <div class="comment-input-wrap" style="display: flex; gap: 1rem;">
+                                    <input type="text" id="input-${item._id}" placeholder="Share your experience..." style="flex-grow: 1; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--aged-paper); background: var(--pearl); font-size: 0.9rem; outline: none;">
+                                    <button onclick="postComment('${item._id}')" class="btn" style="padding: 0.8rem 1.5rem; background: var(--pink); color: white; border: none; border-radius: 8px; font-size: 0.8rem; cursor: pointer; font-weight: bold;">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
 
-        let books = [];
-        
-        // Seed first books
-        classicData.forEach(item => books.push({...item, category: "Classics"}));
-        categories.filter(c => c !== "Classics").forEach(cat => {
-            titles[cat].forEach(t => books.push({title: t, author: authors[cat][Math.floor(Math.random()*authors[cat].length)], category: cat}));
-        });
-
-        // Fill up to 100 for better performance & impact
-        const adjectives = ["Lost", "Silent", "Hidden", "Echoing", "Ancient", "Forgotten", "Sacred", "Golden", "Midnight", "Ethereal"];
-        const nouns = ["Library", "Valley", "Shadow", "Truth", "Legacy", "Chronicle", "Mirror", "Flame", "Ocean", "Spirit"];
-        const conditions = ["Fine", "Very Good", "Near Mint", "Fair", "Excellent"];
-        const synopses = [
-            "A beautifully preserved specimen that captures the essence of its era. The pages have aged to a perfect ivory, and the binding remains firm and loyal.",
-            "A rare find unearthed from a private estate in the countryside. It speaks of times long passed and secrets yet to be whispered.",
-            "This edition is marked by its exquisite gold-leaf detailing and a texture that only a hundred years of shared stories can provide.",
-            "A cornerstone of any serious library, this particular copy has the weight of history and the scent of aged mahogany.",
-            "Fragile yet fierce, this volume is a testament to the enduring power of the written word and the quality of old-world rag paper."
-        ];
-
-        while(books.length < 100) {
-            const cat = categories[Math.floor(Math.random() * categories.length)];
-            books.push({
-                title: `${adjectives[Math.floor(Math.random()*adjectives.length)]} ${nouns[Math.floor(Math.random()*nouns.length)]}`,
-                author: authors[cat][Math.floor(Math.random()*authors[cat].length)],
-                category: cat,
-                condition: conditions[Math.floor(Math.random()*conditions.length)],
-                synopsis: synopses[Math.floor(Math.random()*synopses.length)]
-            });
+                lucide.createIcons();
+            } catch (err) {
+                console.error(err);
+            }
         }
 
-        // Add default fields to core books
-        books = books.map(b => ({
-            ...b,
-            condition: b.condition || conditions[Math.floor(Math.random()*conditions.length)],
-            synopsis: b.synopsis || synopses[Math.floor(Math.random()*synopses.length)]
-        }));
-
-        let currentActiveBook = null;
-
-        function renderBooks(booksToRender) {
-            const container = document.getElementById('books-container');
-            container.innerHTML = '';
+        async function postComment(itemId) {
+            const input = document.getElementById(`input-${itemId}`);
+            const content = input.value;
+            const email = localStorage.getItem('memberEmail');
             
-            if (booksToRender.length === 0) {
-                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; font-style: italic; color: var(--text-muted);">No treasures found matching your search.</div>';
+            if (!email) {
+                alert("Please sign in to share your experience.");
+                window.location.href = 'profile.html';
                 return;
             }
 
-            booksToRender.forEach(book => {
-                const card = document.createElement('div');
-                card.className = 'book-card';
-                const seed = hashCode(book.title);
-                const coverUrl = `https://pollinations.ai/p/vintage_book_cover_for_${encodeURIComponent(book.title)}_style_${book.category}_gold_leaf_leather_dark_academia?width=400&height=550&seed=${seed}&model=flux`;
+            if (!content) return;
 
-                card.innerHTML = `
-                    <div class="book-cover" onclick="openDetail('${book.title.replace(/'/g, "\\'")}')">
-                        <img src="${coverUrl}" alt="Cover" loading="lazy">
-                    </div>
-                    <div onclick="openDetail('${book.title.replace(/'/g, "\\'")}')">
-                        <div class="book-cat">${book.category}</div>
-                        <h3 class="book-title">${book.title}</h3>
-                        <p class="book-author">${book.author}</p>
-                    </div>
-                    <div class="interest-tag" onclick="toggleSelection(this, '${book.title.replace(/'/g, "\\'")}')">
-                        <i data-lucide="plus-circle" size="16"></i>
-                        <span>Express Interest</span>
-                    </div>
-                `;
-
-                // Sync selection state if re-rendered
-                if (selectedTitles.has(book.title)) card.classList.add('selected');
-
-                container.appendChild(card);
-            });
-            lucide.createIcons();
-        }
-
-        let selectedTitles = new Set();
-        let currentBooks = [...books];
-
-        function toggleSelection(el, title) {
-            const card = el.closest('.book-card');
-            card.classList.toggle('selected');
-            if (card.classList.contains('selected')) {
-                selectedTitles.add(title);
-            } else {
-                selectedTitles.delete(title);
-            }
-            updateSelectionBar();
-        }
-
-        function updateSelectionBar() {
-            const selected = selectedTitles.size;
-            document.getElementById('count').innerText = selected;
-            document.getElementById('selection-bar').className = selected > 0 ? 'selection-bar visible' : 'selection-bar';
-        }
-
-        // Detail View Logic
-        function openDetail(title) {
-            const book = books.find(b => b.title === title);
-            currentActiveBook = book;
-            
-            const seed = hashCode(book.title);
-            document.getElementById('detail-img').src = `https://pollinations.ai/p/vintage_book_cover_for_${encodeURIComponent(book.title)}_style_${book.category}_gold_leaf_leather_dark_academia?width=600&height=800&seed=${seed}&model=flux`;
-            document.getElementById('detail-title').innerText = book.title;
-            document.getElementById('detail-author').innerText = book.author;
-            document.getElementById('detail-cat').innerText = book.category;
-            document.getElementById('detail-condition').innerText = `${book.condition} Condition`;
-            document.getElementById('detail-synopsis').innerText = book.synopsis;
-            
-            document.getElementById('detail-modal').style.display = 'flex';
-        }
-
-        document.getElementById('close-detail').onclick = () => {
-            document.getElementById('detail-modal').style.display = 'none';
-        }
-
-        function toggleCardSelectionFromModal() {
-            const title = currentActiveBook.title;
-            const cards = document.querySelectorAll('.book-card');
-            cards.forEach(card => {
-                if (card.querySelector('.book-title').innerText === title) {
-                    card.classList.toggle('selected');
-                    if (card.classList.contains('selected')) {
-                        selectedTitles.add(title);
-                    } else {
-                        selectedTitles.delete(title);
-                    }
+            try {
+                const res = await fetch('/api/public?action=comment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ itemId, memberEmail: email, content })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    input.value = '';
+                    const list = document.getElementById(`comments-${itemId}`);
+                    const newComment = document.createElement('div');
+                    newComment.style = "background: var(--pearl); padding: 1rem; border-radius: 8px; margin-bottom: 0.8rem; font-size: 0.95rem; border-left: 3px solid var(--blush); text-align: left;";
+                    newComment.innerHTML = `<p>${content}</p><span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; display: block;">Shared by ${email.split('@')[0]}</span>`;
+                    
+                    if (list.querySelector('p')) list.innerHTML = '';
+                    list.appendChild(newComment);
                 }
-            });
-            updateSelectionBar();
-            document.getElementById('detail-modal').style.display = 'none';
+            } catch (err) {
+                console.error(err);
+            }
         }
 
-        // Search & Filter Logic
-        const searchInput = document.getElementById('vault-search');
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        let currentFilter = 'all';
+        async function submitRecommendation(e) {
+            e.preventDefault();
+            const email = localStorage.getItem('memberEmail');
+            if (!email) {
+                alert("Please sign in to recommend a treasure.");
+                window.location.href = 'profile.html';
+                return;
+            }
 
-        function handleSearchAndFilter() {
-            const query = searchInput.value.toLowerCase();
-            const filtered = books.filter(book => {
-                const matchesSearch = book.title.toLowerCase().includes(query) || 
-                                      book.author.toLowerCase().includes(query) || 
-                                      book.category.toLowerCase().includes(query);
-                const matchesFilter = currentFilter === 'all' || book.category === currentFilter;
-                return matchesSearch && matchesFilter;
-            });
-            renderBooks(filtered);
+            const title = document.getElementById('rec-title').value;
+            const author = document.getElementById('rec-author').value;
+            const why = document.getElementById('rec-why').value;
+            const status = document.getElementById('rec-status');
+            const btn = e.target.querySelector('button');
+
+            btn.innerText = "Submitting...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/member?action=recommend', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, title, author, why })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('recommend-form').reset();
+                    status.style.display = 'block';
+                    status.style.color = 'var(--pink)';
+                    status.innerHTML = `<i data-lucide="check-circle" style="width: 16px; display: inline; margin-right: 0.5rem;"></i> Your recommendation has been sent to our curators.`;
+                    lucide.createIcons();
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                btn.innerText = "Submit to Curators";
+                btn.disabled = false;
+            }
         }
 
-        searchInput.addEventListener('input', handleSearchAndFilter);
-
-        filterBtns.forEach(btn => {
-            btn.onclick = () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.dataset.filter;
-                handleSearchAndFilter();
-            };
-        });
-
-        renderBooks(books);
+        // Initial load
+        window.onload = loadVault;
     </script>
+    <footer style="background: white; padding: 6rem 4rem 4rem; margin-top: 8rem; border-top: 1px solid var(--aged-paper);">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto;">
+            <div>
+                <a href="/" class="logo" style="margin-bottom: 1.5rem;"><span>The</span> WORN PAGES CLUB</a>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; max-width: 400px;">Curating the world's most loved stories for the modern reader. Based in a small shop with big shelves.</p>
+            </div>
+            <div>
+                <h4 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem;">Information</h4>
+                <ul style="list-style: none; font-size: 0.9rem; line-height: 2;">
+                    <li><a href="mailto:hello@thewornpages.com" style="color: var(--text-dark); text-decoration: none;">General Inquiries</a></li>
+                    <li><a href="mailto:support@thewornpages.com" style="color: var(--text-dark); text-decoration: none;">Member Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem;">The Legal Sanctuary</h4>
+                <ul style="list-style: none; font-size: 0.9rem; line-height: 2;">
+                    <li><a href="privacy.html" style="color: var(--text-dark); text-decoration: none;">Privacy Policy</a></li>
+                    <li><a href="terms.html" style="color: var(--text-dark); text-decoration: none;">Terms of Service</a></li>
+                    <li><a href="accessibility.html" style="color: var(--text-dark); text-decoration: none;">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted); font-size: 0.8rem;">
+            &copy; 2026 The Worn Pages Club. A product of KnotStranded LLC, Camarillo CA. All rights reserved.
+        </div>
+    </footer>
 </body>
+
 </html>

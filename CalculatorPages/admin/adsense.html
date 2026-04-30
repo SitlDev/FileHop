@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdSense Performance | YourCalc Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <h2>YourCalc Admin</h2>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="">📊 Overview</a></li>
+            <li><a href="analytics.html" class="">👥 Analytics</a></li>
+            <li><a href="seo.html" class="">🔍 SEO</a></li>
+            <li><a href="adsense.html" class="active">💰 AdSense</a></li>
+            <li><a href="calculators.html" class="">🧮 Calculators</a></li>
+            <li><a href="leads.html" class="">📧 Leads</a></li>
+            <li style="margin-top: 32px;"><a href="../index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="topbar">
+            <h1>AdSense Performance</h1>
+            <div style="display: flex; gap: 16px;">
+                <select class="date-selector">
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Custom Range</option>
+                </select>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <div class="grid-kpi">
+            <div class="card"><div class="card-title">Est. Earnings</div><div class="card-value">$412.50</div></div>
+            <div class="card"><div class="card-title">Page RPM</div><div class="card-value">$12.10</div></div>
+            <div class="card"><div class="card-title">Clicks</div><div class="card-value">950</div></div>
+            <div class="card"><div class="card-title">CTR</div><div class="card-value">2.4%</div></div>
+        </div>
+        <div class="card" style="margin-bottom: 24px;">
+            <h3 class="card-title">Revenue by Page</h3>
+            <table class="table">
+                <tr><th>Page</th><th>Earnings</th><th>RPM</th><th>Impressions</th><th>CTR</th><th>Status</th></tr>
+                <tr><td>/finance.html</td><td>$145.20</td><td><span class="badge green">$14.10</span></td><td>10,300</td><td>2.1%</td><td>Healthy</td></tr>
+                <tr><td>/invest.html</td><td>$110.40</td><td><span class="badge green">$18.40</span></td><td>6,000</td><td>2.8%</td><td>Healthy</td></tr>
+                <tr><td>/math.html</td><td>$12.50</td><td><span class="badge red">$0.90</span></td><td>13,800</td><td>0.4%</td><td><span class="badge red">Low Monetization</span></td></tr>
+            </table>
+        </div>
+
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

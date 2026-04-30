@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Engineering & Sound Design Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="audio calculator, room mode calculator, speaker delay, crossover frequency, decibel calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/audio.html" />
+    <meta name="description" content="Precision audio tools for producers: Delay/BPM sync, Room Mode analysis, and Frequency-to-Note conversion." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Audio & <span style="color: var(--accent2);">Sound Design</span></h1>
+            <p class="subtitle">Precision timing and frequency math for producers.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Producer <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">BPM Sync</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Calculated as 60,000 / BPM. Syncing delay and reverb decay to the track's tempo prevents rhythmic masking and "muddy" mixes.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Axial Room Modes</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The fundamental frequency of a room dimension is Speed of Sound / (2 * Dimension). These standing waves cause bass buildup and "dead spots."</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Note Tuning</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Digital instruments use A4 = 440Hz as the reference. Using 12-tone equal temperament allows for consistent tuning across all digital and acoustic platforms.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('delay', event)">Delay / BPM</button>
+                <button class="tab-btn" onclick="showTab('room', event)">Room Modes</button>
+                <button class="tab-btn" onclick="showTab('storage', event)">File Size</button>
+                <button class="tab-btn" onclick="showTab('freq', event)">Freq to Note</button>
+            </div>
+
+            <div id="delay" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>BPM (Tempo)</label><div class="input-wrapper"><input type="number" id="au-bpm" value="120"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateAudio()">Sync Times →</button>
+                <div id="audio-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">1/4 Note (ms)</span><span class="result-value" id="au-q">500</span></div>
+                        <div class="result-item"><span class="result-label">1/8 Note (ms)</span><span class="result-value" id="au-e">250</span></div>
+                        <div class="result-item"><span class="result-label">1/16 Note (ms)</span><span class="result-value" id="au-s">125</span></div>
+                        <div class="result-item"><span class="result-label">Triplet (ms)</span><span class="result-value" id="au-t">333</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="room" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Length (ft)</label><div class="input-wrapper"><input type="number" id="rm-l" value="12"></div></div>
+                    <div class="input-group"><label>Width (ft)</label><div class="input-wrapper"><input type="number" id="rm-w" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Height (ft)</label><div class="input-wrapper"><input type="number" id="rm-h" value="8"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateRoom()">Find Modes →</button>
+                <div id="room-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Length Fund.</span><span class="result-value" id="rm-out-l">0 Hz</span></div>
+                        <div class="result-item"><span class="result-label">Width Fund.</span><span class="result-value" id="rm-out-w">0 Hz</span></div>
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Height Fund.</span><span class="result-value" id="rm-out-h">0 Hz</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="storage" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Sample Rate</label><div class="input-wrapper"><select id="st-sr"><option value="44100">44.1 kHz</option><option value="48000">48 kHz</option></select></div></div>
+                    <div class="input-group"><label>Bit Depth</label><div class="input-wrapper"><select id="st-bd"><option value="16">16-bit</option><option value="24" selected>24-bit</option></select></div></div>
+                    <div class="input-group"><label>Channels</label><div class="input-wrapper"><select id="st-ch"><option value="1">Mono</option><option value="2" selected>Stereo</option></select></div></div>
+                    <div class="input-group"><label>Duration (Min)</label><div class="input-wrapper"><input type="number" id="st-d" value="5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateStorage()">Estimate Size →</button>
+                <div id="st-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Estimated WAV Size</span><span class="result-value" id="st-out">0 MB</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="freq" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Frequency (Hz)</label><div class="input-wrapper"><input type="number" id="fr-v" value="440"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateNote()">Analyze Note →</button>
+                <div id="fr-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Closest Note</span><span class="result-value" id="fr-out-n">—</span></div>
+                        <div class="result-item"><span class="result-label">Detune (Cents)</span><span class="result-value" id="fr-out-c">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Physics & <span style="color: var(--accent);">Mathematics of Sound</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Mastering Temporal Sync: BPM to Milliseconds</h3>
+                        <p>In music production, timing is everything. When you set a delay or a reverb tail, it needs to breathe with the tempo of the track to avoid rhythmic clutter. Our <strong>BPM to MS Calculator</strong> converts your project's Beats Per Minute into the exact millisecond values for various subdivisions. A quarter note at 120 BPM is exactly 500ms. By using these values for your effects, you create a "pocket" where the echoes reinforce the groove rather than fighting against it. This technique, often called "tempo-synced delay," is a secret weapon of professional mix engineers for creating depth that feels natural and cohesive.</p>
+                        <p style="margin-top: 16px;">Don't forget about "pre-delay" in reverb. Setting a pre-delay of an eighth or sixteenth note allows the dry signal (like a vocal) to cut through before the lush space of the reverb kicks in. This maintains clarity while still providing the emotional scale of a large hall. Use our calculator to find these precise rhythmic offsets and elevate your mix from amateur to radio-ready.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Room Modes: Why Your Bass Sounds "Boomy"</h3>
+                        <p>Every room has a unique sonic signature dictated by its physical dimensions. When sound waves bounce between parallel walls, they create "standing waves" or <strong>Room Modes</strong>. At certain frequencies, these waves reinforce each other, causing massive spikes in volume (nodes), while at others, they cancel each other out (antinodes). If your studio is 12 feet long, you will experience a significant resonance around 47 Hz. This is why a bass guitar might sound thunderous in one corner of the room but disappear entirely three feet to the left.</p>
+                        <p style="margin-top: 16px;">Our Room Mode analyzer helps you identify these problematic frequencies before you spend thousands on acoustic treatment. Once you know your modal peaks, you can place "bass traps" in the corners or adjust your listening position to avoid the "nulls." Acoustic treatment isn't about making a room sound "dead"; it's about making it accurate, so the decisions you make in your mix translate perfectly to the outside world, from car speakers to high-end headphones.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Digital Audio Foundations: Bit Depth & Sample Rate</h3>
+                        <p>Converting analog sound to digital data requires "sampling" the wave thousands of times per second. The <strong>Sample Rate</strong> (measured in Hz) determines the highest frequency that can be captured—according to the Nyquist-Shannon theorem, you need a sample rate at least twice the highest frequency you want to record. Standard 44.1 kHz covers the full range of human hearing. <strong>Bit Depth</strong>, on the other hand, determines the "dynamic range" or the difference between the quietest and loudest sounds. 24-bit audio offers a theoretical floor of -144 dB, far below the self-noise of even the best microphones.</p>
+                        <p style="margin-top: 16px;">Understanding these values is critical for managing your storage and CPU. High-resolution audio (96 kHz / 32-bit) sounds incredible but consumes massive amounts of disk space. Our <strong>WAV Storage Calculator</strong> helps you plan your recording sessions and drive requirements, ensuring you never run out of space in the middle of a perfect take. For most applications, 48 kHz / 24-bit is the professional "sweet spot" for video and music production alike.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Frequency to Note: The Language of Pitch</h3>
+                        <p>Sound is vibration, and the frequency of that vibration determines the pitch we hear. The standard tuning for modern music is A=440 Hz. From this reference point, we can calculate every other note on the piano using a logarithmic scale. Our <strong>Frequency to Note Converter</strong> is invaluable for sound designers and synthesists. If you find a resonant peak in a kick drum at 55 Hz, you now know that's an 'A1'. Tuning your drums to the key of your song is a subtle but powerful way to make your production feel more harmonious and professional.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateAudio() {
+            const bpm = parseFloat(document.getElementById('au-bpm').value);
+const q = 60000 / bpm;
+document.getElementById('au-q').innerText = Math.round(q) + ' ms';
+document.getElementById('au-e').innerText = Math.round(q / 2) + ' ms';
+document.getElementById('au-s').innerText = Math.round(q / 4) + ' ms';
+document.getElementById('au-t').innerText = Math.round(q * 2 / 3) + ' ms';
+document.getElementById('audio-results').classList.add('visible');
+saveActivity('audio', { type: 'bpm-sync', bpm }, { quarter: q });
+        }
+
+        function calculateRoom() {
+            const l = parseFloat(document.getElementById('rm-l').value);
+const w = parseFloat(document.getElementById('rm-w').value);
+const h = parseFloat(document.getElementById('rm-h').value);
+// Speed of sound approx 1130 ft/s
+const fl = 1130 / (2 * l);
+const fw = 1130 / (2 * w);
+const fh = 1130 / (2 * h);
+document.getElementById('rm-out-l').innerText = fl.toFixed(1) + ' Hz';
+document.getElementById('rm-out-w').innerText = fw.toFixed(1) + ' Hz';
+document.getElementById('rm-out-h').innerText = fh.toFixed(1) + ' Hz';
+document.getElementById('room-results').classList.add('visible');
+saveActivity('audio', { type: 'room-modes', l, w, h }, { fl });
+        }
+
+        function calculateStorage() {
+            const sr = parseFloat(document.getElementById('st-sr').value);
+const bd = parseInt(document.getElementById('st-bd').value);
+const ch = parseInt(document.getElementById('st-ch').value);
+const min = parseFloat(document.getElementById('st-d').value);
+const bytesPerSec = (sr * bd * ch) / 8;
+const totalMb = (bytesPerSec * min * 60) / (1024 * 1024);
+document.getElementById('st-out').innerText = totalMb.toFixed(1) + ' MB';
+document.getElementById('st-results').classList.add('visible');
+saveActivity('audio', { type: 'wav-storage', sr, bd, ch, min }, { totalMb });
+        }
+
+        function calculateNote() {
+            const freq = parseFloat(document.getElementById('fr-v').value);
+const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const n = 12 * Math.log2(freq / 440) + 69;
+const semitone = Math.round(n);
+const cents = Math.round((n - semitone) * 100);
+const noteIdx = ((semitone % 12) + 12) % 12;
+const octave = Math.floor(semitone / 12) - 1;
+document.getElementById('fr-out-n').innerText = notes[noteIdx] + octave;
+document.getElementById('fr-out-c').innerText = (cents > 0 ? "+" : "") + cents;
+document.getElementById('fr-results').classList.add('visible');
+saveActivity('audio', { type: 'freq-to-note', freq }, { note: notes[noteIdx] + octave });
+        }
+    </script>
+</body>
+</html>

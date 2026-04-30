@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Generate cryptographic hashes: SHA-256, SHA-512, and SHA-1 for security verification and data integrity. Perfect for developers." />
+  <meta name="keywords" content="hash generator, SHA-256 generator, SHA-512 generator, cryptographic hash, hash tool, data verification, security tool, developer tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Hash Generator</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Hash Generator</h1>
+      <p>Generate cryptographic hashes for any text input.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <textarea id="hash-input" rows="6" placeholder="Enter text to hash..." style="width:100%; padding:12px;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-hash">Generate Hashes</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Results</h2>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <div>
+            <h4>SHA-256</h4>
+            <input id="hash-sha256" readonly style="width:100%; padding:8px; font-family: monospace; font-size: 12px;">
+            <button class="copy-btn" data-field="hash-sha256" style="margin-top: 4px;">Copy</button>
+          </div>
+          <div>
+            <h4>SHA-512</h4>
+            <input id="hash-sha512" readonly style="width:100%; padding:8px; font-family: monospace; font-size: 12px;">
+            <button class="copy-btn" data-field="hash-sha512" style="margin-top: 4px;">Copy</button>
+          </div>
+          <div>
+            <h4>SHA-1</h4>
+            <input id="hash-sha1" readonly style="width:100%; padding:8px; font-family: monospace; font-size: 12px;">
+            <button class="copy-btn" data-field="hash-sha1" style="margin-top: 4px;">Copy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2>About Hash Functions</h2>
+        
+        <h3>What is a Hash?</h3>
+        <p>A cryptographic hash function is a mathematical algorithm that converts any input (text, files, passwords) into a fixed-length string of bytes, called a hash or digest. Hash functions are one-way functions—you cannot reverse a hash to get the original input. They're fundamental to cryptography, security, and data integrity verification.</p>
+        
+        <h3>Key Characteristics</h3>
+        <ul>
+          <li><strong>Deterministic:</strong> Same input always produces the same output</li>
+          <li><strong>One-way:</strong> Cannot reverse-engineer the original from the hash</li>
+          <li><strong>Fixed-length:</strong> SHA-256 always produces 256-bit output regardless of input size</li>
+          <li><strong>Collision-resistant:</strong> Virtually impossible to find two inputs with the same hash</li>
+          <li><strong>Fast to compute:</strong> Quick processing even for large inputs</li>
+        </ul>
+        
+        <h3>Hash Algorithms</h3>
+        <ul>
+          <li><strong>SHA-1:</strong> 160-bit (deprecated, don't use for new projects)</li>
+          <li><strong>SHA-256:</strong> 256-bit (modern, recommended, used in blockchain)</li>
+          <li><strong>SHA-512:</strong> 512-bit (maximum security for password hashing)</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>Password Storage:</strong> Websites store hashes of passwords, not actual passwords</li>
+          <li><strong>File Integrity:</strong> Verify downloaded files haven't been corrupted or tampered with</li>
+          <li><strong>Blockchain:</strong> Bitcoin and Ethereum use SHA-256 for transaction validation</li>
+          <li><strong>Digital Signatures:</strong> Ensure messages haven't been altered in transit</li>
+          <li><strong>Data Deduplication:</strong> Identify duplicate files by comparing hashes</li>
+        </ul>
+        
+        <h3>Example</h3>
+        <p><strong>Input:</strong> "Hello, World!"</p>
+        <p><strong>SHA-256:</strong> dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f</p>
+        <p><strong>Key Point:</strong> Change even one character and the entire hash changes completely!</p>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Hash Generator</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

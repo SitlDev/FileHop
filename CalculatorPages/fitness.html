@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness & Sports Performance Calculators — BMI, VO2 Max, 1RM 2026 — YourCalc</title>
+    <meta name="keywords" content="fitness calculator, VO2 max calculator, 1RM calculator, running pace, heart rate zones, BMI BMR calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/fitness.html" />
+    <meta name="description" content="VO2 max, 1-rep max, race pace, heart rate zones, and calorie burn calculators for athletes and gym-goers." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Sports & <span style="color: var(--accent2);">Fitness Math</span></h1>
+            <p class="subtitle">Science-backed tools for athletes and training with purpose.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Athletic Performance <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">VO2 Max (Aerobic Capacity)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The maximum rate of oxygen consumption during exercise. This is the gold standard for measuring cardiovascular fitness and potential endurance performance.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">1-Rep Max (1RM)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The heaviest weight you can lift for a single repetition. Our calculator uses the Epley formula to estimate your peak strength without the risk of actual failure.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">TDEE & Metabolic Rate</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Total Daily Energy Expenditure is the sum of your BMR plus physical activity. Knowing this number is critical for managing weight gain or fat loss goals.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('bmi', event)">BMI & BMR</button>
+                <button class="tab-btn" onclick="showTab('macros', event)">Macros</button>
+                <button class="tab-btn" onclick="showTab('vo2', event)">VO₂ Max</button>
+                <button class="tab-btn" onclick="showTab('orm', event)">1RM</button>
+                <button class="tab-btn" onclick="showTab('hrz', event)">HR Zones</button>
+            </div>
+
+            <div id="bmi" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Weight</label><div class="input-wrapper"><input type="number" id="bmi-w" value="70"><select id="bmi-wu" style="position:absolute; right:0; width:60px; border:none; height:100%;"><option value="kg">kg</option><option value="lbs">lbs</option></select></div></div>
+                    <div class="input-group"><label>Height</label><div class="input-wrapper"><input type="number" id="bmi-h" value="175"><select id="bmi-hu" style="position:absolute; right:0; width:60px; border:none; height:100%;"><option value="cm">cm</option><option value="in">in</option></select></div></div>
+                    <div class="input-group"><label>Age</label><div class="input-wrapper"><input type="number" id="bmi-age" value="30"></div></div>
+                    <div class="input-group"><label>Sex</label><div class="input-wrapper"><select id="bmi-sex"><option value="m">Male</option><option value="f">Female</option></select></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Activity</label><div class="input-wrapper"><select id="bmi-act"><option value="1.2">Sedentary</option><option value="1.55">Active</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcBMIBMR()">Analyze Composition →</button>
+                <div id="bmi-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">BMI</span><span class="result-value" id="bmi-val">0</span></div>
+                        <div class="result-item"><span class="result-label">TDEE</span><span class="result-value" id="tdee-val">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="macros" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Daily TDEE</label><div class="input-wrapper"><input type="number" id="mc-tdee" value="2500"></div></div>
+                    <div class="input-group"><label>Goal</label><div class="input-wrapper"><select id="mc-goal"><option value="0.8">Loss (-20%)</option><option value="1" selected>Maintain</option><option value="1.1">Gain (+10%)</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcMacros()">Calculate Split →</button>
+                <div id="macros-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Target Calories</span><span class="result-value" id="mc-cal">0</span></div>
+                        <div class="result-item"><span class="result-label">Protein</span><span class="result-value" id="mc-p">0g</span></div>
+                        <div class="result-item"><span class="result-label">Carbs</span><span class="result-value" id="mc-c">0g</span></div>
+                        <div class="result-item"><span class="result-label">Fats</span><span class="result-value" id="mc-f">0g</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="vo2" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Resting HR</label><div class="input-wrapper"><input type="number" id="v-rhr" value="60"></div></div>
+                    <div class="input-group"><label>Max HR</label><div class="input-wrapper"><input type="number" id="v-mhr" value="185"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcVO2()">Estimate VO2 Max →</button>
+                <div id="vo2-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">VO2 Max</span><span class="result-value" id="v-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="orm" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Weight</label><div class="input-wrapper"><input type="number" id="o-w" value="100"></div></div>
+                    <div class="input-group"><label>Reps</label><div class="input-wrapper"><input type="number" id="o-r" value="5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcORM()">Find 1RM →</button>
+                <div id="orm-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Predicted 1RM</span><span class="result-value" id="o-out">0</span></div>
+                        <div class="result-item"><span class="result-label">70% (Volume)</span><span class="result-value" id="o-70">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="hrz" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Age</label><div class="input-wrapper"><input type="number" id="h-age" value="30"></div></div>
+                    <div class="input-group"><label>Resting HR</label><div class="input-wrapper"><input type="number" id="h-rhr" value="60"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcHRZ()">Calculate Zones →</button>
+                <div id="hrz-results" class="result-panel">
+                    <div id="h-zones"></div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Science of <span style="color: var(--accent);">Physical Performance</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Energy Balance: BMI, BMR, and TDEE</h3>
+                        <p>The foundation of any fitness journey is understanding your energy balance. Your <strong>BMR (Basal Metabolic Rate)</strong> is the number of calories your body needs to maintain basic physiological functions—like breathing and circulation—while at rest. When you add your daily physical activity to this baseline, you arrive at your <strong>TDEE (Total Daily Energy Expenditure)</strong>. Our <strong>Metabolic Calculator</strong> uses the Harris-Benedict formula to estimate these values, providing a roadmap for weight management. To lose weight, you must consume fewer calories than your TDEE; to gain weight, you must consume more.</p>
+                        <p style="margin-top: 16px;">While <strong>BMI (Body Mass Index)</strong> is a useful high-level screening tool for weight categories, it has limitations. Because it only factors in height and weight, it doesn't distinguish between muscle mass and body fat. A professional athlete might be classified as "overweight" by BMI standards despite having very low body fat. For a more complete picture, use BMI in conjunction with body fat percentage measurements and waist-to-hip ratios.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Cardiovascular Health: VO2 Max & Heart Rate Zones</h3>
+                        <p><strong>VO2 Max</strong> is considered the gold standard for measuring aerobic fitness. It represents the maximum amount of oxygen your body can utilize during intense exercise. High VO2 max values are associated with improved longevity and athletic performance. Our <strong>VO2 Max Estimator</strong> uses the resting heart rate method to provide a baseline for your cardiovascular health. Improving this metric requires "Zone Training"—specifically, spending time in high-intensity heart rate zones that push your aerobic capacity to its limit.</p>
+                        <p style="margin-top: 16px;">Our <strong>Heart Rate Zone Calculator</strong> uses the Karvonen formula, which factors in your resting heart rate for a more personalized experience than simple age-based formulas. <strong>Zone 2</strong> (60-70% of max) is critical for building an aerobic base and improving mitochondrial efficiency, while <strong>Zone 5</strong> (90-100% of max) is used for short bursts of maximum effort to increase speed and power. Balancing these zones is the key to a well-rounded cardiovascular program.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Strength Training: The 1-Rep Max</h3>
+                        <p>In the weight room, your <strong>1-Rep Max (1RM)</strong> is the maximum amount of weight you can lift for a single repetition with perfect form. Knowing your 1RM is essential for structured training programs, as most workouts are prescribed as a percentage of this number. For example, a "Hypertrophy" program might call for 3 sets of 10 reps at 70% of your 1RM. Our <strong>1RM Predictor</strong> allows you to estimate your max without the safety risk of actually lifting a maximum load, helping you train smarter and safer.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Nutrition & Macro Tracking</h3>
+                        <p>Once your calories are set, the "Macro" split (Protein, Carbohydrates, and Fats) determines the quality of your results. <strong>Protein</strong> is essential for muscle repair and satiety; <strong>Carbohydrates</strong> provide the fuel for high-intensity training; and <strong>Fats</strong> are critical for hormone production and general health. Our <strong>Macro Calculator</strong> provides a balanced split based on your goals, but remember that the "best" diet is the one you can stick to consistently over the long term.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+    <script>
+        function calcBMIBMR() {
+            let w = parseFloat(document.getElementById('bmi-w').value);
+let h = parseFloat(document.getElementById('bmi-h').value);
+const wu = document.getElementById('bmi-wu').value;
+const hu = document.getElementById('bmi-hu').value;
+const age = parseInt(document.getElementById('bmi-age').value);
+const sex = document.getElementById('bmi-sex').value;
+const act = parseFloat(document.getElementById('bmi-act').value);
+if (wu === 'lbs') w *= 0.453592;
+if (hu === 'in') h *= 2.54;
+const bmi = w / ((h / 100) ** 2);
+const bmr = (10 * w) + (6.25 * h) - (5 * age) + (sex === 'm' ? 5 : -161);
+const tdee = Math.round(bmr * act);
+document.getElementById('bmi-val').innerText = bmi.toFixed(1);
+document.getElementById('tdee-val').innerText = tdee + ' kcal';
+document.getElementById('bmi-results').classList.add('visible');
+saveActivity('fitness', { type: 'bmi-bmr', bmi: bmi.toFixed(1) }, { tdee });
+        }
+        function calcMacros() {
+            const cal = parseFloat(document.getElementById('mc-tdee').value);
+const goal = parseFloat(document.getElementById('mc-goal').value);
+const target = cal * goal;
+const p = (target * 0.3) / 4;
+const c = (target * 0.4) / 4;
+const f = (target * 0.3) / 9;
+document.getElementById('mc-cal').innerText = Math.round(target) + ' kcal';
+document.getElementById('mc-p').innerText = Math.round(p) + 'g';
+document.getElementById('mc-c').innerText = Math.round(c) + 'g';
+document.getElementById('mc-f').innerText = Math.round(f) + 'g';
+document.getElementById('macros-results').classList.add('visible');
+saveActivity('fitness', { type: 'macros', target }, { p, c, f });
+        }
+        function calcVO2() {
+            const rhr = parseFloat(document.getElementById('v-rhr').value);
+const mhr = parseFloat(document.getElementById('v-mhr').value);
+const vo2 = 15 * (mhr / rhr);
+document.getElementById('v-out').innerText = vo2.toFixed(1);
+document.getElementById('vo2-results').classList.add('visible');
+saveActivity('fitness', { type: 'vo2-max', rhr, mhr }, { vo2: vo2.toFixed(1) });
+        }
+        function calcORM() {
+            const w = parseFloat(document.getElementById('o-w').value);
+const r = parseFloat(document.getElementById('o-r').value);
+const orm = w * (1 + (r / 30));
+document.getElementById('o-out').innerText = Math.round(orm);
+document.getElementById('o-70').innerText = Math.round(orm * 0.7);
+document.getElementById('orm-results').classList.add('visible');
+saveActivity('fitness', { type: '1rm', weight: w, reps: r }, { orm: Math.round(orm) });
+        }
+        function calcHRZ() {
+            const age = parseFloat(document.getElementById('h-age').value);
+const rhr = parseFloat(document.getElementById('h-rhr').value);
+const mhr = 220 - age;
+const hrr = mhr - rhr;
+const zones = [
+    {name:'Zone 1',desc:'Recovery',pct:[0.50,0.60],color:'#3b82f6'},
+    {name:'Zone 2',desc:'Aerobic Base',pct:[0.60,0.70],color:'#22c55e'},
+    {name:'Zone 3',desc:'Aerobic Threshold',pct:[0.70,0.80],color:'#f5a623'},
+    {name:'Zone 4',desc:'Lactate Threshold',pct:[0.80,0.90],color:'#f97316'},
+    {name:'Zone 5',desc:'VO₂ Max',pct:[0.90,1.00],color:'#ef4444'},
+];
+const container = document.getElementById('h-zones');
+container.innerHTML = '';
+zones.forEach(z => {
+    const lo = Math.round(hrr * z.pct[0] + rhr);
+    const hi = Math.round(hrr * z.pct[1] + rhr);
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);';
+    row.innerHTML = `<div style="width:12px;height:12px;border-radius:50%;background:${z.color};flex-shrink:0;"></div><div style="flex:1;"><div style="font-size:14px;font-weight:600">${z.name}</div><div style="font-size:11px;color:var(--muted)">${z.desc}</div><div style="font-family:DM Mono,monospace;font-size:14px;color:var(--text)">${lo}–${hi} bpm</div>`;
+    container.appendChild(row);
+                document.getElementById('hrz-results').classList.add('visible');
+                saveActivity('fitness', { type: 'hr-zones', age, rhr }, { mhr });
+            });
+        }
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    </script>
+</body>
+</html>

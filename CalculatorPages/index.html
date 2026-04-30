@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="YourCalc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourCalc — 100+ Free Professional Calculators for 2026</title>
+        <meta name="keywords" content="free online calculators, financial calculators, health calculators, AI cost estimator, real estate ROI, career planning tools, 2026 calculators">
+                                                        <meta name="author" content="KnotStranded LLC">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <script src="gate.js"></script>
+    <link rel="stylesheet" href="global.css">
+    <script src="sidebar.js" defer></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('calcTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+    <style>
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        main { flex: 1; margin-left: 0; padding: 160px 40px 40px 40px; display: flex; flex-direction: column; align-items: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 120px; 
+            background: rgba(13, 15, 20, 0.8); backdrop-filter: blur(24px); 
+            z-index: 2000; border-bottom: 1px solid rgba(255,255,255,0.08); 
+        }
+        @media (max-width: 1024px) {
+            .sidebar { height: 60px !important; }
+            main { padding: 100px 16px 100px !important; }
+        }
+        @media (max-width: 768px) {
+            .sidebar { height: 56px !important; }
+            main { padding: 72px 16px 80px !important; }
+        }
+
+        :root {
+            
+            --bg: #0d0f14;
+            --surface: #161921;
+            --border: #252836;
+            --accent: #f5a623;
+            --accent2: #3ecf8e;
+            --text: #e8eaf0;
+            --muted: #6b7280;
+            --error: #ef4444;
+            
+        }
+        [data-theme="light"] {
+            --bg: #f8f9fa;
+            --surface: #ffffff;
+            --border: #e9ecef;
+            --text: #212529;
+            --muted: #6c757d;
+            --accent2: #2f855a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        .container { max-width: 860px; width: 100%; }
+
+        /* Hero */
+        .hero { text-align: center; padding: 48px 0 36px; }
+        h1 { font-size: 44px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.02em; }
+        .hero p { font-size: 17px; color: var(--muted); }
+
+        /* Search */
+        .search-container { position: relative; margin-bottom: 36px; }
+        .search-input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 24px 16px 52px; color: var(--text); font-family: 'Outfit'; font-size: 16px; transition: all 0.2s; }
+        .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245,166,35,0.1); }
+        .search-input::placeholder { color: var(--muted); }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); stroke: var(--muted); pointer-events: none; }
+        #search-count { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+        /* Ad */
+        .ad-unit { border: 1px solid var(--border); border-radius: 8px; padding: 8px; background: var(--surface); margin: 24px 0; width: 100%; }
+        .ad-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .15em; color: var(--muted); display: block; margin-bottom: 4px; }
+
+        /* Category group */
+        .cat-group { margin-bottom: 4px; border-radius: 14px; border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s; }
+        .cat-group:hover { border-color: rgba(245,166,35,0.25); }
+        .cat-group.hidden { display: none; }
+
+        .cat-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; background: var(--surface); user-select: none; transition: background 0.15s; }
+        .cat-header:hover { background: rgba(255,255,255,0.03); }
+
+        .cat-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: color-mix(in srgb, var(--ic-color, #f5a623) 14%, transparent); border: 1px solid color-mix(in srgb, var(--ic-color, #f5a623) 25%, transparent); color: var(--ic-color, #f5a623); transition: transform 0.15s, background 0.15s; }
+        .cat-header:hover .cat-icon { transform: scale(1.08); background: color-mix(in srgb, var(--ic-color, #f5a623) 22%, transparent); }
+        .cat-icon svg { width: 20px; height: 20px; }
+
+        .cat-title { flex: 1; }
+        .cat-title h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 1px; }
+        .cat-title span { font-size: 12px; color: var(--muted); }
+
+        .cat-badge { background: rgba(245,166,35,0.12); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+        .cat-chevron { color: var(--muted); font-size: 11px; transition: transform 0.2s; margin-left: 8px; }
+        .cat-group.open .cat-chevron { transform: rotate(180deg); }
+
+        /* Tool items */
+        .tool-list { display: none; border-top: 1px solid var(--border); background: var(--bg); }
+        .cat-group.open .tool-list { display: block; animation: listReveal 0.2s ease; }
+
+        @keyframes listReveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+        .tool-item { display: flex; align-items: center; gap: 12px; padding: 13px 20px 13px 70px; border-bottom: 1px solid rgba(255,255,255,0.03); text-decoration: none; color: var(--text); transition: background 0.15s; }
+        .tool-item:last-child { border-bottom: none; }
+        .tool-item:hover { background: rgba(245,166,35,0.05); }
+        .tool-item:hover .tool-arrow { color: var(--accent); transform: translateX(3px); }
+        .tool-item.hidden { display: none; }
+
+        .tool-name { flex: 1; font-size: 14px; font-weight: 500; }
+        .tool-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+        .tool-arrow { color: var(--muted); font-size: 14px; transition: all 0.15s; flex-shrink: 0; }
+
+        /* No results */
+        #no-results { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-size: 15px; }
+
+        /* Expand/collapse all */
+        .list-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .list-controls span { font-size: 13px; color: var(--muted); }
+        .ctrl-btns { display: flex; gap: 8px; }
+        .ctrl-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px; font-family: 'Outfit'; font-size: 12px; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+        .ctrl-btn:hover { color: var(--text); border-color: var(--accent); }
+
+        /* Footer */
+        .page-footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 12px; padding-bottom: 40px; }
+
+</style>
+
+    <!-- SEO & Canonical -->
+    <link rel="canonical" href="https://yourcalc.info/" />
+    <meta name="description" content="Free professional calculators for finance, health, engineering, and more. 100+ tools, verified formulas, no account required. All calculations run in your browser." />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="YourCalc" />
+    <meta property="og:url" content="https://yourcalc.info/" />
+    <meta property="og:title" content="100+ Free Professional Calculators | YourCalc" />
+    <meta property="og:description" content="Free professional calculators for finance, health, engineering, and more. 100+ tools, verified formulas, no account required. All calculations run in your browser." />
+    <meta property="og:image" content="https://yourcalc.info/og-image.png" />
+    <!-- TODO: Create og-image.png 1200x630 -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="100+ Free Professional Calculators | YourCalc" />
+    <meta name="twitter:description" content="Free professional calculators for finance, health, engineering, and more. 100+ tools, verified formulas, no account required. All calculations run in your browser." />
+    <meta name="twitter:image" content="https://yourcalc.info/og-image.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "YourCalc",
+      "url": "https://yourcalc.info",
+      "description": "Free professional calculators for finance, health, engineering, and more.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "KnotStranded LLC",
+        "url": "https://yourcalc.info"
+      }
+    }
+    </script>
+
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+
+    <main>
+        <div class="container">
+
+            <div class="hero">
+                <h1>Professional Calculators. <span style="color:var(--accent)">Real Results.</span></h1>
+                <p>27 calculator suites &middot; 100+ individual tools across Finance, Health, Tech, and Life.</p>
+            </div>
+
+                        <!-- Site Intro Block -->
+            <section class="site-intro" style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 32px;">
+                <h2 class="page-h2" style="margin-top: 0; color: var(--text);">Why YourCalc Exists</h2>
+                <div class="intro-text" style="margin-bottom: 32px;">
+                    <p style="font-size: 16px; color: var(--muted); margin-bottom: 16px;">Most online calculator sites are a mess. They are often abandoned projects plagued by broken mobile layouts and mathematically untrustworthy formulas. We got tired of searching for reliable tools, only to be met with paywalls or intrusive pop-ups.</p>
+                    
+                    <p style="font-size: 16px; color: var(--muted); margin-bottom: 16px;">YourCalc was built by KnotStranded LLC to fix that. We wanted a library of professional-grade calculators that is clean, verified, permanent, and entirely free. This is a passion project built for accuracy and long-term utility, designed for real people who need real answers without the friction.</p>
+
+                    <p style="font-size: 16px; color: var(--muted);">Every single tool on this site runs client-side directly in your browser. That means we don't store your data, we don't track your inputs, and we don't require you to create an account. What you calculate stays on your device. Just fast, transparent math when you need it.</p>
+                </div>
+                <div class="category-highlights" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 28px; font-weight: 600; color: var(--accent2); margin-bottom: 4px;">27</span>
+                        <span style="display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">Categories</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 28px; font-weight: 600; color: var(--accent2); margin-bottom: 4px;">100+</span>
+                        <span style="display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">Tools</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 28px; font-weight: 600; color: var(--accent2); margin-bottom: 4px;">0</span>
+                        <span style="display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">Accounts</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="display: block; font-size: 28px; font-weight: 600; color: var(--accent2); margin-bottom: 4px;">0</span>
+                        <span style="display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">Data Stored</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Guides Section -->
+            <section class="featured-guides" style="margin-bottom: 48px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+                    <div>
+                        <h2 style="font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px;">Expert <span style="color: var(--accent);">Guides & Resources</span></h2>
+                        <p style="color: var(--muted); font-size: 15px;">In-depth breakdowns behind every calculation.</p>
+                    </div>
+                    <a href="blog/index.html" style="color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px;">View All Guides <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+                    <a href="blog/how-to-calculate-your-fire-number.html" style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; text-decoration: none; color: inherit; transition: all 0.2s;">
+                        <span style="font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px;">Finance</span>
+                        <h3 style="font-size: 18px; margin-bottom: 12px; line-height: 1.4;">FIRE Calculation</h3>
+                        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">The 4% rule and the math of financial freedom.</p>
+                    </a>
+                    
+                    <a href="blog/the-hidden-cost-of-burnout.html" style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; text-decoration: none; color: inherit; transition: all 0.2s;">
+                        <span style="font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px;">Psychology</span>
+                        <h3 style="font-size: 18px; margin-bottom: 12px; line-height: 1.4;">The Burnout Tax</h3>
+                        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Quantifying the impact of stress on productivity.</p>
+                    </a>
+
+                    <a href="blog/home-renovation-roi.html" style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; text-decoration: none; color: inherit; transition: all 0.2s;">
+                        <span style="font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px;">DIY</span>
+                        <h3 style="font-size: 18px; margin-bottom: 12px; line-height: 1.4;">Home Reno ROI</h3>
+                        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Which projects actually add value to your home?</p>
+                    </a>
+
+                    <a href="blog/voltage-drop-efficiency-killer.html" style="background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; text-decoration: none; color: inherit; transition: all 0.2s;">
+                        <span style="font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px;">Engineering</span>
+                        <h3 style="font-size: 18px; margin-bottom: 12px; line-height: 1.4;">Voltage Drop</h3>
+                        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">The silent efficiency killer in electrical design.</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Search -->
+            <div class="search-container">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" class="search-input" placeholder="Search 100+ calculators…" id="toolSearch" autocomplete="off">
+                <span id="search-count"></span>
+            </div>
+
+            <!-- Controls -->
+            <div class="list-controls">
+                <span id="list-summary">27 categories &middot; 100+ tools</span>
+                <div class="ctrl-btns">
+                    <button class="ctrl-btn" onclick="expandAll()">Expand All</button>
+                    <button class="ctrl-btn" onclick="collapseAll()">Collapse All</button>
+                </div>
+            </div>
+
+            <!-- Nested List -->
+            <div id="calc-list">
+<div class="cat-group" data-cat="Finance Capital Mortgage Loan Compound Interest Salary Debt Net Worth Tax Inflation Amortization">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#f5a623"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                        <div class="cat-title"><h3>Finance &amp; Capital</h3><span>Mortgages, loans, interest &amp; tax</span></div>
+                        <span class="cat-badge">12 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="finance.html#mortgage" data-terms="mortgage amortization monthly payment principal interest">
+                            <div><div class="tool-name">Mortgage &amp; Amortization</div><div class="tool-desc">Monthly payment, total interest &amp; year-by-year payoff schedule</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/mortgage-amortization-explained.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Mortgage Amortization Explained</div><div class="tool-desc">How interest is calculated and how to save thousands.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#compound" data-terms="compound interest growth investment future value">
+                            <div><div class="tool-name">Compound Interest</div><div class="tool-desc">Project investment growth with compounding frequency</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/how-compounding-frequency-affects-returns.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Compounding Frequency</div><div class="tool-desc">Why daily vs annual compounding matters for your wealth.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#loan" data-terms="loan payoff debt schedule personal loan">
+                            <div><div class="tool-name">Loan Payoff Schedule</div><div class="tool-desc">Full amortization table for any personal or auto loan</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#salary" data-terms="salary hourly annual take home pay converter">
+                            <div><div class="tool-name">Salary Converter</div><div class="tool-desc">Hourly — Annual — Monthly income in seconds</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#debt" data-terms="debt payoff snowball avalanche credit card payoff">
+                            <div><div class="tool-name">Debt Payoff Planner</div><div class="tool-desc">Snowball vs. avalanche strategy comparison</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#networth" data-terms="net worth assets liabilities wealth audit">
+                            <div><div class="tool-name">Net Worth Audit</div><div class="tool-desc">Total assets minus liabilities with breakdown</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#tax" data-terms="tax estimator federal income bracket marginal">
+                            <div><div class="tool-name">Tax Estimator</div><div class="tool-desc">Federal income tax and effective rate by bracket</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#inflation" data-terms="inflation purchasing power real value CPI">
+                            <div><div class="tool-name">Inflation Calculator</div><div class="tool-desc">Real purchasing power loss over time using CPI</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#fire" data-terms="FIRE financial independence retire early 4% rule safe withdrawal">
+                            <div><div class="tool-name">FIRE Number</div><div class="tool-desc">Financial independence target using the 25x / 4% rule</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/how-to-calculate-your-fire-number.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: How to Calculate Your FIRE Number</div><div class="tool-desc">In-depth breakdown of the 4% rule and safe withdrawal rates.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#retirement401k" data-terms="401k retirement employer match contribution IRS limit compound">
+                            <div><div class="tool-name">401(k) Optimizer</div><div class="tool-desc">Projected retirement balance with employer match modeling</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#studentloan" data-terms="student loan payoff interest accelerated extra payment federal">
+                            <div><div class="tool-name">Student Loan Payoff</div><div class="tool-desc">Months to zero and interest saved with extra payments</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="finance.html#heloc" data-terms="HELOC home equity line of credit borrowing power LTV CLTV">
+                            <div><div class="tool-name">HELOC Borrowing Power</div><div class="tool-desc">Available credit line based on equity and CLTV ratio</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Savings Budget Discount Credit Card Payoff Emergency Fund Unit Price Shopping">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#38bdf8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                        <div class="cat-title"><h3>Savings &amp; Budget</h3><span>Smart spending &amp; debt strategies</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="savings.html#discount" data-terms="discount sale price percent off coupon">
+                            <div><div class="tool-name">Discount &amp; Sale Price</div><div class="tool-desc">Final price, savings amount &amp; effective discount %</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="savings.html#cc" data-terms="credit card payoff APR interest debt months">
+                            <div><div class="tool-name">Credit Card Payoff</div><div class="tool-desc">Months to zero balance &amp; total interest cost</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="savings.html#budget" data-terms="50 30 20 budget needs wants savings rule">
+                            <div><div class="tool-name">50/30/20 Budget</div><div class="tool-desc">Split take-home income into Needs, Wants &amp; Savings</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="savings.html#unit" data-terms="unit price per gram ounce compare value bulk">
+                            <div><div class="tool-name">Unit Price Comparison</div><div class="tool-desc">Which size or brand gives the best cost-per-unit?</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="savings.html#emergency" data-terms="emergency fund savings target months expenses liquid">
+                            <div><div class="tool-name">Emergency Fund</div><div class="tool-desc">Target size, gap &amp; time-to-fully-funded</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Investing Crypto DCA Portfolio Stock Options Rebalance P&L">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#a78bfa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                        <div class="cat-title"><h3>Investing &amp; Crypto</h3><span>Markets, portfolios &amp; DCA</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="invest.html#dca" data-terms="DCA dollar cost averaging bitcoin crypto recurring invest">
+                            <div><div class="tool-name">DCA Simulator</div><div class="tool-desc">Dollar-cost averaging returns vs. lump sum investment</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="invest.html#crypto" data-terms="crypto profit loss P&L bitcoin ethereum trade">
+                            <div><div class="tool-name">Crypto P&amp;L</div><div class="tool-desc">Profit / loss on any crypto trade with fee deduction</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="invest.html#options" data-terms="stock options call put strike vesting equity">
+                            <div><div class="tool-name">Stock Options Value</div><div class="tool-desc">Intrinsic value and breakeven for calls &amp; puts</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="invest.html#rebalance" data-terms="portfolio rebalance allocation drift target weight">
+                            <div><div class="tool-name">Portfolio Rebalancer</div><div class="tool-desc">Calculate buy/sell amounts to hit target allocation</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Real Estate Rent Buy Affordability ROI Cap Rate Closing Costs Mortgage">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#f97316"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                        <div class="cat-title"><h3>Real Estate</h3><span>Buy, rent, invest &amp; close</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="real-estate.html#rent" data-terms="rent vs buy home ownership cost comparison mortgage">
+                            <div><div class="tool-name">Rent vs. Buy Analysis</div><div class="tool-desc">Total 30-year cost comparison with amortization schedule</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="real-estate.html#afford" data-terms="home affordability max price mortgage DTI income">
+                            <div><div class="tool-name">Home Affordability</div><div class="tool-desc">Max purchase price at 28% and 36% debt-to-income ratios</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="real-estate.html#roi" data-terms="rental ROI cap rate investment property cash flow">
+                            <div><div class="tool-name">Rental Cap Rate &amp; ROI</div><div class="tool-desc">Cash-on-cash return, cap rate &amp; net operating income</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="real-estate.html#closing" data-terms="closing costs fees title insurance transfer tax">
+                            <div><div class="tool-name">Closing Cost Estimate</div><div class="tool-desc">Buyer &amp; seller closing cost breakdown by purchase price</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Business Startup Burn Rate Runway Break Even LTV CAC Profit Margin">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#0ea5e9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                        <div class="cat-title"><h3>Small Business</h3><span>Startups, unit economics &amp; growth</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="business.html#burn" data-terms="burn rate runway startup cash months remaining">
+                            <div><div class="tool-name">Burn Rate &amp; Runway</div><div class="tool-desc">Months of cash remaining at current monthly burn</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="business.html#break" data-terms="break even units revenue fixed variable costs">
+                            <div><div class="tool-name">Break-Even Point</div><div class="tool-desc">Units and revenue needed to cover all costs</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/break-even-point-analysis-for-small-business.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Break-Even Point Analysis</div><div class="tool-desc">The math behind profitability and fixed cost coverage.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="business.html#ltv" data-terms="LTV CAC customer lifetime value acquisition ratio SaaS">
+                            <div><div class="tool-name">LTV / CAC Ratio</div><div class="tool-desc">Customer lifetime value vs. acquisition cost benchmark</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/calculating-customer-lifetime-value.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Calculating Customer LTV</div><div class="tool-desc">Predicting the long-term value of your customer base.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="business.html#margin" data-terms="profit margin gross net markup price cost">
+                            <div><div class="tool-name">Profit Margin &amp; Markup</div><div class="tool-desc">Gross/net margin and markup % from cost &amp; price</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/how-to-read-your-burn-rate.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Understanding Startup Burn Rate</div><div class="tool-desc">How to calculate your runway and manage cash flow.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Marketing ROAS ROI CPC CPA Conversion Rate Email Revenue Digital Ads">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#ec4899"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+                        <div class="cat-title"><h3>Digital Marketing</h3><span>Ads, email &amp; conversion ROI</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="marketing.html#roas" data-terms="ROAS return on ad spend ad ROI revenue ads Google Facebook">
+                            <div><div class="tool-name">ROAS &amp; Ad ROI</div><div class="tool-desc">Return on ad spend and blended campaign profitability</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="marketing.html#cpc" data-terms="CPC CPA cost per click acquisition conversion funnel">
+                            <div><div class="tool-name">CPC — CPA Converter</div><div class="tool-desc">From click costs to cost per acquisition via conversion rate</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="marketing.html#email" data-terms="email list value revenue per subscriber LTV newsletter">
+                            <div><div class="tool-name">Email List Value</div><div class="tool-desc">Estimated annual revenue per subscriber on your list</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="marketing.html#cvr" data-terms="conversion rate optimization landing page funnel visitors leads">
+                            <div><div class="tool-name">Conversion Rate Calculator</div><div class="tool-desc">CVR, leads, and revenue from traffic &amp; conversion data</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Career Income Job Offer Freelance Rate Raise Side Hustle Hourly Salary">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#16a34a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                        <div class="cat-title"><h3>Career &amp; Income</h3><span>Offers, rates &amp; raise negotiation</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="career.html#offer" data-terms="job offer total compensation compare salary bonus equity">
+                            <div><div class="tool-name">Job Offer Analyzer</div><div class="tool-desc">Compare offers by total annual comp including benefits</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="career.html#rate" data-terms="freelance hourly rate consulting project fee overhead">
+                            <div><div class="tool-name">Freelance Rate Calculator</div><div class="tool-desc">Your minimum billable rate based on income goals &amp; overhead</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="career.html#raise" data-terms="raise ROI promotion salary increase negotiation">
+                            <div><div class="tool-name">Raise ROI</div><div class="tool-desc">Lifetime earnings impact of a percentage salary increase</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="career.html#hustle" data-terms="side hustle business revenue hours profit extra income">
+                            <div><div class="tool-name">Side Hustle Planner</div><div class="tool-desc">Revenue, hours, and effective hourly rate of a side project</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Logistics Enterprise Meeting Cost EOQ Inventory Supply Chain Productivity">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#64748b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                        <div class="cat-title"><h3>Logistics &amp; Enterprise</h3><span>Operations, meetings &amp; inventory</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="logistics.html#meeting" data-terms="meeting cost hourly rate team salary waste time">
+                            <div><div class="tool-name">Meeting Cost Auditor</div><div class="tool-desc">Real dollar cost of any meeting by team size &amp; salaries</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="logistics.html#eoq" data-terms="EOQ economic order quantity inventory reorder point">
+                            <div><div class="tool-name">EOQ Inventory</div><div class="tool-desc">Optimal reorder quantity to minimize holding &amp; order costs</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="logistics.html#supply" data-terms="supply chain lead time safety stock reorder buffer">
+                            <div><div class="tool-name">Safety Stock &amp; Lead Time</div><div class="tool-desc">Buffer stock needed based on demand variability</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="logistics.html#productivity" data-terms="productivity efficiency output task hours throughput">
+                            <div><div class="tool-name">Team Productivity Index</div><div class="tool-desc">Output per hour and efficiency ratio for any team</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Health BMI TDEE Calorie Body Fat Macro Water Intake Fitness Nutrition">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#10b981"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                        <div class="cat-title"><h3>Health &amp; Vitality</h3><span>BMI, nutrition &amp; body metrics</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="health.html#bmi" data-terms="BMI body mass index overweight obese healthy weight">
+                            <div><div class="tool-name">BMI Calculator</div><div class="tool-desc">Body Mass Index with WHO weight category classification</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/bmi-limitations-what-it-misses.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: BMI Limitations</div><div class="tool-desc">What Body Mass Index misses about body composition.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="health.html#tdee" data-terms="TDEE calories maintenance deficit surplus weight loss gain">
+                            <div><div class="tool-name">TDEE &amp; Calorie Needs</div><div class="tool-desc">Total daily energy expenditure by activity level</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="health.html#macro" data-terms="macros protein carbs fat diet plan keto bodybuilding">
+                            <div><div class="tool-name">Macros Planner</div><div class="tool-desc">Daily protein, carb &amp; fat targets by goal and activity</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/macros-101-protein-carbs-and-fats.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Macros 101</div><div class="tool-desc">The ultimate guide to protein, carbs, and fat ratios.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="health.html#fat" data-terms="body fat percentage lean mass navy method skinfold">
+                            <div><div class="tool-name">Body Fat %</div><div class="tool-desc">Estimated body fat using the US Navy circumference method</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="health.html#water" data-terms="water intake hydration daily ounces liters activity weight">
+                            <div><div class="tool-name">Daily Water Intake</div><div class="tool-desc">Hydration target based on weight, climate &amp; activity</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/what-is-tdee-and-why-it-matters.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: What Is TDEE and Why It Matters</div><div class="tool-desc">Total Daily Energy Expenditure is the key to managing weight.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Life Planning College 529 Savings Wedding Budget Baby Cost Age Birthday Milestones">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#f472b6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                        <div class="cat-title"><h3>Life Planning</h3><span>Education, family &amp; milestones</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="life.html#college" data-terms="college 529 savings plan tuition education fund">
+                            <div><div class="tool-name">College 529 Savings</div><div class="tool-desc">Monthly savings needed to hit a tuition target by year</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="life.html#wedding" data-terms="wedding budget cost venue catering dress planning">
+                            <div><div class="tool-name">Wedding Budget Planner</div><div class="tool-desc">Itemized budget breakdown with per-guest cost analysis</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="life.html#baby" data-terms="baby cost first year newborn child expense budget">
+                            <div><div class="tool-name">Baby Cost Planner</div><div class="tool-desc">First-year and ongoing annual cost of raising a child</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="life.html#age" data-terms="age calculator birthday days alive milestones how old">
+                            <div><div class="tool-name">Age &amp; Milestone Tracker</div><div class="tool-desc">Days lived, upcoming milestones &amp; birthday statistics</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Pet Health Dog Cat Age Human Years Calories Nutrition Toxicity Chocolate">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#fb923c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg></div>
+                        <div class="cat-title"><h3>Pet Health</h3><span>Age, nutrition &amp; toxicity</span></div>
+                        <span class="cat-badge">3 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="pets.html#age" data-terms="pet age dog cat human years breed converter">
+                            <div><div class="tool-name">Pet Age Converter</div><div class="tool-desc">Dog &amp; cat age in human years by breed and size</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="pets.html#calories" data-terms="pet calorie food daily intake dog cat weight activity">
+                            <div><div class="tool-name">Pet Calorie Needs</div><div class="tool-desc">Daily caloric requirement by weight, species &amp; activity</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="pets.html#tox" data-terms="toxicity chocolate grapes raisins xylitol dangerous food dog">
+                            <div><div class="tool-name">Toxicity Alert</div><div class="tool-desc">Safe dose thresholds for chocolate, grapes &amp; common toxins</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="AI Cloud Costs LLM GPT API GPU Token Pricing SaaS Inference">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#818cf8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                        <div class="cat-title"><h3>AI &amp; Cloud Costs</h3><span>LLMs, tokens &amp; GPU ROI</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="ai-costs.html#llm" data-terms="LLM API cost GPT Claude Gemini pricing per token model">
+                            <div><div class="tool-name">LLM API Cost Matrix</div><div class="tool-desc">Monthly cost of GPT-4o, Claude, Gemini &amp; more by usage</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="ai-costs.html#gpu" data-terms="GPU cloud compute ROI training inference H100 A100 cost">
+                            <div><div class="tool-name">GPU Infrastructure ROI</div><div class="tool-desc">Cloud vs. on-prem GPU cost-benefit analysis</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="ai-costs.html#token" data-terms="token estimator word count prompt context window">
+                            <div><div class="tool-name">Token Estimator</div><div class="tool-desc">Estimate token count from word count for any LLM</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="ai-costs.html#saas" data-terms="SaaS AI cost ROI build vs buy AI product subscription">
+                            <div><div class="tool-name">SaaS AI Cost ROI</div><div class="tool-desc">Build vs. buy analysis for AI-powered product features</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/understanding-llm-api-costs.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Understanding LLM API Costs in 2026</div><div class="tool-desc">A deep dive into token pricing for GPT-4, Claude 3, and Gemini.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Engineering Electrical Power AC DC 3-Phase Voltage Drop Component Drift Temperature">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#06b6d4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+                        <div class="cat-title"><h3>Engineering</h3><span>Electrical &amp; power calculations</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="engineering.html#power" data-terms="AC DC power load watts amps volts Ohm's law single phase">
+                            <div><div class="tool-name">AC/DC Power Load</div><div class="tool-desc">Watts, amps &amp; voltage using Ohm's law for single-phase</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="engineering.html#3phase" data-terms="3-phase power three phase load kVA kW industrial motor">
+                            <div><div class="tool-name">3-Phase Power</div><div class="tool-desc">kVA, kW and current in balanced 3-phase systems</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="engineering.html#drift" data-terms="component drift tolerance temperature resistor capacitor aging">
+                            <div><div class="tool-name">Component Drift</div><div class="tool-desc">Tolerance &amp; thermal drift for resistors, caps &amp; sensors</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="engineering.html#vdrop" data-terms="voltage drop wire gauge AWG conductor length current loss">
+                            <div><div class="tool-name">Voltage Drop</div><div class="tool-desc">Line voltage loss by wire gauge, length &amp; load current</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Science Lab Chemistry Molarity Dilution C1V1 Gas Law Molecular Weight Molar Mass">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#10b981"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 1 2-2V9M9 21H5a2 2 0 0 0-2-2V9m0 0h18"/></svg></div>
+                        <div class="cat-title"><h3>Science &amp; Lab</h3><span>Chemistry &amp; physical science</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="science.html#molarity" data-terms="molarity concentration moles solution chemistry lab">
+                            <div><div class="tool-name">Molarity Calculator</div><div class="tool-desc">Moles, grams and concentration for any solution</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="science.html#dilution" data-terms="C1V1 dilution concentration volume solution stock">
+                            <div><div class="tool-name">C1V1 Dilution</div><div class="tool-desc">Stock concentration and volume needed for target dilution</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="science.html#gas" data-terms="gas law PV nRT ideal gas pressure volume temperature moles">
+                            <div><div class="tool-name">Ideal Gas Law (PV=nRT)</div><div class="tool-desc">Solve for pressure, volume, temperature or moles</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="science.html#mw" data-terms="molecular weight molar mass formula atomic mass periodic table">
+                            <div><div class="tool-name">Molecular Weight</div><div class="tool-desc">Molar mass from chemical formula using periodic table data</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Academic Research Grade Curve h-index Citations GPA Education Higher Ed">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#fbbf24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+                        <div class="cat-title"><h3>Academic &amp; Research</h3><span>Grades, citations &amp; h-index</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="academic.html#curve" data-terms="grade curve bell curve class average adjustment points">
+                            <div><div class="tool-name">Grade Curve</div><div class="tool-desc">Curve a class distribution to a target average</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="academic.html#hindex" data-terms="h-index Hirsch index citation scholar research impact factor">
+                            <div><div class="tool-name">h-Index Projection</div><div class="tool-desc">Estimated academic h-index from publication &amp; citation data</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="academic.html#gpa" data-terms="GPA grade point average semester cumulative letter grade">
+                            <div><div class="tool-name">GPA Calculator</div><div class="tool-desc">Semester and cumulative GPA from course grades &amp; credits</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="academic.html#citations" data-terms="citations impact factor journal paper research publications">
+                            <div><div class="tool-name">Citation Impact</div><div class="tool-desc">Research impact score from citation counts &amp; paper age</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Auto Transport EV Electric Gas Savings Lease Buy Car Loan Payoff MPG Fuel">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#94a3b8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/><path d="M9 17h9a2 2 0 0 0 2-2v-4"/><path d="M12 9h8l-1 4H12V9z"/><circle cx="5" cy="17" r="2"/><circle cx="14" cy="17" r="2"/></svg></div>
+                        <div class="cat-title"><h3>Auto &amp; Transport</h3><span>EV, loans, leases &amp; fuel</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="auto.html#ev" data-terms="EV electric vehicle gas savings cost comparison fuel electricity">
+                            <div><div class="tool-name">EV vs. Gas Savings</div><div class="tool-desc">Annual fuel savings switching to an electric vehicle</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/ev-vs-gas-true-cost-breakdown.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: EV vs. Gas True Cost</div><div class="tool-desc">Detailed comparison of ownership costs over 10 years.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="auto.html#lease" data-terms="lease vs buy car total cost ownership depreciation residual">
+                            <div><div class="tool-name">Lease vs. Buy Analysis</div><div class="tool-desc">True total cost comparison over the full ownership period</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="auto.html#loan" data-terms="auto loan payoff amortization car payment schedule interest">
+                            <div><div class="tool-name">Auto Loan Amortization</div><div class="tool-desc">Monthly payment &amp; full payoff schedule with extra payments</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="auto.html#mpg" data-terms="MPG miles per gallon fuel efficiency gas tank fill up cost">
+                            <div><div class="tool-name">MPG &amp; Fuel Cost</div><div class="tool-desc">Real-world MPG from fill-up data and annual fuel spend</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Travel Nomad Schengen Visa Live Currency Converter Exchange Rate Trip Budget">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#34d399"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                        <div class="cat-title"><h3>Travel &amp; Nomad</h3><span>Visas, currency &amp; trip budgets</span></div>
+                        <span class="cat-badge">3 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="travel.html#schengen" data-terms="Schengen visa 90 180 days Europe stay limit tracker">
+                            <div><div class="tool-name">Schengen Visa Timer</div><div class="tool-desc">Track remaining days in the Schengen 90/180-day rule</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/schengen-90-180-rule-explained.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Schengen 90/180 Rule</div><div class="tool-desc">How to track your days and stay legal in Europe.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="travel.html#currency" data-terms="live currency converter exchange rate USD EUR GBP all countries">
+                            <div><div class="tool-name">Live Currency Converter</div><div class="tool-desc">Real-time exchange rates for 150+ world currencies</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="travel.html#budget" data-terms="trip budget daily allowance travel cost per day accommodation">
+                            <div><div class="tool-name">Trip Budget Planner</div><div class="tool-desc">Daily spend budget breakdown by category for any destination</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Green Energy Sustainability Solar ROI Carbon Footprint Appliance Electricity Cost Eco">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#14532d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
+                        <div class="cat-title"><h3>Sustainability</h3><span>Solar, carbon &amp; energy costs</span></div>
+                        <span class="cat-badge">3 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="green.html#carbon" data-terms="carbon footprint CO2 emissions transport flights diet driving">
+                            <div><div class="tool-name">Carbon Footprint</div><div class="tool-desc">Annual CO₂ emissions from transport, diet, and home energy</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="green.html#solar" data-terms="solar panel ROI payback period savings electricity bill">
+                            <div><div class="tool-name">Solar Panel ROI</div><div class="tool-desc">Payback period and 25-year savings on a solar installation</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="green.html#appliance" data-terms="appliance energy cost kWh electricity usage monthly annual">
+                            <div><div class="tool-name">Appliance Energy Cost</div><div class="tool-desc">Monthly electricity cost of any appliance by wattage &amp; usage</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="DIY Construction Concrete Volume Paint Coverage Board Foot Lumber Materials">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#f59e0b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                        <div class="cat-title"><h3>DIY &amp; Project</h3><span>Concrete, paint &amp; lumber</span></div>
+                        <span class="cat-badge">3 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="diy.html#concrete" data-terms="concrete volume cubic yards bags slab footing mix ratio">
+                            <div><div class="tool-name">Concrete Volume</div><div class="tool-desc">Cubic yards and bag count for any slab, footing or column</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="diy.html#paint" data-terms="paint coverage gallon square feet walls coats primer">
+                            <div><div class="tool-name">Paint Coverage</div><div class="tool-desc">Gallons needed for any room based on area and coat count</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="diy.html#lumber" data-terms="board foot lumber wood BF price per BF hardwood">
+                            <div><div class="tool-name">Board Foot Lumber</div><div class="tool-desc">Board feet and cost estimate for any lumber order</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Audio Music Production BPM Milliseconds Room Mode Frequency Acoustic Delay Sync">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#c084fc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+                        <div class="cat-title"><h3>Audio &amp; Music</h3><span>BPM sync, room modes &amp; mixing</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="audio.html#bpm" data-terms="BPM milliseconds delay time sync tempo music production">
+                            <div><div class="tool-name">BPM to Milliseconds</div><div class="tool-desc">Note-length delay times for any tempo in ms and Hz</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="audio.html#room" data-terms="room mode acoustic standing wave frequency dimensions studio">
+                            <div><div class="tool-name">Room Mode Calculator</div><div class="tool-desc">Axial, tangential &amp; oblique room modes for studio treatment</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="audio.html#freq" data-terms="frequency wavelength Hz speed of sound octave pitch">
+                            <div><div class="tool-name">Frequency &amp; Wavelength</div><div class="tool-desc">Hz — Wavelength converter with octave and note mapping</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="audio.html#rt60" data-terms="RT60 reverb decay room acoustic treatment absorption">
+                            <div><div class="tool-name">RT60 Reverb Decay</div><div class="tool-desc">Estimated room reverb time from volume and absorption</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Gaming RNG Gacha Probability DPS Streamer Revenue Twitch YouTube Bitrate Storage">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#7dd3fc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M9 9v6M15 11v.01M18 13v.01"/></svg></div>
+                        <div class="cat-title"><h3>Gaming &amp; RNG</h3><span>Probability, DPS &amp; streaming</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="gaming.html#gacha" data-terms="gacha probability pity rate drop chance pulls banner">
+                            <div><div class="tool-name">Gacha Probability</div><div class="tool-desc">Expected pulls to guaranteed drop at any drop rate &amp; pity</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="gaming.html#dps" data-terms="DPS damage per second crit rate multiplier weapon attack">
+                            <div><div class="tool-name">DPS Calculator</div><div class="tool-desc">Effective DPS with crit rate, multiplier &amp; attack speed</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="gaming.html#stream" data-terms="streamer revenue Twitch YouTube subscriber donation ad CPM">
+                            <div><div class="tool-name">Streamer Revenue</div><div class="tool-desc">Estimated monthly income from subs, ads &amp; donations</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="gaming.html#bitrate" data-terms="bitrate storage recording streaming OBS file size hours">
+                            <div><div class="tool-name">Bitrate &amp; Storage</div><div class="tool-desc">File size and hours of footage at any resolution &amp; bitrate</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Culinary Cooking Baking Baker's Percentage Hydration Cocktail Batching Recipe Scaling">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#fdba74"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+                        <div class="cat-title"><h3>Culinary</h3><span>Baking ratios &amp; cocktail batching</span></div>
+                        <span class="cat-badge">2 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="culinary.html#bakers" data-terms="baker's percentage bread flour water hydration ratio dough">
+                            <div><div class="tool-name">Baker's Percentage</div><div class="tool-desc">Scale any bread recipe by weight using baker's math</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="culinary.html#cocktail" data-terms="cocktail batching scaling recipe bar drinks punch volume">
+                            <div><div class="tool-name">Cocktail Batch Scaling</div><div class="tool-desc">Scale any cocktail recipe to any number of servings</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Psychology Behavior Habits Decision Matrix Cognitive Load Logic Mental">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#e879f9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg></div>
+                        <div class="cat-title"><h3>Psychology &amp; Behavior</h3><span>Habits, decisions &amp; cognitive tools</span></div>
+                        <span class="cat-badge">3 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="psych.html#habit" data-terms="habit formation 21 66 days loop cue routine reward loop timer">
+                            <div><div class="tool-name">Habit Formation Timer</div><div class="tool-desc">Days to automaticity based on behavior complexity science</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="psych.html#decision" data-terms="decision matrix weighted score criteria comparison choice">
+                            <div><div class="tool-name">Decision Matrix</div><div class="tool-desc">Score competing options by weighted criteria for clarity</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="psych.html#cognitive" data-terms="cognitive load mental effort task complexity design UX">
+                            <div><div class="tool-name">Cognitive Load Index</div><div class="tool-desc">Estimate mental complexity of a task or UX flow</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Spiritual Numerology Life Path Number Moon Phase Birth Birthday Astrology">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#a5b4fc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg></div>
+                        <div class="cat-title"><h3>Spiritual</h3><span>Numerology &amp; moon phases</span></div>
+                        <span class="cat-badge">2 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="spiritual.html#lifepath" data-terms="life path number numerology birthday birth date meaning">
+                            <div><div class="tool-name">Life Path Number</div><div class="tool-desc">Numerology life path from birth date with meaning guide</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="spiritual.html#moon" data-terms="moon phase finder full new waxing waning crescent date">
+                            <div><div class="tool-name">Moon Phase Finder</div><div class="tool-desc">Current and historical moon phase for any date</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Survival Tactical Ballistics Bullet Drop Water Purification Bleach Ratio Emergency Field">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#ef4444"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                        <div class="cat-title"><h3>Tactical &amp; Survival</h3><span>Ballistics &amp; field preparedness</span></div>
+                        <span class="cat-badge">2 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="survival.html#ballistics" data-terms="ballistics bullet drop trajectory range rifle caliber MOA wind">
+                            <div><div class="tool-name">Ballistics / Bullet Drop</div><div class="tool-desc">Trajectory and drop at distance for rifle &amp; projectile data</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="survival.html#water" data-terms="water purification bleach ratio chlorine disinfect emergency">
+                            <div><div class="tool-name">Water Purification Ratio</div><div class="tool-desc">Bleach-to-water ratio for safe emergency disinfection</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Fitness Exercise VO2 Max 1RM Strength Race Pace Heart Rate Calories Burned">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#f97316"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                        <div class="cat-title"><h3>Fitness &amp; Training</h3><span>VO₂ Max, 1RM &amp; race pace</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="fitness.html#vo2max" data-terms="VO2 max aerobic capacity cardio endurance running fitness">
+                            <div><div class="tool-name">VO₂ Max Estimator</div><div class="tool-desc">Aerobic capacity from resting HR or timed run test</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="fitness.html#onerrm" data-terms="1RM one rep max strength lift bench press squat deadlift">
+                            <div><div class="tool-name">1-Rep Max (1RM)</div><div class="tool-desc">Max lift weight from submaximal reps using 7 formulas</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="fitness.html#racepace" data-terms="race pace time 5K 10K half marathon marathon running calculator">
+                            <div><div class="tool-name">Race Pace Calculator</div><div class="tool-desc">Target pace, finish time and speed for any race distance</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="fitness.html#hrzones" data-terms="heart rate zone training intensity cardio fat burn threshold">
+                            <div><div class="tool-name">Heart Rate Zones</div><div class="tool-desc">5-zone HR training ranges from max HR or Karvonen formula</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="fitness.html#calburn" data-terms="calories burned exercise MET activity duration weight">
+                            <div><div class="tool-name">Calorie Burn by Activity</div><div class="tool-desc">kcal burned for 60+ activities using MET values</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Medical Clinical Drug Dosage IV Drip Rate Body Weight Creatinine Caloric Deficit">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#fb7185"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M12 3a4 4 0 0 1 4 4H8a4 4 0 0 1 4-4zM3 11h18v2H3z"/></svg></div>
+                        <div class="cat-title"><h3>Medical &amp; Clinical</h3><span>Dosing, IV &amp; body composition</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="medical.html#dosage" data-terms="drug dosage weight based mg per kg dose calculation frequency">
+                            <div><div class="tool-name">Drug Dosage Calculator</div><div class="tool-desc">Weight-based single and daily dose with concentration in mL</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="medical.html#ivdrip" data-terms="IV drip rate gtt per min flow rate infusion macrodrip microdrip">
+                            <div><div class="tool-name">IV Drip Rate</div><div class="tool-desc">Drops per minute and mL/hr for any IV infusion setup</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="medical.html#ibw" data-terms="ideal body weight IBW adjusted Devine formula obesity BMI">
+                            <div><div class="tool-name">Ideal Body Weight (IBW)</div><div class="tool-desc">Devine IBW and adjusted BW for pharmacokinetic dosing</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="medical.html#crcl" data-terms="creatinine clearance Cockcroft-Gault renal function GFR kidney CKD">
+                            <div><div class="tool-name">Creatinine Clearance</div><div class="tool-desc">GFR estimate and CKD stage via Cockcroft-Gault equation</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/cockcroft-gault-equation-for-clinicians.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Cockcroft-Gault for Clinicians</div><div class="tool-desc">Clinical context behind GFR and renal function estimates.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="medical.html#caldef" data-terms="caloric deficit weight loss fat timeline date projection kcal">
+                            <div><div class="tool-name">Caloric Deficit Timeline</div><div class="tool-desc">Weeks and date to reach target weight at chosen deficit</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Parenting Baby Cost Allowance School Age Child BMI Teen Insurance">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#fde68a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                        <div class="cat-title"><h3>Parenting &amp; Family</h3><span>Baby cost, allowance &amp; child tools</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="parenting.html#babycost" data-terms="baby cost first year newborn childcare formula daycare birth">
+                            <div><div class="tool-name">First-Year Baby Cost</div><div class="tool-desc">Estimated first-year and 18-year child-raising cost</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="parenting.html#allowance" data-terms="allowance weekly growth savings child pocket money raise age">
+                            <div><div class="tool-name">Allowance Growth Planner</div><div class="tool-desc">Total given and saved to age 18 with annual raises</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="parenting.html#schoolage" data-terms="school start age kindergarten cutoff redshirting state enrollment">
+                            <div><div class="tool-name">School Start Age</div><div class="tool-desc">Kindergarten year and grad year by state cutoff date</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="parenting.html#childbmi" data-terms="child BMI pediatric percentile CDC weight healthy underweight">
+                            <div><div class="tool-name">Child BMI by Age</div><div class="tool-desc">CDC percentile and weight category for ages 2–19</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="parenting.html#teenins" data-terms="teen insurance car auto premium increase good student discount">
+                            <div><div class="tool-name">Teen Insurance Estimator</div><div class="tool-desc">Estimated auto insurance premium increase with teen driver</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Productivity Pomodoro Deep Work Meeting ROI Eisenhower Email Time Management Focus">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#67e8f9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                        <div class="cat-title"><h3>Productivity &amp; Time</h3><span>Focus, meetings &amp; deep work</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="productivity.html#pomodoro" data-terms="Pomodoro technique timer focus break cycle session planning">
+                            <div><div class="tool-name">Pomodoro Day Planner</div><div class="tool-desc">Total focus sessions and break time for any work day</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="productivity.html#deepwork" data-terms="deep work capacity interruptions focus hours efficiency knowledge worker">
+                            <div><div class="tool-name">Deep Work Capacity</div><div class="tool-desc">Actual focus hours after meetings and interruption costs</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="productivity.html#meetroi" data-terms="meeting cost ROI salary hourly rate annual waste team">
+                            <div><div class="tool-name">Meeting ROI Calculator</div><div class="tool-desc">Real dollar cost of meetings by team size and hourly rate</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="productivity.html#eisenhower" data-terms="Eisenhower matrix urgency importance quadrant prioritize task delegate">
+                            <div><div class="tool-name">Eisenhower Prioritizer</div><div class="tool-desc">Classify any task by urgency and importance quadrant</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="productivity.html#emailcost" data-terms="email time cost salary annual hours inbox knowledge worker">
+                            <div><div class="tool-name">Email Time Cost</div><div class="tool-desc">Annual salary cost and % of workday lost to email processing</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Math Geometry Quadratic Triangle Circle Sphere Cylinder Percentage Change Fibonacci">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#5eead4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 4H6l6 8-6 8h12"/></svg></div>
+                        <div class="cat-title"><h3>Math &amp; Geometry</h3><span>Quadratic, triangle, circle &amp; sequences</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="math.html#quadratic" data-terms="quadratic formula ax2 bx c roots discriminant vertex solve">
+                            <div><div class="tool-name">Quadratic Formula Solver</div><div class="tool-desc">Roots, discriminant and vertex of any quadratic equation</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="math.html#triangle" data-terms="triangle area Heron's formula sides perimeter scalene isosceles equilateral">
+                            <div><div class="tool-name">Triangle Area (Heron's)</div><div class="tool-desc">Area and type classification from three side lengths</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="math.html#circle" data-terms="circle sphere cylinder area volume surface circumference radius">
+                            <div><div class="tool-name">Circle / Sphere / Cylinder</div><div class="tool-desc">Area, circumference, surface area and volume for round shapes</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="math.html#pctchange" data-terms="percentage change increase decrease original new value reverse">
+                            <div><div class="tool-name">Percentage Change</div><div class="tool-desc">% change, absolute difference and reverse percentage</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="math.html#fibonacci" data-terms="Fibonacci sequence golden ratio phi nature series terms">
+                            <div><div class="tool-name">Fibonacci Sequence</div><div class="tool-desc">Generate any length sequence and golden ratio approximation</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Legal Tax Self Employment SE Capital Gains Depreciation LLC S-Corp QBI Deduction">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#fca5a5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                        <div class="cat-title"><h3>Legal &amp; Tax</h3><span>SE tax, capital gains &amp; business structures</span></div>
+                        <span class="cat-badge">5 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="legal-tax.html#setax" data-terms="self employment tax SE FICA Schedule SE freelance 1099 deduction">
+                            <div><div class="tool-name">Self-Employment Tax</div><div class="tool-desc">SE tax, deductible half, and net after-tax income estimate</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/self-employment-tax-a-complete-guide.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: Self-Employment Tax</div><div class="tool-desc">A complete breakdown of FICA for the self-employed.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="legal-tax.html#capgains" data-terms="capital gains tax short long term rate asset sale stock property">
+                            <div><div class="tool-name">Capital Gains Tax</div><div class="tool-desc">Short and long-term gains tax owed from any asset sale</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="legal-tax.html#depreciation" data-terms="depreciation MACRS straight line section 179 asset cost recovery">
+                            <div><div class="tool-name">Depreciation Schedule</div><div class="tool-desc">MACRS and straight-line depreciation for any business asset</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="legal-tax.html#llcscorp" data-terms="LLC vs S-Corp salary distribution payroll tax savings election">
+                            <div><div class="tool-name">LLC vs. S-Corp Tax</div><div class="tool-desc">Self-employment tax savings from S-Corp election at any income</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="legal-tax.html#qbi" data-terms="QBI deduction 199A qualified business income pass-through 20% limit">
+                            <div><div class="tool-name">QBI Deduction (§199A)</div><div class="tool-desc">20% pass-through deduction eligibility and amount estimate</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="blog/llc-vs-scorp-which-saves-more-tax.html" style="background: rgba(245, 166, 35, 0.05); border-left: 3px solid var(--accent);">
+                            <div><div class="tool-name" style="color: var(--accent);">Guide: LLC vs S-Corp Tax Strategy</div><div class="tool-desc">How to save thousands in self-employment taxes.</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+<div class="cat-group" data-cat="Unit Converter Length Weight Temperature Cooking Cups Grams Ounces ml Imperial Metric">
+                    <div class="cat-header" onclick="toggleCat(this)">
+                        <div class="cat-icon" style="--ic-color:#d1d5db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg></div>
+                        <div class="cat-title"><h3>Unit Converters</h3><span>Length, weight, temp &amp; cooking</span></div>
+                        <span class="cat-badge">4 tools</span>
+                        <span class="cat-chevron">▼</span>
+                    </div>
+                    <div class="tool-list">
+                        <a class="tool-item" href="unit-converters.html#length" data-terms="length converter meters feet inches miles km cm mm">
+                            <div><div class="tool-name">Length Converter</div><div class="tool-desc">Metric — Imperial: mm, cm, m, km, in, ft, yd, mi</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="unit-converters.html#weight" data-terms="weight converter kg lbs ounces grams pounds stone">
+                            <div><div class="tool-name">Weight Converter</div><div class="tool-desc">kg, g, lbs, oz, stone &amp; more unit conversions</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="unit-converters.html#temp" data-terms="temperature converter celsius fahrenheit kelvin">
+                            <div><div class="tool-name">Temperature Converter</div><div class="tool-desc">°C — °F — K with formula explanation</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                        <a class="tool-item" href="unit-converters.html#cooking" data-terms="cooking baking converter cups tablespoons teaspoons ml oz grams">
+                            <div><div class="tool-name">Cooking Unit Converter</div><div class="tool-desc">Cups, tbsp, tsp, ml, oz and grams for any ingredient</div></div>
+                            <span class="tool-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        
+    </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links"><a href="blog/index.html">Guides</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+    <script>
+        const searchInput = document.getElementById('toolSearch');
+        const countEl = document.getElementById('search-count');
+        const summaryEl = document.getElementById('list-summary');
+        const noResults = document.getElementById('no-results');
+        const noResTerm = document.getElementById('no-res-term');
+
+        function toggleCat(el) {
+            const group = el.parentElement;
+            group.classList.toggle('open');
+        }
+
+        function expandAll() {
+            document.querySelectorAll('.cat-group:not(.hidden)').forEach(g => g.classList.add('open'));
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.cat-group').forEach(g => g.classList.remove('open'));
+        }
+
+        function filterList() {
+            const q = searchInput.value.toLowerCase().trim();
+            let visibleTools = 0;
+            let visibleCats = 0;
+
+            document.querySelectorAll('.cat-group').forEach(group => {
+                let catHasMatch = false;
+                const catTerms = (group.getAttribute('data-cat') || '').toLowerCase();
+                
+                group.querySelectorAll('.tool-item').forEach(item => {
+                    const terms = (item.getAttribute('data-terms') || '').toLowerCase();
+                    const name = (item.querySelector('.tool-name')?.textContent || '').toLowerCase();
+                    const match = !q || terms.includes(q) || name.includes(q) || catTerms.includes(q);
+                    item.classList.toggle('hidden', !match);
+                    if (match) { catHasMatch = true; visibleTools++; }
+                });
+
+                group.classList.toggle('hidden', !catHasMatch);
+                if (catHasMatch) {
+                    visibleCats++;
+                    if (q) group.classList.add('open');
+                }
+            });
+
+            if (q) {
+                countEl.textContent = visibleTools + ' result' + (visibleTools !== 1 ? 's' : '');
+                summaryEl.textContent = visibleCats + ' categor' + (visibleCats !== 1 ? 'ies' : 'y') + ' · ' + visibleTools + ' tool' + (visibleTools !== 1 ? 's' : '');
+            } else {
+                countEl.textContent = '';
+                summaryEl.textContent = '27 categories · 100+ tools';
+                document.querySelectorAll('.cat-group').forEach(g => {
+                    g.classList.remove('hidden');
+                    g.classList.remove('open');
+                    g.querySelectorAll('.tool-item').forEach(i => i.classList.remove('hidden'));
+                });
+            }
+
+            if (noResults) {
+                noResults.style.display = (!q || visibleTools > 0) ? 'none' : 'block';
+                if (noResTerm) noResTerm.textContent = searchInput.value;
+            }
+        }
+
+        searchInput.addEventListener('input', filterList);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            filterList();
+            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+        });
+    </script>
+</body>
+</html>

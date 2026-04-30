@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gacha RNG, DPS & Streamer Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="gacha probability, dps calculator, streamer earnings, bitrate calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/gaming.html" />
+    <meta name="description" content="Professional gaming tools: Gacha RNG probability, DPS optimization, and Streamer revenue calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Hobbies & <span style="color: var(--accent2);">Digital Entert.</span></h1>
+            <p class="subtitle">Math for the gaming and content creation economy.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Gaming <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Gacha Soft Pity</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Most games increase rates drastically after pull 75. A 0.6% base rate often scales to 20%+ per pull in the "soft" range.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">The 1:2 Crit Ratio</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">For optimal DPS, your Crit Damage percentage should be double your Crit Chance (e.g., 60% CC to 120% CD).</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Bitrate & Quality</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Streaming at 1080p60 typically requires 6000kbps (6Mbps). This consumes approx 2.7GB of storage per hour of VOD.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('gacha', event)">Gacha RNG</button>
+                <button class="tab-btn" onclick="showTab('dps', event)">Gaming DPS</button>
+                <button class="tab-btn" onclick="showTab('stream', event)">Streamer ROI</button>
+                <button class="tab-btn" onclick="showTab('bits', event)">Bitrate/Storage</button>
+            </div>
+
+            <div id="gacha" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Base Chance (%)</label><div class="input-wrapper"><input type="number" id="ga-ch" value="0.6" step="0.1"></div></div>
+                    <div class="input-group"><label>Number of Pulls</label><div class="input-wrapper"><input type="number" id="ga-n" value="90"></div></div>
+                    <div class="input-group"><label>Soft Pity Starts</label><div class="input-wrapper"><input type="number" id="ga-pity" value="75"></div></div>
+                    <div class="input-group"><label>Hard Pity (Guaranteed)</label><div class="input-wrapper"><input type="number" id="ga-guar" value="90"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateGacha()">Calculate Pull Probabilities →</button>
+                <div id="gacha-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Base Cumulative Odds</span><span class="result-value" id="ga-out">0%</span></div>
+                        <div class="result-item"><span class="result-label">Pity-Adjusted Probability</span><span class="result-value" id="ga-cum" style="color:var(--accent2)">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="dps" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Base Damage</label><div class="input-wrapper"><input type="number" id="dp-d" value="500"></div></div>
+                    <div class="input-group"><label>Attack Speed (Hits/Sec)</label><div class="input-wrapper"><input type="number" id="dp-s" value="1.2" step="0.1"></div></div>
+                    <div class="input-group"><label>Crit Chance (%)</label><div class="input-wrapper"><input type="number" id="dp-cc" value="25"></div></div>
+                    <div class="input-group"><label>Crit Damage (%)</label><div class="input-wrapper"><input type="number" id="dp-cd" value="150"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDPS()">Analyze DPS Output →</button>
+                <div id="dps-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Expected Average DPS</span><span class="result-value" id="dp-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="stream" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Active Subscribers</label><div class="input-wrapper"><input type="number" id="st-s" value="500"></div></div>
+                    <div class="input-group"><label>Price Per Sub</label><div class="input-wrapper"><input type="number" id="st-p" value="4.99"></div></div>
+                    <div class="input-group"><label>Platform Cut (%)</label><div class="input-wrapper"><input type="number" id="st-c" value="50"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateStream()">Project Sub Revenue →</button>
+                <div id="stream-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Net Monthly Payout</span><span class="result-value" id="st-out" style="color:var(--accent2)">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="bits" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Streaming Bitrate (Mbps)</label><div class="input-wrapper"><input type="number" id="bi-b" value="6"></div></div>
+                    <div class="input-group"><label>Recording Duration (Hours)</label><div class="input-wrapper"><input type="number" id="bi-h" value="1"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateStorage()">Estimate Disk Space →</button>
+                <div id="bits-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Required Storage (GB)</span><span class="result-value" id="bi-out">0.00 GB</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Math Behind the <span style="color: var(--accent);">Modern Game</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Gacha Mechanics: Probability and "Pity"</h3>
+                        <p>In the world of free-to-play gaming, <strong>Gacha Probability</strong> is the engine that drives revenue. A "gacha" is essentially a virtual lottery where you spend currency for a chance at a rare item or character. Our <strong>Gacha Simulator</strong> accounts for two critical factors: the raw base rate and the "Pity System." Most modern games include a mechanic where your odds of success increase as you go more pulls without a rare drop. This "Soft Pity" often peaks at a "Hard Pity" where the drop is guaranteed. Understanding these curves is essential for managing your resources and avoiding the psychological trap of "gambler's fallacy."</p>
+                        <p style="margin-top: 16px;">The "Gambler's Fallacy" is the belief that because you haven't won lately, you are "due" for a win. While a pity system actually makes this true in-game, in a pure RNG (Random Number Generator) system, every pull is an independent event with the same odds. By using our tool to calculate your cumulative probability, you can see the <em>real</em> likelihood of getting your target character within a specific budget, allowing you to make rational decisions about when to spend and when to save your currency for the next banner.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">DPS Optimization: Beyond Raw Attack</h3>
+                        <p>In competitive and RPG gaming, <strong>DPS (Damage Per Second)</strong> is the ultimate measure of performance. Many players make the mistake of focusing only on high "Attack" numbers, but true optimization requires balancing <strong>Crit Rate</strong> and <strong>Crit Multiplier</strong>. Our <strong>DPS Calculator</strong> uses the weighted average formula to find your effective output. In many systems, maintaining a 1:2 ratio between Crit Rate and Crit Damage is the most efficient way to scale your power, ensuring that your investment in gear translates to the highest possible impact on the battlefield.</p>
+                        <p style="margin-top: 16px;">Attack speed is another critical variable. A weapon that hits twice as hard but half as fast has the same base DPS, but might be less effective at triggering "on-hit" effects or managing multiple small enemies. By plugging your build's specific stats into our auditor, you can identify the "diminishing returns" of certain attributes and shift your focus to the stats that will provide the largest net increase to your combat effectiveness.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Streaming Economics and Bitrate Math</h3>
+                        <p>For aspiring content creators, understanding the technical and financial metrics of streaming is vital. Our <strong>Streamer Revenue Projector</strong> helps you estimate your take-home pay after platform cuts. Simultaneously, our <strong>Bitrate & Storage Tool</strong> manages the technical side of the craft. Recording high-quality footage at a high bitrate (e.g., 50 Mbps for 4K) can consume hundreds of gigabytes in just a few hours. Planning your storage needs ahead of time prevents the frustration of a "Disk Full" error in the middle of a record-breaking speedrun or a high-stakes tournament.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Data-Driven Gaming</h3>
+                        <p>Gaming has evolved into a highly quantitative hobby. Whether you are managing your gacha pulls, optimizing your character build, or building a content creation brand, having the right data is a competitive advantage. Our <strong>Gaming Math Suite</strong> is designed to provide you with the clarity needed to excel in your favorite virtual worlds. Master the metrics, understand the systems, and let the data guide your path to victory.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmtC = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateGacha() {
+            const pBase = parseFloat(document.getElementById('ga-ch').value) / 100;
+const n = parseInt(document.getElementById('ga-n').value);
+const pityStart = parseInt(document.getElementById('ga-pity').value);
+const hardGuar = parseInt(document.getElementById('ga-guar').value);
+
+const rawProb = (1 - Math.pow(1 - pBase, n)) * 100;
+
+let chanceOfNotGetting = 1.0;
+for (let i = 1; i <= n; i++) {
+    let currentRate = pBase;
+    if (i >= hardGuar) currentRate = 1.0;
+    else if (i >= pityStart) currentRate = pBase + (i - pityStart + 1) * 0.06;
+    chanceOfNotGetting *= (1 - currentRate);
+    if (currentRate >= 1.0) break;
+}
+
+const pityProb = (1 - chanceOfNotGetting) * 100;
+document.getElementById('ga-out').innerText = rawProb.toFixed(2) + '%';
+document.getElementById('ga-cum').innerText = (n >= hardGuar ? 100 : pityProb).toFixed(1) + '%';
+document.getElementById('gacha-results').classList.add('visible');
+saveActivity('gaming', { type: 'gacha', base: pBase, pulls: n }, { prob: pityProb });
+        }
+
+        function calculateDPS() {
+            const d = parseFloat(document.getElementById('dp-d').value);
+const s = parseFloat(document.getElementById('dp-s').value);
+const cc = parseFloat(document.getElementById('dp-cc').value) / 100;
+const cd = parseFloat(document.getElementById('dp-cd').value) / 100;
+const dps = d * s * (1 + (cc * cd));
+document.getElementById('dp-out').innerText = dps.toLocaleString(undefined, {maximumFractionDigits: 1});
+document.getElementById('dps-results').classList.add('visible');
+saveActivity('gaming', { type: 'dps', damage: d, speed: s, crit_chance: cc }, { dps });
+        }
+
+        function calculateStream() {
+            const s = parseFloat(document.getElementById('st-s').value);
+const p = parseFloat(document.getElementById('st-p').value);
+const c = parseFloat(document.getElementById('st-c').value) / 100;
+const net = s * p * (1 - c);
+document.getElementById('st-out').innerText = fmtC(net);
+document.getElementById('stream-results').classList.add('visible');
+saveActivity('gaming', { type: 'stream', subs: s, price: p }, { net });
+        }
+
+        function calculateStorage() {
+            const b = parseFloat(document.getElementById('bi-b').value);
+const h = parseFloat(document.getElementById('bi-h').value);
+// Mbps to GB: (Mb/s * 3600s * h) / 8 bits-to-bytes / 1024^2 MB-to-GB (approx) 
+// Using 1024 for binary GB
+const sizeGb = (b * 1000000 * h * 3600) / (8 * 1024 * 1024 * 1024);
+document.getElementById('bi-out').innerText = sizeGb.toFixed(2) + ' GB';
+document.getElementById('bits-results').classList.add('visible');
+saveActivity('gaming', { type: 'storage', bitrate: b, hours: h }, { sizeGb });
+        }
+    </script>
+</body>
+</html>

@@ -1,36 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Worn Pages Club | Premium Curated Book Subscriptions</title>
-    <meta name="description" content="A luxury curation service for bibliophiles. Handpicked vintage books, personalized gifts, and rare finds delivered to your sanctuary.">
+    <title>The Worn Pages Club | A Curated Vintage Book Sanctuary</title>
+    <meta name="keywords" content="vintage book subscription, best book subscription boxes, curated book subscription, rare book subscription, personalized book box, unique gifts for readers, monthly vintage book delivery, heirloom vintage book subscription, botanical library aesthetic gifts, wax sealed book dispatch, linen wrapped vintage books, book lover gift box, artisanal book box, rare find book hunting service, curated generational library, atmospheric pairing cards for readers, antique book collection, luxury book gift box, bibliophile subscription box, classic book subscription, timeless literature gift boxes, blush rose botanical book box">
+    <meta name="description" content="A luxury sanctuary for bibliophiles. We hand-pick vintage treasures, heirloom literature, and artisanal gifts for the modern collector. Curated by humans, not algorithms.">
+    <link rel="canonical" href="https://thewornpages.com/">
+
+    <!-- Social Media Meta Tags (Open Graph) -->
+    <meta property="og:title" content="The Worn Pages Club | Curated Vintage Book Subscriptions">
+    <meta property="og:description" content="A luxury curation service for bibliophiles. Handpicked vintage books, personalized gifts, and rare finds delivered to your sanctuary.">
+    <meta property="og:image" content="https://thewornpages.com/hero.png">
+    <meta property="og:url" content="https://thewornpages.com/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Worn Pages Club | Curated Vintage Book Subscriptions">
+    <meta name="twitter:description" content="Luxury curated vintage book subscriptions for the modern collector.">
+    <meta name="twitter:image" content="https://thewornpages.com/hero.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Worn Pages Club",
+      "url": "https://thewornpages.com",
+      "logo": "https://thewornpages.com/assets/official-seal.png",
+      "description": "Premium curated book subscriptions featuring handpicked vintage and pre-loved editions.",
+      "sameAs": [
+        "https://instagram.com/thewornpages",
+        "https://facebook.com/thewornpages",
+        "https://twitter.com/thewornpages"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Book Subscription",
+      "provider": {
+        "@type": "Organization",
+        "name": "The Worn Pages Club"
+      },
+      "description": "Curated library of vintage and pre-loved books delivered monthly.",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "50",
+        "offerCount": "3"
+      }
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&family=Caveat:wght@400..700&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <!-- Stripe.js -->
     <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <!-- Apple Sign-In -->
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+    <script src="js/butterflies.js" defer></script>
 
     <style>
+        /* Social Login Buttons */
+        .social-login-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            border: 1px solid var(--aged-paper);
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            background: var(--cream-dark);
+            transform: translateY(-2px);
+        }
+
+        .social-btn img {
+            width: 18px;
+            height: 18px;
+        }
+
         :root {
-            --forest-green: #1B3022;
-            --forest-light: #2A4533;
-            --burgundy: #6B1D1D;
-            --burgundy-light: #8E2C2C;
-            --cream: #FDFBF7;
-            --cream-dark: #F5F1E9;
-            --aged-paper: #E9DCC9;
-            --gold: #C5A059;
-            --text-dark: #2C2C2C;
-            --text-muted: #666;
-            --glass: rgba(255, 255, 255, 0.85);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            /* Blush Rose Botanical Palette */
+            --forest-green: #B68D8D;    /* Dusty Rose */
+            --forest-light: #C7A2A2;
+            --burgundy: #D4A3A3;        /* Blush Pink */
+            --burgundy-light: #E5C1C1;
+            --cream: #FAF6F5;           /* Pearlescent Pearl */
+            --cream-dark: #F5EBE9;
+            --aged-paper: #EDE2E0;
+            --gold: #D4B982;           /* Champagne Gold */
+            --text-dark: #5C4F4F;      /* Soft Cocoa */
+            --text-muted: #9E8B8B;
+            --glass: rgba(255, 255, 255, 0.94);
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius: 32px;
+        }
+
+        body {
+            background-color: var(--cream);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Whimsical Butterflies */
+        .butterfly-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .butterfly-drift {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4A3A3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19c-1.5-1.5-3.5-2.5-5-2.5-1.5 0-3 1-3 3s1.5 3 3 3 3.5-1 5-2.5m0-1c1.5-1.5 3.5-2.5 5-2.5 1.5 0 3 1 3 3s-1.5 3-3 3-3.5-1-5-2.5M12 5c-1.5-1.5-3.5-2.5-5-2.5-1.5 0-3 1-3 3s1.5 3 3 3 3.5-1 5-2.5m0-1c1.5-1.5 3.5-2.5 5-2.5 1.5 0 3 1 3 3s-1.5 3-3 3-3.5-1-5-2.5'/%3E%3C/svg%3E") no-repeat center/contain;
+            opacity: 0.25;
+            animation: globalButterflyDrift linear infinite;
+        }
+
+        @keyframes globalButterflyDrift {
+            0% { transform: translate(-50px, 110vh) rotate(0deg); }
+            100% { transform: translate(110vw, -100px) rotate(360deg); }
+        }
+
+        /* Soft Light Leak Animation */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212, 163, 163, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle, rgba(138, 154, 141, 0.03) 0%, transparent 60%);
+            z-index: -1;
+            animation: lightLeak 30s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes lightLeak {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-10%, -5%) rotate(5deg); }
         }
 
         * {
@@ -53,7 +202,10 @@
             background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
         }
 
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             line-height: 1.1;
@@ -74,8 +226,13 @@
         }
 
         section.visible {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        #hero {
+            opacity: 1 !important;
+            transform: none !important;
         }
 
         .btn {
@@ -83,7 +240,7 @@
             align-items: center;
             justify-content: center;
             padding: 1.2rem 2.8rem;
-            border-radius: 4px;
+            border-radius: var(--radius);
             text-decoration: none;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
@@ -98,13 +255,13 @@
         .btn-primary {
             background: var(--forest-green);
             color: white;
-            box-shadow: 0 10px 30px rgba(27, 48, 34, 0.2);
+            box-shadow: 0 10px 40px rgba(122, 141, 128, 0.15);
         }
 
         .btn-primary:hover {
             background: var(--forest-light);
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(27, 48, 34, 0.3);
+            box-shadow: 0 15px 50px rgba(122, 141, 128, 0.25);
         }
 
         .btn-secondary {
@@ -136,6 +293,41 @@
             transition: var(--transition);
         }
 
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            color: var(--forest-green);
+            background: none;
+            border: none;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+                height: 70px;
+            }
+            .nav-links {
+                display: none; /* Hide for mobile toggle later if needed, but keeping simple for now */
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .container {
+                padding: 0 1.5rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1.1rem; }
+            
+            .social-login-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         nav.scrolled {
             height: 70px;
             background: rgba(253, 251, 247, 0.95);
@@ -144,11 +336,30 @@
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 900;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--forest-green);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo span {
+            font-family: 'Caveat', cursive;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-right: 0.8rem;
+            line-height: 0;
+            font-weight: 500;
+        }
+
+        .logo:hover {
+            color: var(--burgundy);
         }
 
         .nav-links {
@@ -175,7 +386,10 @@
         /* Quiz Modal */
         .modal {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(27, 48, 34, 0.95);
             display: none;
             align-items: center;
@@ -192,7 +406,7 @@
             border-radius: 8px;
             position: relative;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
         .close-modal {
@@ -252,7 +466,7 @@
             max-height: 200px;
             margin-top: 1.5rem;
         }
-        
+
         .faq-item.active i {
             transform: rotate(45deg);
         }
@@ -260,7 +474,10 @@
         /* Checkout Modal */
         .checkout-modal {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(27, 48, 34, 0.98);
             display: none;
             align-items: center;
@@ -277,7 +494,7 @@
             grid-template-columns: 1fr 1.2fr;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
@@ -345,10 +562,10 @@
         }
 
         .plan-summary {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             padding: 2rem;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .summary-item {
@@ -360,7 +577,7 @@
         }
 
         .summary-total {
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 1rem;
             margin-top: 1rem;
             display: flex;
@@ -370,8 +587,94 @@
         }
 
         @media (max-width: 768px) {
-            .checkout-container { grid-template-columns: 1fr; }
-            .checkout-sidebar { display: none; }
+            .checkout-container {
+                grid-template-columns: 1fr;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+
+            .checkout-sidebar {
+                display: none;
+            }
+            
+            .checkout-main {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .modal-content {
+                padding: 2.5rem 1.5rem;
+                width: 95%;
+            }
+            
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Interest Chips */
+        .interest-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .interest-chip {
+            padding: 1rem;
+            border: 1px solid var(--aged-paper);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 0.85rem;
+            background: white;
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .interest-chip:hover {
+            border-color: var(--burgundy);
+            color: var(--burgundy);
+        }
+
+        .interest-chip.active {
+            background: var(--burgundy);
+            color: white;
+            border-color: var(--burgundy);
+        }
+
+        .intent-btn {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            border: 1px solid var(--aged-paper);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .intent-btn:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .intent-btn.active {
+            background: var(--cream-dark);
+            border: 1px solid var(--gold);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);
+        }
+
+        .plan-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--aged-paper);
         }
 
         /* Hero */
@@ -379,10 +682,11 @@
             height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: flex-start;
+            padding-left: 10%;
             position: relative;
-            padding: 0;
-            background: var(--forest-green);
-            color: white;
+            background: var(--cream);
+            color: var(--text-dark);
             overflow: hidden;
             opacity: 1;
             transform: none;
@@ -394,17 +698,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("/Users/amn/.gemini/antigravity/brain/968d5237-c776-4474-a6af-25af292b1b9f/vintage_library_hero_1773256707409.png");
+            background-image: url("./assets/hero.png");
             background-size: cover;
             background-position: center;
-            opacity: 0.7;
+            opacity: 1;
+            filter: none;
             transform: scale(1.1);
-            animation: slowZoom 20s infinite alternate;
+            animation: slowZoom 25s infinite alternate;
         }
 
         @keyframes slowZoom {
-            from { transform: scale(1.1); }
-            to { transform: scale(1); }
+            from {
+                transform: scale(1.1);
+            }
+
+            to {
+                transform: scale(1);
+            }
         }
 
         .hero-overlay {
@@ -413,30 +723,62 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(27, 48, 34, 0.9) 20%, transparent 80%);
+            background: linear-gradient(to right, rgba(250, 249, 246, 0.5), rgba(250, 249, 246, 0.05));
+        }
+
+        /* Whimsical Butterfly Animation (Cider Colored) */
+        .butterfly-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .butterfly {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4A3A3' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19c-1.5-1.5-3.5-2.5-5-2.5-1.5 0-3 1-3 3s1.5 3 3 3 3.5-1 5-2.5m0-1c1.5-1.5 3.5-2.5 5-2.5 1.5 0 3 1 3 3s-1.5 3-3 3-3.5-1-5-2.5M12 5c-1.5-1.5-3.5-2.5-5-2.5-1.5 0-3 1-3 3s1.5 3 3 3 3.5-1 5-2.5m0-1c1.5-1.5 3.5-2.5 5-2.5 1.5 0 3 1 3 3s-1.5 3-3 3-3.5-1-5-2.5'/%3E%3Cline x1='12' y1='2' x2='12' y2='22'/%3E%3C/svg%3E") no-repeat center/contain;
+            opacity: 0.5;
+            animation: drift 20s infinite ease-in-out;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(-10%, 110%) rotate(0deg); }
+            25% { transform: translate(30%, 50%) rotate(20deg); }
+            50% { transform: translate(70%, 80%) rotate(-10deg); }
+            75% { transform: translate(90%, 20%) rotate(15deg); }
+            100% { transform: translate(110%, -10%) rotate(0deg); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 5;
             max-width: 700px;
-            padding: 0 4rem;
+            padding: 0;
+            text-align: left;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
         }
 
         .hero-content h1 {
-            font-size: 5rem;
-            color: white;
-            margin-bottom: 2rem;
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
             line-height: 1.1;
+            margin: 1.5rem 0;
+            color: var(--text-dark);
+            font-weight: 300;
+            letter-spacing: -1px;
         }
 
         .hero-content p {
-            font-size: 1.6rem;
-            margin-bottom: 3rem;
-            font-style: italic;
-            color: var(--aged-paper);
-            opacity: 0.9;
+            font-size: 1.25rem;
+            margin: 0 0 3rem 0;
+            line-height: 1.8;
+            color: var(--text-muted);
         }
+
+
 
         /* Pricing Section */
         #pricing {
@@ -463,50 +805,62 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Term Toggle */
-        .term-toggle {
-            display: flex;
-            background: var(--cream-dark);
-            padding: 0.5rem;
-            border-radius: 100px;
-            width: fit-content;
-            margin: 0 auto 4rem;
-            border: 1px solid var(--aged-paper);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .term-btn {
-            padding: 0.8rem 2rem;
-            border-radius: 100px;
-            border: none;
-            background: transparent;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .term-btn.active {
-            background: var(--forest-green);
-            color: white;
-            box-shadow: 0 5px 15px rgba(27, 48, 34, 0.2);
-        }
-
-        .discount-badge {
-            position: absolute;
-            top: -15px;
-            right: 0;
+        .plan-badge {
+            display: inline-block;
             background: var(--burgundy);
             color: white;
-            font-size: 0.65rem;
-            padding: 3px 10px;
-            border-radius: 20px;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 4px;
             font-weight: bold;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cycle-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 1.5rem;
+        }
+
+        .cycle-btn {
+            background: var(--cream-dark);
+            border: 1px solid var(--aged-paper);
+            padding: 0.6rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            flex: 1;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .cycle-btn.active {
+            background: var(--forest-green);
+            color: white;
+            border-color: var(--forest-green);
+        }
+
+        .cycle-discount {
+            position: absolute;
+            top: -10px;
+            right: -5px;
+            background: var(--gold);
+            color: var(--forest-green);
+            font-size: 0.55rem;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-weight: 800;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         /* Pricing Cards */
@@ -521,11 +875,12 @@
             background: var(--glass);
             border: 1px solid var(--aged-paper);
             padding: 4rem 3rem;
-            border-radius: 12px;
+            border-radius: var(--radius);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
             position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
             overflow: hidden;
         }
 
@@ -587,10 +942,10 @@
         }
 
         .plan-price {
-            font-size: 4rem;
-            font-weight: 700;
+            font-size: 5.5rem;
+            font-weight: 800;
             color: var(--forest-green);
-            line-height: 1;
+            line-height: 0.9;
         }
 
         .plan-price span {
@@ -598,6 +953,25 @@
             color: var(--text-muted);
             font-weight: 400;
             font-family: 'EB Garamond', serif;
+        }
+
+        .plan-original-price {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-right: 0.5rem;
+            font-weight: 400;
+            display: none;
+        }
+
+        .plan-total {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.8rem;
+            font-weight: 600;
         }
 
         .plan-features {
@@ -628,7 +1002,9 @@
             text-align: center;
         }
 
-        #testimonials h2 { color: white; }
+        #testimonials h2 {
+            color: white;
+        }
 
         .testimonial-grid {
             display: grid;
@@ -642,6 +1018,13 @@
             padding: 3rem;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
         }
 
         .quote {
@@ -703,171 +1086,734 @@
             transition: var(--transition);
         }
 
-        .footer-col a:hover { color: var(--burgundy); }
+        .footer-col a:hover {
+            color: var(--burgundy);
+        }
+
+        /* Reveal Animations */
+        section {
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        section.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        #hero {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        /* Showcase Sections */
+        .showcase-section {
+            padding: 120px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: center;
+        }
+
+        .showcase-img-wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        .showcase-img-wrap::after {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--gold);
+            z-index: -1;
+        }
+
+        .showcase-img {
+            width: 100%;
+            display: block;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+            border: 1px solid var(--aged-paper);
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .showcase-text i {
+            margin-bottom: 2rem;
+            display: block;
+            color: var(--burgundy);
+        }
+
+        .showcase-text h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            text-shadow: 0 1px 5px rgba(255,255,255,0.8);
+        }
+
+        .showcase-lead {
+            font-size: 1.35rem;
+            margin-bottom: 3.5rem;
+            color: var(--text-dark);
+            max-width: 600px;
+        }
+
+        .showcase-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .showcase-feature-item h4 {
+            color: var(--gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .showcase-feature-item p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
 
         @media (max-width: 1024px) {
-            .pricing-grid, .testimonial-grid {
+            .pricing-grid,
+            .testimonial-grid {
                 grid-template-columns: 1fr;
                 max-width: 600px;
                 margin-left: auto;
                 margin-right: auto;
             }
-            .hero-content h1 { font-size: 3.5rem; }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            nav {
+                height: 70px;
+                padding: 0 1.5rem;
+            }
+
+            .logo {
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+                white-space: nowrap;
+            }
+            .logo span {
+                font-size: 1.6rem;
+                margin-right: 0.4rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--aged-paper);
+                transform: translateY(-150%);
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-content {
+                padding: 0 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .handwritten {
+                font-size: 1.8rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+            @media (max-width: 1100px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+            @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+            .plan-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .plan-price {
+                font-size: 3.5rem;
+            }
+
+            .cycle-btn {
+                font-size: 0.65rem;
+                padding: 0.5rem 0.4rem;
+            }
+
+            .cycle-discount {
+                font-size: 0.45rem;
+                padding: 1px 4px;
+            }
+
+            #gift .container {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+            }
+
+            #gift .showcase-text {
+                text-align: center !important;
+            }
+
+            #gift {
+                padding: 50px 0;
+                background-image: linear-gradient(rgba(212, 163, 163, 0.9), rgba(212, 163, 163, 0.9)), url("./assets/gift_bg_new.png") !important;
+                background-size: cover !important;
+                background-position: center !important;
+                text-align: center;
+            }
+            
+            #gift img { display: none; }
+
+            /* Fix Signature Curation Background on Mobile */
+            #signature-curation .showcase-grid {
+                padding: 2rem !important;
+                margin-bottom: 4rem !important;
+            }
+
+            /* Showcase Mobile */
+            .showcase-section {
+                padding: 40px 0;
+            }
+
+            section {
+                padding: 40px 0 !important;
+            }
+
+            .section-header {
+                margin-bottom: 3rem !important;
+            }
+
+            .container {
+                margin-top: 40px !important;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .showcase-img-wrap {
+                max-width: 450px;
+                margin: 0 auto;
+                order: 2;
+            }
+
+            .showcase-img-wrap::after {
+                top: -10px;
+                left: -10px;
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .showcase-text h2 {
+                font-size: 2.6rem;
+            }
+
+            .showcase-lead {
+                font-size: 1.15rem;
+                margin: 0 auto 3rem;
+            }
+
+            .showcase-features {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: left;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .checkout-container {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .checkout-main {
+                padding: 2rem;
+            }
+
+
+            .modal-content {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .footer-logo {
+                margin-bottom: 1rem !important;
+            }
+
+            div[style*="margin-top: 100px"] {
+                margin-top: 40px !important;
+            }
+
+            /* Responsive Hero & Grid Fixes */
+            #hero {
+                padding-top: 100px !important;
+                padding-left: 1.5rem !important;
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
+                height: auto !important;
+                min-height: 85vh !important;
+            }
+
+            .hero-bg {
+                filter: none !important;
+                opacity: 1 !important;
+                transform: scale(1) !important;
+            }
+
+            .hero-overlay {
+                background: linear-gradient(to bottom, rgba(250, 249, 246, 0.95), rgba(250, 249, 246, 0.4)) !important;
+            }
+
+            .hero-content {
+                text-align: left !important;
+                padding-right: 1.5rem !important;
+                margin-top: 2rem !important;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .plan-card {
+                padding: 2.5rem 1.5rem !important;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav id="navbar">
-        <a href="#" class="logo">THE WORN PAGES CLUB</a>
-        <div class="nav-links">
-            <a href="#pricing">The Offers</a>
-            <a href="#experience">The Experience</a>
-            <a href="#testimonials">Stories</a>
-            <a href="#pricing" class="btn btn-secondary" style="padding: 0.8rem 1.8rem; border-width: 2px;">Sign In</a>
+        <a href="/" class="logo"><span>The</span> WORN PAGES CLUB</a>
+        <div class="nav-links" id="nav-links">
+            <a href="vault.html">Member Library</a>
+            <a href="#journeys">Subscriptions</a>
+            <a href="#tradition">How It Works</a>
+            <a href="profile.html">My Account</a>
+            <a href="#journeys" class="btn btn-secondary" style="padding: 0.8rem 1.8rem; border-width: 2px;">Join the Club</a>
+        </div>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i data-lucide="menu"></i>
         </div>
     </nav>
 
     <section id="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
+        <div class="butterfly-container">
+            <div class="butterfly" style="animation-delay: 0s; scale: 0.8;"></div>
+            <div class="butterfly" style="animation-delay: -5s; left: 20%; animation-duration: 18s; scale: 1.2;"></div>
+            <div class="butterfly" style="animation-delay: -10s; left: 40%; animation-duration: 22s; scale: 1;"></div>
+        </div>
         <div class="hero-content">
-            <h1>Curating the World’s Most Loved Stories.</h1>
-            <p>A luxury subscription for the modern collector. Hand-selected, pre-loved vintage treasures delivered to your door.</p>
-            <a href="#pricing" class="btn btn-primary">Begin Your Journey <i data-lucide="arrow-right" style="margin-left: 1rem; width: 18px;"></i></a>
+            <span class="handwritten" style="color: var(--pink); font-size: 1.8rem; display: block; margin-bottom: 0.5rem;">Curation for the Ones You Love</span>
+            <h1>Curating Magic for Your Inner Circle.</h1>
+            <p>From sun-drenched meadows to cozy autumn evenings, we handpick vintage treasures that tell stories for you, your dearest friends, and the family you cherish.</p>
+            <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: flex-start;">
+                <a href="#journeys" class="btn btn-primary" style="padding: 1.2rem 2.5rem;">Share the Tradition</a>
+                <a href="vault.html" class="btn btn-outline" style="padding: 1.2rem 2.5rem; border: 1px solid var(--pink); color: var(--pink); background: rgba(255,255,255,0.2);">Explore the Archive</a>
+            </div>
         </div>
     </section>
 
-    <section id="pricing" class="container">
+    <section id="signature-curation" class="showcase-section">
+        <div class="container showcase-grid" style="background: var(--cream-dark); padding: 4rem; border-radius: 8px; border: 1px solid var(--aged-paper);">
+             <div class="showcase-img-wrap">
+                <img src="./assets/signature_box_new.png" alt="The Worn Pages Box" class="showcase-img">
+            </div>
+            <div class="showcase-text">
+                <span class="handwritten">What's inside your box</span>
+                <h2>The Signature Package</h2>
+                <p class="showcase-lead">Every book is nested in luxury linen wrap, protected by curated additions, and finished with our hand-poured wax seal. A gift that honors the history within.</p>
+                <div class="showcase-features" style="margin-bottom: 2rem;">
+                    <div class="showcase-feature-item">
+                        <h4>Archival Wrap</h4>
+                        <p>Acid-free linen paper to preserve the binding for another century.</p>
+                    </div>
+                    <div class="showcase-feature-item">
+                        <h4>Wax Seal</h4>
+                        <p>Our hand-poured wax logo, signifying entry into the archive.</p>
+                    </div>
+                    <div class="showcase-feature-item" style="grid-column: span 2;">
+                        <h4>Curator's Dispatch Note</h4>
+                        <p>A printed card from your personal curator explaining why each book was chosen for your specific literary profile. Not a generic insert — a specific, personal note tied to your taste profile.</p>
+                    </div>
+                </div>
+                <a href="#pricing" class="btn btn-secondary">Choose Your Tier <i data-lucide="arrow-down" style="margin-left: 0.8rem; width: 16px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: The Journeys -->
+    <section id="journeys" class="container">
         <div class="section-header">
-            <span class="handwritten">Exquisite Memberships</span>
-            <h2>Select Your Tier</h2>
-            <p style="color: var(--text-muted); font-size: 1.3rem;">Choose the volume of your library. Longer subscriptions offer the most value for the dedicated reader.</p>
+            <span class="handwritten">Choose your ritual</span>
+            <h2>Monthly Subscriptions</h2>
+            <p style="color: var(--text-muted); font-size: 1.3rem;">Curated book experiences tailored to your reading life.</p>
         </div>
 
-        <div class="term-toggle">
-            <button class="term-btn active" data-term="3">3 Months</button>
-            <button class="term-btn" data-term="6">6 Months <span class="discount-badge">Save 5%</span></button>
-            <button class="term-btn" data-term="12">1 Year <span class="discount-badge">Save 15%</span></button>
-        </div>
-
-        <div class="pricing-grid">
-            <!-- Standard -->
+        <div class="pricing-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1200px; margin: 0 auto;">
+            <!-- Journey 1 — The Reader -->
             <div class="plan-card">
-                <h3 class="plan-name">The Standard Member</h3>
-                <div class="plan-price-wrapper">
-                    <div class="plan-price" id="price-standard" data-base="59">$59<span>/month</span></div>
+              <h3 class="plan-name">The Reader</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">For the curious soul beginning their archive.</p>
+              <div class="plan-price-wrapper">
+                <div class="plan-price">
+                  <span class="plan-original-price" id="old-reader"></span>
+                  <span id="price-reader" data-base="69">$69</span><span>/month</span>
                 </div>
-                <ul class="plan-features">
-                    <li><i data-lucide="check-circle"></i> 2 Hand-selected pre-loved books</li>
-                    <li><i data-lucide="check-circle"></i> Monthly mood pairing cards</li>
-                    <li><i data-lucide="check-circle"></i> Luxury gift wrapping</li>
-                    <li><i data-lucide="check-circle"></i> Standard shipping included</li>
-                    <li><i data-lucide="minus-circle" style="color: #ccc;"></i> Personalized monthly gifts</li>
-                </ul>
-                <a href="javascript:void(0)" class="btn btn-secondary" onclick="openCheckout('Standard Member', 59)">Join Standard</a>
+                <div class="plan-total" id="total-reader">$207 total</div>
+                <div class="cycle-selector">
+                  <button class="cycle-btn active" data-term="3">3 Mo</button>
+                  <button class="cycle-btn" data-term="6">6 Mo</button>
+                  <button class="cycle-btn" data-term="12">1 Yr <span class="cycle-discount">-10%</span></button>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li><i data-lucide="check-circle"></i> 2 hand-picked vintage treasures</li>
+                <li><i data-lucide="check-circle"></i> Genre-matched curation</li>
+                <li><i data-lucide="check-circle"></i> Monthly curator's dispatch note</li>
+                <li><i data-lucide="check-circle"></i> Standard shipping included</li>
+              </ul>
+              <a href="javascript:void(0)" class="btn btn-secondary" onclick="openCheckout('The Reader', 69)">Start Reading</a>
             </div>
 
-            <!-- Premium -->
+            <!-- Journey 2 — The Collector -->
             <div class="plan-card featured">
-                <div class="featured-tag">Recommended</div>
-                <h3 class="plan-name">The Premium Experience</h3>
-                <div class="plan-price-wrapper">
-                    <div class="plan-price" id="price-premium" data-base="89">$89<span>/month</span></div>
+              <div class="featured-tag">Most Cherished</div>
+              <h3 class="plan-name">The Collector</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">The full Worn Pages experience. Our most popular ritual.</p>
+              <div class="plan-price-wrapper">
+                <div class="plan-price">
+                  <span class="plan-original-price" id="old-collector"></span>
+                  <span id="price-collector" data-base="99">$99</span><span>/month</span>
                 </div>
-                <ul class="plan-features">
-                    <li><i data-lucide="star"></i> 3 Sourced vintage editions</li>
-                    <li><i data-lucide="star"></i> Personalized Monthly Gifts</li>
-                    <li><i data-lucide="star"></i> Wax-sealed handwritten notes</li>
-                    <li><i data-lucide="star"></i> Premium leather bookmark</li>
-                    <li><i data-lucide="star"></i> Monthly themes & mood maps</li>
-                </ul>
-                <a href="javascript:void(0)" class="btn btn-primary" onclick="openCheckout('Premium Experience', 89)">Start Premium</a>
+                <div class="plan-total" id="total-collector">$297 total</div>
+                <div class="cycle-selector">
+                  <button class="cycle-btn active" data-term="3">3 Mo</button>
+                  <button class="cycle-btn" data-term="6">6 Mo</button>
+                  <button class="cycle-btn" data-term="12">1 Yr <span class="cycle-discount">-10%</span></button>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li><i data-lucide="star"></i> 3 hand-picked vintage treasures</li>
+                <li><i data-lucide="star"></i> Archival linen wrapping + wax seal</li>
+                <li><i data-lucide="star"></i> Atmospheric pairing cards</li>
+                <li><i data-lucide="star"></i> Taste feedback after every dispatch</li>
+              </ul>
+              <a href="javascript:void(0)" class="btn btn-primary" onclick="openCheckout('The Collector', 99)">Build My Collection</a>
             </div>
 
-            <!-- Collector -->
+            <!-- Journey 3 — The Devotee -->
             <div class="plan-card">
-                <h3 class="plan-name">The Collector’s Vault</h3>
-                <div class="plan-price-wrapper">
-                    <div class="plan-price" id="price-collector" data-base="145">$145<span>/month</span></div>
+              <h3 class="plan-name">The Devotee</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">For the serious curator building a generational library.</p>
+              <div class="plan-price-wrapper">
+                <div class="plan-price">
+                  <span class="plan-original-price" id="old-devotee"></span>
+                  <span id="price-devotee" data-base="149">$149</span><span>/month</span>
                 </div>
-                <ul class="plan-features">
-                    <li><i data-lucide="zap"></i> 3 Curated vintage books</li>
-                    <li><i data-lucide="zap"></i> 1 Brand-new hardcover release</li>
-                    <li><i data-lucide="zap"></i> Personalized Monthly Gifts</li>
-                    <li><i data-lucide="zap"></i> Full access to the digital vault</li>
-                    <li><i data-lucide="zap"></i> Priority concierge support</li>
-                </ul>
-                <a href="javascript:void(0)" class="btn btn-secondary" onclick="openCheckout('Collector’s Vault Member', 145)">Join the Vault</a>
+                <div class="plan-total" id="total-devotee">$447 total</div>
+                <div class="cycle-selector">
+                  <button class="cycle-btn active" data-term="3">3 Mo</button>
+                  <button class="cycle-btn" data-term="6">6 Mo</button>
+                  <button class="cycle-btn" data-term="12">1 Yr <span class="cycle-discount">-10%</span></button>
+                </div>
+              </div>
+              <ul class="plan-features">
+                <li><i data-lucide="award"></i> 5 hand-picked heirloom treasures</li>
+                <li><i data-lucide="award"></i> Premium bespoke wrapping</li>
+                <li><i data-lucide="award"></i> Quarterly library consultation</li>
+                <li><i data-lucide="award"></i> VIP Priority curation & shipping</li>
+              </ul>
+              <a href="javascript:void(0)" class="btn btn-secondary" onclick="openCheckout('The Devotee', 149)">Become a Devotee</a>
             </div>
+        </div>
+
+        <!-- Friendly Promise -->
+        <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 2rem 0 4rem; border-top: 1px solid var(--aged-paper); margin-top: 3rem;">
+          <div style="text-align: center;">
+            <i data-lucide="flower" style="color: var(--gold); width: 24px; height: 24px; margin-bottom: 0.5rem;"></i>
+            <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Easy Living</p>
+            <p style="font-size: 0.95rem;">Cancel or skip anytime with one click.</p>
+          </div>
+          <div style="text-align: center;">
+            <i data-lucide="coffee" style="color: var(--gold); width: 24px; height: 24px; margin-bottom: 0.5rem;"></i>
+            <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Inner Circle</p>
+            <p style="font-size: 0.95rem;">Join a community of likeminded readers.</p>
+          </div>
         </div>
     </section>
 
-    <!-- Section: Process -->
-    <section id="process" class="container">
+    <!-- Section: The Tradition -->
+    <section id="tradition" class="container">
         <div class="section-header">
             <span class="handwritten">From shelf to sanctuary</span>
-            <h2>The Curator’s Journey</h2>
-            <p style="color: var(--text-muted); font-size: 1.3rem;">How we source and deliver the magic of history to your door.</p>
+            <h2>Our Process</h2>
+            <p style="color: var(--text-muted); font-size: 1.3rem;">How we bring rare treasures to your doorstep.</p>
         </div>
         <div class="pricing-grid" style="gap: 4rem;">
             <div style="text-align: center;">
-                <div style="font-size: 3.5rem; color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 1rem;">01</div>
-                <h4>Scouting the Archives</h4>
-                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">We scour estate sales, private collections, and obscure shops for the finest pre-loved editions.</p>
+                <img src="./assets/scouting_archives.png" alt="Scouting" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius); margin-bottom: 2rem;">
+                <h4>Finding Rare Books</h4>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">We scour estate sales, private collections, and obscure shops for the finest vintage editions.</p>
             </div>
             <div style="text-align: center;">
-                <div style="font-size: 3.5rem; color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 1rem;">02</div>
-                <h4>Mapping Your Taste</h4>
-                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">Our curators study your vault preferences to match you with stories that resonate.</p>
+                <img src="./assets/mapping_taste.png" alt="Mapping" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius); margin-bottom: 2rem;">
+                <h4>Custom Curation</h4>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">Your personal book expert studies your preferences to match you with stories that resonate.</p>
             </div>
             <div style="text-align: center;">
-                <div style="font-size: 3.5rem; color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 1rem;">03</div>
-                <h4>Bespoke Wrapping</h4>
-                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">Each selection is wrapped in archival linen paper and sealed with our signature wax logo.</p>
+                <img src="./assets/bespoke_wrapping.png" alt="Wrapping" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius); margin-bottom: 2rem;">
+                <h4>Hand-Wrapped Packaging</h4>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">Each selection is wrapped in
+                    archival linen paper and sealed with our signature wax logo.</p>
             </div>
+        </div>
+
+        <!-- New: The Inner Circle (Family & Friends Curation) -->
+        <div id="inner-circle" style="margin-top: 8rem; background: var(--cream-dark); padding: 5rem 3rem; border-radius: var(--radius); text-align: center; border: 1px solid var(--aged-paper);">
+            <img src="./assets/inner_circle_lifestyle.png" alt="Community" style="width: 100%; max-width: 800px; height: 350px; object-fit: cover; border-radius: var(--radius); margin: 0 auto 3rem; display: block;">
+            <span class="handwritten" style="color: var(--burgundy); font-size: 2rem;">A Gathering for Likeminded Souls</span>
+            <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">The Inner Circle</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem; font-size: 1.2rem; line-height: 1.8; color: var(--text-dark);">
+                A private community for those who cherish the weight of a physical book and the magic of a shared story.
+            </p>
+            <a href="#journeys" class="btn btn-primary" style="padding: 1.2rem 3rem;">Join the Tradition</a>
         </div>
     </section>
 
-    <!-- Section: Gift -->
-    <section id="gift" style="background: var(--burgundy); color: white; padding: 100px 0; background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');">
-        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-            <div>
-                <span class="handwritten" style="color: var(--gold);">Spread the magic</span>
-                <h2 style="color: white; font-size: 3rem; margin-bottom: 1.5rem;">Give the Gift of<br>Literature</h2>
-                <p style="font-size: 1.25rem; font-style: italic; margin-bottom: 2rem; opacity: 0.9;">Choose a membership for a loved one. We'll send a beautiful physical certificate sealed in wax to announce their new sanctuary.</p>
-                <a href="#" class="btn btn-primary" style="background: var(--gold); color: var(--forest-green);">Send a Gift Box</a>
+    <!-- Section: Curation Promise -->
+    <section id="curation-promise" class="container">
+        <div class="section-header">
+            <span class="handwritten">Not an algorithm. A curator.</span>
+            <h2>The Curation Promise</h2>
+        </div>
+        <div class="pricing-grid" style="gap: 4rem;">
+            <div style="text-align: center;">
+                <img src="./assets/collector_journey.png" alt="Taste Profile" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius); margin-bottom: 2rem;">
+                <h4>Your Literary Profile</h4>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">"When you join, your onboarding quiz builds a taste profile: genres, eras, moods, and authors you've loved. This is not a checkbox. It's the foundation of everything we send you."</p>
             </div>
-            <div>
-                <img src="./assets/mood-pairing.png" alt="Gift Box" style="width: 100%; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+            <div style="text-align: center;">
+                <img src="./assets/devotee_journey.png" alt="Signature Curation" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius); margin-bottom: 2rem;">
+                <h4>No Repeats, Ever</h4>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">"We track every title dispatched to your archive. You will never receive a book you've already been sent. Your history is our memory."</p>
+            </div>
+            <div style="text-align: center;">
+                <img src="./assets/quality_standard.png" alt="Quality Standard" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius); margin-bottom: 2rem;">
+                <h4>VG or Better, Always</h4>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem;">"Every book is graded against our Worn Pages Condition Standard before it enters our inventory. If it doesn't meet the mark, it doesn't ship."</p>
             </div>
         </div>
     </section>
-
-    <section id="the-charm" class="container" style="padding-top: 0;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
-            <div style="border: 1px solid var(--aged-paper); padding: 5px; border-radius: 8px;">
-                <img src="./assets/treasure.png" alt="Vintage Book Detail" style="width: 100%; border-radius: 4px; display: block;">
-            </div>
-            <div>
-                <span class="handwritten">A circular library</span>
-                <h2 style="margin-bottom: 2rem;">The Charm of a<br>Lived-In Story</h2>
-                <p style="margin-bottom: 2rem; font-size: 1.3rem;">At The Worn Pages Club, we believe that a brand-new book hasn't yet learned how to speak. We source only the finest **pre-loved editions**—books that have been held, cherished, and perhaps even marked with a gentle thought in the margins by a previous owner.</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div>
-                        <h4 style="color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.9rem;">Sustainability</h4>
-                        <p style="font-size: 1rem; color: var(--text-muted);">Giving exquisite paper a second life for a lower footprint.</p>
+    
+     <!-- Section: Mood Pairing -->
+    <section id="mood-pairing" class="showcase-section" style="background: var(--cream);">
+        <div class="container showcase-grid">
+            <div class="showcase-text">
+                <span class="handwritten">Floral notes & rituals</span>
+                <h2>Atmospheric Pairing Cards</h2>
+                <p class="showcase-lead">Every book in your dispatch is accompanied by a sensory pairing card — designed specifically for the feminine reader who finds magic in the details. Not a generic insert. A specific, personal note tied to your taste profile.</p>
+                <div class="showcase-features vertical">
+                    <div class="showcase-feature-item" style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                        <div style="background: var(--aged-paper); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i data-lucide="flower-2" style="color: var(--burgundy); width: 22px; margin-bottom: 0;"></i>
+                        </div>
+                        <div>
+                            <h4>Floral Pairings</h4>
+                            <p>We suggest specific floral scents or botanical teas to accompany each chapter's emotional mood.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 style="color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.9rem;">History</h4>
-                        <p style="font-size: 1rem; color: var(--text-muted);">Every crease and scent tells a story before you even turn page one.</p>
+                    <div class="showcase-feature-item" style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                        <div style="background: var(--aged-paper); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i data-lucide="sparkles" style="color: var(--burgundy); width: 22px; margin-bottom: 0;"></i>
+                        </div>
+                        <div>
+                            <h4>Morning Rituals</h4>
+                            <p>Pair your vintage treasure with our recommended morning reflection or evening ritual.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#journeys" class="btn btn-secondary">
+                    Start Your Ritual <i data-lucide="arrow-right" style="margin-left: 0.8rem; width: 16px;"></i>
+                </a>
+            </div>
+
+                <a href="pairing.html" class="btn btn-secondary" style="margin-top: 3rem; background: var(--gold); border-color: var(--gold); color: white;">
+                    Preview a Card <i data-lucide="external-link" style="margin-left: 0.8rem; width: 16px;"></i>
+                </a>
+            </div>
+            <div class="showcase-img-wrap">
+                <img src="./assets/pairing_card.png" alt="Mood Pairing Cards" class="showcase-img">
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="the-charm" class="showcase-section cream-bg">
+        <div class="container showcase-grid">
+            <div class="showcase-img-wrap">
+                <img src="./assets/story_charm_new.png" alt="Vintage Book Detail" class="showcase-img">
+            </div>
+            <div class="showcase-text">
+                <span class="handwritten">A circular library</span>
+                <h2>The Charm of a Lived-In Story</h2>
+                <p class="showcase-lead">We believe a brand-new book hasn't yet learned how to speak. We source only pre-loved editions—books that have been cherished by a previous owner.</p>
+                
+                <div class="showcase-features">
+                    <div class="showcase-feature-item">
+                        <h4><i data-lucide="leaf" style="width: 14px; margin-bottom: 0;"></i> Sustainability</h4>
+                        <p>Giving exquisite paper a second life for a significantly lower carbon footprint.</p>
+                    </div>
+                    <div class="showcase-feature-item">
+                        <h4><i data-lucide="history" style="width: 14px; margin-bottom: 0;"></i> Legacy</h4>
+                        <p>Every crease and scent tells a unique story before you even turn page one.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="testimonials" class="container" style="border-radius: 20px; padding: 100px 4rem;">
+    <!-- Fix 6 — Why Pre-Loved? -->
+    <section id="why-preloved" style="opacity: 0; transform: translateY(40px);">
+        <div class="container">
+            <span class="handwritten">The philosophy</span>
+            <h2>Why Pre-Loved Is Better</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: center;">
+                <div>
+                    <p style="font-size: 1.2rem; line-height: 1.8;">"A new book is a blank promise. A pre-loved book is a kept one. Every volume in our archive has already been read — which means it has already changed someone. We believe books gain power with age, and that the right worn pages, placed in the right hands, carry more weight than any pristine first edition."</p>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div class="testimonial-card" style="padding: 1.5rem; background: var(--aged-paper); text-align: left; border-left: 4px solid var(--gold);">
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">"Every book VG or better"</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Our grading standard, applied to every dispatch</p>
+                    </div>
+                    <div class="testimonial-card" style="padding: 1.5rem; background: var(--aged-paper); text-align: left; border-left: 4px solid var(--gold);">
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">"No title repeated"</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">We track your full dispatch history</p>
+                    </div>
+                    <div class="testimonial-card" style="padding: 1.5rem; background: var(--aged-paper); text-align: left; border-left: 4px solid var(--gold);">
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">"Curator-selected, not algorithm-picked"</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">A human chose this book for you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fix 9E — Archive Community -->
+    <section id="the-archive-community" class="showcase-section" style="background: var(--forest-green); color: white; opacity: 0; transform: translateY(40px); padding-bottom: 60px;">
+        <div class="container">
+            <span class="handwritten" style="color: var(--gold);">You're not reading alone</span>
+            <h2 style="color: white; margin-bottom: 2rem;">The Archive Community</h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin-bottom: 3rem;">Every Worn Pages member joins a private reading community — a quiet corner of the internet where dispatches are discussed, pairings are debated, and rare finds are shared. No algorithms. No noise. Just readers who take books seriously.</p>
+            <div class="showcase-features" style="margin-bottom: 3rem;">
+                <div class="showcase-feature-item">
+                    <h4 style="color: var(--gold);"><i data-lucide="users"></i> Monthly Read-Along</h4>
+                    <p style="color: rgba(255,255,255,0.7);">One book, discussed together, every dispatch cycle</p>
+                </div>
+                <div class="showcase-feature-item">
+                    <h4 style="color: var(--gold);"><i data-lucide="search"></i> Rare Find Requests</h4>
+                    <p style="color: rgba(255,255,255,0.7);">Members suggest titles for the archive. The best ones ship.</p>
+                </div>
+                <div class="showcase-feature-item">
+                    <h4 style="color: var(--gold);"><i data-lucide="book-open"></i> Curator's Notes Archive</h4>
+                    <p style="color: rgba(255,255,255,0.7);">Every dispatch note, indexed by member, searchable forever</p>
+                </div>
+            </div>
+            <a href="/community" style="color: var(--gold); text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">Join the archive → thewornpages.com/community</a>
+        </div>
+    </section>
+
+    <div style="text-align: center; margin-top: -40px; margin-bottom: 30px; position: relative; z-index: 5;">
+        <div style="margin-bottom: 0.5rem; color: var(--gold);"><i data-lucide="quill" style="width: 24px; height: 24px;"></i></div>
+        <span class="handwritten" style="font-size: 1.8rem; background: var(--pearl); padding: 0 3rem; color: var(--gold);">Listen to the echoes of the archive...</span>
+    </div>
+
+    <section id="testimonials" class="container" style="border-radius: 20px; padding: 40px 4rem 100px;">
         <h2 style="font-size: 3rem; margin-bottom: 2rem;">Member Stories</h2>
         <div class="testimonial-grid">
             <div class="testimonial-card">
@@ -903,15 +1849,23 @@
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="faq-item">
                 <div class="faq-question">What is the condition of the books? <i data-lucide="plus"></i></div>
-                <div class="faq-answer">We source high-quality pre-loved books. While they may have minor creases or the "scent of history," we ensure no structural damage, heavy markings, or missing pages.</div>
+                <div class="faq-answer">"Every book in your dispatch meets our **Worn Pages Condition Standard**: structurally sound binding, no missing pages, no heavy annotations or highlighter, and no water damage. Books may carry gentle signs of their history — a previous owner's name, tanned pages, or a soft crease — which we consider part of their character. We grade every book **Very Good or better** before it enters our archive."</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Can I specify my preferred genres? <i data-lucide="plus"></i></div>
-                <div class="faq-answer">Yes. All members gain access to the Collector’s Vault, where you can "Express Interest" in specific genres or titles to guide our curation process.</div>
+                <div class="faq-question">Do you track which books I've already received? <i data-lucide="plus"></i></div>
+                <div class="faq-answer">Yes. Every member has a unique literary profile. We maintain a full dispatch history and never repeat a title in your subscription.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What if I don't connect with the books I receive? <i data-lucide="plus"></i></div>
+                <div class="faq-answer">Tell us. Every dispatch comes with a feedback card — rate each book and leave notes. Your ratings directly shape your next curation. After two dispatches, your profile is tuned to your taste, not our inventory.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">When does my box ship? <i data-lucide="plus"></i></div>
+                <div class="faq-answer">Every dispatch leaves in the first week of the month. You'll receive a tracking email the moment your archive is sealed and handed to the carrier. If your box hasn't moved in 5 business days, email us and we'll make it right.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">How does shipping work? <i data-lucide="plus"></i></div>
-                <div class="faq-answer">Standard shipping is included in all memberships. We ship in the first week of every month. Each box is tracked and insured for its historical value.</div>
+                <div class="faq-answer">We send a tracking notification the day your box ships. Domestic delivery typically takes 3–7 business days via USPS. Every box is insured for its full replacement value. Standard shipping is included in all memberships.</div>
             </div>
         </div>
     </section>
@@ -922,10 +1876,15 @@
             <i data-lucide="x" class="close-modal" id="close-modal"></i>
             <span class="handwritten" style="margin-bottom: 0.5rem;">Discover your profile</span>
             <div id="quiz-step">
-                <h2 style="margin-bottom: 2rem;">What is your ideal afternoon?</h2>
-                <button class="quiz-option" onclick="nextQuizStep('Rainy library with a candle')">Rainy library with a fireplace</button>
-                <button class="quiz-option" onclick="nextQuizStep('Misty coastline with a journal')">Misty coastline with a journal</button>
-                <button class="quiz-option" onclick="nextQuizStep('Ancient ruins under the sun')">Ancient ruins under the sun</button>
+                <!-- Step 1: Genre -->
+                <div id="quiz-step-1">
+                    <h2 style="margin-bottom: 2rem;">What genre speaks to your soul?</h2>
+                    <button class="quiz-option" onclick="nextQuizStep(1, 'Classics')">Classical Literature</button>
+                    <button class="quiz-option" onclick="nextQuizStep(1, 'History')">History & Philosophy</button>
+                    <button class="quiz-option" onclick="nextQuizStep(1, 'Gothic')">Gothic & Mystery</button>
+                    <button class="quiz-option" onclick="nextQuizStep(1, 'Art')">Art & Photography</button>
+                    <button class="quiz-option" onclick="nextQuizStep(1, 'Nature')">Nature & Science</button>
+                </div>
             </div>
         </div>
     </div>
@@ -933,17 +1892,20 @@
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="checkout-modal">
         <div class="checkout-container">
-            <i data-lucide="x" class="close-modal" id="close-checkout" style="color: var(--text-dark); z-index: 100;"></i>
-            
+            <i data-lucide="x" class="close-modal" id="close-checkout"
+                style="color: var(--text-dark); z-index: 100;"></i>
+
             <div class="checkout-sidebar">
                 <div>
                     <span class="handwritten" style="color: var(--gold); font-size: 1.5rem;">The Worn Pages Club</span>
                     <h2 style="color: white; margin: 1rem 0 2rem;">Confirm Your Archive</h2>
                     <div class="plan-summary" id="checkout-summary">
-                        <h4 style="color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; font-size: 0.7rem;">Your Selection</h4>
+                        <h4
+                            style="color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; font-size: 0.7rem;">
+                            Your Selection</h4>
                         <div class="summary-item">
                             <span id="summary-name">Standard Membership</span>
-                            <span id="summary-price">$59.00</span>
+                            <span id="summary-price">$50.00</span>
                         </div>
                         <div class="summary-item">
                             <span>Billing Frequency</span>
@@ -951,92 +1913,272 @@
                         </div>
                         <div class="summary-total">
                             <span>Total Due Today</span>
-                            <span id="summary-total">$59.00</span>
+                            <span id="summary-total">$150.00</span>
                         </div>
                     </div>
                 </div>
-                <p style="font-size: 0.8rem; opacity: 0.6;">Subscriptions renew automatically. You may cancel your archive membership at any time from your dashboard.</p>
+                <p style="font-size: 0.8rem; opacity: 0.6;">Subscriptions renew automatically. You may cancel your
+                    archive membership at any time from your dashboard.</p>
             </div>
-
             <div class="checkout-main">
-                <!-- Step 1: Auth -->
+                <!-- Step 1: Recipient & Archive -->
                 <div id="checkout-step-1" class="checkout-step active">
                     <span class="handwritten" style="color: var(--burgundy);">Step 01</span>
-                    <h2 style="margin-bottom: 1rem;">Create Your Archive</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Every collection needs a keeper. Sign up to track your preferences and rare find requests.</p>
+                    <h2 style="margin-bottom: 1rem;">Recipient & Archive</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Who is this journey for?</p>
                     
-                    <input type="email" placeholder="Email Address" class="checkout-input" id="auth-email">
-                    <input type="password" placeholder="Create a Security Code" class="checkout-input" id="auth-password">
-                    
-                    <button class="checkout-btn" onclick="goToCheckoutStep(2)">Secure My Membership <i data-lucide="shield-check" style="margin-left: 0.5rem; width: 18px;"></i></button>
-                    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem;">Already have an archive? <a href="#" style="color: var(--burgundy); font-weight: bold;">Sign In</a></p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div class="intent-btn active" id="intent-gift" onclick="setIntent('gift')">
+                            <i data-lucide="gift" style="color: var(--burgundy); width: 32px; height: 32px;"></i>
+                            <span style="font-weight: bold; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">It's a Gift</span>
+                        </div>
+                        <div class="intent-btn" id="intent-personal" onclick="setIntent('personal')">
+                            <i data-lucide="user" style="color: var(--text-muted); width: 32px; height: 32px;"></i>
+                            <span style="font-weight: bold; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">For Myself</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2.5rem; text-align: center;">
+                        <span class="handwritten" style="font-size: 1.2rem; display: block; margin-bottom: 1rem;">One-Click Access</span>
+                        <div class="social-login-grid">
+                            <button class="social-btn" id="google-login-btn">
+                                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">
+                                <span>Google</span>
+                            </button>
+                            <button class="social-btn" id="apple-login-btn">
+                                <img src="https://img.icons8.com/ios-filled/50/000000/mac-os.png" alt="Apple">
+                                <span>Apple</span>
+                            </button>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; opacity: 0.4;">
+                            <hr style="flex-grow: 1; border: 0; border-top: 1px solid var(--text-dark);">
+                            <span style="font-size: 0.7rem; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px;">or manually</span>
+                            <hr style="flex-grow: 1; border: 0; border-top: 1px solid var(--text-dark);">
+                        </div>
+                    </div>
+
+                    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">Your email for archive updates:</p>
+                    <input type="email" placeholder="example@email.com" class="checkout-input" id="auth-email">
+                    <button class="checkout-btn" onclick="checkStepOne()">Continue to Curation <i
+                            data-lucide="arrow-right" style="margin-left: 0.5rem; width: 18px;"></i></button>
+                    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem;">Already a member? <a
+                            href="profile.html" style="color: var(--burgundy); font-weight: bold;">Sign In</a></p>
                 </div>
 
-                <!-- Step 2: Payment -->
-                <div id="checkout-step-2" class="checkout-step">
+                <!-- Step 2: Curation Profile -->
+                <div id="checkout-step-profile" class="checkout-step">
                     <span class="handwritten" style="color: var(--burgundy);">Step 02</span>
+                    <h2 style="margin-bottom: 1rem;">Curation Profile</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Which categories should we prioritize for this dispatch?</p>
+
+                    <div class="interest-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Classics')">Classics</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Gothic')">Gothic Mystery</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'History')">History & Philosophy</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Nature')">Nature & Science</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Poetry')">Poetry & Plays</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Travel')">Travel & Discovery</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Art')">Art & Photography</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Biography')">Biography & Letters</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Cooking')">Cooking & Botanicals</div>
+                        <div class="interest-chip" onclick="toggleInterest(this, 'Fiction')">Modern Fiction</div>
+                    </div>
+
+                    <button class="checkout-btn" onclick="goToStepThree()">Continue <i
+                            data-lucide="arrow-right" style="margin-left: 0.5rem; width: 18px;"></i></button>
+                    <button class="btn btn-secondary" onclick="goToCheckoutStep(1)" style="margin-top: 1rem; width: 100%; font-size: 0.75rem; letter-spacing: 2px;">Back</button>
+                </div>
+
+                <!-- Step 3: Gift Details (Only if Gift) -->
+                <div id="checkout-step-gift-details" class="checkout-step">
+                    <span class="handwritten" style="color: var(--burgundy);">Step 03</span>
+                    <h2 style="margin-bottom: 1rem;">Celebration Details</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Tell us about the occasion so we can include appropriate celebratory treasures.</p>
+
+                    <div style="background: var(--cream-dark); padding: 1.5rem; border: 1px dashed var(--gold); border-radius: 4px; margin-bottom: 2rem;">
+                        <h4 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--forest-green); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="sparkles" size="18" style="color: var(--gold);"></i> The Occasion
+                        </h4>
+                        <input type="text" placeholder="Recipient's Name" class="checkout-input" id="gift-recipient">
+                        <input type="text" placeholder="Occasion (e.g. 30th Birthday, Anniversary, Graduation)" class="checkout-input" id="gift-occasion">
+                        <textarea placeholder="Your Personal Message... (We will hand-write this for you)" class="checkout-input" id="gift-message" style="min-height: 100px; padding: 1rem; border: 1px solid var(--aged-paper);"></textarea>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                            <label style="display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--text-dark); cursor: pointer;">
+                                <input type="checkbox" id="schedule-email" onchange="document.getElementById('email-date-wrap').style.display = this.checked ? 'block' : 'none'">
+                                <span>Schedule Digital Announcement Email</span>
+                            </label>
+                            <div id="email-date-wrap" style="display: none; margin-top: 1rem;">
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">When should we notify the recipient?</p>
+                                <input type="date" class="checkout-input" id="email-delivery-date">
+                                <p style="font-size: 0.75rem; font-style: italic; color: var(--burgundy); margin-top: 0.5rem;"><i data-lucide="check" size="12"></i> A confirmation will be sent to you once dispatched.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="checkout-btn" onclick="goToCheckoutStep('address')">Shipping Destination <i
+                            data-lucide="arrow-right" style="margin-left: 0.5rem; width: 18px;"></i></button>
+                    <button class="btn btn-secondary" onclick="goToCheckoutStep('profile')" style="margin-top: 1rem; width: 100%; font-size: 0.75rem; letter-spacing: 2px;">Back</button>
+                </div>
+
+                <!-- Step 4: Address -->
+                <div id="checkout-step-address" class="checkout-step">
+                    <span class="handwritten" style="color: var(--burgundy);" id="shipping-step-label">Step 04</span>
+                    <h2 style="margin-bottom: 1rem;">Shipping Destination</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Where should we send the curated treasure?</p>
+
+                    <input type="text" placeholder="Full Name" class="checkout-input" id="shipping-name">
+                    <input type="text" placeholder="Street Address" class="checkout-input" id="shipping-address">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <input type="text" placeholder="City" class="checkout-input" id="shipping-city">
+                        <input type="text" placeholder="Postal Code" class="checkout-input" id="shipping-zip">
+                    </div>
+                    <input type="text" placeholder="Country" class="checkout-input" id="shipping-country">
+
+                    <button class="checkout-btn" onclick="goToCheckoutStep('payment')">Proceed to Payment <i
+                            data-lucide="arrow-right" style="margin-left: 0.5rem; width: 18px;"></i></button>
+                    <button class="btn btn-secondary" onclick="goBackFromAddress()" style="margin-top: 1rem; width: 100%; font-size: 0.75rem; letter-spacing: 2px;">Back</button>
+                </div>
+
+                <!-- Step 5: Payment -->
+                <div id="checkout-step-payment" class="checkout-step">
+                    <span class="handwritten" style="color: var(--burgundy);" id="payment-step-label">Step 05</span>
                     <h2 style="margin-bottom: 1rem;">Finalize Curation</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Secure your first shipment of curated history. Powered by Stripe.</p>
-                    
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Secure your first shipment of curated
+                        history. Powered by Stripe.</p>
+
                     <form id="payment-form">
                         <div id="card-element" class="checkout-input" style="padding: 1.2rem; min-height: 52px;">
                             <!-- Stripe Element will be inserted here -->
                         </div>
-                        <div id="card-errors" role="alert" style="color: var(--burgundy); font-size: 0.85rem; margin-top: -1rem; margin-bottom: 1.5rem;"></div>
-                        
+                        <div id="card-errors" role="alert"
+                            style="color: var(--burgundy); font-size: 0.85rem; margin-top: -1rem; margin-bottom: 1.5rem;">
+                        </div>
+
                         <button id="stripe-submit" class="checkout-btn" style="background: var(--burgundy);">
                             <span id="button-text">Begin My Journey</span>
                             <div class="spinner hidden" id="spinner"></div>
                         </button>
+                        <button type="button" class="btn btn-secondary" onclick="goToCheckoutStep('address')" style="margin-top: 1rem; width: 100%; font-size: 0.75rem; letter-spacing: 2px;">Back to Shipping</button>
                     </form>
-                    
-                    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.5;"><i data-lucide="lock" style="width: 12px; vertical-align: middle;"></i> Secure, end-to-end encrypted payment via Stripe</p>
+
+                    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; opacity: 0.5;"><i
+                            data-lucide="lock" style="width: 12px; vertical-align: middle;"></i> Secure, end-to-end
+                        encrypted payment via Stripe</p>
                 </div>
             </div>
+         </div>
         </div>
     </div>
-        <div class="container footer-grid">
-            <div>
-                <a href="#" class="logo footer-logo">THE WORN PAGES CLUB</a>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Curating the world's most loved stories for the modern reader. Based in a small shop with big shelves.</p>
-                <div style="display: flex; gap: 1.5rem; color: var(--forest-green);">
-                    <i data-lucide="instagram"></i>
-                    <i data-lucide="facebook"></i>
-                    <i data-lucide="twitter"></i>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="#pricing">The Offers</a></li>
-                    <li><a href="vault.html">The Vault</a></li>
-                    <li><a href="#">Guest Checkout</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Join the Dispatch</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Weekly literary news, rare find alerts, and first dibs on special editions.</p>
-                <form action="https://formspree.io/f/your-id" method="POST" style="display: flex;">
-                    <input type="email" name="email" placeholder="Email address" required
-                        style="padding: 0.8rem; border: 1px solid var(--aged-paper); border-radius: 4px 0 0 4px; flex-grow: 1; font-family: 'Inter', sans-serif; font-size: 0.85rem;">
-                    <button type="submit" class="btn btn-primary" style="padding: 0 1.5rem; border-radius: 0 4px 4px 0; font-size: 0.75rem;">Join</button>
-                </form>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="mailto:hello@thewornpages.com">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
+    <div class="container footer-grid" style="margin-top: 100px;">
+        <div>
+            <a href="/" class="logo footer-logo" style="display: flex; margin-bottom: 2rem;"><span>The</span> WORN PAGES CLUB</a>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Curating the world's most loved stories for the
+                modern reader. Based in a small shop with big shelves.</p>
+            <div style="display: flex; gap: 1.5rem; color: var(--forest-green);">
+                <a href="https://instagram.com/thewornpages" style="color: inherit;"><i data-lucide="instagram"></i></a>
+                <a href="https://facebook.com/thewornpages" style="color: inherit;"><i data-lucide="facebook"></i></a>
+                <a href="https://twitter.com/thewornpages" style="color: inherit;"><i data-lucide="twitter"></i></a>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted); font-size: 0.8rem;">
-            &copy; 2024 The Worn Pages Club. All rights reserved.
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 0.8rem;"><a href="#pricing">The Offers</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="#process">Our Process</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="#testimonials">Member Stories</a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="footer-col">
+            <h4>Join the Inner Circle</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Rare find alerts, Inner Circle exclusives, and first dibs on special editions.</p>
+            <div style="margin-bottom: 1.5rem;">
+                <a href="vault.html" style="text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; color: var(--gold); display: flex; align-items: center; gap: 0.5rem;">
+                    Browse the Member Library <i data-lucide="arrow-right" style="width: 14px;"></i>
+                </a>
+            </div>
+            <form id="inner-circle-form" style="display: flex;">
+                <input type="email" name="email" id="inner-circle-email" placeholder="Email address" required
+                    style="padding: 0.8rem; border: 1px solid var(--aged-paper); border-radius: 4px 0 0 4px; flex-grow: 1; font-family: 'Inter', sans-serif; font-size: 0.85rem;">
+                <button type="submit" class="btn btn-primary" id="inner-circle-btn"
+                    style="padding: 0 1.5rem; border-radius: 0 4px 4px 0; font-size: 0.75rem;">Join</button>
+            </form>
+            <p id="inner-circle-msg" style="font-size: 0.8rem; margin-top: 0.75rem; display: none;"></p>
+        </div>
+        <div class="footer-col">
+            <h4>Information</h4>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 0.8rem;"><a href="inquiries.html">General Inquiries</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="support.html">Member Support</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="press.html">Press & Media</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="privacy.html">Legal & Privacy</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>The Legal Sanctuary</h4>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 0.8rem;"><a href="privacy.html">Privacy Policy</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="terms.html">Terms of Service</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="accessibility.html">Accessibility Statement</a></li>
+            </ul>
+        </div>
+    </div>
+    <div
+        style="text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted); font-size: 0.8rem;">
+        &copy; 2026 The Worn Pages Club. A product of KnotStranded LLC, Camarillo CA. All rights reserved.
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" style="position: fixed; bottom: 20px; left: 20px; right: 20px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid var(--pink); box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 10000; display: none; align-items: center; justify-content: space-between; gap: 2rem;">
+        <p style="margin: 0; font-size: 0.9rem; color: var(--text-dark);">Our sanctuary uses cookies to refine your reading experience. By continuing, you agree to our <a href="privacy.html" style="color: var(--pink);">Privacy Policy</a>.</p>
+        <button onclick="acceptCookies()" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.75rem; flex-shrink: 0;">I Accept</button>
+    </div>
 
     <script>
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }, 2000);
+        }
+    </script>
+
+    <script>
+        // Inner Circle Newsletter Signup
+        document.getElementById('inner-circle-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('inner-circle-email').value;
+            const btn = document.getElementById('inner-circle-btn');
+            const msg = document.getElementById('inner-circle-msg');
+            btn.disabled = true;
+            btn.innerText = '...';
+            try {
+                const res = await fetch('/api/public?action=join', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                if (res.ok) {
+                    msg.innerText = '✓ You are in the Inner Circle. Check your inbox.';
+                    msg.style.color = '#1B3022';
+                    msg.style.display = 'block';
+                    document.getElementById('inner-circle-email').value = '';
+                    btn.innerText = '✓';
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                msg.innerText = 'Something went wrong. Please try again.';
+                msg.style.color = '#6B1D1D';
+                msg.style.display = 'block';
+                btn.disabled = false;
+                btn.innerText = 'Join';
+            }
+        });
+
         // Initialize Lucide Icons
         lucide.createIcons();
 
@@ -1058,6 +2200,16 @@
             else nav.classList.remove('scrolled');
         });
 
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.onclick = () => {
+                navLinks.classList.remove('active');
+                mobileToggle.querySelector('i').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            };
+        });
+
         // FAQ Functionality
         document.querySelectorAll('.faq-item').forEach(item => {
             item.onclick = () => {
@@ -1069,27 +2221,46 @@
         function openQuiz() {
             document.getElementById('quiz-modal').style.display = 'flex';
         }
-        
+
         document.getElementById('close-modal').onclick = () => {
             document.getElementById('quiz-modal').style.display = 'none';
         }
 
-        function nextQuizStep(choice) {
-            const profile = choice.includes('library') ? 'Gothic Scholar' : (choice.includes('coastline') ? 'Maritime Dreamer' : 'Historical Explorer');
-            document.getElementById('quiz-step').innerHTML = `
-                <h2 style="margin-bottom: 1rem;">The ${profile}</h2>
-                <p style="margin-bottom: 2rem;">Fascinating. Your preferences suggest a deep appreciation for stories that have stood the test of time. Save this profile to your membership to begin your curation.</p>
-                <form action="https://formspree.io/f/mleyrpwa" method="POST" style="text-align: left;">
-                    <input type="hidden" name="literary_profile" value="${profile}">
-                    <input type="hidden" name="initial_preference" value="${choice}">
-                    <div style="margin-bottom: 1.5rem;">
-                        <input type="email" name="email" placeholder="Your email address" required 
-                               style="width: 100%; padding: 1rem; border: 1px solid var(--aged-paper); border-radius: 4px; font-family: 'Inter', sans-serif;">
+        let quizAnswers = { genre: '', pace: '', era: '' };
+
+        function nextQuizStep(step, choice) {
+            if (step === 1) {
+                quizAnswers.genre = choice;
+                document.getElementById('quiz-step').innerHTML = `
+                    <div id="quiz-step-2">
+                        <h2 style="margin-bottom: 2rem;">How do you like to read?</h2>
+                        <button class="quiz-option" onclick="nextQuizStep(2, 'one book at a time, slowly and deeply')">I read one book at a time, slowly and deeply</button>
+                        <button class="quiz-option" onclick="nextQuizStep(2, 'rotating between 2–3 books at once')">I rotate between 2–3 books at once</button>
+                        <button class="quiz-option" onclick="nextQuizStep(2, 'in fast and intense bursts')">I read in bursts — fast and intense</button>
+                        <button class="quiz-option" onclick="nextQuizStep(2, 'listening and reading in parallel')">I listen to audiobooks and read in parallel</button>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Save Profile & View Tiers</button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">By clicking, you'll be redirected to selection.</p>
-                </form>
-            `;
+                `;
+            } else if (step === 2) {
+                quizAnswers.pace = choice;
+                document.getElementById('quiz-step').innerHTML = `
+                    <div id="quiz-step-3">
+                        <h2 style="margin-bottom: 2rem;">What era calls to you?</h2>
+                        <button class="quiz-option" onclick="nextQuizStep(3, 'Pre-1900')">Pre-1900 — The Classics</button>
+                        <button class="quiz-option" onclick="nextQuizStep(3, '1900–1960')">1900–1960 — The Golden Age</button>
+                        <button class="quiz-option" onclick="nextQuizStep(3, '1960–2000')">1960–2000 — The Modern Era</button>
+                        <button class="quiz-option" onclick="nextQuizStep(3, 'any era')">Surprise me — any era</button>
+                    </div>
+                `;
+            } else if (step === 3) {
+                quizAnswers.era = choice;
+                document.getElementById('quiz-step').innerHTML = `
+                    <div id="quiz-results">
+                        <h2 style="margin-bottom: 1rem;">Your profile is ready.</h2>
+                        <p style="margin-bottom: 2rem;">Based on your answers, your archive will be curated around <strong>${quizAnswers.genre} literature</strong> from <strong>${quizAnswers.era}</strong>, matched to a <strong>${quizAnswers.pace}</strong> pace. Your personal curator will take it from here.</p>
+                        <a href="#pricing" class="btn btn-primary" onclick="document.getElementById('quiz-modal').style.display='none'">Join the Archive →</a>
+                    </div>
+                `;
+            }
         }
 
         // Add Quiz trigger to hero
@@ -1102,22 +2273,73 @@
 
         // Checkout Logic
         let selectedPlan = { name: '', price: 0 };
+        let checkoutIntent = 'gift';
+        let selectedInterests = [];
+
+        function setIntent(intent) {
+            checkoutIntent = intent;
+            document.getElementById('intent-gift').classList.toggle('active', intent === 'gift');
+            document.getElementById('intent-personal').classList.toggle('active', intent === 'personal');
+            
+            // Update icons for non-active
+            lucide.createIcons();
+        }
+
+        function toggleInterest(el, category) {
+            el.classList.toggle('active');
+            if (selectedInterests.includes(category)) {
+                selectedInterests = selectedInterests.filter(i => i !== category);
+            } else {
+                selectedInterests.push(category);
+            }
+        }
+
+        function checkStepOne() {
+            const email = document.getElementById('auth-email').value;
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email to continue.');
+                return;
+            }
+            goToCheckoutStep('profile');
+        }
+
+        function goToStepThree() {
+            if (checkoutIntent === 'gift') {
+                goToCheckoutStep('gift-details');
+            } else {
+                goToCheckoutStep('address');
+            }
+        }
+
+        function goBackFromAddress() {
+            if (checkoutIntent === 'gift') {
+                goToCheckoutStep('gift-details');
+            } else {
+                goToCheckoutStep('profile');
+            }
+        }
 
         function openCheckout(name, price) {
-            // Get current frequency from toggle
-            const activeTermBtn = document.querySelector('.term-btn.active');
-            const term = activeTermBtn ? activeTermBtn.innerText : '3 Months';
-            
-            // Re-calculate price based on discount (if any)
-            const basePriceEl = document.getElementById(`price-${name.toLowerCase().split(' ')[0]}`);
-            const finalPrice = basePriceEl ? basePriceEl.innerText.split('/')[0] : `$${price}`;
+            const activeTermBtn = document.querySelector('.cycle-btn.active');
+            const termMonths = activeTermBtn ? parseInt(activeTermBtn.dataset.term) : 3;
+            const termLabel = activeTermBtn ? (termMonths === 12 ? '1 Year' : termMonths + ' Months') : '3 Months';
 
-            selectedPlan = { name, price: finalPrice, term };
+            let planSlug = 'reader';
+            if (name.toLowerCase().includes('collector')) planSlug = 'collector';
+            else if (name.toLowerCase().includes('enthusiast')) planSlug = 'enthusiast';
+            else if (name.toLowerCase().includes('devotee')) planSlug = 'devotee';
+
+            const basePriceEl = document.getElementById(`price-${planSlug}`);
+            const monthlyPriceStr = basePriceEl ? basePriceEl.innerText.split('/')[0].replace('$', '') : price.toString();
+            const monthlyPrice = parseInt(monthlyPriceStr);
+            const totalPrice = monthlyPrice * termMonths;
+
+            selectedPlan = { name, price: `$${monthlyPrice}`, term: termLabel, total: `$${totalPrice}` };
 
             document.getElementById('summary-name').innerText = name;
-            document.getElementById('summary-price').innerText = finalPrice;
-            document.getElementById('summary-total').innerText = finalPrice;
-            document.getElementById('summary-term').innerText = term;
+            document.getElementById('summary-price').innerText = `$${monthlyPrice}/mo`;
+            document.getElementById('summary-term').innerText = termLabel;
+            document.getElementById('summary-total').innerText = `$${totalPrice}.00`;
 
             document.getElementById('checkout-modal').style.display = 'flex';
             goToCheckoutStep(1);
@@ -1129,11 +2351,21 @@
 
         function goToCheckoutStep(step) {
             document.querySelectorAll('.checkout-step').forEach(el => el.classList.remove('active'));
-            document.getElementById(`checkout-step-${step}`).classList.add('active');
+            const target = document.getElementById(`checkout-step-${step}`);
+            if (target) target.classList.add('active');
+            else console.error('Step not found:', step);
+        }
+        // Helper to scroll to errors if needed
+        function showCheckoutError(msg) {
+            const errEl = document.getElementById('card-errors');
+            if (errEl) {
+                errEl.textContent = msg;
+                errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
         // Stripe Integration Logic
-        const stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Placeholder key
+        const stripe = Stripe('pk_live_51Sn8RpEBFFLXmPshKVXHLPduUGeb3uvZMkArDEo8lmLOR1agL9zoxmmVUpu5ghlvVR56mrQTjxcfQ6Ht43N8itnC004iWUtVV7'); 
         const elements = stripe.elements();
         const style = {
             base: {
@@ -1154,7 +2386,7 @@
         const card = elements.create("card", { style: style });
         card.mount("#card-element");
 
-        card.on('change', ({error}) => {
+        card.on('change', ({ error }) => {
             const displayError = document.getElementById('card-errors');
             if (error) {
                 displayError.textContent = error.message;
@@ -1167,56 +2399,246 @@
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const submitBtn = document.getElementById('stripe-submit');
+            const buttonText = document.getElementById('button-text');
             submitBtn.disabled = true;
-            document.getElementById('button-text').innerText = 'Securing...';
+            buttonText.innerText = 'Securing Connection...';
 
-            // In a real app, you would fetch a clientSecret from your server here
-            // const {clientSecret} = await fetch("/create-payment-intent", {...}).then(r => r.json());
-            
-            // Simulating a brief delay for the "Premium" feel
-            setTimeout(() => {
-                completeCheckout();
+            const email = document.getElementById('auth-email').value;
+            const amountStr = selectedPlan.total.replace('$', '');
+            const amount = parseFloat(amountStr);
+
+            try {
+                // 1. Fetch Client Secret from our secure Vercel API
+                const intentResponse = await fetch("/api/checkout?action=intent", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ 
+                        amount: amount, 
+                        email: email,
+                        plan_name: selectedPlan.name 
+                    }),
+                });
+
+                buttonText.innerText = 'Verifying Payment...';
+                
+                if (!intentResponse.ok) {
+                    const errorDetails = await intentResponse.json();
+                    throw new Error(errorDetails.error || `Server Error (${intentResponse.status})`);
+                }
+                
+                const { clientSecret, customerId } = await intentResponse.json();
+
+                // 2. Confirm Payment with Stripe
+                const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: { card: card }
+                });
+
+                if (stripeError) {
+                    document.getElementById('card-errors').textContent = stripeError.message;
+                    submitBtn.disabled = false;
+                    document.getElementById('button-text').innerText = 'Finalize Archive Membership';
+                } else if (paymentIntent.status === 'succeeded') {
+                    completeCheckout(customerId);
+                }
+
+            } catch (err) {
+                console.error("Payment failed:", err);
+                let message = err.message;
+                if (message === "Failed to fetch") {
+                    message = "Server Unreachable. Please ensure Environment Variables are configured in your hosting dashboard.";
+                }
+                document.getElementById('card-errors').textContent = message;
                 submitBtn.disabled = false;
-                document.getElementById('button-text').innerText = 'Begin My Journey';
-            }, 1500);
+                buttonText.innerText = 'Finalize Archive Membership';
+            }
         });
 
-        function completeCheckout() {
-            const email = document.getElementById('auth-email').value || 'a member';
-            alert(`Welcome to the Club!\n\nYour payment was successful. We have initialized your archive for ${email}. Check your inbox for your first curation roadmap.`);
-            document.getElementById('checkout-modal').style.display = 'none';
+        async function completeCheckout(stripeCustomerId = null) {
+            const buttonText = document.getElementById('button-text');
+            if (buttonText) buttonText.innerText = 'Archiving Membership...';
+            
+            const email = document.getElementById('auth-email').value;
+            const shipping = {
+                name: document.getElementById('shipping-name').value,
+                address: document.getElementById('shipping-address').value,
+                city: document.getElementById('shipping-city').value,
+                zip: document.getElementById('shipping-zip').value,
+                country: document.getElementById('shipping-country').value
+            };
+            
+            const isGift = (checkoutIntent === 'gift');
+            const scheduleEmail = document.getElementById('schedule-email')?.checked;
+            const gift = isGift ? {
+                recipient: document.getElementById('gift-recipient').value,
+                occasion: document.getElementById('gift-occasion').value,
+                message: document.getElementById('gift-message').value,
+                delivery_date: scheduleEmail ? document.getElementById('email-delivery-date').value : null
+            } : null;
+
+            const orderId = Math.floor(Math.random() * 90000) + 10000;
+
+            // Trigger Email Confirmation via our Vercel API
+            try {
+                const response = await fetch('/api/checkout?action=confirm', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        shipping: shipping,
+                        gift: gift,
+                        interests: selectedInterests,
+                        quiz: quizAnswers,
+                        plan_name: selectedPlan.name,
+                        billing_term: selectedPlan.term,
+                        order_id: orderId,
+                        stripe_customer_id: stripeCustomerId
+                    })
+                });
+                
+                if (!response.ok) throw new Error(`Email dispatch failed with status: ${response.status}`);
+                
+                // Persist Session for the Sanctuary
+                localStorage.setItem('memberEmail', email);
+
+                // Redirect to our premium success page
+                window.location.href = '/thank-you.html';
+            } catch (error) {
+                console.error('Email error:', error);
+                // Even if email fails, we show success to user
+                window.location.href = '/thank-you.html';
+            }
         }
 
         // Pricing Toggle Logic
-        const termBtns = document.querySelectorAll('.term-btn');
+        const cycleBtns = document.querySelectorAll('.cycle-btn');
         const priceEls = {
-            standard: document.getElementById('price-standard'),
-            premium: document.getElementById('price-premium'),
-            collector: document.getElementById('price-collector')
+            reader: { monthly: document.getElementById('price-reader'), old: document.getElementById('old-reader'), total: document.getElementById('total-reader') },
+            collector: { monthly: document.getElementById('price-collector'), old: document.getElementById('old-collector'), total: document.getElementById('total-collector') },
+            enthusiast: { monthly: document.getElementById('price-enthusiast'), old: document.getElementById('old-enthusiast'), total: document.getElementById('total-enthusiast') },
+            devotee: { monthly: document.getElementById('price-devotee'), old: document.getElementById('old-devotee'), total: document.getElementById('total-devotee') }
         };
 
         const discounts = {
             3: 1,
-            6: 0.95,
-            12: 0.85
+            6: 1,
+            12: 0.9
         };
 
-        termBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                termBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
+        cycleBtns.forEach(btn => {
+            btn.onclick = () => {
                 const term = parseInt(btn.dataset.term);
-                const discount = discounts[term];
-
-                Object.keys(priceEls).forEach(key => {
-                    const el = priceEls[key];
-                    const base = parseInt(el.dataset.base);
-                    const finalPrice = Math.round(base * discount);
-                    el.innerHTML = `$${finalPrice}<span>/month</span>`;
+                // Update all buttons with same term to active
+                cycleBtns.forEach(b => {
+                    if (parseInt(b.dataset.term) === term) b.classList.add('active');
+                    else b.classList.remove('active');
                 });
-            });
+                updatePrices(term);
+            };
         });
+
+        function updatePrices(months) {
+            const multiplier = discounts[months];
+            for (const plan in priceEls) {
+                const base = parseInt(priceEls[plan].monthly.dataset.base);
+                const monthlyPrice = Math.floor(base * multiplier);
+                const totalPrice = monthlyPrice * months;
+                
+                priceEls[plan].monthly.innerText = `$${monthlyPrice}`;
+                priceEls[plan].total.innerText = `$${totalPrice} total`;
+                
+                if (multiplier < 1) {
+                    priceEls[plan].old.innerText = `$${base}`;
+                    priceEls[plan].old.style.display = 'inline';
+                } else {
+                    priceEls[plan].old.style.display = 'none';
+                }
+            }
+        }
+
+        // --- OAuth Integration ---
+        // Variables will be populated by ENV via build or provided by user
+        const GOOGLE_CLIENT_ID = "281484503905-hs0japlrq37c8hfsrorl51v5ucmr3nsk.apps.googleusercontent.com"; // Placeholder
+        const APPLE_CLIENT_ID = "com.thewornpages.service"; // Placeholder
+
+        window.onload = function () {
+            // Google initialization
+            if (typeof google !== 'undefined') {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleGoogleResponse,
+                    auto_select: false,
+                    cancel_on_tap_outside: true
+                });
+
+                document.getElementById('google-login-btn').onclick = () => {
+                    google.accounts.id.prompt();
+                };
+            }
+
+            // Apple initialization
+            if (typeof AppleID !== 'undefined') {
+                AppleID.auth.init({
+                    clientId: APPLE_CLIENT_ID,
+                    scope: 'name email',
+                    redirectURI: window.location.origin + '/api/auth-callback-apple', // Mock
+                    usePopup: true
+                });
+
+                document.getElementById('apple-login-btn').onclick = async () => {
+                    try {
+                        const res = await AppleID.auth.signIn();
+                        handleOAuthResponse(res.authorization.id_token, 'apple');
+                    } catch (err) {
+                        console.error('Apple Login Failed:', err);
+                    }
+                };
+            }
+        };
+
+        async function handleGoogleResponse(response) {
+            handleOAuthResponse(response.credential, 'google');
+        }
+
+        async function handleOAuthResponse(token, provider) {
+            const btnText = document.querySelector('#google-login-btn span') || {};
+            const originalText = btnText.innerText;
+            if (btnText) btnText.innerText = 'Verifying...';
+
+            try {
+                const res = await fetch('/api/auth-user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token, provider })
+                });
+
+                if (!res.ok) throw new Error('Authentication failed on server');
+
+                const data = await res.json();
+                
+                // 1. Fill email input automatically
+                const emailInput = document.getElementById('auth-email');
+                if (emailInput) {
+                    emailInput.value = data.user.email;
+                    // Trigger "Continue" automatically if they are in checkout
+                    checkStepOne();
+                }
+
+                // 2. Persist session
+                localStorage.setItem('memberEmail', data.user.email);
+                localStorage.setItem('memberName', data.user.name);
+                localStorage.setItem('memberPicture', data.user.picture);
+
+                // 3. Show success (optional toast)
+                console.log('Successfully authenticated as', data.user.name);
+
+            } catch (err) {
+                console.error(err);
+                alert('Authentication was unsuccessful. Please use standard email entry.');
+            } finally {
+                if (btnText) btnText.innerText = originalText;
+            }
+        }
     </script>
 </body>
+
 </html>

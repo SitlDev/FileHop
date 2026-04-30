@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>/Tools/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/qrcode/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/barcode/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/color/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/jwt/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/coupon/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/gradient/</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+  <url>
+    <loc>/Tools/admin.html</loc>
+    <lastmod>2026-04-19</lastmod>
+  </url>
+</urlset>

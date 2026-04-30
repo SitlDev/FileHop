@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B2B Portal — TeaVault | Wholesale Tea Sourcing for Business</title>
+  <meta name="description" content="TeaVault's B2B portal: browse 340+ verified suppliers, request quotes, manage bulk orders, and access Net-30 invoicing for professional tea sourcing." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body class="b2b-page">
+
+<nav class="nav scrolled" id="main-nav" style="background:rgba(245,237,214,0.96)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-leaf">🍃</span><span class="logo-text" style="color:var(--umber)">TeaVault</span></a>
+    <ul class="nav-links">
+      <li><a href="catalog.html" class="nav-link">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link">Education</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link" style="color:var(--terra)">For Business ▾</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-account">Account</a>
+      <a href="#" onclick="alert('B2B login: verify your business at signup.');return false;" class="btn btn-primary btn-sm">B2B Login</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a><a href="education.html">Education</a>
+    <a href="events.html">Events</a><a href="b2b.html" class="mobile-b2b">For Business</a>
+  </div>
+</nav>
+
+<!-- B2B Hero -->
+<div class="b2b-portal-hero">
+  <p class="section-eyebrow" style="color:var(--gold-lt)">TeaVault Business</p>
+  <h1 class="section-title" style="color:var(--cream);font-size:clamp(2.5rem,5vw,4rem);margin-bottom:.75rem">Source with Confidence. Scale with Care.</h1>
+  <p class="section-subtitle" style="color:rgba(245,237,214,.65)">340+ verified suppliers · 28 origin countries · Net-30 invoicing · Dedicated account management</p>
+  <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
+    <a href="#supplier-directory" class="btn btn-cream btn-lg">Browse Suppliers</a>
+    <a href="#rfq" class="btn btn-outline-cream btn-lg">Build an RFQ</a>
+    <a href="#" onclick="alert('Business verification form coming next phase.');return false;" class="btn btn-ghost-cream btn-lg">Verify My Business</a>
+  </div>
+  <div style="display:flex;gap:3rem;justify-content:center;margin-top:3rem;flex-wrap:wrap;">
+    <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;color:var(--cream);">340+</div><div style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.5);margin-top:.25rem">Verified Suppliers</div></div>
+    <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;color:var(--cream);">28</div><div style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.5);margin-top:.25rem">Origin Countries</div></div>
+    <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;color:var(--cream);">1,200+</div><div style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.5);margin-top:.25rem">Active B2B Clients</div></div>
+    <div style="text-align:center;"><div style="font-family:var(--font-display);font-size:2.5rem;font-weight:600;color:var(--cream);">Net-30</div><div style="font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.5);margin-top:.25rem">Invoicing Terms</div></div>
+  </div>
+</div>
+
+<!-- B2B Tabs -->
+<div class="b2b-tabs">
+  <nav class="b2b-tab-nav">
+    <button class="b2b-tab-btn active" data-tab="directory">Supplier Directory</button>
+    <button class="b2b-tab-btn" data-tab="rfq">RFQ Builder</button>
+    <button class="b2b-tab-btn" data-tab="orders">Order Management</button>
+    <button class="b2b-tab-btn" data-tab="supplier-portal">Supplier Portal</button>
+  </nav>
+</div>
+
+<div class="b2b-content">
+
+  <!-- Supplier Directory -->
+  <div id="tab-directory">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;" id="supplier-directory">
+      <h2 style="font-family:var(--font-display);font-size:1.75rem;font-weight:600;color:var(--umber)">Verified Supplier Directory</h2>
+      <input type="text" placeholder="Search suppliers..." style="padding:.65rem 1.25rem;border:1.5px solid var(--border);border-radius:var(--radius);font-family:var(--font-ui);font-size:.85rem;color:var(--umber);width:240px;" />
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;">
+      <button class="gallery-filter-btn active">All Origins</button>
+      <button class="gallery-filter-btn">🇯🇵 Japan</button>
+      <button class="gallery-filter-btn">🇨🇳 China</button>
+      <button class="gallery-filter-btn">🇹🇼 Taiwan</button>
+      <button class="gallery-filter-btn">🇮🇳 India</button>
+      <button class="gallery-filter-btn">🌱 Organic</button>
+      <button class="gallery-filter-btn">⚖️ Fair Trade</button>
+      <button class="gallery-filter-btn">🌳 Rainforest</button>
+    </div>
+    <div class="supplier-grid">
+      <div class="supplier-card reveal">
+        <span class="supplier-verified">✓ Verified</span>
+        <div class="supplier-country">🇯🇵</div>
+        <div class="supplier-name">Yamashiro Tea Estate</div>
+        <div class="supplier-region">Uji, Kyoto Prefecture · Japan</div>
+        <div class="supplier-stats">
+          <div class="supplier-stat"><div class="supplier-stat-val">500g</div><div class="supplier-stat-label">Min. Order</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">18 days</div><div class="supplier-stat-label">Lead Time</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">4.9★</div><div class="supplier-stat-label">Rating</div></div>
+        </div>
+        <div class="supplier-certs"><span class="cert-pill">🌱 JAS Organic</span><span class="cert-pill">🌸 Kyoto Certified</span></div>
+        <a href="#" class="btn btn-outline-dark w-full" style="text-align:center;justify-content:center;">View Profile & MOQ →</a>
+      </div>
+      <div class="supplier-card reveal">
+        <span class="supplier-verified">✓ Verified</span>
+        <div class="supplier-country">🇨🇳</div>
+        <div class="supplier-name">Fenghuang Mountain Cooperative</div>
+        <div class="supplier-region">Chaozhou, Guangdong · China</div>
+        <div class="supplier-stats">
+          <div class="supplier-stat"><div class="supplier-stat-val">250g</div><div class="supplier-stat-label">Min. Order</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">21 days</div><div class="supplier-stat-label">Lead Time</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">4.8★</div><div class="supplier-stat-label">Rating</div></div>
+        </div>
+        <div class="supplier-certs"><span class="cert-pill">🌿 Traditional</span></div>
+        <a href="#" class="btn btn-outline-dark w-full" style="text-align:center;justify-content:center;">View Profile & MOQ →</a>
+      </div>
+      <div class="supplier-card reveal">
+        <span class="supplier-verified">✓ Verified</span>
+        <div class="supplier-country">🇮🇳</div>
+        <div class="supplier-name">Makaibari Estate</div>
+        <div class="supplier-region">Kurseong, Darjeeling · India</div>
+        <div class="supplier-stats">
+          <div class="supplier-stat"><div class="supplier-stat-val">1kg</div><div class="supplier-stat-label">Min. Order</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">14 days</div><div class="supplier-stat-label">Lead Time</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">5.0★</div><div class="supplier-stat-label">Rating</div></div>
+        </div>
+        <div class="supplier-certs"><span class="cert-pill">🌱 Biodynamic</span><span class="cert-pill">⚖️ Fair Trade</span><span class="cert-pill">🌳 Rainforest</span></div>
+        <a href="#" class="btn btn-outline-dark w-full" style="text-align:center;justify-content:center;">View Profile & MOQ →</a>
+      </div>
+      <div class="supplier-card reveal">
+        <span class="supplier-verified">✓ Verified</span>
+        <div class="supplier-country">🇹🇼</div>
+        <div class="supplier-name">Ali Shan Collective</div>
+        <div class="supplier-region">Alishan, Chiayi County · Taiwan</div>
+        <div class="supplier-stats">
+          <div class="supplier-stat"><div class="supplier-stat-val">500g</div><div class="supplier-stat-label">Min. Order</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">15 days</div><div class="supplier-stat-label">Lead Time</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">4.9★</div><div class="supplier-stat-label">Rating</div></div>
+        </div>
+        <div class="supplier-certs"><span class="cert-pill">🌱 Organic</span><span class="cert-pill">🏔️ High Mountain</span></div>
+        <a href="#" class="btn btn-outline-dark w-full" style="text-align:center;justify-content:center;">View Profile & MOQ →</a>
+      </div>
+      <div class="supplier-card reveal">
+        <span class="supplier-verified">✓ Verified</span>
+        <div class="supplier-country">🇳🇵</div>
+        <div class="supplier-name">Jun Chiyabari Estate</div>
+        <div class="supplier-region">Hile, Koshi Province · Nepal</div>
+        <div class="supplier-stats">
+          <div class="supplier-stat"><div class="supplier-stat-val">1kg</div><div class="supplier-stat-label">Min. Order</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">22 days</div><div class="supplier-stat-label">Lead Time</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">4.7★</div><div class="supplier-stat-label">Rating</div></div>
+        </div>
+        <div class="supplier-certs"><span class="cert-pill">🌱 Organic</span><span class="cert-pill">⚖️ Fair Trade</span></div>
+        <a href="#" class="btn btn-outline-dark w-full" style="text-align:center;justify-content:center;">View Profile & MOQ →</a>
+      </div>
+      <div class="supplier-card reveal">
+        <span class="supplier-verified">✓ Verified</span>
+        <div class="supplier-country">🇰🇪</div>
+        <div class="supplier-name">Kericho Highlands Co-op</div>
+        <div class="supplier-region">Kericho County · Kenya</div>
+        <div class="supplier-stats">
+          <div class="supplier-stat"><div class="supplier-stat-val">2kg</div><div class="supplier-stat-label">Min. Order</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">10 days</div><div class="supplier-stat-label">Lead Time</div></div>
+          <div class="supplier-stat"><div class="supplier-stat-val">4.8★</div><div class="supplier-stat-label">Rating</div></div>
+        </div>
+        <div class="supplier-certs"><span class="cert-pill">🌳 Rainforest Alliance</span><span class="cert-pill">⚖️ Fair Trade</span></div>
+        <a href="#" class="btn btn-outline-dark w-full" style="text-align:center;justify-content:center;">View Profile & MOQ →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RFQ Builder (hidden by default) -->
+  <div id="tab-rfq" style="display:none;" id="rfq">
+    <h2 style="font-family:var(--font-display);font-size:1.75rem;font-weight:600;color:var(--umber);margin-bottom:.5rem">Request for Quote Builder</h2>
+    <p style="color:rgba(28,18,8,.6);font-size:.9rem;margin-bottom:2.5rem">Build a detailed sourcing brief and send it to multiple suppliers simultaneously. They'll respond within 48 hours.</p>
+    <div class="rfq-builder" id="rfq-form">
+      <div class="rfq-section">
+        <h3 class="rfq-section-title">Step 1 — Select Teas</h3>
+        <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap">
+          <select class="form-select" id="rfq-tea-select" style="flex:1;min-width:160px">
+            <option value="">Choose a tea...</option>
+            <option value="1">Uji Gyokuro (Japan)</option>
+            <option value="2">Phoenix Dancong (China)</option>
+            <option value="3">Darjeeling First Flush (India)</option>
+            <option value="5">Menghai Pu-erh (China)</option>
+            <option value="6">Ali Shan Oolong (Taiwan)</option>
+            <option value="9">Kenya Milima Black (Kenya)</option>
+          </select>
+          <input class="form-input" id="rfq-qty" placeholder="Quantity (e.g. 5kg)" style="width:160px" />
+          <button class="btn btn-primary" id="rfq-add-tea">+ Add to RFQ</button>
+        </div>
+        <div id="rfq-tea-list">
+          <p style="color:var(--warm-grey);font-size:.85rem;padding:.5rem 0;">No teas added yet — select a tea above to begin.</p>
+        </div>
+      </div>
+      <div class="rfq-section">
+        <h3 class="rfq-section-title">Step 2 — Requirements</h3>
+        <div class="gift-form visible" style="display:grid">
+          <div class="form-group"><label class="form-label">Delivery Frequency</label><select class="form-select"><option>One-time order</option><option>Monthly standing order</option><option>Quarterly contract</option></select></div>
+          <div class="form-group"><label class="form-label">Required Certifications</label><select class="form-select"><option>No requirement</option><option>Organic only</option><option>Fair Trade required</option><option>Multiple certifications</option></select></div>
+          <div class="form-group"><label class="form-label">Packaging Preference</label><select class="form-select"><option>Standard TeaVault packaging</option><option>White-label (your brand)</option><option>Bulk / unpackaged</option></select></div>
+          <div class="form-group"><label class="form-label">Target Price Range</label><input class="form-input" placeholder="e.g. $15-25/100g" /></div>
+          <div class="form-group full"><label class="form-label">Additional Requirements</label><textarea class="form-textarea" placeholder="Delivery specs, quality standards, sample requests, lead time constraints..."></textarea></div>
+        </div>
+      </div>
+      <div class="rfq-section">
+        <h3 class="rfq-section-title">Step 3 — Contact Details</h3>
+        <div class="gift-form visible" style="display:grid">
+          <div class="form-group"><label class="form-label">Business Name</label><input class="form-input" placeholder="Your company name" /></div>
+          <div class="form-group"><label class="form-label">Contact Name</label><input class="form-input" placeholder="Your full name" /></div>
+          <div class="form-group"><label class="form-label">Business Email</label><input class="form-input" type="email" placeholder="you@company.com" /></div>
+          <div class="form-group"><label class="form-label">Phone (optional)</label><input class="form-input" placeholder="+1 000 000 0000" /></div>
+        </div>
+        <div style="margin-top:1.5rem">
+          <a href="#" onclick="alert('RFQ submitted! You will receive supplier responses within 48 hours.');return false;" class="btn btn-primary btn-lg">Submit RFQ to Suppliers →</a>
+          <p style="font-family:var(--font-ui);font-size:.72rem;color:var(--warm-grey);margin-top:.85rem">Your RFQ will be shared with relevant verified suppliers. You maintain full control over which quotes to accept.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders Tab (placeholder) -->
+  <div id="tab-orders" style="display:none">
+    <div style="text-align:center;padding:4rem 2rem;">
+      <div style="font-size:4rem;margin-bottom:1.5rem">📦</div>
+      <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--umber);margin-bottom:.75rem">Order Management Dashboard</h2>
+      <p style="color:rgba(28,18,8,.6);margin-bottom:2rem">Track fulfilment, manage invoices, and communicate with suppliers — available after B2B verification.</p>
+      <a href="#" onclick="alert('B2B verification required. Our team will contact you within 24 hours.');return false;" class="btn btn-primary">Verify My Business</a>
+    </div>
+  </div>
+
+  <!-- Supplier Portal Tab -->
+  <div id="tab-supplier-portal" style="display:none">
+    <div style="max-width:640px">
+      <h2 style="font-family:var(--font-display);font-size:1.75rem;font-weight:600;color:var(--umber);margin-bottom:.5rem">Supplier Onboarding</h2>
+      <p style="color:rgba(28,18,8,.6);font-size:.9rem;margin-bottom:2.5rem">Join the TeaVault verified supplier network. Our team reviews every application within 5 business days.</p>
+      <div class="rfq-section">
+        <h3 class="rfq-section-title">Business Information</h3>
+        <div class="gift-form visible" style="display:grid">
+          <div class="form-group"><label class="form-label">Farm / Estate / Cooperative Name</label><input class="form-input" placeholder="Your business name" /></div>
+          <div class="form-group"><label class="form-label">Country of Origin</label><select class="form-select"><option>Select country...</option><option>Japan</option><option>China</option><option>Taiwan</option><option>India</option><option>Kenya</option><option>Sri Lanka</option><option>Nepal</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Contact Email</label><input class="form-input" type="email" /></div>
+          <div class="form-group"><label class="form-label">Years in Operation</label><input class="form-input" type="number" placeholder="e.g. 25" /></div>
+          <div class="form-group full"><label class="form-label">Certifications (check all that apply)</label>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem">
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌱 Organic</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">⚖️ Fair Trade</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌳 Rainforest Alliance</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌿 JAS Organic</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🏷️ USDA Organic</span>
+              <span class="med-tag" onclick="this.classList.toggle('active')">🌾 Biodynamic</span>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Minimum Order Quantity</label><input class="form-input" placeholder="e.g. 500g per SKU" /></div>
+          <div class="form-group"><label class="form-label">Typical Lead Time</label><input class="form-input" placeholder="e.g. 14-21 days" /></div>
+          <div class="form-group full"><label class="form-label">Brief Description</label><textarea class="form-textarea" placeholder="Describe your farm, production methods, specialty teas, and what makes your tea exceptional..."></textarea></div>
+        </div>
+        <a href="#" onclick="alert('Application submitted! Our sourcing team will reach out within 5 business days.');return false;" class="btn btn-primary" style="margin-top:1.5rem">Submit Supplier Application →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="logo-leaf">🍃</span><span class="logo-text">TeaVault</span></a><p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p></div>
+      <div class="footer-col"><h4 class="footer-col-title">B2B</h4><ul class="footer-links"><li><a href="b2b.html">Supplier Directory</a></li><li><a href="b2b.html#rfq">RFQ Builder</a></li><li><a href="b2b.html#supplier-portal">Become a Supplier</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="catalog.html">All Teas</a></li><li><a href="subscriptions.html">Subscribe</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="events.html">Events</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2025 TeaVault Inc.</p><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+// B2B Tab switching
+document.querySelectorAll('.b2b-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.b2b-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['directory','rfq','orders','supplier-portal'].forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (el) el.style.display = btn.dataset.tab === t ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

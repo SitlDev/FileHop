@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tea Catalog — TeaVault | Browse & Filter Global Teas</title>
+  <meta name="description" content="Browse our curated catalog of rare and premium teas from Japan, China, Taiwan, India, Kenya and beyond. Filter by type, region, health benefits and price." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="catalog.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body>
+
+<nav class="nav scrolled" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-leaf">🍃</span><span class="logo-text" style="color:var(--umber)">TeaVault</span></a>
+    <ul class="nav-links">
+      <li><a href="catalog.html" class="nav-link" style="color:var(--terra)">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link">Education</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link nav-b2b">For Business</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-account">Account</a>
+      <a href="subscriptions.html" class="btn btn-primary btn-sm">Subscribe</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a>
+    <a href="education.html">Education Hub</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="events.html">Events</a>
+    <a href="subscriptions.html">Subscribe</a>
+    <a href="b2b.html" class="mobile-b2b">For Business</a>
+    <a href="profile.html">My Account</a>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<header class="page-hero">
+  <div class="page-hero-content">
+    <p class="section-eyebrow">TeaVault Collection</p>
+    <h1 class="section-title" style="color:var(--cream);font-size:clamp(2.5rem,5vw,4rem)">The World's Finest Teas</h1>
+    <p class="section-subtitle">16 curated origins · 7 tea families · 340+ verified suppliers</p>
+  </div>
+</header>
+
+<!-- B2B Toggle Bar -->
+<div class="b2b-toggle-bar">
+  <div class="b2b-toggle-inner">
+    <div class="toggle-label-group">
+      <span class="toggle-label active" id="retail-label">🛍️ Retail</span>
+      <div class="toggle-switch" id="wholesale-toggle" role="switch" aria-checked="false"></div>
+      <span class="toggle-label" id="wholesale-label">💼 Wholesale / B2B</span>
+    </div>
+    <span class="b2b-mode-info" id="b2b-mode-info">Showing wholesale prices & MOQ — <a href="b2b.html" style="color:var(--terra);text-decoration:underline">verify your business</a> to purchase</span>
+  </div>
+</div>
+
+<!-- Catalog Layout -->
+<div class="catalog-layout">
+
+  <!-- Filter Sidebar -->
+  <aside class="filter-sidebar">
+    <div class="filter-title">
+      Filter
+      <button class="filter-clear" id="filter-clear">Clear All</button>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Tea Type</div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox" data-group="types" value="green" /><span class="filter-check"></span><span class="filter-option-label">Green</span><span class="filter-option-count">5</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="types" value="oolong" /><span class="filter-check"></span><span class="filter-option-label">Oolong</span><span class="filter-option-count">4</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="types" value="black" /><span class="filter-check"></span><span class="filter-option-label">Black</span><span class="filter-option-count">4</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="types" value="white" /><span class="filter-check"></span><span class="filter-option-label">White</span><span class="filter-option-count">2</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="types" value="puerh" /><span class="filter-check"></span><span class="filter-option-label">Pu-erh</span><span class="filter-option-count">1</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="types" value="yellow" /><span class="filter-check"></span><span class="filter-option-label">Yellow</span><span class="filter-option-count">1</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="types" value="herbal" /><span class="filter-check"></span><span class="filter-option-label">Herbal &amp; Blended</span><span class="filter-option-count">1</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Origin</div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="japan" /><span class="filter-check"></span><span class="filter-option-label">🇯🇵 Japan</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="china" /><span class="filter-check"></span><span class="filter-option-label">🇨🇳 China</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="taiwan" /><span class="filter-check"></span><span class="filter-option-label">🇹🇼 Taiwan</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="india" /><span class="filter-check"></span><span class="filter-option-label">🇮🇳 India</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="kenya" /><span class="filter-check"></span><span class="filter-option-label">🇰🇪 Kenya</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="sri-lanka" /><span class="filter-check"></span><span class="filter-option-label">🇱🇰 Sri Lanka</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="nepal" /><span class="filter-check"></span><span class="filter-option-label">🇳🇵 Nepal</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="morocco" /><span class="filter-check"></span><span class="filter-option-label">🇲🇦 Morocco</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="regions" value="turkey" /><span class="filter-check"></span><span class="filter-option-label">🇹🇷 Turkey</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Health Benefits</div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox" data-group="health" value="focus" /><span class="filter-check"></span><span class="filter-option-label">🧠 Focus</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="health" value="calm" /><span class="filter-check"></span><span class="filter-option-label">🌿 Calm</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="health" value="energy" /><span class="filter-check"></span><span class="filter-option-label">⚡ Energy</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="health" value="digestion" /><span class="filter-check"></span><span class="filter-option-label">🔄 Digestion</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="health" value="sleep" /><span class="filter-check"></span><span class="filter-option-label">🌙 Sleep</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="health" value="antioxidant" /><span class="filter-check"></span><span class="filter-option-label">🛡️ Antioxidant</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group" style="border-bottom:none">
+      <div class="filter-group-title">Certifications</div>
+      <div class="filter-group-body">
+        <label class="filter-option"><input type="checkbox" data-group="cert" value="organic" /><span class="filter-check"></span><span class="filter-option-label">🌱 Organic</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="cert" value="fair-trade" /><span class="filter-check"></span><span class="filter-option-label">⚖️ Fair Trade</span></label>
+        <label class="filter-option"><input type="checkbox" data-group="cert" value="rainforest" /><span class="filter-check"></span><span class="filter-option-label">🌳 Rainforest Alliance</span></label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Grid -->
+  <main>
+    <div class="catalog-header">
+      <p class="catalog-count" id="catalog-count">16 teas</p>
+      <div class="catalog-sort">
+        <span class="sort-label">Sort by:</span>
+        <select class="sort-select" id="catalog-sort">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+    <div class="tea-grid" id="tea-grid">
+      <!-- Populated by JS -->
+    </div>
+  </main>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo"><span class="logo-leaf">🍃</span><span class="logo-text">TeaVault</span></a>
+        <p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p>
+      </div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="catalog.html?type=green">Green Teas</a></li><li><a href="catalog.html?type=oolong">Oolongs</a></li><li><a href="catalog.html?type=puerh">Pu-erh</a></li><li><a href="catalog.html?type=white">White Teas</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Learn</h4><ul class="footer-links"><li><a href="education.html">Education Hub</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links"><li><a href="about.html">Our Story</a></li><li><a href="b2b.html">For Business</a></li><li><a href="subscriptions.html">Subscriptions</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 TeaVault Inc. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

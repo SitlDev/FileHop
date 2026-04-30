@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find opposite words, similar-sounding words, and rhyming words instantly.">
+    <meta name="keywords" content="antonyms, opposite words, homophones, rhymes, vocabulary">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/rhyme-generator/">
+    <meta property="og:title" content="Rhyme Generator">
+    <meta property="og:description" content="Find rhyming words instantly">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Rhyme Generator</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header { 
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            background: #0f0f0f;
+        }
+        header h1 { 
+            font-size: 2em; 
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        header p { 
+            font-size: 0.95em; 
+            color: #999;
+        }
+
+        main {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ec4899;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(ec4899, 0.1);
+        }
+
+        .search-hint {
+            font-size: 0.85em;
+            color: #666;
+            padding: 8px 4px;
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        button.primary {
+            background: #ec4899;
+            color: white;
+            flex: 1;
+            font-weight: 600;
+        }
+
+        button.primary:hover {
+            filter: brightness(0.9);
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: #1a1a1a;
+            color: #999;
+            padding: 10px 16px;
+        }
+
+        button.secondary:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        .results-section {
+            margin-top: 32px;
+        }
+
+        .results-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .result-pill {
+            padding: 10px 14px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.95em;
+            user-select: none;
+        }
+
+        .result-pill:hover {
+            background: #2a2a2a;
+            border-color: #ec4899;
+            color: #ec4899;
+            transform: translateY(-1px);
+        }
+
+        .result-pill.copied {
+            background: #ec4899;
+            color: #0a0a0a;
+            border-color: #ec4899;
+            animation: pulse 0.3s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+            font-size: 0.95em;
+        }
+
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            background: #0f0f0f;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 16px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            main {
+                padding: 24px 16px;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            button {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 6px;
+            }
+
+            .result-pill {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 12px;
+            }
+            header h1 {
+                font-size: 1.3em;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button.secondary {
+                width: 100%;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎵 Rhyme Generator</h1>
+        <p>Find rhyming words instantly</p>
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input type="text" id="input-word" placeholder="Enter a word" autofocus>
+            <div class="search-hint">Try different words to explore</div>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="findRhymes()">Find Rhymes</button>
+            <button class="secondary" onclick="clearResults()">Clear</button>
+        </div>
+
+        <div class="results-section">
+            <div id="results-container"></div>
+        </div>
+
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 24px; margin: 32px 0; border: 1px solid #2a2a2a;">
+            <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #ec4899;">The Art of Rhyming</h2>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 16px;">
+                Rhyming words are essential for poetry, songwriting, and creative writing. A rhyme occurs when two or more words have similar ending sounds. Our rhyme generator instantly finds perfect and near-perfect rhymes for any word.
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Types of Rhymes:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Perfect Rhymes (True Rhymes):</strong> Same vowel and ending consonant sounds (cat/bat, moon/June)</li>
+                <li><strong>Near Rhymes (Slant/Imperfect):</strong> Similar but not identical sounds (home/come, reason/prison)</li>
+                <li><strong>Internal Rhymes:</strong> Rhymes within a single line ("Once upon a time so fine")</li>
+                <li><strong>Eye Rhymes:</strong> Look similar but don't sound the same (cough/through)</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Example: Words That Rhyme with "LOVE"</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Common rhymes and near-rhymes for the word "love":
+            </p>
+            <ul style="color: #999; margin-left: 20px; font-family: monospace; line-height: 2;">
+                <li><strong style="color: #ec4899;">DOVE</strong> - a peaceful bird, or past tense of dive</li>
+                <li><strong style="color: #ec4899;">ABOVE</strong> - higher than something</li>
+                <li><strong style="color: #ec4899;">GLOVE</strong> - hand protection worn for warmth</li>
+                <li><strong style="color: #ec4899;">SHOVE</strong> - to push roughly</li>
+                <li><strong style="color: #ec4899;">THEREOF</strong> - of that thing (archaic)</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Applications:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li>Songwriting and music composition</li>
+                <li>Poetry and creative verse</li>
+                <li>Rap and hip-hop lyric writing</li>
+                <li>Children's stories and nursery rhymes</li>
+                <li>Advertising and jingles</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Historical Evolution of Rhyming:</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Rhyming emerged as a literary device in early Arabic poetry around the 5th century and became central to European poetry by the Medieval period. The earliest rhyme schemes appeared in Old French (11th century), while Old English poetry relied on alliteration instead. Rhyme became standardized in Shakespeare's sonnets and Milton's Paradise Lost. Digital rhyme generators emerged in the 1990s with the advent of online poetry tools, revolutionizing songwriting and creative composition.
+            </p>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Rhyming Tool Variations:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Perfect Rhyme Dictionaries:</strong> Only exact sound matches</li>
+                <li><strong>Near-Rhyme/Slant Rhyme Finders:</strong> Include approximate matches for modern poetry</li>
+                <li><strong>Rhyme Scheme Analyzers:</strong> Identify patterns like ABAB, AABB</li>
+                <li><strong>Syllable-Based Rhyme Tools:</strong> Filter by number of syllables</li>
+                <li><strong>Multisyllabic Rhyme Generators:</strong> For complex rhyme schemes (e.g., "orange/door hinge")</li>
+                <li><strong>Internal Rhyme Finders:</strong> Detect rhymes within lines, not just line endings</li>
+                <li><strong>Constraint-Based Rhyme Tools:</strong> Filter by part of speech, word length, or meaning</li>
+            </ul>
+        </div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tools Suite. Explore language, expand knowledge.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="../../theme-toggle.js"></script>
+</body>
+</html>

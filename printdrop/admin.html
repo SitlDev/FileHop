@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrintDrop Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    /* Catalog specific styles since they might not be in admin.css yet */
+    .catalog-filters { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .ctab {
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 700;
+      padding: .4rem 1rem; border-radius: 100px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--muted); cursor: pointer; transition: all var(--t);
+    }
+    .ctab:hover { border-color: var(--border2); color: var(--white); }
+    .ctab.active { background: rgba(232,93,4,.15); border-color: var(--accent); color: var(--accent); }
+    .catalog-search { flex: 1; min-width: 200px; position: relative; }
+    .catalog-search input {
+      width: 100%; padding: .45rem 1rem; background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--r); color: var(--white); font-family: var(--font-mono); font-size: .8rem; outline: none;
+    }
+    .catalog-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem;
+    }
+    .product-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2);
+      overflow: hidden; transition: all var(--t); display: flex; flex-direction: column;
+    }
+    .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .pc-img {
+      width: 100%; aspect-ratio: 1; background: #fff; object-fit: contain; padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pc-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+    .pc-name { font-weight: 700; font-size: .9rem; color: var(--white); margin-bottom: .25rem; }
+    .pc-brand { font-size: .7rem; color: var(--muted); margin-bottom: .75rem; text-transform: uppercase; letter-spacing: .05em; }
+    .pc-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+    .pc-price { font-family: var(--font-mono); font-size: .85rem; font-weight: 700; color: var(--ok); }
+    .pc-variants { font-size: .7rem; color: var(--muted); }
+    .catalog-loading {
+      display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 4rem; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AUTH GATE -->
+  <div id="authGate" class="auth-gate">
+    <div class="auth-box">
+      <div class="auth-logo">PRINTDROP // ADMIN</div>
+      <h1 class="auth-title">Fulfillment Terminal</h1>
+      <p class="auth-sub">Enter your security token to proceed.</p>
+      <div class="auth-form">
+        <input type="password" id="tokenInput" class="auth-input" placeholder="••••••••••••" autofocus>
+        <button class="auth-btn" onclick="authenticate()">INITIALIZE ACCESS</button>
+      </div>
+      <div id="authError" class="auth-error" style="display:none">Invalid security token.</div>
+      <div class="auth-hint">Default: <code>admin-secret-change-me</code></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="dashboard" style="display:none">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-mark">▲</span>
+        <div>
+          <div class="logo-name" id="sidebarStoreName">PRINTDROP</div>
+          <div class="logo-sub">ADMIN TERMINAL</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="snav-item active" onclick="switchView('orders', this)">
+          <span class="snav-icon">📊</span> Orders
+        </button>
+        <button class="snav-item" onclick="switchView('ready', this)">
+          <span class="snav-icon">🚀</span> Ready to Ship
+          <span class="snav-badge" id="nav-ready-badge">0</span>
+        </button>
+        <button class="snav-item" onclick="switchView('catalog', this)">
+          <span class="snav-icon">📖</span> Live Catalog
+        </button>
+        <div style="margin: .75rem 0 .25rem .75rem; font-size: .6rem; color: var(--faint); letter-spacing: .1em; font-weight: 800;">CONFIGURATION</div>
+        <button class="snav-item" onclick="switchView('branding', this)">
+          <span class="snav-icon">🎨</span> Branding
+        </button>
+        <button class="snav-item" onclick="switchView('settings', this)">
+          <span class="snav-icon">⚙️</span> Settings
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="buffer-indicator">
+          <div class="bi-label">CANCELLATION BUFFER</div>
+          <div class="bi-value" id="sidebarBuffer">24 HRS</div>
+        </div>
+        <button class="signout-btn" onclick="signOut()">SIGN OUT</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="topbar-title" id="topbarTitle">Order Management</div>
+          <div class="topbar-sub" id="topbarSub">All orders · live</div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-store" id="topbarStore"></div>
+          <div class="live-dot"></div>
+          <div class="live-label">LIVE</div>
+          <button class="refresh-btn" onclick="refresh()" title="Refresh Data">🔄</button>
+        </div>
+      </header>
+
+      <section class="stats-row">
+        <div class="stat-card" onclick="setFilter('all')">
+          <div class="stat-num" id="stat-total">0</div>
+          <div class="stat-label">Total</div>
+        </div>
+        <div class="stat-card stat-queued" onclick="setFilter('queued')">
+          <div class="stat-num" id="stat-queued">0</div>
+          <div class="stat-label">Queued</div>
+        </div>
+        <div class="stat-card stat-hot" onclick="switchView('ready')">
+          <div class="stat-num" id="stat-ready">0</div>
+          <div class="stat-label">Ready</div>
+        </div>
+        <div class="stat-card stat-sent" onclick="setFilter('sent')">
+          <div class="stat-num" id="stat-sent">0</div>
+          <div class="stat-label">Sent</div>
+        </div>
+        <div class="stat-card stat-ok" onclick="setFilter('shipped')">
+          <div class="stat-num" id="stat-shipped">0</div>
+          <div class="stat-label">Shipped</div>
+        </div>
+        <div class="stat-card stat-cancel" onclick="setFilter('cancelled')">
+          <div class="stat-num" id="stat-cancelled">0</div>
+          <div class="stat-label">Cancel</div>
+        </div>
+        <div class="stat-card stat-revenue">
+          <div class="stat-num" id="stat-revenue">$0.00</div>
+          <div class="stat-label">Revenue</div>
+        </div>
+      </section>
+
+      <!-- VIEW: ORDERS -->
+      <div id="view-orders" class="view active">
+        <div class="orders-toolbar">
+          <div class="filter-tabs">
+            <button class="ftab active" onclick="setFilter('all', this)">All</button>
+            <button class="ftab ftab-hot" onclick="setFilter('ready', this)">Ready ⚡</button>
+            <button class="ftab" onclick="setFilter('queued', this)">Queued</button>
+            <button class="ftab" onclick="setFilter('fulfilling', this)">Fulfilling</button>
+            <button class="ftab" onclick="setFilter('shipped', this)">Shipped</button>
+            <button class="ftab" onclick="setFilter('cancelled', this)">Cancelled</button>
+          </div>
+          <div class="orders-search-wrap">
+            <input type="text" class="orders-search" placeholder="Search orders..." oninput="searchOrders(this.value)">
+          </div>
+        </div>
+
+        <div id="bulkBar" class="bulk-bar" style="display:none">
+          <div class="bulk-count" id="bulkCount">0 selected</div>
+          <button class="bulk-btn bulk-approve" onclick="bulkApprove()">⚡ Approve Selected</button>
+          <button class="bulk-btn bulk-cancel" onclick="bulkCancel()">✕ Cancel Selected</button>
+          <button class="bulk-clear" onclick="clearSelection()">Clear selection</button>
+        </div>
+
+        <div class="orders-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th class="th-check"><input type="checkbox" onchange="toggleSelectAll(this)"></th>
+                <th onclick="sortBy('id')">Order ID</th>
+                <th onclick="sortBy('created_at')">Date</th>
+                <th onclick="sortBy('customer_name')">Customer</th>
+                <th onclick="sortBy('design_text')">Design</th>
+                <th>Product</th>
+                <th onclick="sortBy('provider')">Provider</th>
+                <th onclick="sortBy('total_usd')">Total</th>
+                <th onclick="sortBy('status')">Status</th>
+                <th>Buffer</th>
+                <th class="th-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+          <div id="ordersEmpty" class="orders-empty">
+            <span>📦</span>
+            <p>No orders found matching your filters.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW: READY -->
+      <div id="view-ready" class="view">
+        <div class="view-header">
+          <div>
+            <h2>Ready to Dispatch</h2>
+            <p>Orders that have passed the 24-hour cancellation buffer.</p>
+          </div>
+          <button class="btn-primary" onclick="approveAllReady()">🚀 Dispatch All Ready</button>
+        </div>
+        <div class="orders-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Design</th>
+                <th>Provider</th>
+                <th>Total</th>
+                <th>Overdue</th>
+                <th class="th-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="readyBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VIEW: CATALOG -->
+      <div id="view-catalog" class="view">
+        <div class="view-header">
+          <div>
+            <h2>Live Product Catalog</h2>
+            <p>Direct from fulfillment providers. Prices shown are your cost.</p>
+          </div>
+          <button class="btn-primary" onclick="refreshCatalog()">🔄 Sync Providers</button>
+        </div>
+        <div class="catalog-filters">
+          <button class="ctab active" onclick="setCatalogProvider('printful', this)">Printful</button>
+          <button class="ctab" onclick="setCatalogProvider('printify', this)">Printify</button>
+          <button class="ctab" onclick="setCatalogProvider('gelato', this)">Gelato</button>
+          <div class="catalog-search">
+            <input type="text" placeholder="Search catalog..." oninput="searchCatalog(this.value)">
+          </div>
+        </div>
+        <div id="catalogLoading" class="catalog-loading" style="display:none">
+          <div class="loading-spinner"></div>
+          <span>Connecting to provider APIs...</span>
+        </div>
+        <div id="catalogGrid" class="catalog-grid"></div>
+        <div id="catalogEmpty" class="orders-empty" style="display:none">
+          <span>📖</span>
+          <p>No products found. Ensure your API keys are configured in environment variables.</p>
+        </div>
+      </div>
+
+      <!-- VIEW: BRANDING -->
+      <div id="view-branding" class="view">
+        <div class="view-header">
+          <div>
+            <h2>Store Branding</h2>
+            <p>Customize the white-label experience for your customers.</p>
+          </div>
+          <div class="bf-actions">
+            <span id="bf-saved" class="bf-saved" style="display:none">✓ Saved</span>
+            <button class="btn-primary" onclick="saveBranding()">Save Changes</button>
+          </div>
+        </div>
+        <div class="branding-form">
+          <div class="bf-group">
+            <label class="bf-label">Store Name</label>
+            <input type="text" id="bf-store-name" class="bf-input" placeholder="e.g. My Custom Studio">
+          </div>
+          <div class="bf-group">
+            <label class="bf-label">Tagline</label>
+            <input type="text" id="bf-tagline" class="bf-input" placeholder="e.g. Premium Apparel Worldwide">
+          </div>
+          <div class="bf-group">
+            <label class="bf-label">Logo URL</label>
+            <input type="text" id="bf-logo-url" class="bf-input" placeholder="https://...">
+            <small>Public URL for your brand logo (transparent PNG recommended).</small>
+          </div>
+          <div class="bf-group">
+            <label class="bf-label">Support Email</label>
+            <input type="email" id="bf-support-email" class="bf-input" placeholder="support@yourbrand.com">
+          </div>
+          <div class="bf-group">
+            <label class="bf-label">Accent Color</label>
+            <div style="display:flex; gap: .5rem">
+              <input type="text" id="bf-accent" class="bf-input" value="#e85d04" style="flex:1">
+              <input type="color" id="bf-accent-picker" style="width:44px; height:44px; border:none; background:none; cursor:pointer" oninput="document.getElementById('bf-accent').value=this.value">
+            </div>
+          </div>
+          <div class="bf-group">
+            <label class="bf-label">Footer Text</label>
+            <input type="text" id="bf-footer" class="bf-input" placeholder="© 2024 Your Brand Name">
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW: SETTINGS -->
+      <div id="view-settings" class="view">
+        <div class="view-header">
+          <div>
+            <h2>System Settings</h2>
+            <p>Backend configuration and integration status.</p>
+          </div>
+        </div>
+        <div class="settings-grid">
+          <div class="setting-card">
+            <div class="sc-icon">⏳</div>
+            <h3>Cancellation Buffer</h3>
+            <p>Orders are held for <code id="setting-buffer">24 hours</code> before fulfillment. Change this via <code>BUFFER_HOURS</code> env var.</p>
+          </div>
+          <div class="setting-card">
+            <div class="sc-icon">🔑</div>
+            <h3>API Status</h3>
+            <p>Fulfillment providers are connected via secure Bearer tokens in your environment.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODALS -->
+  <div id="modalOverlay" class="modal-overlay" style="display:none" onclick="closeModal()"></div>
+  <div id="orderModal" class="order-modal" style="display:none">
+    <div class="om-header">
+      <div>
+        <div class="om-title" id="om-order-id">Order #---</div>
+        <div id="om-status-badge" class="om-status-badge"></div>
+      </div>
+      <button class="om-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="om-body" class="om-body"></div>
+    <div class="om-footer" id="om-footer"></div>
+  </div>
+
+  <div id="confirmOverlay" class="modal-overlay" style="display:none" onclick="closeConfirm()"></div>
+  <div id="confirmDialog" class="confirm-dialog" style="display:none">
+    <div class="cd-icon" id="cd-icon">⚠️</div>
+    <div class="cd-title" id="cd-title">Confirm Action</div>
+    <div class="cd-body" id="cd-body">Are you sure you want to proceed?</div>
+    <div id="cd-reason-wrap" class="cd-reason-wrap" style="display:none">
+      <input type="text" id="cd-reason" class="cd-reason" placeholder="Enter reason (optional)">
+    </div>
+    <div class="cd-actions">
+      <button class="cd-cancel" onclick="closeConfirm()">Cancel</button>
+      <button class="cd-confirm" id="cd-confirm-btn" onclick="executeConfirm()">Confirm</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

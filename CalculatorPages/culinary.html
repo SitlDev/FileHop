@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Math — Baker's % & Cocktail Batching 2026 — YourCalc</title>
+    <meta name="keywords" content="bakers percentage, cocktail batching, hydration calculator, recipe scaling, bread math">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/culinary.html" />
+    <meta name="description" content="Professional culinary tools: Baker's Percentages, Hydration, and Cocktail Batching calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Culinary <span style="color: var(--accent2);">Math</span></h1>
+            <p class="subtitle">Scaling recipes and balancing molecular ratios.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Culinary <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Baker's %</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">In baking, every ingredient is measured as a percentage of the total flour weight (always 100%). This allows for effortless recipe scaling regardless of batch size.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Hydration</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Lower hydration (60%) creates denser, crusty bread. High hydration (80%+) produces open crumbs and airy structures like ciabatta or focaccia.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Batch Dilution</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">When batching cocktails, add roughly 20-25% water to simulate the dilution normally provided by shaking or stirring with ice in single-serve preparation.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('bakers', event)">Baker's %</button>
+                <button class="tab-btn" onclick="showTab('batch', event)">Cocktail Batch</button>
+            </div>
+
+            <div id="bakers" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Flour Weight (g)</label><div class="input-wrapper"><input type="number" id="ba-f" value="1000"></div></div>
+                    <div class="input-group"><label>Water Weight (g)</label><div class="input-wrapper"><input type="number" id="ba-w" value="700"></div></div>
+                    <div class="input-group"><label>Salt Weight (g)</label><div class="input-wrapper"><input type="number" id="ba-s" value="20"></div></div>
+                    <div class="input-group"><label>Yeast/Starter (g)</label><div class="input-wrapper"><input type="number" id="ba-y" value="10"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBakers()">Find Percentages →</button>
+                <div id="bakers-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Hydration %</span><span class="result-value" id="ba-h-out">0%</span></div>
+                        <div class="result-item"><span class="result-label">Salt %</span><span class="result-value" id="ba-s-out">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="batch" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Base Volume (oz)</label><div class="input-wrapper"><input type="number" id="co-v" value="3.5"></div></div>
+                    <div class="input-group"><label>Number of Servings</label><div class="input-wrapper"><input type="number" id="co-n" value="20"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Dilution (%)</label><div class="input-wrapper"><input type="number" id="co-d" value="20"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBatch()">Scale Recipe →</button>
+                <div id="batch-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Total Gallons</span><span class="result-value" id="co-out">0.00</span></div>
+                        <div class="result-item"><span class="result-label">Total Ounces</span><span class="result-value" id="co-oz">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Science of the <span style="color: var(--accent);">Modern Kitchen</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Baker's Percentages: The Secret to Perfect Bread</h3>
+                        <p>In professional baking, recipes aren't written in cups or grams; they are written in <strong>Baker's Percentages</strong>. This system treats the total weight of the flour as 100%, and every other ingredient is calculated as a ratio of that weight. This allows bakers to scale a recipe from one loaf to one thousand without losing the fundamental balance of the dough. Our <strong>Baker's Percentage Calculator</strong> helps you find the "Hydration Level" of your dough—one of the most important metrics in sourdough and artisan bread making.</p>
+                        <p style="margin-top: 16px;">Hydration determines the crumb structure and crust of your bread. A low-hydration dough (50-60%) is easy to handle and produces a tight, sandwich-style crumb. A high-hydration dough (75-85%) is sticky and difficult to work with but rewards you with the large, airy "open crumb" found in high-end baguettes and ciabatta. Understanding these ratios allows you to troubleshoot your bread: if it's too dry, increase the water percentage by 2% next time. This scientific approach turns baking from a guessing game into a repeatable craft.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Cocktail Batching: Entertaining at Scale</h3>
+                        <p>Hosting a large party and playing bartender all night is a recipe for a stressed host. The solution is <strong>Cocktail Batching</strong>—preparing large volumes of your drinks ahead of time. However, you can't just multiply a single drink recipe by 50. When you shake a cocktail with ice, about 20-25% of the final volume is actually water from <em>dilution</em>. If you batch a Negroni without adding water, it will taste harsh and unbalanced. Our <strong>Batch Scaling Tool</strong> factors in this essential dilution, ensuring your pre-poured drinks taste exactly like they were just shaken by a pro.</p>
+                        <p style="margin-top: 16px;">Pro tip: When batching, keep your spirits and non-perishables together, but add fresh citrus juice just before the event. Citrus oxidizes quickly, losing its bright "pop" after just a few hours. By using our calculator to find the total volume, you can select the right glassware or dispenser, ensuring your guests are well-served while you actually get to enjoy your own party.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Precision Temperatures & Safety</h3>
+                        <p>Culinary excellence is often a matter of degrees. Whether you are tempering chocolate, poaching salmon sous-vide, or deep-frying chicken, maintaining the correct temperature is the difference between success and a ruined meal. We recommend using a high-quality digital thermometer in conjunction with our tools to ensure your kitchen remains both efficient and safe. Remember, the "Danger Zone" for bacterial growth is between 40°F and 140°F—keep your hot foods hot and your cold foods cold to ensure every meal is as safe as it is delicious.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Yield & Waste Management</h3>
+                        <p>In a commercial kitchen, "yield" is the percentage of a product that remains after trimming and cooking. If you buy 10 lbs of brisket but only serve 6 lbs after trimming the fat and accounting for shrinkage, your yield is 60%. Understanding these numbers is critical for food costing. While our home culinary tools focus on ratios and scaling, keeping an eye on your personal kitchen waste is a great way to save money and become a more sustainable, efficient home cook.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+    <script>
+        function calculateBakers() {
+            const f = parseFloat(document.getElementById('ba-f').value);
+const w = parseFloat(document.getElementById('ba-w').value);
+const s = parseFloat(document.getElementById('ba-s').value);
+const hydration = ((w / f) * 100);
+const saltPct = ((s / f) * 100);
+document.getElementById('ba-h-out').innerText = hydration.toFixed(1) + '%';
+document.getElementById('ba-s-out').innerText = saltPct.toFixed(1) + '%';
+document.getElementById('bakers-results').classList.add('visible');
+saveActivity('culinary', { type: 'bakers-percent', flour: f, water: w, salt: s }, { hydration, saltPct });
+        }
+
+        function calculateBatch() {
+            const v = parseFloat(document.getElementById('co-v').value);
+const n = parseFloat(document.getElementById('co-n').value);
+const d = parseFloat(document.getElementById('co-d').value) / 100;
+const totalOz = (v * n) * (1 + d);
+document.getElementById('co-out').innerText = (totalOz / 128).toFixed(2);
+document.getElementById('co-oz').innerText = Math.round(totalOz);
+document.getElementById('batch-results').classList.add('visible');
+saveActivity('culinary', { type: 'cocktail-batch', servings: n, base_oz: v, dilution: d }, { totalOz });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Compare two texts and highlight differences with visual comparison. Perfect for code review and document comparison." />
+  <meta name="keywords" content="diff checker, text comparison, diff tool, code comparison, document diff, text diff, file comparison, code review tool, visual comparison" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Diff Checker</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Diff Checker</h1>
+      <p>Compare two texts and highlight the differences.</p>
+    </header>
+
+    <main>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <section>
+          <h2>Text 1</h2>
+          <textarea id="diff-text1" rows="14" placeholder="Enter first text..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+        </section>
+
+        <section>
+          <h2>Text 2</h2>
+          <textarea id="diff-text2" rows="14" placeholder="Enter second text..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+        </section>
+      </div>
+
+      <div class="actions" style="margin-top:20px;">
+        <button id="btn-compare">Compare</button>
+      </div>
+
+      <section class="preview-section" style="margin-top:20px;">
+        <h2>Comparison Results</h2>
+        <div id="diff-results" style="background: var(--panel); padding: 16px; border-radius: 8px; line-height: 1.6; font-family: monospace; font-size: 14px; max-height: 300px; overflow-y: auto;"></div>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Diff Checker</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

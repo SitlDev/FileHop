@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Automatically balance chemical equations and calculate molar masses. Perfect for chemistry students and educators with element tables and oxidation states.">
+    <meta name="keywords" content="chemical equation balancer, balancing equations, chemistry tool, molar mass calculator, chemical equation solver, element table, oxidation states, chemistry education, science tool">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/chemical-equation-balancer/">
+    <meta property="og:title" content="Chemical Equation Balancer — Tools Dashboard">
+    <meta property="og:description" content="Balance chemical equations and calculate molar masses automatically.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        .equation-display {
+            background: #0a0a0a;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        .element-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .element-table th, .element-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .element-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .element-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .oxidation-state {
+            font-size: 0.85em;
+            color: #ffc107;
+            font-weight: 600;
+        }
+
+        .molar-mass {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .molar-mass h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .coefficient-input {
+            width: 50px;
+            padding: 8px;
+            background: #0a0a0a;
+            border: 1px solid #667eea;
+            border-radius: 4px;
+            color: #e0e0e0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .element-table { font-size: 0.9em; }
+            .element-table th, .element-table td { padding: 8px; }
+            .equation-display { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Chemical Equation Balancer</h1>
+            <p>Balance chemical equations automatically and calculate molar masses.</p>
+        </header>
+
+        <div class="ad-container" style="text-align:center; margin: 20px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <main>
+            <section class="input-section">
+                <h2>Enter Equation</h2>
+                <div class="form-container">
+                    <label for="equation-input">Chemical Equation</label>
+                    <input type="text" id="equation-input" placeholder="e.g., H2 + O2 = H2O" style="font-family: 'Courier New', monospace;">
+                    <small style="color: #999; margin-top: 8px;">Use: element symbols (H, O, C, etc), numbers for subscripts, + for reactants, = for products</small>
+                </div>
+
+                <div class="actions">
+                    <button id="btn-balance-equation">Balance Equation</button>
+                    <button id="btn-copy-result">Copy Result</button>
+                    <button id="btn-clear-equation">Clear</button>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2>Balanced Equation</h2>
+                <div class="equation-display" id="balanced-equation-display">
+                    Waiting for input...
+                </div>
+
+                <div id="balance-status" style="color: #999; text-align: center; margin: 10px 0;"></div>
+
+                <h3 style="margin-top: 30px;">Reactants Analysis</h3>
+                <table class="element-table" id="reactants-table">
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Atomic Mass</th>
+                            <th>Count</th>
+                            <th>Oxidation State</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <h3>Products Analysis</h3>
+                <table class="element-table" id="products-table">
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Atomic Mass</th>
+                            <th>Count</th>
+                            <th>Oxidation State</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <h3>Molar Masses</h3>
+                <div id="molar-masses-container"></div>
+            </section>
+        </main>
+
+        <!-- Email Collection Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>🚀 Get More Tools & Updates</h3>
+                <p>Join our newsletter for new tools and chemistry resources.</p>
+                <form id="email-signup-form">
+                    <input type="email" id="signup-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="signup-btn">Subscribe for Free</button>
+                </form>
+                <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
+        <div class="sidebar-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <footer>
+            <div class="footer-ad">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="1234567892"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

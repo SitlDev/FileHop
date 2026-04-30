@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate & Mortgage Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="rent vs buy, mortgage affordability, rental ROI, closing costs calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/real-estate.html" />
+    <meta name="description" content="Professional real estate tools: Rent vs Buy analysis, Mortgage Affordability, and Rental Investment ROI calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Real <span style="color: var(--accent);">Estate</span></h1>
+            <p class="subtitle">Equity, leverage, and wealth through property.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Real Estate <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Rent vs Buy</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The "Rule of 15" suggests buying is usually better if you stay longer than 7 years at 6% rates.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Affordability</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Banks typically use the 28/36 rule: 28% of gross income for housing, 36% for total debt.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Rental ROI</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Cap Rate (NOI / Price) helps compare the investment yield of properties across different markets.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('rentbuy', event)">Rent vs Buy</button>
+                <button class="tab-btn" onclick="showTab('afford', event)">Affordability</button>
+                <button class="tab-btn" onclick="showTab('roi', event)">Rental ROI</button>
+                <button class="tab-btn" onclick="showTab('closing', event)">Closing Costs</button>
+            </div>
+
+            <div id="rentbuy" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Home Price</label><div class="input-wrapper"><input type="number" id="rb-price" value="500000"></div></div>
+                    <div class="input-group"><label>Down Payment (%)</label><div class="input-wrapper"><input type="number" id="rb-down" value="20"></div></div>
+                    <div class="input-group"><label>Monthly Rent</label><div class="input-wrapper"><input type="number" id="rb-rent" value="2500"></div></div>
+                    <div class="input-group"><label>Years of Stay</label><div class="input-wrapper"><input type="number" id="rb-years" value="7"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateRentBuy()">Compare Options →</button>
+                <div id="rb-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Monthly P&I</span><span class="result-value" id="rb-pmt">$0</span></div>
+                        <div class="result-item"><span class="result-label">Verdict</span><span class="result-value" id="rb-verdict-text" style="color:var(--accent2)">Calculating...</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="afford" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Gross Annual Income</label><div class="input-wrapper"><input type="number" id="af-inc" value="120000"></div></div>
+                    <div class="input-group"><label>Monthly Debts</label><div class="input-wrapper"><input type="number" id="af-debt" value="500"></div></div>
+                    <div class="input-group"><label>Down Payment ($)</label><div class="input-wrapper"><input type="number" id="af-down" value="50000"></div></div>
+                    <div class="input-group"><label>Mortgage Rate (%)</label><div class="input-wrapper"><input type="number" id="af-rate" value="6.5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateAfford()">Max Home Price →</button>
+                <div id="af-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Recommended Max</span><span class="result-value" id="af-out-rec">$0</span></div>
+                        <div class="result-item"><span class="result-label">Aggressive Max</span><span class="result-value" id="af-out-agg" style="color:var(--accent)">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="roi" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Purchase Price</label><div class="input-wrapper"><input type="number" id="roi-p" value="400000"></div></div>
+                    <div class="input-group"><label>Monthly Rent</label><div class="input-wrapper"><input type="number" id="roi-r" value="3200"></div></div>
+                    <div class="input-group"><label>Operating Exp (%)</label><div class="input-wrapper"><input type="number" id="roi-v" value="10"></div></div>
+                    <div class="input-group"><label>Property Tax (%)</label><div class="input-wrapper"><input type="number" id="roi-t" value="1.2"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateROI()">Calculate Cap Rate →</button>
+                <div id="roi-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Cap Rate</span><span class="result-value" id="roi-out">0%</span></div>
+                        <div class="result-item"><span class="result-label">Monthly Flow</span><span class="result-value" id="roi-cash">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="closing" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Purchase Price</label><div class="input-wrapper"><input type="number" id="cl-p" value="500000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateClosing()">Estimate Costs →</button>
+                <div id="closing-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Estimated Closing Costs (3%)</span><span class="result-value" id="cl-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Fundamentals of <span style="color: var(--accent);">Real Estate Investment</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Rent vs. Buy: The 7-Year Rule</h3>
+                        <p>Deciding whether to rent or buy a home is one of the most significant financial decisions you'll ever make. While buying is often seen as "building equity," it also comes with substantial upfront costs like down payments, closing costs, and moving expenses. Our <strong>Rent vs. Buy Calculator</strong> helps you find the "break-even point"—the number of years you must live in a home for the cost of ownership to be lower than the cost of renting. In many markets, this is the "7-Year Rule." If you plan to move in less than five years, renting is often the smarter financial move due to the high transaction costs of selling a home (typically 6% in agent commissions).</p>
+                        <p style="margin-top: 16px;">Don't forget the "hidden costs" of ownership. When you rent, your monthly payment is the <em>maximum</em> you'll pay for housing. When you own, your mortgage payment is the <em>minimum</em>. You are responsible for property taxes, homeowners insurance, and maintenance—which is generally estimated at 1% of the home's value per year. Buying a home is as much a lifestyle choice as it is a financial one; ensure the numbers align with your long-term goals before signing on the dotted line.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Affordability: The 28/36 Rule</h3>
+                        <p>Banks use specific ratios to determine how much they are willing to lend you. The most common is the <strong>28/36 Rule</strong>: your mortgage payment should not exceed 28% of your gross monthly income, and your total debt payments (including car loans and credit cards) should not exceed 36%. Our <strong>Home Affordability Tool</strong> provides two estimates: a "Conservative" budget that sticks to these rules, and an "Aggressive" budget that pushes the limits. Being "house poor" can limit your ability to save for retirement or handle unexpected emergencies, so we recommend staying closer to the conservative side whenever possible.</p>
+                        <p style="margin-top: 16px;">Additionally, consider the impact of your interest rate. Even a 1% difference in your mortgage rate can cost you tens of thousands of dollars over the life of a 30-year loan. Improving your credit score before you apply for a mortgage is one of the highest-leverage activities you can perform to increase your purchasing power and lower your long-term costs.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Rental ROI: Understanding the Cap Rate</h3>
+                        <p>For investors, the most important metric is the <strong>Cap Rate (Capitalization Rate)</strong>. This is the ratio of the property's Net Operating Income (NOI) to its purchase price. It allows you to compare different properties regardless of how they are financed. A "good" cap rate varies by market—in a high-growth city like Austin, a 4% cap rate might be acceptable, while in a more stable market, investors might look for 7-8%. Our <strong>Rental ROI Calculator</strong> automates this calculation, helping you quickly filter through potential investment properties to find those that meet your cash flow requirements.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Closing Costs: The Final Hurdle</h3>
+                        <p>Many first-time buyers are surprised by the amount of cash needed at the closing table beyond their down payment. <strong>Closing Costs</strong> typically range from 2% to 5% of the purchase price and include things like loan origination fees, title insurance, appraisal fees, and government recording taxes. Our estimator helps you budget for these "frictional costs" so you don't have any unpleasant surprises in the final days of your home purchase. Always ask for a "Loan Estimate" (LE) from your lender early in the process to get a detailed breakdown of these fees.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateRentBuy() {
+            const price = parseFloat(document.getElementById('rb-price').value);
+const down = parseFloat(document.getElementById('rb-down').value);
+const rent = parseFloat(document.getElementById('rb-rent').value);
+const years = parseFloat(document.getElementById('rb-years').value);
+const loan = price * (1 - (down/100));
+const r = 0.065 / 12;
+const n = 30 * 12;
+const pmt = loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+const totalRent = rent * 12 * years;
+const totalBuy = (pmt * 12 * years) + (price * 0.05);
+const verdict = totalBuy < totalRent ? "BUY" : "RENT";
+document.getElementById('rb-pmt').innerText = fmt(pmt);
+document.getElementById('rb-verdict-text').innerText = verdict;
+document.getElementById('rb-results').classList.add('visible');
+saveActivity('real-estate', { type: 'rent-buy', price, rent, years }, { pmt, verdict });
+        }
+
+        function calculateAfford() {
+            const income = parseFloat(document.getElementById('af-inc').value);
+const debt = parseFloat(document.getElementById('af-debt').value);
+const down = parseFloat(document.getElementById('af-down').value);
+const rate = parseFloat(document.getElementById('af-rate').value) / 100 / 12;
+const mMaxRec = (income / 12) * 0.28;
+const lRec = mMaxRec * (Math.pow(1 + rate, 360) - 1) / (rate * Math.pow(1 + rate, 360));
+const mMaxAgg = ((income / 12) * 0.36) - debt;
+const lAgg = mMaxAgg * (Math.pow(1 + rate, 360) - 1) / (rate * Math.pow(1 + rate, 360));
+document.getElementById('af-out-rec').innerText = fmt(lRec + down);
+document.getElementById('af-out-agg').innerText = fmt(lAgg + down);
+document.getElementById('af-results').classList.add('visible');
+saveActivity('real-estate', { type: 'affordability', income, debt }, { max: lRec + down });
+        }
+
+        function calculateROI() {
+            const price = parseFloat(document.getElementById('roi-p').value);
+const rent = parseFloat(document.getElementById('roi-r').value);
+const exp = parseFloat(document.getElementById('roi-v').value) / 100;
+const tax = parseFloat(document.getElementById('roi-t').value) / 100;
+const noi = (rent * 12) - ((rent * 12 * exp) + (price * tax));
+const cap = (noi / price) * 100;
+document.getElementById('roi-out').innerText = cap.toFixed(2) + '%';
+document.getElementById('roi-cash').innerText = fmt(noi / 12);
+document.getElementById('roi-results').classList.add('visible');
+saveActivity('real-estate', { type: 'rental-roi', price, rent }, { cap });
+        }
+
+        function calculateClosing() {
+            const p = parseFloat(document.getElementById('cl-p').value);
+const fee = p * 0.03;
+document.getElementById('cl-out').innerText = fmt(fee);
+document.getElementById('closing-results').classList.add('visible');
+saveActivity('real-estate', { type: 'closing-costs', price: p }, { fee });
+        }
+    </script>
+</body>
+</html>

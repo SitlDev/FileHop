@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Archive | The Worn Pages Club</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;600&family=Caveat&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-green: #1B3022;
+            --burgundy: #6B1D1D;
+            --gold: #C5A059;
+            --cream: #FDFBF7;
+            --soft-black: #2A2A2A;
+            --aged-paper: #E9DCC9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--cream);
+            color: var(--forest-green);
+            font-family: 'EB Garamond', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+        }
+
+        .thank-you-container {
+            text-align: center;
+            max-width: 700px;
+            padding: 4rem;
+            background: white;
+            border: 1px solid var(--aged-paper);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+            position: relative;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            color: var(--gold);
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            color: var(--forest-green);
+        }
+
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: var(--soft-black);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .certificate-badge {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--forest-green);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px rgba(27, 48, 34, 0.05);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            border: 1px solid var(--forest-green);
+            text-decoration: none;
+            color: var(--forest-green);
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            margin: 0 10px;
+        }
+
+        .btn-primary {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--forest-green);
+        }
+
+        .stamp {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        #confetti {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                padding: 2rem 0;
+            }
+            .thank-you-container {
+                padding: 2.5rem 1.5rem;
+                margin: 0 1.5rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .message {
+                font-size: 1.1rem;
+            }
+            .btn {
+                display: block;
+                margin: 0 0 1rem 0;
+                width: 100%;
+            }
+            div[style*="display: flex"] {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="confetti"></canvas>
+
+    <div class="thank-you-container">
+        <div class="certificate-badge">
+            <i data-lucide="scroll" size="40"></i>
+        </div>
+        <span class="handwritten">It is officially recorded</span>
+        <h1>Welcome to the<br>Worn Pages Club</h1>
+        <p class="message">
+            Your literary profile is now in our curators' hands. Based on your answers, we're already mapping your first dispatch — selecting books that match your taste, graded to our VG-or-better standard, and packaged with a personal curator's note. You'll receive a dispatch confirmation email within 24 hours.
+        </p>
+        
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="/" class="btn">Return Home</a>
+            <a href="/vault" class="btn btn-primary">Browse the Vault</a>
+        </div>
+
+        <img src="/assets/official-seal.png" class="stamp" alt="The Worn Pages Club Seal" style="opacity: 0.15; width: 160px; position: absolute; bottom: -40px; right: -40px; transform: rotate(-15deg);">
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Subtle Confetti Effect
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pieces = [];
+        const colors = ['#C5A059', '#1B3022', '#6B1D1D'];
+
+        for (let i = 0; i < 50; i++) {
+            pieces.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                size: Math.random() * 5 + 5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                speed: Math.random() * 2 + 1,
+                rot: Math.random() * 45
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            pieces.forEach(p => {
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+                p.y += p.speed;
+                if (p.y > canvas.height) p.y = -20;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>

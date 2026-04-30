@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar ROI, Carbon Footprint & Energy Cost Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="solar ROI calculator, carbon footprint estimator, energy cost per appliance, water conservation math">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/green.html" />
+    <meta name="description" content="Professional sustainability tools: Solar ROI, Carbon Footprint, and Water usage calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Sustainability & <span style="color: var(--accent2);">Energy</span></h1>
+            <p class="subtitle">Personal environmental audits and efficiency math.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Energy <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Payback Period</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Most residential solar systems pay for themselves in 6-10 years, depending on state incentives and local electricity rates.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Carbon Offsets</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">A single mature tree absorbs roughly 0.02 tons (44 lbs) of CO2 per year. Flying trans-atlantic requires ~50 trees to offset.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Vampire Power</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Appliances in "standby" mode can account for up to 10% of a home's electricity bill. Always audit devices with a wattage meter.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('solar', event)">Solar ROI</button>
+                <button class="tab-btn" onclick="showTab('carbon', event)">Carbon Footprint</button>
+                <button class="tab-btn" onclick="showTab('appl', event)">Appliance Cost</button>
+                <button class="tab-btn" onclick="showTab('water', event)">Water Cons.</button>
+            </div>
+
+            <div id="solar" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>System Cost</label><div class="input-wrapper"><input type="number" id="so-c" value="15000"></div></div>
+                    <div class="input-group"><label>Federal Credit (%)</label><div class="input-wrapper"><input type="number" id="so-pc" value="30"></div></div>
+                    <div class="input-group"><label>Avg Monthly Bill</label><div class="input-wrapper"><input type="number" id="so-b" value="150"></div></div>
+                    <div class="input-group"><label>Solar Coverage (%)</label><div class="input-wrapper"><input type="number" id="so-cov" value="90"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateSolar()">Calculate ROI →</button>
+                <div id="solar-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Break-Even (Years)</span><span class="result-value" id="so-out">0</span></div>
+                        <div class="result-item"><span class="result-label">25-Year Savings</span><span class="result-value" id="so-25y">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="carbon" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Miles Driven / Yr</label><div class="input-wrapper"><input type="number" id="ca-mi" value="12000"></div></div>
+                    <div class="input-group"><label>Flight Hours / Yr</label><div class="input-wrapper"><input type="number" id="ca-fh" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Avg Monthly kWh</label><div class="input-wrapper"><input type="number" id="ca-kw" value="900"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCarbon()">Estimate TCO2 →</button>
+                <div id="carbon-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Annual Tons CO2</span><span class="result-value" id="ca-out">0.0</span></div>
+                        <div class="result-item"><span class="result-label">Trees to Offset</span><span class="result-value" id="ca-t">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="appl" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Wattage (W)</label><div class="input-wrapper"><input type="number" id="ap-w" value="300"></div></div>
+                    <div class="input-group"><label>Hours / Day</label><div class="input-wrapper"><input type="number" id="ap-h" value="8"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Price / kWh</label><div class="input-wrapper"><input type="number" id="ap-p" value="0.14" step="0.01"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateAppliance()">Calculate Cost →</button>
+                <div id="appl-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Monthly Cost</span><span class="result-value" id="ap-m">$0.00</span></div>
+                        <div class="result-item"><span class="result-label">Annual Cost</span><span class="result-value" id="ap-a">$0.00</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="water" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Showers / Day</label><div class="input-wrapper"><input type="number" id="wt-s" value="1"></div></div>
+                    <div class="input-group"><label>Avg Minutes</label><div class="input-wrapper"><input type="number" id="wt-m" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Flow Rate (GPM)</label><div class="input-wrapper"><input type="number" id="wt-g" value="2.1"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateWater()">Analyze Usage →</button>
+                <div id="water-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Monthly Usage</span><span class="result-value" id="wt-out">0 Gal</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Math of <span style="color: var(--accent);">Environmental Stewardship</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Solar ROI: The Economics of Renewable Energy</h3>
+                        <p>Investing in solar energy is one of the most significant environmental and financial decisions a homeowner can make. The <strong>Solar ROI</strong> (Return on Investment) depends on several variables: the initial cost of the system, available federal and local tax incentives, and your average monthly electricity bill. Our <strong>Solar Break-Even Tool</strong> factors in these data points to provide a projected timeline for when your system will pay for itself. In most regions, a well-designed solar array can achieve a break-even point in 6 to 10 years, followed by decades of "free" energy.</p>
+                        <p style="margin-top: 16px;">It's important to consider the "25-Year Value." Solar panels are typically warrantied for 25 years, meaning the total savings over the life of the system can reach tens of thousands of dollars. By using our tool to visualize the long-term impact, you can see that solar is not just an "environmental" choice—it's a strategic financial pivot that hedges against the rising costs of utility electricity while reducing your reliance on fossil fuels.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Carbon Footprint: Quantifying Your Impact</h3>
+                        <p>A <strong>Carbon Footprint</strong> is the total amount of greenhouse gases (including carbon dioxide and methane) that are generated by our actions. The average global footprint is around 4 tons per person, but in high-consumption economies like the US, that number can exceed 16 tons. Our <strong>Footprint Analysis Tool</strong> breaks down your impact into transport, energy, and air travel. This data provides a baseline for making intentional shifts, such as reducing non-essential flights or optimizing your home's energy efficiency.</p>
+                        <p style="margin-top: 16px;">One of the most effective ways to visualize your footprint is through "Tree Equivalents." A single mature tree absorbs roughly 48 pounds (0.02 tons) of CO2 per year. By seeing how many trees it would take to offset your lifestyle, the abstract concept of "carbon tons" becomes a tangible ecological metric. Use this data to drive your personal sustainability goals and identify the "high-leverage" changes that will provide the largest net reduction in your footprint.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Water Conservation and Appliance Efficiency</h3>
+                        <p>Water is a finite resource, yet it is often undervalued in household budgeting. Our <strong>Water Usage Analyzer</strong> calculates the monthly impact of your daily habits, such as shower duration and flow rates. Simultaneously, our <strong>Appliance Cost Auditor</strong> allows you to see the true cost of "vampire power" and inefficient machines. By identifying these small, recurring leaks in your ecological and financial budget, you can make surgical adjustments that lead to significant long-term conservation.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">A Data-Driven Green Future</h3>
+                        <p>Sustainability is not about perfection; it's about the consistent application of better data. Our <strong>Green Living Math Suite</strong> is designed to provide you with the quantitative clarity needed to lead a more intentional life. By measuring your ROI, your footprint, and your consumption, you take an active role in the global transition toward a more resilient and sustainable future. Stay informed, stay committed, and let the math guide your impact.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateSolar() {
+            const c = parseFloat(document.getElementById('so-c').value);
+const pc = parseFloat(document.getElementById('so-pc').value) / 100;
+const b = parseFloat(document.getElementById('so-b').value);
+const cov = parseFloat(document.getElementById('so-cov').value) / 100;
+const netCost = c * (1 - pc);
+const savingsMo = b * cov;
+const breakEven = (netCost / (savingsMo * 12));
+document.getElementById('so-out').innerText = breakEven.toFixed(1);
+document.getElementById('so-25y').innerText = fmt((savingsMo * 12 * 25) - netCost);
+document.getElementById('solar-results').classList.add('visible');
+saveActivity('green', { type: 'solar-roi', cost: c, savings: savingsMo }, { breakEven });
+        }
+
+        function calculateCarbon() {
+            const mi = parseFloat(document.getElementById('ca-mi').value);
+const fh = parseFloat(document.getElementById('ca-fh').value);
+const kw = parseFloat(document.getElementById('ca-kw').value);
+const coTotal = (mi * 0.0004) + (fh * 0.25) + (kw * 12 * 0.0004);
+document.getElementById('ca-out').innerText = coTotal.toFixed(2);
+document.getElementById('ca-t').innerText = Math.ceil(coTotal / 0.02);
+document.getElementById('carbon-results').classList.add('visible');
+saveActivity('green', { type: 'carbon-footprint', miles: mi, flights: fh }, { tons: coTotal });
+        }
+
+        function calculateAppliance() {
+            const w = parseFloat(document.getElementById('ap-w').value);
+const h = parseFloat(document.getElementById('ap-h').value);
+const p = parseFloat(document.getElementById('ap-p').value);
+const kwhDay = (w * h) / 1000;
+const costMo = kwhDay * p * 30.4;
+document.getElementById('ap-m').innerText = '$' + costMo.toFixed(2);
+document.getElementById('ap-a').innerText = '$' + (costMo * 12).toFixed(2);
+document.getElementById('appl-results').classList.add('visible');
+saveActivity('green', { type: 'appliance-cost', wattage: w, hours: h }, { monthly_cost: costMo });
+        }
+
+        function calculateWater() {
+            const s = parseFloat(document.getElementById('wt-s').value);
+const m = parseFloat(document.getElementById('wt-m').value);
+const g = parseFloat(document.getElementById('wt-g').value);
+const usage = s * m * g * 30.4;
+document.getElementById('wt-out').innerText = Math.round(usage).toLocaleString() + " Gal";
+document.getElementById('water-results').classList.add('visible');
+saveActivity('green', { type: 'water-cons', showers: s, duration: m }, { usage });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coastline Customs | Premium Print-on-Demand Apparel & Goods</title>
+  <meta name="description" content="Shop Coastline Customs for high-quality, custom-printed apparel, mugs, and home goods. Sustainable production, worldwide shipping, and unique artist designs.">
+  <meta name="keywords" content="custom apparel, print on demand, knot stranded, sustainable fashion, designer tees, home decor">
+  <link rel="canonical" href="https://knotstranded.com/">
+  
+  <!-- SEO / Social Sharing -->
+  <meta property="og:title" content="Coastline Customs | Premium Custom Goods">
+  <meta property="og:description" content="Unique designs on premium products. Ships worldwide.">
+  <meta property="og:image" content="assets/brand/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://printdrop.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://printdrop.com/","name":"PrintDrop"},{"@type":"Store","name":"PrintDrop","priceRange":"$18–$55"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does smart routing work?","acceptedAnswer":{"@type":"Answer","text":"Printful for US/MX, Gelato for EU/UK/AU/CA, Printify everywhere else."}},{"@type":"Question","name":"Can I track my order?","acceptedAnswer":{"@type":"Answer","text":"Yes — every order is saved to your profile with live status updates when tracking is available from the fulfillment provider."}}]}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Anton&family=Bebas+Neue&family=Black+Han+Sans&family=Bungee&family=Caveat:wght@700&family=Dancing+Script:wght@700&family=Graduate&family=Lilita+One&family=Lobster&family=Montserrat:wght@900&family=Oswald:wght@700&family=Pacifico&family=Permanent+Marker&family=Playfair+Display:wght@900&family=Roboto+Condensed:wght@700&family=Russo+One&family=Space+Mono:wght@700&family=Teko:wght@700&family=Ultra&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body><!-- ═══════════════════════════════════
+     HEADER
+═══════════════════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo"><span class="logo-gem">🌊</span>Knot<span>Stranded</span></a>
+    <nav class="header-nav">
+      <a href="#gallery" class="nav-link" onclick="scrollTo_('gallery',event)">Shop Designs</a>
+      <a href="#lifestyle" class="nav-link" onclick="scrollTo_('lifestyle',event)">Lookbook</a>
+      <a href="#studio" class="nav-cta" onclick="scrollTo_('studio',event)">Design Studio ✦</a>
+      <button class="profile-btn" id="profileBtn" onclick="toggleProfilePanel()" aria-label="My profile">
+        <span class="profile-avatar" id="profileAvatar">?</span>
+        <span class="profile-name" id="profileBtnName">Sign In</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div class="hero-content">
+      <div class="hero-badge">🌊 Premium Print-on-Demand</div>
+      <h1 class="hero-title">High Fidelity Goods. <br><span>Zero Inventory.</span></h1>
+      <p class="hero-desc">Coastline Customs is the ultimate toolkit for creators. Design on premium heavyweight fabrics and ceramic goods. We print, pack, and ship worldwide under your brand.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollTo_('studio')">Start Designing →</button>
+        <button class="btn-ghost" onclick="scrollTo_('gallery')">Browse Collection</button>
+      </div>
+    </div>
+    <div class="hero-visual-grid">
+      <div class="h-visual-item v-main">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800" alt="Premium Tee">
+        <div class="v-label">Heavyweight Tee</div>
+      </div>
+      <div class="h-visual-item v-sub">
+        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=600" alt="Premium Hoodie">
+        <div class="v-label">Luxury Hoodie</div>
+      </div>
+      <div class="h-visual-item v-sub">
+        <img src="https://images.unsplash.com/photo-1517254456976-ee8682099819?auto=format&fit=crop&q=80&w=600" alt="Ceramic Mug">
+        <div class="v-label">Ceramic Mug</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     LEGAL POLICIES MODAL
+═══════════════════════════════════ -->
+<div class="modal-overlay" id="policyOverlay" onclick="closePolicyModal()">
+  <div class="modal-card legal-modal" onclick="event.stopPropagation()">
+    <div class="mc-header">
+      <h2 id="policy-title">Policy</h2>
+      <button class="mc-close" onclick="closePolicyModal()">✕</button>
+    </div>
+    <div class="mc-body" id="policy-content">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+<!-- ═══════════════════════════════════
+     PROFILE PANEL (slide-in)
+═══════════════════════════════════ -->
+<div class="profile-overlay" id="profileOverlay" onclick="closeProfilePanel()"></div>
+<aside class="profile-panel" id="profilePanel" aria-label="Profile & Orders">
+  <div class="pp-header">
+    <h2 class="pp-title">My Profile</h2>
+    <button class="pp-close" onclick="closeProfilePanel()">✕</button>
+  </div>
+
+  <!-- Auth state: not signed in -->
+  <div class="pp-auth" id="pp-auth">
+    <div class="pp-auth-hero">
+      <div class="pp-auth-icon"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M10 10 L2 18 L8 23 L12 20 L12 40 L36 40 L36 20 L40 23 L46 18 L38 10 L32 7 C32 7 30 13 24 13 C18 13 16 7 16 7 Z" fill="currentColor" opacity=".15" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <h3>Save your orders</h3>
+      <p>Sign in to track orders, reorder favorites, and save designs to your profile.</p>
+    </div>
+    <div class="pp-form" id="pp-signin-form">
+      <input class="pp-input" type="text" id="pp-name" placeholder="Your name">
+      <input class="pp-email" type="email" id="pp-email" placeholder="Email address">
+      <button class="btn-primary btn-full" onclick="signIn()">Continue →</button>
+      <p class="pp-note">No password needed. Orders are saved locally to this device.</p>
+    </div>
+  </div>
+
+  <!-- Auth state: signed in -->
+  <div class="pp-signed-in" id="pp-signed-in" style="display:none">
+    <div class="pp-user-row">
+      <div class="pp-user-avatar" id="pp-user-avatar">A</div>
+      <div>
+        <div class="pp-user-name" id="pp-user-name">User</div>
+        <div class="pp-user-email" id="pp-user-email">user@email.com</div>
+      </div>
+      <button class="pp-signout" onclick="signOut()">Sign out</button>
+    </div>
+
+    <!-- Order History -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <span class="pp-section-title">Order History</span>
+        <span class="pp-order-count" id="pp-order-count">0 orders</span>
+      </div>
+      <div class="pp-orders-list" id="pp-orders-list">
+        <div class="pp-empty-orders">
+          <span>📦</span>
+          <p>No orders yet. Place your first order and it'll appear here!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Designs -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <span class="pp-section-title">Saved Designs</span>
+      </div>
+      <div class="pp-saved-list" id="pp-saved-list">
+        <div class="pp-empty-orders">
+          <span class="canvas-empty-icon">◆</span>
+          <p>No saved designs yet. Order a design and save it for quick reorder.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════
+     ORDER TRACKING MODAL
+═══════════════════════════════════ -->
+<div class="modal-overlay" id="trackingOverlay" onclick="closeTrackingModal()" style="display:none"></div>
+<div class="tracking-modal" id="trackingModal" style="display:none" role="dialog" aria-label="Order tracking">
+  <div class="tm-header">
+    <div>
+      <h3 class="tm-title">Order Tracking</h3>
+      <span class="tm-order-id" id="tm-order-id"></span>
+    </div>
+    <button class="tm-close" onclick="closeTrackingModal()">✕</button>
+  </div>
+  <div class="tm-body">
+    <!-- Status timeline -->
+    <div class="tm-timeline" id="tm-timeline"></div>
+    <!-- Details -->
+    <div class="tm-details" id="tm-details"></div>
+    <!-- Tracking link -->
+    <div class="tm-tracking-link" id="tm-tracking-link" style="display:none">
+      <a href="#" id="tm-carrier-link" target="_blank" rel="noopener">Track with carrier →</a>
+    </div>
+  </div>
+  <div class="tm-footer">
+    <button class="btn-secondary btn-sm" onclick="reorderFromTracking()">🔄 Reorder This</button>
+    <button class="btn-primary btn-sm" onclick="closeTrackingModal()">Done</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-blobs" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-pills">
+        <span class="pill">✦ 405+ Designs</span>
+        <span class="pill">Order Tracking</span>
+        <span class="pill">Ships Worldwide</span>
+      </div>
+      <h1 class="hero-h1">Your idea,<br>on anything,<br><em>shipped today.</em></h1>
+      <p class="hero-p">405+ designs on 30+ products — tees, hoodies, mugs, totes, hats, phone cases, posters, socks, and more. Ships worldwide, no minimums.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollTo_('gallery',event)">Browse Designs</button>
+        <button class="btn-ghost" onclick="scrollTo_('studio',event)">Design from Scratch →</button>
+      </div>
+      <div class="hero-trust">
+        <span>✓ No minimums</span><span>✓ Order history</span><span>✓ 1-click reorder</span><span>✓ Live tracking</span>
+      </div>
+    </div>
+    <div class="hero-cards" aria-hidden="true">
+
+      <!-- Card 1: T-Shirt -->
+      <div class="hc hc1 hc-product">
+        <div class="hcp-label">Tee &amp; Hoodie</div>
+        <svg class="hcp-svg" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 25 L2 42 L14 55 L25 47 L25 110 L95 110 L95 47 L106 55 L118 42 L95 25 L82 18 C82 18 78 30 60 30 C42 30 38 18 38 18 Z" fill="#111111" rx="4"/>
+          <text x="60" y="72" text-anchor="middle" fill="#ffffff" font-family="Anton,sans-serif" font-size="10" font-weight="900">NO DAYS</text>
+          <text x="60" y="84" text-anchor="middle" fill="#ffffff" font-family="Anton,sans-serif" font-size="10" font-weight="900">OFF</text>
+        </svg>
+        <div class="hcp-sub">from $29.99</div>
+      </div>
+
+      <!-- Card 2: Mug -->
+      <div class="hc hc2 hc-product">
+        <div class="hcp-label">Mugs &amp; Drinkware</div>
+        <svg class="hcp-svg" viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="20" width="72" height="70" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+          <path d="M87 38 Q105 38 105 54 Q105 70 87 70" fill="none" stroke="#e5e7eb" stroke-width="5" stroke-linecap="round"/>
+          <rect x="15" y="20" width="72" height="14" rx="8" fill="#e85d04"/>
+          <text x="51" y="66" text-anchor="middle" fill="#e85d04" font-family="Pacifico,cursive" font-size="9">Good Vibes</text>
+          <text x="51" y="78" text-anchor="middle" fill="#e85d04" font-family="Pacifico,cursive" font-size="9">Only</text>
+        </svg>
+        <div class="hcp-sub">from $19.99</div>
+      </div>
+
+      <!-- Card 3: Tote Bag -->
+      <div class="hc hc3 hc-product">
+        <div class="hcp-label">Tote Bags</div>
+        <svg class="hcp-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <path d="M38 30 Q38 18 60 18 Q82 18 82 30" fill="none" stroke="#c3a882" stroke-width="5" stroke-linecap="round"/>
+          <rect x="18" y="30" width="84" height="78" rx="6" fill="#e8d5b7"/>
+          <text x="60" y="72" text-anchor="middle" fill="#1d3461" font-family="Graduate,cursive" font-size="9" font-weight="700">BORN</text>
+          <text x="60" y="84" text-anchor="middle" fill="#f39c12" font-family="Graduate,cursive" font-size="9" font-weight="700">FREE</text>
+        </svg>
+        <div class="hcp-sub">from $24.99</div>
+      </div>
+
+      <!-- Card 4: Phone Case -->
+      <div class="hc hc4 hc-product">
+        <div class="hcp-label">Phone Cases</div>
+        <svg class="hcp-svg" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="8" width="60" height="114" rx="12" fill="#0f172a" stroke="#374151" stroke-width="2"/>
+          <rect x="36" y="20" width="48" height="82" rx="4" fill="#1e293b"/>
+          <circle cx="60" cy="112" r="5" fill="#374151"/>
+          <text x="60" y="62" text-anchor="middle" fill="#22c55e" font-family="Space Mono,monospace" font-size="7">404:</text>
+          <text x="60" y="73" text-anchor="middle" fill="#22c55e" font-family="Space Mono,monospace" font-size="7">SLEEP NOT</text>
+          <text x="60" y="84" text-anchor="middle" fill="#22c55e" font-family="Space Mono,monospace" font-size="7">FOUND</text>
+        </svg>
+        <div class="hcp-sub">from $22.99</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PRODUCT STRIP -->
+<div class="product-strip">
+  <div class="product-strip-inner">
+    <span class="ps-strip-label">Print on</span>
+    <div class="ps-strip-items">
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">T</span>Tees &amp; Hoodies
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">H</span>Hats &amp; Beanies
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">MG</span>Mugs &amp; Drinkware
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">TB</span>Tote Bags
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">PC</span>Phone Cases
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">AP</span>Posters &amp; Art
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">SK</span>Socks <span class="ps-strip-new">new</span>
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">PL</span>Pillows &amp; Blankets
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">MP</span>Mouse Pads
+      </a>
+      <a class="ps-strip-item" onclick="openProductSelector();return false" href="#">
+        <span class="ps-strip-icon">◆</span>View All 30+ →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PROVIDERS BAR -->
+<div class="pbar">
+  <div class="pbar-inner">
+    <span class="pbar-label">Fulfilled by</span>
+    <div class="pbar-items">
+      <span><b><span class="prov-mark prov-us">US</span> Printful</b> <em>US · MX</em></span>
+      <span class="pdiv"></span>
+      <span><b><span class="prov-mark prov-eu">EU</span> Gelato</b> <em>EU · UK · AU · CA</em></span>
+      <span class="pdiv"></span>
+      <span><b><span class="prov-mark prov-ww">WW</span> Printify</b> <em>Worldwide</em></span>
+    </div>
+    <span class="pbar-tag">Auto-routed to your nearest printer</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     GALLERY
+═══════════════════════════════════ -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-wrap">
+    <div class="section-header">
+      <h2 class="section-title">405+ Ready-to-Order Designs</h2>
+      <p class="section-sub">Puns, dad jokes, gym vibes, social commentary, teen culture & more. All $29.99.</p>
+    </div>
+    <div class="gallery-controls">
+      <div class="ftabs" role="tablist" id="filterTabs">
+        <button class="ftab active" data-filter="all" onclick="filterDesigns('all',this)">All <b class="ftab-n" id="ftab-all-count"></b></button>
+        <button class="ftab" data-filter="gym" onclick="filterDesigns('gym',this)">Gym</button>
+        <button class="ftab" data-filter="motivational" onclick="filterDesigns('motivational',this)">Motivation</button>
+        <button class="ftab" data-filter="puns" onclick="filterDesigns('puns',this)">Puns</button>
+        <button class="ftab" data-filter="dadjokes" onclick="filterDesigns('dadjokes',this)">Dad Jokes</button>
+        <button class="ftab" data-filter="teen" onclick="filterDesigns('teen',this)">Teen Vibes</button>
+        <button class="ftab" data-filter="culture" onclick="filterDesigns('culture',this)">Culture</button>
+        <button class="ftab" data-filter="faith" onclick="filterDesigns('faith',this)">Faith</button>
+        <button class="ftab" data-filter="funny" onclick="filterDesigns('funny',this)">Funny</button>
+        <button class="ftab" data-filter="lifestyle" onclick="filterDesigns('lifestyle',this)">Lifestyle</button>
+        <button class="ftab" data-filter="minimal" onclick="filterDesigns('minimal',this)">Minimal</button>
+        <button class="ftab" data-filter="vintage" onclick="filterDesigns('vintage',this)">Vintage</button>
+        <button class="ftab" data-filter="nature" onclick="filterDesigns('nature',this)">Nature</button>
+        <button class="ftab" data-filter="music" onclick="filterDesigns('music',this)">Music</button>
+        <button class="ftab" data-filter="foodie" onclick="filterDesigns('foodie',this)">Foodie</button>
+      </div>
+      <div class="gsearch-wrap">
+        <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="2"/><path d="M13.5 13.5L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="design-search" class="gsearch" placeholder="Search designs…" oninput="searchDesigns(this.value)">
+      </div>
+    </div>
+    <div class="design-grid" id="design-grid" role="list"></div>
+    <div class="gallery-empty" id="gallery-empty" style="display:none">
+      <p>No designs match.</p><button onclick="resetGallery()">Clear search</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     LIFESTYLE MASONRY GALLERY
+═══════════════════════════════════ -->
+<section class="masonry-section" id="lifestyle">
+  <div class="masonry-wrap">
+    <div class="section-header">
+      <h2 class="section-title">See it in the Wild</h2>
+      <p class="section-sub">Real products, real people. Click any item to start designing it.</p>
+    </div>
+    <div class="masonry-grid" id="masonry-grid">
+      <!-- Items will be populated by app.js or hardcoded for SEO -->
+      <div class="m-item m-tall" onclick="selectProductFromLifestyle('tee')">
+        <img src="assets/mockups/lifestyle_tee_gym.png" alt="Gym Tee" onerror="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=600'">
+        <div class="m-overlay"><span>Black Gym Tee →</span></div>
+      </div>
+      <div class="m-item" onclick="selectProductFromLifestyle('hoodie')">
+        <img src="assets/mockups/lifestyle_hoodie_street.png" alt="Street Hoodie" onerror="this.src='https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=600'">
+        <div class="m-overlay"><span>White Urban Hoodie →</span></div>
+      </div>
+      <div class="m-item m-wide" onclick="selectProductFromLifestyle('mug')">
+        <img src="assets/mockups/lifestyle_mug_morning.png" alt="Morning Mug" onerror="this.src='https://images.unsplash.com/photo-1517254456976-ee8682099819?auto=format&fit=crop&q=80&w=600'">
+        <div class="m-overlay"><span>Ceramic Morning Mug →</span></div>
+      </div>
+      <div class="m-item m-tall" onclick="selectProductFromLifestyle('tote_bag')">
+        <img src="assets/mockups/lifestyle_tote_market.png" alt="Market Tote" onerror="this.src='https://images.unsplash.com/photo-1591348113548-e1d1cf3cc197?auto=format&fit=crop&q=80&w=600'">
+        <div class="m-overlay"><span>Natural Market Tote →</span></div>
+      </div>
+      <div class="m-item" onclick="selectProductFromLifestyle('phone_case')">
+        <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbea?auto=format&fit=crop&q=80&w=600" alt="Phone Case">
+        <div class="m-overlay"><span>Clear Impact Case →</span></div>
+      </div>
+      <div class="m-item" onclick="selectProductFromLifestyle('snapback')">
+        <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=600" alt="Snapback Hat">
+        <div class="m-overlay"><span>Street Snapback →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     PRODUCTS SHOWCASE
+═══════════════════════════════════ -->
+<section class="psc-section" id="products">
+  <div class="psc-wrap">
+    <div class="section-header">
+      <h2 class="section-title">30+ Products. One Design.</h2>
+      <p class="section-sub">Your artwork printed on whatever your customers actually want. Every product fulfilled and shipped worldwide.</p>
+    </div>
+    <div class="psc-grid" id="products-showcase-grid">
+      <!-- Rendered by renderProductsShowcase() in app.js -->
+    </div>
+    <div class="psc-cta-row">
+      <button class="btn-primary" onclick="openProductSelector()">Browse All 30+ Products →</button>
+      <span class="psc-note">Mugs from $19.99 · Tees from $29.99 · Posters from $18.99 · Free shipping on orders $75+</span>
+    </div>
+    <div class="psc-self-fulfill-note" style="display:none">
+      <span class="psf-icon">⚠</span>
+      <span><strong>Heads up:</strong> Some niche items may require independent sourcing — we flag these clearly.</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+  <div class="how-inner">
+    <div class="section-header">
+      <h2 class="section-title" style="color:#fff">How It Works</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.5)">From idea to doorstep in three steps.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step"><div class="hs-num">01</div><div class="hs-icon hs-icon-design">✦</div><h3>Design</h3><p>Pick a pre-made design or open the studio to create your own with AI tools, custom fonts, and image upload.</p></div>
+      <div class="how-arr">→</div>
+      <div class="how-step"><div class="hs-num">02</div><div class="hs-icon hs-icon-config">◎</div><h3>Customize</h3><p>Choose product type, color, size, and quantity. Preview on a live mockup before you order.</p></div>
+      <div class="how-arr">→</div>
+      <div class="how-step"><div class="hs-num">03</div><div class="hs-icon hs-icon-ship">◈</div><h3>Track & Receive</h3><p>Orders are saved to your profile. Track production and shipping live. Reorder favorites in one click.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     STUDIO
+═══════════════════════════════════ -->
+<section class="studio-section" id="studio">
+  <div class="studio-wrap">
+    <div class="section-header">
+      <h2 class="section-title">Design Studio</h2>
+      <p class="section-sub">Create something completely yours — three columns, zero friction.</p>
+    </div>
+
+    <div class="gb-banner" id="gb-banner" style="display:none">
+      <span class="gb-check">✓</span>
+      <div><strong id="gb-name">Design</strong><small>From gallery · customize in the canvas</small></div>
+      <button onclick="clearGallerySelection()">✕ Clear</button>
+    </div>
+
+    <div class="mob-tool-bar">
+      <button class="mtb active" data-tool="text" onclick="switchTool('text',this)">Text</button>
+      <button class="mtb" data-tool="image" onclick="switchTool('image',this)">Image</button>
+      <button class="mtb" data-tool="ai" onclick="switchTool('ai',this)">AI ✦</button>
+      <button class="mtb" data-tool="order" onclick="switchTool('order',this)">Order</button>
+    </div>
+
+    <div class="studio-layout">
+
+      <!-- COL 1: TOOLS -->
+      <aside class="scol scol-tools" id="scol-tools">
+
+        <!-- Text tool -->
+        <div class="tool-panel active" id="tool-text">
+          <div class="tcp-header">Text</div>
+          <textarea class="tinput" id="text-input" placeholder="Type something awesome…" rows="3"></textarea>
+          <button class="btn-primary btn-full mt-sm" onclick="addTextElement()">+ Add to Design</button>
+          <div class="tgroup">
+            <label class="tlbl">Font</label>
+            <select id="text-font" class="tsel" onchange="updateSelectedFont(this.value)">
+              <optgroup label="Impact / Display">
+                <option value="'Anton',sans-serif">Anton — Bold & Heavy</option>
+                <option value="'Bebas Neue',sans-serif">Bebas Neue</option>
+                <option value="'Bungee',cursive">Bungee — Street</option>
+                <option value="'Russo One',sans-serif">Russo One</option>
+                <option value="'Graduate',cursive">Graduate — Varsity</option>
+                <option value="'Black Han Sans',sans-serif">Black Han Sans</option>
+                <option value="'Teko',sans-serif">Teko</option>
+                <option value="'Oswald',sans-serif">Oswald</option>
+                <option value="'Ultra',serif">Ultra — Slab</option>
+                <option value="'Montserrat',sans-serif">Montserrat Black</option>
+                <option value="'Lilita One',cursive">Lilita One</option>
+              </optgroup>
+              <optgroup label="Script / Handwritten">
+                <option value="'Pacifico',cursive">Pacifico — Retro</option>
+                <option value="'Lobster',cursive">Lobster</option>
+                <option value="'Dancing Script',cursive">Dancing Script</option>
+                <option value="'Caveat',cursive">Caveat — Hand</option>
+                <option value="'Permanent Marker',cursive">Permanent Marker</option>
+              </optgroup>
+              <optgroup label="Serif">
+                <option value="'Playfair Display',serif">Playfair Display</option>
+                <option value="Georgia,serif">Georgia Classic</option>
+              </optgroup>
+              <optgroup label="Mono">
+                <option value="'Space Mono',monospace">Space Mono</option>
+                <option value="'Courier New',monospace">Courier New</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="tgroup">
+            <label class="tlbl">Size <span class="tval" id="text-size-val">32px</span></label>
+            <input type="range" class="trange" id="text-size" min="12" max="90" value="32" oninput="updateSelectedSize(this.value)">
+          </div>
+          <div class="tgroup">
+            <label class="tlbl">Color</label>
+            <div class="cq-grid">
+              <button class="cq active" style="background:#000" data-c="#000000" onclick="selectTextColor(this)" title="Black"></button>
+              <button class="cq" style="background:#fff;outline:1px solid #ddd" data-c="#ffffff" onclick="selectTextColor(this)" title="White"></button>
+              <button class="cq" style="background:#dc2626" data-c="#dc2626" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#ea580c" data-c="#ea580c" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#ca8a04" data-c="#ca8a04" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#16a34a" data-c="#16a34a" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#2563eb" data-c="#2563eb" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#7c3aed" data-c="#7c3aed" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#ec4899" data-c="#ec4899" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#0891b2" data-c="#0891b2" onclick="selectTextColor(this)"></button>
+              <button class="cq" style="background:#78716c" data-c="#78716c" onclick="selectTextColor(this)"></button>
+              <label class="cq cq-picker" title="Custom color">
+                <input type="color" id="txt-custom-color" value="#000000" onchange="selectCustomColor(this.value)">
+              </label>
+            </div>
+          </div>
+          <div class="tgroup">
+            <label class="tlbl">Style</label>
+            <div class="style-btns">
+              <button class="sbtn" id="sbtn-bold" onclick="toggleBold()"><b>B</b></button>
+              <button class="sbtn" id="sbtn-italic" onclick="toggleItalic()"><i>I</i></button>
+              <button class="sbtn" onclick="setAlign('left')">⬅</button>
+              <button class="sbtn" onclick="setAlign('center')">≡</button>
+              <button class="sbtn" onclick="setAlign('right')">➡</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image tool -->
+        <div class="tool-panel" id="tool-image">
+          <div class="tcp-header">Image</div>
+          <label class="upload-drop" id="upload-drop" for="file-input">
+            <div class="ud-icon">⬆️</div>
+            <p>Drop here or <strong>click to browse</strong></p>
+            <small>PNG (transparent) · JPG · SVG</small>
+            <input type="file" id="file-input" accept="image/*" hidden>
+          </label>
+          <div class="tgroup">
+            <label class="tlbl">Scale <span class="tval" id="img-scale-val">100%</span></label>
+            <input type="range" class="trange" id="img-scale" min="20" max="200" value="100" oninput="scaleSelected(this.value)">
+          </div>
+          <div class="tgroup">
+            <label class="tlbl">Opacity <span class="tval" id="img-opacity-val">100%</span></label>
+            <input type="range" class="trange" id="img-opacity" min="10" max="100" value="100" oninput="opacitySelected(this.value)">
+          </div>
+        </div>
+
+        <!-- AI tool -->
+        <div class="tool-panel" id="tool-ai">
+          <div class="tcp-header">AI Tools ✦</div>
+          <div class="tgroup">
+            <label class="tlbl">AI Slogan Writer</label>
+            <p class="tool-hint">Describe your vibe → get 5 print-ready slogans</p>
+            <textarea class="tinput" id="ai-text-prompt" placeholder='e.g. "Bold gym quote, gritty"' rows="2"></textarea>
+            <button class="btn-primary btn-full mt-sm" id="ai-text-btn" onclick="generateAIText()">✦ Generate Slogans</button>
+            <div id="ai-text-loading" class="ai-spinner" style="display:none"><div class="spinner"></div><span>Writing…</span></div>
+            <div id="ai-slogan-results" class="slogan-list"></div>
+          </div>
+          <div class="tgroup">
+            <label class="tlbl">AI Image Generator</label>
+            <p class="tool-hint">Describe an image for your design</p>
+            <textarea class="tinput" id="ai-image-prompt" placeholder='e.g. "Geometric wolf, neon"' rows="2"></textarea>
+            <button class="btn-secondary btn-full mt-sm" id="ai-image-btn" onclick="generateAIImage()">🖼 Generate Image</button>
+            <div id="ai-image-loading" class="ai-spinner" style="display:none"><div class="spinner"></div><span>Generating…</span></div>
+            <p class="ai-note">Powered by server.py · swap for DALL-E or Stability AI</p>
+          </div>
+        </div>
+
+        <!-- Element actions -->
+        <div class="elem-actions" id="elem-actions" style="display:none">
+          <div class="tcp-header">Selected Element</div>
+          <div class="ea-btns">
+            <button class="ea-btn" onclick="duplicateSelected()">⧉ Duplicate</button>
+            <button class="ea-btn" onclick="bringForward()">⬆ Forward</button>
+            <button class="ea-btn" onclick="sendBack()">⬇ Back</button>
+            <button class="ea-btn danger" onclick="deleteSelected()">🗑 Delete</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- COL 2: CANVAS -->
+      <div class="scol scol-canvas" id="scol-canvas">
+        <div class="canvas-header">
+          <div class="canvas-color-bar">
+            <span class="ccb-label">Color:</span>
+            <button class="sc active" style="background:#fff;border:2px solid #ccc" data-hex="#ffffff" data-name="White" onclick="setProductColor(this)" title="White"></button>
+            <button class="sc" style="background:#111" data-hex="#111111" data-name="Black" onclick="setProductColor(this)" title="Black"></button>
+            <button class="sc" style="background:#1d3461" data-hex="#1d3461" data-name="Navy" onclick="setProductColor(this)" title="Navy"></button>
+            <button class="sc" style="background:#c0392b" data-hex="#c0392b" data-name="Red" onclick="setProductColor(this)" title="Red"></button>
+            <button class="sc" style="background:#27ae60" data-hex="#27ae60" data-name="Green" onclick="setProductColor(this)" title="Green"></button>
+            <button class="sc" style="background:#8e44ad" data-hex="#8e44ad" data-name="Purple" onclick="setProductColor(this)" title="Purple"></button>
+            <button class="sc" style="background:#f39c12" data-hex="#f39c12" data-name="Gold" onclick="setProductColor(this)" title="Gold"></button>
+            <button class="sc" style="background:#95a5a6" data-hex="#95a5a6" data-name="Gray" onclick="setProductColor(this)" title="Gray"></button>
+            <button class="sc" style="background:#e8c4a0" data-hex="#e8c4a0" data-name="Sand" onclick="setProductColor(this)" title="Sand"></button>
+            <button class="sc" style="background:#2c3e50" data-hex="#2c3e50" data-name="Charcoal" onclick="setProductColor(this)" title="Charcoal"></button>
+            <span class="ccb-name" id="ccb-name">White</span>
+          </div>
+          <div class="canvas-actions">
+            <button class="ca-btn" onclick="undoLast()" title="Undo">↩</button>
+            <button class="ca-btn" onclick="clearCanvas()" title="Clear all">🗑</button>
+          </div>
+        </div>
+        <div class="canvas-outer">
+          <div class="canvas-wrap" id="canvas-wrap">
+            <svg class="product-preview-svg" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
+              <path id="product-body" d="M60 60 L0 100 L30 130 L60 110 L60 280 L240 280 L240 110 L270 130 L300 100 L240 60 L210 40 C210 40 200 70 150 70 C100 70 90 40 90 40 Z" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+              <path d="M90 40 C100 70 200 70 210 40 C200 20 190 10 150 10 C110 10 100 20 90 40Z" fill="#e5e7eb" stroke="#d1d5db" stroke-width="1"/>
+            </svg>
+            <div class="print-zone" id="print-zone">
+              <div class="pz-empty" id="pz-empty">
+                <span class="canvas-empty-icon">◆</span>
+                <p>Your design appears here</p>
+                <small>Add text, images or use AI ←</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="canvas-hint">Drag elements · Resize corners · Click to select</p>
+        <div class="mob-tool-bar" style="margin:0">
+          <button class="mtb active" data-tool="text" onclick="switchTool('text',this)">Text</button>
+          <button class="mtb" data-tool="image" onclick="switchTool('image',this)">Image</button>
+          <button class="mtb" data-tool="ai" onclick="switchTool('ai',this)">AI ✦</button>
+          <button class="mtb" data-tool="order" onclick="switchTool('order',this)">Order</button>
+        </div>
+      </div>
+
+      <!-- COL 3: ORDER -->
+      <aside class="scol scol-order" id="scol-order">
+        <div class="order-section">
+          <div class="os-label">Product</div>
+          <div class="prod-grid">
+            <button class="prod-btn active" data-product="tee" onclick="selectProduct(this,'tee')">
+              <span class="prod-icon-t">T</span><span class="pb-name">Unisex Tee</span><span class="pb-price">$29.99</span>
+            </button>
+            <button class="prod-btn" data-product="hoodie" onclick="selectProduct(this,'hoodie')">
+              <span class="prod-icon-t">H</span><span class="pb-name">Hoodie</span><span class="pb-price">$54.99</span>
+            </button>
+            <button class="prod-btn" data-product="longsleeve" onclick="selectProduct(this,'longsleeve')">
+              <span class="prod-icon-t">L</span><span class="pb-name">Long Sleeve</span><span class="pb-price">$39.99</span>
+            </button>
+          </div>
+        </div>
+        <div class="order-section" id="fabric-section">
+          <div class="os-label">Fabric &amp; Fit</div>
+          <div class="tier-grid">
+            <button class="tier-btn active" data-tier="essential" onclick="selectTier(this,'essential')">
+              <span class="tier-title">Essential</span>
+              <span class="tier-desc">5.3 oz · Standard Fit</span>
+            </button>
+            <button class="tier-btn" data-tier="retail" onclick="selectTier(this,'retail')">
+              <span class="tier-title">Retail Premium</span>
+              <span class="tier-desc">4.2 oz · Side-Seamed</span>
+            </button>
+            <button class="tier-btn" data-tier="heavyweight" onclick="selectTier(this,'heavyweight')">
+              <span class="tier-title">Streetwear</span>
+              <span class="tier-desc">6.1 oz · Heavyweight</span>
+            </button>
+          </div>
+        </div>
+        <div class="order-section">
+          <div class="os-label">Size</div>
+          <div class="sz-row">
+            <button class="sz-btn" onclick="selectSize(this)">XS</button>
+            <button class="sz-btn" onclick="selectSize(this)">S</button>
+            <button class="sz-btn active" onclick="selectSize(this)">M</button>
+            <button class="sz-btn" onclick="selectSize(this)">L</button>
+            <button class="sz-btn" onclick="selectSize(this)">XL</button>
+            <button class="sz-btn" onclick="selectSize(this)">2XL</button>
+            <button class="sz-btn" onclick="selectSize(this)">3XL</button>
+          </div>
+        </div>
+        <div class="order-section">
+          <div class="os-label">Quantity <span class="qty-hint" id="qty-hint"></span></div>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-val" id="qty-display">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <div class="price-summary">
+          <div class="ps-row"><span>Base price</span><span id="base-price">$29.99</span></div>
+          <div class="ps-row"><span>Quantity</span><span id="price-qty">× 1</span></div>
+          <div class="ps-row"><span>Shipping</span><span class="free-tag">FREE over $50</span></div>
+          <div class="ps-row ps-total"><span>Total</span><span id="total-price">$29.99</span></div>
+        </div>
+        <button class="btn-checkout" id="checkout-toggle" onclick="toggleCheckout()">Proceed to Checkout →</button>
+        <div class="checkout-form" id="checkout-form" style="display:none">
+          <div class="routing-preview" id="routing-preview">
+            <span id="routing-flag">🔄</span>
+            <div><strong id="routing-provider">Auto-routing…</strong><small id="routing-reason">Enter your country below</small></div>
+          </div>
+          <!-- Profile autofill notice -->
+          <div class="autofill-notice" id="autofill-notice" style="display:none">
+            <span class="autofill-bolt">↯</span> Address pre-filled from your profile
+            <button onclick="clearAutofill()">Edit</button>
+          </div>
+          <div class="form-stack">
+            <input class="fi" type="text" id="addr-name" placeholder="Full Name *" autocomplete="name">
+            <input class="fi" type="email" id="addr-email" placeholder="Email Address *" autocomplete="email">
+            <input class="fi" type="text" id="addr-street" placeholder="Street Address *" autocomplete="street-address">
+            <div class="form-row2">
+              <input class="fi" type="text" id="addr-city" placeholder="City *" autocomplete="address-level2">
+              <input class="fi" type="text" id="addr-state" placeholder="State / Province" autocomplete="address-level1">
+            </div>
+            <div class="form-row2">
+              <input class="fi" type="text" id="addr-zip" placeholder="ZIP *" autocomplete="postal-code">
+              <input class="fi" type="text" id="addr-country" placeholder="Country (US)" value="US" maxlength="2" oninput="updateRoutingPreview(this.value)" autocomplete="country">
+            </div>
+          </div>
+          <select class="tsel" id="provider-select" style="margin-top:.5rem">
+            <option value="auto">🤖 Auto (best for your country)</option>
+            <option value="printful">⚡ Printful — US & MX</option>
+            <option value="gelato">Gelato — EU, UK, AU, CA</option>
+            <option value="printify">Printify — Global</option>
+          </select>
+          <!-- Save design checkbox -->
+          <label class="save-design-check" id="save-design-check">
+            <input type="checkbox" id="save-to-profile" checked>
+            <span>Save to my profile for quick reorder</span>
+          </label>
+          <div id="order-status" class="order-status" style="display:none"></div>
+          <button class="btn-order" id="order-btn" onclick="placeOrder()"><span id="order-btn-text">🛒 Place Order</span></button>
+          <p class="order-note">Demo mode — no payment collected. Routes to your selected POD provider.</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Mobile sticky order bar -->
+    <div class="mob-order-bar" id="mob-order-bar">
+      <div class="mob-price"><span>Total</span><strong id="mob-total">$29.99</strong></div>
+      <button class="btn-primary" onclick="scrollToOrder()">Order Now →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="section-header"><h2 class="section-title">FAQs</h2></div>
+    <details class="faq-item"><summary>How does smart routing work?</summary><p>We check your country and automatically pick the best print provider: Printful for US/MX, Gelato for EU/UK/AU/CA, and Printify everywhere else.</p></details>
+    <details class="faq-item"><summary>Can I track my order?</summary><p>Yes — every order is saved to your profile with a status timeline. When a carrier tracking number is available from the print provider, we link directly to it.</p></details>
+    <details class="faq-item"><summary>How do I reorder?</summary><p>Open your profile (top right), find any past order, and click Reorder. It pre-fills your cart with the same design, size, and shipping address in one click.</p></details>
+    <details class="faq-item"><summary>What file formats can I upload?</summary><p>PNG (transparent background recommended), JPG, and SVG. For best print quality, use high-resolution files at 300 DPI or higher.</p></details>
+    <details class="faq-item"><summary>Can I order in bulk?</summary><p>Yes! 5+ units get 5% off, 10+ get 10% off, 25+ get 15% off, 50+ get 20% off. Contact us for 100+ unit custom pricing.</p></details>
+    <details class="faq-item"><summary>What products can I print on?</summary><p>30+ products: tees, hoodies, crop tops, tank tops, hats, beanies, tote bags, mugs, travel tumblers, water bottles, phone cases, laptop sleeves, mouse pads, pillows, blankets, posters, canvas prints, socks, aprons, notebooks, sticker sheets, and more. Open the Product Selector to see all options with pricing.</p></details>
+    <details class="faq-item"><summary>Which products can't be fulfilled automatically?</summary><p>Our current catalog only includes products available for automated fulfillment via Printful, Printify, or Gelato. If an item is in our store, it can be shipped worldwide without manual intervention.</p></details>
+    <details class="faq-item"><summary>How does the 24-hour cancellation window work?</summary><p>Every order enters a 24-hour buffer before being dispatched to the print provider. You can cancel any order within that window — no fees, no questions. After 24 hours it enters production and can no longer be cancelled.</p></details>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div><a href="/" class="logo" style="text-decoration:none"><span class="logo-gem">◆</span>Print<span>Drop</span></a><p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.4rem">Custom apparel. Globally printed. Locally delivered.</p></div>
+    <nav class="footer-links">
+      <a href="#gallery" onclick="scrollTo_('gallery',event)">Shop</a>
+      <a href="#how-it-works" onclick="scrollTo_('how-it-works',event)">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#studio" onclick="scrollTo_('studio',event)">Studio</a>
+    </nav>
+    <div style="text-align:right"><small style="color:rgba(255,255,255,.25)">Fulfilled by<br>Printful · Gelato · Printify</small></div>
+  </div>
+  <div class="footer-bottom"><small>© 2025 PrintDrop · Custom print-on-demand, shipped worldwide.</small></div>
+</footer>
+
+
+<!-- ═══ PRODUCT SELECTOR MODAL ═══ -->
+<div class="modal-overlay" id="productSelectorOverlay" onclick="closeProductSelector()" style="display:none"></div>
+<div class="feature-modal" id="productSelectorModal" style="display:none">
+  <div class="fm-header">
+    <div><h3 class="fm-title">Choose Your Product</h3><p class="fm-sub">Select what to print your design on</p></div>
+    <button class="fm-close" onclick="closeProductSelector()">X</button>
+  </div>
+  <div class="fm-body">
+    <div class="ps-notice" id="ps-design-notice" style="display:none">
+      <span>Design:</span> <span id="ps-design-name"></span>
+      <button onclick="clearProductFilter()">Show All</button>
+    </div>
+    <div class="ps-cat-tabs" id="ps-cat-tabs">
+      <button class="ps-ctab active" data-cat="all" onclick="filterProductCat('all',this)">All</button>
+      <button class="ps-ctab" data-cat="apparel" onclick="filterProductCat('apparel',this)">Apparel</button>
+      <button class="ps-ctab" data-cat="headwear" onclick="filterProductCat('headwear',this)">Headwear</button>
+      <button class="ps-ctab" data-cat="bags" onclick="filterProductCat('bags',this)">Bags</button>
+      <button class="ps-ctab" data-cat="home" onclick="filterProductCat('home',this)">Home</button>
+      <button class="ps-ctab" data-cat="tech" onclick="filterProductCat('tech',this)">Tech</button>
+      <button class="ps-ctab" data-cat="niche" onclick="filterProductCat('niche',this)">Niche</button>
+      <button class="ps-ctab" data-cat="bundle" onclick="filterProductCat('bundle',this)">Bundles</button>
+    </div>
+    <div class="ps-grid" id="ps-grid"></div>
+    <div class="ps-fulfill-note" id="ps-fulfill-note" style="display:none">
+      <strong>Self-Fulfill Required</strong>
+      <p id="ps-fulfill-text"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MOCKUP GENERATOR MODAL ═══ -->
+<div class="modal-overlay" id="mockupOverlay" onclick="closeMockupModal()" style="display:none"></div>
+<div class="feature-modal mockup-modal" id="mockupModal" style="display:none">
+  <div class="fm-header">
+    <div><h3 class="fm-title">Mockup Generator</h3><p class="fm-sub">Preview your design on the actual product</p></div>
+    <button class="fm-close" onclick="closeMockupModal()">X</button>
+  </div>
+  <div class="fm-body mockup-body">
+    <div class="mockup-left">
+      <div class="mockup-stage" id="mockup-stage">
+        <div class="mockup-product-display" id="mockup-product-display"></div>
+        <div class="mockup-controls-overlay">
+          <button class="moc-btn" onclick="mockupPrev()">prev</button>
+          <span id="moc-color-name">White</span>
+          <button class="moc-btn" onclick="mockupNext()">next</button>
+        </div>
+      </div>
+      <div class="mockup-color-strip" id="mockup-color-strip"></div>
+      <div class="mockup-actions">
+        <button class="btn-primary" onclick="downloadMockup()">Download Mockup</button>
+        <button class="btn-secondary-sm" onclick="shareMockupDesign()">Share</button>
+      </div>
+    </div>
+    <div class="mockup-right">
+      <div class="mr-section">
+        <div class="mr-label">Product</div>
+        <div id="mockup-product-tabs" class="mockup-product-tabs"></div>
+      </div>
+      <div class="mr-section">
+        <div class="mr-label">Placement</div>
+        <div class="placement-btns">
+          <button class="pl-btn active" onclick="setPlacement('front',this)">Front</button>
+          <button class="pl-btn" onclick="setPlacement('back',this)">Back</button>
+          <button class="pl-btn" onclick="setPlacement('left-chest',this)">Left Chest</button>
+        </div>
+      </div>
+      <div class="mr-section">
+        <div class="mr-label">Scale <span id="mockup-scale-val">70%</span></div>
+        <input type="range" class="trange" id="mockup-scale" min="30" max="120" value="70" oninput="updateMockupScale(this.value)">
+      </div>
+      <div class="mr-section">
+        <div id="mockup-info" class="mockup-info"></div>
+      </div>
+      <div class="mr-section">
+        <button class="btn-primary btn-full" onclick="orderFromMockup()">Order This Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GIFT CARD MODAL ═══ -->
+<div class="modal-overlay" id="giftCardOverlay" onclick="closeGiftCard()" style="display:none"></div>
+<div class="feature-modal" id="giftCardModal" style="display:none">
+  <div class="fm-header">
+    <div><h3 class="fm-title">Gift Cards</h3><p class="fm-sub">Give someone the freedom to design anything</p></div>
+    <button class="fm-close" onclick="closeGiftCard()">X</button>
+  </div>
+  <div class="fm-body">
+    <div class="gc-amounts">
+      <button class="gc-amt active" data-amount="25" onclick="selectGCAmount(25,this)">$25</button>
+      <button class="gc-amt" data-amount="50" onclick="selectGCAmount(50,this)">$50</button>
+      <button class="gc-amt" data-amount="100" onclick="selectGCAmount(100,this)">$100</button>
+      <button class="gc-amt" data-amount="150" onclick="selectGCAmount(150,this)">$150</button>
+      <button class="gc-amt" data-amount="250" onclick="selectGCAmount(250,this)">$250</button>
+    </div>
+    <div class="gc-form">
+      <label class="tlbl">Recipient Email</label>
+      <input class="fi" type="email" id="gc-to-email" placeholder="friend@email.com">
+      <label class="tlbl">Recipient Name</label>
+      <input class="fi" type="text" id="gc-to-name" placeholder="Their name">
+      <label class="tlbl">From</label>
+      <input class="fi" type="text" id="gc-from-name" placeholder="Your name">
+      <label class="tlbl">Message</label>
+      <textarea class="tinput" id="gc-message" rows="3" placeholder="Happy birthday! Go design something awesome..."></textarea>
+    </div>
+    <div class="gc-preview">
+      <div class="gc-card-preview">
+        <div class="gcp-logo">PrintDrop</div>
+        <div class="gcp-amount" id="gcp-amount">$25</div>
+        <div class="gcp-label">Gift Card</div>
+        <div class="gcp-code">PD-XXXX-XXXX-XXXX</div>
+      </div>
+    </div>
+    <div id="gc-status" class="order-status" style="display:none"></div>
+    <button class="btn-primary btn-full" onclick="purchaseGiftCard()">Purchase Gift Card</button>
+    <p class="order-note">Gift card delivered via email. Valid 12 months.</p>
+  </div>
+</div>
+
+<!-- ═══ WISHLIST MODAL ═══ -->
+<div class="modal-overlay" id="wishlistOverlay" onclick="closeWishlist()" style="display:none"></div>
+<div class="feature-modal" id="wishlistModal" style="display:none">
+  <div class="fm-header">
+    <div><h3 class="fm-title">My Wishlist</h3><p class="fm-sub">Designs saved for later</p></div>
+    <button class="fm-close" onclick="closeWishlist()">X</button>
+  </div>
+  <div class="fm-body">
+    <div id="wishlist-grid" class="design-grid"></div>
+    <div id="wishlist-empty" class="gallery-empty" style="display:none">
+      <p>No designs saved yet.</p>
+      <p style="font-size:.8rem">Click the heart on any design card to save it here.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SIZE GUIDE MODAL ═══ -->
+<div class="modal-overlay" id="sizeGuideOverlay" onclick="closeSizeGuide()" style="display:none"></div>
+<div class="feature-modal" id="sizeGuideModal" style="display:none">
+  <div class="fm-header">
+    <div><h3 class="fm-title">Size Guide</h3><p class="fm-sub">Measurements in inches. When in doubt, size up.</p></div>
+    <button class="fm-close" onclick="closeSizeGuide()">X</button>
+  </div>
+  <div class="fm-body">
+    <div class="sg-product-tabs">
+      <button class="sg-tab active" onclick="showSizeTable('tee',this)">Unisex Tee</button>
+      <button class="sg-tab" onclick="showSizeTable('hoodie',this)">Hoodie</button>
+      <button class="sg-tab" onclick="showSizeTable('longsleeve',this)">Long Sleeve</button>
+    </div>
+    <div class="sg-tip">Lay your garment flat and measure — compare to chart below.</div>
+    <div id="size-table-wrap"></div>
+    <div class="sg-howto">
+      <h4>How to Measure</h4>
+      <p><strong>Chest</strong> — Measure across chest 1 inch below armhole (garment flat). Double it.</p>
+      <p><strong>Length</strong> — Highest point of shoulder to bottom hem.</p>
+      <p><strong>Sleeve</strong> — Center back neck, over shoulder, to cuff.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SHARE MODAL ═══ -->
+<div class="modal-overlay" id="shareOverlay" onclick="closeShare()" style="display:none"></div>
+<div class="feature-modal share-modal" id="shareModal" style="display:none">
+  <div class="fm-header">
+    <div><h3 class="fm-title">Share This Design</h3><p class="fm-sub">Send a link to customize and order</p></div>
+    <button class="fm-close" onclick="closeShare()">X</button>
+  </div>
+  <div class="fm-body">
+    <div class="share-preview" id="share-preview-card"></div>
+    <div class="share-link-row">
+      <input class="fi" type="text" id="share-url" readonly>
+      <button class="btn-primary" onclick="copyShareLink()">Copy</button>
+    </div>
+    <div class="share-btns">
+      <button class="share-btn share-twitter" onclick="shareToTwitter()">X / Twitter</button>
+      <button class="share-btn share-wa" onclick="shareToWhatsapp()">WhatsApp</button>
+      <button class="share-btn share-copy" onclick="copyShareLink()">Copy Link</button>
+    </div>
+    <p id="share-copied" style="display:none;color:var(--ok);text-align:center;font-weight:700">Link copied!</p>
+  </div>
+</div>
+
+<!-- ═══ EMAIL CAPTURE MODAL ═══ -->
+<div class="modal-overlay" id="emailCapOverlay" style="display:none"></div>
+<div class="feature-modal email-modal" id="emailCapModal" style="display:none">
+  <button class="fm-close ec-close" onclick="closeEmailCap()">X</button>
+  <div class="ec-body">
+    <div class="ec-badge">LIMITED OFFER</div>
+    <div class="ec-icon">◆</div>
+    <h3 class="ec-title">Get 10% Off Your First Order</h3>
+    <p class="ec-sub">Join thousands of customers. No spam.</p>
+    <input class="fi ec-input" type="email" id="ec-email" placeholder="your@email.com">
+    <button class="btn-primary btn-full" onclick="submitEmailCap()">Claim 10% Off</button>
+    <p class="ec-skip" onclick="closeEmailCap()">No thanks, I will pay full price</p>
+  </div>
+</div>
+
+<!-- ═══ RUSH FULFILLMENT BANNER ═══ -->
+<div class="rush-banner" id="rushBanner" style="display:none">
+  <div class="rush-inner">
+    <span>Rush Fulfillment Available</span>
+    <span>Skip the 24hr buffer — dispatches within 2hrs.</span>
+    <label><input type="checkbox" id="rush-checkbox" onchange="toggleRush(this)"> Add Rush (+$7)</label>
+    <button onclick="closeRushBanner()">X</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-wrap">
+    <div class="f-col">
+      <a href="/" class="footer-logo">🌊 COASTLINE CUSTOMS</a>
+      <p class="footer-desc">Premium goods, custom designed and fulfilled with zero inventory. Your world, our canvas.</p>
+    </div>
+    <div class="f-col">
+      <h4 class="footer-title">Shop</h4>
+      <ul class="footer-links">
+        <li><a onclick="scrollTo_('gallery')">Best Sellers</a></li>
+        <li><a onclick="scrollTo_('lifestyle')">Lookbook</a></li>
+        <li><a onclick="scrollTo_('studio')">Design Studio</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4 class="footer-title">Support</h4>
+      <ul class="footer-links">
+        <li><a onclick="openPolicy('returns')">Return Policy</a></li>
+        <li><a onclick="openPolicy('shipping')">Shipping Info</a></li>
+        <li><a onclick="openPolicy('privacy')">Privacy Policy</a></li>
+        <li><a href="mailto:admin@coastlinecustoms.com">admin@coastlinecustoms.com</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4 class="footer-title">Admin</h4>
+      <ul class="footer-links">
+        <li><a href="admin.html">Dashboard Login</a></li>
+        <li><a href="API_SETUP.md">API Documentation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Coastline Customs. All rights reserved. Powered by PrintDrop Pro.</p>
+    <div class="f-payments">💳 Visa · 💳 Mastercard · 💳 Amex ·  Pay</div>
+  </div>
+</footer>
+
+<script src="designs.js"></script>
+<script src="catalog.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

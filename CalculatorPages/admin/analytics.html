@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics | YourCalc Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <h2>YourCalc Admin</h2>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="">📊 Overview</a></li>
+            <li><a href="analytics.html" class="active">👥 Analytics</a></li>
+            <li><a href="seo.html" class="">🔍 SEO</a></li>
+            <li><a href="adsense.html" class="">💰 AdSense</a></li>
+            <li><a href="calculators.html" class="">🧮 Calculators</a></li>
+            <li><a href="leads.html" class="">📧 Leads</a></li>
+            <li style="margin-top: 32px;"><a href="../index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="topbar">
+            <h1>Analytics</h1>
+            <div style="display: flex; gap: 16px;">
+                <select class="date-selector">
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Custom Range</option>
+                </select>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <div class="grid-3">
+            <div class="card">
+                <h3 class="card-title">Traffic Sources</h3>
+                <canvas id="sourceChart" height="200"></canvas>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Device Split</h3>
+                <canvas id="deviceChart" height="200"></canvas>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Top Exit Pages</h3>
+                <table class="table">
+                    <tr><th>Page</th><th>Exits</th></tr>
+                    <tr><td>/index.html</td><td>450</td></tr>
+                    <tr><td>/finance.html</td><td>320</td></tr>
+                    <tr><td>/health.html</td><td>210</td></tr>
+                </table>
+            </div>
+        </div>
+        <script>
+            new Chart(document.getElementById('sourceChart'), { type: 'doughnut', data: { labels: ['Organic', 'Direct', 'Referral', 'Social'], datasets: [{ data: [65, 20, 10, 5], backgroundColor: ['#4f46e5', '#4ade80', '#eab308', '#ef4444'], borderWidth: 0 }] }, options: { cutout: '70%', plugins: { legend: { position: 'right', labels: { color: '#fff' } } } } });
+            new Chart(document.getElementById('deviceChart'), { type: 'bar', data: { labels: ['Mobile', 'Desktop', 'Tablet'], datasets: [{ data: [55, 40, 5], backgroundColor: '#4f46e5' }] }, options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } } });
+        </script>
+
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

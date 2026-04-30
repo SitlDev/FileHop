@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate bulk coupon codes for promotions with customizable length, prefix, and character sets. Perfect for marketing campaigns and promotions.">
+    <meta name="keywords" content="coupon code generator, promo code generator, bulk coupon codes, discount code tool, promotional code generator, coupon creator, marketing tool, batch code generator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/coupon/">
+    <meta property="og:title" content="Coupon Code Generator — Tools Dashboard">
+    <meta property="og:description" content="Create batches of unique coupon codes for promotions, sales, and offers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/Tools/coupon/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <!-- Replace ca-pub-XXXXXXXXXXXXXXXX with your AdSense publisher ID -->
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Coupon Code Generator</h1>
+            <p>Create batches of unique coupon codes for promotions and offers.</p>
+        </header>
+        <div class="ad-container" style="text-align:center; margin: 20px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        <main>
+            <section class="input-section">
+                <h2>Generator Settings</h2>
+                <div class="form-container">
+                    <label for="coupon-count">Count</label>
+                    <input type="number" id="coupon-count" min="1" max="100" value="10">
+                </div>
+                <div class="form-container">
+                    <label for="coupon-length">Length</label>
+                    <input type="number" id="coupon-length" min="4" max="32" value="12">
+                </div>
+                <div class="form-container">
+                    <label for="coupon-prefix">Prefix (optional)</label>
+                    <input type="text" id="coupon-prefix" placeholder="PROMO-">
+                </div>
+                <div class="form-container">
+                    <label>Character Sets</label>
+                    <div class="radio-group" style="flex-wrap: wrap; gap: 10px;">
+                        <label class="radio-label"><input type="checkbox" id="coupon-uppercase" checked>Uppercase</label>
+                        <label class="radio-label"><input type="checkbox" id="coupon-lowercase">Lowercase</label>
+                        <label class="radio-label"><input type="checkbox" id="coupon-numbers" checked>Numbers</label>
+                        <label class="radio-label"><input type="checkbox" id="coupon-symbols">Symbols</label>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button id="btn-generate-coupons">Generate Codes</button>
+                    <button id="btn-copy-coupons">Copy All</button>
+                </div>
+            </section>
+            <section class="preview-section">
+                <h2>Generated Codes</h2>
+                <div class="preview-wrapper">
+                    <textarea id="coupon-output" rows="10" readonly style="width:100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border);"></textarea>
+                </div>
+            </section>
+        </main>
+
+        <!-- Email Collection Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>🚀 Get More Tools & Updates</h3>
+                <p>Join our newsletter to get notified about new tools, features, and productivity tips.</p>
+                <form id="email-signup-form">
+                    <input type="email" id="signup-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="signup-btn">Subscribe for Free</button>
+                </form>
+                <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
+        <!-- Sidebar Ad -->
+        <div class="sidebar-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <footer>
+            <!-- Footer Ad -->
+            <div class="footer-ad">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="1234567892"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p>&copy; 2026 Coupon Generator.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

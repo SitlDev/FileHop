@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin dashboard for monitoring analytics and usage across the Tools dashboard.">
+    <meta name="keywords" content="admin dashboard, analytics, tools monitoring, usage dashboard">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/admin.html">
+    <meta property="og:title" content="Admin Dashboard — Tools Dashboard">
+    <meta property="og:description" content="Monitor traffic and usage for your online tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/Tools/admin.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Google AdSense: Replace with your publisher ID when ready for monetization
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID_HERE" crossorigin="anonymous"></script> -->
+    <script>
+        // Password protection for admin page
+        const correctPassword = 'h14sua12';
+        const passwordKey = 'adminPassword';
+
+        function checkPassword() {
+            const storedPassword = localStorage.getItem(passwordKey);
+            if (storedPassword === correctPassword) {
+                document.body.style.display = 'block';
+                return;
+            }
+
+            let attempts = 0;
+            const maxAttempts = 3;
+
+            while (attempts < maxAttempts) {
+                const password = prompt('Enter admin password:');
+                if (password === correctPassword) {
+                    localStorage.setItem(passwordKey, password);
+                    document.body.style.display = 'block';
+                    return;
+                } else {
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                        alert(`Incorrect password. ${maxAttempts - attempts} attempts remaining.`);
+                    }
+                }
+            }
+
+            alert('Access denied. Too many failed attempts.');
+            window.location.href = '../index.html'; // Redirect to main dashboard
+        }
+
+        // Hide body initially
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.display = 'none';
+            checkPassword();
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            border-bottom-color: #007bff;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .logs-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .logs-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .logs-table th,
+        .logs-table td {
+            padding: 12px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logs-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .event-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .event-page_load { background: #e3f2fd; color: #1976d2; }
+        .event-qr_type_change { background: #f3e5f5; color: #7b1fa2; }
+        .event-qr_data_change { background: #e8f5e8; color: #388e3c; }
+        .event-color_change { background: #fff3e0; color: #f57c00; }
+        .event-size_change { background: #fce4ec; color: #c2185b; }
+        .event-download_png { background: #e0f2f1; color: #00695c; }
+        .event-copy_clipboard { background: #f9fbe7; color: #689f38; }
+
+        .refresh-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .refresh-btn:hover {
+            background: #0056b3;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>KnotStranded Admin Dashboard</h1>
+            <p>Monitor your tools and services</p>
+        </div>
+        <div class="ad-container" style="text-align:center; margin: 20px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('overview')">Overview</button>
+            <button class="tab" onclick="switchTab('subscribers')">Subscribers</button>
+            <button class="tab" onclick="switchTab('qrcodegen')">QR Code Stats</button>
+            <button class="tab" onclick="switchTab('other')">Other Tools</button>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-visits">0</div>
+                    <div class="stat-label">Total Visits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-events">0</div>
+                    <div class="stat-label">Total Events</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="unique-users">0</div>
+                    <div class="stat-label">Unique Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="active-tools">28</div>
+                    <div class="stat-label">Active Tools</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-subscribers">0</div>
+                    <div class="stat-label">Newsletter Subscribers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="growth-rate">0%</div>
+                    <div class="stat-label">Growth (This Month)</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="subscribers" class="tab-content">
+            <div class="logs-section">
+                <div class="logs-header">
+                    <h3>Newsletter Subscribers</h3>
+                    <div>
+                        <button class="refresh-btn" onclick="loadSubscribers()">Refresh</button>
+                        <button class="refresh-btn" onclick="exportSubscribers()" style="background: #28a745; margin-left: 10px;">Export CSV</button>
+                    </div>
+                </div>
+                <div id="subscribers-loading" class="loading">Loading subscribers...</div>
+                <table class="logs-table" id="subscribers-table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Subscribed Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="subscribers-body">
+                        <!-- Subscribers will be populated here -->
+                    </tbody>
+                </table>
+                <div id="subscribers-summary" style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 4px;"></div>
+            </div>
+        </div>
+
+        <div id="qrcodegen" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="qr-visits">0</div>
+                    <div class="stat-label">QR Generator Visits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="qr-generations">0</div>
+                    <div class="stat-label">QR Codes Generated</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="qr-downloads">0</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="qr-copies">0</div>
+                    <div class="stat-label">Clipboard Copies</div>
+                </div>
+            </div>
+
+            <div class="logs-section">
+                <div class="logs-header">
+                    <h3>Recent QR Generator Activity</h3>
+                    <button class="refresh-btn" onclick="loadQRLogs()">Refresh</button>
+                </div>
+                <div id="qr-loading" class="loading">Loading logs...</div>
+                <table class="logs-table" id="qr-logs-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Event</th>
+                            <th>Details</th>
+                            <th>User Agent</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qr-logs-body">
+                        <!-- Logs will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="other" class="tab-content">
+            <div class="logs-section">
+                <div class="logs-header">
+                    <h3>Other Tools Activity</h3>
+                    <button class="refresh-btn" onclick="loadOtherLogs()">Refresh</button>
+                </div>
+                <div id="other-loading" class="loading">Loading logs...</div>
+                <table class="logs-table" id="other-logs-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Event</th>
+                            <th>Tag</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="other-logs-body">
+                        <!-- Logs will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allLogs = [];
+        let qrLogs = [];
+        let subscribersList = [];
+
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Load data for the tab
+            if (tabName === 'qrcodegen') {
+                loadQRLogs();
+            } else if (tabName === 'other') {
+                loadOtherLogs();
+            } else if (tabName === 'overview') {
+                loadOverviewStats();
+            } else if (tabName === 'subscribers') {
+                loadSubscribers();
+            }
+        }
+
+        async function loadOverviewStats() {
+            try {
+                const response = await fetch('https://knotstranded.com/api/analytics?summary=true');
+                const data = await response.json();
+
+                document.getElementById('total-visits').textContent = data.totalVisits || 0;
+                document.getElementById('total-events').textContent = data.totalEvents || 0;
+                document.getElementById('unique-users').textContent = data.uniqueUsers || 0;
+                document.getElementById('total-subscribers').textContent = data.subscribers || 0;
+                document.getElementById('growth-rate').textContent = (data.growthRate || 0) + '%';
+            } catch (error) {
+                console.error('Failed to load overview stats:', error);
+            }
+        }
+
+        async function loadSubscribers() {
+            document.getElementById('subscribers-loading').style.display = 'block';
+
+            try {
+                const response = await fetch('https://knotstranded.com/api/subscribers');
+                subscribersList = await response.json();
+                renderSubscribers(subscribersList);
+                
+                // Show summary
+                const summary = document.getElementById('subscribers-summary');
+                summary.innerHTML = `
+                    <strong>Total Subscribers:</strong> ${subscribersList.length} | 
+                    <strong>Active:</strong> ${subscribersList.filter(s => s.status === 'active').length} | 
+                    <strong>Unsubscribed:</strong> ${subscribersList.filter(s => s.status === 'unsubscribed').length}
+                `;
+            } catch (error) {
+                console.error('Failed to load subscribers:', error);
+                document.getElementById('subscribers-body').innerHTML = '<tr><td colspan="4">Failed to load subscribers. Make sure API is configured.</td></tr>';
+            }
+
+            document.getElementById('subscribers-loading').style.display = 'none';
+        }
+
+        function renderSubscribers(subscribers) {
+            const tbody = document.getElementById('subscribers-body');
+            tbody.innerHTML = '';
+
+            if (subscribers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #999;">No subscribers yet</td></tr>';
+                return;
+            }
+
+            subscribers.forEach((sub, index) => {
+                const row = document.createElement('tr');
+                const date = new Date(sub.subscribedDate || sub.date).toLocaleDateString();
+                const status = sub.status || 'active';
+                const badgeColor = status === 'active' ? '#28a745' : '#dc3545';
+
+                row.innerHTML = `
+                    <td>${sub.email}</td>
+                    <td>${date}</td>
+                    <td><span style="background: ${badgeColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">${status}</span></td>
+                    <td><button onclick="removeSubscriber(${index})" style="padding: 4px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Remove</button></td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        function removeSubscriber(index) {
+            if (confirm('Remove this subscriber?')) {
+                subscribersList.splice(index, 1);
+                renderSubscribers(subscribersList);
+                document.getElementById('subscribers-summary').innerHTML = `
+                    <strong>Total Subscribers:</strong> ${subscribersList.length} | 
+                    <strong>Active:</strong> ${subscribersList.filter(s => s.status === 'active').length} | 
+                    <strong>Unsubscribed:</strong> ${subscribersList.filter(s => s.status === 'unsubscribed').length}
+                `;
+            }
+        }
+
+        function exportSubscribers() {
+            if (subscribersList.length === 0) {
+                alert('No subscribers to export');
+                return;
+            }
+
+            const csv = [
+                ['Email', 'Subscribed Date', 'Status'].join(','),
+                ...subscribersList.map(s => [
+                    s.email,
+                    new Date(s.subscribedDate || s.date).toISOString(),
+                    s.status || 'active'
+                ].join(','))
+            ].join('\\n');
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `subscribers_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        async function loadQRLogs() {
+            document.getElementById('qr-loading').style.display = 'block';
+
+            try {
+                const response = await fetch('https://knotstranded.com/api/analytics?tag=qrcodegen&limit=100');
+                const logs = await response.json();
+
+                qrLogs = logs;
+                updateQRStats(logs);
+                renderQRLogs(logs);
+            } catch (error) {
+                console.error('Failed to load QR logs:', error);
+                document.getElementById('qr-logs-body').innerHTML = '<tr><td colspan="4">Failed to load logs</td></tr>';
+            }
+
+            document.getElementById('qr-loading').style.display = 'none';
+        }
+
+        function updateQRStats(logs) {
+            const visits = logs.filter(log => log.event === 'page_load').length;
+            const generations = logs.filter(log => log.event === 'qr_data_change').length;
+            const downloads = logs.filter(log => log.event === 'download_png').length;
+            const copies = logs.filter(log => log.event === 'copy_clipboard').length;
+
+            document.getElementById('qr-visits').textContent = visits;
+            document.getElementById('qr-generations').textContent = generations;
+            document.getElementById('qr-downloads').textContent = downloads;
+            document.getElementById('qr-copies').textContent = copies;
+        }
+
+        function renderQRLogs(logs) {
+            const tbody = document.getElementById('qr-logs-body');
+            tbody.innerHTML = '';
+
+            logs.slice(0, 50).forEach(log => {
+                const row = document.createElement('tr');
+                const time = new Date(log.timestamp).toLocaleString();
+
+                row.innerHTML = `
+                    <td>${time}</td>
+                    <td><span class="event-badge event-${log.event}">${log.event.replace(/_/g, ' ')}</span></td>
+                    <td>${formatDetails(log.details)}</td>
+                    <td>${log.userAgent.substring(0, 50)}...</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        async function loadOtherLogs() {
+            document.getElementById('other-loading').style.display = 'block';
+
+            try {
+                const response = await fetch('https://knotstranded.com/api/analytics?tag=!qrcodegen&limit=100');
+                const logs = await response.json();
+
+                renderOtherLogs(logs);
+            } catch (error) {
+                console.error('Failed to load other logs:', error);
+                document.getElementById('other-logs-body').innerHTML = '<tr><td colspan="4">Failed to load logs</td></tr>';
+            }
+
+            document.getElementById('other-loading').style.display = 'none';
+        }
+
+        function renderOtherLogs(logs) {
+            const tbody = document.getElementById('other-logs-body');
+            tbody.innerHTML = '';
+
+            logs.slice(0, 50).forEach(log => {
+                const row = document.createElement('tr');
+                const time = new Date(log.timestamp).toLocaleString();
+
+                row.innerHTML = `
+                    <td>${time}</td>
+                    <td><span class="event-badge event-${log.event}">${log.event.replace(/_/g, ' ')}</span></td>
+                    <td>${log.tag || 'unknown'}</td>
+                    <td>${formatDetails(log.details)}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        function formatDetails(details) {
+            if (!details || Object.keys(details).length === 0) return '-';
+
+            return Object.entries(details)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(', ');
+        }
+
+        // Load overview stats on page load
+        loadOverviewStats();
+    </script>
+</body>
+</html>

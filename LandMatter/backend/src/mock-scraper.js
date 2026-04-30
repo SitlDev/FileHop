@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const BaseScraper = require('./lib/BaseScraper');
 
 const prisma = new PrismaClient();
 
@@ -7,6 +8,8 @@ const prisma = new PrismaClient();
  * Simulates what real scrapers would fetch from public APIs
  */
 async function generateMockListings() {
+  const scraper = new BaseScraper('Mock Data Generator');
+  
   const mockListings = [
     // GSA Auctions (Federal Properties)
     ...generateGSAListings(),
@@ -24,19 +27,15 @@ async function generateMockListings() {
   let saved = 0;
   for (const listing of mockListings) {
     try {
-      await prisma.listing.upsert({
-        where: { title: listing.title },
-        update: listing,
-        create: listing,
-      });
+      await scraper.saveListing(listing);
       saved++;
     } catch (error) {
       console.error(`❌ Failed to save: ${listing.title}`, error.message);
     }
   }
 
-  console.log(`✅ Saved ${saved} listings to database\n`);
-  await prisma.$disconnect();
+  console.log(`✅ Saved ${saved} listings with parcel data\n`);
+  await scraper.close();
 }
 
 function generateGSAListings() {
@@ -56,6 +55,7 @@ function generateGSAListings() {
   return states.flatMap((loc, idx) => {
     const acreage = 0.5 + Math.random() * 5;
     const price = 50000 + Math.random() * 400000;
+    const assessedValue = price * (1.1 + Math.random() * 0.3);
     return [{
       title: `Federal Building - ${loc.county} County, ${loc.state} (GSA ${idx + 1})`,
       county: loc.county,
@@ -75,6 +75,17 @@ function generateGSAListings() {
       action: 'Investigate',
       lat: loc.lat + (Math.random() - 0.5) * 0.1,
       lng: loc.lng + (Math.random() - 0.5) * 0.1,
+      // Parcel data
+      assessedValue: assessedValue,
+      landValue: price * 0.65,
+      improvementValue: price * 0.35,
+      lastSalePrice: price * 0.95,
+      lastSaleDate: new Date(Date.now() - Math.random() * 5 * 365 * 24 * 60 * 60 * 1000),
+      ownershipYears: Math.random() * 30,
+      priorTaxSales: Math.random() > 0.7 ? 1 : 0,
+      zoning: 'Government/Commercial',
+      encumbrances: Math.random() > 0.8 ? ['Easement'] : [],
+      taxDelinquentYears: 0,
     }];
   });
 }
@@ -97,6 +108,7 @@ function generateHUDListings() {
   return properties.map((prop, idx) => {
     const acreage = 0.25 + Math.random() * 0.35;
     const price = prop.price * (0.8 + Math.random() * 0.2);
+    const assessedValue = price / 0.75;
     return {
       title: `HUD Home - ${prop.beds}BR in ${prop.city}, ${prop.state} (HUD ${idx + 1})`,
       county: prop.county,
@@ -116,6 +128,17 @@ function generateHUDListings() {
       action: 'Monitor',
       lat: 35 + Math.random() * 10,
       lng: -95 - Math.random() * 10,
+      // Parcel data
+      assessedValue: assessedValue,
+      landValue: assessedValue * 0.35,
+      improvementValue: assessedValue * 0.65,
+      lastSalePrice: price * 0.85,
+      lastSaleDate: new Date(Date.now() - Math.random() * 3 * 365 * 24 * 60 * 60 * 1000),
+      ownershipYears: Math.random() * 15,
+      priorTaxSales: 0,
+      zoning: 'Residential',
+      encumbrances: [],
+      taxDelinquentYears: Math.random() > 0.7 ? Math.floor(Math.random() * 3) : 0,
     };
   });
 }
@@ -133,6 +156,7 @@ function generateNYCListings() {
     [...Array(3)].map((_, i) => {
       const acreage = 0.05 + Math.random() * 0.25;
       const price = 50000 + Math.random() * 500000;
+      const assessedValue = price * (1.2 + Math.random() * 0.5);
       return {
         title: `NYC Tax Lien - ${borough.name} (Lot ${idx * 100 + i})`,
         county: 'New York',
@@ -152,6 +176,17 @@ function generateNYCListings() {
         action: 'Monitor',
         lat: borough.lat + (Math.random() - 0.5) * 0.1,
         lng: borough.lng + (Math.random() - 0.5) * 0.1,
+        // Parcel data
+        assessedValue: assessedValue,
+        landValue: assessedValue * 0.3,
+        improvementValue: assessedValue * 0.7,
+        lastSalePrice: price * 1.5,
+        lastSaleDate: new Date(Date.now() - Math.random() * 10 * 365 * 24 * 60 * 60 * 1000),
+        ownershipYears: Math.random() * 25,
+        priorTaxSales: Math.random() > 0.6 ? Math.floor(Math.random() * 3) : 0,
+        zoning: 'Urban Mixed',
+        encumbrances: Math.random() > 0.5 ? ['Lien'] : [],
+        taxDelinquentYears: Math.floor(Math.random() * 5) + 1,
       };
     })
   );
@@ -190,6 +225,17 @@ function generateCountyDeedListings() {
         action: 'Monitor',
         lat: county.lat + (Math.random() - 0.5) * 0.15,
         lng: county.lng + (Math.random() - 0.5) * 0.15,
+        // Parcel data
+        assessedValue: assessedValue,
+        landValue: assessedValue * 0.5,
+        improvementValue: assessedValue * 0.5,
+        lastSalePrice: salePrice,
+        lastSaleDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000),
+        ownershipYears: Math.random() * 20,
+        priorTaxSales: 0,
+        zoning: 'Mixed',
+        encumbrances: [],
+        taxDelinquentYears: 0,
       };
     })
   );

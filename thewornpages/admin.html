@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivist Dashboard | The Worn Pages Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --pink: #B68D8D;
+            --blush: #D4A3A3;
+            --pearl: #FAF6F5;
+            --cream: #F5EBE9;
+            --aged-paper: #EDE2E0;
+            --gold: #D4B982;
+            --text-dark: #5C4F4F;
+            --sidebar-width: 280px;
+            --radius: 32px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        aside {
+            width: var(--sidebar-width);
+            background: var(--forest-green);
+            color: white;
+            padding: 3rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        nav ul { list-style: none; }
+        nav li { margin-bottom: 0.5rem; }
+        nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        nav a:hover, nav a.active {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 4rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--aged-paper);
+        }
+
+        .stat-card h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; margin-bottom: 1rem; }
+        .stat-card .value { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--forest-green); }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--aged-paper);
+        }
+
+        th { text-align: left; padding: 1.5rem; background: var(--cream-dark); color: var(--forest-green); font-weight: 600; border-bottom: 2px solid var(--aged-paper); }
+        td { padding: 1.5rem; border-bottom: 1px solid var(--aged-paper); font-size: 0.9rem; }
+        
+        .badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-active { background: #E7F3EF; color: var(--forest-green); }
+        .badge-dispatched { background: #E9DCC9; color: var(--gold); }
+
+        .genre-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: var(--cream-dark);
+            border: 1px solid var(--aged-paper);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.4rem;
+            margin-bottom: 0.2rem;
+            color: var(--forest-green);
+        }
+
+        .btn-action {
+            background: var(--forest-green);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        .btn-action:hover { background: var(--burgundy); }
+
+        .link-text { color: var(--burgundy); text-decoration: none; font-family: monospace; }
+        .link-text:hover { text-decoration: underline; }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: white;
+            width: 600px;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; font-weight: 600; color: var(--gold); text-transform: uppercase; }
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--aged-paper);
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--aged-paper);
+            border-radius: 6px;
+            font-family: inherit;
+            min-height: 200px;
+            resize: vertical;
+        }
+        .subscriber-count { font-size: 2rem; font-weight: bold; color: var(--forest-green); }
+
+        /* Login Overlay */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--forest-green);
+            background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: white;
+            padding: 4rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 1024px) {
+            aside { width: 80px; padding: 2rem 1rem; }
+            aside span, aside h2, .logo span { display: none; }
+            main { margin-left: 80px; padding: 2rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            aside { width: 100%; height: auto; position: relative; padding: 1rem; flex-direction: row; justify-content: space-between; }
+            .logo { margin-bottom: 0; }
+            nav ul { display: flex; gap: 1rem; }
+            nav li { margin-bottom: 0; }
+            main { margin-left: 0; padding: 1.5rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .table-container { overflow-x: auto; width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-overlay">
+        <div class="login-card">
+            <span style="font-family: 'Playfair Display', serif; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem;">Vault Access</span>
+            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 2rem; color: var(--forest-green);">Identify Yourself, Archivist</h2>
+            <div class="form-group">
+                <input type="password" id="admin-secret" placeholder="Secret Key" style="text-align: center; font-size: 1.2rem; letter-spacing: 4px;">
+            </div>
+            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="attemptLogin()">Unlock the Dashboard</button>
+        </div>
+    </div>
+    <aside>
+        <div class="logo">
+            <i data-lucide="book-open"></i>
+            <span>The Worn Pages</span>
+        </div>
+        <nav>
+                <li><a href="#" class="nav-link active" data-section="overview"><i data-lucide="layout-dashboard"></i> Overview</a></li>
+                <li><a href="#" class="nav-link" data-section="curation"><i data-lucide="scissors"></i> Curation</a></li>
+                <li><a href="#" class="nav-link" data-section="affiliates"><i data-lucide="link"></i> Affiliate Links</a></li>
+                <li><a href="#" class="nav-link" data-section="newsletter"><i data-lucide="mail"></i> Inner Circle</a></li>
+                
+                <div style="margin: 1.5rem 0 0.5rem 1rem; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Business Operations</div>
+                <li><a href="#" class="nav-link" data-section="inventory"><i data-lucide="package"></i> Inventory</a></li>
+                <li><a href="#" class="nav-link" data-section="ops"><i data-lucide="book-open"></i> Manuals</a></li>
+                <li><a href="#" class="nav-link" data-section="marketing"><i data-lucide="trending-up"></i> Growth</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Archivist's Dashboard</h1>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn-primary" style="background: var(--gold);">
+                    <i data-lucide="download" size="18"></i> Export Reports
+                </button>
+            </div>
+        </header>
+
+        <div id="section-overview" class="admin-section active">
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Dispatches</h4>
+                    <div class="value">1,284</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Active Members</h4>
+                    <div class="value">452</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Revenue (Mo)</h4>
+                    <div class="value">$18.2k</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Affiliate Conversion</h4>
+                    <div class="value">12.4%</div>
+                </div>
+            </section>
+        </div>
+
+        <div id="section-curation" class="admin-section">
+            <div class="section-header">
+                <h2>Member Curation Stacks</h2>
+                <div style="display: flex; gap: 1rem;">
+                    <select id="genre-filter" style="padding: 0.5rem; border: 1px solid var(--aged-paper); border-radius: 4px;">
+                        <option value="all">All Genres</option>
+                        <option value="Classics">Classics</option>
+                        <option value="Gothic">Gothic</option>
+                        <option value="History">History</option>
+                        <option value="Nature">Nature</option>
+                        <option value="Poetry">Poetry</option>
+                    </select>
+                </div>
+            </div>
+            
+            <table id="curation-table">
+                <thead>
+                    <tr>
+                        <th>Member Email</th>
+                        <th>Tier</th>
+                        <th>Taste Profile</th>
+                        <th>Status</th>
+                        <th>Assembly Ritual</th>
+                    </tr>
+                </thead>
+                <tbody id="curation-tbody">
+                    <!-- Loaded via API -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="section-recommendations" class="admin-section">
+            <div class="section-header">
+                <h2>Member Recommendations</h2>
+                <p style="color: var(--text-muted);">Books suggested by our community for procurement.</p>
+            </div>
+            <table id="recommend-table">
+                <thead>
+                    <tr>
+                        <th>Suggested Title</th>
+                        <th>Author</th>
+                        <th>Why?</th>
+                        <th>Member</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="recommend-tbody"></tbody>
+            </table>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div id="section-newsletter" class="admin-section">
+            <div class="section-header">
+                <h2>Inner Circle Newsletter</h2>
+                <button class="btn-primary" onclick="fetchSubscribers()">
+                    <i data-lucide="refresh-cw" size="18"></i> Refresh List
+                </button>
+            </div>
+
+            <section class="stats-grid" style="margin-bottom: 3rem;">
+                <div class="stat-card">
+                    <h4>Total Subscribers</h4>
+                    <div class="value subscriber-count" id="subscriber-count">—</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Last Newsletter Sent</h4>
+                    <div class="value" style="font-size: 1.1rem;" id="last-sent">—</div>
+                </div>
+            </section>
+
+            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start;">
+                <!-- Subscriber list -->
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">Subscribers</h3>
+                    <table id="subscriber-table">
+                        <thead><tr><th>Email</th><th>Joined</th><th>Status</th></tr></thead>
+                        <tbody id="subscriber-tbody">
+                            <tr><td colspan="3" style="text-align: center; padding: 2rem; font-style: italic;">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Newsletter Composer -->
+                <div style="background: white; border: 1px solid var(--aged-paper); border-radius: 12px; padding: 2.5rem;">
+                    <h3 style="margin-bottom: 2rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">Compose Dispatch</h3>
+                    <div class="form-group">
+                        <label>Subject Line</label>
+                        <input type="text" id="newsletter-subject" placeholder="e.g. The November Rare Hunt: What We Found">
+                    </div>
+                    <div class="form-group">
+                        <label>Body (HTML or plain text)</label>
+                        <textarea id="newsletter-body" placeholder="<p>Greetings, fellow collector...</p>"></textarea>
+                        <p style="font-size: 0.75rem; color: #999; margin-top: 0.5rem;">You can use basic HTML tags: &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;a&gt;</p>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 1rem;">
+                        <input type="checkbox" id="include-rare-hunts" style="width: auto; flex-shrink: 0;">
+                        <label style="margin: 0; text-transform: none; color: var(--text-dark); font-size: 0.9rem; font-weight: normal;">Append recent Rare Hunt requests from database</label>
+                    </div>
+                    <button class="btn-primary" onclick="sendNewsletter()" id="send-btn" style="width: 100%; margin-top: 1rem;">
+                        <i data-lucide="send" size="16"></i> Send to All Subscribers
+                    </button>
+                    <p id="send-status" style="margin-top: 1rem; text-align: center; font-size: 0.85rem; display: none;"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-affiliates" class="admin-section">
+            <div class="section-header">
+                <h2>Affiliate Program Registration</h2>
+                <button class="btn-primary" onclick="openModal()">
+                    <i data-lucide="plus" size="18"></i> New Link
+                </button>
+            </div>
+
+            <table id="affiliate-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Product Type</th>
+                        <th>Affiliate ID</th>
+                        <th>Commission %</th>
+                        <th>Destination URL</th>
+                        <th>Status</th>
+                        <th>Clicks</th>
+                    </tr>
+                </thead>
+                <tbody id="affiliate-tbody">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Business Sections -->
+        <section id="inventory-section" class="admin-section">
+            <div class="section-header">
+                <h2>Pre-Launch Inventory</h2>
+                <button class="btn-primary" onclick="openInventoryModal()"><i data-lucide="plus"></i> Add Item</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Stock Level</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="ops-section" class="admin-section">
+            <div class="section-header">
+                <h2>Standard Operating Procedures</h2>
+                <button class="btn-primary" onclick="openSopModal()"><i data-lucide="file-text"></i> New Manual</button>
+            </div>
+            <div id="sop-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- SOP Cards -->
+            </div>
+        </section>
+
+        <section id="marketing-section" class="admin-section">
+            <div class="section-header">
+                <h2>Growth & Marketing</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Monthly Recurring Revenue</h4>
+                    <div class="value" id="stat-mrr">$0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Active Members</h4>
+                    <div class="value" id="stat-members">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Newsletter Exposure</h4>
+                    <div class="value" id="stat-subs">0</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Acquisition Cost</h4>
+                    <div class="value">$12.40</div>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 3rem; border-radius: 12px; border: 1px solid var(--aged-paper);">
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 2rem;">Exposure Strategy</h3>
+                <ul style="list-style: none; display: grid; gap: 1.5rem;">
+                    <li style="display: flex; gap: 1.5rem; align-items: start;">
+                        <i data-lucide="instagram" style="color: var(--gold);"></i>
+                        <div>
+                            <strong style="display: block; font-size: 0.9rem;">Micro-Influencer Gifting</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Send 'The Devotee' boxes to 5 "Bookstagrammers" under 10k followers per month.</p>
+                        </div>
+                    </li>
+                    <li style="display: flex; gap: 1.5rem; align-items: start;">
+                        <i data-lucide="search" style="color: var(--gold);"></i>
+                        <div>
+                            <strong style="display: block; font-size: 0.9rem;">SEO Pillar Content</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Focus on "Best Gifts for Bibliophiles" and "How to build a vintage library" keywords.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+        </div>
+    </div>
+
+    <div class="modal" id="assembly-modal">
+        <div class="modal-content" style="width: 800px; max-width: 95vw;">
+            <span class="handwritten" style="color: var(--blush); font-size: 1.5rem;">The Assembly Ritual</span>
+            <h2 id="assembly-member-email" style="margin-bottom: 2rem;">Member Dispatch</h2>
+            
+            <form id="assembly-form" onsubmit="submitAssembly(event)">
+                <input type="hidden" id="assembly-email">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 1rem;">1. Assigned Treasures</h3>
+                        <div id="book-inputs"></div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 1rem;">2. Sensory Pairing</h3>
+                        <div class="form-group">
+                            <label>Atmosphere (for Audio)</label>
+                            <textarea id="assembly-atmosphere" placeholder="e.g. A rainy morning in a London library, with the scent of old parchment and cedarwood." style="min-height: 80px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Tea Pairing</label>
+                            <input type="text" id="assembly-tea" placeholder="e.g. Smoky Lapsang Souchong">
+                        </div>
+                        <div class="form-group">
+                            <label>Soundscape</label>
+                            <input type="text" id="assembly-music" placeholder="e.g. Cello Suite No. 1 in G Major">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 2rem; border-top: 1px solid var(--aged-paper); padding-top: 2rem;">
+                    <button type="button" class="btn-primary" style="background: var(--aged-paper); color: var(--text-dark);" onclick="closeAssemblyModal()">Cancel Ritual</button>
+                    <button type="submit" class="btn-primary" id="assembly-submit-btn" style="flex-grow: 1;">Complete Ritual & Generate Card</button>
+                </div>
+            </form>
+            <div id="assembly-result" style="margin-top: 2rem; text-align: center; display: none;">
+                <p style="color: var(--pink); font-weight: bold; margin-bottom: 1rem;">✓ Ritual Complete. Audio Generated.</p>
+                <a id="print-link" href="#" target="_blank" class="btn-primary" style="background: var(--gold); display: inline-flex;">Print Pairing Card</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Navigation Logic
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.onclick = (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                
+                link.classList.add('active');
+                const sectionId = `section-${link.dataset.section}`;
+                document.getElementById(sectionId).classList.add('active');
+                
+                if (link.dataset.section === 'curation') fetchMembers();
+                if (link.dataset.section === 'affiliates') renderLinks();
+                if (link.dataset.section === 'newsletter') fetchSubscribers();
+            };
+        });
+
+        // Members Curation Logic
+        async function fetchMembers() {
+            const tbody = document.getElementById('curation-tbody');
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem; font-style: italic;">Accessing the archives...</td></tr>';
+
+            const token = sessionStorage.getItem('archivist_token');
+
+            try {
+                const response = await fetch('/api/admin?action=members', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (response.status === 401) return showLogin();
+
+                const members = await response.json();
+                renderMembers(members);
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--burgundy);">Failed to load member records.</td></tr>';
+            }
+        }
+
+        function renderMembers(members) {
+            const tbody = document.getElementById('curation-tbody');
+            tbody.innerHTML = '';
+            
+            members.forEach(m => {
+                const tr = document.createElement('tr');
+                const lastUpdated = new Date(m.updated_at || m.created_at).toLocaleDateString();
+                const genres = (m.interests?.genres || []).join(', ') || 'Any';
+
+                tr.innerHTML = `
+                    <td>
+                        <strong>${m.email}</strong>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);">${m.shipping?.name || 'No Name'}</div>
+                    </td>
+                    <td><span class="badge" style="background: var(--pearl); border: 1px solid var(--blush);">${m.plan_name || 'Reader'}</span></td>
+                    <td><div style="max-width: 200px; font-size: 0.8rem;">${genres}</div></td>
+                    <td><span class="badge ${m.status === 'dispatched' ? 'badge-dispatched' : 'badge-active'}">${m.status || 'Pending'}</span></td>
+                    <td>
+                        <button class="btn-action" onclick='openAssemblyModal(${JSON.stringify(m)})'>
+                            Assemble Box
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        function openAssemblyModal(member) {
+            document.getElementById('assembly-modal').style.display = 'flex';
+            document.getElementById('assembly-member-email').innerText = `Assembling: ${member.email}`;
+            document.getElementById('assembly-email').value = member.email;
+            document.getElementById('assembly-result').style.display = 'none';
+            document.getElementById('assembly-form').style.display = 'block';
+
+            const bookInputs = document.getElementById('book-inputs');
+            bookInputs.innerHTML = '';
+            
+            const tier = member.plan_name?.toLowerCase() || 'reader';
+            const count = tier === 'devotee' ? 3 : (tier === 'collector' ? 2 : 1);
+            
+            for(let i = 1; i <= count; i++) {
+                bookInputs.innerHTML += `
+                    <div class="form-group">
+                        <label>Book ${i} Title</label>
+                        <input type="text" id="book-title-${i}" required placeholder="The Secret Garden">
+                    </div>
+                    <div class="form-group">
+                        <label>Book ${i} Author</label>
+                        <input type="text" id="book-author-${i}" required placeholder="Frances Hodgson Burnett">
+                    </div>
+                `;
+            }
+        }
+
+        function closeAssemblyModal() {
+            document.getElementById('assembly-modal').style.display = 'none';
+        }
+
+        async function submitAssembly(e) {
+            e.preventDefault();
+            const btn = document.getElementById('assembly-submit-btn');
+            const email = document.getElementById('assembly-email').value;
+            const atmosphere = document.getElementById('assembly-atmosphere').value;
+            const tea = document.getElementById('assembly-tea').value;
+            const music = document.getElementById('assembly-music').value;
+            const token = sessionStorage.getItem('archivist_token');
+
+            btn.innerText = "Generating Audio...";
+            btn.disabled = true;
+
+            // We use the first book's details for the pairing card title/author for now
+            const title = document.getElementById('book-title-1').value;
+            const author = document.getElementById('book-author-1').value;
+
+            try {
+                const res = await fetch('/api/admin?action=create_pairing', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify({ 
+                        title, author, atmosphere, tea, music, recipient_email: email 
+                    })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    // Mark as dispatched
+                    await fetch('/api/admin?action=dispatch', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                        body: JSON.stringify({ email })
+                    });
+
+                    document.getElementById('assembly-form').style.display = 'none';
+                    document.getElementById('assembly-result').style.display = 'block';
+                    document.getElementById('print-link').href = `pairing.html?id=${data.pairing_id}`;
+                    fetchMembers();
+                }
+            } catch (err) {
+                alert("Assembly ritual failed. Check connection.");
+            } finally {
+                btn.innerText = "Complete Ritual & Generate Card";
+                btn.disabled = false;
+            }
+        }
+
+        document.getElementById('genre-filter').onchange = () => {
+            fetch('/api/get-members').then(r => r.json()).then(renderMembers);
+        };
+
+        // Affiliates Logic
+        const defaultLinks = [
+            { cat: "Classics", type: "Tea", id: "FM-001", rate: "12", url: "https://fortnumandmason.com/earl-grey", status: "Active", clicks: 142 },
+            { cat: "Gothic", type: "Wine", id: "WINE-GOTH", rate: "15", url: "https://wine.com/cabernet-sauvignon", status: "Active", clicks: 89 },
+            { cat: "History", type: "Candle", id: "BYREDO-LIB", rate: "10", url: "https://byredo.com/bibliotheque", status: "Active", clicks: 215 },
+            { cat: "Nature", type: "Tea", id: "HARNEY-NAT", rate: "15", url: "https://harney.com/chamomile", status: "Active", clicks: 67 },
+            { cat: "Poetry", type: "Wine", id: "PRO-POET", rate: "15", url: "https://wine.com/prosecco", status: "Active", clicks: 104 }
+        ];
+
+        function renderLinks() {
+            const tbody = document.getElementById('affiliate-tbody');
+            tbody.innerHTML = '';
+            
+            const links = JSON.parse(localStorage.getItem('affiliate_links')) || defaultLinks;
+            
+            links.forEach(link => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${link.cat}</strong></td>
+                    <td>${link.type}</td>
+                    <td><code style="background: var(--cream-dark); padding: 0.2rem 0.5rem; border-radius: 4px;">${link.id}</code></td>
+                    <td>${link.rate}%</td>
+                    <td><a href="${link.url}" class="link-text" target="_blank">${link.url.substring(0, 20)}...</a></td>
+                    <td><span class="badge badge-active">${link.status}</span></td>
+                    <td>${link.clicks || 0}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openModal() { document.getElementById('link-modal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('link-modal').style.display = 'none'; }
+
+        document.getElementById('affiliate-form').onsubmit = (e) => {
+            e.preventDefault();
+            const links = JSON.parse(localStorage.getItem('affiliate_links')) || defaultLinks;
+            
+            links.push({
+                cat: document.getElementById('link-category').value,
+                type: document.getElementById('link-type').value,
+                url: document.getElementById('link-url').value,
+                id: document.getElementById('link-id').value,
+                rate: document.getElementById('link-rate').value,
+                status: "Active",
+                clicks: 0
+            });
+            
+            localStorage.setItem('affiliate_links', JSON.stringify(links));
+            renderLinks();
+            closeModal();
+        };
+
+        // Inner Circle Newsletter Logic
+        async function fetchSubscribers() {
+            const tbody = document.getElementById('subscriber-tbody');
+            tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 2rem; font-style: italic;">Accessing the archives...</td></tr>';
+            
+            const token = sessionStorage.getItem('archivist_token');
+
+            try {
+                const res = await fetch('/api/admin?action=subscribers', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (res.status === 401) return showLogin();
+
+                const data = await res.json();
+                document.getElementById('subscriber-count').innerText = data.length;
+                tbody.innerHTML = '';
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 2rem;">No subscribers yet.</td></tr>';
+                    return;
+                }
+                data.forEach(s => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${s.email}</strong></td>
+                        <td style="color: #999; font-size: 0.8rem;">${new Date(s.created_at).toLocaleDateString()}</td>
+                        <td><span class="badge badge-active">${s.status || 'Subscribed'}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                lucide.createIcons();
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--burgundy);">Failed to load subscribers.</td></tr>';
+            }
+        }
+
+        async function sendNewsletter() {
+            const subject = document.getElementById('newsletter-subject').value.trim();
+            const body_html = document.getElementById('newsletter-body').value.trim();
+            const include_rare_hunts = document.getElementById('include-rare-hunts').checked;
+            const btn = document.getElementById('send-btn');
+            const status = document.getElementById('send-status');
+
+            if (!subject || !body_html) {
+                alert('Please fill in both the subject and body.');
+                return;
+            }
+
+            if (!confirm(`Send this newsletter to all Inner Circle subscribers?`)) return;
+
+            btn.disabled = true;
+            btn.innerText = 'Dispatching...';
+            status.style.display = 'none';
+
+            try {
+                const token = sessionStorage.getItem('archivist_token');
+                const res = await fetch('/api/admin?action=newsletter', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ subject, body_html, include_rare_hunts })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    status.innerText = `✓ Dispatched to ${data.sent} subscribers.`;
+                    status.style.color = '#1B3022';
+                    document.getElementById('last-sent').innerText = new Date().toLocaleDateString();
+                } else {
+                    status.innerText = `Error: ${data.error}`;
+                    status.style.color = '#6B1D1D';
+                }
+            } catch {
+                status.innerText = 'Failed to connect. Please try again.';
+                status.style.color = '#6B1D1D';
+            }
+            status.style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="send" size="16"></i> Send to All Subscribers';
+            lucide.createIcons();
+        }
+
+        renderLinks();
+        async function fetchStats() {
+            const token = sessionStorage.getItem('archivist_token');
+            try {
+                const res = await fetch('/api/admin?action=stats', { headers: { 'Authorization': `Bearer ${token}` } });
+                const data = await res.json();
+                document.getElementById('stat-mrr').innerText = `$${data.mrr || 0}`;
+                document.getElementById('stat-members').innerText = data.members || 0;
+                document.getElementById('stat-subs').innerText = data.newsletter || 0;
+            } catch (err) {}
+        }
+
+        async function fetchInventory() {
+            const token = sessionStorage.getItem('archivist_token');
+            const tbody = document.getElementById('inventory-tbody');
+            try {
+                const res = await fetch('/api/admin?action=inventory', { headers: { 'Authorization': `Bearer ${token}` } });
+                const data = await res.json();
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">No inventory records yet. Add items to track launch materials.</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = data.map(item => `
+                    <tr>
+                        <td style="font-weight: bold;">${item.item_id}</td>
+                        <td><span class="genre-tag">${item.category || 'Supplies'}</span></td>
+                        <td>${item.quantity}</td>
+                        <td><span class="badge ${item.quantity < 20 ? 'badge-dispatched' : 'badge-active'}">${item.status}</span></td>
+                        <td><button class="btn-action" onclick="alert('Adjusting logic coming soon')">Adjust</button></td>
+                    </tr>
+                `).join('');
+            } catch (err) {}
+        }
+
+        async function fetchManuals() {
+            const token = sessionStorage.getItem('archivist_token');
+            const grid = document.getElementById('sop-grid');
+            try {
+                const res = await fetch('/api/admin?action=ops_manual', { headers: { 'Authorization': `Bearer ${token}` } });
+                const data = await res.json();
+                if (data.length === 0) {
+                    grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 4rem; color: var(--text-muted);">No operational manuals created yet.</p>';
+                    return;
+                }
+                grid.innerHTML = data.map(sop => `
+                    <div class="stat-card">
+                        <span class="genre-tag">${sop.category}</span>
+                        <h4 style="margin-top: 1rem; color: var(--forest-green); font-family: 'Playfair Display', serif; font-size: 1.2rem; text-transform: none;">${sop.title}</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 1rem 0;">${sop.content.substring(0, 100)}...</p>
+                        <button class="link-text" onclick="alert('Viewing manual coming soon')">Read Manual</button>
+                    </div>
+                `).join('');
+            } catch (err) {}
+        }
+
+        // Section Toggling Logic
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                const targetId = (section === 'inventory' || section === 'ops' || section === 'marketing') ? `${section}-section` : `section-${section}`;
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) targetSection.classList.add('active');
+                
+                if (section === 'inventory') fetchInventory();
+                if (section === 'ops') fetchManuals();
+                if (section === 'marketing') fetchStats();
+                if (section === 'curation') fetchMembers();
+                if (section === 'newsletter') fetchSubscribers();
+            });
+        });
+
+        // Login Logic
+        function showLogin() {
+            document.getElementById('login-overlay').style.display = 'flex';
+            sessionStorage.removeItem('archivist_token');
+        }
+
+        async function attemptLogin() {
+            const secret = document.getElementById('admin-secret').value;
+            if (!secret) return alert("Please enter the secret key.");
+            
+            const btn = document.querySelector('#login-overlay .btn-primary');
+            btn.innerText = "Verifying...";
+            btn.disabled = true;
+
+            try {
+                // Test the secret with a simple stats call
+                const res = await fetch('/api/admin?action=stats', {
+                    headers: { 'Authorization': `Bearer ${secret}` }
+                });
+
+                if (res.status === 200) {
+                    sessionStorage.setItem('archivist_token', secret);
+                    document.getElementById('login-overlay').style.display = 'none';
+                    fetchMembers();
+                } else {
+                    alert("Unauthorized access. The secret key is incorrect.");
+                    showLogin();
+                }
+            } catch (err) {
+                alert("Connection failed. Ensure your server is active.");
+            } finally {
+                btn.innerText = "Unlock the Dashboard";
+                btn.disabled = false;
+            }
+        }
+
+        // Auto-check on load
+        window.onload = () => {
+            const token = sessionStorage.getItem('archivist_token');
+            if (token) {
+                document.getElementById('login-overlay').style.display = 'none';
+                fetchMembers();
+            } else {
+                showLogin();
+            }
+        };
+    </script>
+</body>
+
+</html>

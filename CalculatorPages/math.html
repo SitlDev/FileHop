@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math & Geometry Solvers 2026 — YourCalc</title>
+    <meta name="keywords" content="math calculator, quadratic formula, geometry solver, fibonacci sequence, GCD LCM">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/math.html" />
+    <meta name="description" content="Professional math tools: Quadratic formula, Triangle solver, 3D Geometry, and Fibonacci sequence calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Math & <span style="color: var(--accent);">Geometry</span></h1>
+            <p class="subtitle">Essential solvers for students, engineers, and problem-solvers.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Math <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Discriminant (Δ)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">In quadratic equations, b² - 4ac determines root nature. If > 0, roots are real/distinct; if = 0, real/repeated; if < 0, roots are complex.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Golden Ratio (φ)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">As the Fibonacci sequence grows, the ratio between consecutive numbers approaches φ (≈1.618), found throughout nature and architecture.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Heron's Formula</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Calculate a triangle's area using only its three side lengths (a, b, c) and the semi-perimeter (s), making it ideal for non-right triangles.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('quadratic', event)">Quadratic</button>
+                <button class="tab-btn" onclick="showTab('triangle', event)">Triangle</button>
+                <button class="tab-btn" onclick="showTab('geometry', event)">Geometry 3D</button>
+                <button class="tab-btn" onclick="showTab('pct', event)">Percentages</button>
+                <button class="tab-btn" onclick="showTab('algebra', event)">GCD/LCM</button>
+                <button class="tab-btn" onclick="showTab('fibonacci', event)">Fibonacci</button>
+            </div>
+
+            <div id="quadratic" class="calc-container active">
+                <p style="color:var(--muted); margin-bottom:12px;">Solve ax² + bx + c = 0</p>
+                <div class="input-grid">
+                    <div class="input-group"><label>a</label><div class="input-wrapper"><input type="number" id="q-a" value="1"></div></div>
+                    <div class="input-group"><label>b</label><div class="input-wrapper"><input type="number" id="q-b" value="-5"></div></div>
+                    <div class="input-group"><label>c</label><div class="input-wrapper"><input type="number" id="q-c" value="6"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateQuad()">Solve →</button>
+                <div id="quad-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Root 1</span><span class="result-value" id="q-x1">—</span></div>
+                        <div class="result-item"><span class="result-label">Root 2</span><span class="result-value" id="q-x2">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="triangle" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Side a</label><div class="input-wrapper"><input type="number" id="t-a" value="3"></div></div>
+                    <div class="input-group"><label>Side b</label><div class="input-wrapper"><input type="number" id="t-b" value="4"></div></div>
+                    <div class="input-group"><label>Side c</label><div class="input-wrapper"><input type="number" id="t-c" value="5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateTriangle()">Analyze Triangle →</button>
+                <div id="tri-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Area</span><span class="result-value" id="t-area">0</span></div>
+                        <div class="result-item"><span class="result-label">Type</span><span class="result-value" id="t-type">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="geometry" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Shape</label><div class="input-wrapper"><select id="g-shape" onchange="toggleGeo()"><option value="sphere">Sphere</option><option value="cylinder">Cylinder</option></select></div></div>
+                    <div class="input-group"><label>Radius</label><div class="input-wrapper"><input type="number" id="g-r" value="5"></div></div>
+                    <div id="g-h-group" class="input-group" style="display:none;"><label>Height</label><div class="input-wrapper"><input type="number" id="g-h" value="10"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateGeometry()">Calculate →</button>
+                <div id="geo-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Surface Area</span><span class="result-value" id="g-area">0</span></div>
+                        <div class="result-item"><span class="result-label">Volume</span><span class="result-value" id="g-vol">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="pct" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Value</label><div class="input-wrapper"><input type="number" id="p-v" value="100"></div></div>
+                    <div class="input-group"><label>Percentage (%)</label><div class="input-wrapper"><input type="number" id="p-p" value="20"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculatePct()">Calculate →</button>
+                <div id="pct-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Result</span><span class="result-value" id="p-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="algebra" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Number 1</label><div class="input-wrapper"><input type="number" id="al-n1" value="24"></div></div>
+                    <div class="input-group"><label>Number 2</label><div class="input-wrapper"><input type="number" id="al-n2" value="36"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateGCD()">Find Factors →</button>
+                <div id="algebra-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">GCD</span><span class="result-value" id="al-gcd">0</span></div>
+                        <div class="result-item"><span class="result-label">LCM</span><span class="result-value" id="al-lcm">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="fibonacci" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Sequence Length</label><div class="input-wrapper"><input type="number" id="fb-n" value="10"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateFib()">Generate →</button>
+                <div id="fib-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Sequence</span><span class="result-value" id="fb-out" style="font-size:16px; word-break:break-all;">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Logic of <span style="color: var(--accent);">Pure Mathematics</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Quadratic Formula: Solving for the Unknown</h3>
+                        <p>In algebra, the <strong>Quadratic Formula</strong> is a fundamental tool for finding the roots of a second-degree polynomial. Given an equation in the form ax² + bx + c = 0, the formula provides the exact points where the parabola crosses the x-axis. Our <strong>Quadratic Solver</strong> handles the complex math for you, identifying both real and imaginary (complex) solutions. This formula is used in physics to calculate projectile motion, in economics to find equilibrium points, and in engineering to determine structural stability.</p>
+                        <p style="margin-top: 16px;">The "Discriminant" (b² - 4ac) is the most critical part of the formula. If it is positive, you have two real roots; if it is zero, you have one; and if it is negative, the roots are complex. Understanding these different outcomes is essential for interpreting the physical meaning of your mathematical models. Our tool provides immediate clarity, allowing you to focus on the application of the result rather than the mechanics of the calculation.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Geometry and the Fibonacci Sequence</h3>
+                        <p>Geometry is the study of shape, size, and the properties of space. Our <strong>Geometric Analysis Tool</strong> allows you to calculate the area and volume of fundamental shapes like spheres and cylinders. Simultaneously, we explore the <strong>Fibonacci Sequence</strong>, a series of numbers where each number is the sum of the two preceding ones. This sequence appears throughout nature—from the arrangement of leaves on a stem to the spiral of a galaxy. It is a striking example of how simple mathematical rules can produce complex, organic beauty.</p>
+                        <p style="margin-top: 16px;">The ratio between consecutive Fibonacci numbers approaches the <strong>Golden Ratio</strong> (approximately 1.618), a proportion often cited for its aesthetic appeal in art and architecture. By generating these sequences and calculating geometric volumes, you are engaging with the same mathematical principles that govern the physical structure of our universe. Whether you are designing a product or simply curious about the world, these tools provide a window into the underlying logic of reality.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Number Theory: GCD and LCM</h3>
+                        <p>Number theory is the study of the properties of integers. Two of its most common applications are finding the <strong>Greatest Common Divisor (GCD)</strong> and the <strong>Least Common Multiple (LCM)</strong>. Our <strong>Algebraic Logic Tool</strong> simplifies these tasks, which are foundational for working with fractions, solving periodic problems, and understanding cryptography. These concepts help you find the "common ground" between different numbers, a skill that is vital for everything from musical rhythm to computer science algorithms.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Mastering the Mathematical Mindset</h3>
+                        <p>Mathematics is not just about getting the right answer; it's about developing a structured way of thinking. Our <strong>Math Suite</strong> is designed to support students, professionals, and the curious in their exploration of numbers. By automating the repetitive parts of calculation, we allow you to focus on the "why" behind the "what." Stay rigorous, stay curious, and let the logic of math illuminate your path.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateQuad() {
+            const a = parseFloat(document.getElementById('q-a').value);
+const b = parseFloat(document.getElementById('q-b').value);
+const c = parseFloat(document.getElementById('q-c').value);
+const d = b * b - 4 * a * c;
+if (d < 0) {
+    document.getElementById('q-x1').innerText = 'Complex';
+    document.getElementById('q-x2').innerText = 'Complex';
+} else {
+    document.getElementById('q-x1').innerText = ((-b + Math.sqrt(d)) / (2 * a)).toFixed(2);
+    document.getElementById('q-x2').innerText = ((-b - Math.sqrt(d)) / (2 * a)).toFixed(2);
+}
+document.getElementById('quad-results').classList.add('visible');
+saveActivity('math', { type: 'quadratic', a, b, c });
+        }
+
+        function calculateTriangle() {
+            const a = parseFloat(document.getElementById('t-a').value);
+const b = parseFloat(document.getElementById('t-b').value);
+const c = parseFloat(document.getElementById('t-c').value);
+const s = (a + b + c) / 2;
+const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+const type = a === b && b === c ? 'Equilateral' : a === b || b === c || a === c ? 'Isosceles' : 'Scalene';
+document.getElementById('t-area').innerText = isNaN(area) ? 'Invalid' : area.toFixed(2);
+document.getElementById('t-type').innerText = type;
+document.getElementById('tri-results').classList.add('visible');
+saveActivity('math', { type: 'triangle', a, b, c }, { area });
+        }
+
+        function toggleGeo() {
+            const s = document.getElementById('g-shape').value;
+            document.getElementById('g-h-group').style.display = s === 'cylinder' ? 'block' : 'none';
+        }
+
+        function calculateGeometry() {
+            const shape = document.getElementById('g-shape').value;
+const r = parseFloat(document.getElementById('g-r').value);
+const h = parseFloat(document.getElementById('g-h').value) || 0;
+let area = 0, vol = 0;
+if (shape === 'sphere') {
+    area = 4 * Math.PI * r * r;
+    vol = (4/3) * Math.PI * r * r * r;
+} else {
+    area = 2 * Math.PI * r * h + 2 * Math.PI * r * r;
+    vol = Math.PI * r * r * h;
+}
+document.getElementById('g-area').innerText = area.toFixed(2);
+document.getElementById('g-vol').innerText = vol.toFixed(2);
+document.getElementById('geo-results').classList.add('visible');
+saveActivity('math', { type: 'geometry', shape, r, h });
+        }
+
+        function calculatePct() {
+            const v = parseFloat(document.getElementById('p-v').value);
+const p = parseFloat(document.getElementById('p-p').value);
+const res = v * (p / 100);
+document.getElementById('p-out').innerText = res.toFixed(2);
+document.getElementById('pct-results').classList.add('visible');
+saveActivity('math', { type: 'percentage', val: v, pct: p }, { res });
+        }
+
+        function calculateGCD() {
+            let a = Math.abs(parseInt(document.getElementById('al-n1').value));
+let b = Math.abs(parseInt(document.getElementById('al-n2').value));
+const x = a, y = b;
+if (a === 0 && b === 0) {
+    document.getElementById('al-gcd').innerText = '0';
+    document.getElementById('al-lcm').innerText = '0';
+} else {
+    while (b) { [a, b] = [b, a % b]; }
+    const gcd = a;
+    const lcm = (x * y) / gcd;
+    document.getElementById('al-gcd').innerText = gcd;
+    document.getElementById('al-lcm').innerText = lcm;
+}
+document.getElementById('algebra-results').classList.add('visible');
+saveActivity('math', { type: 'gcd-lcm', n1: x, n2: y });
+        }
+
+        function calculateFib() {
+            const n = Math.min(parseInt(document.getElementById('fb-n').value), 50);
+if (n <= 0) {
+    document.getElementById('fb-out').innerText = 'None';
+} else {
+    let seq = [0, 1];
+    for (let i = 2; i < n; i++) seq.push(seq[i-1] + seq[i-2]);
+    document.getElementById('fb-out').innerText = seq.slice(0, n).join(', ');
+}
+document.getElementById('fib-results').classList.add('visible');
+saveActivity('math', { type: 'fibonacci', length: n });
+        }
+    </script>
+</body>
+</html>

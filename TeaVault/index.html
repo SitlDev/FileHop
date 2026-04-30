@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeaVault — The World's Finest Teas. Sourced. Studied. Delivered.</title>
+  <meta name="description" content="TeaVault is a premium global tea marketplace, education hub, and subscription platform. Discover rare teas from Japan, China, Taiwan, India, Kenya, and beyond." />
+  <meta property="og:title" content="TeaVault — Global Tea Sourcing & Education" />
+  <meta property="og:description" content="The world's finest teas. Sourced. Studied. Delivered." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" id="nav-logo">
+      <span class="logo-leaf">🍃</span>
+      <span class="logo-text">TeaVault</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="catalog.html" class="nav-link">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link">Education</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link nav-b2b">For Business</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="catalog.html" class="nav-search" id="nav-search-btn" title="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </a>
+      <a href="profile.html" class="nav-account" id="nav-account-btn">Account</a>
+      <a href="subscriptions.html" class="btn btn-primary btn-sm">Subscribe</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a>
+    <a href="education.html">Education Hub</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="events.html">Events</a>
+    <a href="subscriptions.html">Subscribe</a>
+    <a href="b2b.html" class="mobile-b2b">For Business</a>
+    <a href="profile.html">My Account</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg">
+    <div class="hero-layer hero-layer-1" id="parallax-1"></div>
+    <div class="hero-layer hero-layer-2" id="parallax-2"></div>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content" id="hero-content">
+    <p class="hero-eyebrow reveal">Origin. Ritual. Taste.</p>
+    <h1 class="hero-title reveal reveal-delay-1">The world's finest teas.<br/><em>Sourced. Studied. Delivered.</em></h1>
+    <p class="hero-subtitle reveal reveal-delay-2">From ancient mountain gardens to your cup — rare single-estate teas, curated subscriptions, and a world of tea knowledge.</p>
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="catalog.html" class="btn btn-cream btn-lg">Explore Teas</a>
+      <a href="subscriptions.html" class="btn btn-outline-cream btn-lg">Start a Subscription</a>
+      <a href="b2b.html" class="btn btn-ghost-cream btn-lg">Source for Your Business</a>
+    </div>
+  </div>
+  <div class="hero-scroll-cue" id="scroll-cue">
+    <span>Scroll to explore</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="7" r="2" fill="currentColor" class="scroll-dot"/></svg>
+  </div>
+</section>
+
+<!-- ========== ORIGINS STRIP ========== -->
+<section class="origins" id="origins">
+  <div class="origins-label">Explore by Origin</div>
+  <div class="origins-track" id="origins-track">
+    <div class="origins-inner" id="origins-inner">
+      <a href="catalog.html?origin=japan" class="origin-chip">
+        <span class="origin-flag">🇯🇵</span>
+        <span>Japan</span>
+      </a>
+      <a href="catalog.html?origin=china" class="origin-chip">
+        <span class="origin-flag">🇨🇳</span>
+        <span>China</span>
+      </a>
+      <a href="catalog.html?origin=taiwan" class="origin-chip">
+        <span class="origin-flag">🇹🇼</span>
+        <span>Taiwan</span>
+      </a>
+      <a href="catalog.html?origin=india" class="origin-chip">
+        <span class="origin-flag">🇮🇳</span>
+        <span>India</span>
+      </a>
+      <a href="catalog.html?origin=kenya" class="origin-chip">
+        <span class="origin-flag">🇰🇪</span>
+        <span>Kenya</span>
+      </a>
+      <a href="catalog.html?origin=sri-lanka" class="origin-chip">
+        <span class="origin-flag">🇱🇰</span>
+        <span>Sri Lanka</span>
+      </a>
+      <a href="catalog.html?origin=nepal" class="origin-chip">
+        <span class="origin-flag">🇳🇵</span>
+        <span>Nepal</span>
+      </a>
+      <a href="catalog.html?origin=morocco" class="origin-chip">
+        <span class="origin-flag">🇲🇦</span>
+        <span>Morocco</span>
+      </a>
+      <a href="catalog.html?origin=turkey" class="origin-chip">
+        <span class="origin-flag">🇹🇷</span>
+        <span>Turkey</span>
+      </a>
+      <!-- duplicate for infinite scroll -->
+      <a href="catalog.html?origin=japan" class="origin-chip" aria-hidden="true">
+        <span class="origin-flag">🇯🇵</span><span>Japan</span>
+      </a>
+      <a href="catalog.html?origin=china" class="origin-chip" aria-hidden="true">
+        <span class="origin-flag">🇨🇳</span><span>China</span>
+      </a>
+      <a href="catalog.html?origin=taiwan" class="origin-chip" aria-hidden="true">
+        <span class="origin-flag">🇹🇼</span><span>Taiwan</span>
+      </a>
+      <a href="catalog.html?origin=india" class="origin-chip" aria-hidden="true">
+        <span class="origin-flag">🇮🇳</span><span>India</span>
+      </a>
+      <a href="catalog.html?origin=kenya" class="origin-chip" aria-hidden="true">
+        <span class="origin-flag">🇰🇪</span><span>Kenya</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURED TEAS ========== -->
+<section class="featured" id="featured">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Editorial Picks</p>
+      <h2 class="section-title">Teas of the Season</h2>
+      <p class="section-subtitle">Hand-selected by our tea sommeliers — each one a story of land, craft, and time.</p>
+    </div>
+    <div class="featured-grid">
+
+      <article class="featured-card featured-card-large reveal">
+        <a href="catalog.html?tea=gyokuro-uji" class="featured-card-link">
+          <div class="featured-card-img" style="background-image: url('assets/tea-gyokuro.jpg')">
+            <div class="featured-card-img-placeholder featured-img-1"></div>
+            <div class="featured-card-badges">
+              <span class="badge badge-origin"><span>🇯🇵</span> Japan</span>
+              <span class="badge badge-type">Green</span>
+            </div>
+          </div>
+          <div class="featured-card-body">
+            <div class="featured-card-meta">
+              <span class="tea-grade">Ceremonial Grade</span>
+              <span class="harvest-badge">Spring 2025</span>
+            </div>
+            <h3 class="featured-card-title">Uji Gyokuro</h3>
+            <p class="featured-card-origin">Uji, Kyoto Prefecture · Yamashiro Estate</p>
+            <p class="featured-card-desc">Shade-grown for 25 days under traditional reed screens, this gyokuro delivers extraordinary umami depth — oceanic, grassy, silk-smooth with a lingering sweetness.</p>
+            <div class="featured-card-notes">
+              <span class="note-chip">🌊 Oceanic</span>
+              <span class="note-chip">🌿 Umami</span>
+              <span class="note-chip">🍬 Sweet finish</span>
+            </div>
+            <div class="featured-card-footer">
+              <div class="tea-price">
+                <span class="price-retail">$38 / 50g</span>
+                <span class="price-wholesale-hint">Wholesale available</span>
+              </div>
+              <span class="featured-card-cta">Explore →</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="featured-card reveal reveal-delay-1">
+        <a href="catalog.html?tea=dancong-oolong" class="featured-card-link">
+          <div class="featured-card-img" style="background-image: url('assets/tea-dancong.jpg')">
+            <div class="featured-card-img-placeholder featured-img-2"></div>
+            <div class="featured-card-badges">
+              <span class="badge badge-origin"><span>🇨🇳</span> China</span>
+              <span class="badge badge-type">Oolong</span>
+            </div>
+          </div>
+          <div class="featured-card-body">
+            <div class="featured-card-meta">
+              <span class="tea-grade">Single-Tree Harvest</span>
+              <span class="harvest-badge">Autumn 2024</span>
+            </div>
+            <h3 class="featured-card-title">Phoenix Mountain Dancong</h3>
+            <p class="featured-card-origin">Chaozhou, Guangdong · Fenghuang Region</p>
+            <p class="featured-card-desc">From 300-year-old trees on Phoenix Mountain — intensely aromatic, floral honey notes that shift through each steep, complex and endlessly rewarding.</p>
+            <div class="featured-card-notes">
+              <span class="note-chip">🌺 Orchid</span>
+              <span class="note-chip">🍯 Honey</span>
+              <span class="note-chip">🔥 Warm spice</span>
+            </div>
+            <div class="featured-card-footer">
+              <div class="tea-price">
+                <span class="price-retail">$52 / 50g</span>
+                <span class="price-wholesale-hint">Wholesale available</span>
+              </div>
+              <span class="featured-card-cta">Explore →</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="featured-card reveal reveal-delay-2">
+        <a href="catalog.html?tea=darjeeling-first-flush" class="featured-card-link">
+          <div class="featured-card-img" style="background-image: url('assets/tea-darjeeling.jpg')">
+            <div class="featured-card-img-placeholder featured-img-3"></div>
+            <div class="featured-card-badges">
+              <span class="badge badge-origin"><span>🇮🇳</span> India</span>
+              <span class="badge badge-type">Black</span>
+            </div>
+          </div>
+          <div class="featured-card-body">
+            <div class="featured-card-meta">
+              <span class="tea-grade">First Flush SFTGFOP1</span>
+              <span class="harvest-badge">March 2025</span>
+            </div>
+            <h3 class="featured-card-title">Darjeeling First Flush</h3>
+            <p class="featured-card-origin">Makaibari Estate · Kurseong, West Bengal</p>
+            <p class="featured-card-desc">The "Champagne of teas" at its spring finest — light-liquoring with a muscatel character, brisk astringency, and unmistakable Himalayan floral brightness.</p>
+            <div class="featured-card-notes">
+              <span class="note-chip">🍇 Muscatel</span>
+              <span class="note-chip">🌸 Floral</span>
+              <span class="note-chip">✨ Brisk</span>
+            </div>
+            <div class="featured-card-footer">
+              <div class="tea-price">
+                <span class="price-retail">$44 / 50g</span>
+                <span class="price-wholesale-hint">Wholesale available</span>
+              </div>
+              <span class="featured-card-cta">Explore →</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+    </div>
+    <div class="featured-view-all reveal">
+      <a href="catalog.html" class="btn btn-outline-dark">View All Teas</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WORLD MAP TEASER ========== -->
+<section class="world-map-section" id="world-map-section">
+  <div class="world-map-bg"></div>
+  <div class="container">
+    <div class="world-map-content reveal">
+      <p class="section-eyebrow light">A World of Flavour</p>
+      <h2 class="section-title light">Explore by Origin</h2>
+      <p class="section-subtitle light">Trace every cup to its source — click any region on our interactive map to discover the teas, producers, and stories behind each origin.</p>
+      <a href="catalog.html" class="btn btn-cream btn-lg mt-4">Open the Origin Map</a>
+    </div>
+    <div class="world-map-visual reveal reveal-delay-2">
+      <div class="map-container" id="map-container">
+        <!-- SVG World Map -->
+        <svg viewBox="0 0 800 400" class="world-svg" id="world-svg">
+          <!-- Simplified continents -->
+          <!-- North America -->
+          <path class="continent" d="M 80 60 L 180 50 L 200 80 L 180 130 L 160 160 L 140 180 L 120 170 L 90 150 L 70 120 L 60 90 Z" />
+          <!-- South America -->
+          <path class="continent" d="M 140 190 L 180 185 L 200 220 L 195 280 L 175 310 L 145 300 L 130 260 L 125 220 Z" />
+          <!-- Europe -->
+          <path class="continent" d="M 330 50 L 400 45 L 415 75 L 400 95 L 370 100 L 340 90 L 320 70 Z" />
+          <!-- Africa -->
+          <path class="continent" d="M 340 105 L 400 100 L 420 130 L 415 200 L 390 250 L 360 260 L 330 230 L 320 170 L 325 130 Z" />
+          <!-- Asia - large -->
+          <path class="continent" d="M 415 40 L 580 35 L 640 60 L 660 100 L 650 150 L 610 170 L 560 180 L 500 175 L 450 160 L 415 130 L 405 80 Z" />
+          <!-- Southeast Asia / India -->
+          <path class="continent" d="M 500 175 L 550 175 L 570 220 L 555 250 L 520 240 L 495 210 Z" />
+          <!-- Australia -->
+          <path class="continent" d="M 590 230 L 660 220 L 680 260 L 665 300 L 625 310 L 590 285 L 578 255 Z" />
+          <!-- Japan -->
+          <ellipse class="continent origin-japan hot" cx="645" cy="100" rx="15" ry="25" />
+          <!-- Taiwan -->
+          <ellipse class="continent origin-taiwan hot" cx="598" cy="145" rx="8" ry="12" />
+          <!-- Sri Lanka -->
+          <ellipse class="continent origin-srilanka hot" cx="530" cy="230" rx="6" ry="9" />
+
+          <!-- Origin Pins -->
+          <g class="map-pins">
+            <g class="map-pin-group" data-origin="Japan" data-x="645" data-y="88">
+              <circle cx="645" cy="88" r="8" class="pin-circle pin-japan" />
+              <circle cx="645" cy="88" r="4" class="pin-dot" />
+              <circle cx="645" cy="88" r="12" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="China" data-x="580" data-y="90">
+              <circle cx="580" cy="90" r="8" class="pin-circle pin-china" />
+              <circle cx="580" cy="90" r="4" class="pin-dot" />
+              <circle cx="580" cy="90" r="12" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="Taiwan" data-x="600" data-y="140">
+              <circle cx="600" cy="140" r="8" class="pin-circle pin-taiwan" />
+              <circle cx="600" cy="140" r="4" class="pin-dot" />
+              <circle cx="600" cy="140" r="12" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="India" data-x="525" data-y="185">
+              <circle cx="525" cy="185" r="8" class="pin-circle pin-india" />
+              <circle cx="525" cy="185" r="4" class="pin-dot" />
+              <circle cx="525" cy="185" r="12" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="Sri Lanka" data-x="530" data-y="218">
+              <circle cx="530" cy="218" r="6" class="pin-circle pin-srilanka" />
+              <circle cx="530" cy="218" r="3" class="pin-dot" />
+              <circle cx="530" cy="218" r="10" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="Kenya" data-x="400" data-y="195">
+              <circle cx="400" cy="195" r="7" class="pin-circle pin-kenya" />
+              <circle cx="400" cy="195" r="3.5" class="pin-dot" />
+              <circle cx="400" cy="195" r="11" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="Nepal" data-x="508" data-y="155">
+              <circle cx="508" cy="155" r="6" class="pin-circle pin-nepal" />
+              <circle cx="508" cy="155" r="3" class="pin-dot" />
+              <circle cx="508" cy="155" r="10" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="Morocco" data-x="335" data-y="118">
+              <circle cx="335" cy="118" r="6" class="pin-circle pin-morocco" />
+              <circle cx="335" cy="118" r="3" class="pin-dot" />
+              <circle cx="335" cy="118" r="10" class="pin-pulse" />
+            </g>
+            <g class="map-pin-group" data-origin="Turkey" data-x="428" data-y="88">
+              <circle cx="428" cy="88" r="6" class="pin-circle pin-turkey" />
+              <circle cx="428" cy="88" r="3" class="pin-dot" />
+              <circle cx="428" cy="88" r="10" class="pin-pulse" />
+            </g>
+          </g>
+        </svg>
+        <!-- Map Tooltip -->
+        <div class="map-tooltip" id="map-tooltip">
+          <span class="map-tooltip-origin"></span>
+          <span class="map-tooltip-count"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EDUCATION TEASER ========== -->
+<section class="education-teaser" id="education-teaser">
+  <div class="container">
+    <div class="edu-layout">
+      <div class="edu-text reveal">
+        <p class="section-eyebrow">Knowledge Hub</p>
+        <h2 class="section-title">The Art & Science of Tea</h2>
+        <p class="section-subtitle">From gongfu ceremony in Chaozhou to the L-theanine science behind the calm — our education hub is the most comprehensive tea resource online.</p>
+        <div class="edu-modules">
+          <a href="education.html#types" class="edu-module-chip">
+            <span class="edu-mod-icon">🍵</span>
+            <div>
+              <strong>Tea Types</strong>
+              <span>42 varieties covered</span>
+            </div>
+          </a>
+          <a href="education.html#vessels" class="edu-module-chip">
+            <span class="edu-mod-icon">🫖</span>
+            <div>
+              <strong>Vessels & Tools</strong>
+              <span>Gaiwans to tetsubin</span>
+            </div>
+          </a>
+          <a href="education.html#cultures" class="edu-module-chip">
+            <span class="edu-mod-icon">🌏</span>
+            <div>
+              <strong>World Cultures</strong>
+              <span>8 major traditions</span>
+            </div>
+          </a>
+          <a href="education.html#wellness" class="edu-module-chip">
+            <span class="edu-mod-icon">🌿</span>
+            <div>
+              <strong>Wellness & Medicinal</strong>
+              <span>Evidence-based benefits</span>
+            </div>
+          </a>
+          <a href="education.html#brewing" class="edu-module-chip">
+            <span class="edu-mod-icon">🔬</span>
+            <div>
+              <strong>Brewing Science</strong>
+              <span>Temperature, ratio, time</span>
+            </div>
+          </a>
+        </div>
+        <a href="education.html" class="btn btn-primary mt-3">Enter the Education Hub</a>
+      </div>
+      <div class="edu-visual reveal reveal-delay-2">
+        <div class="edu-article-preview">
+          <div class="edu-art-img edu-art-img-1"></div>
+          <div class="edu-art-content">
+            <span class="edu-art-cat">Tea Types</span>
+            <h4>The Complete Guide to Pu-erh: Ancient Tea, Living History</h4>
+            <p>Discover how microbial fermentation transforms compressed Yunnan tea leaves into one of the world's most complex and collectible beverages.</p>
+            <a href="education.html" class="edu-art-link">Read Article →</a>
+          </div>
+        </div>
+        <div class="edu-article-preview edu-art-secondary">
+          <div class="edu-art-img edu-art-img-2"></div>
+          <div class="edu-art-content edu-art-content-sm">
+            <span class="edu-art-cat">Brewing Science</span>
+            <h4>Water Temperature: The Invisible Ingredient</h4>
+            <a href="education.html" class="edu-art-link">Read →</a>
+          </div>
+        </div>
+        <div class="edu-article-preview edu-art-secondary">
+          <div class="edu-art-img edu-art-img-3"></div>
+          <div class="edu-art-content edu-art-content-sm">
+            <span class="edu-art-cat">World Cultures</span>
+            <h4>Gongfu Cha: The Way of Tea as Meditation</h4>
+            <a href="education.html" class="edu-art-link">Read →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SUBSCRIPTIONS TEASER ========== -->
+<section class="sub-teaser" id="sub-teaser">
+  <div class="sub-teaser-bg"></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow light">Monthly Discovery</p>
+      <h2 class="section-title light">A Subscription as Refined as the Tea</h2>
+      <p class="section-subtitle light">Three tiers, curated by our sommeliers — from beginner explorations to rare estate releases.</p>
+    </div>
+    <div class="sub-tiers" id="sub-tiers">
+
+      <div class="sub-tier-card reveal" data-tier="wanderer">
+        <div class="sub-tier-icon">🌿</div>
+        <h3 class="sub-tier-name">Wanderer</h3>
+        <p class="sub-tier-tagline">Begin the journey</p>
+        <div class="sub-tier-price">
+          <span class="price-big">$28</span>
+          <span class="price-per">/month</span>
+        </div>
+        <ul class="sub-tier-features">
+          <li><span class="check">✓</span> 2 curated teas per month</li>
+          <li><span class="check">✓</span> Beginner-friendly selections</li>
+          <li><span class="check">✓</span> Tasting cards included</li>
+          <li><span class="check">✓</span> Surprise origin each month</li>
+        </ul>
+        <a href="subscriptions.html#wanderer" class="btn btn-cream w-full">Start Wanderer</a>
+      </div>
+
+      <div class="sub-tier-card sub-tier-featured reveal reveal-delay-1" data-tier="connoisseur">
+        <div class="sub-tier-badge">Most Popular</div>
+        <div class="sub-tier-icon">🫖</div>
+        <h3 class="sub-tier-name">Connoisseur</h3>
+        <p class="sub-tier-tagline">Deepen your knowledge</p>
+        <div class="sub-tier-price">
+          <span class="price-big">$58</span>
+          <span class="price-per">/month</span>
+        </div>
+        <ul class="sub-tier-features">
+          <li><span class="check">✓</span> 4 premium teas per month</li>
+          <li><span class="check">✓</span> Full tasting notes & provenance</li>
+          <li><span class="check">✓</span> Brew guide + pairing card</li>
+          <li><span class="check">✓</span> Regional deep dives</li>
+          <li><span class="check">✓</span> Member education access</li>
+        </ul>
+        <a href="subscriptions.html#connoisseur" class="btn btn-umber w-full">Start Connoisseur</a>
+      </div>
+
+      <div class="sub-tier-card reveal reveal-delay-2" data-tier="reserve">
+        <div class="sub-tier-icon">💎</div>
+        <h3 class="sub-tier-name">Reserve</h3>
+        <p class="sub-tier-tagline">Rare. Limited. Extraordinary.</p>
+        <div class="sub-tier-price">
+          <span class="price-big">$128</span>
+          <span class="price-per">/quarter</span>
+        </div>
+        <ul class="sub-tier-features">
+          <li><span class="check">✓</span> Rare & limited estate teas</li>
+          <li><span class="check">✓</span> Direct-from-estate quarterly box</li>
+          <li><span class="check">✓</span> Sommelier concierge access</li>
+          <li><span class="check">✓</span> Priority access to new arrivals</li>
+          <li><span class="check">✓</span> Collector's packaging</li>
+        </ul>
+        <a href="subscriptions.html#reserve" class="btn btn-gold w-full">Join Reserve</a>
+      </div>
+
+    </div>
+    <div class="sub-gift-prompt reveal">
+      <p>🎁 <strong>Give the gift of tea</strong> — gift subscriptions available for all tiers. <a href="subscriptions.html#gift" class="link-gold">Send a gift →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALLERY TEASER ========== -->
+<section class="gallery-teaser" id="gallery-teaser">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Visual World of Tea</p>
+      <h2 class="section-title">Through the Lens</h2>
+    </div>
+    <div class="gallery-masonry-preview" id="gallery-preview">
+      <div class="gal-item gal-tall reveal">
+        <div class="gal-img gal-img-1"></div>
+        <div class="gal-overlay"><span>Tea Garden · Uji, Japan</span></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-img gal-img-2"></div>
+        <div class="gal-overlay"><span>Gongfu Ceremony · Chaozhou</span></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <div class="gal-img gal-img-3"></div>
+        <div class="gal-overlay"><span>Harvest Season · Darjeeling</span></div>
+      </div>
+      <div class="gal-item gal-wide reveal reveal-delay-2">
+        <div class="gal-img gal-img-4"></div>
+        <div class="gal-overlay"><span>Atay · Marrakech, Morocco</span></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <div class="gal-img gal-img-5"></div>
+        <div class="gal-overlay"><span>Yixing Clay Collection · Jiangsu</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:2.5rem;">
+      <a href="gallery.html" class="btn btn-outline-dark">Open the Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== B2B TEASER ========== -->
+<section class="b2b-teaser" id="b2b-teaser">
+  <div class="container">
+    <div class="b2b-layout">
+      <div class="b2b-visual reveal">
+        <div class="b2b-img-stack">
+          <div class="b2b-img b2b-img-main"></div>
+          <div class="b2b-img b2b-img-accent"></div>
+          <div class="b2b-stat-badge">
+            <div class="b2b-stat-num">340+</div>
+            <div class="b2b-stat-label">Verified Suppliers</div>
+          </div>
+        </div>
+      </div>
+      <div class="b2b-text reveal reveal-delay-1">
+        <p class="section-eyebrow">For Businesses</p>
+        <h2 class="section-title">Source with Confidence. Scale with Care.</h2>
+        <p class="section-subtitle">Whether you're a single café or a multinational wellness brand — our verified supplier network, RFQ system, and dedicated account management make professional tea sourcing seamless.</p>
+        <div class="b2b-features">
+          <div class="b2b-feature">
+            <span class="b2b-feat-icon">🌐</span>
+            <div>
+              <strong>340+ Verified Suppliers</strong>
+              <p>Vetted for quality, ethics, and consistency across 28 origin countries.</p>
+            </div>
+          </div>
+          <div class="b2b-feature">
+            <span class="b2b-feat-icon">📋</span>
+            <div>
+              <strong>RFQ Builder</strong>
+              <p>Build custom quote requests in minutes. Compare offers side by side.</p>
+            </div>
+          </div>
+          <div class="b2b-feature">
+            <span class="b2b-feat-icon">📦</span>
+            <div>
+              <strong>Flexible MOQ & Packaging</strong>
+              <p>From 1kg samples to full-container orders — white-label available.</p>
+            </div>
+          </div>
+          <div class="b2b-feature">
+            <span class="b2b-feat-icon">💳</span>
+            <div>
+              <strong>Net-30 Invoicing</strong>
+              <p>Professional invoicing via Stripe. Multi-currency support.</p>
+            </div>
+          </div>
+        </div>
+        <div class="b2b-ctas">
+          <a href="b2b.html" class="btn btn-primary">Access B2B Portal</a>
+          <a href="b2b.html#rfq" class="btn btn-outline-dark">Build an RFQ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRESS / TRUST ========== -->
+<section class="press-strip" id="press-strip">
+  <div class="container">
+    <p class="press-label reveal">As featured in</p>
+    <div class="press-logos reveal reveal-delay-1">
+      <div class="press-logo">
+        <span class="press-pub">The New York Times</span>
+      </div>
+      <div class="press-divider"></div>
+      <div class="press-logo">
+        <span class="press-pub">Vogue Living</span>
+      </div>
+      <div class="press-divider"></div>
+      <div class="press-logo">
+        <span class="press-pub">Bon Appétit</span>
+      </div>
+      <div class="press-divider"></div>
+      <div class="press-logo">
+        <span class="press-pub">Forbes</span>
+      </div>
+      <div class="press-divider"></div>
+      <div class="press-logo">
+        <span class="press-pub">Monocle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NEWSLETTER ========== -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-bg"></div>
+  <div class="container">
+    <div class="newsletter-content reveal">
+      <p class="section-eyebrow light">Stay in the Know</p>
+      <h2 class="newsletter-title">The TeaVault Journal</h2>
+      <p class="newsletter-desc">Monthly dispatches — new arrivals, seasonal picks, origin stories, brewing wisdom, and exclusive member offers. No noise. Just tea.</p>
+      <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletter(event)">
+        <div class="email-input-wrap">
+          <input type="email" id="newsletter-email" placeholder="Your email address" required class="email-input" />
+          <button type="submit" class="btn btn-umber">Subscribe</button>
+        </div>
+        <p class="newsletter-small">Get your first month's pick free when you join. Unsubscribe anytime.</p>
+      </form>
+      <div class="newsletter-success" id="newsletter-success" style="display:none;">
+        <span class="success-icon">🍃</span>
+        <p>Welcome to the TeaVault community — your first dispatch arrives soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <span class="logo-leaf">🍃</span>
+          <span class="logo-text">TeaVault</span>
+        </a>
+        <p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter / X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M4 20 20 4"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Pinterest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.26-5.33 1.26-5.33s-.32-.64-.32-1.59c0-1.49.87-2.6 1.94-2.6.92 0 1.36.69 1.36 1.51 0 .92-.59 2.3-.89 3.57-.25 1.07.53 1.94 1.58 1.94 1.9 0 3.17-2.4 3.17-5.25 0-2.17-1.46-3.68-3.56-3.68-2.42 0-3.84 1.82-3.84 3.69 0 .73.28 1.51.63 1.94a.5.5 0 0 1 .12.48l-.23.97c-.08.31-.25.38-.57.23-2.1-.98-3.41-4.05-3.41-6.52 0-3.78 3.38-7.25 9.76-7.25 5.12 0 9.1 3.65 9.1 8.52 0 5.09-3.2 9.18-7.66 9.18-1.5 0-2.9-.78-3.38-1.7l-.92 3.43c-.33 1.28-1.23 2.89-1.84 3.86A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Shop</h4>
+        <ul class="footer-links">
+          <li><a href="catalog.html?type=green">Green Teas</a></li>
+          <li><a href="catalog.html?type=oolong">Oolongs</a></li>
+          <li><a href="catalog.html?type=puerh">Pu-erh</a></li>
+          <li><a href="catalog.html?type=white">White Teas</a></li>
+          <li><a href="catalog.html?type=black">Black Teas</a></li>
+          <li><a href="catalog.html?type=herbal">Herbal & Blends</a></li>
+          <li><a href="catalog.html?featured=true">Seasonal Picks</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Learn</h4>
+        <ul class="footer-links">
+          <li><a href="education.html#types">Tea Types Guide</a></li>
+          <li><a href="education.html#vessels">Vessels & Tools</a></li>
+          <li><a href="education.html#cultures">World Cultures</a></li>
+          <li><a href="education.html#wellness">Wellness & Medicinal</a></li>
+          <li><a href="education.html#brewing">Brewing Science</a></li>
+          <li><a href="gallery.html">Tea Gallery</a></li>
+          <li><a href="events.html">Events Calendar</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html#sourcing">Sourcing Philosophy</a></li>
+          <li><a href="about.html#sustainability">Sustainability</a></li>
+          <li><a href="b2b.html">For Businesses</a></li>
+          <li><a href="b2b.html#supplier">Become a Supplier</a></li>
+          <li><a href="subscriptions.html">Subscriptions</a></li>
+          <li><a href="profile.html">My Account</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 TeaVault Inc. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Preferences</a>
+      </div>
+      <div class="footer-certifications">
+        <span class="cert-badge">🌱 Carbon Neutral</span>
+        <span class="cert-badge">🌿 Rainforest Ally</span>
+        <span class="cert-badge">⚖️ Fair Trade Committed</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

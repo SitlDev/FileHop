@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto P&L, Stock Options & DCA Investment Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="crypto profit calculator, stock options value, DCA simulator, portfolio rebalancing tool">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/invest.html" />
+    <meta name="description" content="Professional investment tools: Crypto P&L, Options, DCA, and Rebalance calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Investing & <span style="color: var(--accent2);">Crypto</span></h1>
+            <p class="subtitle">Sophisticated tools for modern asset management.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Investment <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Rule of 72</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">To estimate the years required to double your money, divide 72 by your annual rate of return. (e.g., 72 / 10% = 7.2 years).</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">DCA Power</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Dollar Cost Averaging reduces the impact of volatility by spreading out purchases. It often results in a lower average cost per share over time.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Options Risk</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Options provide leverage but also come with expiration risk. Unlike stocks, an option's value can drop to zero if the strike price is not met by the deadline.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('crypto', event)">Crypto P&L</button>
+                <button class="tab-btn" onclick="showTab('options', event)">Stock Options</button>
+                <button class="tab-btn" onclick="showTab('roi', event)">ROI & Yield</button>
+                <button class="tab-btn" onclick="showTab('dca', event)">DCA Simulator</button>
+                <button class="tab-btn" onclick="showTab('rebalance', event)">Rebalance</button>
+            </div>
+
+            <div id="crypto" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Buy Price</label><div class="input-wrapper"><input type="number" id="cr-b" value="45000"></div></div>
+                    <div class="input-group"><label>Sell Price</label><div class="input-wrapper"><input type="number" id="cr-s" value="65000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Quantity</label><div class="input-wrapper"><input type="number" id="cr-q" value="0.5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCrypto()">Calculate Profit →</button>
+                <div id="cr-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Gross Profit</span><span class="result-value" id="cr-out">$0</span></div>
+                        <div class="result-item"><span class="result-label">Tax Est. (30%)</span><span class="result-value" id="cr-tax">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="options" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Type</label><div class="input-wrapper"><select id="op-t"><option value="call">Call</option><option value="put">Put</option></select></div></div>
+                    <div class="input-group"><label>Strike</label><div class="input-wrapper"><input type="number" id="op-s" value="100"></div></div>
+                    <div class="input-group"><label>Market Price</label><div class="input-wrapper"><input type="number" id="op-m" value="120"></div></div>
+                    <div class="input-group"><label>Premium</label><div class="input-wrapper"><input type="number" id="op-p" value="5.50"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateOptions()">Calculate P/L →</button>
+                <div id="op-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Premium Cost</span><span class="result-value" id="op-cost">$0</span></div>
+                        <div class="result-item"><span class="result-label">Net Profit</span><span class="result-value" id="op-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="roi" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Initial Invest</label><div class="input-wrapper"><input type="number" id="roi-i" value="10000"></div></div>
+                    <div class="input-group"><label>Final Value</label><div class="input-wrapper"><input type="number" id="roi-v" value="15000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Years</label><div class="input-wrapper"><input type="number" id="roi-y" value="3"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateROI()">Analyze Returns →</button>
+                <div id="roi-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Total ROI</span><span class="result-value" id="roi-tot">0%</span></div>
+                        <div class="result-item"><span class="result-label">CAGR</span><span class="result-value" id="roi-cagr">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="dca" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Monthly Add</label><div class="input-wrapper"><input type="number" id="dca-a" value="500"></div></div>
+                    <div class="input-group"><label>Years</label><div class="input-wrapper"><input type="number" id="dca-y" value="5"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Return (%)</label><div class="input-wrapper"><input type="number" id="dca-r" value="10"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDCA()">Simulate DCA →</button>
+                <div id="dca-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Final Value</span><span class="result-value" id="dca-out">$0</span></div>
+                        <div class="result-item"><span class="result-label">Total Invested</span><span class="result-value" id="dca-inv">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="rebalance" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Portfolio Value</label><div class="input-wrapper"><input type="number" id="rb-total" value="100000"></div></div>
+                    <div class="input-group"><label>Asset Target (%)</label><div class="input-wrapper"><input type="number" id="rb-t1" value="60"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Current Asset Val</label><div class="input-wrapper"><input type="number" id="rb-v1" value="50000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateRebalance()">Audit Balance →</button>
+                <div id="rebalance-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Action Required</span><span class="result-value" id="rb-out">Balanced</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Principles of <span style="color: var(--accent);">Modern Investing</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">DCA: The Strategy of Consistency</h3>
+                        <p><strong>Dollar-Cost Averaging (DCA)</strong> is the practice of investing a fixed amount of money at regular intervals, regardless of the asset's price. This strategy reduces the impact of volatility by allowing you to buy more shares when prices are low and fewer shares when prices are high. Our <strong>DCA Simulator</strong> helps you visualize how consistent contributions can build significant wealth over time, effectively removing the emotional stress of trying to "time the market." For most long-term investors, DCA is the most reliable path to achieving financial goals.</p>
+                        <p style="margin-top: 16px;">The beauty of DCA is that it turns market downturns into opportunities. While most people panic when the market drops, a DCA investor sees it as a "sale." Over decades, this disciplined approach has historically outperformed the majority of active traders who attempt to guess market tops and bottoms. By automating your investments, you ensure that you stay the course through every market cycle.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Portfolio Rebalancing: Staying on Target</h3>
+                        <p>As different assets in your portfolio perform at different rates, your original <strong>Asset Allocation</strong> will naturally "drift." For example, if you start with 60% stocks and 40% bonds, a strong year for the stock market might leave you with 70% stocks. This makes your portfolio riskier than you intended. Our <strong>Rebalance Auditor</strong> calculates exactly how much of each asset you need to buy or sell to return to your target weights. Rebalancing is the only time in investing where you are systematically forced to "sell high and buy low," which is the fundamental secret to long-term success.</p>
+                        <p style="margin-top: 16px;">Most professional advisors recommend rebalancing once or twice a year, or whenever an asset class drifts more than 5% from its target. While it can be psychologically difficult to sell your best-performing assets to buy underperformers, this discipline ensures that your risk profile remains consistent with your long-term tolerance and goals.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Understanding CAGR: The True Rate of Return</h3>
+                        <p>While "Total Return" tells you how much your investment grew in total, <strong>CAGR (Compound Annual Growth Rate)</strong> tells you what your average annual return was. This is the most accurate way to compare different investments over different time periods. An investment that grows 100% over 10 years has a CAGR of 7.18%. Our <strong>ROI & CAGR Tool</strong> provides both numbers, giving you the clarity needed to evaluate your portfolio's performance against benchmarks like the S&P 500.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Risk Management in Crypto & Options</h3>
+                        <p>High-volatility assets like <strong>Cryptocurrency</strong> and <strong>Stock Options</strong> require a different level of risk management. When trading crypto, it's essential to factor in capital gains taxes, which can be as high as 37% for short-term trades. Our <strong>Crypto P&L Tool</strong> includes a tax estimator to help you see your true "take-home" profit. Similarly, our <strong>Options Value Tool</strong> helps you understand the "intrinsic value" of your contracts, preventing you from overpaying for speculative "hope" in the market. Remember: the first rule of investing is to not lose money.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateCrypto() {
+            const b = parseFloat(document.getElementById('cr-b').value);
+const s = parseFloat(document.getElementById('cr-s').value);
+const q = parseFloat(document.getElementById('cr-q').value);
+const profit = (s - b) * q;
+const tax = profit > 0 ? profit * 0.3 : 0;
+document.getElementById('cr-out').innerText = fmt(profit);
+document.getElementById('cr-tax').innerText = fmt(tax);
+document.getElementById('cr-results').classList.add('visible');
+saveActivity('invest', { type: 'crypto', buy: b, sell: s, qty: q }, { profit });
+        }
+
+        function calculateOptions() {
+            const type = document.getElementById('op-t').value;
+const strike = parseFloat(document.getElementById('op-s').value);
+const market = parseFloat(document.getElementById('op-m').value);
+const premium = parseFloat(document.getElementById('op-p').value);
+const shares = 100;
+const cost = premium * shares;
+let intrinsic = 0;
+if (type === 'call') intrinsic = Math.max(0, market - strike);
+else intrinsic = Math.max(0, strike - market);
+const profit = (intrinsic * shares) - cost;
+document.getElementById('op-cost').innerText = fmt(cost);
+document.getElementById('op-out').innerText = fmt(profit);
+document.getElementById('op-results').classList.add('visible');
+saveActivity('invest', { type: 'options', opType: type, strike, market, premium }, { profit });
+        }
+
+        function calculateROI() {
+            const i = parseFloat(document.getElementById('roi-i').value);
+const v = parseFloat(document.getElementById('roi-v').value);
+const y = parseFloat(document.getElementById('roi-y').value);
+const total = ((v - i) / i) * 100;
+const cagr = (Math.pow(v / i, 1 / y) - 1) * 100;
+document.getElementById('roi-tot').innerText = total.toFixed(2) + '%';
+document.getElementById('roi-cagr').innerText = cagr.toFixed(2) + '%';
+document.getElementById('roi-results').classList.add('visible');
+saveActivity('invest', { type: 'roi', initial: i, final: v, years: y }, { total, cagr });
+        }
+
+        function calculateDCA() {
+            const a = parseFloat(document.getElementById('dca-a').value);
+const y = parseFloat(document.getElementById('dca-y').value);
+const r = parseFloat(document.getElementById('dca-r').value) / 100 / 12;
+const n = y * 12;
+const totalInv = a * n;
+const fv = r > 0 ? a * ((Math.pow(1 + r, n) - 1) / r) * (1 + r) : totalInv;
+document.getElementById('dca-out').innerText = fmt(fv);
+document.getElementById('dca-inv').innerText = fmt(totalInv);
+document.getElementById('dca-results').classList.add('visible');
+saveActivity('invest', { type: 'dca', amount: a, years: y, rate: r*12 }, { fv });
+        }
+
+        function calculateRebalance() {
+            const total = parseFloat(document.getElementById('rb-total').value);
+const target = parseFloat(document.getElementById('rb-t1').value) / 100;
+const current = parseFloat(document.getElementById('rb-v1').value);
+const targetVal = total * target;
+const diff = targetVal - current;
+const out = document.getElementById('rb-out');
+if (Math.abs(diff) < 1) {
+    out.innerText = "Balanced";
+    out.style.color = "var(--text)";
+} else {
+    out.innerText = (diff > 0 ? "Buy " : "Sell ") + fmt(Math.abs(diff));
+    out.style.color = diff > 0 ? "var(--accent2)" : "var(--error)";
+}
+document.getElementById('rebalance-results').classList.add('visible');
+saveActivity('invest', { type: 'rebalance', targetVal, currentVal: current }, { diff });
+        }
+    </script>
+</body>
+</html>

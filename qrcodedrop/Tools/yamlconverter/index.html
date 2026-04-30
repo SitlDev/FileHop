@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert YAML configuration files to JSON format instantly. Perfect for configuration management and data transformation." />
+  <meta name="keywords" content="YAML to JSON converter, YAML converter, JSON converter, YAML to JSON, configuration converter, file format conversion, developer tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>YAML to JSON Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>YAML to JSON Converter</h1>
+      <p>Convert YAML configuration files to JSON format.</p>
+    </header>
+
+    <main>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <section class="input-section">
+          <h2>YAML Input</h2>
+          <textarea id="yaml-input" rows="12" placeholder="name: John&#10;age: 30&#10;email: john@example.com" style="width:100%; padding:12px; font-family: monospace;"></textarea>
+
+          <div class="actions" style="margin-top:12px;">
+            <button id="btn-convert">Convert</button>
+            <button id="btn-copy">Copy JSON</button>
+          </div>
+        </section>
+
+        <section class="preview-section">
+          <h2>JSON Output</h2>
+          <textarea id="yaml-output" rows="14" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+        </section>
+      </div>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 YAML to JSON Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

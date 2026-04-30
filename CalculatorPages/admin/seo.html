@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Console | YourCalc Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <h2>YourCalc Admin</h2>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="">📊 Overview</a></li>
+            <li><a href="analytics.html" class="">👥 Analytics</a></li>
+            <li><a href="seo.html" class="active">🔍 SEO</a></li>
+            <li><a href="adsense.html" class="">💰 AdSense</a></li>
+            <li><a href="calculators.html" class="">🧮 Calculators</a></li>
+            <li><a href="leads.html" class="">📧 Leads</a></li>
+            <li style="margin-top: 32px;"><a href="../index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="topbar">
+            <h1>Search Console</h1>
+            <div style="display: flex; gap: 16px;">
+                <select class="date-selector">
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Custom Range</option>
+                </select>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <div class="grid-kpi">
+            <div class="card"><div class="card-title">Total Clicks</div><div class="card-value">8,450</div></div>
+            <div class="card"><div class="card-title">Impressions</div><div class="card-value">142k</div></div>
+            <div class="card"><div class="card-title">Avg CTR</div><div class="card-value">5.9%</div></div>
+            <div class="card"><div class="card-title">Avg Position</div><div class="card-value">12.4</div></div>
+        </div>
+        <div class="card" style="margin-bottom: 24px;">
+            <h3 class="card-title">Top Queries & Opportunities</h3>
+            <table class="table">
+                <tr><th>Query</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Pos</th><th>Action</th></tr>
+                <tr><td>mortgage calculator</td><td>1,200</td><td>15,000</td><td>8.0%</td><td><span class="badge green">4.2</span></td><td></td></tr>
+                <tr><td>fire number calculator</td><td>450</td><td>12,000</td><td>3.7%</td><td><span class="badge yellow">11.5</span></td><td><span class="badge green">Quick Win</span></td></tr>
+                <tr><td>compound interest graph</td><td>120</td><td>10,000</td><td>1.2%</td><td><span class="badge green">8.1</span></td><td><span class="badge red">Meta Fix</span></td></tr>
+            </table>
+        </div>
+
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

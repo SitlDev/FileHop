@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert text between different cases: UPPERCASE, lowercase, Title Case, camelCase, snake_case, kebab-case, PascalCase, CONSTANT_CASE for programming and writing." />
+  <meta name="keywords" content="text case converter, case converter, text transformation, case changer, uppercase converter, camelCase converter, snake_case converter, kebab-case converter, programming tool, text formatter, code formatting, PascalCase, CONSTANT_CASE" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Text Case Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Text Case Converter</h1>
+      <p>Convert text between different cases: uppercase, lowercase, title case, camel case, and more.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <textarea id="case-input" rows="6" placeholder="Enter text to convert..." style="width:100%; padding:12px;"></textarea>
+      </section>
+
+      <section class="preview-section">
+        <h2>Output Formats</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <h4>UPPERCASE</h4>
+            <input id="case-upper" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>lowercase</h4>
+            <input id="case-lower" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>Title Case</h4>
+            <input id="case-title" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>camelCase</h4>
+            <input id="case-camel" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>snake_case</h4>
+            <input id="case-snake" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>kebab-case</h4>
+            <input id="case-kebab" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>PascalCase</h4>
+            <input id="case-pascal" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+          <div>
+            <h4>CONSTANT_CASE</h4>
+            <input id="case-constant" readonly style="width:100%; padding:8px; font-family: monospace;">
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-copy-upper">Copy UPPERCASE</button>
+          <button id="btn-copy-camel">Copy camelCase</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Text Case Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

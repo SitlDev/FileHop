@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert numbers between binary (Base 2), octal (Base 8), decimal (Base 10), and hexadecimal (Base 16) for programming and computer science." />
+  <meta name="keywords" content="base converter, binary converter, octal converter, hexadecimal converter, number base conversion, binary to decimal, hex converter, programming tool, computer science" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Number Base Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Number Base Converter</h1>
+      <p>Convert numbers between binary, octal, decimal, and hexadecimal.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <div class="form-container">
+          <label for="base-input-type">Input Base</label>
+          <select id="base-input-type">
+            <option value="10">Decimal (Base 10)</option>
+            <option value="2">Binary (Base 2)</option>
+            <option value="8">Octal (Base 8)</option>
+            <option value="16">Hexadecimal (Base 16)</option>
+          </select>
+        </div>
+
+        <div class="form-container">
+          <label for="base-input">Number</label>
+          <input id="base-input" type="text" placeholder="Enter number...">
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Converted Values</h2>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <div>
+            <h4>Binary (Base 2)</h4>
+            <input id="base-binary" readonly style="width:100%; padding:8px; font-family: monospace;">
+            <button class="copy-btn" data-field="base-binary" style="margin-top: 4px;">Copy</button>
+          </div>
+          <div>
+            <h4>Octal (Base 8)</h4>
+            <input id="base-octal" readonly style="width:100%; padding:8px; font-family: monospace;">
+            <button class="copy-btn" data-field="base-octal" style="margin-top: 4px;">Copy</button>
+          </div>
+          <div>
+            <h4>Decimal (Base 10)</h4>
+            <input id="base-decimal" readonly style="width:100%; padding:8px; font-family: monospace;">
+            <button class="copy-btn" data-field="base-decimal" style="margin-top: 4px;">Copy</button>
+          </div>
+          <div>
+            <h4>Hexadecimal (Base 16)</h4>
+            <input id="base-hex" readonly style="width:100%; padding:8px; font-family: monospace;">
+            <button class="copy-btn" data-field="base-hex" style="margin-top: 4px;">Copy</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2>About Number Base Conversion</h2>
+        
+        <h3>What are Number Bases?</h3>
+        <p>Different number bases use different symbols to represent values. Decimal (base 10) is familiar to humans, but computers use binary (base 2) internally, hexadecimal (base 16) for memory addresses, and octal (base 8) for file permissions.</p>
+        
+        <h3>Common Bases</h3>
+        <ul>
+          <li><strong>Binary (2):</strong> 0, 1 (computer operations)</li>
+          <li><strong>Octal (8):</strong> 0-7 (Unix file permissions)</li>
+          <li><strong>Decimal (10):</strong> 0-9 (human standard)</li>
+          <li><strong>Hexadecimal (16):</strong> 0-9, A-F (memory addresses, colors)</li>
+        </ul>
+        
+        <h3>Real-World Examples</h3>
+        <ul>
+          <li><strong>Colors:</strong> #FF5733 in hex = RGB(255, 87, 51)</li>
+          <li><strong>Permissions:</strong> 755 in octal = rwxr-xr-x</li>
+          <li><strong>Memory:</strong> 0x7FFF (hexadecimal) = 32767 (decimal)</li>
+          <li><strong>Bitwise:</strong> Understanding binary for logic operations</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Number Base Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

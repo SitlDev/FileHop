@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leads Database | YourCalc Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <h2>YourCalc Admin</h2>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="">📊 Overview</a></li>
+            <li><a href="analytics.html" class="">👥 Analytics</a></li>
+            <li><a href="seo.html" class="">🔍 SEO</a></li>
+            <li><a href="adsense.html" class="">💰 AdSense</a></li>
+            <li><a href="calculators.html" class="">🧮 Calculators</a></li>
+            <li><a href="leads.html" class="active">📧 Leads</a></li>
+            <li style="margin-top: 32px;"><a href="../index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="topbar">
+            <h1>Leads Database</h1>
+            <div style="display: flex; gap: 16px;">
+                <select class="date-selector">
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Custom Range</option>
+                </select>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <div class="grid-kpi">
+            <div class="card"><div class="card-title">Total Emails</div><div class="card-value" id="totalLeads">0</div></div>
+            <div class="card"><div class="card-title">New (30d)</div><div class="card-value">0</div></div>
+            <div class="card"><div class="card-title">Opt-in Rate</div><div class="card-value">1.2%</div></div>
+        </div>
+        <div class="card" style="margin-bottom: 24px; background: rgba(234, 179, 8, 0.05); border-color: rgba(234, 179, 8, 0.2);">
+            <div style="color: #eab308; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <span>⚠️</span> Leads stored in browser localStorage only. Configure a backend endpoint to persist leads across devices. See setup instructions in /admin/SETUP.md
+            </div>
+        </div>
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 class="card-title">Collected Leads</h3>
+                <button class="btn-logout" onclick="exportLeads()">Export CSV</button>
+            </div>
+            <table class="table" id="leadsTable">
+                <tr><th>Email</th><th>Calculator Used</th><th>Date</th></tr>
+                <!-- Populated via JS -->
+            </table>
+        </div>
+        <script>
+            function loadLeads() {
+                const leads = JSON.parse(localStorage.getItem('yc_leads') || '[]');
+                document.getElementById('totalLeads').innerText = leads.length;
+                const tbody = document.getElementById('leadsTable');
+                leads.reverse().forEach(lead => {
+                    const tr = document.createElement('tr');
+                    const date = new Date(lead.timestamp).toLocaleString();
+                    tr.innerHTML = `<td>${lead.email}</td><td>${lead.calculator}</td><td>${date}</td>`;
+                    tbody.appendChild(tr);
+                });
+            }
+            function exportLeads() {
+                const leads = JSON.parse(localStorage.getItem('yc_leads') || '[]');
+                const csv = 'Email,Calculator,Page,Timestamp\n' + leads.map(l => `${l.email},${l.calculator},${l.page},${l.timestamp}`).join('\n');
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url; a.download = 'yourcalc_leads.csv'; a.click();
+            }
+            loadLeads();
+        </script>
+
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

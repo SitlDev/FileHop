@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings, Discount & Budget Calculators 2026 — YourCalc</title>
+        <meta name="keywords" content="discount calculator, 50 30 20 budget, emergency fund, unit price, credit card payoff">
+        <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+
+    <link rel="canonical" href="https://yourcalc.info/savings.html" />
+    <meta name="description" content="Professional savings tools: Discount, CC Payoff, Budget, and Emergency Fund calculators." />
+
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Shopping & <span style="color: var(--accent2);">Savings</span></h1>
+            <p class="subtitle">Smart spending and aggressive saving strategies.</p>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('discount', event)">Discount</button>
+                <button class="tab-btn" onclick="showTab('cc', event)">CC Payoff</button>
+                <button class="tab-btn" onclick="showTab('budget', event)">50/30/20 Budget</button>
+                <button class="tab-btn" onclick="showTab('unit', event)">Unit Price</button>
+                <button class="tab-btn" onclick="showTab('emergency', event)">Emergency Fund</button>
+            </div>
+
+            <div id="discount" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Original Price</label><div class="input-wrapper"><input type="number" id="ds-p" value="100"></div></div>
+                    <div class="input-group"><label>Discount (%)</label><div class="input-wrapper"><input type="number" id="ds-d" value="25"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Sales Tax (%)</label><div class="input-wrapper"><input type="number" id="ds-t" value="0"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDiscount()">Calculate Sale Price →</button>
+                <div id="ds-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Sale Price</span><span class="result-value" id="ds-out">$0</span></div>
+                        <div class="result-item"><span class="result-label">You Save</span><span class="result-value" id="ds-save" style="color: var(--accent2);">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="cc" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Card Balance</label><div class="input-wrapper"><input type="number" id="cc-b" value="5000"></div></div>
+                    <div class="input-group"><label>APR (%)</label><div class="input-wrapper"><input type="number" id="cc-r" value="19.99"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Monthly Payment</label><div class="input-wrapper"><input type="number" id="cc-m" value="200"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCC()">Calculate Payoff Plan →</button>
+                <div id="cc-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Months to Zero</span><span class="result-value" id="cc-out">0</span></div>
+                        <div class="result-item"><span class="result-label">Total Interest</span><span class="result-value" id="cc-int" style="color: var(--error);">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="budget" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Monthly Take-Home Income</label><div class="input-wrapper"><input type="number" id="bg-i" value="5000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBudget()">Split My Budget →</button>
+                <div id="bg-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Needs (50%)</span><span class="result-value" id="bg-n">$0</span></div>
+                        <div class="result-item"><span class="result-label">Wants (30%)</span><span class="result-value" id="bg-w">$0</span></div>
+                        <div class="result-item"><span class="result-label">Savings (20%)</span><span class="result-value" id="bg-s" style="color: var(--accent2);">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="unit" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Price A</label><div class="input-wrapper"><input type="number" id="un-pa" value="5.99"></div></div>
+                    <div class="input-group"><label>Weight/Qty A</label><div class="input-wrapper"><input type="number" id="un-wa" value="500"></div></div>
+                    <div class="input-group"><label>Price B</label><div class="input-wrapper"><input type="number" id="un-pb" value="8.50"></div></div>
+                    <div class="input-group"><label>Weight/Qty B</label><div class="input-wrapper"><input type="number" id="un-wb" value="750"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateUnit()">Compare Value →</button>
+                <div id="un-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Better Value</span><span class="result-value" id="un-out">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="emergency" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Monthly Expenses</label><div class="input-wrapper"><input type="number" id="em-e" value="3000"></div></div>
+                    <div class="input-group"><label>Target (Months)</label><div class="input-wrapper"><input type="number" id="em-m" value="6"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Current Savings</label><div class="input-wrapper"><input type="number" id="em-s" value="5000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateEmergency()">Analyze Fund →</button>
+                <div id="emergency-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Target Size</span><span class="result-value" id="em-target">$0</span></div>
+                        <div class="result-item"><span class="result-label">Funding Gap</span><span class="result-value" id="em-gap">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Psychology of <span style="color: var(--accent);">Saving and Spending</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Emergency Fund: Your Financial Shield</h3>
+                        <p>An <strong>Emergency Fund</strong> is not just a savings account; it is your "I'm not going to panic" fund. It is a liquid pool of cash specifically set aside to cover unexpected expenses like car repairs, medical bills, or sudden job loss. Most financial experts recommend saving 3 to 6 months of basic living expenses. Our <strong>Emergency Fund Tool</strong> helps you calculate your target size and identifies the "gap" between your current savings and your safety goal. Having this shield in place prevents you from having to go into high-interest debt when life inevitably throws a curveball.</p>
+                        <p style="margin-top: 16px;">Where you keep your emergency fund matters. Because you need this money to be accessible (liquid), it should stay in a High-Yield Savings Account (HYSA) rather than being invested in the stock market. While you might earn less interest, the primary goal of an emergency fund is <em>insurance</em>, not <em>growth</em>. Knowing that you can survive for six months without a paycheck provides a level of psychological peace that is far more valuable than a few percentage points of market gain.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Budgeting with the 50/30/20 Rule</h3>
+                        <p>If the word "budget" makes you cringe, the <strong>50/30/20 Rule</strong> is for you. It's a simple, intuitive framework for managing your after-tax income: 50% for <strong>Needs</strong> (rent, groceries, utilities), 30% for <strong>Wants</strong> (dining out, hobbies, travel), and 20% for <strong>Savings and Debt Repayment</strong>. Our <strong>50/30/20 Calculator</strong> automates this split, giving you a clear roadmap for your monthly spending. This method is effective because it builds "fun" into the plan, making it far more sustainable than restrictive budgeting methods that leave no room for enjoyment.</p>
+                        <p style="margin-top: 16px;">The "Needs" category is often the hardest to keep at 50%, especially in high-cost-of-living areas. If your needs are exceeding this threshold, you may need to look at downsizing your housing or transportation costs. Conversely, if you can keep your needs low, we recommend shifting that extra percentage into the "Savings" category rather than increasing your "Wants." This "forced saving" is the fastest way to accelerate your journey toward financial independence.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Credit Card Math: The Trap of Minimum Payments</h3>
+                        <p>Credit card companies make their billions by encouraging you to pay only the <strong>Minimum Payment</strong>. Our <strong>CC Payoff Calculator</strong> is a sobering look at how interest can double or triple the final cost of your purchases if you don't pay the balance in full. If you have $5,000 in debt at 20% interest and only make minimum payments, it could take you over 20 years to pay it off and cost you an additional $10,000 in interest. Treating your credit card like a "monthly bill" to be paid in full is the single most important habit for financial health.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Smart Shopping: Unit Price Comparison</h3>
+                        <p>Marketing can be deceptive. A "Bulk Size" box of laundry detergent isn't always the best deal. To find the true value, you must look at the <strong>Unit Price</strong> (cost per ounce, gram, or sheet). Our <strong>Comparison Tool</strong> allows you to quickly compare two products to see which one actually saves you money. Over a year of grocery shopping, these small "wins" can add up to hundreds of dollars in savings with zero impact on your lifestyle.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = { format: (v) => getCurrencyFormatter(0).format(v) };
+
+        function calculateDiscount() {
+            const p = parseFloat(document.getElementById('ds-p').value);
+const d = parseFloat(document.getElementById('ds-d').value) / 100;
+const t = parseFloat(document.getElementById('ds-t').value) / 100;
+const salePrice = p * (1 - d);
+const finalPrice = salePrice * (1 + t);
+document.getElementById('ds-out').innerText = fmt.format(finalPrice);
+document.getElementById('ds-save').innerText = fmt.format(p - salePrice);
+document.getElementById('ds-results').classList.add('visible');
+saveActivity('savings', { type: 'discount', original: p }, { final: finalPrice });
+        }
+
+        function calculateCC() {
+            const b = parseFloat(document.getElementById('cc-b').value);
+const r = parseFloat(document.getElementById('cc-r').value) / 100 / 12;
+const m = parseFloat(document.getElementById('cc-m').value);
+if (m <= b * r) { alert("Payment must exceed interest."); return; }
+const n = Math.log(m / (m - b * r)) / Math.log(1 + r);
+document.getElementById('cc-out').innerText = Math.ceil(n);
+document.getElementById('cc-int').innerText = fmt.format((m * n) - b);
+document.getElementById('cc-results').classList.add('visible');
+saveActivity('savings', { type: 'cc-payoff', balance: b }, { months: n });
+        }
+
+        function calculateBudget() {
+            const i = parseFloat(document.getElementById('bg-i').value);
+document.getElementById('bg-n').innerText = fmt.format(i * 0.5);
+document.getElementById('bg-w').innerText = fmt.format(i * 0.3);
+document.getElementById('bg-s').innerText = fmt.format(i * 0.2);
+document.getElementById('bg-results').classList.add('visible');
+saveActivity('savings', { type: 'budget-503020', income: i }, { savings: i * 0.2 });
+        }
+
+        function calculateUnit() {
+            const pa = parseFloat(document.getElementById('un-pa').value);
+const wa = parseFloat(document.getElementById('un-wa').value);
+const pb = parseFloat(document.getElementById('un-pb').value);
+const wb = parseFloat(document.getElementById('un-wb').value);
+const unitA = pa / wa;
+const unitB = pb / wb;
+document.getElementById('un-out').innerText = unitA < unitB ? "Product A is better" : "Product B is better";
+document.getElementById('un-results').classList.add('visible');
+saveActivity('savings', { type: 'unit-price', pa, pb }, { winner: unitA < unitB ? 'A' : 'B' });
+        }
+
+        function calculateEmergency() {
+            const e = parseFloat(document.getElementById('em-e').value);
+const m = parseFloat(document.getElementById('em-m').value);
+const s = parseFloat(document.getElementById('em-s').value);
+const target = e * m;
+document.getElementById('em-target').innerText = fmt.format(target);
+document.getElementById('em-gap').innerText = fmt.format(Math.max(0, target - s));
+document.getElementById('emergency-results').classList.add('visible');
+saveActivity('savings', { type: 'emergency-fund', expenses: e }, { target });
+        }
+    </script>
+</body>
+</html>

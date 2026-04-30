@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal & Tax Calculators — Self-Employment, Capital Gains, Depreciation 2026 — YourCalc</title>
+    <meta name="keywords" content="tax calculator, self-employment tax, capital gains calculator, depreciation calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/legal-tax.html" />
+    <meta name="description" content="Self-employment tax, capital gains, depreciation, LLC vs S-Corp, and QBI deduction calculators for 2026." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Legal & <span style="color: var(--accent);">Tax Math</span></h1>
+            <p class="subtitle">US tax calculators for freelancers and investors (2026 Estimates).</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Tax & Compliance <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Self-Employment Tax</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The 15.3% SE tax covers both employer and employee portions of Social Security and Medicare. Half of this tax is deductible from your adjusted gross income.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Capital Gains Thresholds</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Long-term gains are taxed at 0%, 15%, or 20% depending on your total taxable income. Short-term gains are taxed as ordinary income at your marginal bracket.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">LLC vs S-Corp</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">S-Corp election typically makes sense above $50k net profit, allowing you to split income between salary (taxed) and distributions (tax-free SE).</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('setax', event)">Self-Employment</button>
+                <button class="tab-btn" onclick="showTab('capgains', event)">Capital Gains</button>
+                <button class="tab-btn" onclick="showTab('deprec', event)">Depreciation</button>
+                <button class="tab-btn" onclick="showTab('llc', event)">LLC vs S-Corp</button>
+                <button class="tab-btn" onclick="showTab('qbi', event)">QBI Deduction</button>
+            </div>
+
+            <div id="setax" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Net SE Income</label><div class="input-wrapper"><input type="number" id="se-inc" value="80000"></div></div>
+                    <div class="input-group"><label>Filing Status</label><div class="input-wrapper"><select id="se-status"><option value="s">Single</option><option value="mfj">Married</option></select></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Additional W-2 Income</label><div class="input-wrapper"><input type="number" id="se-w2" value="0"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateSETax()">Calculate SE Tax →</button>
+                <div id="setax-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">SE Tax (15.3%)</span><span class="result-value" id="se-tax">$0</span></div>
+                        <div class="result-item"><span class="result-label">Total Burden</span><span class="result-value" id="se-total">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="capgains" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Basis</label><div class="input-wrapper"><input type="number" id="cg-basis" value="10000"></div></div>
+                    <div class="input-group"><label>Sale Price</label><div class="input-wrapper"><input type="number" id="cg-sale" value="25000"></div></div>
+                    <div class="input-group"><label>Term</label><div class="input-wrapper"><select id="cg-term"><option value="long">Long-Term</option><option value="short">Short-Term</option></select></div></div>
+                    <div class="input-group"><label>Income</label><div class="input-wrapper"><input type="number" id="cg-income" value="75000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCapGains()">Calculate Gains Tax →</button>
+                <div id="capgains-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Total Gain</span><span class="result-value" id="cg-gain">$0</span></div>
+                        <div class="result-item"><span class="result-label">Tax Owed</span><span class="result-value" id="cg-tax" style="color: var(--error);">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="deprec" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Asset Cost</label><div class="input-wrapper"><input type="number" id="dep-cost" value="50000"></div></div>
+                    <div class="input-group"><label>Salvage</label><div class="input-wrapper"><input type="number" id="dep-salvage" value="5000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Useful Life (Yrs)</label><div class="input-wrapper"><input type="number" id="dep-life" value="5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateDeprec()">Build Schedule →</button>
+                <div id="deprec-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Total Depreciable</span><span class="result-value" id="dep-total">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="llc" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Net Profit</label><div class="input-wrapper"><input type="number" id="llc-profit" value="120000"></div></div>
+                    <div class="input-group"><label>Reasonable Salary</label><div class="input-wrapper"><input type="number" id="llc-salary" value="70000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateLLC()">Compare Savings →</button>
+                <div id="llc-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Annual S-Corp Savings</span><span class="result-value" id="llc-save" style="color: var(--accent2);">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="qbi" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Qualified Income</label><div class="input-wrapper"><input type="number" id="qbi-income" value="100000"></div></div>
+                    <div class="input-group"><label>Total Taxable Inc</label><div class="input-wrapper"><input type="number" id="qbi-total" value="120000"></div></div>
+                    <div class="input-group"><label>Filing Status</label><div class="input-wrapper"><select id="qbi-status"><option value="s">Single</option><option value="mfj">Married</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateQBI()">Analyze QBI →</button>
+                <div id="qbi-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">QBI Deduction (Est)</span><span class="result-value" id="qbi-ded" style="color: var(--accent2);">$0</span></div>
+                        <div class="result-item"><span class="result-label">Status</span><span class="result-value" id="qbi-phase" style="font-size:14px">Ready</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Architecture of <span style="color: var(--accent);">Modern Tax Strategy</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Self-Employment Tax: Managing the 15.3%</h3>
+                        <p>For independent contractors and sole proprietors, the <strong>Self-Employment Tax</strong> is often the most significant financial hurdle. Unlike traditional employees, who split the 15.3% Social Security and Medicare tax with their employer, self-employed individuals are responsible for the entire amount. Our <strong>SE Tax Auditor</strong> calculates this liability on 92.35% of your net profit. Understanding this obligation is crucial for setting aside the correct amount for quarterly estimated payments, preventing the "tax day surprise" that often hampers business growth.</p>
+                        <p style="margin-top: 16px;">Tax planning for the self-employed is about more than just calculation; it's about optimization. By tracking your business expenses and maximizing your deductions, you can significantly reduce your net profit and, consequently, your SE tax liability. Our tool provides a baseline for these calculations, allowing you to visualize the impact of your income on your total tax burden in real-time.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Entity Selection: LLC vs. S-Corp</h3>
+                        <p>One of the most powerful tax strategies for high-earning freelancers and small business owners is the <strong>S-Corp Election</strong>. By electing to be taxed as an S-Corp, you can split your business income into a "Reasonable Salary" (subject to SE tax) and "Distributions" (not subject to SE tax). Our <strong>S-Corp Savings Tool</strong> compares these two scenarios, factoring in the additional administrative costs (roughly $2,000/year for payroll and tax prep) associated with an S-Corp. For many businesses, the tax savings far outweigh the administrative burden once net profits exceed a certain threshold.</p>
+                        <p style="margin-top: 16px;">The "Reasonable Salary" requirement is a critical part of this strategy. The IRS requires that S-Corp owners pay themselves a salary consistent with what they would pay an employee for the same work. If your salary is too low, the IRS can reclassify your distributions as salary and assess back taxes and penalties. Our tool helps you visualize the math, but consulting with a CPA is essential to determine what constitutes a "reasonable" salary in your specific industry and location.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The QBI Deduction: A Modern Perk</h3>
+                        <p>The <strong>Qualified Business Income (QBI) Deduction</strong>, established by the 2017 Tax Cuts and Jobs Act, allows eligible business owners to deduct up to 20% of their business income from their taxable income. Our <strong>QBI Deduction Auditor</strong> factors in current income thresholds and phase-out limits for single and married filers. This deduction can significantly lower your effective tax rate, but it is subject to complex rules regarding "Specified Service Trades or Businesses" (SSTBs) once you exceed certain income levels.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Strategic Tax Management</h3>
+                        <p>Taxation is a fundamental part of the business landscape, but it doesn't have to be a mystery. Our <strong>Legal & Tax Math Suite</strong> is designed to provide you with the quantitative data needed to make informed strategic decisions. Whether you are deciding on an entity structure, calculating capital gains, or planning for depreciation, having the numbers at your fingertips is a competitive advantage. Always verify your strategy with a qualified tax professional to ensure compliance with the latest regulations.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = { format: (v) => getCurrencyFormatter(0).format(v) };
+
+        function calculateSETax() {
+            const net = parseFloat(document.getElementById('se-inc').value);
+const seTax = (net * 0.9235) * 0.153;
+document.getElementById('se-tax').innerText = fmt.format(seTax);
+document.getElementById('se-total').innerText = fmt.format(seTax);
+document.getElementById('setax-results').classList.add('visible');
+saveActivity('legal-tax', { type: 'self-employment', income: net }, { tax: seTax });
+        }
+
+        function calculateCapGains() {
+            const basis = parseFloat(document.getElementById('cg-basis').value);
+const sale = parseFloat(document.getElementById('cg-sale').value);
+const term = document.getElementById('cg-term').value;
+const gain = sale - basis;
+const tax = gain > 0 ? (term === 'long' ? gain * 0.15 : gain * 0.24) : 0;
+document.getElementById('cg-gain').innerText = fmt.format(gain);
+document.getElementById('cg-tax').innerText = fmt.format(tax);
+document.getElementById('capgains-results').classList.add('visible');
+saveActivity('legal-tax', { type: 'capital-gains', gain }, { tax });
+        }
+
+        function calculateDeprec() {
+            const cost = parseFloat(document.getElementById('dep-cost').value);
+const salvage = parseFloat(document.getElementById('dep-salvage').value);
+document.getElementById('dep-total').innerText = fmt.format(cost - salvage);
+document.getElementById('deprec-results').classList.add('visible');
+saveActivity('legal-tax', { type: 'depreciation', cost }, { depreciable: cost - salvage });
+        }
+
+        function calculateLLC() {
+            const profit = parseFloat(document.getElementById('llc-profit').value);
+const salary = parseFloat(document.getElementById('llc-salary').value);
+const llcTax = profit * 0.9235 * 0.153;
+const scorpTax = salary * 0.153;
+const savings = Math.max(0, llcTax - scorpTax - 2000); 
+document.getElementById('llc-save').innerText = fmt.format(savings);
+document.getElementById('llc-results').classList.add('visible');
+saveActivity('legal-tax', { type: 'llc-vs-scorp', profit }, { savings });
+        }
+
+        function calculateQBI() {
+            const qbi = parseFloat(document.getElementById('qbi-income').value);
+const total = parseFloat(document.getElementById('qbi-total').value);
+const status = document.getElementById('qbi-status').value;
+const limit0 = status === 'mfj' ? 364200 : 182050;
+const limitH = status === 'mfj' ? 464200 : 232050;
+let deduction = qbi * 0.20;
+let phase = 'Full deduction eligible';
+if (total > limitH) { deduction = 0; phase = 'Above phase-out limit'; }
+else if (total > limit0) { phase = 'Partial phase-out applies'; deduction *= (1 - (total - limit0)/(limitH - limit0)); }
+deduction = Math.min(deduction, total * 0.20);
+document.getElementById('qbi-ded').innerText = fmt.format(deduction);
+document.getElementById('qbi-phase').innerText = phase;
+document.getElementById('qbi-results').classList.add('visible');
+saveActivity('legal-tax', { type: 'qbi-deduction', income: qbi }, { deduction });
+        }
+    </script>
+</body>
+</html>

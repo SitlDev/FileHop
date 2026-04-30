@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — TeaVault | Global Tea Festivals, Ceremonies & Tastings</title>
+  <meta name="description" content="Discover global tea events — festivals, competitions, auctions, virtual tastings, and cultural ceremonies. RSVP and add to your calendar." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body>
+
+<nav class="nav scrolled" id="main-nav" style="background:rgba(245,237,214,0.96)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-leaf">🍃</span><span class="logo-text" style="color:var(--umber)">TeaVault</span></a>
+    <ul class="nav-links">
+      <li><a href="catalog.html" class="nav-link">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link">Education</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="events.html" class="nav-link" style="color:var(--terra)">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link nav-b2b">For Business</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-account">Account</a>
+      <a href="subscriptions.html" class="btn btn-primary btn-sm">Subscribe</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a><a href="education.html">Education</a>
+    <a href="gallery.html">Gallery</a><a href="events.html">Events</a>
+    <a href="subscriptions.html">Subscribe</a>
+  </div>
+</nav>
+
+<div class="events-page">
+  <div class="events-layout">
+    <div style="text-align:center;padding-bottom:3rem;">
+      <p class="section-eyebrow">Worldwide</p>
+      <h1 class="section-title">Tea Events Calendar</h1>
+      <p class="section-subtitle">Festivals, competitions, virtual tastings, and cultural ceremonies — happening now and next.</p>
+    </div>
+
+    <div class="events-filter-row">
+      <button class="events-filter-btn active" data-filter="all">🌍 All Events</button>
+      <button class="events-filter-btn" data-filter="Japan">🇯🇵 Japan</button>
+      <button class="events-filter-btn" data-filter="China">🇨🇳 China</button>
+      <button class="events-filter-btn" data-filter="India">🇮🇳 India</button>
+      <button class="events-filter-btn" data-filter="Taiwan">🇹🇼 Taiwan</button>
+      <button class="events-filter-btn" data-filter="USA">🇺🇸 USA</button>
+      <button class="events-filter-btn" data-filter="Virtual">💻 Virtual</button>
+      <button class="events-filter-btn" data-filter="B2B">💼 B2B</button>
+    </div>
+
+    <!-- TeaVault Virtual Banner -->
+    <div style="background:var(--umber);border-radius:var(--radius-lg);padding:2rem;margin-bottom:2.5rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap;" class="reveal">
+      <div style="font-size:3rem;">📡</div>
+      <div style="flex:1">
+        <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--cream);margin-bottom:.35rem;">TeaVault Virtual Tasting — June 18</h3>
+        <p style="font-family:var(--font-ui);font-size:.85rem;color:rgba(245,237,214,.65);">Live-guided tasting of 5 Reserve-tier teas with our lead sommelier. Teas shipped to your door beforehand. 45 registered so far.</p>
+      </div>
+      <a href="#" onclick="rsvpEvent(4, this);return false;" class="btn btn-gold">RSVP Now — Free</a>
+    </div>
+
+    <div class="events-grid" id="events-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="logo-leaf">🍃</span><span class="logo-text">TeaVault</span></a><p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p></div>
+      <div class="footer-col"><h4 class="footer-col-title">Explore</h4><ul class="footer-links"><li><a href="catalog.html">Tea Catalog</a></li><li><a href="education.html">Education</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Subscribe</h4><ul class="footer-links"><li><a href="subscriptions.html">All Tiers</a></li><li><a href="subscriptions.html#gift">Gift</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="b2b.html">For Business</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2025 TeaVault Inc.</p><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

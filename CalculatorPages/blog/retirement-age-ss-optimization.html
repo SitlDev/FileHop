@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retirement Age: SS Optimization | YourCalc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../global.css">
+    <script src="../sidebar.js" defer></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('calcTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+    <style>
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; padding: 160px 40px 80px 40px; display: flex; flex-direction: column; align-items: center; }
+        .article-container { max-width: 800px; width: 100%; }
+        .article-header { margin-bottom: 40px; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+        .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 14px; color: var(--muted); }
+        .category-tag { background: rgba(245, 166, 35, 0.1); color: var(--accent); font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; font-size: 11px; }
+        h1 { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .content { line-height: 1.7; font-size: 18px; color: var(--text); }
+        .content h2 { font-size: 28px; margin: 48px 0 24px; color: var(--text); font-weight: 700; }
+        .content p { margin-bottom: 24px; opacity: 0.9; }
+        .content ul { margin-bottom: 24px; padding-left: 24px; }
+        .content li { margin-bottom: 12px; }
+        .example-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin: 40px 0; }
+        .example-box h3 { margin-top: 0; color: var(--accent); font-size: 20px; margin-bottom: 16px; }
+        .cta-box { background: linear-gradient(135deg, var(--surface), #1a1d26); border: 1px solid var(--accent); border-radius: 24px; padding: 40px; text-align: center; margin-top: 64px; }
+        .cta-box h3 { font-size: 24px; margin-bottom: 16px; }
+        .cta-btn { background: var(--accent); color: #000; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; display: inline-block; transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.05); }
+        @media (max-width: 768px) { main { padding: 100px 20px 60px 20px; } h1 { font-size: 32px; } }
+    </style>
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <main>
+        <div class="article-container">
+            <div class="article-header">
+                <div class="article-meta">
+                    <span class="category-tag">Life</span>
+                    <span>&bull;</span> <span>Jun 04, 2026</span> <span>&bull;</span> <span>12 min read</span>
+                </div>
+                <h1>Retirement Age: SS Optimization</h1>
+                <p style="font-size: 20px; color: var(--muted); line-height: 1.5;">When to take Social Security: 62 vs. 67 vs. 70 explained.</p>
+            </div>
+            <div class="content">
+            <h2>The Social Security Safety Net: A Historical Context</h2>
+            <p>Signed into law by Franklin D. Roosevelt in 1935, Social Security was never intended to be a complete retirement plan. It was designed as a "floor"—a safety net to ensure that elderly Americans would never face absolute destitution. In its early years, the average life expectancy was only 61, meaning most workers wouldn't even live to see their first check. Today, with life expectancies reaching into the 80s and 90s, the decision of <i>when</i> to claim has become a high-stakes financial calculation that can swing your lifetime income by hundreds of thousands of dollars.</p>
+            <p>While the Social Security Administration (SSA) is actuary-neutral (meaning they expect to pay the same amount over your lifetime regardless of when you start), your individual health, wealth, and family structure make one choice significantly better than the others.</p>
+
+            <h2>The Three Pillars of Claiming</h2>
+            <p>Your benefits are calculated based on your 35 highest-earning years, but the amount you actually receive depends on your "claiming age":</p>
+            <ol>
+                <li><strong>Age 62 (The Early Bird):</strong> This is the earliest you can claim. Your monthly benefit will be permanently reduced by up to 30% compared to your full retirement age.</li>
+                <li><strong>Age 67 (Full Retirement Age - FRA):</strong> For anyone born in 1960 or later, 67 is the age at which you receive 100% of your primary insurance amount (PIA).</li>
+                <li><strong>Age 70 (The Maximum):</strong> Beyond age 67, your benefit increases by a staggering <b>8% per year</b> for every year you wait. At 70, you reach the maximum possible benefit—roughly 124% of your FRA amount.</li>
+            </ol>
+
+            <h2>The Break-Even Point: A Life Expectancy Gamble</h2>
+            <p>The "Break-Even Point" is the most critical metric in Social Security optimization. It is the age at which the total sum of the larger checks (from waiting) surpasses the total sum of the smaller checks (from starting early).</p>
+            <div class='example-box'>
+                <h3>Calculating the Break-Even</h3>
+                <p>If your FRA benefit is $2,000, claiming at 62 gives you $1,400. If you wait until 70, you get $2,480. </p>
+                <ul>
+                    <li>By age 70, the "Early Claimer" has received $134,400, while the "Waiter" has received $0.</li>
+                    <li>However, the "Waiter" gets $1,080 <i>more</i> every month from that point forward.</li>
+                    <li>It takes roughly <b>12.5 years</b> for the Waiter to catch up. The break-even age is approximately <b>82.5</b>.</li>
+                </ul>
+            </div>
+            <p>If you believe you will live past 83, waiting until 70 is the mathematically superior move. If your health is poor or your family history suggests a shorter lifespan, claiming at 62 is a rational insurance move.</p>
+
+            <h2>Spousal Coordination: The Survivor Benefit</h2>
+            <p>One of the most overlooked factors in the claiming decision is the <b>Survivor Benefit</b>. When one spouse dies, the survivor is entitled to the <i>larger</i> of the two Social Security checks. If the higher-earning spouse waits until 70 to maximize their benefit, they aren't just increasing their own income; they are potentially increasing the lifelong income of their surviving spouse. For a dual-income couple, the most common optimization strategy is for the lower earner to claim early (for immediate cash flow) while the higher earner waits until 70 (to provide a high "survivor floor").</p>
+
+            <h2>The 8% Guarantee: A Market Comparison</h2>
+            <p>Investors often ask: "Should I take my Social Security at 62 and invest it in the stock market?" While the market <i>can</i> return more than 8%, it carries risk. The 8% annual increase for waiting between age 67 and 70 is <b>guaranteed by the U.S. Government and adjusted for inflation</b>. There is no other financial product in the world that offers a guaranteed, inflation-protected 8% return. For this reason, most financial planners view waiting until 70 as the ultimate "Low Risk, High Reward" retirement move.</p>
+
+            <h2>Working While Claiming: The Earnings Test</h2>
+            <p>If you claim Social Security at 62 but continue to work, you may be subject to the <b>Earnings Test</b>. If you earn over a certain threshold ($22,320 in 2024), the SSA will withhold $1 of benefits for every $2 you earn above the limit. While this money isn't "lost" (your future benefits will be adjusted upward to compensate), it can lead to a nasty surprise at tax time if you aren't prepared for the temporary loss of liquidity.</p>
+
+            <h2>The "Tax Torpedo"</h2>
+            <p>Social Security benefits can be taxed at the federal level depending on your "Combined Income" (Adjusted Gross Income + Non-taxable Interest + 1/2 of your Social Security benefits). If your combined income is over $34,000 ($44,000 for couples), up to 85% of your benefits can be subject to income tax. This is known as the "Tax Torpedo," where every additional dollar of IRA withdrawal can trigger taxes on more of your Social Security, resulting in a marginal tax rate that can exceed 40%.</p>
+
+            <h2>The "Solvency Scare": Fact vs. Fiction</h2>
+            <p>Headlines often scream that Social Security is "going bankrupt." This is a misunderstanding of the trust fund. Even if the trust fund is completely depleted (projected around 2033), current payroll taxes would still be sufficient to pay roughly 75% to 80% of scheduled benefits. While a 20% cut is significant, it is far from "zero." Most experts believe Congress will eventually intervene (as they did in 1983) by adjusting the full retirement age or increasing the cap on taxable earnings.</p>
+
+            <h2>Conclusion: Your Custom Strategy</h2>
+            <p>Social Security is the only part of your retirement plan that is guaranteed for life, adjusted for inflation, and carries no market risk. Treating it as a "bonus" is a mistake; it should be the foundation of your strategy.</p>
+            <p>Before you make the call, run the numbers. Use our <a href="../life.html#retire">Social Security Optimization Calculator</a> to see your break-even age, model the impact of taxes, and compare the total lifetime payout for you and your spouse across different scenarios. The right decision could be worth an extra $250,000 in your golden years.</p>
+        </div>
+            <div class="cta-box">
+                <h3>Ready to calculate your own numbers?</h3>
+                <p style="margin-bottom: 24px; color: var(--muted);">Use our free professional tool to get instant, accurate results.</p>
+                <a href="../life.html#retire" class="cta-btn">Try the Calculator →</a>
+            </div>
+            <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+                <a href="index.html" style="color: var(--muted); text-decoration: none;">&larr; Back to Guides</a>
+                <a href="depreciation-hidden-cost-of-cars.html" style="color: var(--accent); text-decoration: none;">Next Guide: Depreciation: Hidden Cost of Cars &rarr;</a>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer" style="margin-top: 80px; padding: 40px 20px; border-top: 1px solid var(--border); text-align: center;">
+        <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 24px; font-size: 14px;">
+            <a href="../index.html" style="color: var(--muted); text-decoration: none;">Home</a>
+            <a href="../about.html" style="color: var(--muted); text-decoration: none;">About</a>
+            <a href="../privacy.html" style="color: var(--muted); text-decoration: none;">Privacy</a>
+            <a href="../contact.html" style="color: var(--muted); text-decoration: none;">Contact</a>
+        </div>
+        <p style="color: var(--muted); font-size: 12px;">&copy; 2026 YourCalc — A KnotStranded LLC Product.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.logo-container').forEach(el => el.onclick = () => location.href='../index.html');
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+                document.querySelectorAll('.header-links a').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href === 'blog/index.html') el.setAttribute('href', 'index.html');
+                    else if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

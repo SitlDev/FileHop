@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert between various measurement units: length, weight, temperature, volume, and speed. Perfect for science and engineering calculations." />
+  <meta name="keywords" content="unit converter, unit conversion, length converter, weight converter, temperature converter, volume converter, speed converter, measurement tool, science tool, engineering calculator" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Unit Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Unit Converter</h1>
+      <p>Convert between units of length, weight, temperature, volume, and more.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Settings</h2>
+        <div class="form-container">
+          <label for="unit-category">Category</label>
+          <select id="unit-category">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+            <option value="volume">Volume</option>
+            <option value="speed">Speed</option>
+          </select>
+        </div>
+
+        <div class="form-container">
+          <label for="unit-from">From</label>
+          <select id="unit-from"></select>
+        </div>
+
+        <div class="form-container">
+          <label for="unit-input">Value</label>
+          <input id="unit-input" type="number" placeholder="0" value="1">
+        </div>
+
+        <div class="form-container">
+          <label for="unit-to">To</label>
+          <select id="unit-to"></select>
+        </div>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-convert">Convert</button>
+          <button id="btn-copy">Copy Result</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Result</h2>
+        <textarea id="unit-output" rows="6" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+
+      <section class="info-section">
+        <h2>About Unit Conversion</h2>
+        
+        <h3>Why Convert Units?</h3>
+        <p>Different countries and industries use different measurement systems. The metric system (SI units) dominates science and most countries, while the imperial system persists in the United States. Accurate unit conversion is essential for engineering, medicine, manufacturing, cooking, and international commerce.</p>
+        
+        <h3>Common Conversions</h3>
+        <ul>
+          <li><strong>Length:</strong> Meters ↔ Feet, Kilometers ↔ Miles, Centimeters ↔ Inches</li>
+          <li><strong>Weight:</strong> Kilograms ↔ Pounds, Grams ↔ Ounces, Metric Tons ↔ Short Tons</li>
+          <li><strong>Temperature:</strong> Celsius ↔ Fahrenheit (Formula: °F = °C × 9/5 + 32)</li>
+          <li><strong>Volume:</strong> Liters ↔ Gallons, Milliliters ↔ Fluid Ounces, Cubic Meters ↔ Cubic Feet</li>
+          <li><strong>Speed:</strong> m/s ↔ mph, km/h ↔ knots</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>Travel:</strong> Convert distances (miles/kilometers) and temperatures</li>
+          <li><strong>Cooking:</strong> Convert recipe measurements between metric and imperial</li>
+          <li><strong>Engineering:</strong> Ensure calculations work across different measurement systems</li>
+          <li><strong>Medicine:</strong> Precise dosage calculations and conversions</li>
+          <li><strong>Manufacturing:</strong> Quality control and machine specifications</li>
+        </ul>
+        
+        <h3>Key Conversions</h3>
+        <ul>
+          <li>1 kilometer = 0.621371 miles</li>
+          <li>1 kilogram = 2.20462 pounds</li>
+          <li>1 liter = 0.264172 gallons</li>
+          <li>°F = (°C × 9/5) + 32</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Unit Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

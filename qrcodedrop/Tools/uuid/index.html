@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate UUID v4 and GUID identifiers with customizable count, uppercase, and bracket options for applications and databases.">
+    <meta name="keywords" content="UUID generator, GUID generator, unique identifier, random ID, UUID v4, UUID creator, identifier generator, database tool, application development, unique ID generator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/uuid/">
+    <meta property="og:title" content="UUID/GUID Generator — Tools Dashboard">
+    <meta property="og:description" content="Generate unique identifiers for your applications and databases.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/Tools/uuid/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <!-- Replace ca-pub-XXXXXXXXXXXXXXXX with your AdSense publisher ID -->
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>UUID/GUID Generator</h1>
+            <p>Generate unique identifiers for your applications and databases.</p>
+        </header>
+        <div class="ad-container" style="text-align:center; margin: 20px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        <main>
+            <section class="input-section">
+                <h2>Generator Settings</h2>
+                <div class="form-container">
+                    <label for="uuid-format">Format</label>
+                    <select id="uuid-format">
+                        <option value="uuid">UUID v4</option>
+                        <option value="guid">GUID</option>
+                    </select>
+                </div>
+                <div class="form-container">
+                    <label for="uuid-count">Count</label>
+                    <input type="number" id="uuid-count" min="1" max="100" value="5">
+                </div>
+                <div class="form-container">
+                    <label for="uuid-uppercase">Uppercase</label>
+                    <input type="checkbox" id="uuid-uppercase">
+                </div>
+                <div class="form-container">
+                    <label for="uuid-brackets">With Brackets (GUID style)</label>
+                    <input type="checkbox" id="uuid-brackets">
+                </div>
+                <div class="actions">
+                    <button id="btn-generate-uuid">Generate IDs</button>
+                    <button id="btn-copy-uuid">Copy All</button>
+                </div>
+            </section>
+            <section class="preview-section">
+                <h2>Generated IDs</h2>
+                <div class="preview-wrapper">
+                    <textarea id="uuid-output" rows="10" readonly style="width:100%; padding: 15px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Courier New', monospace; font-size: 14px;"></textarea>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>About UUID/GUID</h2>
+                
+                <h3>What is UUID?</h3>
+                <p>A UUID (Universally Unique Identifier) is a 128-bit value represented as a 36-character string (e.g., 550e8400-e29b-41d4-a716-446655440000). UUIDs are designed to be unique across time and space, making them ideal for distributed systems where central coordination is impractical. First standardized by the ISO/IEC 11578 standard and defined in RFC 4122, UUIDs are generated without central coordination.</p>
+                
+                <h3>UUID vs GUID</h3>
+                <ul>
+                  <li><strong>UUID:</strong> International standard (RFC 4122), used in Linux, Java, Python, and cross-platform systems</li>
+                  <li><strong>GUID:</strong> Microsoft's implementation of UUID, virtually identical but popularized in Windows/.NET ecosystems</li>
+                  <li>Both are functionally equivalent 128-bit identifiers with the same format</li>
+                </ul>
+                
+                <h3>Real-World Use Cases</h3>
+                <ul>
+                  <li><strong>Database Records:</strong> Generate unique primary keys for distributed database systems</li>
+                  <li><strong>API Calls:</strong> Create unique request IDs for tracking and debugging</li>
+                  <li><strong>User Sessions:</strong> Generate session tokens that are mathematically unique</li>
+                  <li><strong>Distributed Systems:</strong> Create identifiers without central coordination (Cassandra, DynamoDB)</li>
+                  <li><strong>File Systems:</strong> Name temporary files or uploads uniquely</li>
+                  <li><strong>Transactions:</strong> Track transactions across multiple services</li>
+                </ul>
+                
+                <h3>Example Usage</h3>
+                <p><strong>Database Insert:</strong></p>
+                <code>INSERT INTO users (id, name, email) VALUES ('550e8400-e29b-41d4-a716-446655440000', 'John', 'john@example.com');</code>
+                <p style="margin-top: 12px;"><strong>API Call Tracking:</strong></p>
+                <code>GET /api/users/123 | X-Request-ID: 550e8400-e29b-41d4-a716-446655440000</code>
+                <p style="margin-top: 12px;"><strong>File Naming:</strong></p>
+                <code>/uploads/550e8400-e29b-41d4-a716-446655440000.pdf</code>
+            </section>
+        </main>
+
+        <!-- Email Collection Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>🚀 Get More Tools & Updates</h3>
+                <p>Join our newsletter to get notified about new tools, features, and productivity tips.</p>
+                <form id="email-signup-form">
+                    <input type="email" id="signup-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="signup-btn">Subscribe for Free</button>
+                </form>
+                <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
+        <!-- Sidebar Ad -->
+        <div class="sidebar-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <footer>
+            <!-- Footer Ad -->
+            <div class="footer-ad">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="1234567892"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p>&copy; 2026 UUID/GUID Generator.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

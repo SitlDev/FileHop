@@ -1,0 +1,26 @@
+{
+  "name": "qrcodedrop",
+  "version": "1.0.0",
+  "description": "A comprehensive suite of 41+ free productivity and developer tools",
+  "main": "index.html",
+  "scripts": {
+    "dev": "http-server -p 8080 -c-1",
+    "start": "http-server -p 8000",
+    "preview": "npx http-server -p 8000 -o"
+  },
+  "keywords": [
+    "tools",
+    "qr-code",
+    "converter",
+    "formatter",
+    "encoder",
+    "json",
+    "base64",
+    "password-generator"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive suite of 41+ productivity and developer tools for QR codes, encryption, formatting, conversion, and vocabulary/word manipulation.">
+    <meta name="keywords" content="tools, productivity, qr code, converter, formatter, encoder, vocabulary, anagram, rhyme, synonym, utilities">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/">
+    <meta property="og:title" content="Tools Dashboard — Complete Utility Suite">
+    <meta property="og:description" content="41+ free tools for developers and productivity: QR codes, converters, formatters, encoders, vocabulary tools, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/Tools/">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Tools Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google AdSense: Replace with your publisher ID when ready for monetization
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID_HERE" crossorigin="anonymous"></script> -->
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-main: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent: #667eea;
+            --accent-hover: #5568d3;
+            --border-color: #e0e0e0;
+            --card-bg: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            
+            /* Tool color themes */
+            --color-qr: #667eea;
+            --color-encoding: #f59e0b;
+            --color-converter: #10b981;
+            --color-formatter: #8b5cf6;
+            --color-generator: #ec4899;
+            --color-vocabulary: #06b6d4;
+            --color-utility: #f43f5e;
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999999;
+            --accent: #667eea;
+            --accent-hover: #764ba2;
+            --border-color: #2a2a2a;
+            --card-bg: #0f0f0f;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg-main); 
+            color: var(--text-primary); 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center; color: white; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.5px; }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        header .subtitle { font-size: 0.95em; margin-top: 12px; opacity: 0.85; font-weight: 300; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+        .search-bar { display: flex; gap: 10px; margin: 30px 0; }
+        .search-bar input { flex: 1; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--card-bg); color: var(--text-primary); font-size: 16px; min-height: 44px; }
+        .search-bar button { padding: 12px 24px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; min-height: 44px; font-weight: 500; transition: 0.2s; }
+        .search-bar button:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        .category-tabs { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .category-tabs button { padding: 8px 16px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 6px; cursor: pointer; transition: 0.3s; }
+        .category-tabs button.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .category-tabs button:hover { border-color: var(--accent); }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin: 30px 0; }
+        
+        .category-section { margin-bottom: 50px; }
+        .category-header { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; margin-top: 40px; }
+        .category-header:first-of-type { margin-top: 0; }
+        .category-header h2 { font-size: 1.8em; margin: 0; color: var(--accent); font-weight: 600; }
+        .category-header .icon { font-size: 2em; }
+        .category-description { color: var(--text-secondary); margin-bottom: 15px; font-size: 0.95em; }
+        .category-tools { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        .tool-card { 
+            background: var(--card-bg); 
+            border: 2px solid #333; 
+            border-radius: 12px; 
+            padding: 20px; 
+            transition: 0.3s; 
+            cursor: pointer; 
+            text-decoration: none; 
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-color, #667eea);
+        }
+
+        .tool-card:hover { 
+            border-color: var(--card-color, #667eea);
+            transform: translateY(-4px); 
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        }
+        
+        .tool-card h3 { color: var(--card-color, #667eea); margin-bottom: 8px; font-size: 1.2em; margin-top: 8px; }
+        .tool-card p { color: var(--text-secondary); font-size: 0.95em; line-height: 1.5; margin-bottom: 12px; }
+        .tool-card .badge { display: inline-block; background: var(--bg-secondary); color: var(--card-color, #667eea); padding: 4px 12px; border-radius: 16px; font-size: 0.85em; margin-top: 10px; font-weight: 600; border: 1px solid var(--card-color, #667eea); }
+
+        /* Tool category colors */
+        .tool-card[data-category="qr"] { --card-color: #667eea; }
+        .tool-card[data-category="encoding"] { --card-color: #f59e0b; }
+        .tool-card[data-category="converter"] { --card-color: #10b981; }
+        .tool-card[data-category="formatter"] { --card-color: #8b5cf6; }
+        .tool-card[data-category="generator"] { --card-color: #ec4899; }
+        .tool-card[data-category="vocabulary"] { --card-color: #06b6d4; }
+        .tool-card[data-category="utility"] { --card-color: #f43f5e; }
+
+        .ad-container { text-align: center; margin: 30px 0; }
+
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 20px; text-align: center; color: var(--text-secondary); margin-top: 40px; }
+
+        .results-info { color: var(--text-secondary); margin: 20px 0; }
+
+        .analytics-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 12px; color: white; margin-bottom: 30px; }
+        .analytics-section h2 { margin-bottom: 20px; font-size: 1.5em; }
+        
+        .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .analytics-card { background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 8px; backdrop-filter: blur(10px); }
+        .analytics-label { font-size: 0.9em; opacity: 0.9; margin-bottom: 8px; }
+        .analytics-value { font-size: 2em; font-weight: bold; }
+
+        .admin-link { transition: 0.3s; }
+        .admin-link:hover { background: #764ba2; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            header p { font-size: 0.95em; }
+            
+            .container { padding: 16px; }
+            
+            .category-tools { grid-template-columns: 1fr; gap: 16px; }
+            .category-header { gap: 10px; margin-top: 30px; }
+            .category-header h2 { font-size: 1.4em; }
+            .category-header .icon { font-size: 1.6em; }
+            .category-description { font-size: 0.9em; }
+            
+            .search-bar { 
+                flex-direction: column; 
+                gap: 8px;
+                margin: 20px 0;
+            }
+            
+            .search-bar input,
+            .search-bar button {
+                width: 100%;
+            }
+            
+            .category-tabs { gap: 8px; margin: 16px 0; }
+            .category-tabs button { padding: 8px 12px; font-size: 0.9em; }
+            
+            .analytics-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            
+            .tool-card { padding: 16px; }
+            .tool-card h3 { font-size: 1.1em; }
+            .tool-card p { font-size: 0.9em; }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 24px 16px;
+            }
+
+            header h1 { 
+                font-size: 1.4em;
+                margin-bottom: 6px;
+            }
+
+            header p { 
+                font-size: 0.85em;
+            }
+            
+            .container { 
+                padding: 12px;
+            }
+            
+            .category-tools { 
+                grid-template-columns: 1fr; 
+                gap: 12px; 
+                margin: 20px 0;
+            }
+            
+            .category-header {
+                gap: 8px;
+                margin-top: 24px;
+            }
+            
+            .category-header h2 {
+                font-size: 1.2em;
+            }
+            
+            .category-header .icon {
+                font-size: 1.4em;
+            }
+            
+            .category-description {
+                font-size: 0.85em;
+                margin-bottom: 12px;
+            }
+            
+            .search-bar { 
+                flex-direction: column; 
+                gap: 8px;
+                margin: 16px 0;
+            }
+            
+            .search-bar input,
+            .search-bar button {
+                width: 100%;
+                padding: 11px;
+                font-size: 14px;
+                min-height: 44px;
+            }
+            
+            .category-tabs { 
+                gap: 6px; 
+                margin: 12px 0;
+            }
+
+            .category-tabs button { 
+                padding: 6px 10px; 
+                font-size: 0.8em;
+            }
+            
+            .analytics-section { 
+                padding: 20px 16px;
+                margin-bottom: 20px;
+            }
+
+            .analytics-section h2 {
+                font-size: 1.2em;
+                margin-bottom: 16px;
+            }
+            
+            .analytics-grid { 
+                grid-template-columns: 1fr; 
+                gap: 10px;
+            }
+
+            .analytics-card { 
+                padding: 12px;
+            }
+
+            .analytics-label { 
+                font-size: 0.85em;
+            }
+
+            .analytics-value { 
+                font-size: 1.6em;
+            }
+            
+            .tool-card { 
+                padding: 12px;
+                border-radius: 10px;
+            }
+
+            .tool-card h3 { 
+                font-size: 1em;
+                margin-bottom: 6px;
+            }
+
+            .tool-card p { 
+                font-size: 0.8em;
+                margin-bottom: 8px;
+            }
+
+            .tool-card .badge { 
+                font-size: 0.75em;
+                padding: 2px 8px;
+            }
+
+            footer { 
+                padding: 16px; 
+                font-size: 0.8em;
+                margin-top: 20px;
+            }
+
+            .admin-link {
+                font-size: 0.85em;
+                padding: 6px 12px;
+            }
+
+            .results-info {
+                font-size: 0.9em;
+                margin: 16px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Complete Tool Suite</h1>
+        <p>Everything you need to be more productive</p>
+        <div class="subtitle">41+ tools for developers, content creators, and everyday professionals</div>
+    </header>
+
+    <div class="container">
+        <!-- Analytics Section -->
+        <div class="analytics-section">
+            <h2>▪ Platform Analytics</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <div class="analytics-label">Total Visits</div>
+                    <div class="analytics-value" id="analytics-visits">--</div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-label">Total Tool Uses</div>
+                    <div class="analytics-value" id="analytics-events">--</div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-label">Newsletter Subscribers</div>
+                    <div class="analytics-value" id="analytics-subscribers">--</div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-label">Most Popular Tool</div>
+                    <div class="analytics-value" id="analytics-popular" style="font-size: 0.9em;">--</div>
+                </div>
+            </div>
+            <a href="admin.html" class="admin-link" style="display: inline-block; margin-top: 15px; padding: 8px 16px; background: var(--accent); color: white; text-decoration: none; border-radius: 6px; font-size: 0.9em;">◆ View Detailed Analytics</a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search tools...">
+            <button id="search-btn">Search</button>
+        </div>
+
+        <div class="category-tabs">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="generator">Generators</button>
+            <button class="category-btn" data-category="converter">Converters</button>
+            <button class="category-btn" data-category="encoder">Encoders</button>
+            <button class="category-btn" data-category="formatter">Formatters</button>
+            <button class="category-btn" data-category="vocabulary">Vocabulary</button>
+            <button class="category-btn" data-category="other">Other</button>
+        </div>
+
+        <div class="results-info" id="results-info"></div>
+
+        <div id="tools-container"></div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Knotstranded LLC. All rights reserved.</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            <a href="/privacy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a> | 
+            <a href="/terms.html" style="color: var(--accent); text-decoration: none;">Terms of Service</a> | 
+            <a href="/contact.html" style="color: var(--accent); text-decoration: none;">Contact</a>
+        </p>
+    </footer>
+
+    <script src="dashboard.js"></script>
+    <script src="/theme-toggle.js"></script>
+</body>
+</html>

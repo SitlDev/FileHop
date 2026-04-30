@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mortgage Amortization Explained | YourCalc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../global.css">
+    <script src="../sidebar.js" defer></script>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('calcTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+    <style>
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; padding: 160px 40px 80px 40px; display: flex; flex-direction: column; align-items: center; }
+        .article-container { max-width: 800px; width: 100%; }
+        .article-header { margin-bottom: 40px; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
+        .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 14px; color: var(--muted); }
+        .category-tag { background: rgba(245, 166, 35, 0.1); color: var(--accent); font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; font-size: 11px; }
+        h1 { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .content { line-height: 1.7; font-size: 18px; color: var(--text); }
+        .content h2 { font-size: 28px; margin: 48px 0 24px; color: var(--text); font-weight: 700; }
+        .content p { margin-bottom: 24px; opacity: 0.9; }
+        .content ul { margin-bottom: 24px; padding-left: 24px; }
+        .content li { margin-bottom: 12px; }
+        .example-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin: 40px 0; }
+        .example-box h3 { margin-top: 0; color: var(--accent); font-size: 20px; margin-bottom: 16px; }
+        .cta-box { background: linear-gradient(135deg, var(--surface), #1a1d26); border: 1px solid var(--accent); border-radius: 24px; padding: 40px; text-align: center; margin-top: 64px; }
+        .cta-box h3 { font-size: 24px; margin-bottom: 16px; }
+        .cta-btn { background: var(--accent); color: #000; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; display: inline-block; transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.05); }
+        @media (max-width: 768px) { main { padding: 100px 20px 60px 20px; } h1 { font-size: 32px; } }
+    </style>
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <main>
+        <div class="article-container">
+            <div class="article-header">
+                <div class="article-meta">
+                    <span class="category-tag">Finance</span>
+                    <span>&bull;</span> <span>Jan 12, 2026</span> <span>&bull;</span> <span>8 min read</span>
+                </div>
+                <h1>Mortgage Amortization Explained</h1>
+                <p style="font-size: 20px; color: var(--muted); line-height: 1.5;">Understand how principal and interest shift over the life of your home loan.</p>
+            </div>
+            <div class="content">
+            <h2>"To Kill" the Debt: The Etymology of Amortization</h2>
+            <p>The word "amortization" sounds like a dry, clinical financial term, but its roots are surprisingly visceral. Derived from the Middle French word <i>amortir</i> and the Latin <i>admortizare</i>, it literally translates to "killing" or "bringing to death." In the world of finance, an amortization schedule is the step-by-step process of "killing off" a debt through a series of fixed payments. Every time you make a mortgage payment, you are delivering a small blow to the principal balance until, eventually, the debt is dead.</p>
+            <p>While the concept is simple, the mathematical mechanics behind it are designed to favor the lender in the early years and the borrower in the later years. Understanding this shift is the key to mastering your largest lifetime expense: your home.</p>
+
+            <h2>The Amortization Formula: How Your Payment is Born</h2>
+            <p>When you take out a fixed-rate mortgage, your monthly payment remains the same for 15, 20, or 30 years. But how does a bank arrive at that specific number? They use the <b>Amortization Formula</b>:</p>
+            <div class='example-box'>
+                <p style="font-family: 'DM Mono', monospace; font-size: 18px; color: var(--accent);">M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]</p>
+                <p>Where:<br>
+                <b>M</b> = Total monthly payment<br>
+                <b>P</b> = Principal loan amount<br>
+                <b>i</b> = Monthly interest rate (annual rate divided by 12)<br>
+                <b>n</b> = Number of months (e.g., 360 for a 30-year loan)</p>
+            </div>
+            <p>This formula ensures that by the final month of the loan, the balance will hit exactly zero. However, the <i>ratio</i> of what goes to the bank (interest) versus what goes to your equity (principal) changes with every single payment.</p>
+
+            <h2>The Front-Loading Reality: Math, Not Malice</h2>
+            <p>A common complaint among homeowners is that mortgages are "front-loaded" with interest to benefit the bank. While it’s true that you pay more interest at the beginning, this isn't a conspiracy; it's basic math. Interest is calculated based on the <b>current remaining balance</b> of the loan.</p>
+            <p>In month one, your balance is at its highest point. Therefore, the 6.5% (or whatever your rate is) interest charge on that large balance is also at its peak. As you pay down the principal, the balance shrinks, and so does the interest charge for the following month. Because your total monthly payment is fixed, every dollar that is <i>not</i> needed for interest is automatically applied to the principal. This creates a "snowball effect" where the debt reduction accelerates as the loan ages.</p>
+
+            <h3>The Amortization Curve</h3>
+            <p>If you were to graph this, you would see two lines: an interest line that starts high and slopes downward, and a principal line that starts low and curves upward. On a 30-year loan at 7%, these two lines usually don't cross until <b>Year 22</b>. This means for the first two decades of homeownership, you are mostly paying the bank for the privilege of borrowing their money.</p>
+
+            <h2>15-Year vs. 30-Year: The Interest Massacre</h2>
+            <p>The choice between a 15-year and a 30-year mortgage is the most significant decision you will make in the amortization process. While the 15-year loan has a higher monthly payment, the "interest massacre" it performs is breathtaking.</p>
+            <ul>
+                <li><strong>30-Year Loan ($400k at 7%):</strong> Total interest paid over the life of the loan is roughly <b>$558,000</b>. You pay more in interest than the house originally cost.</li>
+                <li><strong>15-Year Loan ($400k at 6.5%):</strong> Total interest paid is roughly <b>$226,000</b>.</li>
+            </ul>
+            <p>By choosing the 15-year option, you save over <b>$330,000</b> in interest. This is because the higher payment forces more money into the principal bucket early on, preventing interest from compounding on that debt for an additional 15 years.</p>
+
+            <h2>Strategic Prepayment: How to Hack the Schedule</h2>
+            <p>You don't have to be stuck with the bank's schedule. You can "hack" your amortization by making additional principal payments. Because interest is recalculated every month based on the remaining balance, a $1,000 extra payment made in Year 1 is worth significantly more than a $1,000 extra payment made in Year 25.</p>
+            <div class='example-box'>
+                <h3>The Power of One Extra Payment</h3>
+                <p>By making just <b>one extra monthly payment per year</b> (or adding 1/12th of a payment to each monthly check), you can:</p>
+                <ol>
+                    <li>Shave 5 to 7 years off a 30-year mortgage.</li>
+                    <li>Save tens of thousands (sometimes over $100k) in interest.</li>
+                    <li>Build equity at a significantly faster rate, giving you more "buffer" if home prices fluctuate.</li>
+                </ol>
+            </div>
+
+            <h2>The Psychology of the Schedule</h2>
+            <p>Understanding amortization changes your relationship with your home. Instead of seeing a "forever debt," you see a math problem that can be solved. When you realize that $100 extra this month might save you $400 in interest over the life of the loan, the motivation to "kill" the debt becomes addictive. It transforms the mortgage from a burden into a strategic wealth-building tool.</p>
+
+            <h2>Refinancing: The "Clock Reset" Trap</h2>
+            <p>One danger of understanding amortization is the "Refinance Reset." If you are 10 years into a 30-year mortgage and you refinance into a <i>new</i> 30-year mortgage to get a lower rate, you have reset the amortization clock. You are back at the beginning of the curve where interest is highest. Even with a lower rate, you may end up paying more total interest over the combined life of the two loans. To avoid this, always try to refinance into a term that matches or reduces your remaining years (e.g., refinancing into a 20-year or 15-year loan).</p>
+
+            <h2>Conclusion: Knowledge is Equity</h2>
+            <p>The bank counts on you not understanding the amortization schedule. They count on you only looking at the monthly payment and ignoring the total interest cost. By mastering the curve and strategically attacking the principal, you can "kill" your debt years ahead of schedule and keep hundreds of thousands of dollars in your own pocket.</p>
+            <p>Don't be a passive borrower. Use our <a href="../finance.html#mortgage">Professional Mortgage Amortization Calculator</a> to see your exact month-by-month breakdown. Run "What If" scenarios to see how much an extra $50 or $100 a month will save you. Your future self—and your net worth—will thank you.</p>
+        </div>
+            <div class="cta-box">
+                <h3>Ready to calculate your own numbers?</h3>
+                <p style="margin-bottom: 24px; color: var(--muted);">Use our free professional tool to get instant, accurate results.</p>
+                <a href="../finance.html#mortgage" class="cta-btn">Try the Calculator →</a>
+            </div>
+            <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+                <a href="index.html" style="color: var(--muted); text-decoration: none;">&larr; Back to Guides</a>
+                <a href="what-is-tdee-and-why-it-matters.html" style="color: var(--accent); text-decoration: none;">Next Guide: What Is TDEE and Why It Matters &rarr;</a>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer" style="margin-top: 80px; padding: 40px 20px; border-top: 1px solid var(--border); text-align: center;">
+        <div style="margin-bottom: 24px; display: flex; justify-content: center; gap: 24px; font-size: 14px;">
+            <a href="../index.html" style="color: var(--muted); text-decoration: none;">Home</a>
+            <a href="../about.html" style="color: var(--muted); text-decoration: none;">About</a>
+            <a href="../privacy.html" style="color: var(--muted); text-decoration: none;">Privacy</a>
+            <a href="../contact.html" style="color: var(--muted); text-decoration: none;">Contact</a>
+        </div>
+        <p style="color: var(--muted); font-size: 12px;">&copy; 2026 YourCalc — A KnotStranded LLC Product.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.logo-container').forEach(el => el.onclick = () => location.href='../index.html');
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+                document.querySelectorAll('.header-links a').forEach(el => {
+                    const href = el.getAttribute('href');
+                    if (href === 'blog/index.html') el.setAttribute('href', 'index.html');
+                    else if (href && !href.startsWith('http')) el.setAttribute('href', '../' + href);
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

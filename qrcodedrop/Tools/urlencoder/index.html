@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Encode and decode URLs and URI components instantly. Perfect for web development, API integration, and URL manipulation." />
+  <meta name="keywords" content="URL encoder, URL decoder, URL encoding, URI encoder, URI decoder, percent encoding, web development tool, API tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>URL Encoder/Decoder</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>URL Encoder/Decoder</h1>
+      <p>Encode text to URL format or decode URL-encoded strings instantly.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <textarea id="url-input" rows="8" placeholder="Enter text to encode or URL-encoded string to decode..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-encode">Encode</button>
+          <button id="btn-decode">Decode</button>
+          <button id="btn-copy">Copy Output</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Output</h2>
+        <textarea id="url-output" rows="10" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+
+      <section class="info-section">
+        <h2>About URL Encoding</h2>
+        
+        <h3>What is URL Encoding?</h3>
+        <p>URL encoding (also called percent-encoding or application/x-www-form-urlencoded) converts special characters into a format safe for transmission in URLs. It replaces unsafe characters with a percent sign (%) followed by two hexadecimal digits representing the character's ASCII value. Standardized in RFC 3986, URL encoding ensures URLs work correctly across all browsers and servers.</p>
+        
+        <h3>Why Encode URLs?</h3>
+        <ul>
+          <li><strong>Special Characters:</strong> Spaces, &lt;, &gt;, &quot;, # and other characters break URLs if not encoded</li>
+          <li><strong>Query Parameters:</strong> Form data containing special characters must be properly encoded</li>
+          <li><strong>Internationalization:</strong> Non-ASCII characters (é, ñ, 中文) require encoding for URL compatibility</li>
+          <li><strong>Data Integrity:</strong> Ensures query parameters aren't misinterpreted as URL structure</li>
+          <li><strong>Security:</strong> Prevents injection attacks by properly encoding user input</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>Search Queries:</strong> Google search: "machine learning trends" → q=machine%20learning%20trends</li>
+          <li><strong>Form Submission:</strong> HTML forms automatically encode data when method="POST"</li>
+          <li><strong>API Requests:</strong> Build safe query parameters for REST APIs</li>
+          <li><strong>Redirects:</strong> Pass URLs as parameters: ?redirect=https%3A%2F%2Fexample.com</li>
+          <li><strong>Email Links:</strong> Encode recipients and subjects: mailto:user@example.com?subject=Hello%20World</li>
+        </ul>
+        
+        <h3>Example</h3>
+        <p><strong>Raw Text:</strong> Hello, World! How are you?</p>
+        <p><strong>URL Encoded:</strong> Hello%2C%20World%21%20How%20are%20you%3F</p>
+        <p style="margin-top: 12px;"><strong>Common Encodings:</strong></p>
+        <ul>
+          <li>Space → %20 or +</li>
+          <li>! → %21</li>
+          <li>? → %3F</li>
+          <li>= → %3D</li>
+          <li>& → %26</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 URL Encoder/Decoder</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+/* VideoRail Sidebar — Sharp dark industrial aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap');
+
+/* ── Sidebar shell ─────────────────────────────────────────────── */
+#videorail-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 340px !important;
+  height: 100vh !important;
+  z-index: 2147483647 !important;
+  background: #0e0e0f !important;
+  border-left: 1px solid #2a2a2d !important;
+  display: flex !important;
+  flex-direction: column !important;
+  font-family: 'Syne', sans-serif !important;
+  font-size: 13px !important;
+  color: #e8e8ea !important;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.6) !important;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+  overflow: hidden !important;
+}
+
+#videorail-sidebar.vr-hidden {
+  transform: translateX(100%) !important;
+}
+
+/* ── Tab handle ─────────────────────────────────────────────────── */
+#videorail-toggle {
+  position: fixed !important;
+  top: 50% !important;
+  right: 0 !important;
+  transform: translateY(-50%) !important;
+  z-index: 2147483646 !important;
+  background: #1a1a1e !important;
+  border: 1px solid #2a2a2d !important;
+  border-right: none !important;
+  border-radius: 8px 0 0 8px !important;
+  padding: 10px 8px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Syne', sans-serif !important;
+  transition: background 0.2s !important;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.4) !important;
+}
+
+#videorail-toggle:hover {
+  background: #222228 !important;
+}
+
+.vr-tab-icon {
+  color: #ff4d00 !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+.vr-tab-label {
+  writing-mode: vertical-rl !important;
+  text-orientation: mixed !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #888 !important;
+}
+
+.vr-tab-count {
+  background: #ff4d00 !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 2px 5px !important;
+  border-radius: 10px !important;
+  line-height: 1.2 !important;
+  font-family: 'DM Mono', monospace !important;
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+.vr-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 16px 13px !important;
+  border-bottom: 1px solid #1e1e22 !important;
+  background: #111113 !important;
+  flex-shrink: 0 !important;
+}
+
+.vr-header-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.vr-logo {
+  color: #ff4d00 !important;
+  font-size: 14px !important;
+}
+
+.vr-title {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: -0.01em !important;
+  color: #fff !important;
+}
+
+.vr-header-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.vr-count {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 11px !important;
+  color: #555 !important;
+}
+
+.vr-close {
+  background: none !important;
+  border: none !important;
+  color: #555 !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  padding: 2px 4px !important;
+  line-height: 1 !important;
+  border-radius: 4px !important;
+  transition: color 0.15s, background 0.15s !important;
+}
+
+.vr-close:hover {
+  color: #fff !important;
+  background: #222 !important;
+}
+
+/* ── Player ──────────────────────────────────────────────────────── */
+.vr-player-wrap {
+  flex-shrink: 0 !important;
+  background: #0a0a0b !important;
+  border-bottom: 1px solid #1e1e22 !important;
+}
+
+.vr-player-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 10px 14px 6px !important;
+}
+
+.vr-player-title {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #aaa !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 200px !important;
+}
+
+.vr-player-close {
+  background: none !important;
+  border: 1px solid #2a2a2d !important;
+  color: #888 !important;
+  font-size: 11px !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-family: 'Syne', sans-serif !important;
+  transition: all 0.15s !important;
+}
+
+.vr-player-close:hover {
+  color: #fff !important;
+  border-color: #444 !important;
+}
+
+.vr-player-box {
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  background: #000 !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.vr-player-box video,
+.vr-player-box iframe {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  border: none !important;
+}
+
+.vr-player-meta {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 10px !important;
+  color: #3a3a3f !important;
+  padding: 6px 14px 10px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* ── Video list ──────────────────────────────────────────────────── */
+.vr-list {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  transition: opacity 0.2s !important;
+}
+
+.vr-list::-webkit-scrollbar {
+  width: 4px !important;
+}
+.vr-list::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.vr-list::-webkit-scrollbar-thumb {
+  background: #2a2a2d !important;
+  border-radius: 2px !important;
+}
+
+/* ── Video card ──────────────────────────────────────────────────── */
+.vr-card {
+  display: flex !important;
+  gap: 10px !important;
+  padding: 8px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  border: 1px solid transparent !important;
+  transition: background 0.15s, border-color 0.15s !important;
+  align-items: flex-start !important;
+}
+
+.vr-card:hover {
+  background: #16161a !important;
+  border-color: #2a2a2d !important;
+}
+
+.vr-card.vr-active {
+  background: #14100d !important;
+  border-color: #ff4d00 !important;
+}
+
+.vr-thumb {
+  width: 96px !important;
+  min-width: 96px !important;
+  height: 54px !important;
+  background: #1a1a1e !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.vr-thumb-icon {
+  font-size: 22px !important;
+  opacity: 0.3 !important;
+}
+
+.vr-play-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,0.45) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s !important;
+}
+
+.vr-card:hover .vr-play-overlay,
+.vr-card.vr-active .vr-play-overlay {
+  opacity: 1 !important;
+}
+
+.vr-play-btn {
+  width: 28px !important;
+  height: 28px !important;
+  background: #ff4d00 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  color: #fff !important;
+  padding-left: 2px !important;
+}
+
+.vr-duration {
+  position: absolute !important;
+  bottom: 4px !important;
+  right: 4px !important;
+  background: rgba(0,0,0,0.8) !important;
+  color: #fff !important;
+  font-family: 'DM Mono', monospace !important;
+  font-size: 9px !important;
+  padding: 1px 4px !important;
+  border-radius: 3px !important;
+}
+
+.vr-card-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  padding-top: 1px !important;
+}
+
+.vr-card-title {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #d8d8da !important;
+  line-height: 1.3 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.vr-card-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.vr-badge {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 9px !important;
+  font-weight: 500 !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  background: #1e1e22 !important;
+  color: #666 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────── */
+.vr-empty {
+  text-align: center !important;
+  padding: 40px 20px !important;
+  color: #444 !important;
+}
+
+.vr-empty-icon {
+  font-size: 36px !important;
+  margin-bottom: 12px !important;
+  opacity: 0.3 !important;
+}
+
+.vr-empty-msg {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  margin-bottom: 6px !important;
+}
+
+.vr-empty-sub {
+  font-size: 11px !important;
+  color: #333 !important;
+  line-height: 1.5 !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+.vr-footer {
+  padding: 10px 16px !important;
+  border-top: 1px solid #1a1a1e !important;
+  background: #0e0e0f !important;
+  flex-shrink: 0 !important;
+}
+
+.vr-refresh {
+  width: 100% !important;
+  background: #16161a !important;
+  border: 1px solid #2a2a2d !important;
+  color: #666 !important;
+  font-family: 'Syne', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  padding: 8px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  transition: all 0.15s !important;
+}
+
+.vr-refresh:hover {
+  background: #1e1e22 !important;
+  color: #aaa !important;
+  border-color: #3a3a3f !important;
+}
+
+/* Compact list when player is open */
+.vr-list-compact .vr-thumb {
+  width: 72px !important;
+  min-width: 72px !important;
+  height: 40px !important;
+}
+
+.vr-list-compact .vr-card-title {
+  -webkit-line-clamp: 1 !important;
+  font-size: 11px !important;
+}

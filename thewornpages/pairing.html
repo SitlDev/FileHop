@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Sensory Pairing | The Worn Pages Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/butterflies.js" defer></script>
+    <style>
+        :root {
+            --pink: #B68D8D;
+            --blush: #D4A3A3;
+            --pearl: #FAF6F5;
+            --cream: #F5EBE9;
+            --aged-paper: #EDE2E0;
+            --gold: #D4B982;
+            --text-dark: #5C4F4F;
+            --text-muted: #9E8B8B;
+            --radius: 32px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--pearl);
+            color: var(--text-dark);
+            font-family: 'EB Garamond', serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+
+        .pairing-card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 4rem 3rem;
+            border-radius: var(--radius);
+            box-shadow: 0 30px 60px rgba(182, 141, 141, 0.1);
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--aged-paper);
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            color: var(--blush);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .author { font-size: 1.2rem; color: var(--text-muted); font-style: italic; margin-bottom: 3rem; }
+
+        .sensory-ritual {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .ritual-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .ritual-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--pearl);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink);
+            flex-shrink: 0;
+        }
+
+        .ritual-text h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .ritual-text p { font-size: 1.1rem; color: var(--text-dark); }
+
+        .audio-btn {
+            background: var(--pink);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .audio-btn:hover { transform: translateY(-2px); }
+
+        .print-only { display: none; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .pairing-card { 
+                box-shadow: none; 
+                border: 1px solid #eee; 
+                width: 5in; 
+                height: 7in; 
+                max-width: none;
+                margin: 0 auto;
+                border-radius: 0;
+            }
+            .audio-btn, .no-print { display: none; }
+            .print-only { display: block; }
+        }
+
+        .qr-placeholder {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--aged-paper);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="content-wrap" style="display: none;">
+        <div class="pairing-card" id="pairing-card">
+            <span class="handwritten">A Sensory Ritual</span>
+            <h1 id="title">Loading Title...</h1>
+            <p class="author" id="author">by Author</p>
+
+            <div class="sensory-ritual">
+                <div class="ritual-item">
+                    <div class="ritual-icon"><i data-lucide="wind"></i></div>
+                    <div class="ritual-text">
+                        <h4>Atmosphere</h4>
+                        <p id="atmosphere">Determining the mood...</p>
+                    </div>
+                </div>
+                <div class="ritual-item">
+                    <div class="ritual-icon"><i data-lucide="coffee"></i></div>
+                    <div class="ritual-text">
+                        <h4>Tea Pairing</h4>
+                        <p id="tea">Steeping the ritual...</p>
+                    </div>
+                </div>
+                <div class="ritual-item">
+                    <div class="ritual-icon"><i data-lucide="music"></i></div>
+                    <div class="ritual-text">
+                        <h4>Soundscape</h4>
+                        <p id="music">Finding the rhythm...</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="audio-btn" id="play-btn" onclick="toggleAudio()">
+                <i data-lucide="play"></i>
+                <span>Listen to the Curator</span>
+            </button>
+
+            <div class="qr-placeholder print-only">
+                <div id="qr-code" style="width: 100px; height: 100px; background: #eee; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #999;">QR CODE</div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #999;">thewornpages.com/pairing</p>
+            </div>
+            
+            <div style="margin-top: 3rem;" class="no-print">
+                <button onclick="window.print()" style="background: none; border: none; color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-decoration: underline;">Print Fulfillment Card</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" style="text-align: center;">
+        <span class="handwritten">Curating your experience...</span>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let audio = null;
+
+        async function loadPairing() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (!id) return;
+
+            try {
+                const res = await fetch(`/api/public?action=pairing&id=${id}`);
+                const data = await res.json();
+                
+                document.getElementById('title').innerText = data.title;
+                document.getElementById('author').innerText = `by ${data.author}`;
+                document.getElementById('atmosphere').innerText = data.atmosphere;
+                document.getElementById('tea').innerText = data.tea;
+                document.getElementById('music').innerText = data.music;
+
+                if (data.audio) {
+                    audio = new Audio(`data:audio/mpeg;base64,${data.audio}`);
+                }
+
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content-wrap').style.display = 'block';
+                lucide.createIcons();
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loading').innerText = "Ritual not found.";
+            }
+        }
+
+        function toggleAudio() {
+            if (!audio) return;
+            const btn = document.getElementById('play-btn');
+            const icon = btn.querySelector('i');
+            const text = btn.querySelector('span');
+
+            if (audio.paused) {
+                audio.play();
+                text.innerText = "Listening...";
+                icon.setAttribute('data-lucide', 'pause');
+            } else {
+                audio.pause();
+                text.innerText = "Listen to the Curator";
+                icon.setAttribute('data-lucide', 'play');
+            }
+            lucide.createIcons();
+        }
+
+        window.onload = loadPairing;
+    </script>
+</body>
+</html>

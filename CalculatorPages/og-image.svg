@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0f14"/>
+      <stop offset="100%" style="stop-color:#111420"/>
+    </linearGradient>
+    <linearGradient id="sigmaGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffb84d"/>
+      <stop offset="100%" style="stop-color:#f5a623"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04" stroke="#fff" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="150" y1="0" x2="150" y2="630"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="450" y1="0" x2="450" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="750" y1="0" x2="750" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1050" y1="0" x2="1050" y2="630"/>
+  </g>
+
+  <!-- Left accent bar -->
+  <rect x="60" y="140" width="4" height="220" rx="2" fill="#f5a623" opacity="0.7"/>
+
+  <!-- YourCalc wordmark -->
+  <text x="88" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="92" font-weight="700" fill="#ffffff" letter-spacing="-3">YourCalc</text>
+
+  <!-- Tagline -->
+  <text x="92" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#f5a623" letter-spacing="0.5">100+ Free Professional Calculators</text>
+
+  <!-- URL -->
+  <text x="92" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="400" fill="#6b7280" letter-spacing="0.3">yourcalc.info</text>
+
+  <!-- RIGHT: Sigma icon container -->
+  <!-- Glow background -->
+  <circle cx="940" cy="270" r="140" fill="#f5a623" opacity="0.05" filter="url(#softGlow)"/>
+
+  <!-- Dashed border box -->
+  <rect x="800" y="140" width="260" height="260" rx="32" fill="#161921" stroke="#f5a623" stroke-width="2" stroke-dasharray="12,8" opacity="0.7"/>
+
+  <!-- Sigma symbol -->
+  <text x="930" y="305" font-family="Georgia, serif" font-size="160" font-weight="700" fill="url(#sigmaGlow)" text-anchor="middle" filter="url(#glow)">Σ</text>
+
+  <!-- Corner dots -->
+  <circle cx="800" cy="140" r="6" fill="#3ecf8e"/>
+  <circle cx="1060" cy="140" r="6" fill="#3ecf8e"/>
+  <circle cx="800" cy="400" r="6" fill="#3ecf8e"/>
+  <circle cx="1060" cy="400" r="6" fill="#3ecf8e"/>
+
+  <!-- Bottom pill row -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#9ca3af">
+    <!-- Pill backgrounds -->
+    <rect x="60" y="460" width="92" height="34" rx="17" fill="#1e2130"/>
+    <rect x="164" y="460" width="75" height="34" rx="17" fill="#1e2130"/>
+    <rect x="251" y="460" width="62" height="34" rx="17" fill="#1e2130"/>
+    <rect x="325" y="460" width="99" height="34" rx="17" fill="#1e2130"/>
+    <rect x="436" y="460" width="72" height="34" rx="17" fill="#1e2130"/>
+    <rect x="520" y="460" width="88" height="34" rx="17" fill="#1e2130"/>
+    <rect x="620" y="460" width="88" height="34" rx="17" fill="#1e2130"/>
+    <rect x="720" y="460" width="62" height="34" rx="17" fill="#1e2130"/>
+    <!-- Pill labels -->
+    <text x="106" y="482" text-anchor="middle" fill="#9ca3af">Finance</text>
+    <text x="201" y="482" text-anchor="middle" fill="#9ca3af">Health</text>
+    <text x="282" y="482" text-anchor="middle" fill="#9ca3af">Math</text>
+    <text x="374" y="482" text-anchor="middle" fill="#9ca3af">Business</text>
+    <text x="556" y="482" text-anchor="middle" fill="#9ca3af">Fitness</text>
+    <text x="664" y="482" text-anchor="middle" fill="#9ca3af">AI Costs</text>
+    <text x="764" y="482" text-anchor="middle" fill="#9ca3af">Legal</text>
+  </g>
+
+  <!-- Bottom divider line -->
+  <line x1="60" y1="520" x2="1140" y2="520" stroke="#252836" stroke-width="1"/>
+
+  <!-- Footer -->
+  <text x="60" y="555" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#4b5563">Free • No signup required • Works on all devices</text>
+  <text x="1140" y="555" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#f5a623" text-anchor="end">© 2026 KnotStranded LLC</text>
+</svg>

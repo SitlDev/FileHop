@@ -2,49 +2,58 @@
 <html>
 <head>
     <style>
-        body { font-family: 'Georgia', serif; line-height: 1.6; color: #1B3022; background-color: #FDFBF7; margin: 0; padding: 0; }
-        .wrapper { max-width: 600px; margin: 40px auto; background: #ffffff; border: 1px solid #E9DCC9; }
-        .header { background: #6B1D1D; padding: 40px; text-align: center; }
-        .header h1 { color: #FDFBF7; font-family: 'Times New Roman', serif; margin: 0; letter-spacing: 2px; }
-        .content { padding: 40px; }
-        .book-item { display: flex; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        .book-info { margin-left: 20px; }
-        .footer { background: #F5F1E9; padding: 30px; text-align: center; font-size: 12px; color: #666; }
-        .button { display: inline-block; padding: 15px 30px; background: #1B3022; color: #ffffff !important; text-decoration: none; border-radius: 4px; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=EB+Garamond&family=Caveat&display=swap');
+        
+        body { font-family: 'EB Garamond', serif; line-height: 1.8; color: #1B3022; background-color: #FDFBF7; margin: 0; padding: 0; }
+        .wrapper { max-width: 600px; margin: 40px auto; background: #ffffff; border: 1px solid #E9DCC9; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .header { background: #1B3022; padding: 60px 40px; text-align: center; background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); }
+        .header h1 { color: #C5A059; font-family: 'Playfair Display', serif; margin: 0; letter-spacing: 4px; text-transform: uppercase; font-size: 24px; }
+        .handwritten { font-family: 'Caveat', cursive; color: #C5A059; font-size: 22px; margin-bottom: 10px; display: block; }
+        .content { padding: 50px; }
+        .order-id { font-family: 'Inter', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-bottom: 30px; }
+        .book-item { display: flex; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #F5F1E9; padding-bottom: 25px; }
+        .book-info strong { font-family: 'Playfair Display', serif; font-size: 18px; color: #6B1D1D; }
+        .footer { background: #F5F1E9; padding: 40px; text-align: center; font-size: 11px; color: #999; letter-spacing: 1px; }
+        .button { display: inline-block; padding: 18px 40px; background: #6B1D1D; color: #ffffff !important; text-decoration: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+
+        @media only screen and (max-width: 600px) {
+            .wrapper { width: 100% !important; margin: 0 !important; border: none !important; }
+            .header, .content { padding: 25px !important; }
+            h1 { font-size: 20px !important; }
+        }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="header">
-            <h1>CURATION COMPLETE</h1>
+            <span class="handwritten">Welcome to the Inner Circle</span>
+            <h1>Curation Confirmed</h1>
         </div>
         <div class="content">
-            <p>Hello Bibliophile,</p>
-            <p>Our curator has finished selecting the treasures for your next box. We are delighted to share that the following titles have been secured for you:</p>
+            <div class="order-id">Archive Entry #TWP-{{order_id}}</div>
+            <p>Greetings, collector.</p>
+            <p>Our scouts have finished cataloging the treasures for your upcoming dispatch. We are honored to confirm that your sanctuary has been successfully secured within <strong>The Worn Pages Club</strong>.</p>
             
+            <p style="margin-top: 30px; font-weight: bold; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; color: #C5A059;">Your Selection</p>
             <div class="book-item">
                 <div class="book-info">
-                    <strong>[Title 1]</strong><br>
-                    <span style="color: #666; font-style: italic;">[Author 1] • [Edition]</span>
-                </div>
-            </div>
-            <div class="book-item">
-                <div class="book-info">
-                    <strong>[Title 2]</strong><br>
-                    <span style="color: #666; font-style: italic;">[Author 2] • [Edition]</span>
+                    <strong>{{plan_name}}</strong><br>
+                    <span style="color: #666; font-style: italic;">{{billing_term}} Subscription</span>
                 </div>
             </div>
 
-            <p>Your box is now being hand-wrapped in our signature linen paper and sealed with wax. You will receive a tracking number the moment it leaves our shop.</p>
+            <p>Our curators are currently selecting the specific editions that will speak to your literary profile. Each book is being hand-wrapped in archival linen paper and sealed with our signature wax logo.</p>
             
-            <div style="text-align: center; margin: 40px 0;">
-                <a href="#" class="button">Track Your Shipment</a>
+            <div style="text-align: center; margin: 50px 0;">
+                <a href="https://your-domain.com/vault" class="button">Visit the Vault</a>
             </div>
             
-            <p>Until then, happy reading.</p>
+            <p>Until then, let the anticipation of a new world settled into your shelves guide your thoughts.</p>
+            <p class="handwritten" style="font-size: 28px; color: #6B1D1D;">The Curator</p>
         </div>
         <div class="footer">
-            <p>&copy; 2024 The Worn Pages Club • treasury@thewornpages.com</p>
+            THE WORN PAGES CLUB • EST. 2024<br>
+            A LUXURY SANCTUARY FOR PRE-LOVED LITERATURE
         </div>
     </div>
 </body>

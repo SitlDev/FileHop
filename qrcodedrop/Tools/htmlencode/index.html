@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Encode and decode HTML entities instantly. Perfect for web development and HTML content creation." />
+  <meta name="keywords" content="HTML entity encoder, HTML entity decoder, HTML encoding, encode HTML, decode HTML, HTML escape, web development tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>HTML Entity Encoder/Decoder</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>HTML Entity Encoder/Decoder</h1>
+      <p>Convert text to HTML entities and vice versa.</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <h2>Input</h2>
+        <textarea id="entity-input" rows="8" placeholder="Enter text to encode or HTML entities to decode..." style="width:100%; padding:12px;"></textarea>
+
+        <div class="actions" style="margin-top:12px;">
+          <button id="btn-encode">Encode to HTML Entities</button>
+          <button id="btn-decode">Decode HTML Entities</button>
+          <button id="btn-copy">Copy Output</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <h2>Output</h2>
+        <textarea id="entity-output" rows="10" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+      </section>
+
+      <section class="info-section">
+        <h2>About HTML Entity Encoding</h2>
+        
+        <h3>What is HTML Encoding?</h3>
+        <p>HTML entity encoding converts special characters into a safe format using named entities (like &amp;) or numeric codes. This prevents the browser from misinterpreting special characters as HTML syntax, ensuring content displays correctly and protects against XSS attacks.</p>
+        
+        <h3>Common HTML Entities</h3>
+        <ul>
+          <li>&amp; → &amp;amp;</li>
+          <li>< → &amp;lt;</li>
+          <li>> → &amp;gt;</li>
+          <li>" → &amp;quot;</li>
+          <li>' → &amp;#39;</li>
+          <li>© → &amp;copy;</li>
+          <li>€ → &amp;euro;</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>User-Generated Content:</strong> Safely display comments, forum posts, and reviews</li>
+          <li><strong>Security:</strong> Prevent XSS (Cross-Site Scripting) attacks</li>
+          <li><strong>API Responses:</strong> Ensure JSON/XML data displays correctly in HTML</li>
+          <li><strong>SEO Metadata:</strong> Properly encode special characters in page titles and descriptions</li>
+        </ul>
+      </section>
+
+      <section class="info-section">
+        <h2>About HTML Entity Encoding</h2>
+        
+        <h3>What is HTML Encoding?</h3>
+        <p>HTML entity encoding converts special characters into a safe format using named entities (like &amp;) or numeric codes. This prevents the browser from misinterpreting special characters as HTML syntax, ensuring content displays correctly and protects against XSS attacks.</p>
+        
+        <h3>Common HTML Entities</h3>
+        <ul>
+          <li>&amp; → &amp;amp;</li>
+          <li>< → &amp;lt;</li>
+          <li>> → &amp;gt;</li>
+          <li>" → &amp;quot;</li>
+          <li>' → &amp;#39;</li>
+          <li>© → &amp;copy;</li>
+          <li>€ → &amp;euro;</li>
+        </ul>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>User-Generated Content:</strong> Safely display comments, forum posts, and reviews</li>
+          <li><strong>Security:</strong> Prevent XSS (Cross-Site Scripting) attacks</li>
+          <li><strong>API Responses:</strong> Ensure JSON/XML data displays correctly in HTML</li>
+          <li><strong>SEO Metadata:</strong> Properly encode special characters in page titles and descriptions</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 HTML Entity Encoder/Decoder</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

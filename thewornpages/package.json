@@ -1,0 +1,14 @@
+{
+  "name": "thewornpages",
+  "version": "1.0.0",
+  "description": "The Worn Pages Club - A luxury sanctuary for pre-loved literature.",
+  "main": "index.html",
+  "dependencies": {
+    "google-auth-library": "^10.6.2",
+    "jsonwebtoken": "^9.0.3",
+    "jwks-rsa": "^4.0.1",
+    "mongodb": "^6.3.0",
+    "resend": "^2.0.0",
+    "stripe": "^14.0.0"
+  }
+}

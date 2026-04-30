@@ -1,0 +1,31 @@
+.container {
+  max-width: 700px; margin: 0 auto; padding: 80px 32px; text-align: center;
+}
+
+.header { margin-bottom: 64px; }
+
+.check {
+  width: 64px; height: 64px; background: var(--green); color: #000;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; font-size: 32px; margin: 0 auto 24px;
+}
+
+.title { font-size: 48px; color: var(--red); margin-bottom: 8px; }
+.id { font-family: var(--font-m); font-size: 13px; color: var(--dim); letter-spacing: 2px; }
+
+.details { background: var(--bg-3); border: 1px solid var(--border); text-align: left; overflow: hidden; }
+
+.statusBox { padding: 40px; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+.statusLabel { font-size: 11px; color: var(--muted); letter-spacing: 2px; margin-bottom: 8px; }
+.statusValue { font-family: var(--font-d); font-size: 24px; color: var(--green); letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+.statusNote { font-size: 13px; color: var(--dim); }
+
+.infoRow { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+@media (max-width: 600px) { .infoRow { grid-template-columns: 1fr; } }
+
+.infoBlock h3 { font-size: 16px; color: var(--text); margin-bottom: 16px; border-bottom: 1px solid var(--border-2); padding-bottom: 8px; }
+.infoBlock p { font-size: 13px; color: var(--dim); margin-bottom: 4px; }
+
+.actions { margin-top: 48px; }
+
+.loading, .error { padding: 100px; text-align: center; font-size: 14px; color: var(--dim); }

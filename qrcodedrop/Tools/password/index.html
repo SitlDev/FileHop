@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Generate secure passwords with customizable length (4-256 characters) and options for uppercase, lowercase, numbers, symbols, and exclude similar characters." />
+    <meta name="keywords" content="password generator, secure password generator, random password generator, strong password tool, password creator, security tool" />
+    <link rel="stylesheet" href="../../style.css">
+    <title>Password Generator</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Password Generator</h1>
+            <p>Create secure passwords for accounts, services, and testing.</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Settings</h2>
+                <div class="form-container">
+                    <label for="pw-length">Length</label>
+                    <input id="pw-length" type="number" min="4" max="256" value="16">
+                </div>
+                <div class="form-container">
+                    <label><input id="pw-upper" type="checkbox" checked> Uppercase (A-Z)</label>
+                </div>
+                <div class="form-container">
+                    <label><input id="pw-lower" type="checkbox" checked> Lowercase (a-z)</label>
+                </div>
+                <div class="form-container">
+                    <label><input id="pw-numbers" type="checkbox" checked> Numbers (0-9)</label>
+                </div>
+                <div class="form-container">
+                    <label><input id="pw-symbols" type="checkbox" checked> Symbols (!@#$%)</label>
+                </div>
+                <div class="form-container">
+                    <label><input id="pw-similar" type="checkbox"> Exclude similar characters (i, l, 1, O, 0)</label>
+                </div>
+
+                <div class="actions">
+                    <button id="btn-generate-pw">Generate</button>
+                    <button id="btn-copy-pw">Copy</button>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2>Generated Password</h2>
+                <div class="preview-wrapper">
+                    <input id="pw-output" readonly style="width:100%; padding:12px; font-family: monospace;">
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>About Password Security</h2>
+                
+                <h3>Why Strong Passwords Matter</h3>
+                <p>A strong password is your first line of defense against account takeovers, data breaches, and identity theft. With modern computing power, weak passwords can be cracked in minutes. NIST (National Institute of Standards and Technology) recommends passwords of at least 12-16 characters with a mix of character types.</p>
+                
+                <h3>Password Requirements</h3>
+                <ul>
+                  <li><strong>Length:</strong> Minimum 12-16 characters (longer = exponentially harder to crack)</li>
+                  <li><strong>Complexity:</strong> Mix of uppercase, lowercase, numbers, and symbols</li>
+                  <li><strong>Randomness:</strong> Avoid dictionary words, birthdays, or sequential patterns</li>
+                  <li><strong>Uniqueness:</strong> Use different passwords for different accounts</li>
+                  <li><strong>Entropy:</strong> Higher randomness = stronger security</li>
+                </ul>
+                
+                <h3>Real-World Use Cases</h3>
+                <ul>
+                  <li><strong>Account Creation:</strong> Generate passwords for new social media, email, and banking accounts</li>
+                  <li><strong>Application Testing:</strong> Create test user accounts with secure passwords</li>
+                  <li><strong>API Keys:</strong> Generate random tokens for API authentication</li>
+                  <li><strong>System Administration:</strong> Create temporary admin passwords that expire</li>
+                  <li><strong>Security Audits:</strong> Test password strength in security assessments</li>
+                </ul>
+                
+                <h3>Password Strength Estimation</h3>
+                <ul>
+                  <li><strong>Weak:</strong> 8 characters, only letters (crackedinstantaneously)</li>
+                  <li><strong>Fair:</strong> 12 characters, mixed case, numbers (days to crack)</li>
+                  <li><strong>Strong:</strong> 16 characters, all types, symbols (centuries to crack)</li>
+                  <li><strong>Very Strong:</strong> 20+ characters, random, high entropy (impossible to crack)</li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- Email Collection Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Get more productivity tools</h3>
+                <p>Subscribe to receive new tool updates and tips.</p>
+                <form id="email-signup-form">
+                    <input type="email" id="signup-email" placeholder="Email address" required>
+                    <button type="submit" class="signup-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Password Generator</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

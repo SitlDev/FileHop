@@ -1,0 +1,452 @@
+[
+    {
+        "slug": "how-to-calculate-your-fire-number.html",
+        "title": "How to Calculate Your FIRE Number",
+        "category": "Finance",
+        "date": "Jan 06, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Discover the math behind financial independence and the 4% safe withdrawal rule.",
+        "target": "../finance.html#fire",
+        "content": "\n            <h2>The Mathematics of Financial Independence</h2>\n            <p>Financial Independence, Retire Early (FIRE) is more than just a lifestyle choice; it is a rigorous mathematical framework for achieving self-sufficiency. At its core, the FIRE number represents the total amount of invested assets you need to cover your annual expenses indefinitely without ever needing to work again.</p>\n            \n            <h2>The 25x Rule Explained</h2>\n            <p>The most common way to calculate your FIRE number is the \"25x Rule.\" This rule is derived from the Trinity Study, which found that a portfolio of stocks and bonds has a high probability of lasting 30 years if you withdraw 4% in the first year and adjust that amount for inflation annually thereafter. Therefore, your FIRE number is simply your annual expenses multiplied by 25.</p>\n            \n            <div class='example-box'>\n                <h3>Step-by-Step Calculation</h3>\n                <ol>\n                    <li><strong>Track Your Annual Expenses:</strong> If you spend $4,000 per month, your annual expenses are $48,000.</li>\n                    <li><strong>Apply the Multiplier:</strong> $48,000 * 25 = $1,200,000.</li>\n                    <li><strong>Your FIRE Number:</strong> $1.2 Million.</li>\n                </ol>\n            </div>\n\n            <h2>The 4% Safe Withdrawal Rate (SWR)</h2>\n            <p>The inverse of the 25x rule is the 4% withdrawal rate. This is the amount you can safely pull from your nest egg each year. However, in 2026, many experts suggest a more conservative withdrawal rate of 3.25% to 3.5% due to current market valuations and longer life expectancies. If you choose a 3.5% rate, your multiplier would be roughly 28.5x instead of 25x.</p>\n\n            <h2>Adjusting for Inflation and Taxes</h2>\n            <p>One of the most frequent mistakes in FIRE planning is failing to account for taxes. If your $1.2M is in a traditional 401(k), you will owe income tax on every withdrawal. If it is in a taxable brokerage account, you will owe capital gains tax. You must calculate your \"Net\" withdrawal needs to ensure you have enough after-tax income to live on.</p>\n\n            <h2>Lean FIRE vs. Fat FIRE</h2>\n            <p>Not all FIRE numbers are created equal. \"Lean FIRE\" typically refers to an annual budget of $40,000 or less, requiring a smaller nest egg but a more frugal lifestyle. \"Fat FIRE\" accounts for a more luxurious lifestyle with budgets exceeding $100,000, requiring significantly higher asset levels.</p>\n\n            <h2>Conclusion</h2>\n            <p>Your FIRE number is a target, not a destination. As your life changes\u2014marriage, children, health\u2014your expenses will fluctuate. Use our FIRE calculator to run multiple scenarios and find the number that gives you the peace of mind you deserve.</p>\n        "
+    },
+    {
+        "slug": "mortgage-amortization-explained.html",
+        "title": "Mortgage Amortization Explained",
+        "category": "Finance",
+        "date": "Jan 12, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Understand how principal and interest shift over the life of your home loan.",
+        "target": "../finance.html#mortgage",
+        "content": "\n            <h2>How Mortgages Actually Work</h2>\n            <p>Most homeowners know they make a monthly payment, but few understand the \"invisible\" process of amortization. Amortization is the schedule by which your debt is paid off over time. In the beginning, the majority of your payment goes toward interest. By the end, the majority goes toward the principal.</p>\n            \n            <h2>The Front-Loaded Interest Trap</h2>\n            <p>On a standard 30-year fixed-rate mortgage, the interest is calculated based on the remaining balance. Because the balance is highest at the start of the loan, the interest charge is also at its peak. This is why, in year one, it may feel like your balance is barely moving despite making thousands of dollars in payments.</p>\n\n            <div class='example-box'>\n                <h3>Example: $400k Loan at 6.5%</h3>\n                <p>In month one, your interest charge is roughly $2,166. If your total payment is $2,528, only $362 is actually reducing your debt. By year 25, those numbers flip, and almost $2,000 of your payment goes to principal.</p>\n            </div>\n\n            <h2>The Power of Extra Payments</h2>\n            <p>Because interest is calculated on the remaining balance, any extra principal payment you make today has a massive \"compounding\" effect on future interest savings. Paying just one extra monthly payment per year can shave 5-7 years off a 30-year mortgage and save you over $100,000 in interest.</p>\n\n            <h2>Conclusion</h2>\n            <p>Understanding your amortization schedule allows you to see the true cost of your home. Use our mortgage calculator to view your full 360-month schedule and see how much you can save by making small additional contributions.</p>\n        "
+    },
+    {
+        "slug": "what-is-tdee-and-why-it-matters.html",
+        "title": "What Is TDEE and Why It Matters",
+        "category": "Health",
+        "date": "Jan 20, 2026",
+        "read_time": "7 min read",
+        "excerpt": "Total Daily Energy Expenditure is the key to managing weight and fitness goals.",
+        "target": "../health.html#tdee",
+        "content": "\n            <h2>The Science of Caloric Balance</h2>\n            <p>Weight management is often simplified to \"calories in vs. calories out,\" but the \"calories out\" part is more complex than most people realize. Your Total Daily Energy Expenditure (TDEE) is the sum of all the energy your body burns in a 24-hour period.</p>\n            \n            <h2>The Four Components of TDEE</h2>\n            <ul>\n                <li><strong>Basal Metabolic Rate (BMR):</strong> The energy burned just to keep your organs functioning while at rest (60-70% of total).</li>\n                <li><strong>Non-Exercise Activity Thermogenesis (NEAT):</strong> Energy burned from daily movement like walking, typing, and fidgeting.</li>\n                <li><strong>Thermic Effect of Food (TEF):</strong> The energy required to digest and process the nutrients you eat.</li>\n                <li><strong>Thermic Effect of Activity (TEA):</strong> Energy burned during intentional exercise.</li>\n            </ul>\n\n            <div class='example-box'>\n                <h3>Calculated TDEE Example</h3>\n                <p>A 180lb male with a sedentary job might have a TDEE of 2,200 calories. If that same male exercises 4 times a week, his TDEE might jump to 2,600 calories. This \"maintenance\" number is the baseline for all weight loss or muscle gain plans.</p>\n            </div>\n\n            <h2>How to Use TDEE for Your Goals</h2>\n            <p>To lose weight, you should consume roughly 500 calories below your TDEE (a \"deficit\"). To gain muscle, you should consume 200-300 calories above it (a \"surplus\"). Without knowing your TDEE, you are essentially flying blind.</p>\n\n            <h2>Conclusion</h2>\n            <p>Consistency is more important than perfection. Use our TDEE calculator to find your baseline and start tracking your progress with scientific accuracy.</p>\n        "
+    },
+    {
+        "slug": "understanding-llm-api-costs.html",
+        "title": "Understanding LLM API Costs in 2026",
+        "category": "AI & Tech",
+        "date": "Feb 02, 2026",
+        "read_time": "10 min read",
+        "excerpt": "A deep dive into token pricing for GPT-4, Claude 3, and Gemini 1.5.",
+        "target": "../ai-costs.html#llm",
+        "content": "\n            <h2>The New Unit of Digital Currency: Tokens</h2>\n            <p>In 2026, the cost of software development is increasingly tied to the cost of Large Language Model (LLM) APIs. Unlike traditional SaaS that charges per user, AI companies charge per \"token\"\u2014the chunks of text models use to process information.</p>\n            \n            <h2>Input vs. Output Pricing</h2>\n            <p>Most providers (OpenAI, Anthropic, Google) use a tiered pricing model where input tokens (the prompt you send) are significantly cheaper than output tokens (the response the model generates). This is because generation requires significantly more compute resources than processing.</p>\n\n            <div class='example-box'>\n                <h3>Token Conversion Rule of Thumb</h3>\n                <p>1,000 tokens is roughly equivalent to 750 words. For a standard 2,000-word prompt and a 500-word response, you are looking at approximately 3.3k tokens total.</p>\n            </div>\n\n            <h2>Context Windows and Caching</h2>\n            <p>Modern models like Gemini 1.5 Pro offer massive context windows (up to 2M tokens). However, as the context grows, so does the cost. New \"Context Caching\" features allow developers to store frequently used data (like documentation or codebase context) to reduce redundant input costs by up to 90%.</p>\n\n            <h2>Choosing the Right Model for Your Budget</h2>\n            <p>For simple tasks like classification, \"small\" models like GPT-4o-mini or Claude Haiku offer 95% of the performance at 1/20th the cost. High-stakes reasoning still requires \"frontier\" models, but smart routing can save enterprise users thousands per month.</p>\n\n            <h2>Conclusion</h2>\n            <p>AI costs can spiral if not monitored. Use our LLM API Cost Matrix to compare current rates across all major providers and project your monthly spend before you scale.</p>\n        "
+    },
+    {
+        "slug": "debt-snowball-vs-avalanche.html",
+        "title": "Debt Snowball vs. Avalanche: The Real Difference",
+        "category": "Finance",
+        "date": "Feb 10, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Comparing the two most popular debt payoff strategies for speed and psychology.",
+        "target": "../finance.html#debt",
+        "content": "\n            <h2>The War on Debt: Strategy Matters</h2>\n            <p>If you are carrying multiple balances\u2014credit cards, student loans, or car notes\u2014the order in which you pay them off can be the difference between success and burnout. There are two primary schools of thought: The Debt Snowball and the Debt Avalanche.</p>\n            \n            <h2>The Debt Avalanche (The Mathematical Winner)</h2>\n            <p>The Avalanche method focuses on the numbers. You list your debts by interest rate and pay off the one with the highest APR first, while making minimum payments on the rest. Mathematically, this minimizes the total interest paid and results in the fastest path to zero debt.</p>\n\n            <h2>The Debt Snowball (The Psychological Winner)</h2>\n            <p>The Snowball method focuses on the person. You list your debts by balance size and pay off the smallest one first. This provides an immediate \"win\" and releases dopamine, keeping you motivated to tackle the next one. Many behavioral economists argue that the Snowball is more effective because debt is often a behavior problem, not a math problem.</p>\n\n            <div class='example-box'>\n                <h3>Comparison: $20k Debt</h3>\n                <p>Scenario: $15k student loan at 4.5% and a $5k credit card at 24%.<br>\n                <strong>Avalanche:</strong> Pay CC first (saves ~$1,200 in interest).<br>\n                <strong>Snowball:</strong> Pay CC first (it's the smallest, so both win here).<br>\n                But if the student loan was $5k and CC was $15k, the Snowball would pay the 4.5% loan first\u2014a massive math error but a quick win.</p>\n            </div>\n\n            <h2>Which One Should You Choose?</h2>\n            <p>If you are highly disciplined and focused on efficiency, choose the Avalanche. If you have struggled with debt in the past and need quick reinforcement to stay on track, choose the Snowball.</p>\n\n            <h2>Conclusion</h2>\n            <p>The best strategy is the one you actually stick to. Use our Debt Payoff Planner to compare both strategies with your actual balances and see your exact \"Freedom Date.\"</p>\n        "
+    },
+    {
+        "slug": "how-to-read-your-burn-rate.html",
+        "title": "How to Read Your Startup Burn Rate",
+        "category": "Business",
+        "date": "Feb 18, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Learn how to calculate your runway and manage cash flow as a founder.",
+        "target": "../business.html#burn",
+        "content": "\n            <h2>The Most Important Metric for Founders</h2>\n            <p>In the startup world, \"Burn Rate\" is the speed at which your company is losing money. It is the distance between your monthly expenses and your monthly revenue. If you aren't profitable, your burn rate is the ticking clock that tells you when your company will die.</p>\n            \n            <h2>Gross Burn vs. Net Burn</h2>\n            <ul>\n                <li><strong>Gross Burn:</strong> The total amount of cash your company spends every month (salaries, rent, AWS, etc.).</li>\n                <li><strong>Net Burn:</strong> The total cash lost (Gross Burn - Revenue). This is the number that actually drains your bank account.</li>\n            </ul>\n\n            <div class='example-box'>\n                <h3>Runway Calculation</h3>\n                <p>If you have $500,000 in the bank and your Net Burn is $25,000 per month, you have 20 months of \"Runway.\" This means you have exactly 20 months to either become profitable or raise more capital.</p>\n            </div>\n\n            <h2>Managing the Burn</h2>\n            <p>A high burn rate isn't necessarily bad if it's driving high growth. However, in 2026, venture capitalists are looking for \"Default Alive\" companies\u2014those that can reach profitability before their runway ends. Monitoring your burn rate weekly is essential for survival.</p>\n\n            <h2>Conclusion</h2>\n            <p>Don't wait until you have 3 months of cash left to make a change. Use our Startup Runway calculator to model different hiring and revenue scenarios to keep your company healthy.</p>\n        "
+    },
+    {
+        "slug": "ev-vs-gas-true-cost-breakdown.html",
+        "title": "EV vs. Gas: The True Cost Breakdown",
+        "category": "Auto",
+        "date": "Mar 01, 2026",
+        "read_time": "11 min read",
+        "excerpt": "Beyond the sticker price: factoring in electricity, maintenance, and resale.",
+        "target": "../auto.html#ev",
+        "content": "\n            <h2>The Electric Shift: Is It Worth It?</h2>\n            <p>As we move through 2026, the question for most car buyers is no longer \"is an EV cool?\" but \"does an EV save me money?\" The answer depends on a complex interplay of upfront cost, local electricity rates, and how long you plan to keep the vehicle.</p>\n            \n            <h2>Upfront Cost and Incentives</h2>\n            <p>EVs still typically carry a higher MSRP than their internal combustion (ICE) counterparts. However, federal and state tax credits can bridge that gap by $7,500 or more. Furthermore, as battery technology scales, the price floor for EVs continues to drop.</p>\n\n            <h2>Fuel vs. Electricity</h2>\n            <p>This is where the math leans heavily toward EVs. While gas prices fluctuate, electricity is generally much cheaper per mile. On average, driving an EV costs about 1/3 as much per mile as a gas car, especially if you charge at home during off-peak hours.</p>\n\n            <div class='example-box'>\n                <h3>10,000 Mile Comparison</h3>\n                <p>Gas Car (25 MPG): 400 Gallons * $4.00 = $1,600/year.<br>\n                EV (3.5 mi/kWh): 2,857 kWh * $0.15 = $428/year.<br>\n                <strong>Annual Savings: $1,172.</strong></p>\n            </div>\n\n            <h2>Maintenance and Longevity</h2>\n            <p>EVs have about 20 moving parts in their drivetrain, compared to over 2,000 in a gas engine. No oil changes, no spark plugs, and significantly less brake wear (thanks to regenerative braking) lead to thousands in savings over the life of the car.</p>\n\n            <h2>Conclusion</h2>\n            <p>An EV usually pays for itself after 3-5 years of ownership. Use our EV vs. Gas Savings calculator to input your local gas and power rates and see your personal breakeven point.</p>\n        "
+    },
+    {
+        "slug": "bmi-limitations-what-it-misses.html",
+        "title": "BMI's Limitations: What the Number Misses",
+        "category": "Health",
+        "date": "Mar 08, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Why body composition matters more than the simple ratio of height to weight.",
+        "target": "../health.html#bmi",
+        "content": "\n            <h2>The Most Used (And Most Criticized) Metric</h2>\n            <p>Body Mass Index (BMI) has been the gold standard for health assessment since the 19th century. However, as our understanding of human physiology has evolved, the cracks in the BMI model have become more apparent.</p>\n            \n            <h2>The Athlete Paradox</h2>\n            <p>The primary flaw of BMI is that it cannot distinguish between muscle and fat. Because muscle is significantly denser than fat, highly muscular individuals (athletes, bodybuilders) are often classified as \"overweight\" or \"obese\" despite having very low body fat percentages.</p>\n\n            <h2>The \"Normal Weight\" Obesity</h2>\n            <p>Conversely, some people have a \"normal\" BMI but carry high amounts of visceral fat around their organs. This is sometimes called \"skinny fat.\" These individuals may be at higher risk for metabolic disease than someone with a slightly higher BMI but more muscle mass.</p>\n\n            <div class='example-box'>\n                <h3>Better Alternatives</h3>\n                <ul>\n                    <li><strong>Waist-to-Height Ratio:</strong> A better predictor of cardiovascular risk.</li>\n                    <li><strong>Body Fat Percentage:</strong> The true measure of body composition.</li>\n                    <li><strong>Waist Circumference:</strong> A simple measure of visceral fat risk.</li>\n                </ul>\n            </div>\n\n            <h2>Should You Still Use BMI?</h2>\n            <p>Yes, but as a screening tool, not a diagnosis. It is a useful \"first pass\" for the general population but should always be viewed alongside other metrics.</p>\n\n            <h2>Conclusion</h2>\n            <p>Numbers tell a story, but not the whole story. Use our BMI calculator as a starting point, then look at our Body Fat and TDEE tools for a more complete picture of your health.</p>\n        "
+    },
+    {
+        "slug": "schengen-90-180-rule-explained.html",
+        "title": "The Schengen 90/180 Rule Explained",
+        "category": "Travel",
+        "date": "Mar 15, 2026",
+        "read_time": "12 min read",
+        "excerpt": "A guide for digital nomads and travelers navigating European visa-free stays.",
+        "target": "../travel.html#schengen",
+        "content": "\n            <h2>The Digital Nomad's Greatest Hurdle</h2>\n            <p>For US, UK, and Canadian citizens, the dream of living in Europe is often interrupted by a confusing piece of legislation: The Schengen 90/180 Rule. This rule dictates how long you can stay in most European countries without a residency visa.</p>\n            \n            <h2>How the \"Rolling\" Period Works</h2>\n            <p>The rule states that you can spend no more than 90 days in the Schengen Area within any 180-day period. Crucially, the 180 days is a \"rolling\" window. You look back 180 days from every single day you are in Europe. If you've been there for 91 of those days, you are in violation.</p>\n\n            <div class='example-box'>\n                <h3>The Calculation Trap</h3>\n                <p>If you spend Jan-Mar (90 days) in France, you must leave the entire Schengen Area (e.g., go to the UK or Balkans) for at least 90 days before you can return. You cannot simply \"reset\" the clock by leaving for a weekend.</p>\n            </div>\n\n            <h2>Which Countries are Included?</h2>\n            <p>Most of the EU is in the Schengen Area, plus Switzerland, Norway, and Iceland. Non-Schengen EU countries (like Cyprus or Ireland) and non-EU European countries (UK, Albania, Montenegro) do not count toward your 90 days, making them perfect \"visa-run\" destinations.</p>\n\n            <h2>Consequences of Overstaying</h2>\n            <p>Overstaying can result in heavy fines, deportation, and a ban from the entire Schengen Area for up to 5 years. In an era of digital border tracking, \"slipping through\" is increasingly impossible.</p>\n\n            <h2>Conclusion</h2>\n            <p>Don't leave your freedom to chance. Use our Schengen Visa Timer to track every entry and exit and ensure you never cross the line.</p>\n        "
+    },
+    {
+        "slug": "llc-vs-scorp-which-saves-more-tax.html",
+        "title": "LLC vs. S-Corp: Which Saves More in Taxes?",
+        "category": "Legal & Tax",
+        "date": "Mar 22, 2026",
+        "read_time": "10 min read",
+        "excerpt": "Understanding self-employment tax and how an S-Corp election can help.",
+        "target": "../legal-tax.html#llcscorp",
+        "content": "\n            <h2>The Secret of Business Structure</h2>\n            <p>For most freelancers and small business owners, an LLC is the default choice. It's simple and provides liability protection. But as your income grows, that simplicity starts to get expensive in the form of \"Self-Employment Tax.\"</p>\n            \n            <h2>The Self-Employment Tax Problem</h2>\n            <p>As an LLC owner, the IRS views you as a \"disregarded entity.\" Every dollar of profit your business makes is subject to both the employer and employee portions of Social Security and Medicare taxes\u2014a total of 15.3%.</p>\n\n            <h2>The S-Corp Strategy</h2>\n            <p>An S-Corporation is not a business entity, but a tax election. When you elect S-Corp status, you become an employee of your own company. You pay yourself a \"reasonable salary\" (subject to 15.3% tax), and then take the rest of the profit as a \"distribution\" (not subject to 15.3% tax).</p>\n\n            <div class='example-box'>\n                <h3>Example: $150k Profit</h3>\n                <p><strong>LLC:</strong> All $150k is taxed at 15.3% = $22,950 in SE tax.<br>\n                <strong>S-Corp:</strong> $70k Salary (taxed) + $80k Distribution (untaxed) = $10,710 in SE tax.<br>\n                <strong>Annual Savings: $12,240.</strong></p>\n            </div>\n\n            <h2>The Catch: Administrative Costs</h2>\n            <p>S-Corps require more paperwork: a separate business tax return (1120-S), payroll processing fees, and stricter record-keeping. Generally, if your business profits are less than $60,000, the administrative costs will eat up your tax savings.</p>\n\n            <h2>Conclusion</h2>\n            <p>An S-Corp is a powerful tool, but it must be used correctly to avoid an IRS audit on your \"reasonable salary.\" Use our LLC vs. S-Corp calculator to see exactly when the switch makes sense for your business.</p>\n        "
+    },
+    {
+        "slug": "solar-panel-roi-what-to-expect.html",
+        "title": "Solar Panel ROI: What to Realistically Expect",
+        "category": "Green",
+        "date": "Mar 30, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Calculating payback periods and the impact of incentives on solar investments.",
+        "target": "../green.html#solar",
+        "content": "\n            <h2>Is Solar a Good Investment?</h2>\n            <p>Solar energy has transitioned from an environmental statement to a financial one. With rising utility rates and falling hardware costs, solar panels are now one of the highest-yield \"investments\" a homeowner can make.</p>\n            \n            <h2>The Payback Period</h2>\n            <p>The \"Payback Period\" is the time it takes for your cumulative energy savings to equal the net cost of the system. In 2026, the average US payback period ranges from 6 to 9 years. Given that panels are warrantied for 25 years, you are looking at 15+ years of \"free\" energy.</p>\n\n            <h2>The Role of Incentives</h2>\n            <p>The federal Investment Tax Credit (ITC) remains the biggest driver of ROI, allowing you to deduct 30% of the system cost from your taxes. Local utility rebates and Net Metering (selling power back to the grid) can further accelerate your returns.</p>\n\n            <div class='example-box'>\n                <h3>ROI Calculation Example</h3>\n                <p>System Cost: $30,000.<br>\n                Federal Tax Credit: -$9,000.<br>\n                Net Cost: $21,000.<br>\n                Annual Savings: $2,500.<br>\n                <strong>Payback Period: 8.4 Years.</strong></p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Every roof is different. Factors like shading, roof angle, and local electricity rates will vary your results. Use our Solar ROI calculator to get an estimate based on your specific bill and location.</p>\n        "
+    },
+    {
+        "slug": "how-compounding-frequency-affects-returns.html",
+        "title": "How Compounding Frequency Affects Your Returns",
+        "category": "Finance",
+        "date": "Apr 04, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Daily vs. annual compounding: see how small differences add up over time.",
+        "target": "../finance.html#compound",
+        "content": "\n            <h2>The Eighth Wonder of the World</h2>\n            <p>Albert Einstein supposedly called compound interest the eighth wonder of the world. But most people only focus on the interest rate, ignoring the equally important variable: Compounding Frequency.</p>\n            \n            <h2>What is Compounding Frequency?</h2>\n            <p>This is how often the interest you've earned is added back into your principal to start earning interest itself. The more frequently this happens, the faster your money grows.</p>\n\n            <div class='example-box'>\n                <h3>The Math: $10k at 10% for 10 Years</h3>\n                <ul>\n                    <li><strong>Annual:</strong> $25,937</li>\n                    <li><strong>Monthly:</strong> $27,070</li>\n                    <li><strong>Daily:</strong> $27,179</li>\n                </ul>\n                <p>The jump from annual to monthly is significant ($1,133 difference!), while the jump from monthly to daily is smaller but still meaningful.</p>\n            </div>\n\n            <h2>Why It Matters for Your Bank Account</h2>\n            <p>High-yield savings accounts typically compound daily, while most CDs compound monthly. When comparing two financial products with the same APR, always check the compounding frequency; the one that compounds more often will always have a higher APY (Annual Percentage Yield).</p>\n\n            <h2>Conclusion</h2>\n            <p>Small percentages, repeated often, lead to massive wealth. Use our Compound Interest tool to see how different frequencies impact your long-term growth.</p>\n        "
+    },
+    {
+        "slug": "1rm-testing-protocols-and-formulas.html",
+        "title": "1RM Testing Protocols and the Formulas Behind Them",
+        "category": "Fitness",
+        "date": "Apr 08, 2026",
+        "read_time": "9 min read",
+        "excerpt": "How to safely estimate your one-rep max using the Brzycki or Epley equations.",
+        "target": "../fitness.html#onerrm",
+        "content": "\n            <h2>The Gold Standard of Strength</h2>\n            <p>Your One-Rep Max (1RM) is the maximum weight you can lift for a single repetition with perfect form. It is the baseline for most strength training programs, used to calculate \"percentages\" for your daily workouts.</p>\n            \n            <h2>Estimation vs. True Max Testing</h2>\n            <p>Performing a true 1RM test is taxing on the central nervous system and carries a higher risk of injury. For most trainees, estimating your 1RM from submaximal repetitions (e.g., how many times you can lift a weight for 5 reps) is safer and nearly as accurate.</p>\n\n            <div class='example-box'>\n                <h3>The Epley Formula</h3>\n                <p>1RM = Weight * (1 + 0.0333 * Reps)<br>\n                Example: If you can lift 225lbs for 5 reps:<br>\n                225 * (1 + 0.1665) = 262.5 lbs.</p>\n            </div>\n\n            <h2>Which Formula is Best?</h2>\n            <p>The Epley formula is popular for its simplicity, while the Brzycki formula is often cited as more accurate for rep ranges between 2 and 10. For most people, the results will be within 1-2% of each other.</p>\n\n            <h2>Conclusion</h2>\n            <p>Test, don't guess. Use our 1-Rep Max calculator to find your strength baseline and set your training percentages for your next block.</p>\n        "
+    },
+    {
+        "slug": "rent-vs-buy-the-real-math.html",
+        "title": "Rent vs. Buy: The Real Math Most People Skip",
+        "category": "Real Estate",
+        "date": "Apr 12, 2026",
+        "read_time": "12 min read",
+        "excerpt": "Factoring in opportunity costs, maintenance, and property taxes.",
+        "target": "../real-estate.html#rent",
+        "content": "\n            <h2>The Great Housing Debate</h2>\n            <p>For decades, homeownership was sold as the ultimate financial goal. \"Renting is throwing money away,\" the saying goes. But in the current economic landscape of 2026, the math is rarely that simple.</p>\n            \n            <h2>The Unrecoverable Costs of Buying</h2>\n            <p>While rent is indeed \"unrecoverable,\" so are many costs of homeownership: property taxes, homeowners insurance, maintenance (averaging 1% of home value per year), and the massive interest payments in the early years of a mortgage.</p>\n\n            <h2>The Opportunity Cost of the Down Payment</h2>\n            <p>The biggest hidden cost of buying is what that down payment could have earned elsewhere. If you put $100,000 into a house, that money is no longer earning 7-10% in the stock market. Over 30 years, that opportunity cost can exceed $1 million.</p>\n\n            <div class='example-box'>\n                <h3>The 5% Rule</h3>\n                <p>If the annual unrecoverable costs of owning (Tax + Insurance + Maintenance + Cost of Capital) are less than the annual cost of renting a similar property, buying is the winner. If not, renting and investing the difference is the superior financial move.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>A home is a place to live first and an investment second. Use our Rent vs. Buy calculator to compare the total 30-year net worth impact of both choices.</p>\n        "
+    },
+    {
+        "slug": "emergency-prep-survival-calories.html",
+        "title": "Emergency Prep: Survival Calories",
+        "category": "Survival",
+        "date": "May 06, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Calculating nutrient density and duration for your emergency food supply.",
+        "target": "../survival.html#calories",
+        "content": "\n            <h2>Survival is a Numbers Game</h2>\n            <p>In an emergency scenario, calories are your most valuable currency. But not all calories are created equal. When building a 72-hour kit or a 6-month pantry, you need to account for metabolic needs, shelf life, and prep requirements.</p>\n            \n            <h2>The 1,200 vs. 2,500 Rule</h2>\n            <p>While most people can \"survive\" on 1,200 calories a day in a sedentary state, a survival situation often involves high physical exertion (walking, clearing debris, staying warm). In these cases, 2,500 to 3,000 calories per day is the more realistic requirement.</p>\n\n            <div class='example-box'>\n                <h3>Storage Math</h3>\n                <p>To feed a family of 4 for 30 days at 2,000 calories/person/day, you need 240,000 total calories. This is roughly 150 lbs of rice and beans, or about 80 standard #10 cans of freeze-dried food.</p>\n            </div>\n\n            <h2>The Macro Balance</h2>\n            <p>Don't just store white rice. You need protein for muscle repair and fats for long-term energy and brain health. A 50/30/20 (Carb/Fat/Protein) split is ideal for long-term survival stability.</p>\n\n            <h2>Conclusion</h2>\n            <p>Preparation is the only way to ensure peace of mind. Use our Survival Calorie calculator to determine exactly how much food you need to keep your family safe during any crisis.</p>\n        "
+    },
+    {
+        "slug": "economics-of-loot-boxes.html",
+        "title": "The Economics of Loot Boxes",
+        "category": "Gaming",
+        "date": "May 10, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Understanding probability and the variable ratio reinforcement in gaming.",
+        "target": "../gaming.html#loot",
+        "content": "\n            <h2>The Digital Casino</h2>\n            <p>Loot boxes have become the most controversial monetization strategy in modern gaming. While they appear to be simple cosmetic upgrades, they are built on a foundation of sophisticated psychological and mathematical principles.</p>\n            \n            <h2>Variable Ratio Reinforcement</h2>\n            <p>This is the same principle that makes slot machines addictive. Because the \"win\" is unpredictable, the brain's dopamine response is much stronger than it would be for a guaranteed reward. You aren't just buying a skin; you are buying the *chance* of a rare skin.</p>\n\n            <div class='example-box'>\n                <h3>The Pity Timer Math</h3>\n                <p>Many games use a \"Pity Timer\"\u2014a hidden mechanic that increases your odds of a legendary drop every time you fail. If the base rate is 1% but increases by 0.5% each fail, your cumulative probability of winning after 50 boxes is nearly 90%.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Know the odds before you buy. Use our Loot Box simulator to see how many boxes you'd actually need to pull to get that 0.1% drop.</p>\n        "
+    },
+    {
+        "slug": "gpa-math-recovery-guide.html",
+        "title": "GPA Math: How to Recover",
+        "category": "Academic",
+        "date": "May 12, 2026",
+        "read_time": "10 min read",
+        "excerpt": "Strategies for raising your grade point average after a difficult semester.",
+        "target": "../academic.html#gpa",
+        "content": "\n            <h2>The Weight of a Grade</h2>\n            <p>A single bad semester can feel like a permanent anchor on your academic transcript. However, understanding how GPA is calculated\u2014specifically the relationship between credit hours and grade points\u2014is the key to a recovery strategy.</p>\n            \n            <h2>Credit Hour Weighting</h2>\n            <p>Not all classes are created equal. A \"D\" in a 4-credit lab science hurts much more than a \"D\" in a 1-credit elective. Conversely, an \"A\" in a high-credit course is the fastest way to pull your average upward.</p>\n\n            <div class='example-box'>\n                <h3>The Math of Improvement</h3>\n                <p>If you have a 2.5 GPA over 30 credits and want to reach a 3.0, you need to earn a 3.5 average over your next 30 credits. The more credits you already have, the harder it is to move the needle.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Don't guess your future. Use our GPA Projection tool to map out exactly what grades you need in which classes to reach your target by graduation.</p>\n        "
+    },
+    {
+        "slug": "bitrate-and-storage-audiophile-guide.html",
+        "title": "Bitrate and Storage: Audiophile Guide",
+        "category": "Audio",
+        "date": "May 14, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Balancing audio quality and file size for local and streaming libraries.",
+        "target": "../audio.html#bitrate",
+        "content": "\n            <h2>The Anatomy of Sound</h2>\n            <p>In the digital age, audio quality is defined by \"bitrate\"\u2014the amount of data processed per unit of time. While 128kbps was the standard in the early 2000s, modern audiophiles demand \"Lossless\" formats that preserve every nuance of the original recording.</p>\n            \n            <h2>Lossy vs. Lossless</h2>\n            <p>Lossy formats (MP3, AAC) discard data that the human ear supposedly can't hear to save space. Lossless formats (FLAC, ALAC) preserve everything. For most listeners, 320kbps is the \"transparency\" point where further increases are indistinguishable.</p>\n\n            <div class='example-box'>\n                <h3>Storage Impact</h3>\n                <ul>\n                    <li><strong>MP3 (320kbps):</strong> ~2.4MB per minute</li>\n                    <li><strong>FLAC (16-bit):</strong> ~7.5MB per minute</li>\n                    <li><strong>Hi-Res (24-bit/192kHz):</strong> ~42MB per minute</li>\n                </ul>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>High resolution requires high capacity. Use our Audio Storage calculator to see how many FLAC albums you can fit on your new DAP or SSD.</p>\n        "
+    },
+    {
+        "slug": "dividend-reinvestment-drip-explained.html",
+        "title": "Dividend Reinvestment (DRIP) Explained",
+        "category": "Invest",
+        "date": "May 16, 2026",
+        "read_time": "11 min read",
+        "excerpt": "How to harness the power of dividends to accelerate portfolio growth.",
+        "target": "../invest.html#drip",
+        "content": "\n            <h2>The Passive Income Engine</h2>\n            <p>A Dividend Reinvestment Plan (DRIP) is an automated system where your stock dividends are immediately used to purchase more shares of the same company. Over decades, this creates a \"snowball effect\" that far outpaces simple price appreciation.</p>\n            \n            <h2>The Power of Compounding Shares</h2>\n            <p>When you reinvest dividends, you aren't just increasing your account balance; you are increasing your *share count*. More shares lead to more dividends, which lead to even more shares. This is the ultimate form of compounding.</p>\n\n            <div class='example-box'>\n                <h3>DRIP vs. Cash Comparison</h3>\n                <p>A $10,000 investment in a 3% yielding stock that grows 7% annually:<br>\n                <strong>Without DRIP:</strong> $40,000 after 20 years + $6,000 cash.<br>\n                <strong>With DRIP:</strong> $67,000 after 20 years.<br>\n                The difference is purely the result of owning more shares.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Dividends are the bridge to early retirement. Use our Dividend Growth calculator to see your projected income stream 10, 20, and 30 years from now.</p>\n        "
+    },
+    {
+        "slug": "emergency-fund-3-vs-6-months.html",
+        "title": "The Emergency Fund: 3 vs 6 Months?",
+        "category": "Savings",
+        "date": "May 18, 2026",
+        "read_time": "7 min read",
+        "excerpt": "Determining the right cash buffer for your specific lifestyle and risk tolerance.",
+        "target": "../savings.html#emergency",
+        "content": "\n            <h2>The Foundation of Security</h2>\n            <p>The emergency fund is the most important part of any financial plan. It is the \"buffer\" between you and the high-interest debt that usually accompanies a job loss or medical emergency. But how much is enough?</p>\n            \n            <h2>When 3 Months is Enough</h2>\n            <p>If you are young, single, rent your home, and have a highly stable job in a high-demand field (like Nursing or Software Engineering), a 3-month buffer is often sufficient. This allows you to get more money into the market sooner.</p>\n\n            <h2>When You Need 6+ Months</h2>\n            <p>If you have dependents, own a home, or are self-employed, 6 months is the minimum. If your job search usually takes 4-6 months (common for senior executives), you might even want 12 months of liquidity.</p>\n\n            <div class='example-box'>\n                <h3>The \"Sleep at Night\" Number</h3>\n                <p>Calculate your absolute baseline expenses (Rent, Food, Utilities, Insurance). Multiply by 6. That is your target. Anything above that should be invested.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Financial peace of mind is math-based. Use our Emergency Fund calculator to audit your monthly expenses and find your personal target.</p>\n        "
+    },
+    {
+        "slug": "scale-of-the-universe-scientific-notation.html",
+        "title": "The Scale of the Universe: Notation",
+        "category": "Science",
+        "date": "May 20, 2026",
+        "read_time": "12 min read",
+        "excerpt": "How scientific notation helps us comprehend the impossibly large and small.",
+        "target": "../science.html#notation",
+        "content": "\n            <h2>Beyond Human Intuition</h2>\n            <p>The human brain is not wired to understand numbers like 1,000,000,000,000,000. To map the stars or the atoms in our bodies, we use Scientific Notation\u2014a mathematical shorthand that makes the infinite manageable.</p>\n            \n            <h2>The Powers of 10</h2>\n            <p>Scientific notation works by expressing a number as a product of a decimal between 1 and 10 and a power of 10. The speed of light is 3 x 10^8 meters per second. The width of a DNA molecule is 2 x 10^-9 meters.</p>\n\n            <div class='example-box'>\n                <h3>Why It Matters</h3>\n                <p>Without notation, calculating the distance to Alpha Centauri (40,000,000,000,000 km) would be prone to constant zeros-related errors. With notation (4.0 x 10^13 km), the math becomes simple arithmetic.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Science is the language of the universe. Use our Scientific Notation converter to switch between standard and scientific formats for your next project.</p>\n        "
+    },
+    {
+        "slug": "the-math-of-tithing-faith-finance.html",
+        "title": "The Math of Tithing: Faith & Finance",
+        "category": "Spiritual",
+        "date": "May 22, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Calculating charitable giving based on gross vs. net income.",
+        "target": "../spiritual.html#tithing",
+        "content": "\n            <h2>The 10% Tradition</h2>\n            <p>Tithing, the practice of giving 10% of one's income to a religious or charitable organization, is a cornerstone of many faith traditions. However, in the complex modern economy, the question of \"10% of what?\" often arises.</p>\n            \n            <h2>Gross vs. Net Tithing</h2>\n            <ul>\n                <li><strong>Gross Tithing:</strong> Giving 10% of your total income before taxes and deductions. Many see this as \"giving the first fruits.\"</li>\n                <li><strong>Net Tithing:</strong> Giving 10% of your take-home pay. This accounts for the fact that you never actually \"received\" the tax portion of your salary.</li>\n            </ul>\n\n            <div class='example-box'>\n                <h3>Tax Impact</h3>\n                <p>If you tithe on $100k gross ($10k) and are in a 25% tax bracket, your charitable deduction could save you $2,500 in taxes, effectively making your \"out of pocket\" gift $7,500.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Generosity should be intentional. Use our Tithing calculator to model your giving based on different income definitions and see the tax impact of your contributions.</p>\n        "
+    },
+    {
+        "slug": "pythagoras-in-the-real-world.html",
+        "title": "Pythagoras in the Real World",
+        "category": "Math",
+        "date": "May 24, 2026",
+        "read_time": "8 min read",
+        "excerpt": "From construction to navigation: why a\u00b2 + b\u00b2 = c\u00b2 still matters.",
+        "target": "../math.html#pythagoras",
+        "content": "\n            <h2>The Geometry of Everything</h2>\n            <p>The Pythagorean Theorem is likely the only math formula most adults remember from school. But far from being a textbook abstraction, it is the fundamental tool used by carpenters, pilots, and designers every single day.</p>\n            \n            <h2>Squaring the Corner</h2>\n            <p>If a builder wants to ensure a wall is perfectly square, they use the \"3-4-5 rule.\" They measure 3 feet on one side, 4 feet on the other, and if the diagonal is exactly 5 feet, the corner is a perfect 90 degrees.</p>\n\n            <div class='example-box'>\n                <h3>The Diagonal Trap</h3>\n                <p>Trying to fit a new 65-inch TV into a corner? Remember that TV sizes are diagonal measurements. You'll need the Pythagorean theorem to calculate the actual width and height to see if it clears the molding.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Geometry is the foundation of the physical world. Use our Pythagorean calculator to solve for any side of a right triangle instantly.</p>\n        "
+    },
+    {
+        "slug": "metric-vs-imperial-global-divide.html",
+        "title": "Metric vs. Imperial: Global Divide",
+        "category": "Unit Converters",
+        "date": "May 26, 2026",
+        "read_time": "10 min read",
+        "excerpt": "Navigating the confusing world of pounds, kilos, miles, and meters.",
+        "target": "../unit-converters.html#metric",
+        "content": "\n            <h2>One World, Two Systems</h2>\n            <p>While 95% of the world uses the logical, base-10 Metric system, the United States (and a few others) remains tethered to the Imperial system. This divide causes everything from kitchen confusion to billion-dollar engineering disasters.</p>\n            \n            <h2>The Logic of 10</h2>\n            <p>Metric is built for calculation: 1,000 millimeters in a meter, 1,000 meters in a kilometer. Imperial is built for intuition: 12 inches in a foot, 3 feet in a yard, 5,280 feet in a mile. One is easy to scale; the other is easy to visualize.</p>\n\n            <div class='example-box'>\n                <h3>The Mars Climate Orbiter</h3>\n                <p>In 1999, NASA lost a $125 million spacecraft because one team used metric units while another used imperial. Precision in conversion is not just for recipes\u2014it's for survival.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Don't let the math slow you down. Use our Universal Unit Converter to switch between any measurement system with scientific accuracy.</p>\n        "
+    },
+    {
+        "slug": "scaling-recipes-bakers-percentage.html",
+        "title": "Scaling Recipes: Baker's Percentage",
+        "category": "Culinary",
+        "date": "May 28, 2026",
+        "read_time": "9 min read",
+        "excerpt": "The mathematical secret to perfect bread and pastry consistency.",
+        "target": "../culinary.html#scaling",
+        "content": "\n            <h2>Consistency is King</h2>\n            <p>In professional baking, recipes aren't written in grams or cups\u2014they are written in \"Baker's Percentages.\" This allows a baker to scale a recipe from one loaf to one thousand loaves without losing the balance of ingredients.</p>\n            \n            <h2>Flour is Always 100%</h2>\n            <p>The Baker's Percentage defines every ingredient relative to the total weight of the flour. If a recipe uses 1000g of flour and 600g of water, it is a \"60% hydration\" dough. This makes it easy to adjust the salt, yeast, or sugar proportionally.</p>\n\n            <div class='example-box'>\n                <h3>Standard Sourdough Ratio</h3>\n                <ul>\n                    <li>Flour: 100%</li>\n                    <li>Water: 75%</li>\n                    <li>Salt: 2%</li>\n                    <li>Starter: 20%</li>\n                </ul>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Baking is chemistry. Use our Recipe Scaler to adjust your favorite dishes for any crowd size while keeping the flavors perfect.</p>\n        "
+    },
+    {
+        "slug": "sleep-cycles-the-90-minute-rule.html",
+        "title": "Sleep Cycles: The 90-Minute Rule",
+        "category": "Health",
+        "date": "May 30, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Why waking up at the right time is more important than how long you sleep.",
+        "target": "../health.html#sleep",
+        "content": "\n            <h2>The Rhythm of the Night</h2>\n            <p>Have you ever slept for 10 hours and woken up exhausted? It's likely because you woke up in the middle of a Deep Sleep cycle. The human brain sleeps in roughly 90-minute \"waves\" or cycles.</p>\n            \n            <h2>Waking Up at the Peak</h2>\n            <p>Waking up at the end of a 90-minute cycle (during REM or light sleep) leaves you feeling refreshed. Waking up during Stage 3 (Deep) sleep causes \"sleep inertia,\" that groggy, hungover feeling that can last for hours.</p>\n\n            <div class='example-box'>\n                <h3>Optimal Sleep Durations</h3>\n                <ul>\n                    <li>6 Hours (4 Cycles) - \"The Minimalist\"</li>\n                    <li>7.5 Hours (5 Cycles) - \"The Ideal\"</li>\n                    <li>9 Hours (6 Cycles) - \"The Recovery\"</li>\n                </ul>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Quality over quantity. Use our Sleep Timer to find the perfect wake-up time based on when you go to bed, or vice-versa.</p>\n        "
+    },
+    {
+        "slug": "true-cost-of-credit-card-debt.html",
+        "title": "The True Cost of Credit Card Debt",
+        "category": "Finance",
+        "date": "Jun 02, 2026",
+        "read_time": "10 min read",
+        "excerpt": "Why making only the minimum payment is a 20-year financial trap.",
+        "target": "../finance.html#cc",
+        "content": "\n            <h2>The Minimum Payment Myth</h2>\n            <p>Credit card companies design \"minimum payments\" to keep you in debt for as long as possible. By paying just enough to cover the interest and a tiny sliver of principal, you ensure that you pay for your purchase 2-3 times over.</p>\n            \n            <h2>The Math of 24% APR</h2>\n            <p>With an average APR of 24%, your balance is essentially doubling every 3 years if not aggressively paid down. This is the \"Inverse of Wealth\"\u2014compounding interest working against you instead of for you.</p>\n\n            <div class='example-box'>\n                <h3>Example: $5,000 Balance</h3>\n                <p>If you pay only the minimum (~$125), it will take you **18 years** to pay off the debt, and you will pay over **$8,000 in interest alone**.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Knowledge is power. Use our Credit Card Payoff tool to see how much faster you can be free by adding just $50 to your monthly payment.</p>\n        "
+    },
+    {
+        "slug": "retirement-age-ss-optimization.html",
+        "title": "Retirement Age: SS Optimization",
+        "category": "Life",
+        "date": "Jun 04, 2026",
+        "read_time": "12 min read",
+        "excerpt": "When to take Social Security: 62 vs. 67 vs. 70 explained.",
+        "target": "../life.html#retire",
+        "content": "\n            <h2>The Timing Gamble</h2>\n            <p>When you choose to claim Social Security, you are making a lifelong decision about your income floor. While you *can* claim at 62, waiting until 70 can result in a monthly check that is 77% larger.</p>\n            \n            <h2>The Break-Even Point</h2>\n            <p>The \"Break-Even Point\" is the age at which the total lifetime benefits of waiting (the larger checks) exceed the total benefits of starting early (the smaller checks over a longer time). For most, this age is roughly 78-80.</p>\n\n            <div class='example-box'>\n                <h3>Comparison: $2,000 Benefit at 67</h3>\n                <ul>\n                    <li>Claim at 62: $1,400 / mo</li>\n                    <li>Claim at 67: $2,000 / mo</li>\n                    <li>Claim at 70: $2,480 / mo</li>\n                </ul>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Plan for your longevity. Use our Retirement Age calculator to compare total lifetime payouts based on your health and lifestyle expectations.</p>\n        "
+    },
+    {
+        "slug": "depreciation-hidden-cost-of-cars.html",
+        "title": "Depreciation: Hidden Cost of Cars",
+        "category": "Auto",
+        "date": "Jun 06, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Understanding why your car loses 20% of its value the moment you drive away.",
+        "target": "../auto.html#depr",
+        "content": "\n            <h2>The Vanishing Asset</h2>\n            <p>Most car buyers focus on the monthly payment, but the biggest expense of car ownership is one you never see a bill for: Depreciation. On average, a new car loses 50-60% of its value in the first 5 years.</p>\n            \n            <h2>The Curve of Loss</h2>\n            <p>The first year is the most brutal, with a 20-30% drop. Years 2-4 see a steady decline of 10-15%. By year 6, the curve flattens. This is why buying a 3-year-old \"Certified Pre-Owned\" vehicle is often the smartest financial move.</p>\n\n            <div class='example-box'>\n                <h3>$40,000 Car at 5 Years</h3>\n                <p>Value Remaining: ~$18,000.<br>\n                Total Depreciation: $22,000.<br>\n                <strong>Monthly Cost of Depreciation: $366.</strong></p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Your car is a tool, not an investment. Use our Car Depreciation calculator to see the true \"cost per mile\" of your vehicle.</p>\n        "
+    },
+    {
+        "slug": "baggage-fees-airline-margin-game.html",
+        "title": "Baggage Fees: Airline Margin Game",
+        "category": "Travel",
+        "date": "Jun 08, 2026",
+        "read_time": "8 min read",
+        "excerpt": "How 'Basic Economy' pricing makes baggage fees their primary profit driver.",
+        "target": "../travel.html#bags",
+        "content": "\n            <h2>The Unbundling of Flight</h2>\n            <p>In 2026, the price of a plane ticket rarely includes a place for your bag. \"Ancillary Revenue\"\u2014fees for bags, seats, and snacks\u2014now accounts for over 15% of total airline income, often representing their entire profit margin.</p>\n            \n            <h2>The Weight Trap</h2>\n            <p>Carriers have reduced weight limits from 50lbs to 40lbs in many regions, knowing that travelers are conditioned to pack for the old limits. The $100 \"Overweight Fee\" is pure profit for the airline with zero additional cost.</p>\n\n            <div class='example-box'>\n                <h3>Carry-on vs. Checked</h3>\n                <p>On budget carriers, a carry-on can actually be more expensive than a checked bag because it slows down the boarding process. Always check the \"Total Trip Cost,\" not just the airfare.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Pack smart, fly cheap. Use our Baggage Cost calculator to compare total fees across different airlines before you book.</p>\n        "
+    },
+    {
+        "slug": "cost-of-litigation-small-claims.html",
+        "title": "The Cost of Litigation: Small Claims",
+        "category": "Legal",
+        "date": "Jun 10, 2026",
+        "read_time": "10 min read",
+        "excerpt": "Is it worth suing? Factoring in filing fees, service of process, and time.",
+        "target": "../legal.html",
+        "content": "\n            <h2>The Search for Justice</h2>\n            <p>When someone owes you money or damages your property, \"Small Claims Court\" is the primary venue for resolution. But before you file, you must perform a cold-blooded \"Legal ROI\" calculation.</p>\n            \n            <h2>Unrecoverable Costs</h2>\n            <p>Filing fees ($30-$150) and process server fees ($50-$100) are usually recoverable if you win. However, the time you spend prepping evidence, filing paperwork, and spending a day in court is gone forever.</p>\n\n            <div class='example-box'>\n                <h3>The Collection Gap</h3>\n                <p>Winning a judgment is NOT the same as getting paid. If the defendant has no money (is \"judgment proof\"), you have simply paid $200 for a piece of paper that says you are right.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Sometimes the best move is to walk away. Use our Litigation ROI tool to see if your claim is worth the headache.</p>\n        "
+    },
+    {
+        "slug": "customer-churn-the-growth-killer.html",
+        "title": "Customer Churn: The Growth Killer",
+        "category": "Business",
+        "date": "Jun 12, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Why retaining one customer is worth more than acquiring three new ones.",
+        "target": "../business.html#churn",
+        "content": "\n            <h2>The Leaky Bucket Problem</h2>\n            <p>You can have the best marketing in the world, but if your \"Churn Rate\" (the percentage of customers who leave every month) is high, your business will eventually stall. Churn is the silent killer of recurring revenue models.</p>\n            \n            <h2>The Mathematics of Compound Loss</h2>\n            <p>A 5% monthly churn means you lose 60% of your customers every year. To just *stay the same size*, you have to acquire 60% new customers every year. This is an exhausting and expensive treadmill.</p>\n\n            <div class='example-box'>\n                <h3>Churn Reduction Impact</h3>\n                <p>Reducing churn from 5% to 3% can result in a 2x increase in total revenue over 3 years without spending a single extra dollar on ads.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Measure what matters. Use our Churn & Retention calculator to find your \"Terminal Growth Rate\" and see how long your business can survive.</p>\n        "
+    },
+    {
+        "slug": "pareto-principle-80-20-rule.html",
+        "title": "The Pareto Principle (80/20 Rule)",
+        "category": "Productivity",
+        "date": "Jun 14, 2026",
+        "read_time": "8 min read",
+        "excerpt": "How to identify the 20% of efforts that produce 80% of your results.",
+        "target": "../productivity.html#pareto",
+        "content": "\n            <h2>The Law of the Vital Few</h2>\n            <p>Named after economist Vilfredo Pareto, the 80/20 rule states that for many events, roughly 80% of the effects come from 20% of the causes. In business and productivity, this is a superpower for prioritization.</p>\n            \n            <h2>Identifying Your 20%</h2>\n            <p>Look at your tasks from last week. Which two tasks actually moved your project forward? Those are your \"Vital Few.\" Look at your clients. Which 20% of them provide 80% of your revenue? Those are the ones you should focus on.</p>\n\n            <div class='example-box'>\n                <h3>Pareto in Action</h3>\n                <ul>\n                    <li>80% of software bugs are in 20% of the code.</li>\n                    <li>80% of wealth is owned by 20% of the population.</li>\n                    <li>80% of your happiness comes from 20% of your relationships.</li>\n                </ul>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Efficiency is about subtraction, not addition. Use our Pareto Audit tool to identify where you should be spending your limited energy.</p>\n        "
+    },
+    {
+        "slug": "science-of-body-fat-percentage.html",
+        "title": "The Science of Body Fat Percentage",
+        "category": "Fitness",
+        "date": "Jun 16, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Why body fat % is a better health marker than weight or BMI.",
+        "target": "../fitness.html#bf",
+        "content": "\n            <h2>The Composition of Health</h2>\n            <p>Weight is a blunt instrument. It doesn't tell you if you are gaining muscle or losing fat. Body Fat Percentage is the \"Precision Instrument\" of fitness, measuring the actual ratio of adipose tissue to lean mass.</p>\n            \n            <h2>What is Healthy?</h2>\n            <p>For men, essential fat is 3-5%, with 10-20% considered \"athletic/healthy.\" For women, essential fat is 10-13%, with 18-28% considered \"athletic/healthy.\" Going below essential fat levels can lead to hormonal collapse.</p>\n\n            <div class='example-box'>\n                <h3>Estimation Methods</h3>\n                <ul>\n                    <li><strong>DEXA Scan:</strong> The gold standard (1-2% error).</li>\n                    <li><strong>Calipers:</strong> High skill required, but accurate.</li>\n                    <li><strong>Navy Method:</strong> Uses neck and waist measurements (3-5% error).</li>\n                </ul>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Focus on composition, not the scale. Use our Body Fat calculator (Navy Method) to track your progress with scientific consistency.</p>\n        "
+    },
+    {
+        "slug": "one-percent-rule-of-real-estate.html",
+        "title": "The 1% Rule of Real Estate",
+        "category": "Real Estate",
+        "date": "Jun 18, 2026",
+        "read_time": "9 min read",
+        "excerpt": "The quick 'back of the envelope' calculation for rental property potential.",
+        "target": "../real-estate.html#onepercent",
+        "content": "\n            <h2>The Investor's First Pass</h2>\n            <p>In the fast-moving world of real estate, you need a way to filter 100 properties down to 5 worth touring. The \"1% Rule\" is the industry standard for determining if a property can generate positive cash flow.</p>\n            \n            <h2>The Math of the Rule</h2>\n            <p>The rule states that a rental property should bring in at least 1% of its total purchase price (including repairs) in gross monthly rent. If you buy a house for $200,000, it needs to rent for $2,000/month.</p>\n\n            <div class='example-box'>\n                <h3>Why 1%?</h3>\n                <p>After accounting for property taxes, insurance, maintenance, and vacancy, the \"1% mark\" usually ensures that the mortgage is covered and there is a $200-$400 monthly profit left over.</p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Rules are filters, not final decisions. Use our Rental ROI calculator to perform a full \"Cap Rate\" and \"Cash-on-Cash\" analysis once a property passes the 1% test.</p>\n        "
+    },
+    {
+        "slug": "the-hidden-cost-of-burnout.html",
+        "title": "The Hidden Cost of Burnout",
+        "category": "Psychology",
+        "date": "Apr 18, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Quantifying the mental and financial impact of workplace stress.",
+        "target": "../psych.html#burnout",
+        "content": "\n            <h2>The Burnout Epidemic</h2>\n            <p>In 2026, burnout is no longer just a buzzword; it is a clinical reality with a massive price tag. While the emotional toll is well-documented, the financial and physiological costs are often overlooked until they become catastrophic.</p>\n            \n            <h2>The Cortisol Tax</h2>\n            <p>Chronic stress leads to elevated cortisol levels, which in turn leads to poor decision-making, decreased productivity, and long-term health issues like hypertension and heart disease. For the average professional, this \"stress tax\" manifests as a 20-30% drop in creative output.</p>\n\n            <div class='example-box'>\n                <h3>Calculating the Impact</h3>\n                <p>If you earn $100,000 but are operating at 70% capacity due to burnout, you are effectively \"losing\" $30,000 in productive value. Over a 5-year period, that is $150,000\u2014not including potential medical bills or lost promotion opportunities.</p>\n            </div>\n\n            <h2>How to Pivot</h2>\n            <p>Identifying the signs early\u2014cynicism, exhaustion, and reduced professional efficacy\u2014is the first step toward recovery. Taking a \"mental health sabbatical\" or restructuring your task load can often yield a higher ROI than pushing through.</p>\n\n            <h2>Conclusion</h2>\n            <p>Your brain is your most valuable asset. Use our Burnout Assessment tool to see if you are approaching the danger zone and calculate the value of taking a break.</p>\n        "
+    },
+    {
+        "slug": "home-renovation-roi.html",
+        "title": "Home Renovation ROI: Which Projects Pay Off?",
+        "category": "DIY",
+        "date": "Apr 20, 2026",
+        "read_time": "11 min read",
+        "excerpt": "A guide to maximizing your property value with strategic DIY upgrades.",
+        "target": "../diy.html#reno",
+        "content": "\n            <h2>Not All Upgrades Are Equal</h2>\n            <p>When you spend money on your home, you aren't just buying comfort; you are investing in an asset. However, many homeowners are shocked to find that their $50,000 custom kitchen only adds $30,000 to their home's resale value.</p>\n            \n            <h2>The High-Return Winners</h2>\n            <p>Statistically, the highest ROI projects are often the least glamorous. Replacing a garage door or upgrading to energy-efficient windows often yields a 90% or higher return. Minor bathroom remodels typically outperform major luxury overhauls.</p>\n\n            <div class='example-box'>\n                <h3>Top ROI Projects (2026 Estimates)</h3>\n                <ul>\n                    <li><strong>Kitchen Refresh:</strong> 82% ROI</li>\n                    <li><strong>Deck Addition:</strong> 75% ROI</li>\n                    <li><strong>Master Suite Addition:</strong> 53% ROI</li>\n                </ul>\n            </div>\n\n            <h2>The \"Personal Joy\" vs. \"Resale\" Balance</h2>\n            <p>If you plan to live in your home for 10+ years, the ROI matters less than your quality of life. But if you are prepping for a sale within 24 months, stick to the metrics. Neutral colors, curb appeal, and functional lighting are the keys to a quick sale.</p>\n\n            <h2>Conclusion</h2>\n            <p>Before you swing the sledgehammer, run the numbers. Use our Home Reno ROI calculator to see how your project stacks up against local market data.</p>\n        "
+    },
+    {
+        "slug": "the-1000-dollar-hour.html",
+        "title": "The $1,000 Hour: Calculating Task Value",
+        "category": "Productivity",
+        "date": "Apr 22, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Stop managing time and start managing value using the $1k Hour framework.",
+        "target": "../productivity.html#value",
+        "content": "\n            <h2>Time Management is Dead</h2>\n            <p>The most successful people in the world don't manage their time; they manage their *output value*. The $1,000 Hour framework is a mental model designed to help you differentiate between busy work and leverage work.</p>\n            \n            <h2>Categorizing Your Tasks</h2>\n            <ul>\n                <li><strong>$10 Tasks:</strong> Email, scheduling, data entry. These should be outsourced or automated.</li>\n                <li><strong>$100 Tasks:</strong> Project management, writing, basic coding. These are your \"job.\"</li>\n                <li><strong>$1,000 Tasks:</strong> Strategy, high-stakes negotiation, product vision. These are your \"career.\"</li>\n                <li><strong>$10,000 Tasks:</strong> Hiring the right leader, making a major pivot, fundraising. These are your \"legacy.\"</li>\n            </ul>\n\n            <div class='example-box'>\n                <h3>The Cost of the $10 Task</h3>\n                <p>If your goal is to earn $200k/year, your hourly rate is roughly $100. Every hour you spend doing a $10 task, you are effectively paying $90 for the privilege of doing that work yourself.</p>\n            </div>\n\n            <h2>How to Delegate</h2>\n            <p>Identify your $10 tasks and find a way to eliminate them. Whether it's using an AI assistant or hiring a freelancer, clearing your plate for $1,000 work is the fastest way to increase your net worth.</p>\n\n            <h2>Conclusion</h2>\n            <p>You can't get more time, but you can make your time worth more. Use our Task Value calculator to audit your week and see your true hourly rate.</p>\n        "
+    },
+    {
+        "slug": "college-savings-101-the-529-plan.html",
+        "title": "College Savings 101: The 529 Plan",
+        "category": "Parenting",
+        "date": "Apr 24, 2026",
+        "read_time": "10 min read",
+        "excerpt": "Navigating the complexities of education funding and tax-advantaged growth.",
+        "target": "../parenting.html#college",
+        "content": "\n            <h2>The Cost of Education in 2026</h2>\n            <p>With tuition costs continuing to outpace inflation, saving for a child's education has become a 20-year financial marathon. The 529 College Savings Plan is the most powerful tool in the parent's arsenal to combat these rising costs.</p>\n            \n            <h2>The Tax Advantage</h2>\n            <p>While 529 contributions are not federally tax-deductible, the money grows 100% tax-free, and withdrawals are tax-free when used for qualified education expenses. Many states also offer a state tax deduction for contributions.</p>\n\n            <div class='example-box'>\n                <h3>The Power of Starting at Birth</h3>\n                <p>Investing $500/month starting at birth could result in over $220,000 by age 18 (assuming 7% growth). If you wait until age 10 to start, you would need to invest over $2,000/month to reach the same goal.</p>\n            </div>\n\n            <h2>New Flexibility: 529 to Roth IRA</h2>\n            <p>A recent law change allows parents to roll over unused 529 funds into the beneficiary's Roth IRA (up to $35k lifetime limit). This eliminates the \"what if they don't go to college?\" fear that previously kept many parents on the sidelines.</p>\n\n            <h2>Conclusion</h2>\n            <p>The best time to start was yesterday; the second best time is today. Use our College Savings calculator to see how much you need to save to meet your goals.</p>\n        "
+    },
+    {
+        "slug": "lifetime-cost-of-a-dog.html",
+        "title": "The Lifetime Cost of a Dog",
+        "category": "Pets",
+        "date": "Apr 26, 2026",
+        "read_time": "7 min read",
+        "excerpt": "Budgeting for food, vet bills, and the 'extras' that come with man's best friend.",
+        "target": "../pets.html#cost",
+        "content": "\n            <h2>More Than Just a Collar</h2>\n            <p>Getting a dog is a lifelong commitment\u2014both emotional and financial. While the initial adoption fee might be small, the \"total cost of ownership\" over 12-15 years can be equivalent to a down payment on a house.</p>\n            \n            <h2>The Annual Breakdown</h2>\n            <ul>\n                <li><strong>Food & Treats:</strong> $400 - $1,200</li>\n                <li><strong>Routine Vet Care:</strong> $300 - $700</li>\n                <li><strong>Pet Insurance:</strong> $400 - $900</li>\n                <li><strong>Grooming & Boarding:</strong> $200 - $1,500</li>\n            </ul>\n\n            <div class='example-box'>\n                <h3>The \"Emergency\" Factor</h3>\n                <p>An unexpected surgery or chronic condition can easily cost $3,000 to $7,000. This is why pet insurance has moved from an \"extra\" to a \"must-have\" for many modern owners.</p>\n            </div>\n\n            <h2>Size Matters</h2>\n            <p>Generally, larger dogs are more expensive. They eat more, require higher doses of medication, and often have higher boarding fees. A Great Dane can cost 3x as much over its lifetime as a Chihuahua.</p>\n\n            <h2>Conclusion</h2>\n            <p>Being a responsible pet owner means being financially prepared. Use our Pet Budget tool to see the true lifetime cost of your furry friend.</p>\n        "
+    },
+    {
+        "slug": "roas-vs-roi-marketing-metrics.html",
+        "title": "ROAS vs. ROI: Which Metric Matters?",
+        "category": "Marketing",
+        "date": "Apr 28, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Don't be fooled by high ad returns; learn how to calculate true profitability.",
+        "target": "../marketing.html#roas",
+        "content": "\n            <h2>The Marketing Vanity Trap</h2>\n            <p>In the world of digital advertising, ROAS (Return on Ad Spend) is the metric most agencies brag about. But as a business owner, ROAS can be dangerously misleading. You can have a \"10x ROAS\" and still be losing money every day.</p>\n            \n            <h2>The Difference Explained</h2>\n            <ul>\n                <li><strong>ROAS:</strong> Revenue / Ad Spend. It only tells you how much money the ads generated.</li>\n                <li><strong>ROI:</strong> Profit / Total Cost. It accounts for COGS, shipping, payroll, and ad spend.</li>\n            </ul>\n\n            <div class='example-box'>\n                <h3>A Tale of Two Companies</h3>\n                <p>Company A has a 5x ROAS but a 10% net margin. They are barely breaking even.<br>\n                Company B has a 3x ROAS but a 40% net margin. They are highly profitable.</p>\n            </div>\n\n            <h2>Finding Your Break-Even ROAS</h2>\n            <p>Every business should know their \"Break-Even ROAS.\" This is the point where your ad spend is exactly covered by your profit margins. Anything above this number is profit; anything below is a loss.</p>\n\n            <h2>Conclusion</h2>\n            <p>Stop chasing vanity metrics and start chasing profit. Use our ROAS & ROI calculator to find your break-even point and scale your ads with confidence.</p>\n        "
+    },
+    {
+        "slug": "fuel-surcharges-in-logistics.html",
+        "title": "Fuel Surcharges in Modern Logistics",
+        "category": "Logistics",
+        "date": "Apr 30, 2026",
+        "read_time": "8 min read",
+        "excerpt": "How carriers protect margins and how shippers can predict costs.",
+        "target": "../logistics.html#fuel",
+        "content": "\n            <h2>The Volatile Cost of Movement</h2>\n            <p>In the logistics industry, fuel is the most volatile expense. To protect themselves from price spikes, carriers use \"Fuel Surcharges\" (FSC)\u2014a fee that fluctuates based on national fuel price averages.</p>\n            \n            <h2>How the Index Works</h2>\n            <p>Most FSC programs are based on a \"Base Fuel Price.\" If the current price of diesel is above that base, a surcharge percentage is applied to the base freight rate. This allows the carrier to keep their base rates stable regardless of the price of oil.</p>\n\n            <div class='example-box'>\n                <h3>Standard FSC Calculation</h3>\n                <p>If the base rate is $2.00/mile and the FSC is 25%, the shipper pays $2.50/mile. As fuel prices go up, that 25% might jump to 40%.</p>\n            </div>\n\n            <h2>Why It Matters for Your Supply Chain</h2>\n            <p>If you are a shipper, failing to account for FSC fluctuations can lead to massive budget overruns. In 2026, many companies are moving toward \"Fuel Capping\" agreements to provide more financial predictability.</p>\n\n            <h2>Conclusion</h2>\n            <p>Logistics is a game of margins. Use our Fuel Surcharge calculator to verify carrier quotes and project your shipping costs for the next quarter.</p>\n        "
+    },
+    {
+        "slug": "salary-vs-hourly-tradeoffs.html",
+        "title": "Salary vs. Hourly: The Hidden Trade-offs",
+        "category": "Career",
+        "date": "May 02, 2026",
+        "read_time": "9 min read",
+        "excerpt": "Navigating the pros and cons of fixed income vs. overtime eligibility.",
+        "target": "../career.html#salary",
+        "content": "\n            <h2>The Two Paths to a Paycheck</h2>\n            <p>When you are offered a new role, you are usually faced with a choice: a fixed annual salary or an hourly rate. While the total yearly amount might look identical on paper, the lifestyle and legal implications are vastly different.</p>\n            \n            <h2>The Benefits of Salary</h2>\n            <p>Salaried roles (usually \"exempt\") provide stability. You know exactly what your check will be every two weeks. You also typically have better access to benefits like 401(k) matching, health insurance, and PTO. The downside? No overtime pay, regardless of how many hours you work.</p>\n\n            <h2>The Benefits of Hourly</h2>\n            <p>Hourly roles (usually \"non-exempt\") provide \"Time Protection.\" If you work 41 hours, you get paid for 41 hours (often at 1.5x for the extra hour). For many high-demand roles, an hourly worker can actually out-earn a salaried manager by leveraging overtime.</p>\n\n            <div class='example-box'>\n                <h3>The 45-Hour Comparison</h3>\n                <p>Salary: $80,000 / year = $1,538 / week (regardless of hours).<br>\n                Hourly: $40 / hour * 40 hours + 5 hours OT ($60) = $1,900 / week.<br>\n                <strong>The hourly worker earns 23% more in this scenario.</strong></p>\n            </div>\n\n            <h2>Conclusion</h2>\n            <p>Choose the structure that fits your current life stage. Use our Salary vs. Hourly converter to see your true worth per hour and decide which path is right for you.</p>\n        "
+    },
+    {
+        "slug": "voltage-drop-efficiency-killer.html",
+        "title": "Voltage Drop: The Silent Efficiency Killer",
+        "category": "Engineering",
+        "date": "May 04, 2026",
+        "read_time": "11 min read",
+        "excerpt": "Understanding Ohm's law in practice and the importance of wire sizing.",
+        "target": "../engineering.html#vdrop",
+        "content": "\n            <h2>The Physics of Loss</h2>\n            <p>In electrical engineering, \"Voltage Drop\" is the reduction in electrical potential as current travels through a conductor. Every foot of wire has resistance, and that resistance turns your expensive electricity into useless heat.</p>\n            \n            <h2>Why 3% is the Magic Number</h2>\n            <p>The National Electrical Code (NEC) recommends a maximum voltage drop of 3% for branch circuits. Why? Because if the voltage drops too low, motors run hotter, lights dim, and sensitive electronics can fail or behave unpredictably.</p>\n\n            <div class='example-box'>\n                <h3>Calculating the Drop</h3>\n                <p>The drop is determined by: <strong>Current (A) * Distance (ft) * Resistance (\u03a9/ft)</strong>. To reduce the drop, you must either reduce the distance or decrease the resistance by using a thicker (lower gauge) wire.</p>\n            </div>\n\n            <h2>Long-Distance Design</h2>\n            <p>For long runs (e.g., powering a shed 200 feet from the main house), you almost always have to \"up-size\" the wire beyond what the circuit breaker requires. A 20-amp circuit might need #12 wire for a short run, but #8 wire for a long one.</p>\n\n            <h2>Conclusion</h2>\n            <p>Don't let your power vanish into thin air. Use our Voltage Drop calculator to ensure your electrical designs are efficient, safe, and up to code.</p>\n        "
+    },
+    {
+        "slug": "emergency-prep-survival-calories.html",
+        "title": "Emergency Prep: Survival Calories",
+        "category": "Survival",
+        "date": "May 06, 2026",
+        "read_time": "8 min read",
+        "excerpt": "Calculating nutrient density and duration for your emergency food supply.",
+        "target": "../survival.html#calories",
+        "content": "\n            <h2>Survival is a Numbers Game</h2>\n            <p>In an emergency scenario, calories are your most valuable currency. But not all calories are created equal. When building a 72-hour kit or a 6-month pantry, you need to account for metabolic needs, shelf life, and prep requirements.</p>\n            \n            <h2>The 1,200 vs. 2,500 Rule</h2>\n            <p>While most people can \"survive\" on 1,200 calories a day in a sedentary state, a survival situation often involves high physical exertion (walking, clearing debris, staying warm). In these cases, 2,500 to 3,000 calories per day is the more realistic requirement.</p>\n\n            <div class='example-box'>\n                <h3>Storage Math</h3>\n                <p>To feed a family of 4 for 30 days at 2,000 calories/person/day, you need 240,000 total calories. This is roughly 150 lbs of rice and beans, or about 80 standard #10 cans of freeze-dried food.</p>\n            </div>\n\n            <h2>The Macro Balance</h2>\n            <p>Don't just store white rice. You need protein for muscle repair and fats for long-term energy and brain health. A 50/30/20 (Carb/Fat/Protein) split is ideal for long-term survival stability.</p>\n\n            <h2>Conclusion</h2>\n            <p>Preparation is the only way to ensure peace of mind. Use our Survival Calorie calculator to determine exactly how much food you need to keep your family safe during any crisis.</p>\n        "
+    }
+]

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schengen & Travel Budget Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="schengen calculator, travel budget, currency converter, trip cost">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/travel.html" />
+    <meta name="description" content="Calculate Schengen visa stays, trip budgets, and currency conversions with professional travel tools." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Travel & <span style="color: var(--accent);">Itinerary Math</span></h1>
+            <p class="subtitle">Optimize your globetrotting with logistical precision.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Travel <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">90/180 Rule</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The Schengen Area allows stays up to 90 days in any 180-day period. This is a rolling window, not a fixed calendar year.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Buffer Budgeting</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Always add a 15-20% contingency buffer to your travel budget for hidden costs like local transport, tipping, and exchange fees.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Currency Hedge</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Monitor exchange rates weeks before your trip. Using travel cards with low foreign transaction fees can save up to 3-5% on total spending.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('schengen', event)">Schengen 90/180</button>
+                <button class="tab-btn" onclick="showTab('budget', event)">Trip Budget</button>
+                <button class="tab-btn" onclick="showTab('converter', event)">Currency</button>
+            </div>
+
+            <div id="schengen" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Days Spent (last 180)</label><div class="input-wrapper"><input type="number" id="v-spent" value="45"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Planned Trip Length (Days)</label><div class="input-wrapper"><input type="number" id="v-plan" value="30"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateSchengen()">Audit Visa Limit →</button>
+                <div id="visa-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Status</span><span class="result-value" id="v-status">CLEAR</span></div>
+                        <div class="result-item"><span class="result-label">Days Remaining</span><span class="result-value" id="v-rem">45</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="budget" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Flight Cost</label><div class="input-wrapper"><input type="number" id="tb-f" value="800"></div></div>
+                    <div class="input-group"><label>Daily Spending</label><div class="input-wrapper"><input type="number" id="tb-d" value="150"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Total Days</label><div class="input-wrapper"><input type="number" id="tb-y" value="14"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBudget()">Project Total Cost →</button>
+                <div id="budget-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Total Est. Trip Cost</span><span class="result-value" id="tb-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="converter" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Amount</label><div class="input-wrapper"><input type="number" id="cu-a" value="100"></div></div>
+                    <div class="input-group"><label>From</label><div class="input-wrapper">
+                        <select id="cu-f">
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                        </select>
+                    </div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>To</label><div class="input-wrapper">
+                        <select id="cu-t">
+                            <option value="EUR">EUR (€)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="JPY">JPY (¥)</option>
+                        </select>
+                    </div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCurrency()">Convert Now →</button>
+                <div id="curr-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Converted Result</span><span class="result-value" id="cu-out">0.00</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Art and Science of <span style="color: var(--accent);">Modern Travel</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Schengen Rule: Mastering the 90/180 Limit</h3>
+                        <p>For international travelers, especially digital nomads and long-term backpackers, the <strong>Schengen Area</strong> visa rules are a critical piece of the planning puzzle. The "90/180 Rule" states that you can spend up to 90 days within the Schengen Zone (most of Europe) during any 180-day period. This is a <em>rolling</em> window, which makes it notoriously difficult to calculate manually. If you stay for 90 days, you must leave the zone for 90 days before you can return. Our <strong>Schengen Calculator</strong> helps you track your spent days and planned trips to ensure you never overstay your visa, which could result in fines, deportation, or a multi-year ban from Europe.</p>
+                        <p style="margin-top: 16px;">Pro tip: To maximize your time in Europe, consider spending your "90 days out" in non-Schengen countries like Albania, Montenegro, or Cyprus. These regions offer incredible culture and lower costs of living, and because they aren't in the Schengen Zone, the clock on your 180-day window continues to tick while you enjoy your stay. Planning your "Schengen Shuffle" correctly is the secret to indefinite European exploration.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Budgeting: The Daily Cost Framework</h3>
+                        <p>A common mistake in travel planning is focusing only on the "big ticket" items like flights and hotels. While these are important, it's the daily "ground costs"—food, local transit, museum entries, and that extra espresso—that actually determine your trip's sustainability. Our <strong>Trip Budget Planner</strong> uses a daily cost framework: start with your fixed costs (Flight + Hotel) and add a realistic daily allowance. For a budget trip in Southeast Asia, $40/day is comfortable; for a luxury stay in Switzerland, you might need $250/day. By projecting these costs ahead of time, you can travel with peace of mind, knowing your bank account is as prepared as your suitcase.</p>
+                        <p style="margin-top: 16px;">Additionally, consider the "Travel Buffer." No matter how well you plan, unexpected costs arise—a missed train, a lost phone, or a spontaneous dinner with new friends. We recommend adding a 15% contingency to your final budget. This "sanity fund" ensures that a small mishap doesn't ruin your entire experience, allowing you to stay focused on the memories rather than the math.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Currency Conversion & Fee Management</h3>
+                        <p>In the world of international finance, the "official" exchange rate you see on Google is rarely the rate you get at an ATM or currency exchange booth. Most banks charge a 3% "foreign transaction fee," and airport exchange booths often bake a 5-10% markup into their rates. Our <strong>Currency Converter</strong> provides the mid-market rate as a baseline. When traveling, we recommend using a debit card with no ATM fees (like Schwab or Revolut) to withdraw local currency directly from an ATM, which usually provides the best possible rate.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Travel Insurance: The Essential Safety Net</h3>
+                        <p>Finally, never travel without insurance. A simple medical emergency in a foreign country can cost tens of thousands of dollars. Look for a policy that includes "Emergency Medical Evacuation" and "Trip Cancellation." While our tools help you manage your budget and stay compliant with visa rules, travel insurance manages your risk. It is the one travel expense that you hope you never have to use, but will be infinitely grateful for if you do.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateSchengen() {
+            const spent = parseInt(document.getElementById('v-spent').value) || 0;
+const plan = parseInt(document.getElementById('v-plan').value) || 0;
+const total = spent + plan;
+const rem = 90 - spent;
+
+document.getElementById('v-rem').innerText = Math.max(0, 90 - total);
+document.getElementById('v-status').innerText = total > 90 ? 'OVER LIMIT' : 'CLEAR';
+document.getElementById('v-status').style.color = total > 90 ? 'var(--error)' : 'var(--accent2)';
+document.getElementById('visa-results').classList.add('visible');
+saveActivity('travel', { type: 'schengen', spent, plan }, { status: total > 90 ? 'over' : 'clear' });
+        }
+
+        function calculateBudget() {
+            const f = parseFloat(document.getElementById('tb-f').value) || 0;
+const d = parseFloat(document.getElementById('tb-d').value) || 0;
+const y = parseInt(document.getElementById('tb-y').value) || 1;
+const total = f + (d * y);
+document.getElementById('tb-out').innerText = '$' + Math.round(total).toLocaleString();
+document.getElementById('budget-results').classList.add('visible');
+saveActivity('travel', { type: 'trip-budget', days: y }, { total });
+        }
+
+        function calculateCurrency() {
+            const amt = parseFloat(document.getElementById('cu-a').value);
+const from = document.getElementById('cu-f').value;
+const to = document.getElementById('cu-t').value;
+
+const rates = { 'USD': 1, 'EUR': 0.92, 'GBP': 0.79, 'JPY': 150 };
+const res = (amt / rates[from]) * rates[to];
+
+document.getElementById('cu-out').innerText = res.toFixed(2) + ' ' + to;
+document.getElementById('curr-results').classList.add('visible');
+saveActivity('travel', { type: 'currency', from, to, amt }, { res });
+        }
+    </script>
+</body>
+</html>

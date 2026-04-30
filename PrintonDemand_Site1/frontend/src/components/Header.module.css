@@ -1,0 +1,56 @@
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--hh);
+  background: rgba(8, 8, 8, 0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center;
+  padding: 0 32px; gap: 32px;
+  overflow: hidden;
+}
+
+.scanline {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--red) 50%, transparent 100%);
+  opacity: 0.6;
+}
+
+.logo {
+  display: flex; align-items: baseline; gap: 2px;
+  text-decoration: none; flex-shrink: 0;
+}
+.logoRebel {
+  font-family: var(--font-d); font-size: 22px; letter-spacing: 4px;
+  color: var(--red); line-height: 1;
+}
+.logoThreads {
+  font-family: var(--font-d); font-size: 22px; letter-spacing: 4px;
+  color: var(--muted); line-height: 1;
+}
+
+.nav {
+  display: flex; gap: 24px; flex: 1;
+}
+.navLink {
+  font-family: var(--font-d); font-size: 14px; letter-spacing: 3px;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.15s;
+}
+.navLink:hover { color: var(--red); }
+
+.cartBtn {
+  background: none; border: none; color: var(--text); cursor: pointer;
+  position: relative; padding: 8px; margin-left: auto;
+  display: flex; align-items: center;
+  transition: color 0.15s;
+}
+.cartBtn:hover { color: var(--red); }
+
+.badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--red); color: #000;
+  font-family: var(--font-d); font-size: 11px; letter-spacing: 1px;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 0;
+}

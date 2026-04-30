@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Google Mobile Services (GMS) font provider certificates.
+  Required by the Compose ui-text-google-fonts library.
+  See: https://developers.google.com/fonts/docs/android
+-->
+<resources>
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs_dev</item>
+        <item>@array/com_google_android_gms_fonts_certs_prod</item>
+    </array>
+
+    <string-array name="com_google_android_gms_fonts_certs_dev">
+        <item>
+            MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzETMBEGA1UEChMKR29vZ2xlIEluYzEVMBMGA1UECxMMR29vZ2xlIE1vYmlsZTEcMBoGA1UEAxMTR29vZ2xlIE1vYmlsZSBTVkNBMB4XDTE2MDcwNzE3NDgyNFoXDTI2MDcwNTE3NDgyNFowgZQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQKEwpHb29nbGUgSW5jMRUwEwYDVQQLEwxHb29nbGUgTW9iaWxlMRwwGgYDVQQDExNHb29nbGUgTW9iaWxlIFNWQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCsm3tnRDsHiPPM9ixZNiVpHwmz4NeI6X+C1u6YQYmr5JYEM0IbgvtW3jWBMTkOMrm4UCJmjL8O8dBkNFp4ERCF7A4j0D9C/k1xkMbSI4lSV3l3jFHRMeBSFgqfJGZ8mQ9UQTCG/d2YANbdVvXqBvE7d7f8zK1dfuqH3d/lJU7P0dxVQiN9S5dEeHiuO6xhWZqhVXfZuS6wJVkY8AiL4rZi5/eKMJvDp9kT0P7V8LvFqrp6M0ND7KaVQi7q9H8+u/E5X4Q==
+        </item>
+    </string-array>
+
+    <string-array name="com_google_android_gms_fonts_certs_prod">
+        <item>
+            MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jMRIwEAYDVQQLEwlHb29nbGUgVFYxDjAMBgNVBAMTBUFuZHJvMB4XDTE1MDYwMTE4MTEzN1oXDTI1MDUyOTE4MTEzN1owdDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBJbmMxEjAQBgNVBAsTCUdvb2dsZSBUVjEOMAwGA1UEAxMFQW5kcm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCHqeaAqQeGWsN9BJGN5dtFtd6MNSRJ0hv1BrGNrKPt/WN3tlRdOrE7n3vJi/WV+eCsT1lqSzJL/3EEBv6jXRNomKVv6mGYDQJ2rjr0Y8rZkYUk2U9g6P5Y5bO/c8wY3gTWTn3T8aMiZ+xBXNiK9AEkfZfb8oB3t7TZ0t7yBJblDzAuUBEQ==
+        </item>
+    </string-array>
+</resources>

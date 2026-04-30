@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms of Service for Knotstranded Tools Suite. Review our service agreement and policies.">
+    <meta name="robots" content="index, follow">
+    <title>Terms of Service - Knotstranded</title>
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-main: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --border-color: #e0e0e0;
+            --card-bg: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999999;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --border-color: #333333;
+            --card-bg: #0f0f0f;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg-main); 
+            color: var(--text-primary); 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        header { 
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+        header h1 { 
+            font-size: 2em; 
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        header p {
+            color: var(--text-secondary);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        strong {
+            color: var(--accent);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: #1a1a1a;
+            border-left: 4px solid #10b981;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #ccc;
+        }
+
+        .highlight strong {
+            color: var(--accent);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 24px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            background: var(--bg-secondary);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--accent);
+            margin: 0 12px;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 16px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            main {
+                padding: 24px 16px;
+            }
+
+            h2 {
+                font-size: 1.2em;
+                margin-top: 24px;
+                margin-bottom: 12px;
+            }
+
+            h3 {
+                font-size: 1.05em;
+                margin-top: 16px;
+            }
+
+            p {
+                font-size: 0.95em;
+                margin-bottom: 12px;
+            }
+
+            ul {
+                margin-left: 16px;
+                margin-bottom: 12px;
+            }
+
+            li {
+                margin-bottom: 6px;
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 14px;
+            }
+
+            header h1 {
+                font-size: 1.3em;
+                margin-bottom: 4px;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            h2 {
+                font-size: 1.1em;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 0.95em;
+                margin-top: 14px;
+                margin-bottom: 8px;
+            }
+
+            p {
+                font-size: 0.9em;
+                margin-bottom: 10px;
+            }
+
+            ul {
+                margin-left: 14px;
+                margin-bottom: 10px;
+            }
+
+            li {
+                margin-bottom: 4px;
+                font-size: 0.9em;
+            }
+
+            .highlight {
+                padding: 12px;
+                margin: 16px 0;
+            }
+
+            footer {
+                padding: 16px 12px;
+                font-size: 0.8em;
+            }
+
+            footer a {
+                margin: 0 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Terms of Service</h1>
+        <p>Knotstranded LLC - Tools Suite</p>
+    </header>
+
+    <main>
+        <div class="highlight">
+            <strong>IMPORTANT:</strong> By accessing and using this website, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by the above, please do not use this service.
+        </div>
+
+        <h2>1. Service Description</h2>
+        <p>
+            Knotstranded LLC ("Company," "we," "us," "our") provides a collection of online tools and utilities 
+            for generating QR codes, analyzing text, and creating various digital content ("Services"). 
+            These Services are provided on an "as-is" and "as-available" basis.
+        </p>
+
+        <h2>2. User Eligibility</h2>
+        <p>
+            You must be at least 13 years old to use our Services. If you are under 18, you should review these Terms 
+            with a parent or guardian. By using the Services, you represent and warrant that you have the legal capacity 
+            and authority to enter into this agreement.
+        </p>
+
+        <h2>3. License Grant</h2>
+        <p>
+            We grant you a limited, non-exclusive, revocable, non-transferable license to use our Services for personal, 
+            non-commercial purposes. This license does not include any right to:
+        </p>
+        <ul>
+            <li>Modify or copy the Services or any part thereof</li>
+            <li>Use the Services for any commercial purpose</li>
+            <li>Reverse engineer or attempt to extract source code</li>
+            <li>Remove or alter copyright, trademark, or other proprietary notices</li>
+            <li>Use the Services for unlawful or unauthorized purposes</li>
+        </ul>
+
+        <h2>4. Acceptable Use Policy</h2>
+        <p>You agree not to use our Services:</p>
+        <ul>
+            <li>To create, generate, or distribute malware or harmful content</li>
+            <li>To engage in phishing, fraud, or deception</li>
+            <li>To infringe upon intellectual property rights of others</li>
+            <li>To harass, abuse, threaten, or defame any person</li>
+            <li>To generate URLs or content for illegal activities</li>
+            <li>To attempt unauthorized access to our systems</li>
+            <li>To spam, send unsolicited communications, or violate anti-spam laws</li>
+            <li>To bypass security measures or access controls</li>
+        </ul>
+
+        <h2>5. User Content and Generated Output</h2>
+        <h3>5.1 Your Input Data</h3>
+        <p>
+            You retain full ownership of any input data you provide to our Services. However, by using the Services, 
+            you grant us a non-exclusive license to use, analyze, and store your input data for:
+        </p>
+        <ul>
+            <li>Providing and improving our Services</li>
+            <li>Analytics and usage tracking (in anonymized form)</li>
+            <li>Debugging and error detection</li>
+        </ul>
+
+        <h3>5.2 Generated Output</h3>
+        <p>
+            Generated outputs (QR codes, text analysis, created content) are provided for your use. 
+            We do not warrant that generated content is error-free or suitable for any particular purpose. 
+            You assume all responsibility for how generated content is used.
+        </p>
+
+        <h3>5.3 License to Generated Content</h3>
+        <p>
+            You own the outputs generated by our Services, subject to any underlying intellectual property rights. 
+            We grant you a license to use generated content for personal and commercial purposes, provided you do not:
+        </p>
+        <ul>
+            <li>Claim to have created the tool or technology</li>
+            <li>Represent the content as our official recommendation or endorsement</li>
+            <li>Violate third-party rights while using the content</li>
+        </ul>
+
+        <h2>6. Disclaimers and Limitations of Liability</h2>
+        <h3>6.1 "As-Is" Disclaimer</h3>
+        <p>
+            THE SERVICES ARE PROVIDED ON AN "AS-IS" AND "AS-AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, 
+            EITHER EXPRESS OR IMPLIED. WE EXPRESSLY DISCLAIM ALL WARRANTIES INCLUDING MERCHANTABILITY, FITNESS FOR 
+            A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+        </p>
+
+        <h3>6.2 Limitation of Liability</h3>
+        <p>
+            TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR:
+        </p>
+        <ul>
+            <li>Any indirect, incidental, special, consequential, or punitive damages</li>
+            <li>Loss of profits, revenue, data, or goodwill</li>
+            <li>Costs of substitute goods or services</li>
+            <li>Any damages arising from unauthorized use of the Services</li>
+        </ul>
+        <p>
+            Our total liability for any claim arising from the Services shall not exceed the amount you paid us 
+            in the 12 months preceding the claim (or $100 if you have not paid anything).
+        </p>
+
+        <h2>7. Third-Party Links and Content</h2>
+        <p>
+            Our Services may contain links to third-party websites and services. We are not responsible for the content, 
+            accuracy, legality, or practices of third-party sites. Your use of third-party services is subject to their 
+            terms and privacy policies. We do not endorse any third-party content unless explicitly stated.
+        </p>
+
+        <h2>8. Advertising and Revenue</h2>
+        <p>
+            Our Services may contain advertisements served by Google AdSense and other advertising partners. 
+            These advertisements are subject to Google's and other partners' terms and privacy policies. 
+            We do not control the content of advertisements and are not responsible for any loss or damage 
+            arising from interaction with ads.
+        </p>
+
+        <h2>9. Intellectual Property Rights</h2>
+        <p>
+            We or our licensors own all right, title, and interest in the Services, including all intellectual property 
+            rights. This includes patents, copyrights, trademarks, trade secrets, and other proprietary information. 
+            You may not reproduce, distribute, or publicly display any portion of the Services without our express written consent.
+        </p>
+
+        <h2>10. User Accounts (if applicable)</h2>
+        <p>
+            If you create an account with us, you are responsible for:
+        </p>
+        <ul>
+            <li>Maintaining the confidentiality of your login credentials</li>
+            <li>Ensuring your password is secure and unique</li>
+            <li>All activities that occur under your account</li>
+            <li>Notifying us immediately of unauthorized account access</li>
+        </ul>
+
+        <h2>11. Termination</h2>
+        <p>
+            We may terminate or suspend your access to the Services at any time, for any reason, with or without notice. 
+            This includes termination for violation of these Terms or for any other reason at our sole discretion.
+        </p>
+
+        <h2>12. Indemnification</h2>
+        <p>
+            You agree to indemnify, defend, and hold harmless Knotstranded LLC, its officers, directors, employees, 
+            and agents from any claims, damages, losses, liabilities, and expenses (including legal fees) arising from:
+        </p>
+        <ul>
+            <li>Your use of the Services</li>
+            <li>Your violation of these Terms</li>
+            <li>Your violation of any applicable law or regulation</li>
+            <li>Your input data or generated content</li>
+            <li>Infringement of third-party rights caused by your use of the Services</li>
+        </ul>
+
+        <h2>13. Compliance with Laws</h2>
+        <p>
+            You agree to use the Services in compliance with all applicable local, state, national, and international laws, 
+            rules, and regulations. You are solely responsible for ensuring your use is lawful. We reserve the right to 
+            refuse service to anyone who violates applicable laws.
+        </p>
+
+        <h2>14. GDPR and Data Protection</h2>
+        <p>
+            We comply with the General Data Protection Regulation (GDPR) and similar privacy laws. 
+            Please refer to our <a href="/privacy.html">Privacy Policy</a> for information about how we collect, 
+            use, and protect your personal data. You have the right to access, correct, delete, or restrict 
+            processing of your data as detailed in the Privacy Policy.
+        </p>
+
+        <h2>15. Dispute Resolution</h2>
+        <h3>15.1 Informal Resolution</h3>
+        <p>
+            Before pursuing formal legal action, we encourage you to contact us to resolve disputes informally. 
+            Please send a detailed description of your dispute to the address below.
+        </p>
+
+        <h3>15.2 Governing Law</h3>
+        <p>
+            These Terms shall be governed by and construed in accordance with the laws of California, 
+            without regard to its conflict of law principles. Any legal action or proceeding shall be brought 
+            exclusively in the state or federal courts located in California.
+        </p>
+
+        <h2>16. Modifications to Terms</h2>
+        <p>
+            We may modify these Terms at any time. The modified Terms will be effective immediately upon posting. 
+            Your continued use of the Services following any modifications constitutes your acceptance of the modified Terms. 
+            We will provide notice of significant changes via email or prominent notice on the website.
+        </p>
+
+        <h2>17. Severability</h2>
+        <p>
+            If any provision of these Terms is found to be invalid, illegal, or unenforceable, such provision shall be 
+            modified to the minimum extent necessary to make it valid, or if such modification is not possible, the provision 
+            shall be severed, and the remaining provisions shall remain in full force and effect.
+        </p>
+
+        <h2>18. Entire Agreement</h2>
+        <p>
+            These Terms, together with our Privacy Policy and any other documents referenced herein, constitute the entire 
+            agreement between you and us regarding the Services and supersede all prior negotiations, representations, and agreements.
+        </p>
+
+        <h2>19. Contact Information</h2>
+        <p>For questions, disputes, or notices regarding these Terms, please contact:</p>
+        <ul>
+            <li><strong>Email:</strong> <a href="mailto:admin@knotstranded.com">admin@knotstranded.com</a></li>
+            <li><strong>Company:</strong> Knotstranded LLC</li>
+            <li><strong>Location:</strong> Camarillo, CA</li>
+        </ul>
+        <p>Please allow 30 days for a response to your inquiry.</p>
+
+        <h2>20. Waiver</h2>
+        <p>
+            Our failure to enforce any right or provision of these Terms shall not constitute a waiver of that right or provision. 
+            Any waiver must be in writing and signed by an authorized representative of Knotstranded LLC.
+        </p>
+
+        <footer>
+            <p>&copy; 2026 Knotstranded LLC. All rights reserved.</p>
+            <p>
+                <a href="/">Home</a> | 
+                <a href="/privacy.html">Privacy Policy</a> | 
+                <a href="/terms.html">Terms of Service</a> | 
+                <a href="/contact.html">Contact</a>
+            </p>
+        </footer>
+    </main>
+
+    <script src="/theme-toggle.js"></script>
+</body>
+</html>

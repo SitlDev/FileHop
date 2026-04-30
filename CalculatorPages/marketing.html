@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing ROI, ROAS & Conversion Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="marketing ROI, ROAS calculator, conversion rate, email marketing ROI, CPA calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/marketing.html" />
+    <meta name="description" content="Professional marketing tools: ROAS, ROI, Conversion Rate, and Email Campaign calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Digital <span style="color: var(--accent2);">Marketing ROI</span></h1>
+            <p class="subtitle">Performance metrics for modern growth hackers.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Digital Marketing ROI <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">ROAS/ROI</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Calculate return on ad spend and marketing profitability.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">CPC / CPA</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Understand cost per acquisition based on click pricing.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Conv. Rate</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Evaluate conversion efficiency of your traffic.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Email ROI</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Measure revenue potential of email campaigns.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('roas', event)">ROAS/ROI</button>
+                <button class="tab-btn" onclick="showTab('cpc', event)">CPC / CPA</button>
+                <button class="tab-btn" onclick="showTab('conv', event)">Conv. Rate</button>
+                <button class="tab-btn" onclick="showTab('email', event)">Email ROI</button>
+            </div>
+
+            <div id="roas" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Total Ad Spend</label><div class="input-wrapper"><input type="number" id="ro-s" value="1000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Revenue Generated</label><div class="input-wrapper"><input type="number" id="ro-r" value="4500"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateROAS()">Calculate ROAS →</button>
+                <div id="roas-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">ROAS</span><span class="result-value" id="ro-out">0.0</span></div>
+                        <div class="result-item"><span class="result-label">ROI (%)</span><span class="result-value" id="ro-roi" style="color:var(--accent2)">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="cpc" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>CPC ($)</label><div class="input-wrapper"><input type="number" id="cp-c" value="1.50" step="0.1"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Visit-to-Sale (%)</label><div class="input-wrapper"><input type="number" id="cp-r" value="2.5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCPC()">Analyze CPA →</button>
+                <div id="cpc-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">CPA</span><span class="result-value" id="cp-out">$0.00</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="conv" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Total Visitors</label><div class="input-wrapper"><input type="number" id="co-v" value="10000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Total Conversions</label><div class="input-wrapper"><input type="number" id="co-c" value="250"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateConv()">Calculate Rate →</button>
+                <div id="conv-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Conversion Rate</span><span class="result-value" id="co-out">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="email" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Sends</label><div class="input-wrapper"><input type="number" id="em-s" value="5000"></div></div>
+                    <div class="input-group"><label>Open Rate (%)</label><div class="input-wrapper"><input type="number" id="em-o" value="20"></div></div>
+                    <div class="input-group"><label>CTR (%)</label><div class="input-wrapper"><input type="number" id="em-c" value="3"></div></div>
+                    <div class="input-group"><label>AOV ($)</label><div class="input-wrapper"><input type="number" id="em-v" value="50"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateEmailROI()">Predict Revenue →</button>
+                <div id="email-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Est. Revenue</span><span class="result-value" id="em-out" style="color:var(--accent2)">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Math of <span style="color: var(--accent);">Digital Growth</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">ROAS vs. ROI: Understanding Profitability</h3>
+                        <p>In digital advertising, <strong>ROAS (Return on Ad Spend)</strong> is the metric that tells you how many dollars in revenue you generate for every dollar spent on ads. For example, if you spend $1,000 and generate $5,000 in revenue, your ROAS is 5.0x. While ROAS is a great high-level indicator, it doesn't account for the cost of goods sold (COGS) or operational overhead. This is where <strong>ROI (Return on Investment)</strong> comes in. ROI measures the actual profit of the campaign. Our <strong>ROAS & ROI Calculator</strong> provides both numbers, allowing you to see if your "successful" 5.0x ROAS campaign is actually profitable after all costs are considered.</p>
+                        <p style="margin-top: 16px;">Finding your "Break-Even ROAS" is the first step in any scaling strategy. If your profit margin is 20%, you need a 5.0x ROAS just to break even. Anything lower means you are effectively paying to acquire customers at a loss. Knowing these numbers ahead of time prevents the common trap of scaling a campaign that looks good on the dashboard but is draining your bank account behind the scenes.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The CPC to CPA Bridge</h3>
+                        <p>Most beginners focus on <strong>CPC (Cost Per Click)</strong>, but clicks don't pay the bills—conversions do. The bridge between a click and a customer is your <strong>CVR (Conversion Rate)</strong>. If your CPC is $1.00 and your conversion rate is 1%, your <strong>CPA (Cost Per Acquisition)</strong> is $100. Our <strong>CPA Estimator</strong> helps you visualize this relationship. Improving your landing page to double your conversion rate to 2% effectively cuts your CPA in half without spending an extra dime on traffic. This is the highest-leverage activity in digital marketing.</p>
+                        <p style="margin-top: 16px;">When analyzing your CPA, compare it to your <strong>LTV (Lifetime Value)</strong>. If it costs you $50 to acquire a customer who only spends $30 once, your business is unsustainable. However, if that customer has an LTV of $500 over three years, a $50 CPA is an incredible bargain. Sustainable growth is found at the intersection of optimized conversion rates and high customer retention.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Power of the Email List</h3>
+                        <p>Unlike social media or paid search, your email list is an asset you <em>own</em>. You don't have to pay Mark Zuckerberg or Larry Page to reach your subscribers. Our <strong>Email Revenue Projector</strong> helps you estimate the monthly value of your list based on open rates and click-through rates. A list of 10,000 engaged subscribers can often generate more revenue than a social media following of 100,000 due to the high intent and direct nature of the medium. Focus on building and nurturing your list as the core of your long-term marketing strategy.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Conversion Rate Optimization (CRO)</h3>
+                        <p>Every visitor to your site who doesn't convert is a missed opportunity. Our <strong>CVR Calculator</strong> helps you track your performance over time. Small, incremental improvements—like changing a button color, clarifying a headline, or speeding up your page load times—can have a massive compound effect on your bottom line. CRO is the process of making the traffic you already have work harder for you.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateROAS() {
+            const s = parseFloat(document.getElementById('ro-s').value);
+const r = parseFloat(document.getElementById('ro-r').value);
+const roas = r / s;
+const roi = ((r - s) / s) * 100;
+document.getElementById('ro-out').innerText = roas.toFixed(2) + 'x';
+document.getElementById('ro-roi').innerText = Math.round(roi) + '%';
+document.getElementById('roas-results').classList.add('visible');
+saveActivity('marketing', { type: 'roas', spend: s, revenue: r }, { roas, roi });
+        }
+
+        function calculateCPC() {
+            const cpc = parseFloat(document.getElementById('cp-c').value);
+const rate = parseFloat(document.getElementById('cp-r').value) / 100;
+const cpa = cpc / rate;
+document.getElementById('cp-out').innerText = '$' + cpa.toFixed(2);
+document.getElementById('cpc-results').classList.add('visible');
+saveActivity('marketing', { type: 'cpc', cpc, rate }, { cpa });
+        }
+
+        function calculateConv() {
+            const v = parseFloat(document.getElementById('co-v').value);
+const c = parseFloat(document.getElementById('co-c').value);
+const rate = (c / v) * 100;
+document.getElementById('co-out').innerText = rate.toFixed(2) + '%';
+document.getElementById('conv-results').classList.add('visible');
+saveActivity('marketing', { type: 'conv', v, c }, { rate });
+        }
+
+        function calculateEmailROI() {
+            const s = parseFloat(document.getElementById('em-s').value);
+const o = parseFloat(document.getElementById('em-o').value) / 100;
+const c = parseFloat(document.getElementById('em-c').value) / 100;
+const v = parseFloat(document.getElementById('em-v').value);
+const rev = s * o * c * v;
+document.getElementById('em-out').innerText = fmt(rev);
+document.getElementById('email-results').classList.add('visible');
+saveActivity('marketing', { type: 'email', s, o, c, v }, { rev });
+        }
+    </script>
+</body>
+</html>

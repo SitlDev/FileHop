@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic & Research Math 2026 — YourCalc</title>
+    <meta name="keywords" content="academic calculator, grade curve, h-index calculator, gpa calculator, final grade calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/academic.html" />
+    <meta name="description" content="Professional academic tools: GPA, Final Grade, Grade Curves, and h-index projection calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Academic & <span style="color: var(--accent2);">Research Math</span></h1>
+            <p class="subtitle">Standardized tools for grading and citation mapping.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Academic <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">GPA Scaling</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The 4.0 scale is standardized, but weighted GPA can reach 5.0 for AP/IB courses.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Curving Logic</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The "Square Root Curve" is mathematically fairer to lower-performing students than linear bonuses.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Research Impact</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The h-index measures both productivity and citation impact (h papers with at least h citations).</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('gpa', event)">GPA Calculator</button>
+                <button class="tab-btn" onclick="showTab('final', event)">Final Grade</button>
+                <button class="tab-btn" onclick="showTab('curve', event)">Grade Curve</button>
+                <button class="tab-btn" onclick="showTab('hindex', event)">Impact (h-index)</button>
+            </div>
+
+            <div id="gpa" class="calc-container active">
+                <div id="gpa-rows">
+                    <div class="input-grid gpa-row" style="margin-bottom:12px; gap:12px;">
+                        <div class="input-group"><label>Grade</label><div class="input-wrapper"><select class="g-grade"><option value="4">A (4.0)</option><option value="3.7">A- (3.7)</option><option value="3.3">B+ (3.3)</option><option value="3">B (3.0)</option><option value="2.7">B- (2.7)</option><option value="2.3">C+ (2.3)</option><option value="2">C (2.0)</option><option value="1">D (1.0)</option><option value="0">F (0.0)</option></select></div></div>
+                        <div class="input-group"><label>Credits</label><div class="input-wrapper"><input type="number" class="g-credits" value="3" min="1"></div></div>
+                    </div>
+                </div>
+                <button class="tab-btn" onclick="addGPARow()" style="margin-bottom:24px; border:1px dashed var(--border); width:100%; height:44px;">+ Add Course</button>
+                <button class="btn-calculate" onclick="calculateGPA()">Calculate GPA →</button>
+                <div id="gpa-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Cumulative GPA</span><span class="result-value" id="gpa-out" style="color:var(--accent2)">0.00</span></div>
+                        <div class="result-item"><span class="result-label">Total Credits</span><span class="result-value" id="gpa-cred">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="final" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Current Grade (%)</label><div class="input-wrapper"><input type="number" id="fg-cur" value="85"></div></div>
+                    <div class="input-group"><label>Target Grade (%)</label><div class="input-wrapper"><input type="number" id="fg-tar" value="90"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Final Weight (%)</label><div class="input-wrapper"><input type="number" id="fg-w" value="20"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateFinal()">Predict Score →</button>
+                <div id="final-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Required Final Score</span><span class="result-value" id="fg-out">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="curve" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Raw Score (%)</label><div class="input-wrapper"><input type="number" id="ac-score" value="64"></div></div>
+                    <div class="input-group"><label>Curve Method</label><div class="input-wrapper"><select id="ac-method"><option value="sqrt">Square Root</option><option value="linear">Linear (+10)</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateCurve()">Apply Curve →</button>
+                <div id="curve-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Curved Grade</span><span class="result-value" id="ac-out">0%</span></div>
+                        <div class="result-item"><span class="result-label">GPA Shift</span><span class="result-value" id="ac-gpa" style="color:var(--accent2)">+0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="hindex" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Current h-index</label><div class="input-wrapper"><input type="number" id="hi-h" value="5"></div></div>
+                    <div class="input-group"><label>Total Citations</label><div class="input-wrapper"><input type="number" id="hi-c" value="120"></div></div>
+                    <div class="input-group"><label>Years Active</label><div class="input-wrapper"><input type="number" id="hi-y" value="4"></div></div>
+                    <div class="input-group"><label>Projection Years</label><div class="input-wrapper"><input type="number" id="hi-p" value="5"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateHIndex()">Project Growth →</button>
+                <div id="hindex-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Avg Citations/Yr</span><span class="result-value" id="hi-rate">0</span></div>
+                        <div class="result-item"><span class="result-label">Est. Future h-index</span><span class="result-value" id="hi-proj" style="color:var(--accent2)">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px; text-align: left;">Understanding <span style="color: var(--accent);">Academic Metrics</span> & Performance</h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Mechanics of Grade Curving</h3>
+                        <p>Grade curving is a controversial yet essential tool in higher education. It is primarily used when an exam's difficulty level exceeds the anticipated performance of the student body. Our <strong>Grade Curve Calculator</strong> employs a linear adjustment model, which is the most transparent method for both educators and students. By setting a target average, the tool calculates the precise "bump" required to shift the class distribution. This ensures that a particularly brutal midterm doesn't unfairly penalize a hard-working cohort, while still maintaining the relative ranking of students within that group.</p>
+                        <p style="margin-top: 16px;">There are several schools of thought on curving. The <em>Bell Curve</em> method forces a specific number of A's, B's, and C's, which can lead to hyper-competition. In contrast, the linear method we provide is often preferred because it maintains the integrity of the original score gaps while simply adjusting the baseline for the entire class. This prevents "grade deflation" in rigorous STEM fields where raw scores of 60% might actually represent a high level of mastery. Understanding how your professor curves can help you focus on your percentile rank rather than just the raw number.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Decoding the h-Index & Academic Impact</h3>
+                        <p>The <strong>h-index</strong> has become the gold standard for measuring a researcher's career impact. Proposed by Jorge E. Hirsch in 2005, it attempts to solve the problem where a single "lucky" paper with thousands of citations could skew a researcher's perceived importance. An h-index of 15 means you have published at least 15 papers, each of which has been cited at least 15 times. This requires both <em>consistency</em> and <em>quality</em> over a long period. It is a metric of sustainability in research, rewarding those who produce a steady stream of meaningful work.</p>
+                        <p style="margin-top: 16px;">Our h-index tool allows researchers to project their growth and understand their standing within their field. For context, in the physical sciences, an h-index of 10-12 might be expected for an assistant professor, while an index of 40+ is often seen in Nobel-level scientists. However, it is crucial to remember that h-index values vary wildly between disciplines. A high h-index in high-energy physics might be average in social sciences, simply due to the differing citation cultures and publication frequencies of those fields. Researchers should always compare their h-index against peers in their specific niche for a fair assessment.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">GPA Strategy: Weighted vs. Unweighted</h3>
+                        <p>Managing your <strong>GPA</strong> is about more than just getting good grades; it's about understanding the weighting system of your institution. Most high schools use a weighted scale where AP or IB courses are out of 5.0, while standard courses are out of 4.0. This incentivizes students to take more rigorous classes. Our calculator allows you to model both scenarios, helping you see how a single B in an AP class might actually be better for your weighted GPA than an A in a standard class. This is critical for college admissions, where a more challenging transcript often carries more weight than a perfect 4.0 in easy classes.</p>
+                        <p style="margin-top: 16px;">For university students, the focus shifts to cumulative vs. major GPA. Employers often look at the major GPA to see how you performed in your specific field of study, while graduate schools prioritize the cumulative score. Using our tracker to project your final GPA before the semester ends can help you decide where to focus your study efforts during finals week to maximize your academic standing. A well-timed study session for a 4-credit course can have a much larger impact on your GPA than the same time spent on a 1-credit elective.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Importance of Academic Milestones</h3>
+                        <p>Beyond the numbers, academic success is often measured by milestones: the first published paper, the first grant, or the successful defense of a thesis. While our tools provide the quantitative data, the qualitative aspects of your academic journey—like networking, mentorship, and research integrity—are just as important. Use these calculators as a compass to guide your progress, but don't lose sight of the curiosity and passion that brought you to academia in the first place. Whether you're calculating your final grade or projecting your research impact ten years from now, stay focused on the long-term goal of contribution and discovery.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function addGPARow() {
+            const container = document.getElementById('gpa-rows');
+            const row = container.querySelector('.gpa-row').cloneNode(true);
+            row.querySelector('.g-credits').value = 3;
+            container.appendChild(row);
+        }
+
+        function calculateGPA() {
+            let points = 0, credits = 0;
+document.querySelectorAll('.gpa-row').forEach(row => {
+    const g = parseFloat(row.querySelector('.g-grade').value);
+    const c = parseFloat(row.querySelector('.g-credits').value) || 0;
+    points += g * c;
+    credits += c;
+                const res = credits > 0 ? points / credits : 0;
+                document.getElementById('gpa-out').innerText = res.toFixed(2);
+                document.getElementById('gpa-cred').innerText = credits;
+                document.getElementById('gpa-results').classList.add('visible');
+                saveActivity('academic', { type: 'gpa', credits, points }, { gpa: res });
+            });
+        }
+
+        function calculateFinal() {
+            const cur = parseFloat(document.getElementById('fg-cur').value);
+const tar = parseFloat(document.getElementById('fg-tar').value);
+const w = parseFloat(document.getElementById('fg-w').value) / 100;
+const needed = (tar - cur * (1 - w)) / w;
+document.getElementById('fg-out').innerText = Math.max(0, needed).toFixed(1) + '%';
+document.getElementById('fg-out').style.color = needed > 100 ? 'var(--error)' : 'var(--accent2)';
+document.getElementById('final-results').classList.add('visible');
+saveActivity('academic', { type: 'final-grade', cur, tar, weight: w }, { needed });
+        }
+
+        function calculateCurve() {
+            const s = parseFloat(document.getElementById('ac-score').value);
+const m = document.getElementById('ac-method').value;
+let res = (m === 'sqrt') ? Math.sqrt(s) * 10 : s + 10;
+res = Math.min(100, res);
+document.getElementById('ac-out').innerText = res.toFixed(1) + '%';
+document.getElementById('ac-gpa').innerText = '+' + ((res - s) / 10).toFixed(1);
+document.getElementById('curve-results').classList.add('visible');
+saveActivity('academic', { type: 'grade-curve', raw: s, method: m }, { res });
+        }
+
+        function calculateHIndex() {
+            const h = parseFloat(document.getElementById('hi-h').value);
+const c = parseFloat(document.getElementById('hi-c').value);
+const y = parseFloat(document.getElementById('hi-y').value);
+const p = parseFloat(document.getElementById('hi-p').value);
+const rate = c / y;
+const proj = Math.round(h + (rate * 0.05 * p)); 
+document.getElementById('hi-rate').innerText = Math.round(rate);
+document.getElementById('hi-proj').innerText = proj;
+document.getElementById('hindex-results').classList.add('visible');
+saveActivity('academic', { type: 'h-index', current: h, cites: c }, { proj });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator Insights | YourCalc Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <h2>YourCalc Admin</h2>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="">📊 Overview</a></li>
+            <li><a href="analytics.html" class="">👥 Analytics</a></li>
+            <li><a href="seo.html" class="">🔍 SEO</a></li>
+            <li><a href="adsense.html" class="">💰 AdSense</a></li>
+            <li><a href="calculators.html" class="active">🧮 Calculators</a></li>
+            <li><a href="leads.html" class="">📧 Leads</a></li>
+            <li style="margin-top: 32px;"><a href="../index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="topbar">
+            <h1>Calculator Insights</h1>
+            <div style="display: flex; gap: 16px;">
+                <select class="date-selector">
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Custom Range</option>
+                </select>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-bottom: 24px;">
+            <h3 class="card-title">Calculator Usage Leaderboard</h3>
+            <table class="table">
+                <tr><th>Calculator</th><th>Category</th><th>Uses</th><th>Completion %</th><th>Avg Time</th><th>Status</th></tr>
+                <tr><td>Mortgage</td><td>Finance</td><td>1,240</td><td>85%</td><td>45s</td><td>Healthy</td></tr>
+                <tr><td>BMI</td><td>Health</td><td>980</td><td>92%</td><td>15s</td><td>Healthy</td></tr>
+                <tr><td>TDEE</td><td>Health</td><td>850</td><td>78%</td><td>60s</td><td>Healthy</td></tr>
+                <tr><td>Options Profit</td><td>Invest</td><td>120</td><td>30%</td><td>10s</td><td><span class="badge red">High Abandonment</span></td></tr>
+            </table>
+        </div>
+
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

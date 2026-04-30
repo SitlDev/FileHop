@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press & Media | The Worn Pages Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="js/butterflies.js" defer></script>
+    <style>
+        :root {
+            --pink: #B68D8D;
+            --blush: #D4A3A3;
+            --pearl: #FAF6F5;
+            --cream: #F5EBE9;
+            --text-dark: #5C4F4F;
+            --text-muted: #9E8B8B;
+            --gold: #D4B982;
+        }
+        body { background: var(--pearl); color: var(--text-dark); font-family: 'EB Garamond', serif; line-height: 1.8; margin: 0; padding: 0; background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 2rem; color: var(--text-dark); }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 4rem 0 1.5rem; color: var(--pink); border-bottom: 1px solid var(--aged-paper); padding-bottom: 0.5rem; }
+        p { margin-bottom: 1.5rem; font-size: 1.2rem; color: var(--text-dark); opacity: 0.9; }
+        .back-link { display: inline-block; margin-bottom: 3rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; color: var(--text-muted); transition: color 0.3s; }
+        .back-link:hover { color: var(--pink); }
+        
+        .press-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; }
+        .press-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 15px 35px rgba(182, 141, 141, 0.1); border: 1px solid var(--cream); }
+        .press-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-dark); }
+        .press-card p { font-size: 1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        .asset-btn { display: inline-block; padding: 0.8rem 1.5rem; background: var(--pink); color: white; text-decoration: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+        .asset-btn:hover { background: var(--blush); transform: translateY(-2px); }
+
+        .contact-box { background: var(--forest-green); color: white; padding: 4rem; border-radius: 12px; margin-top: 5rem; text-align: center; background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png"); }
+        .contact-box h2 { color: var(--gold); border: none; font-size: 2.5rem; margin-top: 0; }
+        .contact-box a { color: white; font-size: 1.5rem; text-decoration: underline; font-family: 'EB Garamond', serif; }
+
+        .footer { margin-top: 8rem; padding-top: 3rem; border-top: 1px solid rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; font-size: 0.75rem; text-align: center; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .press-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .container { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Return to the Sanctuary</a>
+        <h1>Press & Media</h1>
+        <p>Welcome to the media archive of The Worn Pages Club. We are always delighted to share our story of literary preservation and sensory curation with journalists, creators, and fellow bibliophiles.</p>
+        
+        <div class="press-grid">
+            <div class="press-card">
+                <h3>The Digital Press Kit</h3>
+                <p>A comprehensive guide to our sanctuary, including our origin story, the philosophy of sensory curation, and high-resolution lifestyle imagery of our monthly dispatches.</p>
+                <a href="#" class="asset-btn">Download Archive (.ZIP)</a>
+            </div>
+            <div class="press-card">
+                <h3>Visual Assets</h3>
+                <p>Access our library of high-resolution botanical renders, logos, and artisanal butterfly assets for use in digital and print publications.</p>
+                <a href="#" class="asset-btn">View Gallery</a>
+            </div>
+        </div>
+
+        <h2>Story Angles</h2>
+        <p>Beyond our monthly dispatches, we are passionate about several key narratives that resonate with modern readers:</p>
+        <ul style="font-size: 1.1rem; margin-bottom: 3rem;">
+            <li><strong>The Sensory Revival:</strong> Why physical books and artisanal tea are the ultimate antidote to digital fatigue.</li>
+            <li><strong>Curating History:</strong> How we source rare and vintage editions from the Camarillo archives.</li>
+            <li><strong>The New Bibliophile:</strong> The demographic shift toward intentional reading and library building.</li>
+        </ul>
+
+        <div class="contact-box">
+            <h2 style="font-family: 'Caveat', cursive; text-transform: none; letter-spacing: 0;">Media Inquiries</h2>
+            <p style="color: rgba(255,255,255,0.8);">For interview requests, podcast appearances, or high-res asset access, please reach out to our media archivist:</p>
+            <a href="mailto:press@thewornpages.com">press@thewornpages.com</a>
+        </div>
+
+        <div class="footer">
+            © 2026 The Worn Pages Club | A Product of KnotStranded LLC | Camarillo, CA
+        </div>
+    </div>
+</body>
+</html>

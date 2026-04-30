@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Biology Calculators — BMI, TDEE, Sleep & BAC 2026 — YourCalc</title>
+    <meta name="keywords" content="health calculator, BMI calculator, TDEE calculator, BAC estimator, pregnancy due date, sleep cycle">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/health.html" />
+    <meta name="description" content="Professional health tools: BMI, Metabolism (TDEE), Alcohol (BAC), Sleep, and Pregnancy calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Health & <span style="color: var(--accent2);">Biology Math</span></h1>
+            <p class="subtitle">Biological markers and health audits for a quantified life.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Health <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">BMI vs. Body Fat</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">BMI is a simple height-to-weight ratio. While useful for general populations, it may overestimate fat in muscular athletes or underestimate it in the elderly.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Basal Metabolic Rate</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">BMR represents the calories your body burns at rest to maintain vital functions like breathing and heart rate. It accounts for 60-75% of your daily energy use.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Circadian Sleep Cycles</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The human brain sleeps in 90-minute cycles. Waking up at the end of a cycle, rather than in the middle, prevents "sleep inertia" and morning grogginess.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('bmi', event)">BMI</button>
+                <button class="tab-btn" onclick="showTab('tdee', event)">Metabolism</button>
+                <button class="tab-btn" onclick="showTab('bac', event)">Alcohol (BAC)</button>
+                <button class="tab-btn" onclick="showTab('sleep', event)">Sleep Cycle</button>
+                <button class="tab-btn" onclick="showTab('pregnancy', event)">Due Date</button>
+                <button class="tab-btn" onclick="showTab('water', event)">Water Target</button>
+            </div>
+
+            <div id="bmi" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Weight <select id="bmi-wu" class="unit-select"><option value="kg">kg</option><option value="lb">lb</option></select></label>
+                        <div class="input-wrapper"><input type="number" id="bmi-w" value="70"></div>
+                    </div>
+                    <div class="input-group">
+                        <label>Height <select id="bmi-hu" class="unit-select"><option value="cm">cm</option><option value="in">in</option></select></label>
+                        <div class="input-wrapper"><input type="number" id="bmi-h" value="175"></div>
+                    </div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBMI()">Analyze BMI →</button>
+                <div id="bmi-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">BMI Score</span><span class="result-value" id="bmi-val">0</span></div>
+                        <div class="result-item"><span class="result-label">Category</span><span class="result-value" id="bmi-cat">—</span></div>
+                    </div>
+                    <div style="margin-top:24px;">
+                        <div style="height:10px; width:100%; display:flex; border-radius:10px; overflow:hidden; background:var(--bg); position:relative;">
+                            <div style="width:18%; background:#60a5fa;"></div><div style="width:7%; background:#22c55e;"></div><div style="width:5%; background:#f5a623;"></div><div style="width:70%; background:#ef4444;"></div>
+                            <div id="bmi-needle" style="position:absolute; width:4px; height:100%; background:#fff; left:0; transition:0.5s;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="tdee" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Age</label><div class="input-wrapper"><input type="number" id="td-age" value="25"></div></div>
+                    <div class="input-group"><label>Sex</label><div class="input-wrapper"><select id="td-sex"><option value="m">Male</option><option value="f">Female</option></select></div></div>
+                    <div class="input-group">
+                        <label>Weight <select id="td-wu" class="unit-select"><option value="kg">kg</option><option value="lb">lb</option></select></label>
+                        <div class="input-wrapper"><input type="number" id="td-w" value="70"></div>
+                    </div>
+                    <div class="input-group">
+                        <label>Height <select id="td-hu" class="unit-select"><option value="cm">cm</option><option value="in">in</option></select></label>
+                        <div class="input-wrapper"><input type="number" id="td-h" value="175"></div>
+                    </div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Activity</label>
+                        <div class="input-wrapper">
+                            <select id="td-act">
+                                <option value="1.2">Sedentary (Office job)</option>
+                                <option value="1.375">Light (1-2 days/wk)</option>
+                                <option value="1.55" selected>Moderate (3-5 days/wk)</option>
+                                <option value="1.725">Heavy (Athletic)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-calculate" onclick="calculateTDEE()">Analyze Metabolism →</button>
+                <div id="tdee-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">BMR</span><span class="result-value" id="td-bmr">0</span></div>
+                        <div class="result-item"><span class="result-label">Daily TDEE</span><span class="result-value" id="td-tdee" style="color:var(--accent2)">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="bac" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Sex</label><div class="input-wrapper"><select id="ba-sex"><option value="0.68">Male</option><option value="0.55">Female</option></select></div></div>
+                    <div class="input-group"><label>Weight (kg)</label><div class="input-wrapper"><input type="number" id="ba-w" value="75"></div></div>
+                    <div class="input-group"><label>Standard Drinks</label><div class="input-wrapper"><input type="number" id="ba-d" value="2"></div></div>
+                    <div class="input-group"><label>Time Since First Drink (Hrs)</label><div class="input-wrapper"><input type="number" id="ba-t" value="1"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBAC()">Estimate BAC →</button>
+                <div id="bac-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">BAC %</span><span class="result-value" id="ba-val">0.00%</span></div>
+                        <div class="result-item"><span class="result-label">Status</span><span class="result-value" id="ba-stat">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="sleep" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Bedtime / Sleep time</label><div class="input-wrapper"><input type="time" id="sl-bed" value="22:00"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateSleep()">Optimize Cycles →</button>
+                <div id="sleep-results" class="result-panel">
+                    <p style="color:var(--muted); margin-bottom:12px; font-size:14px;">Optimal wake-up times (90-minute cycles + 15m to fall asleep):</p>
+                    <div id="sl-times" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(100px, 1fr)); gap:12px;"></div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="pregnancy" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1/-1;"><label>LMP (Last Menstrual Period)</label><div class="input-wrapper"><input type="date" id="pr-date"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculatePreg()">Find Due Date →</button>
+                <div id="preg-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Estimated Due Date</span><span class="result-value" id="pr-val">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="water" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Weight (kg)</label><div class="input-wrapper"><input type="number" id="wa-w" value="70"></div></div>
+                    <div class="input-group"><label>Exercise (min/day)</label><div class="input-wrapper"><input type="number" id="wa-ex" value="30"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateWater()">Analyze Hydration →</button>
+                <div id="water-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Daily Target</span><span class="result-value" id="wa-val">0 L</span></div>
+                        <div class="result-item"><span class="result-label">Glasses (250ml)</span><span class="result-value" id="wa-glass">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Foundations of <span style="color: var(--accent);">Modern Health Metrics</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">BMI: A Tool for Population Health</h3>
+                        <p>The <strong>Body Mass Index (BMI)</strong> is a simple calculation using a person's height and weight. The formula is BMI = kg/m². While it is often criticized for not distinguishing between muscle and fat, it remains a valuable screening tool at the population level. For most adults, BMI provides a reasonable estimate of body fatness and can help identify potential health risks associated with being underweight or overweight. Our <strong>BMI Visualizer</strong> not only gives you your number but also places you on the CDC's spectrum of health categories.</p>
+                        <p style="margin-top: 16px;">It's important to remember that BMI is a <em>screening</em> tool, not a <em>diagnostic</em> one. An athlete with high muscle mass may have a high BMI but very low body fat. Conversely, an elderly person may have a "normal" BMI but low muscle mass and high visceral fat. Always consult with a healthcare provider to interpret these metrics in the context of your overall health, including blood pressure, cholesterol levels, and waist circumference.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Metabolism: Understanding BMR and TDEE</h3>
+                        <p>Your <strong>Basal Metabolic Rate (BMR)</strong> is the number of calories your body needs to function at rest—to keep your heart beating, lungs breathing, and brain functioning. Your <strong>Total Daily Energy Expenditure (TDEE)</strong> is your BMR plus the calories burned through physical activity and digestion. Our <strong>Metabolism Analyzer</strong> uses the Mifflin-St Jeor equation, considered the most accurate for modern lifestyles, to estimate these numbers.</p>
+                        <p style="margin-top: 16px;">Understanding your TDEE is the foundation of weight management. To lose weight, you must consume fewer calories than your TDEE (a caloric deficit). To gain weight, you must consume more (a caloric surplus). Most people overestimate their activity level; if you are unsure, it is better to select "Sedentary" or "Light" to avoid overestimating your caloric needs. Tracking these metrics over time allows you to make data-driven adjustments to your diet and exercise routine.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Science of Sleep Cycles</h3>
+                        <p>Sleep is not a uniform state; it consists of several 90-minute <strong>Sleep Cycles</strong>. Waking up in the middle of a cycle (during deep sleep) often leads to "sleep inertia"—that groggy, disoriented feeling even if you slept for a long time. Our <strong>Sleep Optimizer</strong> works backward from your desired wake time (or forward from your bedtime) to find the perfect moments to wake up between cycles. This ensures you wake up feeling refreshed and alert, maximizing the restorative power of your rest.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Hydration and Pregnancy Metrics</h3>
+                        <p>Water is essential for every cellular process in your body. While the "8 glasses a day" rule is a common baseline, true hydration needs vary by weight and activity level. Our <strong>Hydration Analyzer</strong> provides a personalized target to keep your metabolic processes running smoothly. Similarly, for those expecting, our <strong>Pregnancy Due Date Tool</strong> uses Naegele's rule to provide a projected timeline. These tools are designed to provide clarity and help you manage your daily wellness with precision.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toKG(val, unit) { return unit === 'lb' ? val * 0.453592 : val; }
+        function toCM(val, unit) { return unit === 'in' ? val * 2.54 : val; }
+
+        function calculateBMI() {
+            let w = parseFloat(document.getElementById('bmi-w').value);
+let h = parseFloat(document.getElementById('bmi-h').value);
+const wu = document.getElementById('bmi-wu').value;
+const hu = document.getElementById('bmi-hu').value;
+
+w = toKG(w, wu);
+h = toCM(h, hu);
+
+const bmi = w / ((h / 100) ** 2);
+document.getElementById('bmi-val').innerText = bmi.toFixed(1);
+let cat = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : 'Obese';
+document.getElementById('bmi-cat').innerText = cat;
+
+let pct = ((bmi - 15) / (40 - 15)) * 100;
+pct = Math.max(0, Math.min(100, pct));
+document.getElementById('bmi-needle').style.left = pct + '%';
+
+document.getElementById('bmi-results').classList.add('visible');
+saveActivity('health', { type: 'bmi', weight: w, height: h }, { bmi: bmi.toFixed(1), category: cat });
+        }
+
+        function calculateTDEE() {
+            const age = parseInt(document.getElementById('td-age').value);
+const sex = document.getElementById('td-sex').value;
+let w = parseFloat(document.getElementById('td-w').value);
+let h = parseFloat(document.getElementById('td-h').value);
+const wu = document.getElementById('td-wu').value;
+const hu = document.getElementById('td-hu').value;
+const act = parseFloat(document.getElementById('td-act').value);
+
+w = toKG(w, wu);
+h = toCM(h, hu);
+
+const bmr = (10 * w) + (6.25 * h) - (5 * age) + (sex === 'm' ? 5 : -161);
+const tdee = Math.round(bmr * act);
+document.getElementById('td-bmr').innerText = Math.round(bmr) + ' kcal';
+document.getElementById('td-tdee').innerText = tdee + ' kcal';
+document.getElementById('tdee-results').classList.add('visible');
+saveActivity('health', { type: 'tdee', age, sex, weight: w, activity: act }, { bmr, tdee });
+        }
+
+        function calculateBAC() {
+            const r = parseFloat(document.getElementById('ba-sex').value);
+const w = parseFloat(document.getElementById('ba-w').value);
+const d = parseFloat(document.getElementById('ba-d').value);
+const t = parseFloat(document.getElementById('ba-t').value);
+
+const alcoholGrams = d * 14;
+const weightGrams = w * 1000;
+let bac = (alcoholGrams / (weightGrams * r)) * 100 - (t * 0.015);
+bac = Math.max(0, bac);
+
+document.getElementById('ba-val').innerText = bac.toFixed(3) + '%';
+document.getElementById('ba-stat').innerText = bac >= 0.08 ? 'Legally Impaired' : 'Under Limit';
+document.getElementById('bac-results').classList.add('visible');
+saveActivity('health', { type: 'bac', drinks: d, time: t }, { bac: bac.toFixed(3) });
+        }
+
+        function calculateSleep() {
+            const bed = document.getElementById('sl-bed').value;
+if(!bed) return;
+const [h, m] = bed.split(':').map(Number);
+const base = new Date(); base.setHours(h, m, 0);
+base.setMinutes(base.getMinutes() + 15);
+
+const times = [4, 5, 6].map(c => {
+    const wake = new Date(base.getTime() + (c * 90 * 60 * 1000));
+    return wake.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                document.getElementById('sl-times').innerHTML = times.map(t => `<div style="background:var(--bg); padding:10px; border-radius:8px; text-align:center; font-weight:700;">${t}</div>`).join('');
+                document.getElementById('sleep-results').classList.add('visible');
+                saveActivity('health', { type: 'sleep', bed_time: bed }, { suggested_wake_times: times });
+            });
+        }
+
+        function calculatePreg() {
+            const dateVal = document.getElementById('pr-date').value;
+if(!dateVal) return;
+const lmp = new Date(dateVal);
+const due = new Date(lmp.getTime() + (280 * 24 * 60 * 60 * 1000));
+document.getElementById('pr-val').innerText = due.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+document.getElementById('preg-results').classList.add('visible');
+saveActivity('health', { type: 'pregnancy', lmp_date: dateVal }, { due_date: due.toISOString() });
+        }
+
+        function calculateWater() {
+            const w = parseFloat(document.getElementById('wa-w').value);
+const ex = parseFloat(document.getElementById('wa-ex').value);
+const l = (w * 0.033) + (ex / 60 * 0.5);
+document.getElementById('wa-val').innerText = l.toFixed(1) + ' L';
+document.getElementById('wa-glass').innerText = Math.round(l / 0.25);
+document.getElementById('water-results').classList.add('visible');
+saveActivity('health', { type: 'water', weight: w, exercise: ex }, { liters: l.toFixed(1) });
+        }
+    </script>
+</body>
+</html>

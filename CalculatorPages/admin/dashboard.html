@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview | YourCalc Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <nav class="sidebar">
+        <h2>YourCalc Admin</h2>
+        <ul class="nav-links">
+            <li><a href="dashboard.html" class="active">📊 Overview</a></li>
+            <li><a href="analytics.html" class="">👥 Analytics</a></li>
+            <li><a href="seo.html" class="">🔍 SEO</a></li>
+            <li><a href="adsense.html" class="">💰 AdSense</a></li>
+            <li><a href="calculators.html" class="">🧮 Calculators</a></li>
+            <li><a href="leads.html" class="">📧 Leads</a></li>
+            <li style="margin-top: 32px;"><a href="../index.html">← Back to Site</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="topbar">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <h1>Overview</h1>
+                <div id="live-badge" style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; border: 1px solid rgba(34, 197, 94, 0.2);">
+                    <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite;"></span>
+                    <span id="active-count">0</span> LIVE NOW
+                </div>
+            </div>
+            <div style="display: flex; gap: 16px;">
+                <select class="date-selector">
+                    <option>Last 7 Days</option>
+                    <option selected>Last 30 Days</option>
+                    <option>Last 90 Days</option>
+                    <option>Custom Range</option>
+                </select>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <style>
+            @keyframes pulse {
+                0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+                70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+                100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+            }
+        </style>
+        
+        <div class="grid-kpi">
+            <div class="card" style="border-left: 4px solid #22c55e;"><div class="card-title">Live Visitors (5m)</div><div class="card-value" id="stat-active" style="color: #22c55e;">—</div><div class="delta">Real-time Pulse</div></div>
+            <div class="card"><div class="card-title">Unique Visitors</div><div class="card-value" id="stat-visitors">—</div><div class="delta up">Total CRM Leads</div></div>
+            <div class="card"><div class="card-title">Total Pageviews</div><div class="card-value" id="stat-views">—</div><div class="delta up">Interaction Logs</div></div>
+            <div class="card"><div class="card-title">Est. AdSense Rev</div><div class="card-value" id="stat-revenue">$0.00</div><div class="delta up">Simulated ($0.01/PV)</div></div>
+            <div class="card"><div class="card-title">Feedback Count</div><div class="card-value" id="stat-feedback">—</div><div class="delta">Total Submissions</div></div>
+            <div class="card"><div class="card-title">Top Calculator</div><div class="card-value" id="stat-top-tool" style="font-size:24px;">—</div><div class="delta" id="stat-top-count">0 uses</div></div>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <h3 class="card-title">Traffic Trend (7 Days)</h3>
+                <canvas id="trafficChart" height="200"></canvas>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Top 10 Content Pages</h3>
+                <table class="table">
+                    <thead><tr><th>Page Path</th><th>Views</th></tr></thead>
+                    <tbody id="top-pages-body"></tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Performance Snapshot</h3>
+                <div class="card-value" id="today-rev" style="margin-top:16px;">$0.00</div>
+                <div class="delta up" style="margin-bottom:24px;">Est. Daily Revenue</div>
+                <h3 class="card-title">Top Converting Tools</h3>
+                <table class="table">
+                    <tbody id="top-tools-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            let trafficChart = null;
+
+            async function initDashboard() {
+                const SECRET = 'h14sua12';
+                try {
+                    const res = await fetch(`/api/admin-leads?secret=${SECRET}`);
+                    const data = await res.json();
+                    
+                    if (!data.stats) throw new Error("No stats data");
+
+                    const { totals, topTools, topPages, trend } = data.stats;
+
+                    // Update KPIs
+                    document.getElementById('active-count').innerText = totals.active_now;
+                    document.getElementById('stat-active').innerText = totals.active_now;
+                    document.getElementById('stat-visitors').innerText = totals.total_visitors.toLocaleString();
+                    document.getElementById('stat-views').innerText = totals.total_pageviews.toLocaleString();
+                    document.getElementById('stat-feedback').innerText = totals.total_feedback.toLocaleString();
+                    
+                    const estRev = (totals.total_pageviews * 0.01).toFixed(2);
+                    document.getElementById('stat-revenue').innerText = `$${estRev}`;
+                    document.getElementById('today-rev').innerText = `$${(totals.total_pageviews / 30 * 0.01).toFixed(2)}`;
+
+                    if (topTools[0]) {
+                        document.getElementById('stat-top-tool').innerText = topTools[0].tool.charAt(0).toUpperCase() + topTools[0].tool.slice(1);
+                        document.getElementById('stat-top-count').innerText = `${topTools[0].count} uses`;
+                    }
+
+                    // Render Tables
+                    document.getElementById('top-pages-body').innerHTML = topPages.map(p => `
+                        <tr><td>${p.url.split('/').pop() || 'index'}</td><td>${p.count}</td></tr>
+                    `).join('');
+
+                    document.getElementById('top-tools-body').innerHTML = topTools.map(t => `
+                        <tr><td>${t.tool}</td><td style="color:var(--green)">${t.count}</td></tr>
+                    `).join('');
+
+                    // Render Chart
+                    const labels = trend.map(t => t.day);
+                    const counts = trend.map(t => t.count);
+
+                    if (trafficChart) trafficChart.destroy();
+                    
+                    trafficChart = new Chart(document.getElementById('trafficChart'), {
+                        type: 'line',
+                        data: { 
+                            labels: labels, 
+                            datasets: [{ 
+                                label: 'Pageviews', 
+                                data: counts, 
+                                borderColor: '#4f46e5', 
+                                backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                                fill: true,
+                                tension: 0.4 
+                            }] 
+                        },
+                        options: { 
+                            responsive: true, 
+                            plugins: { legend: { display: false } }, 
+                            animation: { duration: 0 },
+                            scales: { 
+                                y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#a0a0ab' } }, 
+                                x: { grid: { display: false }, ticks: { color: '#a0a0ab' } } 
+                            } 
+                        }
+                    });
+
+                } catch (err) {
+                    console.error("Dashboard Init Error:", err);
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                initDashboard();
+                // Auto-refresh every 30 seconds
+                setInterval(initDashboard, 30000);
+            });
+        </script>
+
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

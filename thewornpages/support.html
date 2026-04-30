@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Support | The Worn Pages Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="js/butterflies.js" defer></script>
+    <style>
+        :root {
+            --pink: #B68D8D;
+            --blush: #D4A3A3;
+            --pearl: #FAF6F5;
+            --cream: #F5EBE9;
+            --text-dark: #5C4F4F;
+            --text-muted: #9E8B8B;
+            --gold: #D4B982;
+            --aged-paper: #EDE2E0;
+        }
+        body { background: var(--pearl); color: var(--text-dark); font-family: 'EB Garamond', serif; line-height: 1.8; margin: 0; padding: 0; background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); }
+        .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 2rem; }
+        .back-link { display: inline-block; margin-bottom: 3rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; color: var(--text-muted); transition: color 0.3s; }
+        .back-link:hover { color: var(--pink); }
+        
+        .support-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; margin-top: 4rem; }
+        
+        .faq-preview h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 2rem; color: var(--pink); }
+        .faq-item { margin-bottom: 2.5rem; }
+        .faq-item h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+        .faq-item p { font-size: 1.05rem; color: var(--text-muted); }
+
+        .support-sidebar { background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 15px 35px rgba(182, 141, 141, 0.1); border: 1px solid var(--cream); height: fit-content; }
+        .support-sidebar h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-dark); }
+        
+        .support-btn { display: block; width: 100%; padding: 1.2rem; background: var(--pink); color: white; text-decoration: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; text-align: center; margin-bottom: 1.5rem; transition: all 0.3s; }
+        .support-btn:hover { background: var(--blush); transform: translateY(-2px); }
+        .support-btn.secondary { background: var(--aged-paper); color: var(--text-dark); }
+
+        .priority-contact { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--aged-paper); }
+        .priority-contact p { font-size: 0.9rem; color: var(--text-muted); }
+        .priority-contact a { color: var(--pink); font-weight: bold; text-decoration: underline; }
+
+        .footer { margin-top: 8rem; padding-top: 3rem; border-top: 1px solid rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; font-size: 0.75rem; text-align: center; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .support-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .container { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Return to the Sanctuary</a>
+        <h1>Member Support</h1>
+        <p>Your journey with The Worn Pages Club should be as seamless as a well-turned page. Whether you need assistance with your membership, tracking a dispatch, or updating your literary profile, our curators are here to help.</p>
+        
+        <div class="support-grid">
+            <div class="faq-preview">
+                <h2>Quick Reflections</h2>
+                <div class="faq-item">
+                    <h4>Tracking my Dispatch</h4>
+                    <p>Members receive a tracking ritual via email the moment their curated box leaves our shop. You can also view your most recent dispatch status in your <a href="profile.html">Member Sanctuary</a>.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Updating Curation Tastes</h4>
+                    <p>Has your literary mood shifted? You can update your genre preferences at any time within your profile. Changes made 7 days before your next dispatch will be reflected in your curation.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Membership & Billing</h4>
+                    <p>Pause, skip, or cancel your sanctuary at any time. We believe in "Easy Living," and your member portal provides full control over your subscription cycle.</p>
+                </div>
+            </div>
+
+            <div class="support-sidebar">
+                <h3>Priority Rituals</h3>
+                <a href="profile.html" class="support-btn">Enter My Sanctuary</a>
+                <a href="vault.html" class="support-btn secondary">Browse the Vault</a>
+                
+                <div class="priority-contact">
+                    <label style="display: block; font-family: 'Inter', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 0.8rem; font-weight: bold;">Direct Assistance</label>
+                    <p>For urgent membership matters or damaged dispatches, please contact our priority support line:</p>
+                    <a href="mailto:support@thewornpages.com">support@thewornpages.com</a>
+                    <p style="margin-top: 1rem; font-style: italic; font-size: 0.8rem;">Current Response Time: Under 24 Hours</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 The Worn Pages Club | A Product of KnotStranded LLC | Camarillo, CA
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert Markdown syntax to HTML instantly with real-time conversion. Perfect for content creators and web developers." />
+  <meta name="keywords" content="markdown converter, markdown to HTML, markdown parser, markdown to HTML converter, content converter, web development, documentation tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Markdown to HTML Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Markdown to HTML Converter</h1>
+      <p>Convert Markdown text to HTML instantly.</p>
+    </header>
+
+    <main>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <section class="input-section">
+          <h2>Markdown Input</h2>
+          <textarea id="md-input" rows="16" placeholder="# Heading&#10;&#10;**bold** *italic*&#10;&#10;- List&#10;- Items" style="width:100%; padding:12px; font-family: monospace;"></textarea>
+          <div class="actions" style="margin-top:12px;">
+            <button id="btn-convert">Convert</button>
+            <button id="btn-copy">Copy HTML</button>
+          </div>
+        </section>
+
+        <section class="preview-section">
+          <h2>HTML Output</h2>
+          <textarea id="md-output" rows="16" readonly style="width:100%; padding:12px; font-family: monospace; background: var(--panel);"></textarea>
+        </section>
+
+        <section class="info-section">
+          <h2>About Markdown to HTML</h2>
+          
+          <h3>What is Markdown?</h3>
+          <p>Markdown is a lightweight markup language for creating formatted text using plain text syntax. Created by John Gruber in 2004, it's used for README files, documentation, blogs, and comment systems across the web.</p>
+          
+          <h3>Markdown Syntax</h3>
+          <ul>
+            <li><strong>#</strong> = Headings (# H1, ## H2, ### H3)</li>
+            <li><strong>**bold**</strong> = Bold text</li>
+            <li><strong>*italic*</strong> = Italic text</li>
+            <li><strong>[link](url)</strong> = Hyperlinks</li>
+            <li><strong>- or *</strong> = Unordered lists</li>
+            <li><strong>1. 2. 3.</strong> = Ordered lists</li>
+            <li><strong>```</strong> = Code blocks</li>
+          </ul>
+          
+          <h3>Real-World Use Cases</h3>
+          <ul>
+            <li><strong>GitHub:</strong> READMEs and documentation (default format)</li>
+            <li><strong>Blogs:</strong> Static site generators (Jekyll, Hugo, Next.js)</li>
+            <li><strong>Documentation:</strong> API docs, technical manuals</li>
+            <li><strong>Comments:</strong> Reddit, Discord, Slack, GitHub issues</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <!-- Email Collection Modal -->
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Markdown to HTML Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

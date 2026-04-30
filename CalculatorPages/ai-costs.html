@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Tech Cost Calculators — LLM API, GPU ROI, Token Budget 2026 — YourCalc</title>
+    <meta name="keywords" content="AI cost calculator, token calculator, GPU ROI, LLM pricing, vector storage cost">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/ai-costs.html" />
+    <meta name="description" content="Calculate costs for LLM APIs (GPT-4, Claude, Gemini), GPU infrastructure ROI, and token budgeting." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>AI & <span style="color: var(--accent);">Tech Costs</span></h1>
+            <p class="subtitle">Infrastructure planning for the intelligence era.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Infrastructure <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Token Economics</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">LLMs process data in tokens, not words. On average, 1,000 tokens equal roughly 750 words. Budgeting requires accounting for both prompt and completion tokens.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Cloud vs On-Prem</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Cloud GPUs offer flexibility, but for steady-state 24/7 inference, purchasing H100/A100 hardware typically breaks even within 9-14 months.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Vector Constraints</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">RAG systems rely on vector databases. Memory usage is driven by dimensionality (e.g., 1536 for OpenAI) and the number of indexed document chunks.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('ai', event)">API Cost Matrix</button>
+                <button class="tab-btn" onclick="showTab('tokens', event)">Token Budget</button>
+                <button class="tab-btn" onclick="showTab('storage', event)">Vector Storage</button>
+                <button class="tab-btn" onclick="showTab('ft', event)">Fine-Tuning</button>
+                <button class="tab-btn" onclick="showTab('gpu', event)">GPU ROI</button>
+            </div>
+
+            <div id="ai" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Input Tokens / Req</label><div class="input-wrapper"><input type="number" id="ai-in" value="1000"></div></div>
+                    <div class="input-group"><label>Output Tokens / Req</label><div class="input-wrapper"><input type="number" id="ai-out" value="500"></div></div>
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Requests / Month</label><div class="input-wrapper"><input type="number" id="ai-req" value="50000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateAI()">Compare Model Costs →</button>
+                <div id="ai-results" class="result-panel">
+                    <div id="ai-table"></div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="tokens" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Text (Words)</label><div class="input-wrapper"><input type="number" id="tk-w" value="1500"></div></div>
+                    <div class="input-group"><label>User Count</label><div class="input-wrapper"><input type="number" id="tk-u" value="100"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateTokens()">Estimate Tokens →</button>
+                <div id="tk-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Est. Monthly Tokens</span><span class="result-value" id="tk-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="storage" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Total Documents</label><div class="input-wrapper"><input type="number" id="v-d" value="100000"></div></div>
+                    <div class="input-group"><label>Dimensions</label><div class="input-wrapper"><select id="v-dim"><option value="1536">1536 (OpenAI)</option><option value="1024">1024 (Claude)</option><option value="768">768 (Gemini)</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateVector()">Audit Index Size →</button>
+                <div id="v-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Index RAM (GB)</span><span class="result-value" id="v-out">0.0 GB</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="ft" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Training Tokens</label><div class="input-wrapper"><input type="number" id="ft-t" value="2000000"></div></div>
+                    <div class="input-group"><label>Epochs</label><div class="input-wrapper"><input type="number" id="ft-e" value="3"></div></div>
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Model</label><div class="input-wrapper"><select id="ft-m"><option value="8">GPT-4o Fine-Tune ($8/M)</option><option value="3">GPT-3.5 Fine-Tune ($3/M)</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateFT()">Estimate Training →</button>
+                <div id="ft-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Total Training Cost</span><span class="result-value" id="ft-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="gpu" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>GPU Purchase Price ($)</label><div class="input-wrapper"><input type="number" id="gp-p" value="30000"></div></div>
+                    <div class="input-group"><label>Cloud Hourly ($)</label><div class="input-wrapper"><input type="number" id="gp-c" value="4.50"></div></div>
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Utilization (Hrs/Day)</label><div class="input-wrapper"><input type="number" id="gp-u" value="12"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateGPU()">Analyze ROI →</button>
+                <div id="gpu-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Breakeven (Days)</span><span class="result-value" id="gp-days">0</span></div>
+                        <div class="result-item"><span class="result-label">Yearly Savings</span><span class="result-value" id="gp-save" style="color:var(--accent2)">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">Optimizing <span style="color: var(--accent);">AI & Infrastructure</span> Spend</h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Economics of LLM API Tokens</h3>
+                        <p>When building AI-powered applications, the primary variable cost is often the API expenditure. Large Language Models (LLMs) like GPT-4o and Claude 3.5 Sonnet charge based on tokens, which are roughly equivalent to 0.75 words. Our <strong>LLM API Cost Matrix</strong> helps developers compare the unit economics across the industry's leading providers. However, simply choosing the cheapest model isn't always the best strategy. Input tokens (the prompt) are usually significantly cheaper than output tokens (the model's response), so prompt engineering to keep responses concise can often yield higher savings than switching to a lower-tier model.</p>
+                        <p style="margin-top: 16px;">Additionally, many providers offer "batch" pricing for non-real-time requests, often at a 50% discount. If your application can afford a few hours of latency—such as for summarizing old logs or generating SEO metadata—using batch APIs is a critical optimization. Our calculator provides a baseline, but always monitor your context window usage, as a single large document sent as context can cost as much as thousands of smaller requests.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Vector Storage: Scaling Memory</h3>
+                        <p>As you move from simple chat applications to Retrieval-Augmented Generation (RAG), vector databases become essential. Storing millions of document embeddings requires significant RAM or high-speed SSD storage. The <strong>Vector Memory Calculator</strong> estimates your footprint based on document count and vector dimensions (e.g., 1536 for OpenAI's `text-embedding-3-small`). This is crucial for choosing the right cloud instance size. Underestimating your vector memory needs can lead to performance degradation or system crashes during high-traffic periods.</p>
+                        <p style="margin-top: 16px;">One way to reduce vector costs is "dimensionality reduction" or using smaller models for less critical search tasks. While high-dimensional vectors provide better accuracy, they also consume more space and increase search latency. Finding the "sweet spot" between accuracy and infrastructure cost is one of the most important engineering challenges in modern AI development.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">GPU ROI: Cloud vs. Bare Metal</h3>
+                        <p>The "Build vs. Buy" debate in AI often centers on GPU infrastructure. Renting an H100 from a cloud provider offers flexibility and zero upfront capital expenditure (CapEx), but for teams with steady inference or training loads, the monthly bill can quickly exceed the cost of purchasing the hardware outright. Our <strong>GPU ROI Calculator</strong> provides a breakeven analysis, taking into account utilization rates. If your GPUs are sitting idle 50% of the time, cloud instances with auto-scaling are almost always more cost-effective.</p>
+                        <p style="margin-top: 16px;">However, for persistent loads like serving a popular AI product, "bare metal" or on-premise hardware can pay for itself in under six months. Don't forget to factor in secondary costs: power consumption, cooling, and the engineering time required to maintain the servers. For many startups, the "cloud premium" is a price worth paying for the speed of iteration and the ability to pivot to new hardware architectures as they become available.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Fine-Tuning: When is it worth it?</h3>
+                        <p>Fine-tuning a model is expensive, both in terms of training compute and the higher per-token cost of serving a custom adapter. It should generally be the last resort after prompt engineering and RAG have failed to produce the desired accuracy. When fine-tuning, focus on the quality of the dataset over the quantity. A perfectly curated set of 500 examples often outperforms a messy set of 50,000. Use our <strong>Fine-Tuning Cost Estimator</strong> to model the impact of multiple training epochs on your budget before hitting 'start' on a training run.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Standardized Formatter
+        function formatUSD(val, decimals = 2) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: decimals
+            }).format(val);
+        }
+
+        function calculateAI() {
+            const inTokens = parseFloat(document.getElementById('ai-in').value) || 0;
+            const outTokens = parseFloat(document.getElementById('ai-out').value) || 0;
+            const requests = parseFloat(document.getElementById('ai-req').value) || 0;
+            
+            const models = [
+                {n: 'GPT-4o', in: 2.5, out: 10},
+                {n: 'Claude 3.5 Sonnet', in: 3.0, out: 15},
+                {n: 'Gemini 1.5 Pro', in: 1.25, out: 5.0},
+                {n: 'Llama 3 (Groq)', in: 0.05, out: 0.10}
+            ];
+            
+            let html = `
+                <div style="display:flex; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid var(--border); margin-bottom:12px; font-size:12px; color:var(--muted); font-weight:700; letter-spacing:0.05em;">
+                    <span>PROVIDER / MODEL</span>
+                    <span>EST. MONTHLY COST</span>
+                </div>
+            `;
+            
+            models.forEach(m => {
+                const cost = ((inTokens * m.in / 1000000) + (outTokens * m.out / 1000000)) * requests;
+                html += `
+                    <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.05); align-items:center;">
+                        <span style="font-weight:600; color:var(--text);">${m.n}</span>
+                        <span style="font-weight:800; color:var(--accent2); font-size:16px;">${formatUSD(cost)}</span>
+                    </div>
+                `;
+            });
+
+            const table = document.getElementById('ai-table');
+            const panel = document.getElementById('ai-results');
+            if (table && panel) {
+                table.innerHTML = html;
+                panel.style.display = 'block';
+                panel.style.opacity = '1';
+                panel.classList.add('visible');
+            }
+        }
+
+        function calculateTokens() {
+            const words = parseFloat(document.getElementById('tk-w').value) || 0;
+            const users = parseFloat(document.getElementById('tk-u').value) || 0;
+            const tokens = Math.round(words * 1.35 * users);
+            
+            const out = document.getElementById('tk-out');
+            const panel = document.getElementById('tk-results');
+            if (out && panel) {
+                out.innerText = tokens.toLocaleString();
+                panel.style.display = 'block';
+                panel.style.opacity = '1';
+                panel.classList.add('visible');
+            }
+        }
+
+        function calculateVector() {
+            const docs = parseFloat(document.getElementById('v-d').value) || 0;
+            const dim = parseInt(document.getElementById('v-dim').value) || 0;
+            const sizeGb = (docs * dim * 4) / (1024 * 1024 * 1024);
+            
+            const out = document.getElementById('v-out');
+            const panel = document.getElementById('v-results');
+            if (out && panel) {
+                out.innerText = sizeGb.toFixed(2) + " GB";
+                panel.style.display = 'block';
+                panel.style.opacity = '1';
+                panel.classList.add('visible');
+            }
+        }
+
+        function calculateFT() {
+            const tokens = parseFloat(document.getElementById('ft-t').value) || 0;
+            const epochs = parseFloat(document.getElementById('ft-e').value) || 0;
+            const rate = parseFloat(document.getElementById('ft-m').value) || 0;
+            const total = (tokens / 1000000) * epochs * rate;
+            
+            const out = document.getElementById('ft-out');
+            const panel = document.getElementById('ft-results');
+            if (out && panel) {
+                out.innerText = formatUSD(total);
+                panel.style.display = 'block';
+                panel.style.opacity = '1';
+                panel.classList.add('visible');
+            }
+        }
+
+        function calculateGPU() {
+            const price = parseFloat(document.getElementById('gp-p').value) || 0;
+            const hourly = parseFloat(document.getElementById('gp-c').value) || 0;
+            const util = parseFloat(document.getElementById('gp-u').value) || 0;
+            
+            const dailyCloud = hourly * util;
+            const daysOut = document.getElementById('gp-days');
+            const saveOut = document.getElementById('gp-save');
+            const panel = document.getElementById('gpu-results');
+            
+            if (daysOut && saveOut && panel) {
+                if (dailyCloud <= 0) {
+                    daysOut.innerText = '∞';
+                    saveOut.innerText = '$0';
+                } else {
+                    const days = price / dailyCloud;
+                    const yearly = (dailyCloud * 365) - price;
+                    daysOut.innerText = Math.ceil(days);
+                    saveOut.innerText = formatUSD(yearly);
+                }
+                panel.style.display = 'block';
+                panel.style.opacity = '1';
+                panel.classList.add('visible');
+            }
+        }
+    </script>
+</body>
+</html>

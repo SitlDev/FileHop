@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Runway & Unit Economics Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="burn rate, runway, break-even point, CAC LTV, profit margin">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/business.html" />
+    <meta name="description" content="Professional tools for founders: Runway, Break-Even, and Unit Economics calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Business & <span style="color: var(--accent2);">Startups</span></h1>
+            <p class="subtitle">Data-driven tools for high-growth operations.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Business <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">The 3:1 Rule</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">A healthy startup should aim for an LTV:CAC ratio of at least 3.0. Anything lower suggests unsustainable growth costs.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Runway Management</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Always maintain at least 6 months of runway. "Default Alive" means your current revenue growth makes you profitable before cash runs out.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Margin vs Markup</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Margin is profit relative to the selling price; Markup is profit relative to cost. 100% markup equals a 50% margin.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('burn', event)">Runway</button>
+                <button class="tab-btn" onclick="showTab('break', event)">Break-Even</button>
+                <button class="tab-btn" onclick="showTab('ltv', event)">CAC/LTV</button>
+                <button class="tab-btn" onclick="showTab('margin', event)">Profit Margin</button>
+            </div>
+
+            <div id="burn" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Cash on Hand</label><div class="input-wrapper"><input type="number" id="ru-c" value="50000"></div></div>
+                    <div class="input-group"><label>Monthly Revenue</label><div class="input-wrapper"><input type="number" id="ru-r" value="5000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Monthly Expenses (Burn)</label><div class="input-wrapper"><input type="number" id="ru-e" value="12000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateRunway()">Calculate Runway →</button>
+                <div id="runway-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Net Monthly Burn</span><span class="result-value" id="ru-net">$0</span></div>
+                        <div class="result-item"><span class="result-label">Months Remaining</span><span class="result-value" id="ru-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="break" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Fixed Monthly Costs</label><div class="input-wrapper"><input type="number" id="be-f" value="3000"></div></div>
+                    <div class="input-group"><label>Price per Unit</label><div class="input-wrapper"><input type="number" id="be-p" value="50"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Variable Cost per Unit</label><div class="input-wrapper"><input type="number" id="be-v" value="20"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBreakEven()">Calculate Break-Even →</button>
+                <div id="breakeven-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Units Needed</span><span class="result-value" id="be-out">0</span></div>
+                        <div class="result-item"><span class="result-label">Revenue Target</span><span class="result-value" id="be-rev">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="ltv" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Acquisition Cost (CAC)</label><div class="input-wrapper"><input type="number" id="cl-cac" value="150"></div></div>
+                    <div class="input-group"><label>Avg Revenue / Month</label><div class="input-wrapper"><input type="number" id="cl-rev" value="30"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Retention (Months)</label><div class="input-wrapper"><input type="number" id="cl-ret" value="24"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateLTV()">Calculate Ratio →</button>
+                <div id="ltv-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Lifetime Value (LTV)</span><span class="result-value" id="cl-ltv">$0</span></div>
+                        <div class="result-item"><span class="result-label">Ratio (LTV/CAC)</span><span class="result-value" id="cl-out">0.0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="margin" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Cost Basis</label><div class="input-wrapper"><input type="number" id="ma-c" value="100"></div></div>
+                    <div class="input-group"><label>Selling Price</label><div class="input-wrapper"><input type="number" id="ma-s" value="150"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateMargin()">Calculate Margin →</button>
+                <div id="margin-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Gross Margin (%)</span><span class="result-value" id="ma-m">0%</span></div>
+                        <div class="result-item"><span class="result-label">Markup (%)</span><span class="result-value" id="ma-u">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Fundamentals of <span style="color: var(--accent);">Small Business Finance</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Runway & Burn Rate: The Pulse of your Startup</h3>
+                        <p>For any small business or startup, cash flow is the ultimate metric of survival. <strong>Burn Rate</strong> refers to the amount of money your company is losing each month, while <strong>Runway</strong> is the number of months you can continue operating before running out of cash. Our calculator helps you visualize this critical timeline. A high burn rate isn't necessarily bad if it's fueling high growth, but it must be managed with absolute precision. Many businesses fail not because they lacked a good product, but because they simply ran out of time to find their market fit.</p>
+                        <p style="margin-top: 16px;">To extend your runway, you have two levers: increase revenue or decrease expenses. In the early stages, focus on "Net Burn" (Total Expenses minus Total Revenue). Monitoring this figure monthly allows you to make data-driven decisions about hiring, marketing spend, and when to start your next fundraising round. A safe runway is typically considered 12-18 months, giving you enough time to pivot if your initial strategy hits a roadblock.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Break-Even Point: From Hobby to Business</h3>
+                        <p>The <strong>Break-Even Point</strong> is the magical moment when your total revenue equals your total expenses. Before this point, you are losing money; after it, you are generating profit. Our tool calculates the exact number of units you need to sell to cover your fixed costs (rent, salaries, software) based on your gross margin per unit. This is a fundamental "sanity check" for any business plan. If you need to sell 10,000 units a month to break even, but the total market is only 5,000 people, your business model needs a fundamental redesign.</p>
+                        <p style="margin-top: 16px;">Understanding your break-even point also allows you to perform "sensitivity analysis." What happens if your supplier raises prices by 10%? What if you lower your price to attract more customers? By modeling these scenarios, you can find the most resilient path to profitability and set realistic sales targets for your team.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">LTV / CAC: The Unit Economics of Growth</h3>
+                        <p>If you want to scale a business, you must master the ratio between <strong>Customer Lifetime Value (LTV)</strong> and <strong>Customer Acquisition Cost (CAC)</strong>. CAC is what you spend on marketing and sales to get a new customer, while LTV is the total profit you expect to earn from that customer over their entire relationship with you. A healthy business typically aims for an LTV/CAC ratio of 3:1 or higher. If your ratio is 1:1, you are essentially "buying" revenue at no profit, which is unsustainable in the long term.</p>
+                        <p style="margin-top: 16px;">Our calculator helps you find this ratio by modeling your churn rate and average order value. If your CAC is too high, focus on organic growth channels or improving your sales funnel conversion rate. If your LTV is too low, focus on customer retention, upselling, or increasing your prices. This ratio is the first thing any sophisticated investor will look at when evaluating your business's scalability.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Margin vs. Markup: Don't Confuse Them</h3>
+                        <p>One of the most common mistakes in small business is confusing <strong>Profit Margin</strong> with <strong>Markup</strong>. Markup is the percentage added to the cost to reach a selling price, while Margin is the percentage of the selling price that is profit. If you buy something for $100 and sell it for $150, your markup is 50%, but your margin is only 33.3%. Confusing these two can lead to disastrous pricing errors that eat away at your bottom line. Use our comparison tool to ensure your pricing strategy aligns with your required profit goals.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateRunway() {
+            const c = parseFloat(document.getElementById('ru-c').value);
+const r = parseFloat(document.getElementById('ru-r').value);
+const e = parseFloat(document.getElementById('ru-e').value);
+const burn = e - r;
+const months = burn > 0 ? (c / burn).toFixed(1) : "Infinite";
+document.getElementById('ru-net').innerText = fmt(burn);
+document.getElementById('ru-out').innerText = months;
+document.getElementById('runway-results').classList.add('visible');
+saveActivity('business', { type: 'runway', cash: c, burn, rev: r }, { months });
+        }
+
+        function calculateBreakEven() {
+            const f = parseFloat(document.getElementById('be-f').value);
+const p = parseFloat(document.getElementById('be-p').value);
+const v = parseFloat(document.getElementById('be-v').value);
+const units = Math.ceil(f / (p - v));
+document.getElementById('be-out').innerText = units.toLocaleString();
+document.getElementById('be-rev').innerText = fmt(units * p);
+document.getElementById('breakeven-results').classList.add('visible');
+saveActivity('business', { type: 'break-even', fixed: f, price: p, var: v }, { units });
+        }
+
+        function calculateLTV() {
+            const cac = parseFloat(document.getElementById('cl-cac').value);
+const rev = parseFloat(document.getElementById('cl-rev').value);
+const ret = parseFloat(document.getElementById('cl-ret').value);
+const ltv = rev * ret;
+document.getElementById('cl-ltv').innerText = fmt(ltv);
+document.getElementById('cl-out').innerText = (ltv / cac).toFixed(2);
+document.getElementById('ltv-results').classList.add('visible');
+saveActivity('business', { type: 'cac-ltv', cac, rev, ret }, { ltv, ratio: ltv/cac });
+        }
+
+        function calculateMargin() {
+            const c = parseFloat(document.getElementById('ma-c').value);
+const s = parseFloat(document.getElementById('ma-s').value);
+const margin = ((s - c) / s) * 100;
+const markup = ((s - c) / c) * 100;
+document.getElementById('ma-m').innerText = margin.toFixed(1) + '%';
+document.getElementById('ma-u').innerText = markup.toFixed(1) + '%';
+document.getElementById('margin-results').classList.add('visible');
+saveActivity('business', { type: 'margin', cost: c, price: s }, { margin, markup });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "YourCalc",
+  "short_name": "YourCalc",
+  "description": "130+ free professional calculators for finance, health, AI, and more — by KnotStranded LLC",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0f14",
+  "theme_color": "#f5a623",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "finance", "health", "education"]
+}

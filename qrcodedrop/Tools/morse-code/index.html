@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert text to Morse code and vice versa with audio playback, adjustable speed (WPM), and frequency control. Perfect for learning Morse code.">
+    <meta name="keywords" content="Morse code encoder, Morse code decoder, text converter, Morse code translator, audio playback, learn Morse, Morse code audio, Morse code table, WPM speed, frequency control">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/morse-code/">
+    <meta property="og:title" content="Morse Code Encoder/Decoder — Tools Dashboard">
+    <meta property="og:description" content="Convert text to Morse code with audio playback.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        .morse-display {
+            background: #0a0a0a;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1.1em;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            letter-spacing: 3px;
+            word-spacing: 8px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .control-row label {
+            color: #999;
+            font-size: 0.95em;
+        }
+
+        .control-row input[type="range"] {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .audio-controls {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .audio-controls button {
+            background: #ffc107;
+            color: #000;
+            padding: 12px 24px;
+            margin: 10px 10px 10px 0;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .audio-controls button:hover {
+            background: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        .audio-controls button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .morse-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .morse-table th, .morse-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            font-family: 'Courier New', monospace;
+        }
+
+        .morse-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .morse-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stat-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .stat-box strong {
+            color: #ffc107;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .morse-display { font-size: 0.9em; }
+            .control-row { flex-direction: column; }
+            .control-row input[type="range"] { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Morse Code Encoder/Decoder</h1>
+            <p>Convert text to Morse code with audio playback and learn Morse code interactively.</p>
+        </header>
+
+        <div class="ad-container" style="text-align:center; margin: 20px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <main>
+            <section class="input-section">
+                <h2>Text to Morse</h2>
+                <div class="form-container">
+                    <label for="text-input">Enter Text</label>
+                    <textarea id="text-input" placeholder="Type text here..." rows="4" style="font-family: 'Courier New', monospace;"></textarea>
+                </div>
+
+                <div class="actions">
+                    <button id="btn-encode-morse">Encode to Morse</button>
+                    <button id="btn-clear-text">Clear</button>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2>Morse Code Output</h2>
+                <div class="morse-display" id="morse-output">
+                    (Morse code will appear here)
+                </div>
+
+                <div class="audio-controls">
+                    <h3 style="margin-bottom: 15px;">Audio Playback</h3>
+                    
+                    <div class="control-row">
+                        <label for="wpm-speed">Speed (WPM):</label>
+                        <input type="range" id="wpm-speed" min="5" max="50" value="20" style="width: 200px;">
+                        <span id="wpm-display">20</span>
+                    </div>
+
+                    <div class="control-row">
+                        <label for="frequency">Frequency (Hz):</label>
+                        <input type="range" id="frequency" min="200" max="1000" value="600" style="width: 200px;">
+                        <span id="freq-display">600</span>
+                    </div>
+
+                    <div class="control-row">
+                        <label for="volume">Volume:</label>
+                        <input type="range" id="volume" min="0" max="100" value="50" style="width: 200px;">
+                        <span id="vol-display">50%</span>
+                    </div>
+
+                    <div>
+                        <button id="btn-play-morse">🔊 Play Morse</button>
+                        <button id="btn-stop-morse">⏹ Stop</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="stat-box">
+                        <strong id="morse-length">0</strong> characters
+                    </div>
+                    <div class="stat-box">
+                        Duration: <strong id="morse-duration">0.00</strong> seconds at <strong id="morse-wpm">20</strong> WPM
+                    </div>
+                    <button id="btn-copy-morse" style="width: 100%; margin-top: 10px;">Copy Morse Code</button>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2>Morse Code Reference</h2>
+                <table class="morse-table" id="morse-reference">
+                    <thead>
+                        <tr>
+                            <th>Character</th>
+                            <th>Morse</th>
+                            <th>Character</th>
+                            <th>Morse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="preview-section">
+                <h2>Morse to Text (Advanced)</h2>
+                <div class="form-container">
+                    <label for="morse-input">Enter Morse Code</label>
+                    <input type="text" id="morse-input" placeholder="Use dot (.) dash (-) and spaces to separate letters" style="font-family: 'Courier New', monospace;">
+                    <small style="color: #999; margin-top: 8px;">Separate letters with space, words with three spaces</small>
+                </div>
+                <div class="actions">
+                    <button id="btn-decode-morse">Decode Morse</button>
+                </div>
+                <div id="decoded-output" style="background: #1a1a1a; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #667eea;"></div>
+            </section>
+        </main>
+
+        <!-- Email Collection Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>🚀 Get More Tools & Updates</h3>
+                <p>Join our newsletter for new tools and learning resources.</p>
+                <form id="email-signup-form">
+                    <input type="email" id="signup-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="signup-btn">Subscribe for Free</button>
+                </form>
+                <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
+        <div class="sidebar-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <footer>
+            <div class="footer-ad">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="1234567892"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

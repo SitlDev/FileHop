@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career & Income Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="total compensation, freelance rate, salary raise ROI, side hustle calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/career.html" />
+    <meta name="description" content="Professional tools for career growth: Total Comp, Freelance Rate, and Side Hustle ROI calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Career & <span style="color: var(--accent);">Income</span></h1>
+            <p class="subtitle">Negotiate harder and optimize your earnings potential.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Career <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Total Comp (TC)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">TC includes Base + Bonus + Equity. Equity should be valued based on vesting schedule, not just face value.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Billable Logic</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Freelancers should aim for 2x their equivalent hourly salary to cover taxes, health insurance, and unbillable time.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Compound Raises</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">A 5% raise today compounded over 10 years can result in over $100k in additional lifetime earnings.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('offer', event)">Offer Comp</button>
+                <button class="tab-btn" onclick="showTab('free', event)">Freelance Rate</button>
+                <button class="tab-btn" onclick="showTab('raise', event)">Raise ROI</button>
+                <button class="tab-btn" onclick="showTab('side', event)">Side Hustle</button>
+            </div>
+
+            <div id="offer" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Base Salary</label><div class="input-wrapper"><input type="number" id="of-s" value="120000"></div></div>
+                    <div class="input-group"><label>Bonus (%)</label><div class="input-wrapper"><input type="number" id="of-b" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Stock Value / Year</label><div class="input-wrapper"><input type="number" id="of-st" value="25000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateOffer()">Calculate Total Comp →</button>
+                <div id="of-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Annual Total Value</span><span class="result-value" id="of-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="free" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Target Take-home</label><div class="input-wrapper"><input type="number" id="fr-t" value="100000"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Billable Hours/Week</label><div class="input-wrapper"><input type="number" id="fr-h" value="25"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateFreelance()">Calculate Hourly →</button>
+                <div id="fr-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Min Hourly Rate (Inc. 30% Tax)</span><span class="result-value" id="fr-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="raise" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Current Salary</label><div class="input-wrapper"><input type="number" id="rs-c" value="80000"></div></div>
+                    <div class="input-group"><label>New Salary Offer</label><div class="input-wrapper"><input type="number" id="rs-n" value="105000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateRaise()">Switch ROI →</button>
+                <div id="rs-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">5-Year Cumulative Impact</span><span class="result-value" id="rs-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="side" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Monthly Revenue</label><div class="input-wrapper"><input type="number" id="sh-r" value="1500"></div></div>
+                    <div class="input-group"><label>Weekly Hours</label><div class="input-wrapper"><input type="number" id="sh-h" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Monthly Expenses</label><div class="input-wrapper"><input type="number" id="sh-e" value="200"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateSideHustle()">Analyze Hustle →</button>
+                <div id="sh-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Monthly Profit</span><span class="result-value" id="sh-p">$0</span></div>
+                        <div class="result-item"><span class="result-label">Effective Hourly</span><span class="result-value" id="sh-out">$0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">Strategies for <span style="color: var(--accent);">Modern Career Growth</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Total Compensation: Look Beyond the Base Salary</h3>
+                        <p>When evaluating a job offer, the "sticker price" of the base salary is only one part of the equation. <strong>Total Compensation (TC)</strong> includes bonuses, stock options or RSUs (Restricted Stock Units), 401(k) matching, health insurance premiums, and even "hidden" perks like transit subsidies or gym memberships. Our <strong>Total Comp Calculator</strong> helps you normalize these variables so you can compare a $120k offer with no equity against a $100k offer with a 20% bonus and stock grants. In many tech and finance roles, the non-salary components can make up 30-50% of your take-home value.</p>
+                        <p style="margin-top: 16px;">It's also vital to consider the "vesting schedule" of stock grants. Most companies use a four-year vest with a one-year "cliff." If you plan to stay at a company for only 18 months, you might only see 25-30% of that initial stock grant. Factoring in the probability of staying and the projected growth of the company's stock is essential for a true apples-to-apples comparison between competing offers.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Freelance Equation: Pricing Your Expertise</h3>
+                        <p>Transitioning from a salaried role to freelancing is a dream for many, but most new freelancers drastically underprice their services. When you are self-employed, you are responsible for your own health insurance, self-employment tax (which adds an extra 7.65% in the US), software licenses, and unpaid "bench time" (time spent finding new clients). Our <strong>Freelance Rate Calculator</strong> uses the "30% Overhead Rule" to ensure your target take-home pay is actually achievable. If you want to net $80,000, you likely need to bill closer to $115,000 to maintain the same standard of living as a salaried employee.</p>
+                        <p style="margin-top: 16px;">Additionally, consider the difference between "hourly billing" and "value-based pricing." Hourly billing penalizes you as you get faster and more efficient at your craft. Value-based pricing, where you charge based on the impact the work has on the client's business, is the key to breaking the "time-for-money" trap and achieving true financial freedom as a consultant.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The ROI of a Raise: The 5-Year Impact</h3>
+                        <p>Negotiating a raise can be stressful, but the long-term impact of even a small increase is profound. A $5,000 raise this year doesn't just put $416 more in your pocket each month; it sets a higher baseline for every future raise, bonus, and even your 401(k) match. Our <strong>Raise ROI Tool</strong> calculates the 5-year cumulative gain of a salary increase. When you see that a $10k raise is actually worth $60,000+ over the next five years (including compounded increases), the motivation to have that difficult conversation with your manager becomes much easier to find.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Side Hustles: Effective Hourly Rate</h3>
+                        <p>Not all income is created equal. A side hustle that brings in $1,000 a month sounds great, but if it requires 40 hours of work, you are effectively earning $25 an hour—possibly less than your primary job. Our <strong>Side Hustle Analyzer</strong> helps you find your "Effective Hourly Rate." By subtracting expenses and factoring in the total time commitment, you can decide if your project is a scalable business or just a low-paying second job. Focus on side hustles where the hourly rate grows over time as you build systems and automation.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const fmt = (v) => '$' + Math.round(v).toLocaleString();
+
+        function calculateOffer() {
+            const s = parseFloat(document.getElementById('of-s').value);
+const b = parseFloat(document.getElementById('of-b').value) / 100;
+const st = parseFloat(document.getElementById('of-st').value);
+const total = s + (s * b) + st;
+document.getElementById('of-out').innerText = fmt(total);
+document.getElementById('of-results').classList.add('visible');
+saveActivity('career', { type: 'total-comp', base: s, bonus: b, stock: st }, { total });
+        }
+
+        function calculateFreelance() {
+            const t = parseFloat(document.getElementById('fr-t').value);
+const h = parseFloat(document.getElementById('fr-h').value);
+const annual = t / 0.7; // Accounting for 30% overhead/tax
+const hourly = annual / (h * 50); // 50 working weeks
+document.getElementById('fr-out').innerText = fmt(hourly);
+document.getElementById('fr-results').classList.add('visible');
+saveActivity('career', { type: 'freelance-rate', target: t, hours: h }, { hourly });
+        }
+
+        function calculateRaise() {
+            const c = parseFloat(document.getElementById('rs-c').value);
+const n = parseFloat(document.getElementById('rs-n').value);
+const diff = n - c;
+document.getElementById('rs-out').innerText = fmt(diff * 5);
+document.getElementById('rs-results').classList.add('visible');
+saveActivity('career', { type: 'raise-roi', current: c, new: n }, { five_year_gain: diff * 5 });
+        }
+
+        function calculateSideHustle() {
+            const r = parseFloat(document.getElementById('sh-r').value);
+const h = parseFloat(document.getElementById('sh-h').value);
+const e = parseFloat(document.getElementById('sh-e').value);
+const profit = r - e;
+const hourly = profit / (h * 4.33); // Monthly to weekly avg
+document.getElementById('sh-p').innerText = fmt(profit);
+document.getElementById('sh-out').innerText = fmt(hourly);
+document.getElementById('sh-results').classList.add('visible');
+saveActivity('career', { type: 'side-hustle', rev: r, hours: h, exp: e }, { profit, hourly });
+        }
+    </script>
+</body>
+</html>

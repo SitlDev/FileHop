@@ -1,0 +1,218 @@
+/* ============================================================
+   TEAVAULT — Generated Image References
+   All 17 Gemini-generated photos wired into the site.
+   Images load from images/ folder (run copy-images.sh once),
+   with absolute file:// fallback for immediate preview.
+   ============================================================ */
+
+/* ── Hero Background ── */
+.hero-layer-1 {
+  background-image: url('images/hero.png') !important;
+  background-size: cover;
+  background-position: center 30%;
+}
+.hero-layer-2 {
+  background-image: url('images/hero.png') !important;
+  background-size: cover;
+  background-position: center 60%;
+  opacity: 0.35;
+  mix-blend-mode: luminosity;
+}
+
+/* ── Featured Tea Cards ── */
+.featured-img-1,
+.featured-card-img-placeholder.featured-img-1 {
+  background-image: url('images/tea-gyokuro.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.featured-img-2,
+.featured-card-img-placeholder.featured-img-2 {
+  background-image: url('images/tea-dancong.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.featured-img-3,
+.featured-card-img-placeholder.featured-img-3 {
+  background-image: url('images/tea-darjeeling.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Override featured-card-img backgrounds */
+.featured-card:nth-child(1) .featured-card-img {
+  background-image: url('images/tea-gyokuro.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.featured-card:nth-child(2) .featured-card-img {
+  background-image: url('images/tea-dancong.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.featured-card:nth-child(3) .featured-card-img {
+  background-image: url('images/tea-darjeeling.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── Homepage Gallery Preview ── */
+.gal-img-1 {
+  background-image: url('images/gallery-uji.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.gal-img-2 {
+  background-image: url('images/gallery-gongfu.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.gal-img-3 {
+  background-image: url('images/gallery-darjeeling.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.gal-img-4 {
+  background-image: url('images/gallery-morocco.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.gal-img-5 {
+  background-image: url('images/gallery-yixing.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── Education Hub Articles ── */
+.edu-art-img-1 {
+  background-image: url('images/gallery-gongfu.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.edu-art-img-2 {
+  background-image: url('images/gallery-darjeeling.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.edu-art-img-3 {
+  background-image: url('images/culture-china.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── B2B Teaser Images ── */
+.b2b-img-main {
+  background-image: url('images/gallery-teapot-market.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.b2b-img-accent {
+  background-image: url('images/gallery-kenya.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── Gallery Page Items ── */
+/* These are div placeholders inside .gallery-item */
+.gallery-item:nth-child(1)  .gallery-item-placeholder { background-image: url('images/gallery-uji.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(2)  .gallery-item-placeholder { background-image: url('images/gallery-gongfu.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(3)  .gallery-item-placeholder { background-image: url('images/gallery-darjeeling.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(4)  .gallery-item-placeholder { background-image: url('images/gallery-yixing.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(5)  .gallery-item-placeholder { background-image: url('images/gallery-morocco.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(6)  .gallery-item-placeholder { background-image: url('images/gallery-japan-ceremony.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(7)  .gallery-item-placeholder { background-image: url('images/gallery-taiwan.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(8)  .gallery-item-placeholder { background-image: url('images/gallery-teapot-market.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(9)  .gallery-item-placeholder { background-image: url('images/gallery-turkey.png') !important; background-size: cover; background-position: center; }  /* Taiwan Expo — use Turkey fallback */
+.gallery-item:nth-child(10) .gallery-item-placeholder { background-image: url('images/gallery-darjeeling.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(11) .gallery-item-placeholder { background-image: url('images/gallery-turkey.png') !important; background-size: cover; background-position: center; }
+.gallery-item:nth-child(12) .gallery-item-placeholder { background-image: url('images/gallery-kenya.png') !important; background-size: cover; background-position: center; }
+
+/* ── Education Hub — World Cultures Cards ── */
+.culture-card:nth-child(1) .culture-card-img {
+  background-image: url('images/culture-japan.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.culture-card:nth-child(2) .culture-card-img {
+  background-image: url('images/culture-china.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.culture-card:nth-child(3) .culture-card-img {
+  background-image: url('images/gallery-morocco.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.culture-card:nth-child(4) .culture-card-img {
+  background-image: url('images/culture-india.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.culture-card:nth-child(5) .culture-card-img {
+  background-image: url('images/gallery-japan-ceremony.png') !important;
+  background-size: cover;
+  background-position: top;
+}
+.culture-card:nth-child(6) .culture-card-img {
+  background-image: url('images/gallery-turkey.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.culture-card:nth-child(7) .culture-card-img {
+  background-image: url('images/gallery-taiwan.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+.culture-card:nth-child(8) .culture-card-img {
+  background-image: url('images/gallery-kenya.png') !important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ── Tea Card type colors remain, but add subtle tea photo overlays ── */
+.tcard-green .tea-card-img-inner   { background-image: url('images/tea-gyokuro.png') !important; background-size: cover; background-position: center; opacity: .85; }
+.tcard-oolong .tea-card-img-inner  { background-image: url('images/tea-dancong.png') !important; background-size: cover; background-position: center; opacity: .85; }
+.tcard-black .tea-card-img-inner   { background-image: url('images/tea-darjeeling.png') !important; background-size: cover; background-position: center; opacity: .85; }
+
+/* ── B2B Portal Hero background ── */
+.b2b-portal-hero {
+  background-image: url('images/gallery-teapot-market.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ── Page Hero backgrounds for secondary pages ── */
+.page-hero {
+  background-image: url('images/hero.png');
+  background-size: cover;
+  background-position: center 40%;
+}
+
+/* Catalog page hero changes to Darjeeling */
+.catalog-layout + footer,
+body:has(.catalog-layout) .page-hero {
+  background-image: url('images/tea-darjeeling.png');
+}
+
+/* ── Gallery page hero ── */
+body:has(.gallery-masonry) .gallery-page {
+  background: var(--umber);
+}
+
+/* ── Events page hero ── */
+body:has(.events-page) .events-page::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('images/gallery-japan-ceremony.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Supplier cards in B2B ── */
+.supplier-card:nth-child(1) .supplier-country { background-image: url('images/gallery-uji.png'); background-size: cover; background-position: center; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }

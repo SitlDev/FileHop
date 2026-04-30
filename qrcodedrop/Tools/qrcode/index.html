@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate QR codes for URLs, WiFi networks, contacts, events, social profiles, and dynamic links. Perfect for marketing, mobile, and business applications.">
+    <meta name="keywords" content="QR code generator, QR codes, QR code maker, WiFi QR, vCard QR, calendar QR, social media QR, dynamic QR, contact QR, event QR, email QR, phone QR, mobile marketing">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/qrcode/">
+    <meta property="og:title" content="QR Code Generator — Tools Dashboard">
+    <meta property="og:description" content="Create custom QR codes for URLs, WiFi, contacts, events, social media, and dynamic links.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/Tools/qrcode/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Generator — Tools Dashboard">
+    <meta name="twitter:description" content="Create custom QR codes for URLs, WiFi, contacts, events, social media, and dynamic links.">
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE_HERE">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bwip-js@3.0.4/dist/bwip-js-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>QR Code Generator</h1>
+            <p>Create QR codes for URLs, text, and more. Free and easy to use.</p>
+        </header>
+        <div class="ad-container" style="text-align:center; margin: 20px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <main>
+            <section class="input-section">
+                <h2>How to Use</h2>
+                <ol>
+                    <li>Select the type of QR code you want to generate.</li>
+                    <li>Fill in the required information.</li>
+                    <li>Customize the appearance if desired.</li>
+                    <li>Download or copy the generated QR code.</li>
+                </ol>
+                <p><strong>Example:</strong> Try entering <code>https://www.example.com</code> for a URL QR code.</p>
+                
+                <div class="form-container">
+                    <label for="qr-type-select">QR Code Type</label>
+                    <select id="qr-type-select">
+                        <option value="url">URL</option>
+                        <option value="email">Email Address</option>
+                        <option value="phone">Phone Number</option>
+                        <option value="contact">Contact Card</option>
+                        <option value="calendar">Calendar Event</option>
+                        <option value="social">Social Media Profile</option>
+                        <option value="dynamic">Dynamic QR Code</option>
+                        <option value="wifi">WiFi Network</option>
+                    </select>
+                </div>
+                
+                <div class="form-container" id="url-form">
+                    <label for="input-url">URL</label>
+                    <input type="url" id="input-url" placeholder="https://example.com" value="https://example.com">
+                </div>
+
+                <div class="form-container" id="email-form" style="display: none;">
+                    <label for="input-email">Email Address</label>
+                    <input type="email" id="input-email" placeholder="name@example.com">
+                    
+                    <label for="input-email-subject">Subject (Optional)</label>
+                    <input type="text" id="input-email-subject" placeholder="Email subject">
+                    
+                    <label for="input-email-body">Message (Optional)</label>
+                    <textarea id="input-email-body" placeholder="Email message" rows="3"></textarea>
+                </div>
+
+                <div class="form-container" id="phone-form" style="display: none;">
+                    <label for="input-phone">Phone Number</label>
+                    <input type="tel" id="input-phone" placeholder="+1 (555) 123-4567">
+                </div>
+
+                <div class="form-container" id="contact-form" style="display: none;">
+                    <label for="input-contact-name">Full Name</label>
+                    <input type="text" id="input-contact-name" placeholder="John Doe">
+                    
+                    <label for="input-contact-phone">Phone</label>
+                    <input type="tel" id="input-contact-phone" placeholder="+1 (555) 123-4567">
+                    
+                    <label for="input-contact-email">Email</label>
+                    <input type="email" id="input-contact-email" placeholder="john@example.com">
+                    
+                    <label for="input-contact-org">Organization</label>
+                    <input type="text" id="input-contact-org" placeholder="Company Name">
+                    
+                    <label for="input-contact-url">Website</label>
+                    <input type="url" id="input-contact-url" placeholder="https://example.com">
+                </div>
+
+                <div class="form-container" id="calendar-form" style="display: none;">
+                    <label for="input-event-title">Event Title</label>
+                    <input type="text" id="input-event-title" placeholder="Meeting Title">
+                    
+                    <label for="input-event-start">Start Date & Time</label>
+                    <input type="datetime-local" id="input-event-start">
+                    
+                    <label for="input-event-end">End Date & Time</label>
+                    <input type="datetime-local" id="input-event-end">
+                    
+                    <label for="input-event-location">Location</label>
+                    <input type="text" id="input-event-location" placeholder="Meeting location">
+                    
+                    <label for="input-event-desc">Description</label>
+                    <textarea id="input-event-desc" placeholder="Event description" rows="3"></textarea>
+                </div>
+
+                <div class="form-container" id="social-form" style="display: none;">
+                    <label for="input-social-platform">Social Media Platform</label>
+                    <select id="input-social-platform">
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="twitter">Twitter/X</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="github">GitHub</option>
+                        <option value="custom">Custom URL</option>
+                    </select>
+                    
+                    <label for="input-social-handle">Username/Handle</label>
+                    <input type="text" id="input-social-handle" placeholder="e.g., johndoe or @johndoe">
+                    
+                    <label for="input-social-custom">Custom URL (if selected)</label>
+                    <input type="url" id="input-social-custom" placeholder="https://example.com/profile" style="display: none;">
+                </div>
+
+                <div class="form-container" id="dynamic-form" style="display: none;">
+                    <label for="input-dynamic-data">QR Code Content (URLs, Text, etc.)</label>
+                    <textarea id="input-dynamic-data" placeholder="Enter the content for your QR code" rows="4"></textarea>
+                    
+                    <div class="dynamic-info">
+                        <p><strong>Dynamic QR Feature:</strong> The QR code data is encoded in the page URL, allowing you to:</p>
+                        <ul>
+                            <li>Share and update the QR code via URL parameters</li>
+                            <li>Generate trackable links with redirect service integration</li>
+                            <li>Create editable QR codes on-the-fly</li>
+                        </ul>
+                    </div>
+                    
+                    <label for="input-dynamic-redirect">Redirect URL (Optional)</label>
+                    <input type="url" id="input-dynamic-redirect" placeholder="https://your-redirect-service.com">
+                    
+                    <button id="btn-generate-shareable" type="button">Generate Shareable Link</button>
+                    <div id="shareable-link-container" style="display: none; margin-top: 15px; padding: 10px; background-color: #f0f0f0; border-radius: 5px;">
+                        <label>Shareable Link:</label>
+                        <input type="text" id="shareable-link-output" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+                        <button id="btn-copy-shareable" type="button" style="margin-top: 8px; padding: 8px 15px;">Copy Link</button>
+                    </div>
+                </div>
+                
+                <div class="form-container" id="wifi-form" style="display: none;">
+                    <label for="input-ssid">Network Name (SSID)</label>
+                    <input type="text" id="input-ssid" placeholder="MyWiFiNetwork">
+                    
+                    <label for="input-password">Password</label>
+                    <input type="password" id="input-password" placeholder="networkpassword">
+                    
+                    <label for="input-encryption">Security Type</label>
+                    <select id="input-encryption">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="nopass">No Password</option>
+                    </select>
+                </div>
+                
+                <div class="customization">
+                    <h3>Customization</h3>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label for="config-fg">Foreground Color</label>
+                            <input type="color" id="config-fg" value="#000000">
+                        </div>
+                        <div class="config-item">
+                            <label for="config-bg">Background Color</label>
+                            <input type="color" id="config-bg" value="#ffffff">
+                        </div>
+                        <div class="config-item">
+                            <label for="config-size">Size (px)</label>
+                            <input type="range" id="config-size" min="128" max="512" value="256">
+                            <span id="size-val">256</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2>Preview</h2>
+                <div class="preview-wrapper">
+                    <div id="code-output">
+                        <canvas id="qr-canvas"></canvas>
+                    </div>
+                    <div class="actions">
+                        <button id="btn-download-png"><i data-lucide="download"></i> Download PNG</button>
+                        <button id="btn-copy"><i data-lucide="copy"></i> Copy</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Email Collection Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>🚀 Get More Tools & Updates</h3>
+                <p>Join our newsletter to get notified about new tools, features, and productivity tips.</p>
+                <form id="email-signup-form">
+                    <input type="email" id="signup-email" placeholder="Enter your email address" required>
+                    <button type="submit" class="signup-btn">Subscribe for Free</button>
+                </form>
+                <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
+        <!-- Sidebar Ad -->
+        <div class="sidebar-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567891"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <footer>
+            <!-- Footer Ad -->
+            <div class="footer-ad">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="1234567892"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p>&copy; 2026 QR Code Generator. Built with QRCodeStyling.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="../../theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert between Unix timestamps and human-readable dates with ISO 8601 and UTC support. Perfect for developers and debugging." />
+  <meta name="keywords" content="timestamp converter, Unix timestamp, timestamp to date, date to timestamp, epoch converter, ISO 8601 converter, UTC converter, developer tool" />
+  <link rel="stylesheet" href="../../style.css">
+  <title>Timestamp Converter</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Timestamp Converter</h1>
+      <p>Convert between Unix timestamps and human-readable dates.</p>
+    </header>
+
+    <main>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <section class="input-section">
+          <h2>Unix Timestamp</h2>
+          <textarea id="ts-input" rows="6" placeholder="Enter Unix timestamp (seconds)..." style="width:100%; padding:12px; font-family: monospace;"></textarea>
+          <button id="btn-now" style="margin-top:12px;">Use Current Time</button>
+        </section>
+
+        <section class="preview-section">
+          <h2>Human-Readable Format</h2>
+          <div style="display: grid; gap: 12px;">
+            <div>
+              <h4>ISO 8601</h4>
+              <input id="ts-iso" readonly style="width:100%; padding:8px; font-family: monospace;">
+              <button class="copy-btn" data-field="ts-iso" style="margin-top: 4px;">Copy</button>
+            </div>
+            <div>
+              <h4>Local Date & Time</h4>
+              <input id="ts-local" readonly style="width:100%; padding:8px; font-family: monospace;">
+              <button class="copy-btn" data-field="ts-local" style="margin-top: 4px;">Copy</button>
+            </div>
+            <div>
+              <h4>UTC Date & Time</h4>
+              <input id="ts-utc" readonly style="width:100%; padding:8px; font-family: monospace;">
+              <button class="copy-btn" data-field="ts-utc" style="margin-top: 4px;">Copy</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="info-section">
+        <h2>About Unix Timestamps</h2>
+        
+        <h3>What is Unix Time?</h3>
+        <p>Unix Time (also called Unix Timestamp or POSIX Time) represents time as a single number: the number of seconds that have elapsed since January 1, 1970 at 00:00:00 UTC (the Unix Epoch). Standardized in POSIX.1, Unix Time is used globally in computing systems, databases, and APIs because it's simple, unambiguous, and timezone-independent.</p>
+        
+        <h3>Current Timestamp</h3>
+        <p><strong>Today (April 19, 2026):</strong> 1745030400 seconds since Jan 1, 1970</p>
+        
+        <h3>Real-World Use Cases</h3>
+        <ul>
+          <li><strong>Database Records:</strong> Store creation/modification times without timezone confusion</li>
+          <li><strong>API Logging:</strong> Record event timestamps in server logs (AWS CloudWatch, Google Cloud)</li>
+          <li><strong>File Timestamps:</strong> Track file creation/modification times in filesystems</li>
+          <li><strong>Session Management:</strong> Determine session expiration times</li>
+          <li><strong>Scheduled Tasks:</strong> Cron jobs and task schedulers use Unix timestamps</li>
+          <li><strong>Blockchain:</strong> Bitcoin and Ethereum record transaction timestamps</li>
+        </ul>
+        
+        <h3>Advantages of Unix Time</h3>
+        <ul>
+          <li><strong>Timezone-Independent:</strong> Same number everywhere on Earth at the same moment</li>
+          <li><strong>Simple Math:</strong> Calculate durations by simple subtraction</li>
+          <li><strong>Universal Standard:</strong> Works across all programming languages and systems</li>
+          <li><strong>No Daylight Saving:</strong> Automatically handles DST transitions</li>
+        </ul>
+      </section>
+    <div id="email-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Get more productivity tools</h3>
+        <p>Subscribe to receive new tool updates and tips.</p>
+        <form id="email-signup-form">
+          <input type="email" id="signup-email" placeholder="Email address" required>
+          <button type="submit" class="signup-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Timestamp Converter</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="../../theme-toggle.js"></script>
+</body>
+</html>

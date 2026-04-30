@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe | The Worn Pages Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --forest-green: #1B3022;
+            --burgundy: #6B1D1D;
+            --cream: #FDFBF7;
+            --cream-dark: #F5F1E9;
+            --aged-paper: #E9DCC9;
+            --gold: #C5A059;
+            --text-dark: #2C2C2C;
+            --text-muted: #666;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            font-family: 'EB Garamond', serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 4rem;
+            border-radius: 8px;
+            border: 1px solid var(--aged-paper);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--forest-green);
+            text-decoration: none;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .logo span {
+            font-family: 'Caveat', cursive;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-right: 0.5rem;
+        }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--forest-green); }
+        p { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; }
+        .handwritten { font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.5rem; display: block; }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--forest-green);
+            color: white;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn:hover { background: var(--burgundy); transform: translateY(-2px); }
+
+        .btn-secondary {
+            background: var(--aged-paper);
+            color: var(--text-dark);
+            margin-top: 1rem;
+        }
+
+        #status-message { display: none; margin-top: 2rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        .success { color: var(--forest-green); }
+        .error { color: var(--burgundy); }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <a href="index.html" class="logo"><span>The</span> WORN PAGES CLUB</a>
+        
+        <div id="initial-view">
+            <span class="handwritten">Leaving the Inner Circle?</span>
+            <h1>Farewell, Traveler</h1>
+            <p id="confirm-text">Are you sure you wish to unsubscribe your email from the Inner Circle Dispatch? You will miss out on rare find alerts and exclusive archive news.</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <button id="unsubscribe-btn" class="btn" onclick="processUnsubscribe()">Confirm Unsubscribe</button>
+                <a href="index.html" class="btn btn-secondary">Stay in the Circle</a>
+            </div>
+        </div>
+
+        <div id="status-message"></div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+
+        if (!email) {
+            document.getElementById('confirm-text').innerText = "We couldn't identify your subscription record. If you still wish to unsubscribe, please contact us at treasury@thewornpages.com.";
+            document.getElementById('unsubscribe-btn').style.display = 'none';
+        } else {
+            document.getElementById('confirm-text').innerHTML = `Are you sure you wish to unsubscribe <strong>${email}</strong> from the Inner Circle Dispatch?`;
+        }
+
+        async function processUnsubscribe() {
+            const btn = document.getElementById('unsubscribe-btn');
+            const statusEl = document.getElementById('status-message');
+            const initialView = document.getElementById('initial-view');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span>Processing...';
+
+            try {
+                const response = await fetch('/api/unsubscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    initialView.style.display = 'none';
+                    statusEl.innerHTML = `
+                        <span class="handwritten">It is done</span>
+                        <h1 class="success">You're Unsubscribed</h1>
+                        <p>Your records have been updated. You will no longer receive dispatches from the Inner Circle. The library doors remain open should you ever wish to return.</p>
+                        <a href="index.html" class="btn">Return to Library</a>
+                    `;
+                    statusEl.style.display = 'block';
+                } else {
+                    throw new Error(data.error || 'Failed to unsubscribe.');
+                }
+            } catch (err) {
+                statusEl.innerHTML = `<p class="error">${err.message}</p>`;
+                statusEl.style.display = 'block';
+                btn.disabled = false;
+                btn.innerText = 'Confirm Unsubscribe';
+            }
+        }
+    </script>
+</body>
+</html>

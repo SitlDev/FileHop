@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find synonyms for any word instantly. Expand your vocabulary with similar words and alternatives.">
+    <meta name="keywords" content="synonym finder, synonyms, find synonyms, word alternatives, vocabulary builder, thesaurus, similar words">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/Tools/synonym-finder/">
+    <meta property="og:title" content="Synonym Finder">
+    <meta property="og:description" content="Find synonyms for any word instantly.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Synonym Finder</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e0e0e0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header { 
+            padding: 32px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1a1a1a;
+            background: #0f0f0f;
+        }
+        header h1 { 
+            font-size: 2em; 
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        header p { 
+            font-size: 0.95em; 
+            color: #999;
+        }
+
+        main {
+            flex: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #1a1a1a;
+            border-radius: 12px;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            font-size: 16px;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #f59e0b;
+            background: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        .search-hint {
+            font-size: 0.85em;
+            color: #666;
+            padding: 8px 4px;
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        button.primary {
+            background: #f59e0b;
+            color: #0a0a0a;
+            flex: 1;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        button.primary:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: #1a1a1a;
+            color: #999;
+            padding: 12px 16px;
+        }
+
+        button.secondary:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        .results-section {
+            margin-top: 32px;
+        }
+
+        .results-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .result-pill {
+            padding: 10px 14px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-word;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 24px 16px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .controls {
+                gap: 6px;
+            }
+
+            button {
+                padding: 11px 16px;
+                font-size: 13px;
+            }
+
+            button.primary {
+                min-width: 80px;
+                flex: 1 1 auto;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 6px;
+            }
+
+            .result-pill {
+                padding: 8px 10px;
+                font-size: 0.85em;
+                min-height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 24px 16px;
+            }
+
+            header h1 {
+                font-size: 1.3em;
+                margin-bottom: 4px;
+            }
+
+            header p {
+                font-size: 0.8em;
+            }
+
+            main {
+                padding: 16px;
+                max-width: 100%;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            .search-hint {
+                font-size: 0.8em;
+                margin-bottom: 16px;
+            }
+
+            .controls {
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            button {
+                padding: 10px 12px;
+                font-size: 12px;
+                min-height: 42px;
+            }
+
+            button.primary {
+                min-width: auto;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                gap: 5px;
+                margin-bottom: 12px;
+            }
+
+            .result-pill {
+                padding: 6px 8px;
+                font-size: 0.75em;
+                min-height: 36px;
+                border-radius: 6px;
+            }
+
+            .results-section {
+                margin-top: 20px;
+            }
+        }
+            font-size: 0.95em;
+            user-select: none;
+        }
+
+        .result-pill:hover {
+            background: #2a2a2a;
+            border-color: #f59e0b;
+            color: #f59e0b;
+            transform: translateY(-1px);
+        }
+
+        .result-pill.copied {
+            background: #f59e0b;
+            color: #0a0a0a;
+            border-color: #f59e0b;
+            animation: pulse 0.3s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+            font-size: 0.95em;
+        }
+
+        .ad-container {
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            background: #0f0f0f;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 16px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+
+            main {
+                padding: 24px 16px;
+            }
+
+            input {
+                padding: 14px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            button {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            button.primary {
+                flex: 1;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 6px;
+            }
+
+            .result-pill {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px 12px;
+            }
+            header h1 {
+                font-size: 1.3em;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            button.secondary {
+                width: 100%;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 Synonym Finder</h1>
+        <p>Find similar words instantly</p>
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input type="text" id="input-word" placeholder="Enter a word (e.g., 'happy')" autofocus>
+            <div class="search-hint">Try: HAPPY, QUICK, LARGE, BEAUTIFUL</div>
+        </div>
+
+        <div class="controls">
+            <button class="primary" onclick="findSynonyms()">Find Synonyms</button>
+            <button class="secondary" onclick="clearResults()">Clear</button>
+        </div>
+
+        <div class="results-section">
+            <div id="results-container"></div>
+        </div>
+
+        <div style="background: #1a1a1a; border-radius: 12px; padding: 24px; margin: 32px 0; border: 1px solid #2a2a2a;">
+            <h2 style="font-size: 1.3em; margin-bottom: 16px; color: #f59e0b;">Understanding Synonyms</h2>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 16px;">
+                A synonym is a word with a similar or nearly identical meaning to another word. Synonyms help you expand your vocabulary, improve your writing, and find the perfect word to express your idea with greater nuance and variety.
+            </p>
+            
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Why Use Synonyms?</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Improve Writing Quality:</strong> Avoid repetition and make your prose more engaging</li>
+                <li><strong>Enhance Vocabulary:</strong> Learn new words and their subtle differences</li>
+                <li><strong>Express Nuance:</strong> Choose words with precise connotations</li>
+                <li><strong>Academic Writing:</strong> Strengthen essays and papers with varied vocabulary</li>
+                <li><strong>Word Games:</strong> Find alternative solutions in crosswords and puzzles</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Example: Synonyms for "Happy"</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                Instead of always saying "happy", consider these alternatives:
+            </p>
+            <ul style="color: #999; margin-left: 20px; font-family: monospace; line-height: 2;">
+                <li><strong style="color: #f59e0b;">JOYFUL</strong> - full of joy, very happy</li>
+                <li><strong style="color: #f59e0b;">CONTENT</strong> - satisfied and peaceful</li>
+                <li><strong style="color: #f59e0b;">DELIGHTED</strong> - extremely pleased</li>
+                <li><strong style="color: #f59e0b;">CHEERFUL</strong> - noticeably happy and optimistic</li>
+                <li><strong style="color: #f59e0b;">PLEASED</strong> - feeling satisfied</li>
+                <li><strong style="color: #f59e0b;">THRILLED</strong> - extremely excited and happy</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Quick Tips:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li>Not all synonyms are perfect substitutes - context matters!</li>
+                <li>Synonyms can have different connotations and emotional weight</li>
+                <li>Use a thesaurus alongside a dictionary for best results</li>
+                <li>Consider the register (formal vs. informal) when choosing synonyms</li>
+            </ul>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Historical Context:</h3>
+            <p style="color: #ccc; line-height: 1.6; margin-bottom: 12px;">
+                The thesaurus tradition dates back to 1852 with Peter Mark Roget's "Thesaurus of English Words and Phrases." His original work organized synonyms by semantic categories rather than alphabetically. The first digital thesaurus appeared in the 1980s with computerized word databases. Modern synonym finders use semantic analysis and machine learning to discover subtle meaning relationships.
+            </p>
+
+            <h3 style="font-size: 1.1em; margin-top: 20px; margin-bottom: 12px; color: #e0e0e0;">Related Tools & Variations:</h3>
+            <ul style="color: #ccc; margin-left: 20px; line-height: 1.8;">
+                <li><strong>Roget's Thesaurus:</strong> Traditional semantic organization by category</li>
+                <li><strong>Merriam-Webster Thesaurus:</strong> Organized by similarity with antonyms</li>
+                <li><strong>Oxford Thesaurus:</strong> Academic approach with usage notes</li>
+                <li><strong>Semantic Similarity Tools:</strong> Use AI to find conceptually related words</li>
+                <li><strong>Context-Aware Synonym Finders:</strong> Suggest synonyms based on sentence context</li>
+                <li><strong>Strength-Rated Synonyms:</strong> Show closeness of meaning on a scale</li>
+            </ul>
+        </div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tools Suite. Find synonyms, expand vocabulary, enhance writing.</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="../../theme-toggle.js"></script>
+</body>
+</html>

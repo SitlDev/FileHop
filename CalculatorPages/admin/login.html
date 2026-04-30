@@ -1,0 +1,82 @@
+<!-- SECURITY: Replace ADMIN_HASH constant with SHA-256 hash of your chosen password.
+     Generate at: https://emn178.github.io/online-tools/sha256.html
+     Current hash is for default password "KnotStranded2026!" — CHANGE BEFORE DEPLOYING -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YourCalc Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0f0f1a; color: #fff; font-family: 'IBM Plex Sans', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-box { background: #1a1a2e; padding: 40px; border-radius: 12px; border: 1px solid #2a2a3e; text-align: center; width: 100%; max-width: 360px; }
+        h1 { margin: 0 0 8px; font-size: 24px; font-weight: 700; }
+        p { color: #a0a0ab; font-size: 14px; margin-bottom: 24px; }
+        input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #2a2a3e; background: #0f0f1a; color: #fff; margin-bottom: 16px; font-family: inherit; font-size: 16px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #4f46e5; color: #fff; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #4338ca; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        .shake { animation: shake 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="login-box" id="loginBox">
+        <h1>YourCalc Admin</h1>
+        <p>Operations & Analytics Dashboard</p>
+        <input type="password" id="pass" placeholder="Passphrase" autofocus>
+        <button onclick="login()">Enter</button>
+    </div>
+    <script>
+        async function login() {
+            const passInput = document.getElementById('pass').value;
+            // Provide the admin email as it's hardcoded for this single-tenant app
+            const email = 'admin@knotstranded.com';
+            
+            const btn = document.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Verifying...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password: passInput })
+                });
+
+                if (response.ok) {
+                    // Session established via cookies, redirect to dashboard
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectTo = urlParams.get('redirectTo') || 'dashboard.html';
+                    window.location.href = redirectTo;
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Login failed');
+                }
+            } catch (err) {
+                console.error(err);
+                const box = document.getElementById('loginBox');
+                box.classList.add('shake');
+                document.getElementById('pass').value = '';
+                setTimeout(() => box.classList.remove('shake'), 300);
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+        
+        document.getElementById('pass').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') login();
+        });
+        
+        // Show error from URL if any
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('error')) {
+            const errorDiv = document.createElement('p');
+            errorDiv.style.color = '#ef4444';
+            errorDiv.innerText = 'Unauthorized Access';
+            document.getElementById('loginBox').insertBefore(errorDiv, document.getElementById('pass'));
+        }
+    </script>
+</body>
+</html>

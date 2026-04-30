@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Calculators — Drug Dosage, IV Drip Rate & Clinical Tools 2026 — YourCalc</title>
+    <meta name="keywords" content="medical calculator, drug dosage calculator, IV drip rate, IBW calculator, creatinine clearance">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/medical.html" />
+    <meta name="description" content="Clinical reference tools for drug dosage, IV drip rates, ideal body weight, and creatinine clearance." />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Medical Dosage Calculator",
+      "url": "https://yourcalc.info/medical.html#dosage",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "description": "Professional clinical tools for drug dosage and IV drip rate calculations."
+    }
+    </script>
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Medical <span style="color: var(--accent2);">Calculators</span></h1>
+            <p class="subtitle">Clinical reference tools for healthcare professionals and students.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Clinical <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Dosage Safety</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Always verify drug concentrations and patient weight before administering any medication.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Cockcroft-Gault</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The standard formula for estimating creatinine clearance and renal drug dosing.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Ideal Body Weight</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Utilizes the Devine formula to estimate physiological baseline weight for dosing.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('dosage', event)">Drug Dosage</button>
+                <button class="tab-btn" onclick="showTab('ivdrip', event)">IV Drip Rate</button>
+                <button class="tab-btn" onclick="showTab('ibw', event)">Ideal Body Wt</button>
+                <button class="tab-btn" onclick="showTab('crcl', event)">Creatinine</button>
+                <button class="tab-btn" onclick="showTab('caldef', event)">Caloric Deficit</button>
+            </div>
+
+            <div id="dosage" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Weight (kg)</label><div class="input-wrapper"><input type="number" id="dd-wt" value="70"></div></div>
+                    <div class="input-group"><label>Dose (mg/kg)</label><div class="input-wrapper"><input type="number" id="dd-dose" value="10"></div></div>
+                    <div class="input-group"><label>Conc (mg/mL)</label><div class="input-wrapper"><input type="number" id="dd-conc" value="50"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcDosage()">Calculate Dose →</button>
+                <div id="dos-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Single Dose</span><span class="result-value" id="dd-singlemg">0 mg</span></div>
+                        <div class="result-item"><span class="result-label">Single Vol</span><span class="result-value" id="dd-singleml">0 mL</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="ivdrip" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Volume (mL)</label><div class="input-wrapper"><input type="number" id="iv-vol" value="1000"></div></div>
+                    <div class="input-group"><label>Time (hours)</label><div class="input-wrapper"><input type="number" id="iv-hrs" value="8"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Drop Factor (gtt/mL)</label><div class="input-wrapper"><select id="iv-gtt"><option value="20">20 gtt/mL</option><option value="60">60 gtt/mL</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcIVDrip()">Calculate Rate →</button>
+                <div id="iv-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Drip Rate</span><span class="result-value" id="iv-gttmin">0 gtt/min</span></div>
+                        <div class="result-item"><span class="result-label">Flow Rate</span><span class="result-value" id="iv-mlhr">0 mL/hr</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="ibw" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Sex</label><div class="input-wrapper"><select id="ib-sex"><option value="m">Male</option><option value="f">Female</option></select></div></div>
+                    <div class="input-group"><label>Height (cm)</label><div class="input-wrapper"><input type="number" id="ib-h" value="175"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcIBW()">Find IBW →</button>
+                <div id="ibw-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Ideal Body Weight</span><span class="result-value" id="ib-ibw">0 kg</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="crcl" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Age</label><div class="input-wrapper"><input type="number" id="cr-age" value="50"></div></div>
+                    <div class="input-group"><label>Sex</label><div class="input-wrapper"><select id="cr-sex"><option value="m">Male</option><option value="f">Female</option></select></div></div>
+                    <div class="input-group"><label>Weight (kg)</label><div class="input-wrapper"><input type="number" id="cr-wt" value="70"></div></div>
+                    <div class="input-group"><label>Creatinine (mg/dL)</label><div class="input-wrapper"><input type="number" id="cr-scr" value="1.0" step="0.1"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcCrCl()">Check Clearance →</button>
+                <div id="cr-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">CrCl (mL/min)</span><span class="result-value" id="cr-crcl">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="caldef" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Current (kg)</label><div class="input-wrapper"><input type="number" id="cd-cw" value="90"></div></div>
+                    <div class="input-group"><label>Target (kg)</label><div class="input-wrapper"><input type="number" id="cd-tw" value="80"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Daily Deficit (kcal)</label><div class="input-wrapper"><input type="number" id="cd-def" value="500"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calcCalDef()">Project Date →</button>
+                <div id="cd-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Target Reach Date</span><span class="result-value" id="cd-date">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Math of <span style="color: var(--accent);">Clinical Precision</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Dosing by Body Weight: The Pharmacokinetic Foundation</h3>
+                        <p>In clinical medicine, one size does not fit all. Many critical medications—including antibiotics, anticoagulants, and chemotherapeutics—must be dosed based on the patient's body weight to ensure therapeutic efficacy while minimizing toxicity. Our <strong>Drug Dosage Calculator</strong> provides a quick way to find the total dose in milligrams and the corresponding volume in milliliters based on the medication's concentration. This is a foundational step in ensuring patient safety, particularly in pediatric and geriatric populations where metabolic rates vary significantly.</p>
+                        <p style="margin-top: 16px;">It's important to distinguish between <strong>Actual Body Weight</strong>, <strong>Ideal Body Weight (IBW)</strong>, and <strong>Adjusted Body Weight</strong>. For certain lipophilic drugs, using actual body weight in obese patients can lead to dangerous over-dosing. Our <strong>IBW Tool</strong> uses the Devine formula to provide a baseline for these calculations. Always refer to specific drug monographs or hospital protocols to determine which weight metric should be used for a specific therapy.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Creatinine Clearance: Assessing Renal Function</h3>
+                        <p>The kidneys are responsible for clearing many drugs from the bloodstream. When renal function is impaired, drugs can accumulate to toxic levels. The <strong>Creatinine Clearance (CrCl)</strong>, estimated via the Cockcroft-Gault equation, is the standard metric used to adjust medication doses. Our <strong>CrCl Auditor</strong> factors in age, sex, weight, and serum creatinine to provide a snapshot of a patient's glomerular filtration rate (GFR). This calculation is vital for preventing acute kidney injury (AKI) and ensuring that drug levels remain within the narrow "therapeutic window."</p>
+                        <p style="margin-top: 16px;">Note that serum creatinine is a "lagging" indicator. In cases of acute renal failure, the patient's actual clearance may be significantly lower than the calculated value. Clinical judgment must always be used alongside these mathematical models, especially in patients with rapidly changing clinical status or those at extremes of body habitus.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">IV Drip Rates and Caloric Deficits</h3>
+                        <p>In hospital settings, the precision of <strong>IV Infusion Rates</strong> is a matter of critical care. Our <strong>IV Drip Tool</strong> translates hourly volumes into drops-per-minute (gtt/min), allowing for manual calibration when electronic pumps are unavailable. Similarly, on the wellness side, our <strong>Caloric Deficit Projector</strong> uses the standard 3,500 kcal per pound (7,700 kcal per kg) rule to provide a realistic timeline for weight management. These tools bridge the gap between acute clinical needs and long-term metabolic health.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Evidence-Based Decision Support</h3>
+                        <p>Medicine is increasingly a data-driven field. Our <strong>Clinical Math Suite</strong> is designed to provide healthcare professionals and students with rapid, reliable support for daily calculations. However, these tools are not a substitute for clinical expertise or institutional protocols. Always verify calculations against secondary sources and use them as part of a comprehensive, patient-centered approach to care. Precision in math leads to excellence in outcomes.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calcDosage() {
+            const wt = parseFloat(document.getElementById('dd-wt').value);
+const dose = parseFloat(document.getElementById('dd-dose').value);
+const conc = parseFloat(document.getElementById('dd-conc').value);
+const single = wt * dose;
+document.getElementById('dd-singlemg').innerText = single.toFixed(1) + ' mg';
+document.getElementById('dd-singleml').innerText = (single / conc).toFixed(1) + ' mL';
+document.getElementById('dos-results').classList.add('visible');
+saveActivity('medical', { type: 'dosage', wt, dose }, { single });
+        }
+
+        function calcIVDrip() {
+            const vol = parseFloat(document.getElementById('iv-vol').value);
+const hrs = parseFloat(document.getElementById('iv-hrs').value);
+const gtt = parseFloat(document.getElementById('iv-gtt').value);
+const mlhr = vol / hrs;
+const gttmin = (mlhr * gtt) / 60;
+document.getElementById('iv-gttmin').innerText = Math.round(gttmin) + ' gtt/min';
+document.getElementById('iv-mlhr').innerText = mlhr.toFixed(1) + ' mL/hr';
+document.getElementById('iv-results').classList.add('visible');
+saveActivity('medical', { type: 'iv-drip', vol, hrs }, { gttmin });
+        }
+
+        function calcIBW() {
+            const sex = document.getElementById('ib-sex').value;
+const h = parseFloat(document.getElementById('ib-h').value);
+const over5ft = Math.max(0, (h / 2.54) - 60);
+const ibw = sex === 'm' ? 50 + (2.3 * over5ft) : 45.5 + (2.3 * over5ft);
+document.getElementById('ib-ibw').innerText = ibw.toFixed(1) + ' kg';
+document.getElementById('ibw-results').classList.add('visible');
+saveActivity('medical', { type: 'ibw', sex, h }, { ibw });
+        }
+
+        function calcCrCl() {
+            const age = parseFloat(document.getElementById('cr-age').value);
+const sex = document.getElementById('cr-sex').value;
+const wt = parseFloat(document.getElementById('cr-wt').value);
+const scr = parseFloat(document.getElementById('cr-scr').value);
+let crcl = ((140 - age) * wt) / (72 * scr);
+if (sex === 'f') crcl *= 0.85;
+document.getElementById('cr-crcl').innerText = crcl.toFixed(1);
+document.getElementById('cr-results').classList.add('visible');
+saveActivity('medical', { type: 'crcl', age, scr }, { crcl });
+        }
+
+        function calcCalDef() {
+            const cw = parseFloat(document.getElementById('cd-cw').value);
+const tw = parseFloat(document.getElementById('cd-tw').value);
+const def = parseFloat(document.getElementById('cd-def').value);
+const days = ((cw - tw) * 7700) / def;
+const date = new Date();
+date.setDate(date.getDate() + Math.round(days));
+document.getElementById('cd-date').innerText = date.toLocaleDateString();
+document.getElementById('cd-results').classList.add('visible');
+saveActivity('medical', { type: 'cal-deficit', deficit: def }, { days });
+        }
+    </script>
+</body>
+</html>

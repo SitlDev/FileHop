@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering & Electrical Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="electrical calculator, 3 phase power, voltage drop, beam deflection, torque rpm">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/engineering.html" />
+    <meta name="description" content="Professional engineering tools: 3-Phase Power, Voltage Drop, Beam Deflection, and Torque calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Engineering & <span style="color: var(--accent);">Electrical</span></h1>
+            <p class="subtitle">Precision calculation for technical systems and hardware.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Technical <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">3-Phase Efficiency</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Total power in a balanced 3-phase system is &radic;3 * V * I * PF. This provides more consistent torque and higher efficiency for industrial motors.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Voltage Drop Limits</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The NEC recommends a maximum voltage drop of 3% for branch circuits and 5% for combined feeder and branch circuits to ensure equipment safety.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Beam Safety (L/240)</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">A common structural standard for floor beams is a deflection limit of L/240 under total load, preventing plaster cracks and perceptible "bounciness."</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('acdc', event)">AC/DC Power</button>
+                <button class="tab-btn" onclick="showTab('three-phase', event)">3-Phase</button>
+                <button class="tab-btn" onclick="showTab('vdrop', event)">Wire Drop</button>
+                <button class="tab-btn" onclick="showTab('beam', event)">Beam Deflection</button>
+                <button class="tab-btn" onclick="showTab('torque', event)">Torque & HP</button>
+                <button class="tab-btn" onclick="showTab('thermal', event)">Thermal</button>
+            </div>
+
+            <div id="acdc" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Voltage (V)</label><div class="input-wrapper"><input type="number" id="ac-v" value="120"></div></div>
+                    <div class="input-group"><label>Current (A)</label><div class="input-wrapper"><input type="number" id="ac-i" value="10"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Power Factor</label><div class="input-wrapper"><input type="number" id="ac-pf" value="1.0" step="0.01"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateACDC()">Calculate Power →</button>
+                <div id="acdc-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Watts (W)</span><span class="result-value" id="ac-w">0</span></div>
+                        <div class="result-item"><span class="result-label">Apparent (VA)</span><span class="result-value" id="ac-va">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="three-phase" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Line-Line (V)</label><div class="input-wrapper"><input type="number" id="tp-v" value="480"></div></div>
+                    <div class="input-group"><label>Current (A)</label><div class="input-wrapper"><input type="number" id="tp-i" value="20"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Power Factor</label><div class="input-wrapper"><input type="number" id="tp-pf" value="0.85" step="0.01"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculate3Phase()">Calculate 3-Phase →</button>
+                <div id="tp-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Total kW</span><span class="result-value" id="tp-kw">0</span></div>
+                        <div class="result-item"><span class="result-label">Load (kVA)</span><span class="result-value" id="tp-kva">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="vdrop" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Distance (ft)</label><div class="input-wrapper"><input type="number" id="vd-d" value="100"></div></div>
+                    <div class="input-group"><label>Current (A)</label><div class="input-wrapper"><input type="number" id="vd-i" value="15"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Wire Gauge (AWG)</label>
+                        <div class="input-wrapper">
+                            <select id="vd-awg">
+                                <option value="0.0025">#14 (2.5Ω/kft)</option>
+                                <option value="0.0016">#12 (1.6Ω/kft)</option>
+                                <option value="0.0010">#10 (1.0Ω/kft)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-calculate" onclick="calculateVDrop()">Find Drop →</button>
+                <div id="vd-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Voltage Drop</span><span class="result-value" id="vd-out">0.00</span></div>
+                        <div class="result-item"><span class="result-label">% Loss</span><span class="result-value" id="vd-p">0%</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="beam" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Load (lbs)</label><div class="input-wrapper"><input type="number" id="bm-p" value="1000"></div></div>
+                    <div class="input-group"><label>Length (in)</label><div class="input-wrapper"><input type="number" id="bm-l" value="120"></div></div>
+                    <div class="input-group"><label>Young's Modulus (E)</label><div class="input-wrapper"><input type="number" id="bm-e" value="29000000"></div></div>
+                    <div class="input-group"><label>Inertia (I)</label><div class="input-wrapper"><input type="number" id="bm-i" value="10"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateBeam()">Analyze Beam →</button>
+                <div id="beam-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Max Deflection (Inches)</span><span class="result-value" id="bm-out">0.000</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="torque" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Torque (lb-ft)</label><div class="input-wrapper"><input type="number" id="tq-t" value="300"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>RPM</label><div class="input-wrapper"><input type="number" id="tq-r" value="5000"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateTorque()">Calculate Power →</button>
+                <div id="torque-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Horsepower (HP)</span><span class="result-value" id="tq-hp">0</span></div>
+                        <div class="result-item"><span class="result-label">Kilowatts (kW)</span><span class="result-value" id="tq-kw">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="thermal" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Length (in)</label><div class="input-wrapper"><input type="number" id="th-l" value="100"></div></div>
+                    <div class="input-group"><label>Temp Change (Δ°F)</label><div class="input-wrapper"><input type="number" id="th-t" value="100"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Coefficient (α)</label><div class="input-wrapper"><input type="number" id="th-a" value="0.0000065"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateThermal()">Predict Growth →</button>
+                <div id="thermal-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Change in Length (Inches)</span><span class="result-value" id="th-out">0.000</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Principles of <span style="color: var(--accent);">Modern Engineering</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Electrical Power: AC, DC, and 3-Phase Systems</h3>
+                        <p>Electricity is the lifeblood of modern infrastructure, but its delivery varies depending on the application. <strong>Direct Current (DC)</strong> is constant and unidirectional, found in batteries and electronics. <strong>Alternating Current (AC)</strong> reverses direction periodically, allowing for efficient long-distance transmission via transformers. Our <strong>Power Calculator</strong> helps you find Real Power (Watts) and Apparent Power (VA) by factoring in the Power Factor (PF)—a measure of how effectively the current is being converted into useful work.</p>
+                        <p style="margin-top: 16px;">In industrial settings, <strong>3-Phase Power</strong> is the standard. By using three AC currents offset by 120 degrees, 3-phase systems provide more consistent torque for large motors and are more efficient in terms of conductor material. When calculating 3-phase power, the "Square Root of 3" (1.732) is a critical constant. Our tool automates these complex calculations, ensuring electrical engineers and electricians can quickly size breakers and conductors for high-load environments.</p>
+                    </div>
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Structural Integrity: Beam Deflection & Stress</h3>
+                        <p>Structural engineering is fundamentally about managing forces to prevent failure. When a load is applied to a beam, it bends—this is known as <strong>Deflection</strong>. Our calculator uses the standard Euler-Bernoulli beam theory to predict deflection based on the material's stiffness (Young's Modulus) and the beam's cross-sectional shape (Moment of Inertia). If a beam deflects too much, it can cause cracks in finishes like drywall, or in extreme cases, lead to catastrophic structural failure.</p>
+                        <p style="margin-top: 16px;">Understanding the difference between "Strength" and "Stiffness" is key. A beam might be strong enough not to break (Stress), but not stiff enough to prevent annoying floor vibrations or visible sagging (Deflection). Engineers must balance these two factors while also considering the "Factor of Safety"—the ratio of the material's breaking point to the actual expected load—to ensure the public's safety in every building and bridge.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Mechanical Power: Torque vs. Horsepower</h3>
+                        <p>In mechanical systems, <strong>Torque</strong> is the rotational force, while <strong>Horsepower</strong> is the rate at which work is being done. As the famous saying goes: "Torque is what gets you moving, Horsepower is what keeps you moving." Our <strong>Torque-RPM Converter</strong> uses the standard 5252 constant to show the relationship between these two metrics. Because Horsepower is a function of Torque and RPM, an engine that produces peak torque at high RPMs will have a much higher horsepower rating than one that produces the same torque at low RPMs.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Thermal Expansion: The Silent Force</h3>
+                        <p>Nearly all materials expand when heated and contract when cooled. In large structures like bridges or pipelines, this <strong>Thermal Expansion</strong> can exert massive forces if not accounted for. This is why you see "expansion joints" in concrete sidewalks and steel bridges—they provide the space needed for the material to grow without buckling. Our <strong>Expansion Predictor</strong> helps you quantify this growth across different materials like steel, aluminum, and concrete, ensuring your designs can weather the extreme temperature swings of the natural world.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateACDC() {
+            const v = parseFloat(document.getElementById('ac-v').value);
+const i = parseFloat(document.getElementById('ac-i').value);
+const pf = parseFloat(document.getElementById('ac-pf').value);
+document.getElementById('ac-w').innerText = Math.round(v * i * pf);
+document.getElementById('ac-va').innerText = Math.round(v * i);
+document.getElementById('acdc-results').classList.add('visible');
+saveActivity('engineering', { type: 'acdc-power', v, i, pf }, { watts: v*i*pf });
+        }
+
+        function calculate3Phase() {
+            const v = parseFloat(document.getElementById('tp-v').value);
+const i = parseFloat(document.getElementById('tp-i').value);
+const pf = parseFloat(document.getElementById('tp-pf').value);
+const kva = (Math.sqrt(3) * v * i) / 1000;
+document.getElementById('tp-kw').innerText = (kva * pf).toFixed(2);
+document.getElementById('tp-kva').innerText = kva.toFixed(2);
+document.getElementById('tp-results').classList.add('visible');
+saveActivity('engineering', { type: '3phase', v, i, pf }, { kw: kva*pf });
+        }
+
+        function calculateVDrop() {
+            const d = parseFloat(document.getElementById('vd-d').value);
+const i = parseFloat(document.getElementById('vd-i').value);
+const r = parseFloat(document.getElementById('vd-awg').value);
+const drop = (2 * d * i * r);
+document.getElementById('vd-out').innerText = drop.toFixed(2);
+document.getElementById('vd-p').innerText = ((drop / 120) * 100).toFixed(1) + '%';
+document.getElementById('vd-results').classList.add('visible');
+saveActivity('engineering', { type: 'voltage-drop', d, i, r }, { drop });
+        }
+
+        function calculateBeam() {
+            const p = parseFloat(document.getElementById('bm-p').value);
+const l = parseFloat(document.getElementById('bm-l').value);
+const e = parseFloat(document.getElementById('bm-e').value);
+const i = parseFloat(document.getElementById('bm-i').value);
+const def = (p * Math.pow(l, 3)) / (48 * e * i);
+document.getElementById('bm-out').innerText = def.toFixed(4);
+document.getElementById('beam-results').classList.add('visible');
+saveActivity('engineering', { type: 'beam-deflection', p, l }, { deflection: def });
+        }
+
+        function calculateTorque() {
+            const t = parseFloat(document.getElementById('tq-t').value);
+const r = parseFloat(document.getElementById('tq-r').value);
+const hp = (t * r) / 5252;
+document.getElementById('tq-hp').innerText = Math.round(hp);
+document.getElementById('tq-kw').innerText = (hp * 0.7457).toFixed(1);
+document.getElementById('torque-results').classList.add('visible');
+saveActivity('engineering', { type: 'torque-rpm', t, r }, { hp });
+        }
+
+        function calculateThermal() {
+            const l = parseFloat(document.getElementById('th-l').value);
+const t = parseFloat(document.getElementById('th-t').value);
+const a = parseFloat(document.getElementById('th-a').value);
+const delta = l * a * t;
+document.getElementById('th-out').innerText = delta.toFixed(4);
+document.getElementById('thermal-results').classList.add('visible');
+saveActivity('engineering', { type: 'thermal-expansion', l, t, a }, { delta });
+        }
+    </script>
+</body>
+</html>

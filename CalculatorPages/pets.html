@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Age, Nutrition & Toxicity Calculators 2026 — YourCalc</title>
+    <meta name="keywords" content="dog age calculator, cat age to human years, pet calorie calculator, chocolate toxicity calculator, dog health tools">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/pets.html" />
+    <meta name="description" content="Biological and nutritional audits for your pets: Age, Calories, and Toxicity thresholds." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Animal & <span style="color: var(--accent2);">Pet Health</span></h1>
+            <p class="subtitle">Biological and nutritional audits for your companions.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Pet Health <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Breed Aging</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Large dogs age up to 3x faster than cats or small breeds in later years.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Metabolism</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Resting Energy Requirement (RER) is calculated as 70 * (weight in kg)^0.75.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Toxicity</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Theobromine in chocolate is dose-dependent; dark chocolate is 10x more toxic than milk.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('age', event)">Breed Age</button>
+                <button class="tab-btn" onclick="showTab('cals', event)">Daily Calories</button>
+                <button class="tab-btn" onclick="showTab('tox', event)">Toxicity</button>
+            </div>
+
+            <div id="age" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group"><label>Species</label><div class="input-wrapper"><select id="pe-sp"><option value="dog">Dog</option><option value="cat">Cat</option></select></div></div>
+                    <div class="input-group"><label>Actual Age</label><div class="input-wrapper"><input type="number" id="pe-ag" value="5"></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Size (Dogs only)</label><div class="input-wrapper"><select id="pe-sz"><option value="s">Small (<20 lbs)</option><option value="m">Medium (21-50 lbs)</option><option value="l">Large (50+ lbs)</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculatePetAge()">Compare Age →</button>
+                <div id="age-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Human Years Equivalent</span><span class="result-value" id="pe-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="cals" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Weight (lbs)</label><div class="input-wrapper"><input type="number" id="ca-w" value="50"></div></div>
+                    <div class="input-group"><label>Activity Level</label><div class="input-wrapper"><select id="ca-ac"><option value="1.2">Sedentary</option><option value="1.6" selected>Normal</option><option value="2.0">Active</option></select></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculatePetCals()">Find Target Cals →</button>
+                <div id="cals-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Daily Calories (kcal)</span><span class="result-value" id="ca-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="tox" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group"><label>Pet Weight (lbs)</label><div class="input-wrapper"><input type="number" id="to-w" value="50"></div></div>
+                    <div class="input-group"><label>Chocolate Type</label><div class="input-wrapper"><select id="to-t"><option value="0.02">White (Safe)</option><option value="0.2">Milk (Moderate)</option><option value="0.6">Dark (High)</option><option value="1.3">Baking (Extreme)</option></select></div></div>
+                    <div class="input-group" style="grid-column: 1/-1;"><label>Amount Eaten (oz)</label><div class="input-wrapper"><input type="number" id="to-a" value="1"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateTox()">Assess Risk →</button>
+                <div id="tox-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Risk Assessment</span><span class="result-value" id="to-out">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Science of <span style="color: var(--accent);">Pet Wellness</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Understanding "Pet Years" vs. Human Years</h3>
+                        <p>The popular rule that "one dog year equals seven human years" is a major oversimplification. In reality, pets age much faster in their first two years of life and then the aging process slows down. For example, a one-year-old cat is roughly equivalent to a 15-year-old human, and a two-year-old cat is like a 24-year-old. Our <strong>Pet Age Comparative Tool</strong> uses species-specific and (for dogs) size-specific formulas to give you a more accurate biological age. Smaller dogs tend to live longer and age more slowly than giant breeds, a phenomenon that our calculator accounts for to help you better understand your pet's life stage.</p>
+                        <p style="margin-top: 16px;">Knowing your pet's biological age is crucial for preventive care. Senior pets (generally starting at age 7 for dogs and cats) require different nutritional profiles and more frequent health screenings for conditions like arthritis, kidney disease, and heart issues. By understanding where your pet sits on the biological spectrum, you can work with your veterinarian to tailor their care and maximize their quality of life as they enter their golden years.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Precision Nutrition: The RER Formula</h3>
+                        <p>Overfeeding is the leading cause of preventable health issues in pets. Our <strong>Nutritional Target Tool</strong> uses the Resting Energy Expenditure (RER) formula: 70 * (weight in kg)^0.75. This is the amount of energy your pet needs to maintain basic bodily functions at rest. We then apply an "Activity Multiplier" to account for their lifestyle. A working dog requires significantly more calories than a "couch potato" house cat. Using this data-driven approach prevents the common "eyeballing" of food portions that leads to obesity and associated metabolic diseases.</p>
+                        <p style="margin-top: 16px;">When using our calculator, be honest about your pet's activity level. "Normal" activity generally refers to daily walks or active play sessions. If your pet is primarily indoors and inactive, selecting "Sedentary" will provide a more realistic caloric goal. Remember that treats also contain calories; most veterinarians recommend that treats should make up no more than 10% of a pet's total daily caloric intake.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Theobromine Toxicity: Why Chocolate is Dangerous</h3>
+                        <p>Chocolate contains <strong>Theobromine</strong>, a compound that humans can easily metabolize but pets cannot. Our <strong>Chocolate Toxicity Auditor</strong> calculates the potential risk based on the type of chocolate (baking chocolate is far more dangerous than milk chocolate) and the pet's weight. If your pet consumes chocolate, our tool provides an immediate risk assessment. However, it is not a substitute for professional veterinary advice. If the calculator indicates a "Moderate" or "Severe" risk, time is of the essence; contact your vet or an animal poison control center immediately.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Holistic Pet Care</h3>
+                        <p>Metrics are just one part of pet wellness. Regular exercise, mental stimulation, and consistent veterinary checkups form the foundation of a healthy life. Our <strong>Pet Wellness Suite</strong> is designed to provide you with the data needed to make informed decisions about your pet's health. Whether you are adjusting their diet, tracking their aging, or managing an emergency, having the right information at your fingertips is the first step toward being the best pet parent possible.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculatePetAge() {
+            const sp = document.getElementById('pe-sp').value;
+const ag = parseFloat(document.getElementById('pe-ag').value);
+const sz = document.getElementById('pe-sz').value;
+let human = 0;
+if(sp === 'cat') {
+    if(ag === 1) human = 15;
+    else if(ag === 2) human = 24;
+    else human = 24 + (ag-2)*4;
+} else {
+    if(sz === 's') human = ag * 6;
+    else if(sz === 'm') human = ag * 7;
+    else human = ag * 8;
+}
+document.getElementById('pe-out').innerText = human;
+document.getElementById('age-results').classList.add('visible');
+saveActivity('pets', { type: 'age-comp', sp, ag, sz }, { human });
+        }
+
+        function calculatePetCals() {
+            const w = parseFloat(document.getElementById('ca-w').value) / 2.2;
+const ac = parseFloat(document.getElementById('ca-ac').value);
+const rer = 70 * Math.pow(w, 0.75);
+const kcal = Math.round(rer * ac);
+document.getElementById('ca-out').innerText = kcal;
+document.getElementById('cals-results').classList.add('visible');
+saveActivity('pets', { type: 'nutrition', weight_lbs: w*2.2, activity: ac }, { kcal });
+        }
+
+        function calculateTox() {
+            const w = parseFloat(document.getElementById('to-w').value);
+const t = parseFloat(document.getElementById('to-t').value);
+const a = parseFloat(document.getElementById('to-a').value);
+const mgPerKg = (a * 28.35 * t * 100) / (w / 2.2); // approx formula
+let risk = "Mild / Observation";
+let color = "var(--accent)";
+if(mgPerKg > 60) { risk = "SEVERE - CALL VET"; color = "var(--error)"; }
+else if(mgPerKg > 20) { risk = "Moderate Risk"; color = "#facc15"; }
+document.getElementById('to-out').innerText = risk;
+document.getElementById('to-out').style.color = color;
+document.getElementById('tox-results').classList.add('visible');
+saveActivity('pets', { type: 'toxicity', weight: w, amount: a }, { risk });
+        }
+    </script>
+</body>
+</html>

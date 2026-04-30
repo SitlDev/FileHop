@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive suite of 41+ free productivity and developer tools: QR codes, encoders, converters, formatters, and utilities.">
+    <meta name="keywords" content="tools, QR code, converter, formatter, encoder, JSON, base64, password generator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="/">
+    <meta property="og:title" content="Tools Suite — 41+ Free Developer & Productivity Tools">
+    <meta property="og:description" content="Complete collection of free tools: QR codes, JSON formatters, converters, encoders, and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Tools Suite — 41+ Free Tools</title>
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-main: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent: #667eea;
+            --accent-hover: #5568d3;
+            --border-color: #e0e0e0;
+            --card-bg: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999999;
+            --accent: #667eea;
+            --accent-hover: #764ba2;
+            --border-color: #333333;
+            --card-bg: #0f0f0f;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 { font-size: 3em; margin-bottom: 15px; font-weight: 700; line-height: 1.2; }
+        header p { font-size: 1.3em; opacity: 0.95; margin-bottom: 30px; line-height: 1.4; }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 14px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.4em; }
+        .feature-card p { color: var(--text-secondary); }
+
+        .tools-preview {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .tools-preview h2 { margin-bottom: 15px; font-size: 2em; color: var(--text-primary); }
+        .tools-preview p { color: var(--text-secondary); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-box .number { font-size: 2.5em; color: var(--accent); font-weight: 700; }
+        .stat-box .label { color: var(--text-secondary); margin-top: 10px; }
+
+        footer {
+            background: var(--bg-main);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-secondary);1024px) {
+            .features { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 50px 20px;
+            }
+
+            header h1 { 
+                font-size: 1.8em;
+                margin-bottom: 12px;
+            }
+            
+            header p { 
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+
+            .cta-button {
+                padding: 12px 28px;
+                font-size: 0.95em;
+                min-height: 44px;
+            }
+
+            .container {
+                padding: 24px 16px;
+            }
+
+            .features { 
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin: 30px 0;
+            }
+
+            .feature-card {
+                padding: 20px;
+                min-height: 180px;
+                h3 { font-size: 1.2em; }
+                p { font-size: 0.9em; }
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin: 30px 0;
+            }
+
+            .stat-box {
+                padding: 16px;
+            }
+
+            .stat-box .number {
+                font-size: 1.8em;
+            }
+
+            .stat-box .label {
+                font-size: 0.85em;
+            }
+
+            .tools-preview {
+                padding: 24px 16px;
+            }
+
+            .tools-preview h2 {
+                font-size: 1.5em;
+            }
+
+            .tools-preview p {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 40px 16px;
+            }
+
+            header h1 { 
+                font-size: 1.5em;
+                margin-bottom: 8px;
+            }
+            
+            header p { 
+                font-size: 0.9em;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                min-height: 44px;
+                width: 100%;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.1em;
+            }
+
+            .feature-card p {
+                font-size: 0.85em;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-box .number {
+                font-size: 1.5em;
+            }
+
+            .tools-preview {
+                padding: 20px 16px;
+            }
+
+            .tools-preview div[style*="grid"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            footer {
+                padding: 20px 16px;
+                font-size: 0.85em;
+           
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            header p { font-size: 1.1em; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- Google AdSense: Replace with your publisher ID when ready for monetization
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID_HERE" crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <header>
+        <h1>⚙️ Tools Suite</h1>
+        <p>41+ Free Productivity & Developer Tools</p>
+        <button class="cta-button" onclick="location.href='Tools/dashboard.html';">Explore All Tools</button>
+    </header>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number">41+</div>
+                <div class="label">Free Tools</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">6</div>
+                <div class="label">Categories</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">0%</div>
+                <div class="label">Cost</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">100%</div>
+                <div class="label">Client-Side</div>
+            </div>
+        </div>
+
+        <div class="features">
+            <a href="Tools/dashboard.html?category=qrcode" class="feature-card">
+                <h3>🎯 QR & Barcodes</h3>
+                <p>Generate QR codes, barcodes, and other visual identifiers for your projects.</p>
+            </a>
+            <a href="Tools/dashboard.html?category=encoding" class="feature-card">
+                <h3>🔐 Encoding & Encryption</h3>
+                <p>Encode, decode, encrypt, and hash your data with multiple formats supported.</p>
+            </a>
+            <a href="Tools/dashboard.html?category=converters" class="feature-card">
+                <h3>🔄 Converters</h3>
+                <p>Convert between units, bases, formats, and data types instantly.</p>
+            </a>
+            <a href="Tools/dashboard.html?category=formatters" class="feature-card">
+                <h3>📝 Formatters</h3>
+                <p>Format, minify, and validate JSON, CSS, HTML, and other code.</p>
+            </a>
+            <a href="Tools/dashboard.html?category=generators" class="feature-card">
+                <h3>🛠️ Generators</h3>
+                <p>Generate passwords, UUIDs, Lorem Ipsum, and other placeholder data.</p>
+            </a>
+            <a href="Tools/dashboard.html" class="feature-card">
+                <h3>⚡ Fast & Secure</h3>
+                <p>All processing happens in your browser. No data is sent to servers.</p>
+            </a>
+        </div>
+
+        <div class="tools-preview">
+            <h2>Popular Tools</h2>
+            <p>Get started with our most-used tools for developers and content creators.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 20px;">
+                <button class="cta-button" onclick="location.href='Tools/qrcode/';" style="background: #667eea; color: white;">QR Generator</button>
+                <button class="cta-button" onclick="location.href='Tools/json/';" style="background: #667eea; color: white;">JSON Formatter</button>
+                <button class="cta-button" onclick="location.href='Tools/password/';" style="background: #667eea; color: white;">Password Gen</button>
+                <button class="cta-button" onclick="location.href='Tools/base64/';" style="background: #667eea; color: white;">Base64</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="cta-button" onclick="location.href='Tools/dashboard.html'; return false;">View All 41+ Tools</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Knotstranded LLC. All tools run entirely in your browser.</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            <a href="/privacy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a> | 
+            <a href="/terms.html" style="color: var(--accent); text-decoration: none;">Terms of Service</a> | 
+            <a href="/contact.html" style="color: var(--accent); text-decoration: none;">Contact</a>
+        </p>
+    </footer>
+
+    <script src="/theme-toggle.js"></script>
+    <script>
+        // Simple analytics tracking if needed
+        if (window.location.hash === '#tools') {
+            location.href = 'Tools/dashboard.html';
+        }
+    </script>
+</body>
+</html>
+
+

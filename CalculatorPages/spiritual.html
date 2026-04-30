@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYBPSXSG5T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZYBPSXSG5T');
+    </script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f5a623">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual & Numerology Calculators — Life Path & Moon Phase 2026 — YourCalc</title>
+    <meta name="keywords" content="numerology calculator, life path number, spiritual calculator, moon phase calculator">
+    <link rel="stylesheet" href="global.css">
+    <script src="common.js" defer></script>
+    <script src="sidebar.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5377169267581466" crossorigin="anonymous"></script>
+    <link rel="canonical" href="https://yourcalc.info/spiritual.html" />
+    <meta name="description" content="Explore ancient archetypes: Life Path, Name Numerology, and Moon Phase calculators." />
+</head>
+<body>
+    <nav class="sidebar"></nav>
+    <div class="bottom-nav"></div>
+    <main>
+        <div class="container">
+            <div class="ad-unit ad-top"><!-- AdSense --></div>
+            <h1>Spiritual & <span style="color: var(--accent);">Numerology</span></h1>
+            <p class="subtitle">Ancient archetypes modeled through modern data.</p>
+
+            <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; margin-bottom: 40px;">
+                <h2 style="font-size: 24px; margin-bottom: 24px; color: var(--text);">Spiritual <span style="color: var(--accent);">Intelligence Suite</span></h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Life Path</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Calculated by reducing your full birth date to a single digit (or master number). It represents your core journey and innate traits.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Pythagorean Numerology</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">Each letter has a numeric value. Your "Expression Number" reveals how you interact with the world and your hidden talents.</p></div>
+                    <div><h3 style="color: var(--accent); margin-bottom: 12px; font-size: 18px;">Lunar Influence</h3><p style="color: var(--muted); line-height: 1.6; font-size: 14px;">The lunar cycle affects biological rhythms and tides. Knowing your birth moon phase provides context for your emotional temperament.</p></div>
+                </div>
+            </section>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('lifepath', event)">Life Path</button>
+                <button class="tab-btn" onclick="showTab('names', event)">Name Numerology</button>
+                <button class="tab-btn" onclick="showTab('moon', event)">Moon Phase</button>
+            </div>
+
+            <div id="lifepath" class="calc-container active">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Birth Date</label><div class="input-wrapper"><input type="date" id="sp-bd" value="1995-10-24"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateLifePath()">Calculate Life Path →</button>
+                <div id="path-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item"><span class="result-label">Life Path Number</span><span class="result-value" id="sp-out">0</span></div>
+                        <div class="result-item"><span class="result-label">Archetype</span><span class="result-value" id="sp-cat" style="font-size: 18px">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="names" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Full Name</label><div class="input-wrapper"><input type="text" id="sp-name" placeholder="Enter name..."></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateName()">Analyze Name →</button>
+                <div id="name-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Expression Number</span><span class="result-value" id="sp-name-out">0</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+
+            <div id="moon" class="calc-container">
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: 1 / -1;"><label>Target Date</label><div class="input-wrapper"><input type="date" id="sp-md"></div></div>
+                </div>
+                <button class="btn-calculate" onclick="calculateMoon()">Find Moon Phase →</button>
+                <div id="moon-results" class="result-panel">
+                    <div class="result-grid">
+                        <div class="result-item" style="grid-column: 1/-1;"><span class="result-label">Phase Name</span><span class="result-value" id="sp-moon-out">—</span></div>
+                    </div>
+                </div>
+                <div class="ad-unit ad-result"><!-- AdSense --></div>
+            </div>
+        </div>
+
+            <!-- Educational Content Section -->
+            <section class="educational-content" style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 40px; padding-bottom: 60px;">
+                <h2 style="font-size: 28px; color: var(--text); margin-bottom: 24px;">The Geometry of the <span style="color: var(--accent);">Soul</span></h2>
+                
+                <div style="color: var(--muted); line-height: 1.8;">
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Numerology: The Mathematical Archetypes</h3>
+                        <p>Numerology is the ancient study of the vibrational significance of numbers. It is based on the idea that everything in the universe is energy, and that numbers are the fundamental "code" of that energy. Our <strong>Life Path Number Tool</strong> uses your birth date to calculate your primary archetype. This number is said to represent your core traits, your life's purpose, and the challenges you are meant to overcome. Whether you are "The Leader" (1) or "The Humanitarian" (9), understanding your archetype can provide a framework for self-reflection and personal growth.</p>
+                        <p style="margin-top: 16px;">The calculation process involves reducing the digits of your birth date to a single number (or a "Master Number" like 11, 22, or 33). These Master Numbers are considered highly charged and carry a greater responsibility for spiritual growth. While numerology is not a predictive science, many find that their Life Path Number resonates deeply with their internal experiences, acting as a mirror that reflects their hidden strengths and potential.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">The Moon: Rhythms of the Night</h3>
+                        <p>For millennia, humans have looked to the moon to track time and understand the natural cycles of growth and decay. Our <strong>Moon Phase Finder</strong> uses the astronomical Epact calculation to determine the moon's phase for any given date. Each phase—from the "New Moon" of intentions to the "Full Moon" of manifestation—carries its own symbolic meaning in various spiritual traditions. Tracking these phases can help you align your personal projects and self-care routines with the natural ebb and flow of the lunar cycle.</p>
+                        <p style="margin-top: 16px;">The moon's influence extends beyond symbolism; it physically affects our planet through the tides and has been linked to behavioral shifts in many species. By observing the moon's journey across the sky, we reconnect with the larger cosmic rhythms that govern our world. Whether you use the lunar cycle for gardening, meditation, or simply as a reminder of the passage of time, the moon remains a constant companion in our quest for understanding.</p>
+                    </div>
+
+                    <div style="margin-bottom: 32px;">
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">Name Numerology: The Vibration of Sound</h3>
+                        <p>Just as your birth date carries a vibration, so does your name. In Pythagorean numerology, every letter is assigned a numerical value. Our <strong>Name Numerology Tool</strong> translates your name into its foundational number, reflecting your external personality and how you interact with the world. This can be a fascinating way to explore the "geometry" of your identity and see how your name aligns with your internal Life Path archetype.</p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 20px;">A Modern Path to Ancient Wisdom</h3>
+                        <p>Spirituality in the 21st century is about finding meaning in a complex, data-driven world. Our <strong>Spiritual Math Suite</strong> is designed to bridge the gap between ancient traditions and modern clarity. By using these tools for introspection, you are continuing a long human tradition of seeking patterns in the stars and the numbers. Stay open, stay curious, and let the geometry of the soul guide your journey.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+        <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="legal.html">Legal</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="footer-copy">All calculations run in your browser. No data stored. No account required.</p>
+        <p class="footer-copy" style="margin-top: 8px;">&copy; 2026 YourCalc &mdash; A KnotStranded LLC Product. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function calculateLifePath() {
+            const dateStr = document.getElementById('sp-bd').value;
+if(!dateStr) return;
+const digits = dateStr.replace(/-/g, '').split('').map(Number);
+const sumDigits = (n) => {
+    let s = n.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    return s > 9 && s !== 11 && s !== 22 && s !== 33 ? sumDigits(s) : s;
+};
+let total = digits.reduce((a, b) => a + b, 0);
+const res = sumDigits(total);
+const archetypes = {
+    1: "The Leader", 2: "The Peacemaker", 3: "The Creative",
+    4: "The Builder", 5: "The Adventurer", 6: "The Caretaker",
+    7: "The Seeker", 8: "The Executive", 9: "The Humanitarian",
+    11: "The Visionary", 22: "The Architect", 33: "The Avatar"
+};
+document.getElementById('sp-out').innerText = res;
+document.getElementById('sp-cat').innerText = archetypes[res] || "The Seeker";
+document.getElementById('path-results').classList.add('visible');
+saveActivity('spiritual', { type: 'life-path', date: dateStr }, { number: res });
+        }
+
+        function calculateName() {
+            const name = document.getElementById('sp-name').value.toUpperCase();
+if(!name) return;
+const table = {
+    'A':1,'J':1,'S':1, 'B':2,'K':2,'T':2, 'C':3,'L':3,'U':3,
+    'D':4,'M':4,'V':4, 'E':5,'N':5,'W':5, 'F':6,'O':6,'X':6,
+    'G':7,'P':7,'Y':7, 'H':8,'Q':8,'Z':8, 'I':9,'R':9
+};
+let sum = 0;
+for (let char of name) { if(table[char]) sum += table[char]; }
+const reduce = (n) => {
+    let s = n.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    return s > 9 ? reduce(s) : s;
+};
+const res = reduce(sum);
+document.getElementById('sp-name-out').innerText = res;
+document.getElementById('name-results').classList.add('visible');
+saveActivity('spiritual', { type: 'name-numerology', name_length: name.length }, { number: res });
+        }
+
+        function calculateMoon() {
+            const dateVal = document.getElementById('sp-md').value;
+if(!dateVal) return;
+const date = new Date(dateVal);
+const year = date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+let r = year % 100;
+r %= 19;
+if (r > 9) r -= 19;
+r = ((r * 11) % 30) + month + day;
+if (month < 3) r += 2;
+r -= (year < 2000) ? 4 : 8.3;
+r = Math.floor(r) % 30;
+if (r < 0) r += 30;
+const phases = ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"];
+const phaseIdx = Math.floor(r / 3.75) % 8;
+document.getElementById('sp-moon-out').innerText = phases[phaseIdx];
+document.getElementById('moon-results').classList.add('visible');
+saveActivity('spiritual', { type: 'moon-phase', date: dateVal }, { phase: phases[phaseIdx] });
+        }
+    </script>
+</body>
+</html>

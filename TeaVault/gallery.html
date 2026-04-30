@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tea Gallery — TeaVault | Visual World of Tea</title>
+  <meta name="description" content="A curated visual journey through tea gardens, ceremonies, festivals, teapot collections, and artisan markets across the world." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="stylesheet" href="images.css" />
+</head>
+<body>
+
+<nav class="nav scrolled" id="main-nav" style="background:rgba(245,237,214,0.96)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-leaf">🍃</span><span class="logo-text" style="color:var(--umber)">TeaVault</span></a>
+    <ul class="nav-links">
+      <li><a href="catalog.html" class="nav-link">Tea Catalog</a></li>
+      <li><a href="education.html" class="nav-link">Education</a></li>
+      <li><a href="gallery.html" class="nav-link" style="color:var(--terra)">Gallery</a></li>
+      <li><a href="events.html" class="nav-link">Events</a></li>
+      <li><a href="subscriptions.html" class="nav-link">Subscribe</a></li>
+      <li class="nav-divider"></li>
+      <li><a href="b2b.html" class="nav-link nav-b2b">For Business</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-account">Account</a>
+      <a href="subscriptions.html" class="btn btn-primary btn-sm">Subscribe</a>
+      <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <a href="catalog.html">Tea Catalog</a><a href="education.html">Education Hub</a>
+    <a href="gallery.html">Gallery</a><a href="events.html">Events</a>
+    <a href="subscriptions.html">Subscribe</a>
+  </div>
+</nav>
+
+<div class="gallery-page">
+  <div style="text-align:center;padding:calc(var(--nav-h) + 4rem) 2rem 3rem;">
+    <p class="section-eyebrow">Visual World of Tea</p>
+    <h1 class="section-title">Through the Lens</h1>
+    <p class="section-subtitle">Journeys through gardens, ceremonies, festivals, and traditions — seen through the eyes of tea.</p>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="gallery-filter-bar">
+    <button class="gallery-filter-btn active" data-filter="all">All</button>
+    <button class="gallery-filter-btn" data-filter="gardens">Tea Gardens</button>
+    <button class="gallery-filter-btn" data-filter="ceremony">Ceremonies</button>
+    <button class="gallery-filter-btn" data-filter="harvest">Harvest</button>
+    <button class="gallery-filter-btn" data-filter="vessels">Vessels</button>
+    <button class="gallery-filter-btn" data-filter="markets">Markets</button>
+    <button class="gallery-filter-btn" data-filter="festivals">Festivals</button>
+  </div>
+
+  <!-- Masonry Grid -->
+  <div class="gallery-masonry">
+
+    <div class="gallery-item reveal" data-caption="Morning mist · Uji tea gardens · Kyoto, Japan" data-tags="gardens,japan">
+      <div class="gallery-item-placeholder" style="height:320px;background:linear-gradient(155deg,#1C3310,#3A6028,#5C7A4E)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.18;">🌿</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Morning Mist · Uji Tea Gardens · Japan</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Gongfu ceremony · Chaozhou, Guangdong, China" data-tags="ceremony,china">
+      <div class="gallery-item-placeholder" style="height:200px;background:linear-gradient(155deg,#3D1A00,#7A3A20)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">☕</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Gongfu Ceremony · Chaozhou, China</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="First flush harvest · Makaibari Estate, Darjeeling" data-tags="harvest,india">
+      <div class="gallery-item-placeholder" style="height:260px;background:linear-gradient(155deg,#2E1F0A,#6B3A20)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">🏔️</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">First Flush Harvest · Darjeeling, India</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Yixing clay collection · Jiangsu Province, China" data-tags="vessels,china">
+      <div class="gallery-item-placeholder" style="height:280px;background:linear-gradient(155deg,#2E1A3A,#6B3A7A)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.22;">🏺</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Yixing Clay · Jiangsu, China</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Moroccan atay preparation · Marrakech medina" data-tags="ceremony,markets,morocco">
+      <div class="gallery-item-placeholder" style="height:220px;background:linear-gradient(155deg,#1A2E4A,#3A5C7A)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">🫖</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Atay Ritual · Marrakech, Morocco</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Japanese tea ceremony · Ura Senke school, Kyoto" data-tags="ceremony,japan">
+      <div class="gallery-item-placeholder" style="height:340px;background:linear-gradient(155deg,#1A1A00,#3A3A00)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.18;">🍵</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Tea Ceremony · Ura Senke, Kyoto</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Ali Shan high-mountain garden · Chiayi, Taiwan" data-tags="gardens,taiwan">
+      <div class="gallery-item-placeholder" style="height:200px;background:linear-gradient(155deg,#003020,#006040)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">🌱</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Ali Shan Garden · Chiayi, Taiwan</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Artisan teapot market · Yixing City, Jiangsu" data-tags="markets,vessels,china">
+      <div class="gallery-item-placeholder" style="height:260px;background:linear-gradient(155deg,#3A1000,#7A2000)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.22;">🛖</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Teapot Market · Yixing City</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Tea Expo · Taipei World Trade Center, Taiwan" data-tags="festivals,taiwan">
+      <div class="gallery-item-placeholder" style="height:300px;background:linear-gradient(155deg,#001A30,#003060)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.18;">🌟</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">International Tea Expo · Taipei</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Darjeeling tea garden in monsoon · West Bengal, India" data-tags="gardens,harvest,india">
+      <div class="gallery-item-placeholder" style="height:240px;background:linear-gradient(155deg,#00200A,#005020)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">⛅</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Monsoon Season · West Bengal</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Turkish çay service · Grand Bazaar, Istanbul" data-tags="ceremony,markets,turkey">
+      <div class="gallery-item-placeholder" style="height:220px;background:linear-gradient(155deg,#200010,#600030)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">🪔</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Çay Service · Grand Bazaar, Istanbul</div></div>
+    </div>
+
+    <div class="gallery-item reveal" data-caption="Kenyan tea estate at sunrise · Kericho Highlands" data-tags="gardens,harvest,kenya">
+      <div class="gallery-item-placeholder" style="height:280px;background:linear-gradient(155deg,#002000,#005000)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;">🌅</div>
+      </div>
+      <div class="gallery-item-overlay"><div class="gallery-item-caption">Sunrise · Kericho Highlands, Kenya</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close">✕ Close</button>
+    <div id="lightbox-placeholder" style="width:800px;max-width:85vw;height:500px;max-height:60vh;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:5rem;"></div>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="logo-leaf">🍃</span><span class="logo-text">TeaVault</span></a><p class="footer-tagline">The world's finest teas.<br/>Sourced. Studied. Delivered.</p></div>
+      <div class="footer-col"><h4 class="footer-col-title">Explore</h4><ul class="footer-links"><li><a href="catalog.html">Tea Catalog</a></li><li><a href="education.html">Education</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Subscribe</h4><ul class="footer-links"><li><a href="subscriptions.html">All Tiers</a></li><li><a href="subscriptions.html#gift">Gift Subscriptions</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Company</h4><ul class="footer-links"><li><a href="about.html">Our Story</a></li><li><a href="b2b.html">For Business</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2025 TeaVault Inc.</p><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
