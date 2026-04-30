@@ -23,15 +23,12 @@ app.get('/api/listings', async (req, res) => {
     res.json(listings);
   } catch (error) {
     console.error('◈ API ERROR [GET /api/listings]:', error.message);
-    console.error('◈ ERROR DETAILS:', {
-      code: error.code,
-      meta: error.meta,
-      stack: error.stack
-    });
+    console.error('◈ ERROR CODE:', error.code);
+    console.error('◈ ERROR META:', error.meta);
     res.status(500).json({ 
       error: 'Failed to fetch listings', 
       message: error.message,
-      details: process.env.NODE_ENV === 'production' ? 'Check server logs' : error.stack
+      code: error.code
     });
   }
 });
