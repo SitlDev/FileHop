@@ -3,9 +3,10 @@ FROM python:3.13-slim as builder
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies (including PostgreSQL dev files for psycopg2)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
@@ -19,9 +20,10 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-# Install runtime dependencies only
+# Install runtime dependencies (PostgreSQL client)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
+    libpq5 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Python dependencies from builder
