@@ -233,22 +233,22 @@ export default function DashboardPage() {
                 <StatCard
                   label="Total Facilities"
                   value={metrics.totalFacilities.toString()}
-                  subtitle={`${metrics.activeFacilities} active`}
+                  sub={`${metrics.activeFacilities} active`}
                 />
                 <StatCard
                   label="Avg Star Rating"
                   value={metrics.averageRating.toFixed(1)}
-                  subtitle="across all facilities"
+                  sub="across all facilities"
                 />
                 <StatCard
                   label="Total Beds"
                   value={metrics.totalBeds.toString()}
-                  subtitle="licensed capacity"
+                  sub="licensed capacity"
                 />
                 <StatCard
                   label="Alerts"
                   value={metrics.lowRatingCount.toString()}
-                  subtitle={`${metrics.lowRatingCount} low ratings`}
+                  sub={`${metrics.lowRatingCount} low ratings`}
                 />
               </div>
 
