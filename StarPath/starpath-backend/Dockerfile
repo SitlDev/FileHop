@@ -37,8 +37,12 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Copy application code
 COPY . .
 
-# Create non-root user
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+# Create non-root user and set permissions
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app && \
+    chown -R appuser:appuser /root/.local && \
+    chmod -R u+x /root/.local/bin
+
 USER appuser
 
 # Expose port
