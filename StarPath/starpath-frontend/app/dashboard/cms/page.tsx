@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/useAuth';
+import { API_URL } from '@/lib/api-config';
 
 interface CMSStats {
   totalSubmissions: number;
@@ -26,7 +27,7 @@ export default function CMSPage() {
     if (!token) return;
 
     try {
-      const response = await fetch('http://localhost:8001/api/v1/cms/submissions', {
+      const response = await fetch(`${API_URL}/api/v1/cms/submissions`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

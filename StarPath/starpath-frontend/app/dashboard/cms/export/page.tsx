@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/useAuth';
+import { API_URL } from '@/lib/api-config';
 
 interface Facility {
   id: string;
@@ -49,7 +50,7 @@ export default function ExportPage() {
 
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:8001/api/v1/facilities', {
+      const response = await fetch(`${API_URL}/api/v1/facilities`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -72,7 +73,7 @@ export default function ExportPage() {
     try {
       setValidating(true);
       const response = await fetch(
-        `http://localhost:8001/api/v1/cms/validate/${selectedFacility}`,
+        `${API_URL}/api/v1/cms/validate/${selectedFacility}`,
         {
           method: 'POST',
           headers: {
@@ -101,7 +102,7 @@ export default function ExportPage() {
     try {
       setExporting(true);
       const response = await fetch(
-        `http://localhost:8001/api/v1/cms/export/${selectedFacility}`,
+        `${API_URL}/api/v1/cms/export/${selectedFacility}`,
         {
           method: 'POST',
           headers: {
@@ -136,7 +137,7 @@ export default function ExportPage() {
     try {
       setSubmitting(true);
       const response = await fetch(
-        `http://localhost:8001/api/v1/cms/submit/${selectedFacility}`,
+        `${API_URL}/api/v1/cms/submit/${selectedFacility}`,
         {
           method: 'POST',
           headers: {

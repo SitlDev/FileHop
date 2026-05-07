@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/useAuth';
+import { API_URL } from '@/lib/api-config';
 
 interface Submission {
   submission_id: string;
@@ -52,7 +53,7 @@ export default function SubmissionsPage() {
 
     try {
       setLoading(true);
-      let url = 'http://localhost:8001/api/v1/cms/submissions';
+      let url = `${API_URL}/api/v1/cms/submissions`;
       if (statusFilter) {
         url += `?status=${statusFilter}`;
       }
@@ -82,7 +83,7 @@ export default function SubmissionsPage() {
 
     try {
       const response = await fetch(
-        `http://localhost:8001/api/v1/cms/submissions/${submissionId}/retry`,
+        `${API_URL}/api/v1/cms/submissions/${submissionId}/retry`,
         {
           method: 'POST',
           headers: {
