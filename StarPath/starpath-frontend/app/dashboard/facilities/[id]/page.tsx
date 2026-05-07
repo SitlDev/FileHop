@@ -199,10 +199,10 @@ export default function FacilityDetailPage() {
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <StatCard title="Current Rating" value={latestRating?.overall_rating.toString() || 'N/A'} />
-            <StatCard title="Bed Count" value={facility.bed_count?.toString() || 'N/A'} />
-            <StatCard title="Last Inspection" value={latestInspection?.survey_date ? new Date(latestInspection.survey_date).toLocaleDateString() : 'N/A'} />
-            <StatCard title="Status" value={facility.is_active ? 'Active' : 'Inactive'} />
+            <StatCard label="Current Rating" value={latestRating?.overall_rating.toString() || 'N/A'} />
+            <StatCard label="Bed Count" value={facility.bed_count?.toString() || 'N/A'} />
+            <StatCard label="Last Inspection" value={latestInspection?.survey_date ? new Date(latestInspection.survey_date).toLocaleDateString() : 'N/A'} />
+            <StatCard label="Status" value={facility.is_active ? 'Active' : 'Inactive'} />
           </div>
 
           {/* Facility Info Card */}
