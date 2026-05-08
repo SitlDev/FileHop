@@ -145,24 +145,30 @@ class ReportGenerator:
             overall_para = ParagraphStyle(
                 'OverallRating',
                 parent=styles['Normal'],
-                fontSize=16,
+                fontSize=28,
                 textColor=self.cms_blue,
                 alignment=TA_CENTER,
-                fontName='Courier-Bold'
+                fontName='Courier-Bold',
+                spaceAfter=6,
+                spaceBefore=6,
+                leading=35
             )
             
             stars_numeric = ParagraphStyle(
                 'OverallNumeric',
                 parent=styles['Normal'],
-                fontSize=14,
+                fontSize=16,
                 textColor=self.cms_blue,
                 alignment=TA_CENTER,
-                fontName='Helvetica-Bold'
+                fontName='Helvetica-Bold',
+                spaceAfter=12,
+                spaceBefore=4
             )
             
             story.append(Paragraph(star_display, overall_para))
+            story.append(Spacer(1, 0.08*inch))
             story.append(Paragraph(f"{int(overall_stars)}/5 Stars", stars_numeric))
-            story.append(Spacer(1, 0.15*inch))
+            story.append(Spacer(1, 0.1*inch))
             
             # Four-Domain Star Ratings
             story.append(Paragraph("FOUR-DOMAIN STAR RATINGS", heading_style))
