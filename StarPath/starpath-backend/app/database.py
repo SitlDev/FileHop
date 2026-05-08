@@ -36,19 +36,21 @@ try:
     # Build engine with appropriate settings
     if is_mysql:
         # MySQL-specific configuration
+        # Increased pool_size for WebSocket connections
         engine = create_engine(
             db_url,
-            pool_size=10,  # Connection pool size
-            max_overflow=20,  # Additional connections beyond pool_size
+            pool_size=50,  # Increased for WebSocket connections (was 10)
+            max_overflow=30,  # Additional connections beyond pool_size (was 20)
             pool_pre_ping=True,  # Verify connection is alive before using
             pool_recycle=3600,  # Recycle connections after 1 hour (RDS timeout)
+            pool_timeout=10,  # Wait max 10 seconds for a connection
             echo=False,  # Set to True for SQL debugging
             connect_args={
                 "connect_timeout": 10,
                 "charset": "utf8mb4",
             }
         )
-        logger.info("✅ MySQL database engine created successfully")
+        logger.info("✅ MySQL database engine created successfully (pool_size=50 for WebSocket workloads)")
     else:
         # SQLite configuration for local development
         engine = create_engine(

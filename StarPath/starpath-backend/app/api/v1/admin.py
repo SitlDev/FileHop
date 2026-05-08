@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.database import get_db, SessionLocal
 from app.models.user import User as UserModel, UserRole
 from app.models.facility import Facility
 from app.models.star_rating import StarRating
@@ -232,16 +232,17 @@ def mark_all_read(
 # ==================== WEBSOCKET ENDPOINT ====================
 
 @router.websocket("/ws/{user_id}")
-async def websocket_endpoint(user_id: str, websocket: WebSocket, db: Session = Depends(get_db)):
+async def websocket_endpoint(user_id: str, websocket: WebSocket):
     """WebSocket endpoint for real-time notifications"""
     import uuid as uuid_module
     import logging
+    from app.database import get_db
     logger = logging.getLogger(__name__)
     
     logger.info(f"WebSocket connection attempt for user_id: {user_id}")
     
+    # Verify user exists - do this outside the main connection loop
     try:
-        # Verify user exists and is authenticated
         # Convert string user_id to UUID for comparison
         try:
             user_uuid = uuid_module.UUID(user_id)
@@ -250,18 +251,25 @@ async def websocket_endpoint(user_id: str, websocket: WebSocket, db: Session = D
             await websocket.close(code=4004, reason="Invalid user ID format")
             return
         
-        user = db.query(UserModel).filter(UserModel.id == user_uuid).first()
-        if not user:
-            logger.warning(f"User not found for UUID: {user_uuid}")
-            await websocket.close(code=4004, reason="User not found")
-            return
+        # Create a temporary session just for verification
+        db = SessionLocal()
+        try:
+            user = db.query(UserModel).filter(UserModel.id == user_uuid).first()
+            if not user:
+                logger.warning(f"User not found for UUID: {user_uuid}")
+                await websocket.close(code=4004, reason="User not found")
+                return
+            user_email = user.email
+            logger.info(f"WebSocket authenticated for user: {user_email}")
+        finally:
+            db.close()  # Release database connection immediately after verification
         
-        logger.info(f"WebSocket authenticated for user: {user.email}")
     except Exception as e:
-        logger.error(f"WebSocket auth error: {str(e)}")
+        logger.error(f"WebSocket auth error: {str(e)}", exc_info=True)
         await websocket.close(code=4004, reason="Authentication failed")
         return
     
+    # Now accept the connection and manage it without holding a database session
     await manager.connect(user_id, websocket)
     logger.info(f"WebSocket manager connected for user_id: {user_id}")
     try:
@@ -273,7 +281,7 @@ async def websocket_endpoint(user_id: str, websocket: WebSocket, db: Session = D
         logger.info(f"WebSocket disconnected for user: {user_id}")
         manager.disconnect(user_id, websocket)
     except Exception as e:
-        logger.error(f"WebSocket error for user {user_id}: {e}")
+        logger.error(f"WebSocket error for user {user_id}: {e}", exc_info=True)
         manager.disconnect(user_id, websocket)
 
 # ==================== PERMISSIONS ENDPOINT ====================
