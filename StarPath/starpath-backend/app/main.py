@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
 from app.api.v1 import auth, facilities, ratings, uploads, health_inspections, admin, cms
 # Import models to register them with SQLAlchemy
 from app.models import user, facility, health_inspection, deficiency, star_rating, notification, cms_submission
@@ -10,10 +11,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Set up CORS
+# Set up CORS - use environment variable for production
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+allowed_origins = [origin.strip() for origin in allowed_origins]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust in production
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
