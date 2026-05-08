@@ -12,7 +12,7 @@ from app.utils.rbac import require_admin, require_facility_manager, get_user_per
 from app.api.v1.auth import get_current_user
 from app.services.report_generator import ReportGenerator
 from app.services.websocket_manager import manager
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 import json
 from datetime import datetime, timezone
 import uuid
@@ -52,7 +52,7 @@ async def download_facility_report(
     # Get recent inspections
     inspections = db.query(HealthInspection).filter(
         HealthInspection.facility_id == facility_id
-    ).order_by(HealthInspection.inspection_date.desc()).limit(10).all()
+    ).order_by(HealthInspection.survey_date.desc()).limit(10).all()
     
     # Generate PDF
     generator = ReportGenerator("Facility Report")
@@ -61,7 +61,7 @@ async def download_facility_report(
         facility_data={
             'cms_provider_id': facility.cms_provider_id,
             'bed_count': facility.bed_count,
-            'address': facility.address or '',
+            'address': facility.address or {},
             'ownership': facility.ownership or '',
             'is_active': facility.is_active
         },
@@ -76,19 +76,19 @@ async def download_facility_report(
         ],
         inspections_data=[
             {
-                'inspection_date': i.inspection_date.isoformat() if i.inspection_date else 'N/A',
-                'inspection_type': i.inspection_type or 'Unknown',
-                'status': i.status or 'Unknown',
+                'inspection_date': i.survey_date.isoformat() if i.survey_date else 'N/A',
+                'inspection_type': i.survey_type or 'Unknown',
+                'status': 'Completed',
                 'deficiencies': []
             } for i in inspections
         ]
     )
     
-    # Return as file
-    return FileResponse(
-        path=pdf_buffer,
+    # Return as streaming response for BytesIO
+    return StreamingResponse(
+        iter([pdf_buffer.getvalue()]),
         media_type="application/pdf",
-        filename=f"{facility.name.replace(' ', '_')}_Report_{datetime.now().strftime('%Y%m%d')}.pdf"
+        headers={"Content-Disposition": f"attachment; filename={facility.name.replace(' ', '_')}_Report_{datetime.now().strftime('%Y%m%d')}.pdf"}
     )
 
 @router.get("/reports/ratings-trend/{facility_id}")
@@ -131,10 +131,10 @@ async def download_ratings_trend_report(
         ]
     )
     
-    return FileResponse(
-        path=pdf_buffer,
+    return StreamingResponse(
+        iter([pdf_buffer.getvalue()]),
         media_type="application/pdf",
-        filename=f"{facility.name.replace(' ', '_')}_Ratings_Trend_{datetime.now().strftime('%Y%m%d')}.pdf"
+        headers={"Content-Disposition": f"attachment; filename={facility.name.replace(' ', '_')}_Ratings_Trend_{datetime.now().strftime('%Y%m%d')}.pdf"}
     )
 
 # ==================== NOTIFICATIONS ENDPOINTS ====================
