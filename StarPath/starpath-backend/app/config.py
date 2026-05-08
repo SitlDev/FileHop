@@ -1,13 +1,15 @@
 from pydantic_settings import BaseSettings
 from typing import Optional
+import os
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "StarPath SNF"
     API_V1_STR: str = "/api/v1"
-    SECRET_KEY: str = "YOUR_SECRET_KEY"  # Change in production
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "dev-secret-key-change-in-production")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
     
-    DATABASE_URL: str = "postgresql://user:password@localhost/starpath"
+    # Database URL from environment (Railway sets this for MySQL)
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./test.db")
     
     # AWS Settings (Optional for local dev)
     AWS_ACCESS_KEY_ID: Optional[str] = None
