@@ -48,33 +48,3 @@ class Settings(BaseSettings):
         logger.info(f"Settings loaded: SECRET_KEY={'SET' if self.SECRET_KEY and self.SECRET_KEY != 'dev-secret-key-change-in-production' else 'DEFAULT'}")
 
 settings = Settings()
-    
-    # AWS Settings (Optional for local dev)
-    AWS_ACCESS_KEY_ID: Optional[str] = None
-    AWS_SECRET_ACCESS_KEY: Optional[str] = None
-    AWS_REGION: str = "us-east-1"
-    S3_BUCKET_UPLOADS: str = "starpath-uploads"
-    
-    # CMS Integration Settings
-    CMS_ENABLED: bool = True
-    CMS_API_BASE_URL: str = "https://api.cms.gov/five-star/v1"  # Will be configured per environment
-    CMS_API_KEY: Optional[str] = None  # Set in production
-    CMS_API_SECRET: Optional[str] = None  # Set in production
-    CMS_TIMEOUT_SECONDS: int = 30
-    CMS_MAX_RETRIES: int = 3
-    CMS_RETRY_DELAY_SECONDS: int = 300  # 5 minutes between retries
-    CMS_MOCK_MODE: bool = True  # Use mock responses for development/testing
-    
-    # Export Settings
-    CMS_EXPORT_DIR: str = "/tmp/cms_exports"  # Directory to store exported files
-    CMS_KEEP_EXPORTS: bool = True  # Keep export files for audit trail
-    
-    # Rate Limiting
-    RATE_LIMIT_CMS_EXPORTS: int = 100  # Per hour
-    RATE_LIMIT_CMS_SUBMISSIONS: int = 50  # Per hour
-    
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
-
-settings = Settings()
