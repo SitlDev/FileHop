@@ -1,10 +1,9 @@
 from sqlalchemy import Column, String, Integer, Date, DateTime, ForeignKey, Enum
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 import enum
 from datetime import datetime
-from app.database import Base
+from app.database import Base, GUID
 
 class SurveyType(str, enum.Enum):
     STANDARD = "standard"
@@ -15,8 +14,8 @@ class SurveyType(str, enum.Enum):
 class HealthInspection(Base):
     __tablename__ = "health_inspections"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    facility_id = Column(UUID(as_uuid=True), ForeignKey("facilities.id"), nullable=False, index=True)
+    id = Column(GUID, primary_key=True, default=uuid.uuid4)
+    facility_id = Column(GUID, ForeignKey("facilities.id"), nullable=False, index=True)
     survey_date = Column(Date, nullable=False)
     survey_type = Column(Enum(SurveyType), nullable=False)
     cycle = Column(Integer)  # 1 = most recent, 2 = second most recent

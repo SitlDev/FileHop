@@ -1,15 +1,14 @@
 from sqlalchemy import Column, String, Integer, Date, Numeric, DateTime, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
 from datetime import datetime
-from app.database import Base
+from app.database import Base, GUID
 
 class PBJSubmission(Base):
     __tablename__ = "pbj_submissions"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    facility_id = Column(UUID(as_uuid=True), ForeignKey("facilities.id"), nullable=False, index=True)
+    id = Column(GUID, primary_key=True, default=uuid.uuid4)
+    facility_id = Column(GUID, ForeignKey("facilities.id"), nullable=False, index=True)
     quarter = Column(String(6), nullable=False)  # e.g., "2026Q1"
     submission_date = Column(Date)
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -20,8 +19,8 @@ class PBJSubmission(Base):
 class PBJDailyStaffing(Base):
     __tablename__ = "pbj_daily_staffing"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    pbj_submission_id = Column(UUID(as_uuid=True), ForeignKey("pbj_submissions.id"), nullable=False, index=True)
+    id = Column(GUID, primary_key=True, default=uuid.uuid4)
+    pbj_submission_id = Column(GUID, ForeignKey("pbj_submissions.id"), nullable=False, index=True)
     work_date = Column(Date, nullable=False, index=True)
     employee_id = Column(String(50))
     job_code = Column(Integer, nullable=False)  # 1-12 per CMS spec
