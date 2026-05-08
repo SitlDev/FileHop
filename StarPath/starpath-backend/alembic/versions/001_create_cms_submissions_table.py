@@ -1,17 +1,16 @@
 """Create cms_submissions table
 
 Revision ID: 001_cms_submissions
-Revises: 
+Revises: 007_pbj
 Create Date: 2026-05-06 00:00:00.000000
 
 """
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.dialects import sqlite
 
 # revision identifiers, used by Alembic.
 revision = '001_cms_submissions'
-down_revision = None
+down_revision = '007_pbj'
 branch_labels = None
 depends_on = None
 
