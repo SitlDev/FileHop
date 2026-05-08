@@ -19,9 +19,6 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Ensure public directory exists
-RUN mkdir -p /app/public
-
 # Production stage
 FROM node:18-alpine
 
@@ -48,6 +45,9 @@ EXPOSE 3000
 # Environment
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+
+# Use the dynamic port from Railway
+CMD ["node", "server.js"]
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
