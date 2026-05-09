@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/useAuth';
 import { API_URL } from '@/lib/api-config';
+import { mockAlerts } from '@/lib/mock-data';
 
 interface Alert {
   id: string;
@@ -40,12 +41,14 @@ export default function AlertsPage() {
         const data = await response.json();
         setAlerts(data.notifications || []);
       } else if (response.status === 404) {
-        setAlerts([]);
+        // Use mock data for demo
+        setAlerts(mockAlerts);
       } else {
         setError('Failed to load alerts');
       }
     } catch (err) {
-      setError('Failed to load alerts');
+      // Use mock data for demo
+      setAlerts(mockAlerts);
       console.error(err);
     } finally {
       setLoading(false);
@@ -58,30 +61,44 @@ export default function AlertsPage() {
     return true;
   });
 
+  const alertStats = {
+    critical: alerts.filter(a => a.severity === 'critical' && !a.resolved).length,
+    high: alerts.filter(a => a.severity === 'high' && !a.resolved).length,
+    medium: alerts.filter(a => a.severity === 'medium' && !a.resolved).length,
+    low: alerts.filter(a => a.severity === 'low' && !a.resolved).length,
+    total: alerts.length,
+    unresolved: alerts.filter(a => !a.resolved).length,
+    resolved: alerts.filter(a => a.resolved).length,
+  };
+
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case 'critical':
-        return 'bg-red-100 text-red-800 border-red-300';
+        return 'border-red-300 bg-red-50 hover:bg-red-100';
       case 'high':
-        return 'bg-orange-100 text-orange-800 border-orange-300';
+        return 'border-orange-300 bg-orange-50 hover:bg-orange-100';
       case 'medium':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+        return 'border-yellow-300 bg-yellow-50 hover:bg-yellow-100';
       default:
-        return 'bg-blue-100 text-blue-800 border-blue-300';
+        return 'border-blue-300 bg-blue-50 hover:bg-blue-100';
     }
   };
 
-  const getSeverityIcon = (severity: string) => {
+  const getSeverityBadgeColor = (severity: string) => {
     switch (severity) {
       case 'critical':
-        return '🔴';
+        return 'bg-red-100 text-red-800';
       case 'high':
-        return '🟠';
+        return 'bg-orange-100 text-orange-800';
       case 'medium':
-        return '🟡';
+        return 'bg-yellow-100 text-yellow-800';
       default:
-        return '🔵';
+        return 'bg-blue-100 text-blue-800';
     }
+  };
+
+  const getSeverityLabel = (severity: string) => {
+    return severity.charAt(0).toUpperCase() + severity.slice(1);
   };
 
   if (!user) {
@@ -96,8 +113,41 @@ export default function AlertsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="border-b border-gray-200 pb-8">
-        <h1 className="text-4xl font-bold text-gray-900">Alerts</h1>
-        <p className="text-lg text-gray-600 mt-3">Monitor important notifications and facility alerts</p>
+        <h1 className="text-4xl font-bold text-gray-900">Alerts & Notifications</h1>
+        <p className="text-lg text-gray-600 mt-3">
+          Track important notifications and facility alerts by severity level
+        </p>
+      </div>
+
+      {/* Alert Summary Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="text-xs font-semibold text-red-700 uppercase">Critical</div>
+          <div className="text-3xl font-bold text-red-600 mt-2">{alertStats.critical}</div>
+          <div className="text-xs text-red-600 mt-1">Unresolved</div>
+        </div>
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="text-xs font-semibold text-orange-700 uppercase">High</div>
+          <div className="text-3xl font-bold text-orange-600 mt-2">{alertStats.high}</div>
+          <div className="text-xs text-orange-600 mt-1">Unresolved</div>
+        </div>
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="text-xs font-semibold text-yellow-700 uppercase">Medium</div>
+          <div className="text-3xl font-bold text-yellow-600 mt-2">{alertStats.medium}</div>
+          <div className="text-xs text-yellow-600 mt-1">Unresolved</div>
+        </div>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="text-xs font-semibold text-blue-700 uppercase">Low</div>
+          <div className="text-3xl font-bold text-blue-600 mt-2">{alertStats.low}</div>
+          <div className="text-xs text-blue-600 mt-1">Unresolved</div>
+        </div>
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="text-xs font-semibold text-gray-700 uppercase">Total</div>
+          <div className="text-3xl font-bold text-gray-600 mt-2">{alertStats.total}</div>
+          <div className="text-xs text-gray-600 mt-1">
+            {alertStats.unresolved} unresolved
+          </div>
+        </div>
       </div>
 
       {/* Error Message */}
@@ -108,36 +158,36 @@ export default function AlertsPage() {
       )}
 
       {/* Filter Tabs */}
-      <div className="flex gap-4">
+      <div className="flex gap-2 flex-wrap">
         <button
           onClick={() => setFilter('unresolved')}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             filter === 'unresolved'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-red-600 text-white'
               : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
           }`}
         >
-          Unresolved ({alerts.filter(a => !a.resolved).length})
+          Unresolved ({alertStats.unresolved})
         </button>
         <button
           onClick={() => setFilter('resolved')}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             filter === 'resolved'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-green-600 text-white'
               : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
           }`}
         >
-          Resolved ({alerts.filter(a => a.resolved).length})
+          Resolved ({alertStats.resolved})
         </button>
         <button
           onClick={() => setFilter('all')}
           className={`px-4 py-2 rounded-lg font-medium transition-all ${
             filter === 'all'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-gray-600 text-white'
               : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
           }`}
         >
-          All ({alerts.length})
+          All ({alertStats.total})
         </button>
       </div>
 
@@ -157,28 +207,69 @@ export default function AlertsPage() {
           filteredAlerts.map((alert) => (
             <div
               key={alert.id}
-              className={`border rounded-lg p-6 ${getSeverityColor(alert.severity)}`}
+              className={`border-l-4 rounded-lg p-6 transition-all ${getSeverityColor(alert.severity)} bg-white shadow-sm hover:shadow-md`}
             >
-              <div className="flex items-start gap-4">
-                <span className="text-2xl flex-shrink-0">{getSeverityIcon(alert.severity)}</span>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg">{alert.title}</h3>
-                  <p className="text-sm mt-1 opacity-90">{alert.description}</p>
-                  <div className="flex items-center gap-4 mt-3 text-xs opacity-75">
-                    <span>Facility: {alert.facility_id}</span>
+                  <div className="flex items-start gap-3 mb-2">
+                    <span className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getSeverityBadgeColor(alert.severity)}`}>
+                      {getSeverityLabel(alert.severity)}
+                    </span>
+                    {alert.resolved && (
+                      <span className="inline-block px-2 py-1 rounded text-xs font-semibold bg-green-100 text-green-800">
+                        Resolved
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">{alert.title}</h3>
+                  <p className="text-gray-700 text-sm mt-2">{alert.description}</p>
+                  <div className="flex items-center gap-4 mt-3 text-xs text-gray-600 flex-wrap">
+                    <span className="font-medium">Facility: {alert.facility_id}</span>
+                    <span>•</span>
                     <span>Type: {alert.type}</span>
-                    <span>{new Date(alert.created_at).toLocaleDateString()}</span>
+                    <span>•</span>
+                    <span>{new Date(alert.created_at).toLocaleDateString()} {new Date(alert.created_at).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</span>
                   </div>
                 </div>
-                {alert.resolved && (
-                  <span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex-shrink-0">
-                    Resolved
-                  </span>
-                )}
               </div>
             </div>
           ))
         )}
+      </div>
+
+      {/* Severity Legend */}
+      <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
+        <h3 className="font-semibold text-gray-900 mb-3">Alert Severity Levels</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+          <div className="flex items-start gap-3">
+            <span className="inline-block w-3 h-3 bg-red-600 rounded-full mt-1 flex-shrink-0"></span>
+            <div>
+              <div className="font-semibold text-gray-900">Critical</div>
+              <div className="text-gray-600 text-xs">Requires immediate attention</div>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="inline-block w-3 h-3 bg-orange-600 rounded-full mt-1 flex-shrink-0"></span>
+            <div>
+              <div className="font-semibold text-gray-900">High</div>
+              <div className="text-gray-600 text-xs">Urgent priority action needed</div>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="inline-block w-3 h-3 bg-yellow-600 rounded-full mt-1 flex-shrink-0"></span>
+            <div>
+              <div className="font-semibold text-gray-900">Medium</div>
+              <div className="text-gray-600 text-xs">Moderate priority follow-up</div>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="inline-block w-3 h-3 bg-blue-600 rounded-full mt-1 flex-shrink-0"></span>
+            <div>
+              <div className="font-semibold text-gray-900">Low</div>
+              <div className="text-gray-600 text-xs">Informational notification</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
