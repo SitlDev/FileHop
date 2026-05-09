@@ -137,21 +137,34 @@ class ReportGenerator:
             
             story.append(Paragraph("OVERALL RATING", heading_style))
             
-            # Create star rating display - using text-based format for better compatibility
+            # Create star rating display - using star unicode characters for visual representation
             star_count = int(overall_stars) if isinstance(overall_stars, (int, float)) else 0
-            empty_count = 5 - star_count
-            star_display = "[" + ("*" * star_count) + (" " * empty_count) + "]" if star_count > 0 else "Not Rated"
+            filled_star = "★"
+            empty_star = "☆"
+            
+            if star_count >= 5:
+                star_display = filled_star * 5
+            elif star_count >= 4:
+                star_display = filled_star * 4 + empty_star
+            elif star_count >= 3:
+                star_display = filled_star * 3 + empty_star * 2
+            elif star_count >= 2:
+                star_display = filled_star * 2 + empty_star * 3
+            elif star_count >= 1:
+                star_display = filled_star + empty_star * 4
+            else:
+                star_display = empty_star * 5
             
             overall_para = ParagraphStyle(
                 'OverallRating',
                 parent=styles['Normal'],
-                fontSize=28,
+                fontSize=36,
                 textColor=self.cms_blue,
                 alignment=TA_CENTER,
-                fontName='Courier-Bold',
+                fontName='Helvetica-Bold',
                 spaceAfter=6,
                 spaceBefore=6,
-                leading=35
+                leading=40
             )
             
             stars_numeric = ParagraphStyle(
@@ -449,20 +462,23 @@ class ReportGenerator:
         return buffer
     
     def _star_string(self, rating: int) -> str:
-        """Convert numeric rating to star string - text-based format"""
+        """Convert numeric rating to star string - using star unicode characters"""
         rating = int(rating) if isinstance(rating, (int, float)) else 0
+        filled_star = "★"
+        empty_star = "☆"
+        
         if rating <= 0:
-            return "[ ]"
+            return empty_star * 5
         elif rating >= 5:
-            return "[*****]"
+            return filled_star * 5
         elif rating >= 4:
-            return "[****]"
+            return filled_star * 4 + empty_star
         elif rating >= 3:
-            return "[***]"
+            return filled_star * 3 + empty_star * 2
         elif rating >= 2:
-            return "[**]"
+            return filled_star * 2 + empty_star * 3
         elif rating >= 1:
-            return "[*]"
+            return filled_star + empty_star * 4
         else:
             return "[ ]"
             
