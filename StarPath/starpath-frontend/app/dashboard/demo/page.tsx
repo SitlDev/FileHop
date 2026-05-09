@@ -34,7 +34,7 @@ export default function DemoPage() {
   const selectedRating = mockRatings.find((r) => r.facility_id === selectedFacility);
   const facilityInspections = mockInspections.filter((i) => i.facility_id === selectedFacility);
   const facilityStaffing = mockStaffing.find((s) => s.facility_id === selectedFacility);
-  const facilityMeasures = mockQualityMeasures.filter((m) => m.facility_id === selectedFacility);
+  const facilityMeasures = mockQualityMeasures;
 
   const StarRating = ({ rating }: { rating: number }) => (
     <div className="flex gap-1">
@@ -253,7 +253,7 @@ export default function DemoPage() {
                           {measure.comparison}
                         </span>
                       </div>
-                      <div className="text-2xl font-bold text-blue-600">{measure.measure_value}%</div>
+                      <div className="text-2xl font-bold text-blue-600">{measure.facility_score.toFixed(1)}%</div>
                     </div>
                   ))}
                 </div>
