@@ -447,17 +447,16 @@ class ReportGenerator:
         return buffer
     
     def _star_string(self, rating: int) -> str:
-        """Convert numeric rating to star string - using Unicode filled and hollow stars"""
+        """Convert numeric rating to star string - display only filled stars"""
         rating = int(rating) if isinstance(rating, (int, float)) else 0
         # Ensure rating is in valid 0-5 range
         rating = max(0, min(5, rating))
         
-        # Use Unicode star symbols for clear visual distinction
+        # Use filled star only
         filled_star = "★"  # U+2605 BLACK STAR - filled star
-        empty_star = "☆"   # U+2606 WHITE STAR - hollow star
         
-        # Return filled stars followed by hollow stars to make 5 total
-        return (filled_star * rating) + (empty_star * (5 - rating))
+        # Return only filled stars based on rating (no hollow stars)
+        return filled_star * rating
     
     def generate_ratings_trend_report(
         self,
