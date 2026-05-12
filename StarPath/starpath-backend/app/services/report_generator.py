@@ -4,9 +4,16 @@ from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT, TA_JUSTIFY
-from io import BytesIO
+from io import BytesIO, StringIO
 from datetime import datetime
 from typing import List, Dict, Optional
+import csv
+try:
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+    OPENPYXL_AVAILABLE = True
+except ImportError:
+    OPENPYXL_AVAILABLE = False
 
 class ReportGenerator:
     """
@@ -522,3 +529,262 @@ class ReportGenerator:
         doc.build(story)
         buffer.seek(0)
         return buffer
+    
+    def generate_staffing_report(self, facility_name: str, staffing_data: List[Dict], benchmarks: Dict, include_comparative: bool = False) -> BytesIO:
+        """Generate CMS-compliant staffing domain report"""
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=self.pagesize, rightMargin=0.5*inch, leftMargin=0.5*inch, topMargin=0.6*inch, bottomMargin=0.5*inch)
+        story = []
+        styles = getSampleStyleSheet()
+        
+        heading_style = ParagraphStyle('SectionHeading', parent=styles['Heading2'], fontSize=12, textColor=self.cms_blue, spaceAfter=10, spaceBefore=12, fontName='Helvetica-Bold', backColor=self.cms_light_gray, borderPadding=5)
+        
+        # CMS Header
+        story.append(Paragraph("Centers for Medicare & Medicaid Services", ParagraphStyle('CMSHeader', parent=styles['Heading1'], fontSize=10, textColor=colors.black, spaceAfter=3, fontName='Helvetica-Bold')))
+        story.append(Paragraph("FIVE-STAR QUALITY RATING SYSTEM - NURSING HOME COMPARE", ParagraphStyle('CMSHeader', parent=styles['Heading1'], fontSize=10, textColor=colors.black, spaceAfter=3, fontName='Helvetica-Bold')))
+        story.append(Spacer(1, 0.1*inch))
+        story.append(Paragraph("STAFFING DOMAIN REPORT", ParagraphStyle('ReportTitle', parent=styles['Heading1'], fontSize=16, textColor=self.cms_blue, spaceAfter=6, alignment=TA_CENTER, fontName='Helvetica-Bold')))
+        story.append(Paragraph(facility_name, styles['Heading2']))
+        story.append(Spacer(1, 0.15*inch))
+        
+        # Staffing Levels
+        story.append(Paragraph("STAFFING LEVELS", heading_style))
+        if staffing_data:
+            current = staffing_data[0]
+            staffing_info = [
+                ['Registered Nurses (RN)', str(current.get('rn_count', 'N/A'))],
+                ['Licensed Practical Nurses (LPN)', str(current.get('lpn_count', 'N/A'))],
+                ['Certified Nursing Assistants (CNA)', str(current.get('cna_count', 'N/A'))],
+                ['RN Hours per 100 Resident Days', f"{current.get('rn_hours_per_100_bed_days', 'N/A'):.2f}"],
+                ['Total Staff Hours per 100 Resident Days', f"{current.get('total_hours_per_100_bed_days', 'N/A'):.2f}"],
+            ]
+            staffing_table = Table(staffing_info, colWidths=[3.5*inch, 1.5*inch])
+            staffing_table.setStyle(TableStyle([('ALIGN', (0, 0), (0, -1), 'LEFT'), ('ALIGN', (1, 0), (1, -1), 'CENTER'), ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'), ('FONTSIZE', (0, 0), (-1, -1), 9), ('GRID', (0, 0), (-1, -1), 0.5, colors.grey), ('ROWBACKGROUNDS', (0, 0), (-1, -1), [colors.white, self.cms_light_gray])]))
+            story.append(staffing_table)
+            story.append(Spacer(1, 0.15*inch))
+        
+        # Benchmarking
+        if include_comparative and benchmarks:
+            story.append(Paragraph("BENCHMARKING", heading_style))
+            if staffing_data and staffing_data[0].get('rn_hours_per_100_bed_days') and benchmarks.get('national'):
+                current = staffing_data[0]
+                bench_data = [
+                    ['Measure', 'Your Facility', 'State Median', 'National Median'],
+                    ['RN Hours per 100 Bed Days', f"{current.get('rn_hours_per_100_bed_days', 'N/A'):.2f}", 
+                     f"{benchmarks.get('state', [{}])[0].get('rn_hours_median', 'N/A'):.2f}" if benchmarks.get('state') else 'N/A',
+                     f"{benchmarks.get('national', {}).get('rn_hours_median', 'N/A'):.2f}"],
+                ]
+                bench_table = Table(bench_data, colWidths=[2*inch, 1.3*inch, 1.3*inch, 1.3*inch])
+                bench_table.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, 0), self.cms_blue), ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke), ('ALIGN', (0, 0), (-1, -1), 'CENTER'), ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'), ('FONTSIZE', (0, 0), (-1, -1), 9), ('GRID', (0, 0), (-1, -1), 0.5, colors.grey), ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, self.cms_light_gray])]))
+                story.append(bench_table)
+        
+        story.append(Spacer(1, 0.3*inch))
+        story.append(Paragraph("___" * 35, styles['Normal']))
+        methodology_style = ParagraphStyle('Methodology', parent=styles['Normal'], fontSize=7, textColor=colors.grey, alignment=TA_JUSTIFY, leading=9)
+        story.append(Paragraph("The Five-Star Quality Rating System provides consumers, their families, and caregivers with information to help compare nursing homes. For the most current information, visit www.medicare.gov/nursinghomecompare.", methodology_style))
+        
+        doc.build(story)
+        buffer.seek(0)
+        return buffer
+    
+    def generate_quality_measures_report(self, facility_name: str, quality_data: List[Dict], benchmarks: Dict, include_comparative: bool = False) -> BytesIO:
+        """Generate quality measures domain report"""
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=self.pagesize, rightMargin=0.5*inch, leftMargin=0.5*inch, topMargin=0.6*inch, bottomMargin=0.5*inch)
+        story = []
+        styles = getSampleStyleSheet()
+        
+        heading_style = ParagraphStyle('SectionHeading', parent=styles['Heading2'], fontSize=12, textColor=self.cms_blue, spaceAfter=10, spaceBefore=12, fontName='Helvetica-Bold', backColor=self.cms_light_gray, borderPadding=5)
+        
+        # CMS Header
+        story.append(Paragraph("Centers for Medicare & Medicaid Services", ParagraphStyle('CMSHeader', parent=styles['Heading1'], fontSize=10, textColor=colors.black, spaceAfter=3, fontName='Helvetica-Bold')))
+        story.append(Paragraph("FIVE-STAR QUALITY RATING SYSTEM - NURSING HOME COMPARE", ParagraphStyle('CMSHeader', parent=styles['Heading1'], fontSize=10, textColor=colors.black, spaceAfter=3, fontName='Helvetica-Bold')))
+        story.append(Spacer(1, 0.1*inch))
+        story.append(Paragraph("QUALITY MEASURES REPORT", ParagraphStyle('ReportTitle', parent=styles['Heading1'], fontSize=16, textColor=self.cms_blue, spaceAfter=6, alignment=TA_CENTER, fontName='Helvetica-Bold')))
+        story.append(Paragraph(facility_name, styles['Heading2']))
+        story.append(Spacer(1, 0.15*inch))
+        
+        # Quality Measures
+        story.append(Paragraph("QUALITY INDICATORS", heading_style))
+        if quality_data:
+            current = quality_data[0]
+            qm_info = [
+                ['Pressure Ulcer Rate', f"{current.get('pressure_ulcer_percentage', 'N/A')}%"],
+                ['Urinary Tract Infections', f"{current.get('uti_percentage', 'N/A')}%"],
+                ['Antipsychotic Medication Use', f"{current.get('antipsychotic_percentage', 'N/A')}%"],
+                ['Hospital Readmission Rate', f"{current.get('readmission_rate', 'N/A')}%"],
+                ['Hospital Transfer Rate', f"{current.get('hospital_transfer_rate', 'N/A')}%"],
+            ]
+            qm_table = Table(qm_info, colWidths=[3.5*inch, 1.5*inch])
+            qm_table.setStyle(TableStyle([('ALIGN', (0, 0), (0, -1), 'LEFT'), ('ALIGN', (1, 0), (1, -1), 'CENTER'), ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'), ('FONTSIZE', (0, 0), (-1, -1), 9), ('GRID', (0, 0), (-1, -1), 0.5, colors.grey), ('ROWBACKGROUNDS', (0, 0), (-1, -1), [colors.white, self.cms_light_gray])]))
+            story.append(qm_table)
+        
+        story.append(Spacer(1, 0.3*inch))
+        story.append(Paragraph("___" * 35, styles['Normal']))
+        methodology_style = ParagraphStyle('Methodology', parent=styles['Normal'], fontSize=7, textColor=colors.grey, alignment=TA_JUSTIFY, leading=9)
+        story.append(Paragraph("The Five-Star Quality Rating System provides consumers, their families, and caregivers with information to help compare nursing homes. For the most current information, visit www.medicare.gov/nursinghomecompare.", methodology_style))
+        
+        doc.build(story)
+        buffer.seek(0)
+        return buffer
+    
+    def generate_comparative_report(self, facility_name: str, facility_ratings: Dict, state_benchmark: Dict, national_benchmark: Dict) -> BytesIO:
+        """Generate comparative analysis report"""
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(buffer, pagesize=self.pagesize, rightMargin=0.5*inch, leftMargin=0.5*inch, topMargin=0.6*inch, bottomMargin=0.5*inch)
+        story = []
+        styles = getSampleStyleSheet()
+        
+        heading_style = ParagraphStyle('SectionHeading', parent=styles['Heading2'], fontSize=12, textColor=self.cms_blue, spaceAfter=10, spaceBefore=12, fontName='Helvetica-Bold', backColor=self.cms_light_gray, borderPadding=5)
+        
+        # CMS Header
+        story.append(Paragraph("Centers for Medicare & Medicaid Services", ParagraphStyle('CMSHeader', parent=styles['Heading1'], fontSize=10, textColor=colors.black, spaceAfter=3, fontName='Helvetica-Bold')))
+        story.append(Paragraph("FIVE-STAR QUALITY RATING SYSTEM - NURSING HOME COMPARE", ParagraphStyle('CMSHeader', parent=styles['Heading1'], fontSize=10, textColor=colors.black, spaceAfter=3, fontName='Helvetica-Bold')))
+        story.append(Spacer(1, 0.1*inch))
+        story.append(Paragraph("COMPARATIVE ANALYSIS REPORT", ParagraphStyle('ReportTitle', parent=styles['Heading1'], fontSize=16, textColor=self.cms_blue, spaceAfter=6, alignment=TA_CENTER, fontName='Helvetica-Bold')))
+        story.append(Paragraph(facility_name, styles['Heading2']))
+        story.append(Spacer(1, 0.15*inch))
+        
+        # Comparison Table
+        story.append(Paragraph("RATINGS COMPARISON", heading_style))
+        comp_data = [
+            ['Domain', 'Your Facility', 'State Median', 'National Median'],
+            ['Overall Rating', str(facility_ratings.get('overall_rating', 'N/A')), str(state_benchmark.get('overall_median', 'N/A')), str(national_benchmark.get('overall_median', 'N/A'))],
+            ['Health Inspections', str(facility_ratings.get('health_inspection_rating', 'N/A')), str(state_benchmark.get('health_inspection_median', 'N/A')), str(national_benchmark.get('health_inspection_median', 'N/A'))],
+            ['Staffing', str(facility_ratings.get('staffing_rating', 'N/A')), str(state_benchmark.get('staffing_median', 'N/A')), str(national_benchmark.get('staffing_median', 'N/A'))],
+            ['Quality Measures', str(facility_ratings.get('qm_rating', 'N/A')), str(state_benchmark.get('qm_median', 'N/A')), str(national_benchmark.get('qm_median', 'N/A'))],
+        ]
+        comp_table = Table(comp_data, colWidths=[1.8*inch, 1.3*inch, 1.3*inch, 1.3*inch])
+        comp_table.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, 0), self.cms_blue), ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke), ('ALIGN', (0, 0), (-1, -1), 'CENTER'), ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'), ('FONTSIZE', (0, 0), (-1, -1), 9), ('GRID', (0, 0), (-1, -1), 0.5, colors.grey), ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, self.cms_light_gray])]))
+        story.append(comp_table)
+        
+        story.append(Spacer(1, 0.3*inch))
+        story.append(Paragraph("___" * 35, styles['Normal']))
+        methodology_style = ParagraphStyle('Methodology', parent=styles['Normal'], fontSize=7, textColor=colors.grey, alignment=TA_JUSTIFY, leading=9)
+        story.append(Paragraph("The Five-Star Quality Rating System provides consumers, their families, and caregivers with information to help compare nursing homes. For the most current information, visit www.medicare.gov/nursinghomecompare.", methodology_style))
+        
+        doc.build(story)
+        buffer.seek(0)
+        return buffer
+    
+    def export_to_csv(self, data: List[Dict], filename: str = "report.csv") -> BytesIO:
+        """Export data to CSV format"""
+        output = StringIO()
+        
+        if not data:
+            return BytesIO(b"No data to export")
+        
+        # Get headers from first row
+        fieldnames = list(data[0].keys())
+        writer = csv.DictWriter(output, fieldnames=fieldnames)
+        
+        writer.writeheader()
+        for row in data:
+            writer.writerow(row)
+        
+        # Convert StringIO to BytesIO
+        csv_bytes = output.getvalue().encode('utf-8')
+        buffer = BytesIO(csv_bytes)
+        buffer.seek(0)
+        return buffer
+    
+    def export_to_excel(self, data: List[Dict], filename: str = "report.xlsx", sheet_name: str = "Report") -> BytesIO:
+        """Export data to Excel format"""
+        if not OPENPYXL_AVAILABLE:
+            # Fallback to CSV if openpyxl not available
+            return self.export_to_csv(data, filename)
+        
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.title = sheet_name[:31]  # Excel sheet names limited to 31 chars
+        
+        if not data:
+            ws.append(["No data to export"])
+            buffer = BytesIO()
+            wb.save(buffer)
+            buffer.seek(0)
+            return buffer
+        
+        # Get headers from first row
+        headers = list(data[0].keys())
+        
+        # Write header row with formatting
+        ws.append(headers)
+        header_fill = PatternFill(start_color="003366", end_color="003366", fill_type="solid")
+        header_font = Font(bold=True, color="FFFFFF", size=11)
+        border = Border(
+            left=Side(style='thin'),
+            right=Side(style='thin'),
+            top=Side(style='thin'),
+            bottom=Side(style='thin')
+        )
+        
+        for cell in ws[1]:
+            cell.fill = header_fill
+            cell.font = header_font
+            cell.border = border
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+        
+        # Write data rows
+        for row_data in data:
+            row_values = [row_data.get(header, '') for header in headers]
+            ws.append(row_values)
+        
+        # Apply borders and formatting to data rows
+        thin_border = Border(
+            left=Side(style='thin', color='cccccc'),
+            right=Side(style='thin', color='cccccc'),
+            top=Side(style='thin', color='cccccc'),
+            bottom=Side(style='thin', color='cccccc')
+        )
+        
+        for row_num, _ in enumerate(data, start=2):
+            for col_num, header in enumerate(headers, start=1):
+                cell = ws.cell(row=row_num, column=col_num)
+                cell.border = thin_border
+                cell.alignment = Alignment(horizontal='left', vertical='center')
+                # Alternate row colors
+                if row_num % 2 == 0:
+                    cell.fill = PatternFill(start_color="f5f5f5", end_color="f5f5f5", fill_type="solid")
+        
+        # Auto-adjust column widths
+        for column in ws.columns:
+            max_length = 0
+            column_letter = column[0].column_letter
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = min(max_length + 2, 50)
+            ws.column_dimensions[column_letter].width = adjusted_width
+        
+        buffer = BytesIO()
+        wb.save(buffer)
+        buffer.seek(0)
+        return buffer
+    
+    def export_staffing_data_to_csv(self, staffing_data: List[Dict]) -> BytesIO:
+        """Export staffing data to CSV format"""
+        return self.export_to_csv(staffing_data, "staffing_report.csv")
+    
+    def export_staffing_data_to_excel(self, staffing_data: List[Dict]) -> BytesIO:
+        """Export staffing data to Excel format"""
+        return self.export_to_excel(staffing_data, "staffing_report.xlsx", "Staffing Data")
+    
+    def export_quality_data_to_csv(self, quality_data: List[Dict]) -> BytesIO:
+        """Export quality measures data to CSV format"""
+        return self.export_to_csv(quality_data, "quality_report.csv")
+    
+    def export_quality_data_to_excel(self, quality_data: List[Dict]) -> BytesIO:
+        """Export quality measures data to Excel format"""
+        return self.export_to_excel(quality_data, "quality_report.xlsx", "Quality Measures")
+    
+    def export_comparative_data_to_csv(self, comparative_data: List[Dict]) -> BytesIO:
+        """Export comparative analysis data to CSV format"""
+        return self.export_to_csv(comparative_data, "comparative_report.csv")
+    
+    def export_comparative_data_to_excel(self, comparative_data: List[Dict]) -> BytesIO:
+        """Export comparative analysis data to Excel format"""
+        return self.export_to_excel(comparative_data, "comparative_report.xlsx", "Comparative Analysis")

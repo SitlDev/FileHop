@@ -20,3 +20,5 @@ class Facility(Base):
     health_inspections = relationship("HealthInspection", back_populates="facility")
     # pbj_submissions = relationship("PBJSubmission", back_populates="facility")
     star_ratings = relationship("StarRating", back_populates="facility")
+    staffing_data = relationship("StaffingData", back_populates="facility")
+    quality_measures = relationship("QualityMeasure", back_populates="facility")

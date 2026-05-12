@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Boolean, Text, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, Boolean, Text, DateTime, Date, ForeignKey
 from sqlalchemy.orm import relationship
 import uuid
 from datetime import datetime
@@ -17,6 +17,15 @@ class Deficiency(Base):
     is_immediate_jeopardy = Column(Boolean, default=False)
     is_past_non_compliance = Column(Boolean, default=False)
     points = Column(Integer)  # Calculated from Table 1
+    
+    # Additional CMS-Compliant Fields
+    severity_level = Column(String(50), nullable=True)  # "Immediate Jeopardy", "Serious Concern", "Non-Compliance"
+    regulatory_citation = Column(String(50), nullable=True)  # e.g., "42 CFR §483.12"
+    remediation_date = Column(Date, nullable=True)  # When corrected
+    remediation_verified = Column(Boolean, default=False)
+    remediation_notes = Column(Text, nullable=True)
+    
     created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     health_inspection = relationship("HealthInspection", back_populates="deficiencies")

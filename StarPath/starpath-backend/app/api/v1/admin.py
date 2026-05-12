@@ -5,6 +5,9 @@ from app.models.user import User as UserModel, UserRole
 from app.models.facility import Facility
 from app.models.star_rating import StarRating
 from app.models.health_inspection import HealthInspection
+from app.models.staffing_data import StaffingData
+from app.models.quality_measure import QualityMeasure
+from app.models.benchmark import Benchmark
 from app.models.notification import Notification, NotificationType
 from app.schemas.notification import Notification as NotificationSchema, NotificationUpdate
 from app.schemas.user import UserPermissions
@@ -137,7 +140,312 @@ async def download_ratings_trend_report(
         headers={"Content-Disposition": f"attachment; filename={facility.name.replace(' ', '_')}_Ratings_Trend_{datetime.now().strftime('%Y%m%d')}.pdf"}
     )
 
-# ==================== NOTIFICATIONS ENDPOINTS ====================
+# ==================== NEW REPORT ENDPOINTS ====================
+
+@router.get("/reports/staffing/{facility_id}")
+async def download_staffing_report(
+    facility_id: str,
+    time_range: str = Query("quarterly"),
+    include_comparative: bool = Query(False),
+    format: str = Query("pdf"),
+    current_user: UserModel = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Download staffing domain report"""
+    permissions = get_user_permissions(current_user)
+    if not permissions.get("download_reports"):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Permission denied")
+    
+    facility = db.query(Facility).filter(Facility.id == facility_id).first()
+    if not facility:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Facility not found")
+    
+    # Get staffing data
+    staffing_records = db.query(StaffingData).filter(
+        StaffingData.facility_id == facility_id
+    ).order_by(StaffingData.report_date.desc()).limit(12).all()
+    
+    # Get benchmark data
+    benchmarks = db.query(Benchmark).filter(
+        Benchmark.state.isnot(None)  # State benchmarks
+    ).order_by(Benchmark.report_date.desc()).limit(2).all()
+    
+    national_benchmark = db.query(Benchmark).filter(
+        Benchmark.state.is_(None)  # National benchmark
+    ).order_by(Benchmark.report_date.desc()).first()
+    
+    generator = ReportGenerator("Staffing Domain Report")
+    
+    staffing_data_list = [
+        {
+            'report_date': s.report_date.isoformat() if s.report_date else 'N/A',
+            'report_period': s.report_period,
+            'rn_count': s.total_rn,
+            'lpn_count': s.total_lpn,
+            'cna_count': s.total_cna,
+            'rn_hours_per_100_bed_days': s.rn_hours_per_100_bed_days,
+            'lpn_hours_per_100_bed_days': s.lpn_hours_per_100_bed_days,
+            'cna_hours_per_100_bed_days': s.cna_hours_per_100_bed_days,
+            'total_hours_per_100_bed_days': s.total_hours_per_100_bed_days,
+            'rn_turnover_rate': s.rn_turnover_rate,
+            'lpn_turnover_rate': s.lpn_turnover_rate,
+            'cna_turnover_rate': s.cna_turnover_rate,
+            'data_source': s.data_source
+        } for s in staffing_records
+    ]
+    
+    benchmarks = {
+        'state': [
+            {
+                'state': b.state,
+                'rn_hours_median': b.rn_hours_per_100_bed_days_median,
+                'total_hours_median': b.total_hours_per_100_bed_days_median
+            } for b in benchmarks
+        ] if benchmarks else [],
+        'national': {
+            'rn_hours_median': national_benchmark.rn_hours_per_100_bed_days_median,
+            'total_hours_median': national_benchmark.total_hours_per_100_bed_days_median
+        } if national_benchmark else {}
+    }
+    
+    # Determine output format
+    if format.lower() == "csv":
+        export_buffer = generator.export_staffing_data_to_csv(staffing_data_list)
+        media_type = "text/csv"
+        file_ext = "csv"
+    elif format.lower() == "excel":
+        export_buffer = generator.export_staffing_data_to_excel(staffing_data_list)
+        media_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        file_ext = "xlsx"
+    else:
+        # Default to PDF
+        export_buffer = generator.generate_staffing_report(
+            facility_name=facility.name,
+            staffing_data=staffing_data_list,
+            benchmarks=benchmarks,
+            include_comparative=include_comparative
+        )
+        media_type = "application/pdf"
+        file_ext = "pdf"
+    
+    return StreamingResponse(
+        iter([export_buffer.getvalue()]),
+        media_type=media_type,
+        headers={"Content-Disposition": f"attachment; filename={facility.name.replace(' ', '_')}_Staffing_Report_{datetime.now().strftime('%Y%m%d')}.{file_ext}"}
+    )
+
+@router.get("/reports/quality-measures/{facility_id}")
+async def download_quality_measures_report(
+    facility_id: str,
+    time_range: str = Query("quarterly"),
+    include_comparative: bool = Query(False),
+    format: str = Query("pdf"),
+    current_user: UserModel = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Download quality measures domain report"""
+    permissions = get_user_permissions(current_user)
+    if not permissions.get("download_reports"):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Permission denied")
+    
+    facility = db.query(Facility).filter(Facility.id == facility_id).first()
+    if not facility:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Facility not found")
+    
+    # Get quality measures data
+    qm_records = db.query(QualityMeasure).filter(
+        QualityMeasure.facility_id == facility_id
+    ).order_by(QualityMeasure.report_date.desc()).limit(12).all()
+    
+    # Get benchmark data
+    benchmarks = db.query(Benchmark).filter(
+        Benchmark.state.isnot(None)
+    ).order_by(Benchmark.report_date.desc()).limit(2).all()
+    
+    national_benchmark = db.query(Benchmark).filter(
+        Benchmark.state.is_(None)
+    ).order_by(Benchmark.report_date.desc()).first()
+    
+    generator = ReportGenerator("Quality Measures Report")
+    
+    quality_data_list = [
+        {
+            'report_date': q.report_date.isoformat() if q.report_date else 'N/A',
+            'report_period': q.report_period,
+            'pressure_ulcer_percentage': q.pressure_ulcer_percentage,
+            'uti_percentage': q.uti_percentage,
+            'delirium_percentage': q.delirium_percentage,
+            'depression_percentage': q.depression_percentage,
+            'antipsychotic_percentage': q.antipsychotic_percentage,
+            'readmission_rate': q.readmission_rate,
+            'hospital_transfer_rate': q.hospital_transfer_rate,
+            'ed_visit_rate': q.ed_visit_rate,
+            'data_source': q.data_source
+        } for q in qm_records
+    ]
+    
+    benchmarks = {
+        'state': [
+            {
+                'state': b.state,
+                'pressure_ulcer_median': b.pressure_ulcer_median,
+                'readmission_median': b.readmission_rate_median
+            } for b in benchmarks
+        ] if benchmarks else [],
+        'national': {
+            'pressure_ulcer_median': national_benchmark.pressure_ulcer_median,
+            'readmission_median': national_benchmark.readmission_rate_median
+        } if national_benchmark else {}
+    }
+    
+    # Determine output format
+    if format.lower() == "csv":
+        export_buffer = generator.export_quality_data_to_csv(quality_data_list)
+        media_type = "text/csv"
+        file_ext = "csv"
+    elif format.lower() == "excel":
+        export_buffer = generator.export_quality_data_to_excel(quality_data_list)
+        media_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        file_ext = "xlsx"
+    else:
+        # Default to PDF
+        export_buffer = generator.generate_quality_measures_report(
+            facility_name=facility.name,
+            quality_data=quality_data_list,
+            benchmarks=benchmarks,
+            include_comparative=include_comparative
+        )
+        media_type = "application/pdf"
+        file_ext = "pdf"
+    
+    return StreamingResponse(
+        iter([export_buffer.getvalue()]),
+        media_type=media_type,
+        headers={"Content-Disposition": f"attachment; filename={facility.name.replace(' ', '_')}_Quality_Measures_{datetime.now().strftime('%Y%m%d')}.{file_ext}"}
+    )
+
+@router.get("/reports/comparative/{facility_id}")
+async def download_comparative_report(
+    facility_id: str,
+    time_range: str = Query("quarterly"),
+    format: str = Query("pdf"),
+    current_user: UserModel = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Download comparative analysis report (facility vs benchmarks)"""
+    permissions = get_user_permissions(current_user)
+    if not permissions.get("download_reports"):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Permission denied")
+    
+    facility = db.query(Facility).filter(Facility.id == facility_id).first()
+    if not facility:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Facility not found")
+    
+    # Get latest facility ratings
+    latest_rating = db.query(StarRating).filter(
+        StarRating.facility_id == facility_id
+    ).order_by(StarRating.effective_date.desc()).first()
+    
+    # Get state benchmarks (first state found)
+    state_benchmark = db.query(Benchmark).filter(
+        Benchmark.state.isnot(None)
+    ).order_by(Benchmark.report_date.desc()).first()
+    
+    # Get national benchmark
+    national_benchmark = db.query(Benchmark).filter(
+        Benchmark.state.is_(None)
+    ).order_by(Benchmark.report_date.desc()).first()
+    
+    generator = ReportGenerator("Comparative Analysis Report")
+    
+    facility_ratings = {
+        'overall_rating': latest_rating.overall_rating if latest_rating else 0,
+        'health_inspection_rating': latest_rating.health_inspection_rating if latest_rating else 0,
+        'staffing_rating': latest_rating.staffing_rating if latest_rating else 0,
+        'qm_rating': latest_rating.qm_rating if latest_rating else 0,
+    }
+    state_bench = {
+        'overall_median': state_benchmark.overall_rating_median if state_benchmark else None,
+        'health_inspection_median': state_benchmark.health_inspection_median if state_benchmark else None,
+        'staffing_median': state_benchmark.staffing_median if state_benchmark else None,
+        'qm_median': state_benchmark.quality_measures_median if state_benchmark else None,
+    }
+    national_bench = {
+        'overall_median': national_benchmark.overall_rating_median if national_benchmark else None,
+        'health_inspection_median': national_benchmark.health_inspection_median if national_benchmark else None,
+        'staffing_median': national_benchmark.staffing_median if national_benchmark else None,
+        'qm_median': national_benchmark.quality_measures_median if national_benchmark else None,
+    }
+    
+    # Determine output format
+    if format.lower() == "csv":
+        # For CSV, export as comparison table
+        comp_data = [{
+            'Domain': 'Overall Rating',
+            'Your Facility': facility_ratings.get('overall_rating', 'N/A'),
+            'State Median': state_bench.get('overall_median', 'N/A'),
+            'National Median': national_bench.get('overall_median', 'N/A')
+        }, {
+            'Domain': 'Health Inspections',
+            'Your Facility': facility_ratings.get('health_inspection_rating', 'N/A'),
+            'State Median': state_bench.get('health_inspection_median', 'N/A'),
+            'National Median': national_bench.get('health_inspection_median', 'N/A')
+        }, {
+            'Domain': 'Staffing',
+            'Your Facility': facility_ratings.get('staffing_rating', 'N/A'),
+            'State Median': state_bench.get('staffing_median', 'N/A'),
+            'National Median': national_bench.get('staffing_median', 'N/A')
+        }, {
+            'Domain': 'Quality Measures',
+            'Your Facility': facility_ratings.get('qm_rating', 'N/A'),
+            'State Median': state_bench.get('qm_median', 'N/A'),
+            'National Median': national_bench.get('qm_median', 'N/A')
+        }]
+        export_buffer = generator.export_comparative_data_to_csv(comp_data)
+        media_type = "text/csv"
+        file_ext = "csv"
+    elif format.lower() == "excel":
+        # For Excel, export as comparison table
+        comp_data = [{
+            'Domain': 'Overall Rating',
+            'Your Facility': facility_ratings.get('overall_rating', 'N/A'),
+            'State Median': state_bench.get('overall_median', 'N/A'),
+            'National Median': national_bench.get('overall_median', 'N/A')
+        }, {
+            'Domain': 'Health Inspections',
+            'Your Facility': facility_ratings.get('health_inspection_rating', 'N/A'),
+            'State Median': state_bench.get('health_inspection_median', 'N/A'),
+            'National Median': national_bench.get('health_inspection_median', 'N/A')
+        }, {
+            'Domain': 'Staffing',
+            'Your Facility': facility_ratings.get('staffing_rating', 'N/A'),
+            'State Median': state_bench.get('staffing_median', 'N/A'),
+            'National Median': national_bench.get('staffing_median', 'N/A')
+        }, {
+            'Domain': 'Quality Measures',
+            'Your Facility': facility_ratings.get('qm_rating', 'N/A'),
+            'State Median': state_bench.get('qm_median', 'N/A'),
+            'National Median': national_bench.get('qm_median', 'N/A')
+        }]
+        export_buffer = generator.export_comparative_data_to_excel(comp_data)
+        media_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        file_ext = "xlsx"
+    else:
+        # Default to PDF
+        export_buffer = generator.generate_comparative_report(
+            facility_name=facility.name,
+            facility_ratings=facility_ratings,
+            state_benchmark=state_bench,
+            national_benchmark=national_bench
+        )
+        media_type = "application/pdf"
+        file_ext = "pdf"
+    
+    return StreamingResponse(
+        iter([export_buffer.getvalue()]),
+        media_type=media_type,
+        headers={"Content-Disposition": f"attachment; filename={facility.name.replace(' ', '_')}_Comparative_Analysis_{datetime.now().strftime('%Y%m%d')}.{file_ext}"}
+    )
 
 @router.get("/notifications", response_model=list[NotificationSchema])
 def get_notifications(

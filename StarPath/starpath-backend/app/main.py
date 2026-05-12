@@ -14,7 +14,8 @@ logger.info("Starting StarPath backend application...")
 
 from app.api.v1 import auth, facilities, ratings, uploads, health_inspections, admin, cms
 # Import models to register them with SQLAlchemy
-from app.models import user, facility, health_inspection, deficiency, star_rating, notification, cms_submission
+from app.models import user, facility, health_inspection, deficiency, star_rating, notification, cms_submission, staffing_data, quality_measure, benchmark
+from app.database import Base, engine
 
 app = FastAPI(
     title="StarPath SNF API",
@@ -33,6 +34,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Create all tables on startup
+@app.on_event("startup")
+async def create_tables():
+    """Create all database tables on application startup"""
+    try:
+        Base.metadata.create_all(bind=engine)
+        logger.info("✅ Database tables created/verified successfully")
+    except Exception as e:
+        logger.error(f"❌ Failed to create database tables: {str(e)}")
+        raise
 
 @app.get("/")
 async def root():

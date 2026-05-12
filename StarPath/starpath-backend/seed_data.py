@@ -15,6 +15,9 @@ from app.models.star_rating import StarRating
 from app.models.deficiency import Deficiency
 from app.models.user import User, UserRole
 from app.models.notification import Notification, NotificationType
+from app.models.staffing_data import StaffingData
+from app.models.quality_measure import QualityMeasure
+from app.models.benchmark import Benchmark
 from app.utils.security import get_password_hash
 from app.database import Base
 
@@ -52,6 +55,139 @@ F_TAGS = [
 ]
 
 
+def seed_staffing_data(db: Session, facilities: list):
+    """Seed staffing data for each facility."""
+    print("Creating sample staffing data...")
+    staffing_records = []
+    
+    for facility in facilities:
+        # Create 4 quarters of staffing data
+        for i in range(4):
+            date = datetime.now() - timedelta(days=90*i)
+            staffing = StaffingData(
+                id=str(uuid.uuid4()),
+                facility_id=facility.id,
+                report_date=date.date(),
+                report_period=f"Q{4-i} 2025",
+                total_rn=random.randint(8, 25),
+                total_lpn=random.randint(5, 15),
+                total_cna=random.randint(15, 35),
+                total_other=random.randint(3, 10),
+                rn_hours_per_100_bed_days=round(random.uniform(8.5, 12.5), 2),
+                lpn_hours_per_100_bed_days=round(random.uniform(4.5, 7.5), 2),
+                cna_hours_per_100_bed_days=round(random.uniform(12.0, 18.0), 2),
+                total_hours_per_100_bed_days=round(random.uniform(25.0, 38.0), 2),
+                rn_turnover_rate=round(random.uniform(5, 25), 1),
+                lpn_turnover_rate=round(random.uniform(10, 30), 1),
+                cna_turnover_rate=round(random.uniform(20, 45), 1),
+                total_staff_turnover_rate=round(random.uniform(15, 35), 1),
+                rn_adequate=random.choice([True, True, False]),
+                lpn_adequate=random.choice([True, True, False]),
+                cna_adequate=random.choice([True, True, False]),
+                data_source="CMS",
+                data_source_date=date.date(),
+                created_at=datetime.now(),
+                updated_at=datetime.now()
+            )
+            staffing_records.append(staffing)
+    
+    db.add_all(staffing_records)
+    db.commit()
+    print(f"  • {len(staffing_records)} staffing records created")
+
+
+def seed_quality_measures(db: Session, facilities: list):
+    """Seed quality measures data for each facility."""
+    print("Creating sample quality measures data...")
+    qm_records = []
+    
+    for facility in facilities:
+        # Create 4 quarters of quality measure data
+        for i in range(4):
+            date = datetime.now() - timedelta(days=90*i)
+            qm = QualityMeasure(
+                id=str(uuid.uuid4()),
+                facility_id=facility.id,
+                report_date=date.date(),
+                report_period=f"Q{4-i} 2025",
+                pressure_ulcer_percentage=round(random.uniform(0.5, 5.0), 2),
+                uti_percentage=round(random.uniform(1.0, 6.0), 2),
+                delirium_percentage=round(random.uniform(0.1, 4.0), 2),
+                depression_percentage=round(random.uniform(1.0, 8.0), 2),
+                antipsychotic_percentage=round(random.uniform(2.0, 10.0), 2),
+                postop_pain_percentage=round(random.uniform(1.0, 5.0), 2),
+                physical_restraints_percentage=round(random.uniform(0.1, 3.0), 2),
+                readmission_rate=round(random.uniform(15.0, 35.0), 2),
+                hospital_transfer_rate=round(random.uniform(10.0, 25.0), 2),
+                ed_visit_rate=round(random.uniform(5.0, 15.0), 2),
+                antipsychotic_short_stay_percentage=round(random.uniform(1.0, 6.0), 2),
+                overall_satisfaction_score=round(random.uniform(3.5, 4.9), 1),
+                care_quality_score=round(random.uniform(3.5, 4.9), 1),
+                cleanliness_score=round(random.uniform(3.5, 4.9), 1),
+                staff_responsiveness_score=round(random.uniform(3.5, 4.9), 1),
+                data_source="CMS",
+                data_source_date=date.date(),
+                created_at=datetime.now(),
+                updated_at=datetime.now()
+            )
+            qm_records.append(qm)
+    
+    db.add_all(qm_records)
+    db.commit()
+    print(f"  • {len(qm_records)} quality measure records created")
+
+
+def seed_benchmarks(db: Session):
+    """Seed state and national benchmark data."""
+    print("Creating sample benchmark data...")
+    benchmark_records = []
+    
+    states = ["CA", "TX", "FL", "NY", "PA", None]  # None for national
+    
+    for state in states:
+        bench = Benchmark(
+            id=str(uuid.uuid4()),
+            state=state,
+            report_date=datetime.now().date(),
+            report_period="Q4 2025",
+            overall_rating_median=3.5 if state else 3.0,
+            overall_rating_25th_percentile=2.5 if state else 2.0,
+            overall_rating_75th_percentile=4.5 if state else 4.0,
+            health_inspection_median=3.5 if state else 3.0,
+            health_inspection_25th_percentile=2.5 if state else 2.0,
+            health_inspection_75th_percentile=4.5 if state else 4.0,
+            staffing_median=3.0 if state else 2.5,
+            staffing_25th_percentile=2.0 if state else 1.5,
+            staffing_75th_percentile=4.0 if state else 3.5,
+            quality_measures_median=3.5 if state else 3.0,
+            quality_measures_25th_percentile=2.5 if state else 2.0,
+            quality_measures_75th_percentile=4.5 if state else 4.0,
+            resident_satisfaction_median=4.0 if state else 3.8,
+            resident_satisfaction_25th_percentile=3.0 if state else 2.8,
+            resident_satisfaction_75th_percentile=4.8 if state else 4.6,
+            rn_hours_per_100_bed_days_median=10.5 if state else 10.0,
+            rn_hours_per_100_bed_days_25th_percentile=8.5 if state else 8.0,
+            rn_hours_per_100_bed_days_75th_percentile=12.5 if state else 12.0,
+            total_hours_per_100_bed_days_median=30.0 if state else 29.0,
+            total_hours_per_100_bed_days_25th_percentile=25.0 if state else 24.0,
+            total_hours_per_100_bed_days_75th_percentile=35.0 if state else 34.0,
+            pressure_ulcer_median=2.5 if state else 2.0,
+            readmission_rate_median=25.0 if state else 24.0,
+            hospital_transfer_rate_median=18.0 if state else 17.0,
+            antipsychotic_median=5.5 if state else 5.0,
+            facility_count="1200" if state else "15000",
+            data_source="CMS",
+            source_url="https://www.medicare.gov/care-compare",
+            created_at=datetime.now(),
+            updated_at=datetime.now()
+        )
+        benchmark_records.append(bench)
+    
+    db.add_all(benchmark_records)
+    db.commit()
+    print(f"  • {len(benchmark_records)} benchmark records created")
+
+
 def seed_database():
     """Seed the database with sample data."""
     Base.metadata.create_all(bind=engine)
@@ -63,6 +199,9 @@ def seed_database():
         db.query(StarRating).delete()
         db.query(Deficiency).delete()
         db.query(HealthInspection).delete()
+        db.query(StaffingData).delete()
+        db.query(QualityMeasure).delete()
+        db.query(Benchmark).delete()
         db.query(Facility).delete()
         db.query(User).delete()
         db.commit()
@@ -242,6 +381,11 @@ def seed_database():
             db.add_all(notifications_to_create)
             db.commit()
             print(f"✓ Created {len(notifications_to_create)} notifications")
+
+        # Seed new data types for expanded reports
+        seed_staffing_data(db, facilities)
+        seed_quality_measures(db, facilities)
+        seed_benchmarks(db)
 
         print("\n" + "=" * 60)
         print("✅ Sample data seeding completed successfully!")
