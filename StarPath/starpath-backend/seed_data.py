@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 import random
 import uuid
 from sqlalchemy.orm import Session
+from sqlalchemy import text
+import os
 from app.database import SessionLocal, engine
 from app.models.facility import Facility
 from app.models.health_inspection import HealthInspection, SurveyType
@@ -191,6 +193,38 @@ def seed_benchmarks(db: Session):
 def seed_database():
     """Seed the database with sample data."""
     Base.metadata.create_all(bind=engine)
+    
+    # Apply schema migrations for deficiencies table
+    try:
+        db_url = os.getenv("DATABASE_URL", "sqlite:///test.db")
+        if "mysql" in db_url.lower():
+            with engine.begin() as connection:
+                # Check and add missing columns to deficiencies
+                inspector_result = connection.execute(text(
+                    "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'deficiencies' AND TABLE_SCHEMA = DATABASE()"
+                ))
+                existing_columns = [row[0] for row in inspector_result]
+                
+                columns_to_add = [
+                    ("severity_level", "VARCHAR(100)"),
+                    ("regulatory_citation", "VARCHAR(255)"),
+                    ("remediation_date", "DATE"),
+                    ("remediation_verified", "BOOLEAN"),
+                    ("remediation_notes", "TEXT"),
+                ]
+                
+                for col_name, col_type in columns_to_add:
+                    if col_name not in existing_columns:
+                        print(f"Adding column {col_name} to deficiencies table...")
+                        try:
+                            connection.execute(text(f"ALTER TABLE deficiencies ADD COLUMN {col_name} {col_type}"))
+                        except Exception as e:
+                            print(f"Note: Column {col_name} may already exist: {e}")
+                
+                print("✅ Deficiencies table schema verified")
+    except Exception as e:
+        print(f"⚠️  Could not verify deficiencies schema: {e}")
+    
     db = SessionLocal()
 
     try:
