@@ -204,6 +204,7 @@ def seed_database():
                     "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'deficiencies' AND TABLE_SCHEMA = DATABASE()"
                 ))
                 existing_columns = [row[0] for row in inspector_result]
+                print(f"Existing deficiencies columns: {existing_columns}")
                 
                 columns_to_add = [
                     ("severity_level", "VARCHAR(100)"),
@@ -211,6 +212,7 @@ def seed_database():
                     ("remediation_date", "DATE"),
                     ("remediation_verified", "BOOLEAN"),
                     ("remediation_notes", "TEXT"),
+                    ("updated_at", "DATETIME"),
                 ]
                 
                 for col_name, col_type in columns_to_add:
@@ -218,8 +220,11 @@ def seed_database():
                         print(f"Adding column {col_name} to deficiencies table...")
                         try:
                             connection.execute(text(f"ALTER TABLE deficiencies ADD COLUMN {col_name} {col_type}"))
+                            print(f"✓ Added {col_name}")
                         except Exception as e:
-                            print(f"Note: Column {col_name} may already exist: {e}")
+                            print(f"Note: Column {col_name} may already exist or error: {e}")
+                    else:
+                        print(f"✓ Column {col_name} already exists")
                 
                 print("✅ Deficiencies table schema verified")
     except Exception as e:
