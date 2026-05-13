@@ -283,13 +283,13 @@ export default function DashboardPage() {
               )}
 
               {/* Rating Trends */}
-              <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 mb-8">
-                <h2 className="text-xl font-bold text-white mb-4">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 mb-8">
+                <h2 className="text-xl font-bold text-slate-900 mb-4">
                   Recent Rating Trends
                 </h2>
 
                 {facilities.length === 0 ? (
-                  <p className="text-slate-400">
+                  <p className="text-slate-600">
                     No facilities yet. Create your first facility to see trends.
                   </p>
                 ) : (
@@ -302,15 +302,15 @@ export default function DashboardPage() {
                         <Link
                           key={facility.id}
                           href={`/dashboard/facilities/${facility.id}`}
-                          className="flex items-center justify-between p-4 bg-slate-700/30 border border-slate-600 rounded-lg hover:border-blue-500 transition"
+                          className="flex items-center justify-between p-4 bg-slate-100 border border-slate-200 rounded-lg hover:border-slate-300 transition"
                         >
                           <div className="flex items-center gap-4 flex-1">
                             <RatingBadge rating={trend.current} />
                             <div className="flex-1">
-                              <p className="font-medium text-white">
+                              <p className="font-medium text-slate-900">
                                 {facility.name}
                               </p>
-                              <p className="text-xs text-slate-400">
+                              <p className="text-xs text-slate-600">
                                 {facility.bed_count} beds
                               </p>
                             </div>

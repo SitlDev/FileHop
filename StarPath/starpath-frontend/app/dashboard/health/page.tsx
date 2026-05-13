@@ -304,22 +304,22 @@ export default function HealthInspectionsPage() {
               {filteredInspections.map((inspection) => (
                 <div
                   key={inspection.id}
-                  className="group bg-slate-800 border border-slate-700 rounded-2xl hover:border-slate-600 transition-all duration-300 overflow-hidden"
+                  className="group bg-white border border-slate-200 rounded-2xl hover:border-slate-300 transition-all duration-300 overflow-hidden"
                 >
                   {/* Inspection Header - Clickable */}
                   <button
                     onClick={() => setExpandedInspection(expandedInspection === inspection.id ? null : inspection.id)}
-                    className="w-full p-6 text-left hover:bg-slate-700 hover:bg-opacity-50 transition-colors"
+                    className="w-full p-6 text-left hover:bg-slate-50 transition-colors"
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
                       {/* Survey Date */}
                       <div className="flex flex-col">
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Survey Date</span>
+                        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1">Survey Date</span>
                         <div className="flex items-center gap-2">
                           <svg className="w-4 h-4 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v2h16V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h12a1 1 0 100-2H6z" clipRule="evenodd" />
                           </svg>
-                          <span className="font-semibold text-white">
+                          <span className="font-semibold text-slate-900">
                             {new Date(inspection.survey_date).toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
@@ -331,7 +331,7 @@ export default function HealthInspectionsPage() {
 
                       {/* Type Badge */}
                       <div className="flex flex-col">
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Type</span>
+                        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1">Type</span>
                         <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold w-fit ${
                           inspection.survey_type === 'STANDARD'
                             ? 'bg-blue-900 bg-opacity-20 text-blue-400'
@@ -344,7 +344,7 @@ export default function HealthInspectionsPage() {
 
                       {/* Deficiencies Count */}
                       <div className="flex flex-col">
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Deficiencies</span>
+                        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1">Deficiencies</span>
                         <div className="flex items-center gap-2">
                           <span className={`inline-flex items-center justify-center w-9 h-9 rounded-lg font-bold text-sm ${
                             inspection.deficiency_count === 0
@@ -361,10 +361,10 @@ export default function HealthInspectionsPage() {
 
                       {/* Health Score */}
                       <div className="flex flex-col">
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Health Score</span>
+                        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1">Health Score</span>
                         <div className="flex items-center gap-2">
                           <div className="flex-1">
-                            <div className="w-full bg-slate-700 rounded-full h-2.5">
+                            <div className="w-full bg-slate-200 rounded-full h-2.5">
                               <div
                                 className={`h-2.5 rounded-full transition-all ${
                                   inspection.health_score >= 90
@@ -377,14 +377,14 @@ export default function HealthInspectionsPage() {
                               />
                             </div>
                           </div>
-                          <span className="font-bold text-white text-sm min-w-fit">{inspection.health_score}%</span>
+                          <span className="font-bold text-slate-900 text-sm min-w-fit">{inspection.health_score}%</span>
                         </div>
                       </div>
 
                       {/* Expand Icon */}
                       <div className="flex justify-end">
-                        <div className={`p-2 rounded-lg bg-slate-700 group-hover:bg-slate-600 transition-colors ${expandedInspection === inspection.id ? 'rotate-180' : ''}`} style={{ transform: expandedInspection === inspection.id ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }}>
-                          <svg className="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                        <div className={`p-2 rounded-lg bg-slate-100 group-hover:bg-slate-200 transition-colors ${expandedInspection === inspection.id ? 'rotate-180' : ''}`} style={{ transform: expandedInspection === inspection.id ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }}>
+                          <svg className="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                           </svg>
                         </div>
@@ -394,10 +394,10 @@ export default function HealthInspectionsPage() {
 
                   {/* Expandable Deficiencies Section */}
                   {expandedInspection === inspection.id && inspection.deficiencies && inspection.deficiencies.length > 0 && (
-                    <div className="border-t border-slate-700 bg-slate-800 bg-opacity-50 px-6 py-4">
+                    <div className="border-t border-slate-200 bg-slate-50 px-6 py-4">
                       <div className="mb-3">
-                        <h4 className="text-sm font-bold text-red-400 mb-4 flex items-center gap-2">
-                          <svg className="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <h4 className="text-sm font-bold text-red-600 mb-4 flex items-center gap-2">
+                            <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                           </svg>
                           Deficiencies Found
@@ -405,7 +405,7 @@ export default function HealthInspectionsPage() {
                       </div>
                       <div className="space-y-3">
                         {inspection.deficiencies.map((deficiency, idx) => (
-                          <div key={idx} className="flex items-start gap-3 p-3 bg-slate-700 bg-opacity-50 rounded-lg border border-slate-600">
+                          <div key={idx} className="flex items-start gap-3 p-3 bg-slate-100 rounded-lg border border-slate-200">
                             <span
                               className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold flex-shrink-0 ${getSeverityColor(
                                 deficiency.severity
@@ -414,8 +414,8 @@ export default function HealthInspectionsPage() {
                               {deficiency.tag}
                             </span>
                             <div className="flex-1 min-w-0">
-                              <div className="text-sm font-semibold text-white">{deficiency.description}</div>
-                              <div className="text-xs text-slate-400 mt-1">
+                              <div className="text-sm font-semibold text-slate-900">{deficiency.description}</div>
+                              <div className="text-xs text-slate-600 mt-1">
                                 Severity: <span className="font-semibold">{getSeverityLabel(deficiency.severity)}</span>
                               </div>
                             </div>
@@ -427,12 +427,12 @@ export default function HealthInspectionsPage() {
 
                   {/* Empty Deficiencies State */}
                   {expandedInspection === inspection.id && (!inspection.deficiencies || inspection.deficiencies.length === 0) && (
-                    <div className="border-t border-slate-700 bg-slate-800 bg-opacity-50 px-6 py-8 text-center">
+                    <div className="border-t border-slate-200 bg-slate-50 px-6 py-8 text-center">
                       <svg className="w-12 h-12 text-green-500 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <p className="text-sm font-semibold text-green-400">No deficiencies found</p>
-                      <p className="text-xs text-slate-500 mt-1">This inspection passed with no issues</p>
+                      <p className="text-sm font-semibold text-green-600">No deficiencies found</p>
+                      <p className="text-xs text-slate-600 mt-1">This inspection passed with no issues</p>
                     </div>
                   )}
                 </div>
