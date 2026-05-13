@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { FileText, Download, Calendar, AlertCircle, TrendingUp } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { getToken } from '@/lib/auth'
+import { useAuth } from '@/lib/useAuth'
 import Sidebar from '@/components/Sidebar'
 
 interface Facility {
@@ -34,6 +35,7 @@ interface ReportOptions {
 
 export default function ReportsPage() {
   const router = useRouter()
+  const { user } = useAuth()
   const [facilities, setFacilities] = useState<Facility[]>([])
   const [selectedFacility, setSelectedFacility] = useState<string>('')
   const [loading, setLoading] = useState(true)
@@ -192,7 +194,7 @@ export default function ReportsPage() {
   if (loading) {
     return (
       <div className="flex h-screen bg-slate-50">
-        <Sidebar />
+        <Sidebar user={user} />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin mb-4">
@@ -207,7 +209,7 @@ export default function ReportsPage() {
 
   return (
     <div className="flex h-screen bg-slate-50">
-      <Sidebar />
+      <Sidebar user={user} />
 
       <div className="flex-1 overflow-auto">
         <div className="max-w-6xl mx-auto p-6">
