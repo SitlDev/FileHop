@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dark Mode Toggle Pro - One-click dark mode for any website with customizable fonts, colors, and CSS injection.">
+    <meta name="keywords" content="dark mode, chrome extension, night mode, accessibility">
+    <meta name="author" content="KnotStranded LLC">
+    <meta name="theme-color" content="#7c3aed">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dark Mode Toggle Pro">
+    <meta property="og:description" content="One-click dark mode for any website with font customization, color picker, and CSS injection.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://darkmodetoggle.pro">
+    
+    <title>Dark Mode Toggle Pro - One-Click Dark Mode for Any Website</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --primary-light: #a78bfa;
+            --secondary: #ec4899;
+            --background: #ffffff;
+            --surface: #f8f7ff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--background);
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 4%;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .cta-button-secondary {
+            background: var(--surface);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 6rem 4%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--surface) 0%, rgba(124, 58, 237, 0.05) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons a {
+            padding: 14px 32px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .secondary-btn {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .secondary-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--surface) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+
+        .pricing-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .features-list li:before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 3rem 4%;
+            margin-top: 4rem;
+        }
+
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        footer h4 {
+            margin-bottom: 1rem;
+            font-size: 16px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--primary-light);
+        }
+
+        footer .divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        footer .copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 12px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-light);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .modal h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .modal ul, .modal ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .modal li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons a {
+                width: 100%;
+            }
+
+            section {
+                padding: 2rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">🌙 Dark Mode Toggle Pro</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#" onclick="openModal('privacy'); return false;">Privacy</a></li>
+                <li><a href="https://chrome.google.com/webstore" class="cta-button">Install Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>Dark Mode Toggle Pro</h1>
+            <p>One-click dark mode for any website. Customize fonts, colors, and inject CSS. Works on 99% of sites.</p>
+            <div class="hero-buttons">
+                <a href="https://chrome.google.com/webstore" class="primary-btn">Get on Chrome Web Store</a>
+                <a href="#features" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">✨ Powerful Features</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Everything you need for the perfect dark mode experience.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🌙 One-Click Dark Mode</h3>
+                    <p>Toggle dark mode with a single click or press Ctrl+Shift+D. Works instantly on any website.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 Customize Everything</h3>
+                    <p>Adjust font size (80-150%), pick your own colors, and fine-tune contrast for accessibility.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💻 Custom CSS Injection</h3>
+                    <p>Add custom CSS rules per-site. Live preview, quick templates for popular sites.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💾 Auto Save Settings</h3>
+                    <p>Your settings are saved automatically. Every site remembers your preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⌨️ Keyboard Shortcut</h3>
+                    <p>Press Ctrl+Shift+D (Cmd+Shift+D on Mac) to toggle dark mode instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>☁️ Cloud Sync (Premium)</h3>
+                    <p>Sync your settings across all devices with a single account. Premium feature.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" style="background: var(--surface); border-radius: 12px; margin: 4rem auto;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">💰 Simple Pricing</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Free to use. Optional Premium for advanced features.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0<span class="price-period">/month</span></div>
+                    <ul class="features-list">
+                        <li>Basic dark mode toggle</li>
+                        <li>Font size adjustment</li>
+                        <li>Color customization</li>
+                        <li>1 custom CSS rule per site</li>
+                        <li>Per-device settings</li>
+                        <li>Context menu integration</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%; margin-top: 1rem;">Get Free</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Premium</h3>
+                    <div class="price">$1.99<span class="price-period">/month</span></div>
+                    <ul class="features-list">
+                        <li>Everything in Free, plus:</li>
+                        <li>5 Professional themes</li>
+                        <li>Cloud sync across devices</li>
+                        <li>Unlimited custom CSS rules</li>
+                        <li>Advanced contrast controls</li>
+                        <li>Priority support</li>
+                        <li>Ad-free experience</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%; margin-top: 1rem;">Upgrade to Premium</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">❓ Frequently Asked Questions</h2>
+            
+            <div style="max-width: 700px; margin: 0 auto;">
+                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <h3>How do I toggle dark mode?</h3>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">Press Ctrl+Shift+D (Windows/Linux) or Cmd+Shift+D (Mac), or click the extension icon in your toolbar. You can also right-click any page and select "Toggle Dark Mode".</p>
+                </div>
+
+                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <h3>Will it work on every website?</h3>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">Yes, on ~99% of websites. Some corporate intranets or heavily secured sites may block style injection, but these are rare.</p>
+                </div>
+
+                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <h3>Does it track my data?</h3>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">No. All your settings are stored locally on your device. We don't collect, track, or share any personal data.</p>
+                </div>
+
+                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <h3>Can I sync settings across devices?</h3>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">With the free version, settings are stored per device. Premium users can enable cloud sync to keep settings in sync across all devices logged into the same Google account.</p>
+                </div>
+
+                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <h3>How do I disable dark mode for specific sites?</h3>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">Click the extension icon and toggle the switch for the current site. You can have different settings for each site.</p>
+                </div>
+
+                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);">
+                    <h3>Is there a free trial for Premium?</h3>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">The free version is very complete. Premium adds themes, cloud sync, and unlimited CSS rules if you need them. Start with free and upgrade anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div>
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="https://chrome.google.com/webstore">Chrome Web Store</a></li>
+                    <li><a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a></li>
+                    <li><a href="#" onclick="openModal('terms'); return false;">Terms of Service</a></li>
+                    <li><a href="#" onclick="openModal('contact'); return false;">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Features</h4>
+                <ul>
+                    <li><a href="#features">Dark Mode Toggle</a></li>
+                    <li><a href="#features">Font Customization</a></li>
+                    <li><a href="#features">Custom CSS</a></li>
+                    <li><a href="#features">Cloud Sync</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="https://knotstranded.com">KnotStranded LLC</a></li>
+                    <li><a href="https://twitter.com">Follow us on Twitter</a></li>
+                    <li><a href="https://github.com">GitHub Repository</a></li>
+                    <li><a href="#" onclick="openModal('contact'); return false;">Support Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="divider">
+            <span class="copyright">&copy; 2026 KnotStranded LLC. All rights reserved. Dark Mode Toggle Pro is not affiliated with Google Chrome.</span>
+            <span class="copyright">Made with ❤️ in California</span>
+        </div>
+    </footer>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('privacy')">&times;</button>
+            <h2>Privacy Policy</h2>
+            <p><strong>Last Updated: May 2026</strong></p>
+
+            <h3>1. Overview</h3>
+            <p>Dark Mode Toggle Pro ("we," "us," "our," or the "Extension") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we handle your information when you use our Chrome extension.</p>
+
+            <h3>2. What Data We Collect</h3>
+            <p><strong>Local Storage:</strong></p>
+            <ul>
+                <li>Your dark mode preferences and settings</li>
+                <li>Per-site customization (fonts, colors, CSS)</li>
+                <li>Your contrast level preferences</li>
+            </ul>
+            <p><strong>We DO NOT collect:</strong></p>
+            <ul>
+                <li>Personal information (name, email, phone)</li>
+                <li>Browsing history</li>
+                <li>IP addresses</li>
+                <li>Location data</li>
+                <li>Cookies or tracking pixels</li>
+                <li>Any data sent to external servers</li>
+            </ul>
+
+            <h3>3. Where Your Data is Stored</h3>
+            <p><strong>Free Tier:</strong> All settings are stored locally on your device using Chrome's local storage. They never leave your computer unless you explicitly export them.</p>
+            <p><strong>Premium Tier (Cloud Sync):</strong> If you enable cloud sync, your settings are encrypted and stored on Google's secure servers as part of your Chrome sync profile. This is only available to Premium subscribers who explicitly enable it.</p>
+
+            <h3>4. Third-Party Services</h3>
+            <p>The Extension may include optional links to:</p>
+            <ul>
+                <li>Privacy tools (1Password, Bitwarden, DuckDuckGo) - affiliate links</li>
+                <li>Ad networks (for free users, if opted in)</li>
+            </ul>
+            <p>These are clearly labeled and optional. Clicking them may share data with those services per their privacy policies. We are not responsible for third-party privacy practices.</p>
+
+            <h3>5. Permissions Explained</h3>
+            <p><strong>activeTab:</strong> To detect the current website and apply dark mode settings.</p>
+            <p><strong>scripting:</strong> To inject CSS styles into web pages.</p>
+            <p><strong>storage:</strong> To save your settings locally on your device.</p>
+            <p><strong>&lt;all_urls&gt;:</strong> To apply dark mode to any website you visit.</p>
+            <p><strong>contextMenus:</strong> To add "Toggle Dark Mode" to your right-click menu.</p>
+
+            <h3>6. Data Security</h3>
+            <p>Your settings are stored locally on your device and are not accessible to anyone else. If you enable cloud sync (Premium), your data is encrypted in transit and at rest using Google's security standards.</p>
+
+            <h3>7. Your Rights</h3>
+            <p>You have the right to:</p>
+            <ul>
+                <li>View all your stored settings (in the extension itself)</li>
+                <li>Export your settings as a JSON file</li>
+                <li>Delete all your data with one click ("Reset All" button)</li>
+                <li>Disable cloud sync at any time</li>
+                <li>Uninstall the extension anytime</li>
+            </ul>
+
+            <h3>8. Children's Privacy</h3>
+            <p>Our Extension is not intended for children under 13. We do not knowingly collect information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.</p>
+
+            <h3>9. Changes to This Policy</h3>
+            <p>We may update this privacy policy from time to time. We will notify you of significant changes by updating the "Last Updated" date and, if required, by requesting your consent.</p>
+
+            <h3>10. Contact Us</h3>
+            <p>If you have questions about this privacy policy or our privacy practices, please contact us at:</p>
+            <p><strong>Email:</strong> privacy@darkmodetoggle.pro<br>
+            <strong>Company:</strong> KnotStranded LLC<br>
+            <strong>Location:</strong> Camarillo, California, USA</p>
+
+            <h3>11. Legal Compliance</h3>
+            <p><strong>GDPR (EU):</strong> If you're in the EU, you have the right to access, correct, or delete your data. All processing is based on your explicit consent, which you can withdraw anytime.</p>
+            <p><strong>CCPA (California):</strong> California residents have the right to know what personal information is collected, request deletion, and opt-out of sales. We do not sell data.</p>
+            <p><strong>COPPA (Children):</strong> We comply with the Children's Online Privacy Protection Act and do not knowingly collect data from children under 13.</p>
+
+            <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);"><strong>By using Dark Mode Toggle Pro, you agree to this Privacy Policy.</strong></p>
+        </div>
+    </div>
+
+    <!-- TERMS OF SERVICE MODAL -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('terms')">&times;</button>
+            <h2>Terms of Service</h2>
+            <p><strong>Last Updated: May 2026</strong></p>
+
+            <h3>1. Acceptance of Terms</h3>
+            <p>By installing and using Dark Mode Toggle Pro ("the Extension"), you agree to be bound by these Terms of Service. If you do not agree to any part of these terms, you must not use the Extension.</p>
+
+            <h3>2. License Grant</h3>
+            <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the Extension for personal, non-commercial purposes only. You may not:</p>
+            <ul>
+                <li>Sell, rent, or lease the Extension</li>
+                <li>Modify, reverse-engineer, or decompile the Extension</li>
+                <li>Use the Extension for any illegal or unauthorized purpose</li>
+                <li>Remove or alter any proprietary notices</li>
+                <li>Distribute the Extension to unauthorized parties</li>
+            </ul>
+
+            <h3>3. User Responsibilities</h3>
+            <p>You agree to:</p>
+            <ul>
+                <li>Use the Extension in compliance with all applicable laws</li>
+                <li>Not use the Extension to harm, threaten, or harass anyone</li>
+                <li>Not use the Extension to distribute malware or viruses</li>
+                <li>Respect websites' terms of service when using the Extension</li>
+                <li>Not attempt to break the security or integrity of the Extension</li>
+            </ul>
+
+            <h3>4. Premium Subscription Terms</h3>
+            <p><strong>Billing:</strong> Premium subscriptions are billed monthly at $1.99 USD (or equivalent in your currency). Billing occurs on the same date each month.</p>
+            <p><strong>Cancellation:</strong> You can cancel your subscription anytime. Your access to Premium features will end at the end of your current billing period.</p>
+            <p><strong>Refunds:</strong> Refunds are not available for partial months. Subscription cancellations take effect at the next billing cycle.</p>
+            <p><strong>Payment:</strong> All payments are processed securely through Stripe or Paddle. We do not store your credit card information.</p>
+
+            <h3>5. Free Features</h3>
+            <p>All free features are provided "as-is" without any warranty. We may modify, suspend, or discontinue free features at any time without notice.</p>
+
+            <h3>6. Limitation of Liability</h3>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+            <ul>
+                <li>We are not liable for any indirect, incidental, special, or consequential damages</li>
+                <li>Our total liability shall not exceed $100 USD</li>
+                <li>We are not liable for any lost data, lost profits, or business interruption</li>
+                <li>We are not liable for how websites respond to the Extension</li>
+            </ul>
+
+            <h3>7. Disclaimer of Warranties</h3>
+            <p>THE EXTENSION IS PROVIDED "AS-IS" WITHOUT ANY WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE EXTENSION WILL BE ERROR-FREE, UNINTERRUPTED, OR SECURE.</p>
+
+            <h3>8. Indemnification</h3>
+            <p>You agree to indemnify and hold harmless KnotStranded LLC, its officers, and employees from any claims, damages, or losses arising from your use of the Extension or violation of these terms.</p>
+
+            <h3>9. Intellectual Property</h3>
+            <p>All content, code, and design in the Extension are owned by KnotStranded LLC or our licensors. You retain ownership of any custom CSS or settings you create, but you grant us the right to use them for product improvement.</p>
+
+            <h3>10. Modifications to Terms</h3>
+            <p>We may update these Terms of Service at any time. Continued use of the Extension after changes constitutes acceptance of the new terms.</p>
+
+            <h3>11. Governing Law</h3>
+            <p>These Terms of Service are governed by the laws of California, USA. Any disputes shall be resolved in the courts of Ventura County, California.</p>
+
+            <h3>12. Severability</h3>
+            <p>If any part of these terms is found to be unenforceable, the remaining parts shall continue in full effect.</p>
+
+            <h3>13. Entire Agreement</h3>
+            <p>These Terms of Service and our Privacy Policy constitute the entire agreement between you and us regarding the Extension.</p>
+
+            <h3>14. Contact Information</h3>
+            <p><strong>For legal matters:</strong> legal@darkmodetoggle.pro<br>
+            <strong>Company:</strong> KnotStranded LLC<br>
+            <strong>Location:</strong> Camarillo, California, USA</p>
+
+            <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);"><strong>By using Dark Mode Toggle Pro, you agree to these Terms of Service.</strong></p>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('contact')">&times;</button>
+            <h2>Contact Us</h2>
+            
+            <p>Thank you for using Dark Mode Toggle Pro! We'd love to hear from you.</p>
+
+            <h3>Get in Touch</h3>
+            <p><strong>General Inquiries:</strong><br>
+            📧 <a href="mailto:hello@darkmodetoggle.pro">hello@darkmodetoggle.pro</a></p>
+
+            <p><strong>Technical Support:</strong><br>
+            📧 <a href="mailto:support@darkmodetoggle.pro">support@darkmodetoggle.pro</a></p>
+
+            <p><strong>Privacy & Legal:</strong><br>
+            📧 <a href="mailto:legal@darkmodetoggle.pro">legal@darkmodetoggle.pro</a></p>
+
+            <p><strong>Mailing Address:</strong><br>
+            KnotStranded LLC<br>
+            Camarillo, California 93010<br>
+            USA</p>
+
+            <h3>Response Time</h3>
+            <p>We typically respond to all emails within 24-48 hours during business days (Monday-Friday).</p>
+
+            <h3>What We Support</h3>
+            <ul>
+                <li>Bug reports and technical issues</li>
+                <li>Feature requests and suggestions</li>
+                <li>Refund requests and billing issues</li>
+                <li>Privacy and security concerns</li>
+                <li>Partnership and collaboration inquiries</li>
+            </ul>
+
+            <h3>Feedback & Suggestions</h3>
+            <p>We'd love to hear your ideas! Please include:</p>
+            <ul>
+                <li>Your feature request or suggestion</li>
+                <li>Which website(s) you were using it on</li>
+                <li>Your browser version</li>
+                <li>Your current extension version</li>
+            </ul>
+
+            <h3>Found a Bug?</h3>
+            <p>Please report bugs by emailing support with:</p>
+            <ul>
+                <li>Description of the bug</li>
+                <li>Steps to reproduce the issue</li>
+                <li>Your browser (Chrome, Edge, Brave, etc.) and version</li>
+                <li>Screenshots if applicable</li>
+            </ul>
+
+            <h3>Security Issues</h3>
+            <p>If you discover a security vulnerability, please email <a href="mailto:security@darkmodetoggle.pro">security@darkmodetoggle.pro</a> immediately. Do not disclose the issue publicly until we've had time to fix it.</p>
+
+            <h3>Connect With Us</h3>
+            <ul>
+                <li>📱 <a href="https://twitter.com/knotstranded">Twitter @KnotStranded</a></li>
+                <li>💻 <a href="https://github.com/knotstranded">GitHub</a></li>
+                <li>🌐 <a href="https://knotstranded.com">KnotStranded.com</a></li>
+            </ul>
+
+            <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);"><strong>Thank you for making Dark Mode Toggle Pro part of your browsing experience!</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(type) {
+            const modals = {
+                privacy: 'privacyModal',
+                terms: 'termsModal',
+                contact: 'contactModal'
+            };
+            if (modals[type]) {
+                document.getElementById(modals[type]).classList.add('active');
+            }
+        }
+
+        function closeModal(type) {
+            const modals = {
+                privacy: 'privacyModal',
+                terms: 'termsModal',
+                contact: 'contactModal'
+            };
+            if (modals[type]) {
+                document.getElementById(modals[type]).classList.remove('active');
+            }
+        }
+
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && !href.includes('onclick')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

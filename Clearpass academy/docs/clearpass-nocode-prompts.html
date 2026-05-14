@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ClearPass Academy — No-Code Build Prompts + Antigravity</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c1018;
+  --surface:#131920;
+  --surface2:#1a2330;
+  --surface3:#1f2a3a;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --text:#dce6f0;
+  --text2:#7a95b0;
+  --muted:#3d5268;
+  --white:#ffffff;
+  --gold:#e8a820;
+  --gold2:#f5c842;
+  --gold-dim:rgba(232,168,32,0.1);
+  --gold-border:rgba(232,168,32,0.25);
+  --teal:#14b8a6;
+  --teal-dim:rgba(20,184,166,0.08);
+  --teal-border:rgba(20,184,166,0.2);
+  --blue:#3b82f6;
+  --blue-dim:rgba(59,130,246,0.08);
+  --blue-border:rgba(59,130,246,0.2);
+  --purple:#a78bfa;
+  --purple-dim:rgba(167,139,250,0.08);
+  --purple-border:rgba(167,139,250,0.2);
+  --rose:#f43f5e;
+  --rose-dim:rgba(244,63,94,0.08);
+  --rose-border:rgba(244,63,94,0.2);
+  --green:#22c55e;
+  --green-dim:rgba(34,197,94,0.08);
+  --r:8px;
+  --r-lg:14px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:14px;scroll-behavior:smooth;}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+button{cursor:pointer;font-family:'Geist',sans-serif;}
+
+/* ── SHELL ── */
+.shell{display:flex;min-height:100vh;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:260px;min-width:260px;
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
+.sb-brand{
+  padding:20px 18px 16px;
+  border-bottom:1px solid var(--border);
+}
+.sb-logo{
+  display:flex;align-items:center;gap:9px;margin-bottom:3px;
+}
+.sb-gem{
+  width:30px;height:30px;border-radius:7px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.sb-title{
+  font-family:'Instrument Serif',serif;
+  font-size:16px;color:var(--white);
+  letter-spacing:-.01em;
+}
+.sb-sub{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.04em;}
+
+.sb-nav{flex:1;overflow-y:auto;padding:10px;scrollbar-width:none;}
+.sb-nav::-webkit-scrollbar{display:none;}
+.sb-sec{
+  font-size:9px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  padding:10px 8px 5px;
+}
+.sb-item{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:7px;
+  cursor:pointer;margin-bottom:1px;
+  font-size:12px;font-weight:500;color:var(--text2);
+  transition:all .12s;border:none;background:none;
+  width:100%;text-align:left;
+}
+.sb-item:hover{background:rgba(255,255,255,0.05);color:var(--text);}
+.sb-item.on{background:rgba(232,168,32,0.12);color:var(--gold2);border:1px solid rgba(232,168,32,0.2);}
+.sb-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+
+.sb-footer{
+  padding:14px;border-top:1px solid var(--border);
+}
+.sb-footer-note{
+  font-size:10px;color:var(--muted);line-height:1.6;text-align:center;
+}
+
+/* ── MAIN ── */
+.main{flex:1;overflow-y:auto;min-width:0;}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(160deg,var(--surface) 0%,var(--surface2) 60%,#0d1e30 100%);
+  border-bottom:1px solid var(--border);
+  padding:48px 48px 40px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  right:-80px;top:-80px;
+  width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,168,32,0.06) 0%,transparent 70%);
+}
+.hero::after{
+  content:'';position:absolute;
+  left:30%;bottom:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(20,184,166,0.04) 0%,transparent 70%);
+}
+.hero-kicker{
+  font-family:'Geist Mono',monospace;
+  font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'▸';font-size:8px;}
+.hero-h1{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:400;line-height:1.12;
+  letter-spacing:-.02em;color:var(--white);
+  margin-bottom:14px;max-width:700px;
+}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-p{
+  font-size:14px;color:var(--text2);line-height:1.72;
+  max-width:640px;margin-bottom:28px;
+}
+
+/* Tool badges */
+.tool-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.tool-badge{
+  display:flex;align-items:center;gap:7px;
+  padding:7px 14px;border-radius:100px;
+  font-size:11px;font-weight:600;
+  border:1px solid;cursor:pointer;
+  transition:all .15s;
+}
+.tb-bubble{background:rgba(30,60,200,0.12);border-color:rgba(30,60,200,0.3);color:#93c5fd;}
+.tb-bubble:hover{background:rgba(30,60,200,0.2);}
+.tb-webflow{background:rgba(70,160,255,0.1);border-color:rgba(70,160,255,0.25);color:#7dd3fc;}
+.tb-webflow:hover{background:rgba(70,160,255,0.18);}
+.tb-glide{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.22);color:#86efac;}
+.tb-glide:hover{background:rgba(34,197,94,0.15);}
+.tb-lovable{background:rgba(244,63,94,0.08);border-color:rgba(244,63,94,0.22);color:#fda4af;}
+.tb-lovable:hover{background:rgba(244,63,94,0.15);}
+.tb-bolt{background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.22);color:#fcd34d;}
+.tb-bolt:hover{background:rgba(245,158,11,0.15);}
+
+/* ── CONTENT ── */
+.content{padding:40px 48px;max-width:1000px;}
+
+/* ── TOOL SECTION ── */
+.tool-section{margin-bottom:56px;}
+
+.tool-header{
+  display:flex;align-items:flex-start;gap:18px;
+  margin-bottom:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+.tool-icon-wrap{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;
+  border:1px solid;
+}
+.tool-meta{flex:1;}
+.tool-name{
+  font-family:'Instrument Serif',serif;
+  font-size:26px;color:var(--white);
+  letter-spacing:-.02em;margin-bottom:4px;
+}
+.tool-tagline{font-size:13px;color:var(--text2);line-height:1.55;max-width:560px;}
+.tool-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.chip{
+  font-size:10px;font-weight:700;padding:3px 10px;
+  border-radius:100px;font-family:'Geist Mono',monospace;
+  letter-spacing:.04em;
+}
+.verdict-row{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:10px;margin-bottom:24px;
+}
+.verdict-item{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px;
+}
+.vi-label{
+  font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:5px;
+}
+.vi-value{font-size:12px;color:var(--text2);line-height:1.5;}
+
+/* ── PROMPT BLOCK ── */
+.prompt-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+.pb-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+  cursor:pointer;
+}
+.pb-header:hover{background:rgba(255,255,255,0.04);}
+.pb-left{display:flex;align-items:center;gap:10px;}
+.pb-num{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;flex-shrink:0;
+}
+.pb-title{font-size:13px;font-weight:700;color:var(--white);}
+.pb-subtitle{font-size:11px;color:var(--text2);margin-top:1px;}
+.pb-right{display:flex;align-items:center;gap:8px;}
+.pb-phase{
+  font-size:9px;font-weight:700;padding:2px 8px;
+  border-radius:100px;font-family:'Geist Mono',monospace;
+}
+.pb-chev{
+  font-size:11px;color:var(--muted);
+  transition:transform .2s;
+}
+.pb-header.open .pb-chev{transform:rotate(180deg);}
+
+.pb-body{
+  display:none;padding:20px;
+}
+.pb-header.open+.pb-body{display:block;}
+
+.prompt-label{
+  font-size:9px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.prompt-label::after{content:'→';}
+
+.prompt-text{
+  background:#080e15;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--r);
+  padding:18px 20px;
+  font-family:'Geist Mono',monospace;
+  font-size:12px;
+  color:#c8d8e8;
+  line-height:1.75;
+  white-space:pre-wrap;
+  word-break:break-word;
+  position:relative;
+  margin-bottom:14px;
+}
+
+.copy-btn{
+  position:absolute;top:10px;right:12px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid var(--border2);
+  color:var(--text2);
+  padding:4px 10px;border-radius:5px;
+  font-size:10px;font-weight:600;
+  transition:all .12s;font-family:'Geist',sans-serif;
+}
+.copy-btn:hover{background:rgba(255,255,255,0.12);color:var(--white);}
+.copy-btn.copied{background:rgba(34,197,94,0.15);color:var(--green);border-color:rgba(34,197,94,0.3);}
+
+.notes-box{
+  background:var(--surface2);
+  border-radius:var(--r);
+  padding:12px 14px;
+  margin-top:4px;
+}
+.notes-box p,.notes-box li{
+  font-size:12px;color:var(--text2);line-height:1.7;
+}
+.notes-box ul{margin-left:16px;margin-top:4px;}
+.notes-box li{margin-bottom:3px;}
+.notes-box strong{color:var(--text);}
+
+/* Highlight tokens in prompt text */
+.hi-gold{color:var(--gold2);}
+.hi-teal{color:var(--teal);}
+.hi-blue{color:#93c5fd;}
+.hi-purple{color:var(--purple);}
+.hi-green{color:#86efac;}
+.hi-rose{color:#fda4af;}
+
+/* Stack block */
+.stack-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:8px;
+  margin-bottom:20px;
+}
+.stack-item{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px;
+}
+.si-layer{
+  font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px;
+}
+.si-tool{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.si-note{font-size:11px;color:var(--text2);}
+
+/* Comparison table */
+.comp-wrap{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);overflow-x:auto;
+  margin-bottom:40px;
+}
+table{width:100%;border-collapse:collapse;min-width:680px;}
+th{
+  background:rgba(255,255,255,0.03);
+  padding:10px 14px;text-align:left;
+  font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid var(--border);
+}
+td{
+  padding:11px 14px;font-size:12px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  color:var(--text2);vertical-align:middle;
+}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+td:first-child{color:var(--text);font-weight:600;}
+.yes{color:var(--green);}
+.no{color:var(--rose);opacity:.7;}
+.partial{color:var(--gold);}
+
+/* Section divider */
+.divider{
+  border:none;border-top:1px solid var(--border);
+  margin:40px 0;
+}
+
+/* Info callout */
+.callout{
+  border-radius:var(--r);padding:14px 16px;margin:14px 0;
+  font-size:12px;line-height:1.7;
+}
+.ca-gold{background:var(--gold-dim);border:1px solid var(--gold-border);}
+.ca-teal{background:var(--teal-dim);border:1px solid var(--teal-border);}
+.ca-blue{background:var(--blue-dim);border:1px solid var(--blue-border);}
+.ca-purple{background:var(--purple-dim);border:1px solid var(--purple-border);}
+.callout strong{
+  font-size:9px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.1em;display:block;margin-bottom:4px;
+}
+.ca-gold strong{color:var(--gold2);}
+.ca-teal strong{color:var(--teal);}
+.ca-blue strong{color:var(--blue);}
+.ca-purple strong{color:var(--purple);}
+.callout p{color:var(--text2);}
+
+/* Section heading */
+.section-h{
+  font-family:'Instrument Serif',serif;
+  font-size:22px;font-weight:400;
+  color:var(--white);margin-bottom:6px;
+  letter-spacing:-.01em;
+}
+.section-p{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.65;}
+
+@media(max-width:860px){
+  .sidebar{display:none;}
+  .hero{padding:28px 24px;}
+  .content{padding:28px 24px;}
+  .verdict-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="sb-brand">
+    <div class="sb-logo">
+      <div class="sb-gem">🎓</div>
+      <div class="sb-title">ClearPass Academy</div>
+    </div>
+    <div class="sb-sub">No-Code Build Prompts · v2.0 · PDF Certs</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-sec">Tool Stacks</div>
+    <button class="sb-item on" onclick="scrollTo('antigravity')">
+      <span class="sb-dot" style="background:#4285f4;"></span>Google Antigravity — New
+    </button>
+    <button class="sb-item" onclick="scrollTo('bubble')">
+      <span class="sb-dot" style="background:#3d6bdb;"></span>Bubble.io — Full SaaS
+    </button>
+    <button class="sb-item" onclick="scrollTo('webflow')">
+      <span class="sb-dot" style="background:#4a9eff;"></span>Webflow + Xano — Web Pro
+    </button>
+    <button class="sb-item" onclick="scrollTo('glide')">
+      <span class="sb-dot" style="background:#22c55e;"></span>Glide — Quick MVP
+    </button>
+    <button class="sb-item" onclick="scrollTo('lovable')">
+      <span class="sb-dot" style="background:#f43f5e;"></span>Lovable / Bolt — AI Build
+    </button>
+
+    <div class="sb-sec">Prompts</div>
+    <button class="sb-item" onclick="scrollTo('prompt-overview')">📋 Platform Overview</button>
+    <button class="sb-item" onclick="scrollTo('prompt-db')">🗄 Database Schema</button>
+    <button class="sb-item" onclick="scrollTo('prompt-auth')">🔐 Auth & Roles</button>
+    <button class="sb-item" onclick="scrollTo('prompt-courses')">📚 Course System</button>
+    <button class="sb-item" onclick="scrollTo('prompt-quiz')">✏️ Quiz & Scoring</button>
+    <button class="sb-item" onclick="scrollTo('prompt-cert')">🏅 Certificates & QR</button>
+    <button class="sb-item" onclick="scrollTo('prompt-admin')">👥 Admin Dashboard</button>
+    <button class="sb-item" onclick="scrollTo('prompt-ai')">🤖 AI Advisor</button>
+    <button class="sb-item" onclick="scrollTo('prompt-billing')">💳 Billing</button>
+
+    <div class="sb-sec">Reference</div>
+    <button class="sb-item" onclick="scrollTo('comparison')">⚖️ Tool Comparison</button>
+    <button class="sb-item" onclick="scrollTo('decision')">🎯 Decision Guide</button>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-footer-note">Copy any prompt block and paste directly into your chosen no-code tool's AI or setup wizard.</div>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-kicker">ClearPass Academy · No-Code Build System · v2.0 · 2025</div>
+    <h1 class="hero-h1">Build ClearPass with<br><em>no-code tools.</em><br>Every prompt, every module.</h1>
+    <p class="hero-p">A complete set of copy-paste prompts to build the ClearPass SNF Academy platform — 13 CMS courses, quiz engine, scannable QR + downloadable PDF certificates, admin compliance dashboard, AI Advisor, and Stripe billing. Five tool stacks including Google Antigravity. One comprehensive build prompt per module.</p>
+    <div class="tool-badges">
+      <div class="tool-badge" style="background:rgba(66,133,244,0.12);border-color:rgba(66,133,244,0.3);color:#93c5fd;" onclick="scrollTo('antigravity')">🤖 Google Antigravity</div>
+      <div class="tool-badge tb-bubble" onclick="scrollTo('bubble')">🔵 Bubble.io</div>
+      <div class="tool-badge tb-webflow" onclick="scrollTo('webflow')">🌊 Webflow + Xano</div>
+      <div class="tool-badge tb-glide" onclick="scrollTo('glide')">🟢 Glide</div>
+      <div class="tool-badge tb-lovable" onclick="scrollTo('lovable')">🔴 Lovable / Bolt</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ════════════════════════════
+         TOOL COMPARISON
+    ════════════════════════════ -->
+    <div id="comparison" style="margin-bottom:40px;">
+      <h2 class="section-h">Tool Comparison — Which Stack for ClearPass?</h2>
+      <p class="section-p">Evaluated against ClearPass requirements: multi-tenant auth, course progress, scored quizzes, PDF + QR certificates, admin dashboards, Stripe subscriptions, and Claude API. Five stacks including Google Antigravity (launched Nov 2025).</p>
+
+      <div class="comp-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>🤖 Antigravity</th>
+              <th>Bubble</th>
+              <th>Webflow + Xano</th>
+              <th>Glide</th>
+              <th>Lovable / Bolt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Multi-tenant auth</td><td><span class="yes">✓ Supabase RLS</span></td><td><span class="yes">✓ Native</span></td><td><span class="yes">✓ Xano RLS</span></td><td><span class="partial">⚡ Limited</span></td><td><span class="partial">⚡ Needs Supabase</span></td></tr>
+            <tr><td>Course progress tracking</td><td><span class="yes">✓ Full code</span></td><td><span class="yes">✓ Database</span></td><td><span class="yes">✓ Xano API</span></td><td><span class="yes">✓ Native</span></td><td><span class="yes">✓ Supabase</span></td></tr>
+            <tr><td>Scored quiz engine</td><td><span class="yes">✓ Custom logic</span></td><td><span class="yes">✓ Workflows</span></td><td><span class="partial">⚡ Custom</span></td><td><span class="partial">⚡ Basic</span></td><td><span class="yes">✓ Generated</span></td></tr>
+            <tr><td>PDF certificate download</td><td><span class="yes">✓ react-pdf</span></td><td><span class="partial">⚡ PDFMonkey API</span></td><td><span class="partial">⚡ API call</span></td><td><span class="no">✗</span></td><td><span class="yes">✓ react-pdf</span></td></tr>
+            <tr><td>QR code on certificate</td><td><span class="yes">✓ qrcode.js</span></td><td><span class="partial">⚡ QRickit API</span></td><td><span class="partial">⚡ API call</span></td><td><span class="no">✗</span></td><td><span class="yes">✓ qrcode.js</span></td></tr>
+            <tr><td>Verification page (QR link)</td><td><span class="yes">✓ Public route</span></td><td><span class="yes">✓ Public page</span></td><td><span class="yes">✓ Webflow page</span></td><td><span class="no">✗</span></td><td><span class="yes">✓ Public route</span></td></tr>
+            <tr><td>Admin compliance dashboard</td><td><span class="yes">✓ Agent-built</span></td><td><span class="yes">✓ Rich UI</span></td><td><span class="yes">✓ Webflow CMS</span></td><td><span class="yes">✓ Tables</span></td><td><span class="yes">✓ Generated</span></td></tr>
+            <tr><td>Stripe billing</td><td><span class="yes">✓ Full Stripe SDK</span></td><td><span class="yes">✓ Plugin</span></td><td><span class="yes">✓ Xano webhook</span></td><td><span class="partial">⚡ Limited</span></td><td><span class="yes">✓ Stripe.js</span></td></tr>
+            <tr><td>Claude API (AI Advisor)</td><td><span class="yes">✓ Server route</span></td><td><span class="partial">⚡ API Connector</span></td><td><span class="yes">✓ Xano proxy</span></td><td><span class="no">✗</span></td><td><span class="yes">✓ Native</span></td></tr>
+            <tr><td>Code ownership</td><td><span class="yes">✓ Full — you own it</span></td><td><span class="no">✗ Locked in</span></td><td><span class="yes">✓ Webflow export</span></td><td><span class="no">✗ Locked in</span></td><td><span class="yes">✓ Full code</span></td></tr>
+            <tr><td>Browser auto-verify (agent)</td><td><span class="yes">✓ Built-in</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td></tr>
+            <tr><td>Multi-agent parallelism</td><td><span class="yes">✓ Agent Manager</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td><td><span class="no">✗</span></td></tr>
+            <tr><td>Cost (current)</td><td><span class="yes">Free preview</span></td><td><span class="partial">$32–115/mo</span></td><td><span class="partial">$23–89/mo+Xano</span></td><td><span class="yes">$60–199/mo</span></td><td><span class="yes">$25–50/mo</span></td></tr>
+            <tr><td>Time to working MVP</td><td><span class="yes">1–3 days</span></td><td><span class="partial">4–8 weeks</span></td><td><span class="partial">3–6 weeks</span></td><td><span class="yes">1–2 weeks</span></td><td><span class="yes">2–5 days</span></td></tr>
+            <tr><td><strong>Best for ClearPass</strong></td><td><span class="yes">✓ Fastest + portable</span></td><td><span class="yes">✓ Full production</span></td><td><span class="yes">✓ Scale + export</span></td><td><span class="partial">⚡ MVP only</span></td><td><span class="yes">✓ Fast prototype</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+         DECISION GUIDE
+    ════════════════════════════ -->
+    <div id="decision" style="margin-bottom:48px;">
+      <h2 class="section-h">Pick Your Stack</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="callout ca-blue" style="grid-column:1/-1;">
+          <strong>🤖 Choose Google Antigravity if… (Recommended — Start Here)</strong>
+          <p>You want the fastest path to a fully portable, production-ready codebase — free during public preview. Antigravity deploys autonomous agents that plan, write, test in the browser, and verify the app is working before handing it to you. You own every line of code. Supports Gemini 3 Pro, Claude Sonnet 4.5, and GPT models. Best first move for ClearPass: prompt the full platform, let the agents build it, connect Supabase and Stripe, deploy to Vercel in 1–3 days.</p>
+        </div>
+        <div class="callout ca-blue">
+          <strong>Choose Bubble if…</strong>
+          <p>You want a full production SaaS with complex workflows, Stripe billing, and rich admin tooling in a single no-code environment — and you're willing to spend 4–8 weeks learning the platform. Highest-capability pure visual no-code option. No code export.</p>
+        </div>
+        <div class="callout ca-teal">
+          <strong>Choose Webflow + Xano if…</strong>
+          <p>You want professional design control AND the ability to export your code. Webflow handles the frontend; Xano provides a real PostgreSQL backend API with auth and RLS. Most scalable long-term. Some technical comfort required.</p>
+        </div>
+        <div class="callout ca-purple">
+          <strong>Choose Lovable or Bolt if…</strong>
+          <p>You want AI-generated React/Next.js code with Supabase in days without setting up a full IDE. Lovable has the most polished UI output; Bolt is more developer-oriented. Both give you full code ownership. Use if Antigravity quota runs out.</p>
+        </div>
+        <div class="callout ca-gold">
+          <strong>Choose Glide if…</strong>
+          <p>You need an internal tool for a single facility to track staff training fast — days, low cost, no dev skills. Cannot handle billing, Claude API calls, or PDF certificates. Use only to validate demand before a full build.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ════════════════════════════
+         GOOGLE ANTIGRAVITY
+    ════════════════════════════ -->
+    <div id="antigravity" class="tool-section">
+      <div class="tool-header">
+        <div class="tool-icon-wrap" style="background:rgba(66,133,244,0.12);border-color:rgba(66,133,244,0.3);">🤖</div>
+        <div class="tool-meta">
+          <div class="tool-name">Google Antigravity</div>
+          <div class="tool-tagline">Google's agent-first development platform launched November 2025. Not a visual no-code tool — an agentic IDE built on VS Code where autonomous agents powered by Gemini 3 Pro plan, write, test in the browser, and verify the app is working before handing it back to you. Currently free. Supports Claude Sonnet 4.5 alongside Gemini.</div>
+          <div class="tool-chips">
+            <span class="chip" style="background:rgba(66,133,244,0.12);color:#93c5fd;border:1px solid rgba(66,133,244,0.3);">Agent-First IDE</span>
+            <span class="chip" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">Free preview</span>
+            <span class="chip" style="background:rgba(167,139,250,0.08);color:var(--purple);border:1px solid rgba(167,139,250,0.2);">Full code ownership</span>
+            <span class="chip" style="background:rgba(232,168,32,0.1);color:var(--gold2);border:1px solid rgba(232,168,32,0.25);">1–3 day build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout ca-blue" style="margin-bottom:20px;">
+        <strong>How Antigravity Prompts Work — Read Before Using</strong>
+        <p>Antigravity prompts are fundamentally different from Bubble workflows or Lovable chat prompts. The agent is autonomous — it reads your prompt, generates a <strong>Task List + Implementation Plan artifact</strong> for your approval, then executes across the editor, terminal, and browser simultaneously. Always include a <strong>"Plan First" instruction</strong> in every prompt so the agent shows you what it intends to do before writing any code. Use the Agent Manager to run multiple agents in parallel — one building the frontend while another configures Supabase.</p>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-item">
+          <div class="vi-label" style="color:var(--blue);">Cost</div>
+          <div class="vi-value">Free during public preview with generous Gemini 3 Pro rate limits. Google Workspace Business Starter ($70/user/yr) unlocks higher quota for heavy builds.</div>
+        </div>
+        <div class="verdict-item">
+          <div class="vi-label" style="color:var(--green);">Unique advantages</div>
+          <div class="vi-value">Browser-in-the-loop verification — the agent actually opens your app, clicks through it, and screenshots proof it works. Multi-agent orchestration. Produces verifiable artifacts.</div>
+        </div>
+        <div class="verdict-item">
+          <div class="vi-label" style="color:var(--rose);">Key limitation</div>
+          <div class="vi-value">Weekly quota limits on Gemini Pro "Thinking" model. Complex tasks burn quota fast. Swap to "Fast" mode for boilerplate; reserve "Thinking" for architecture decisions.</div>
+        </div>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-item"><div class="si-layer">IDE</div><div class="si-tool">Google Antigravity</div><div class="si-note">Agent Manager + Editor + Browser</div></div>
+        <div class="stack-item"><div class="si-layer">AI Models</div><div class="si-tool">Gemini 3 Pro + Claude Sonnet 4.5</div><div class="si-note">Switch models per task in Agent Manager</div></div>
+        <div class="stack-item"><div class="si-layer">Frontend</div><div class="si-tool">React + Tailwind CSS</div><div class="si-note">Agent generates full component tree</div></div>
+        <div class="stack-item"><div class="si-layer">Database + Auth</div><div class="si-tool">Supabase</div><div class="si-note">PostgreSQL + RLS + Auth — agent configures</div></div>
+        <div class="stack-item"><div class="si-layer">PDF Certificates</div><div class="si-tool">react-pdf + @react-pdf/renderer</div><div class="si-note">Agent installs, writes component, tests print</div></div>
+        <div class="stack-item"><div class="si-layer">QR Codes</div><div class="si-tool">qrcode.js</div><div class="si-note">Embedded in certificate + verification page</div></div>
+        <div class="stack-item"><div class="si-layer">AI Advisor</div><div class="si-tool">Anthropic Claude API</div><div class="si-note">Server-side route — API key never exposed</div></div>
+        <div class="stack-item"><div class="si-layer">Billing</div><div class="si-tool">Stripe SDK</div><div class="si-note">Agent writes webhook handlers + subscription logic</div></div>
+        <div class="stack-item"><div class="si-layer">Deploy</div><div class="si-tool">Vercel</div><div class="si-note">Agent runs vercel deploy from terminal</div></div>
+      </div>
+
+      <!-- ANTIGRAVITY PROMPT 1 -->
+      <div class="prompt-block">
+        <div class="pb-header open" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(66,133,244,0.2);color:#93c5fd;">1</div>
+            <div>
+              <div class="pb-title">Master Architecture Prompt — Antigravity Agent</div>
+              <div class="pb-subtitle">Paste into Antigravity's Agent view first. Agent will generate a Task List artifact for approval before writing code.</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">Start Here</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt — paste into Antigravity Agent view</div>
+          <div class="prompt-text">PLAN FIRST: Before writing any code or running any terminal commands, generate a detailed Task List artifact showing: (1) full folder/file structure, (2) all npm dependencies with versions, (3) Supabase table list with RLS policy summary, (4) ordered build steps. Wait for my approval before proceeding.
+
+GOAL: Build ClearPass Academy — a multi-tenant SaaS LMS for skilled nursing facilities (SNFs).
+
+VIBE: Professional clinical enterprise. Navy sidebar (#0f1e35), white content area, sky-blue primary (#1a72e8), warm gold accent (#d4a832). Fraunces serif headings, DM Sans body. Dense data tables, status badges, printable certificates.
+
+TECH STACK:
+- React 18 + React Router v6
+- Tailwind CSS (custom tokens in tailwind.config.js)
+- Supabase (auth + PostgreSQL + Row Level Security)
+- Stripe (subscriptions, 14-day trial, Customer Portal)
+- Anthropic Claude API via server-side Vercel function
+- @react-pdf/renderer for downloadable PDF certificates
+- qrcode.js for QR codes on certificates and verification page
+- Resend for transactional email
+- Vercel for deployment
+
+CORE FEATURES:
+1. Multi-tenant auth: each facility is an isolated tenant; all DB queries filter by facility_id via Supabase RLS
+2. 13 CMS compliance courses with lessons, quiz engine (80% pass threshold), and progress tracking
+3. Certificates: on-screen view (print-ready) + downloadable PDF + scannable QR code linking to public verification URL
+4. Admin dashboard: compliance heatmap by course, staff tracker table with overdue alerts, CSV export
+5. AI Compliance Advisor: chat interface calling Anthropic Claude API through a server-side Vercel function (API key never exposed to client)
+6. Policy Generator: form → Claude API → formatted policy document → copy/download
+7. Survey Simulator: 5 IJ-level scenario questions with F-tag citations and severity ratings
+8. Stripe billing: Essentials ($149/mo), Command ($349/mo), Network ($229/mo per facility); 14-day trial
+9. Public certificate verification page: no auth required, accepts certificate ID via URL, shows pass/fail
+
+SUPABASE TABLES (agent should create migration files):
+facilities, users, courses, lessons, quiz_questions, enrollments, quiz_attempts, certificates, assignments, ai_sessions
+(See Prompt 2 for full schema)
+
+ROUTES:
+/ landing | /signup | /login | /dashboard | /catalog | /course/:slug | /certificates | /verify/:certId (public) | /ai-advisor | /survey-sim | /policy-gen | /admin | /admin/staff | /billing
+
+BROWSER VERIFICATION TASK (run after build):
+Use Antigravity's integrated browser to: open the running app → sign up a test facility → enroll in a course → complete all lessons → submit quiz with passing score → verify certificate appears with QR code → click Download PDF and confirm it opens → scan/click the QR code link → confirm verification page shows "Valid & Authentic" — screenshot each step as an artifact.</div>
+          <div class="copy-btn" onclick="copyPrompt(this)">Copy</div>
+          <div class="notes-box">
+            <p><strong>Agent Manager tip:</strong> After approving the Task List, split into two parallel agents in Agent Manager: Agent A builds the React frontend + course player + certificate components. Agent B configures Supabase schema, RLS policies, and seeds the 13 courses. This cuts build time roughly in half.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANTIGRAVITY PROMPT 2 -->
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(66,133,244,0.2);color:#93c5fd;">2</div>
+            <div>
+              <div class="pb-title">Supabase Schema + RLS Agent Prompt</div>
+              <div class="pb-subtitle">Delegate to Agent B while Agent A builds the frontend</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(66,133,244,0.1);color:#93c5fd;border:1px solid rgba(66,133,244,0.25);">Database Agent</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt — assign to Agent B in Agent Manager</div>
+          <div class="prompt-text">PLAN FIRST: Generate a migration file plan showing each SQL file name and what it creates. Wait for approval.
+
+TASK: Create all Supabase migration SQL files for ClearPass Academy. Place files in /supabase/migrations/ with timestamp prefixes.
+
+TABLES AND SCHEMA:
+
+001_create_facilities.sql
+CREATE TABLE facilities (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  plan text NOT NULL DEFAULT 'essentials' CHECK (plan IN ('essentials','command','network')),
+  stripe_customer_id text,
+  stripe_subscription_id text,
+  subscription_status text DEFAULT 'trialing' CHECK (subscription_status IN ('active','trialing','canceled','past_due')),
+  max_staff integer DEFAULT 30,
+  created_at timestamptz DEFAULT now()
+);
+
+002_create_users.sql
+CREATE TABLE users (
+  id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  first_name text NOT NULL,
+  last_name text NOT NULL,
+  credential text CHECK (credential IN ('RN','LPN','CNA','HHA','DON','NHA','MDS','Staff')),
+  role text NOT NULL DEFAULT 'learner' CHECK (role IN ('learner','admin','super_admin')),
+  is_active boolean DEFAULT true,
+  created_at timestamptz DEFAULT now()
+);
+
+003_create_courses.sql
+CREATE TABLE courses (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  course_slug text UNIQUE NOT NULL,
+  title text NOT NULL,
+  description text,
+  regulatory_reference text,
+  accreditation text,
+  contact_hours numeric(4,1) DEFAULT 1.0,
+  role_audience text[],
+  plan_required text DEFAULT 'essentials' CHECK (plan_required IN ('essentials','command')),
+  sort_order integer DEFAULT 0,
+  thumbnail_icon text,
+  is_new boolean DEFAULT false,
+  has_video boolean DEFAULT false,
+  source text DEFAULT 'ClearPass'
+);
+
+004_create_lessons.sql
+CREATE TABLE lessons (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  lesson_number integer NOT NULL,
+  title text NOT NULL,
+  regulatory_ref text,
+  content_html text,
+  video_url text,
+  duration_minutes integer DEFAULT 10
+);
+
+005_create_quiz_questions.sql
+CREATE TABLE quiz_questions (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  question_text text NOT NULL,
+  option_a text NOT NULL,
+  option_b text NOT NULL,
+  option_c text NOT NULL,
+  option_d text NOT NULL,
+  correct_answer text NOT NULL CHECK (correct_answer IN ('a','b','c','d')),
+  explanation text NOT NULL
+);
+
+006_create_enrollments.sql
+CREATE TABLE enrollments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  status text DEFAULT 'not_started' CHECK (status IN ('not_started','in_progress','completed')),
+  progress_pct numeric(5,2) DEFAULT 0,
+  lessons_completed uuid[] DEFAULT '{}',
+  started_at timestamptz,
+  completed_at timestamptz,
+  due_date date,
+  UNIQUE(user_id, course_id)
+);
+
+007_create_quiz_attempts.sql
+CREATE TABLE quiz_attempts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  score_pct numeric(5,2) NOT NULL,
+  passed boolean NOT NULL,
+  attempt_number integer DEFAULT 1,
+  attempted_at timestamptz DEFAULT now()
+);
+
+008_create_certificates.sql
+CREATE TABLE certificates (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  certificate_id text UNIQUE NOT NULL,
+  user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  learner_full_name text NOT NULL,
+  learner_credential text,
+  facility_name text NOT NULL,
+  course_title text NOT NULL,
+  regulatory_reference text,
+  accreditation text,
+  contact_hours numeric(4,1),
+  score_pct numeric(5,2),
+  completed_at timestamptz DEFAULT now(),
+  expiry_at timestamptz,
+  pdf_url text,
+  verification_url text NOT NULL,
+  qr_code_data text NOT NULL
+);
+
+009_create_assignments.sql
+CREATE TABLE assignments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  assigned_by uuid REFERENCES users(id),
+  due_date date,
+  status text DEFAULT 'pending' CHECK (status IN ('pending','completed','overdue')),
+  assigned_at timestamptz DEFAULT now()
+);
+
+010_create_ai_sessions.sql
+CREATE TABLE ai_sessions (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  messages jsonb DEFAULT '[]',
+  query_count integer DEFAULT 0,
+  created_at timestamptz DEFAULT now()
+);
+
+011_rls_policies.sql — Enable RLS on all tables and add policies:
+
+-- Facilities: users see only their own facility
+ALTER TABLE facilities ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "facility_isolation" ON facilities FOR ALL USING (id = (SELECT facility_id FROM users WHERE id = auth.uid()));
+
+-- Users: see only users in same facility
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "same_facility_users" ON users FOR ALL USING (facility_id = (SELECT facility_id FROM users WHERE id = auth.uid()));
+
+-- Apply same facility_id isolation pattern to: courses (public read — no RLS), lessons (public read), quiz_questions (select only — correct_answer hidden via view), enrollments, quiz_attempts, assignments, ai_sessions
+
+-- Certificates: PUBLIC READ for verification page + owner write
+ALTER TABLE certificates ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "public_cert_read" ON certificates FOR SELECT USING (true);
+CREATE POLICY "owner_cert_write" ON certificates FOR INSERT WITH CHECK (user_id = auth.uid());
+
+012_seed_courses.sql — INSERT all 13 ClearPass courses with slugs, titles, regulatory_reference, contact_hours, plan_required, thumbnail_icon, is_new values as defined in the master build prompt.
+
+BROWSER VERIFICATION: After running migrations, open Supabase dashboard → confirm all 12 tables exist → run a test query on certificates with no auth token → confirm public read works → screenshot the table list as an artifact.</div>
+          <div class="copy-btn" onclick="copyPrompt(this)">Copy</div>
+        </div>
+      </div>
+
+      <!-- ANTIGRAVITY PROMPT 3 — PDF CERTIFICATES -->
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(66,133,244,0.2);color:#93c5fd;">3</div>
+            <div>
+              <div class="pb-title">PDF Certificate + QR + Verification Agent Prompt</div>
+              <div class="pb-subtitle">The most detailed prompt — covers on-screen cert, downloadable PDF, QR code, and public verification page</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(232,168,32,0.1);color:var(--gold2);border:1px solid rgba(232,168,32,0.25);">Key Feature</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt — assign to Agent A after frontend scaffolding is complete</div>
+          <div class="prompt-text">PLAN FIRST: Generate a task list showing: (1) npm packages to install, (2) files to create, (3) Supabase functions/triggers to add, (4) routes to register. Wait for approval before writing any code.
+
+TASK: Build the complete certificate system for ClearPass Academy with THREE deliverables per completed course:
+  A) On-screen certificate (printable via browser print)
+  B) Downloadable PDF (react-pdf)
+  C) Scannable QR code linking to a public verification page
+
+--- STEP 1: INSTALL DEPENDENCIES ---
+Run in terminal:
+npm install @react-pdf/renderer qrcode react-to-print
+npm install --save-dev @types/qrcode
+
+--- STEP 2: CERTIFICATE ID GENERATOR ---
+Create /src/lib/certificateId.ts:
+Generate IDs in format CP-{YEAR}-{8 random uppercase alphanumeric chars}
+Example: CP-2025-A7K2M9XQ
+Function must check Supabase certificates table for uniqueness before returning.
+Export: generateCertificateId(): Promise<string>
+
+--- STEP 3: VERIFICATION URL PATTERN ---
+All QR codes encode: {APP_URL}/verify/{certificate_id}
+APP_URL comes from import.meta.env.VITE_APP_URL
+The /verify/:certificateId route is public — no Supabase auth required to load it.
+
+--- STEP 4: CERTIFICATE GENERATION WORKFLOW ---
+Trigger: User passes quiz (score >= 80%)
+Create file /src/lib/generateCertificate.ts:
+
+async function generateCertificate(params: {
+  userId: string, facilityId: string, courseId: string,
+  learnerName: string, credential: string, facilityName: string,
+  courseTitle: string, regulatoryReference: string, accreditation: string,
+  contactHours: number, scorePct: number
+}): Promise<Certificate>
+
+Steps inside the function:
+1. Call generateCertificateId() — retry up to 3 times if collision
+2. Set completedAt = new Date()
+3. Set expiryAt = new Date() with year + 2
+4. Build verificationUrl = `${import.meta.env.VITE_APP_URL}/verify/${certificateId}`
+5. Generate QR code data URL: await QRCode.toDataURL(verificationUrl, { width: 200, margin: 1, color: { dark: '#0f1e35', light: '#ffffff' } })
+6. Insert Certificate record into Supabase certificates table (store qr_code_data as the data URL)
+7. Return the full Certificate object
+8. Trigger PDF generation (see Step 6) and update pdf_url on the record
+
+--- STEP 5: ON-SCREEN CERTIFICATE COMPONENT ---
+Create /src/components/Certificate.tsx
+
+Visual design requirements:
+- Outer wrapper: cream background (#faf7f0), max-width 900px, aspect-ratio 1.414 (A4 landscape)
+- Decorative outer border: 14px inset, 1px solid #d8cbb8
+- Inner border: 20px inset, 0.5px solid rgba(184,149,42,0.35)
+- Corner SVG ornaments: gold filigree pattern in all 4 corners (use inline SVG, not images)
+- Background: subtle radial gradients for depth — no solid fills
+- Official seal (bottom-right area): 80px circle, gold border, star + "Certified" text
+- QR code (bottom-right corner, below seal): render <img> from qr_code_data stored in certificate record, labeled "Scan to Verify" in 8px monospace text
+- Typography: all certificate text uses Cormorant Garamond or Georgia serif fallback
+- Content (vertically centered, left of QR/seal area):
+    • "ClearPass SNF Academy" — 10px gold uppercase with flanking decorative lines
+    • "Certificate of Completion" — 22px, letterSpacing 0.06em, uppercase
+    • "This certifies that" — 15px italic, muted
+    • LEARNER NAME — 44px bold serif, gold bottom border, centered, max 420px wide
+    • "has successfully completed the course" — italic muted
+    • COURSE TITLE — 20px bold, centered, max 380px wide
+    • Metadata row: Date Completed | CE Hours | Score | Valid Through (with dividers)
+    • Regulatory reference + accreditation + facility — 10px muted centered
+    • Two signature lines: "ClearPass Academy / Authorized Provider" + "Director of Education / ClearPass SNF Academy"
+    • Certificate ID in 9px monospace at bottom center
+
+Print button: use react-to-print. Wrap certificate in a print-safe container.
+Hide action buttons during print (use @media print CSS class).
+
+--- STEP 6: DOWNLOADABLE PDF WITH @react-pdf/renderer ---
+Create /src/components/CertificatePDF.tsx
+
+This is a react-pdf Document component that mirrors the on-screen certificate layout.
+Use @react-pdf/renderer primitives: Document, Page, View, Text, Image, StyleSheet
+
+PDF page: A4 landscape (841.89 x 595.28 pt), orientation="landscape"
+Embed the QR code image from certificate.qr_code_data (base64 data URL — react-pdf supports this)
+Include all the same fields as the on-screen version
+Add a footer line: "Verify this certificate at: {verificationUrl}"
+
+Create /src/lib/downloadCertPDF.tsx:
+import { pdf } from '@react-pdf/renderer'
+import { CertificatePDF } from '../components/CertificatePDF'
+
+export async function downloadCertPDF(certificate: Certificate) {
+  const blob = await pdf(<CertificatePDF certificate={certificate} />).toBlob()
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = `ClearPass-Certificate-${certificate.certificate_id}.pdf`
+  link.click()
+  URL.revokeObjectURL(url)
+}
+
+--- STEP 7: CERTIFICATE ACTION BAR ---
+On the certificate view page, render three action buttons above the certificate:
+[🖨 Print Certificate]  → calls react-to-print handlePrint()
+[⬇ Download PDF]       → calls downloadCertPDF(certificate) — triggers browser file download
+[📋 Copy Verify Link]  → copies verificationUrl to clipboard, button text changes to "✓ Copied" for 2s
+
+--- STEP 8: PUBLIC VERIFICATION PAGE ---
+Create /src/pages/Verify.tsx — route: /verify/:certificateId
+
+This page requires NO authentication. It queries Supabase directly with the anon key:
+const { data: cert } = await supabase
+  .from('certificates')
+  .select('*')
+  .eq('certificate_id', certificateId)
+  .single()
+
+IF FOUND (cert exists):
+  - Page background: navy (#0f1e35)
+  - Centered card (max-width 560px, cream/white, border-radius 20px, box-shadow)
+  - Card header (navy gradient): ClearPass logo + "Certificate Verification Portal"
+  - Green status badge: "✓ Valid & Authentic Certificate"
+  - Display: learner full name (large serif), credential, course title, completion date, CE hours, score, valid through date, regulatory reference, facility name
+  - Divider line
+  - Certificate ID in gold monospace chip
+  - "View Full Certificate" button (links to /certificates?id={certificate_id} — requires login)
+  - Footer: "Verified by ClearPass Academy · clearpass.academy · {current date}"
+
+IF NOT FOUND:
+  - Red status badge: "✗ Certificate Not Found"
+  - Message: "No certificate with ID {certificateId} was found. Check the ID and try again or contact support@clearpass.academy"
+  - Show expected format: "Certificate IDs are formatted as CP-YYYY-XXXXXXXX"
+
+--- STEP 9: EMAIL NOTIFICATION ---
+After certificate is generated, call /api/send-certificate Vercel function:
+Email to learner contains:
+  Subject: "Your ClearPass Certificate — {course_title}"
+  Body: Congratulations message + certificate details + verify link
+  Attach: Generate the PDF server-side using @react-pdf/renderer in the Vercel function and attach as base64
+
+--- BROWSER VERIFICATION STEPS (agent runs automatically):
+1. Complete a test course and pass the quiz
+2. Verify on-screen certificate renders with QR code visible
+3. Click "Print Certificate" — confirm print dialog opens, screenshot
+4. Click "Download PDF" — confirm .pdf file downloads, open it, screenshot
+5. Click "Copy Verify Link" — paste into browser, confirm /verify/ page loads
+6. On /verify/ page — confirm green "Valid" badge and all certificate fields display
+7. Test with a fake certificate ID — confirm red "Not Found" state appears
+8. Screenshot all steps as artifacts and summarize pass/fail per step</div>
+          <div class="copy-btn" onclick="copyPrompt(this)">Copy</div>
+          <div class="notes-box">
+            <p><strong>Critical notes for Antigravity:</strong></p>
+            <ul>
+              <li><strong>@react-pdf/renderer runs client-side</strong> for the download button and server-side (in a Vercel function) for the email attachment. Tell the agent explicitly which context each use is in.</li>
+              <li><strong>QR code as base64 data URL</strong> is the key — store <code>qr_code_data</code> as the full <code>data:image/png;base64,...</code> string in Supabase so both the on-screen component and the PDF renderer can use it without a network call.</li>
+              <li><strong>react-to-print</strong> handles print layout via <code>@media print</code> CSS — tell the agent to add <code>.no-print { display: none; }</code> to all action buttons and nav elements so only the certificate renders on paper.</li>
+              <li><strong>If the agent hits quota</strong> mid-task, save the artifact checkpoint and resume with: "Continue from Step 6 — PDF component. Previous steps are complete."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANTIGRAVITY PROMPT 4 — AI ADVISOR -->
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(66,133,244,0.2);color:#93c5fd;">4</div>
+            <div>
+              <div class="pb-title">AI Compliance Advisor + Policy Generator Agent Prompt</div>
+              <div class="pb-subtitle">Claude API server-side proxy, streaming chat UI, and policy document generation</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(232,168,32,0.1);color:var(--gold2);border:1px solid rgba(232,168,32,0.25);">Command Plan</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">PLAN FIRST: List the Vercel API functions to create, the React components, and the environment variables needed. Wait for approval.
+
+TASK: Build the AI Compliance Advisor and Policy Generator for ClearPass Academy.
+
+SECURITY REQUIREMENT: The Anthropic API key must NEVER be exposed to the client. All Claude API calls go through server-side Vercel functions. The client calls /api/ai/chat and /api/ai/policy — it never calls api.anthropic.com directly.
+
+--- VERCEL FUNCTION: /api/ai/chat.ts ---
+Method: POST
+Auth: Verify Supabase JWT from Authorization header before processing
+Input: { message: string, history?: { role: string, content: string }[] }
+Logic:
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01'
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1024,
+      system: `You are a CMS SNF compliance expert trained on 42 CFR Part 483 Subpart B, CMS State Operations Manual Appendix PP, MDS 3.0 guidance, PDPM rules, and FY 2025-2026 SNF PPS final rules. Help SNF administrators, nurses, MDS coordinators, and compliance officers. Reference F-tags where applicable. Be specific and practical. Start responses directly without preamble. Recommend consulting a healthcare attorney for specific situations.`,
+      messages: [...(history || []), { role: 'user', content: message }]
+    })
+  })
+  const data = await response.json()
+  return { response: data.content[0].text }
+
+--- VERCEL FUNCTION: /api/ai/policy.ts ---
+Method: POST
+Auth: Verify Supabase JWT + check user's facility plan = 'command' or 'network'
+Input: { policyType: string, cfrRef: string, facilityName: string, state: string, effectiveDate: string, author: string }
+System prompt: "You are an ANCC-accredited healthcare education content developer and CMS compliance expert specializing in SNF policy writing. Generate professional, CMS-compliant SNF policy and procedure documents."
+User message: "Generate a complete policy and procedure document for: {policyType} under {cfrRef}. Facility: {facilityName}. State: {state}. Effective Date: {effectiveDate}. Approved By: {author}. Include sections: Policy Number (format POL-XXXX), Policy Title, Regulatory Reference, Purpose, Scope, Definitions (5+ key terms), Policy Statement, Procedures (10+ numbered steps), Staff Responsibilities by role, Documentation Requirements, Monitoring & Compliance, Review Schedule (annual), References."
+
+--- REACT COMPONENT: /src/pages/AIAdvisor.tsx ---
+Plan check: if user's facility plan is 'essentials' → show upgrade prompt, not the chat interface
+
+Chat UI layout (max-width 800px, centered):
+  Disclaimer banner (amber background): "For training and educational reference only. Not legal or regulatory advice. Verify with current CMS guidance for compliance decisions."
+  Quick-prompt chips (horizontal scroll row):
+    "Common F-tag citations" → fills input with "What F-tags are most commonly cited in SNF surveys?"
+    "Unavoidable pressure injury" → "How do I document an unavoidable pressure injury under F686?"
+    "PDPM hip fracture" → "Walk me through PDPM ICD-10 mapping for a hip fracture patient"
+    "MDS v3.10 Oct 2025" → "What are the October 2025 MDS version 3.10 changes?"
+    "Immediate Jeopardy" → "What triggers Immediate Jeopardy and what happens next?"
+    "Post-fall RCA" → "What must a post-fall root cause analysis include under F689?"
+    "§483.85 program" → "What are the mandatory compliance program elements under §483.85?"
+  Chat window (scrollable, min-height 340px):
+    AI messages: navy/dark bubble, left-aligned, "CP" avatar
+    User messages: blue bubble, right-aligned, initials avatar
+    Loading state: 3 animated dots while waiting for API response
+  Input row: text input + "Ask →" button (gold)
+
+--- REACT COMPONENT: /src/pages/PolicyGenerator.tsx ---
+Form inputs (2-column grid):
+  Facility Name (pre-filled from current user's facility)
+  Effective Date (date picker, default today)
+  State (dropdown)
+  Author / Title (text)
+
+Policy type selector (visual card grid, 12 options with icon + name + CFR ref):
+  Abuse Prevention (§483.12) | Pressure Injury (§483.25(b)) | Infection Control (§483.80)
+  Antipsychotic GDR (§483.45(d)) | Care Planning (§483.21) | Resident Rights (§483.10)
+  MDS Accuracy (§483.20) | Staffing Standards (§483.35) | QAPI Program (§483.75)
+  Advance Directives (Part 489) | Compliance Program (§483.85) | Falls Prevention (§483.25(d))
+
+Generate button (gold, full width): "Generate Policy Document →"
+Loading state: spinner + "Generating policy… this may take 20–30 seconds"
+Output area (monospace font, scrollable, dark background):
+  Header row: policy title + three action buttons: [📋 Copy] [🖨 Print] [⬇ Download .txt]
+  Generated policy text
+
+BROWSER VERIFICATION:
+1. Open /ai-advisor → confirm disclaimer banner shows
+2. Click a quick-prompt chip → confirm input fills
+3. Submit a question → confirm loading indicator → confirm response appears
+4. Open /policy-gen → select "Abuse Prevention" → click Generate → confirm policy generates in < 30s → click Copy → confirm clipboard shows policy text</div>
+          <div class="copy-btn" onclick="copyPrompt(this)">Copy</div>
+        </div>
+      </div>
+
+      <!-- ANTIGRAVITY PROMPT 5 — ADMIN -->
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(66,133,244,0.2);color:#93c5fd;">5</div>
+            <div>
+              <div class="pb-title">Admin Dashboard + Stripe Billing Agent Prompt</div>
+              <div class="pb-subtitle">Compliance heatmap, staff tracker, CSV export, Stripe webhooks, and plan gating</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">PLAN FIRST: List all components, Vercel functions, and Stripe webhook events to handle. Wait for approval.
+
+TASK: Build the Admin Dashboard and Stripe billing integration for ClearPass Academy.
+
+--- ADMIN DASHBOARD (/admin) ---
+Role check: redirect to /dashboard if current user's role !== 'admin'
+All Supabase queries must include .eq('facility_id', currentUser.facility_id)
+
+STAT CARDS ROW (6 cards):
+  Overdue Staff | Compliance Rate % | Courses Assigned | AI Queries This Month | Survey Sim Runs | Policies Generated
+  Each card: colored top border (2px), label, large serif number, subtitle trend text
+
+COMPLIANCE HEATMAP:
+  Grid of cards, one per course (13 total)
+  Color-code by completion rate for this facility:
+    Green border + green number: ≥ 90%
+    Blue border: 70–89%
+    Amber border: 50–69%
+    Red border: < 50%
+  Each tile: short course name + completion % + count (X/Y staff)
+
+COMPLIANCE BY COURSE TABLE:
+  Columns: Course | Assigned | Complete | Rate | Progress Bar | Status Badge | Action
+  Status badge logic: Complete (green) | On Track (blue) | At Risk (amber) | Overdue (red)
+  "Export CSV" button: generates and downloads a CSV of all rows using:
+    const csv = rows.map(r => Object.values(r).join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    // trigger download
+
+STAFF TRACKER TABLE (/admin/staff):
+  Columns: Name | Credential | Assigned | Completed | Progress Bar | Status | Due Date | Actions
+  Row highlight: background #fff5f5 if status = 'overdue'
+  Actions per row: "View" (opens learner transcript) | "Send Reminder" (calls /api/send-reminder) | "Deactivate"
+  "+ Add Staff" button: opens modal with email input + credential selector + role selector
+    → creates Supabase auth invite → sends email with signup link scoped to facility
+
+VERCEL FUNCTION: /api/send-reminder.ts
+  Input: { userId, courseId }
+  Uses Resend to send: Subject "Action Required: {course} due soon — ClearPass Academy"
+  Body: staff name, course name, due date, login link
+
+--- STRIPE BILLING ---
+VERCEL FUNCTION: /api/stripe/checkout.ts
+  Input: { planId, facilityId, email, facilityName }
+  Creates Stripe Customer + Subscription with trial_period_days: 14
+  Returns: { clientSecret, subscriptionId }
+
+STRIPE PRODUCTS (instruct agent to output the curl commands to create these in Stripe):
+  price_essentials_monthly: $149/mo recurring
+  price_essentials_annual: $1490/yr recurring (= $124.17/mo)
+  price_command_monthly: $349/mo recurring
+  price_command_annual: $2990/yr recurring (= $249.17/mo)
+  price_network_monthly: $229/mo per-unit recurring (quantity = facility count)
+
+VERCEL FUNCTION: /api/stripe/webhook.ts
+  Verify Stripe webhook signature using process.env.STRIPE_WEBHOOK_SECRET
+  Handle events:
+    customer.subscription.updated → UPDATE facilities SET subscription_status = event.data.object.status WHERE stripe_subscription_id = event.data.object.id
+    customer.subscription.deleted → UPDATE facilities SET subscription_status = 'canceled'
+    invoice.payment_failed → UPDATE status = 'past_due', send failure email via Resend
+    customer.subscription.trial_will_end → send 3-day warning email to facility admin
+
+PLAN GATE HELPER (create /src/lib/planGate.ts):
+  export function canAccessCommand(facility: Facility): boolean {
+    return ['command','network'].includes(facility.plan) &&
+           ['active','trialing'].includes(facility.subscription_status)
+  }
+  Use this in every Command-plan-gated component.
+
+BILLING PAGE (/billing):
+  Show: current plan, status, next billing date, amount
+  "Manage Subscription" button → redirect to Stripe Customer Portal
+    (Create via: stripe.billingPortal.sessions.create({ customer: facility.stripe_customer_id, return_url: APP_URL + '/billing' }))
+  Invoice table: pull from Stripe API, show last 6 invoices with date, amount, status, PDF link
+
+BROWSER VERIFICATION:
+1. Log in as admin → open /admin → confirm stat cards show real data
+2. Export CSV → confirm file downloads with correct columns
+3. Open /admin/staff → find an overdue row → confirm red row highlight → click Send Reminder
+4. Open /billing → click Manage Subscription → confirm Stripe portal opens</div>
+          <div class="copy-btn" onclick="copyPrompt(this)">Copy</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ════════════════════════════
+         BUBBLE SECTION
+    ════════════════════════════ -->
+    <div id="bubble" class="tool-section">
+      <div class="tool-header">
+        <div class="tool-icon-wrap" style="background:rgba(30,60,200,0.12);border-color:rgba(30,60,200,0.3);">🔵</div>
+        <div class="tool-meta">
+          <div class="tool-name">Bubble.io</div>
+          <div class="tool-tagline">The most capable no-code platform for full SaaS applications. Best choice for the complete ClearPass production build — multi-tenancy, billing, AI integration, and rich admin tooling in one environment.</div>
+          <div class="tool-chips">
+            <span class="chip" style="background:rgba(30,60,200,0.12);color:#93c5fd;border:1px solid rgba(30,60,200,0.3);">Full SaaS</span>
+            <span class="chip" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">Multi-tenant auth</span>
+            <span class="chip" style="background:rgba(167,139,250,0.08);color:var(--purple);border:1px solid rgba(167,139,250,0.2);">Stripe native</span>
+            <span class="chip" style="background:rgba(244,63,94,0.08);color:#fda4af;border:1px solid rgba(244,63,94,0.2);">4–8 week build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-item">
+          <div class="vi-label" style="color:var(--blue);">Pricing</div>
+          <div class="vi-value">Starter $32/mo · Growth $119/mo · Team $349/mo. Use Growth for launch — Starter limits workflows.</div>
+        </div>
+        <div class="verdict-item">
+          <div class="vi-label" style="color:var(--green);">Key strength</div>
+          <div class="vi-value">Everything in one platform. Database, auth, workflows, UI, hosting. No stitching tools together.</div>
+        </div>
+        <div class="verdict-item">
+          <div class="vi-label" style="color:var(--rose);">Key risk</div>
+          <div class="vi-value">No code export. If Bubble raises prices or shuts down, you cannot take your app elsewhere. Evaluate Lovable as an alternative if portability matters.</div>
+        </div>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-item"><div class="si-layer">Frontend</div><div class="si-tool">Bubble UI</div><div class="si-note">Visual drag-and-drop responsive pages</div></div>
+        <div class="stack-item"><div class="si-layer">Database</div><div class="si-tool">Bubble DB</div><div class="si-note">Built-in relational database + privacy rules</div></div>
+        <div class="stack-item"><div class="si-layer">Auth</div><div class="si-tool">Bubble Auth</div><div class="si-note">Email/password + social login + custom roles</div></div>
+        <div class="stack-item"><div class="si-layer">Billing</div><div class="si-tool">Stripe Plugin</div><div class="si-note">Official Bubble Stripe plugin for subscriptions</div></div>
+        <div class="stack-item"><div class="si-layer">AI</div><div class="si-tool">API Connector</div><div class="si-note">Anthropic Claude API via Bubble API Connector</div></div>
+        <div class="stack-item"><div class="si-layer">PDF/QR</div><div class="si-tool">PDFMonkey + QRickit</div><div class="si-note">Certificate PDF generation + QR code APIs</div></div>
+        <div class="stack-item"><div class="si-layer">Email</div><div class="si-tool">SendGrid Plugin</div><div class="si-note">Deadline reminders + certificate delivery</div></div>
+        <div class="stack-item"><div class="si-layer">Hosting</div><div class="si-tool">Bubble Cloud</div><div class="si-note">Included — deploy with one click</div></div>
+      </div>
+
+      <!-- PROMPT BLOCKS — BUBBLE -->
+      <div id="prompt-overview" class="prompt-block">
+        <div class="pb-header open" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">1</div>
+            <div>
+              <div class="pb-title">Platform Overview Prompt</div>
+              <div class="pb-subtitle">Paste into Bubble AI or use as your design document before building</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(34,197,94,0.1);color:#86efac;border:1px solid rgba(34,197,94,0.2);">Start Here</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build a multi-tenant SaaS LMS (Learning Management System) called ClearPass Academy on Bubble.io.
+
+PRODUCT OVERVIEW:
+ClearPass Academy is a compliance training platform for skilled nursing facilities (SNFs). It delivers CMS-regulated courses (42 CFR Part 483), scored quizzes, QR-verified certificates, an admin compliance dashboard, an AI Compliance Advisor powered by the Anthropic Claude API, and Stripe subscription billing.
+
+TWO USER ROLES:
+1. LEARNER — Takes assigned courses, completes quizzes, earns downloadable certificates with scannable QR codes. Views personal transcript and progress.
+2. ADMIN (Facility Administrator / DON) — Manages staff accounts, assigns courses, tracks completion compliance by staff member and by course, exports audit-ready reports, generates AI-drafted policy documents.
+
+MULTI-TENANCY:
+Each facility is an isolated tenant. All data (users, completions, certificates) is scoped to facility_id. A learner at Facility A cannot see any data from Facility B. Implement this using Bubble's privacy rules on every data type.
+
+THREE SUBSCRIPTION PLANS (Stripe):
+- Essentials: $149/mo — 8 core courses, up to 30 staff, no AI features
+- Command: $349/mo — All 13 courses, unlimited staff, AI Advisor, Survey Simulator, Policy Generator
+- Network: $229/mo per facility (min 3) — Everything in Command + multi-facility admin dashboard
+
+PAGES TO BUILD:
+1. Landing / Marketing page
+2. Signup / Onboarding (facility setup + Stripe checkout)
+3. Learner Dashboard
+4. Course Catalog
+5. Course Player (lesson text + embedded video player + inline quiz)
+6. Certificate viewer + print view
+7. My Transcript
+8. AI Compliance Advisor (chat interface)
+9. Survey Simulator (scenario quiz)
+10. Policy Generator (form → Claude API → generated document)
+11. Admin: Compliance Dashboard
+12. Admin: Staff Tracker (table with completion %, overdue alerts)
+13. Admin: Assignment Manager
+14. Admin: Reports (CSV export)
+15. Certificate Verification (public, no auth required — accessed via QR code link)
+
+DESIGN DIRECTION:
+- Professional, clinical-enterprise aesthetic
+- Navy sidebar (#0f2337), white content area, sky blue primary (#1a72e8), warm gold accent (#d4a832)
+- Typography: Fraunces serif for headings, DM Sans for body
+- Dense data tables with clear status badges (Complete / In Progress / Overdue / Not Started)
+- Responsive — works on tablet and desktop<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="notes-box">
+            <p><strong>How to use in Bubble:</strong> Open a new Bubble app → click "Start with AI" → paste this as your initial description. Then use the subsequent prompts below for each specific module. Build in order: database → auth → pages → workflows → integrations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="prompt-db" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">2</div>
+            <div>
+              <div class="pb-title">Database Schema Prompt</div>
+              <div class="pb-subtitle">All data types, fields, and relationships for the complete platform</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(59,130,246,0.1);color:#93c5fd;border:1px solid rgba(59,130,246,0.2);">Database</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Create the following database schema in Bubble. For each data type, set privacy rules so that all records are only accessible to users whose facility_id matches the record's facility field, EXCEPT the Certificate data type which has a public-read rule for verification.
+
+DATA TYPES:
+
+1. FACILITY
+   - name (text)
+   - plan (text: "essentials" | "command" | "network")
+   - stripe_customer_id (text)
+   - stripe_subscription_id (text)
+   - subscription_status (text: "active" | "trialing" | "canceled")
+   - admin_user (User)
+   - created_date (date)
+   - max_staff (number)
+
+2. USER (extend Bubble's default User type)
+   - first_name (text)
+   - last_name (text)
+   - credential (text: "RN" | "LPN" | "CNA" | "HHA" | "DON" | "NHA" | "MDS" | "Staff")
+   - role (text: "learner" | "admin" | "super_admin")
+   - facility (Facility)
+   - is_active (yes/no)
+
+3. COURSE
+   - course_id (text, unique slug e.g. "cp-abuse")
+   - title (text)
+   - description (text)
+   - regulatory_reference (text, e.g. "42 CFR §483.12 · F600–F641")
+   - accreditation (text)
+   - contact_hours (number)
+   - role_audience (list of text)
+   - source (text: "ClearPass")
+   - is_new (yes/no)
+   - has_video (yes/no)
+   - plan_required (text: "essentials" | "command")
+   - sort_order (number)
+   - thumbnail_icon (text, emoji)
+
+4. LESSON
+   - course (Course)
+   - lesson_number (number)
+   - title (text)
+   - regulatory_ref (text)
+   - content_html (text, rich text)
+   - video_url (text, optional)
+   - duration_minutes (number)
+
+5. QUIZ_QUESTION
+   - lesson (Lesson)
+   - course (Course)
+   - question_text (text)
+   - option_a (text)
+   - option_b (text)
+   - option_c (text)
+   - option_d (text)
+   - correct_answer (text: "a" | "b" | "c" | "d")
+   - explanation (text)
+
+6. ENROLLMENT
+   - user (User)
+   - facility (Facility)
+   - course (Course)
+   - status (text: "not_started" | "in_progress" | "completed")
+   - progress_pct (number)
+   - lessons_completed (list of Lesson)
+   - started_date (date)
+   - completed_date (date)
+   - assigned_by (User)
+   - due_date (date)
+
+7. QUIZ_ATTEMPT
+   - user (User)
+   - facility (Facility)
+   - course (Course)
+   - score_pct (number)
+   - passed (yes/no)
+   - answers (text, JSON string of question_id:answer pairs)
+   - attempted_date (date)
+   - attempt_number (number)
+
+8. CERTIFICATE
+   - certificate_id (text, format: "CP-YYYY-XXXXXXXX")
+   - user (User)
+   - facility (Facility)
+   - course (Course)
+   - learner_full_name (text)
+   - learner_credential (text)
+   - facility_name (text)
+   - course_title (text)
+   - regulatory_reference (text)
+   - accreditation (text)
+   - contact_hours (number)
+   - score_pct (number)
+   - completed_date (date)
+   - expiry_date (date)
+   - pdf_url (text)
+   - verification_url (text)
+   - qr_code_url (text)
+   Privacy rule: ANYONE can view (needed for QR verification page)
+
+9. ASSIGNMENT
+   - user (User)
+   - facility (Facility)
+   - course (Course)
+   - assigned_by (User)
+   - due_date (date)
+   - status (text: "pending" | "completed" | "overdue")
+   - assigned_date (date)
+
+10. AI_SESSION
+    - user (User)
+    - facility (Facility)
+    - session_date (date)
+    - messages (text, JSON array)
+    - query_count (number)<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-auth" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">3</div>
+            <div>
+              <div class="pb-title">Auth, Roles & Onboarding Prompt</div>
+              <div class="pb-subtitle">Signup flow, facility creation, role assignment, Stripe trial start</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2);">Auth</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the authentication and onboarding system for ClearPass Academy.
+
+SIGNUP FLOW (4 steps, single page with step progress indicator):
+
+Step 1 — Plan Selection
+- Display 3 pricing cards: Essentials ($149/mo), Command ($349/mo), Network ($229/mo/facility)
+- Each card shows features list, price, and a "Start Free 14-Day Trial" button
+- Store selected plan in a URL parameter or session state
+
+Step 2 — Facility Setup
+- Inputs: Facility Name, Facility State (dropdown), Administrator First Name, Last Name, Email, Password
+- Validation: all required, email format check, password min 8 characters
+
+Step 3 — Stripe Checkout
+- Use Bubble's Stripe plugin to create a Customer and a Subscription with a 14-day trial period
+- Do not charge the card during trial — set trial_end to 14 days from now
+- On Stripe success, proceed to Step 4
+
+Step 4 — Account Created
+- Create a Facility record (name, plan, stripe_customer_id, stripe_subscription_id, status: "trialing")
+- Create a User record (email, password via Bubble's signup, role: "admin", facility: new Facility)
+- Auto-log the user in
+- Redirect to Admin Dashboard
+
+ROLE-BASED ACCESS:
+- Every page must check Current User's role on page load
+- Admin pages: redirect to Learner Dashboard if role = "learner"
+- Learner pages: visible to both roles
+- Implement a reusable "Check Role" workflow that can be called on any page
+
+STAFF INVITE FLOW (Admin only):
+- Admin enters staff email + selects credential + selects role (learner/admin)
+- Send invite email via SendGrid plugin with a unique signup link containing the facility_id
+- Staff clicks link → pre-populated signup form (facility is locked) → creates User record linked to the facility
+- No Stripe checkout for staff — they inherit the facility's subscription
+
+SESSION & SECURITY:
+- All Bubble privacy rules must use: "Creator's facility = Current User's facility" or "This Certificate's facility = Current User's facility"
+- Certificate data type exception: public read access for verification page
+- Log out after 8 hours of inactivity<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-courses" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">4</div>
+            <div>
+              <div class="pb-title">Course System & Player Prompt</div>
+              <div class="pb-subtitle">Catalog, lesson progression, video embed, and progress tracking</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(20,184,166,0.1);color:var(--teal);border:1px solid rgba(20,184,166,0.2);">Core</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the Course Catalog and Course Player pages for ClearPass Academy.
+
+COURSE CATALOG PAGE:
+- Header: "Course Catalog" + count of available courses for current user's plan
+- Filter row: filter chips for All / Clinical / Safety / Legal / CMS Required + dropdown selectors for Role and State
+- Course grid: 3 columns, responsive. Each card shows:
+  • Colored thumbnail area with emoji icon
+  • "New" badge (teal) if Course's is_new = yes
+  • "🎥 Video" badge if Course's has_video = yes
+  • Source badge ("ClearPass") 
+  • Role audience label (color-coded)
+  • Course title (bold)
+  • Short description
+  • Footer: contact hours · regulatory reference · enrollment status badge
+- If course's plan_required = "command" and Current User's facility plan = "essentials":
+  Show course card with a lock icon overlay and "Upgrade to unlock" button
+- Clicking an unlocked course creates an Enrollment record (status: "not_started") if one doesn't exist, then navigates to Course Player
+
+COURSE PLAYER PAGE (URL: /course/:course_id):
+- Two-column layout: main content (left, ~70%) + sidebar (right, ~30%)
+- TOP BAR (sticky):
+  • Back to Catalog button
+  • Course title + current lesson name
+  • Progress bar showing overall course completion percentage
+
+MAIN CONTENT AREA:
+  • If lesson has video_url: embed video player (use Bubble's Video element with the stored URL)
+  • Lesson header: gradient background, lesson number, lesson title, regulatory reference
+  • Lesson body: render content_html as rich text (use Bubble's HTML element)
+  • Callout boxes: styled div blocks for F-tag references (blue) and warnings (amber)
+  • Navigation footer: Previous Lesson / Next Lesson buttons
+  • "Mark Lesson Complete" workflow:
+    - Add current Lesson to Enrollment's lessons_completed list
+    - Recalculate progress_pct = (lessons_completed count / total lessons in course) × 100
+    - Update Enrollment record
+    - If all lessons complete: change Enrollment status to "completed" + trigger quiz unlock
+
+SIDEBAR:
+  • Lesson outline: list all lessons in course, show checkmark for completed, highlight current
+  • Clicking a lesson navigates to it
+  • Below outline: Knowledge Check quiz panel (see quiz prompt)
+
+PROGRESS TRACKING WORKFLOW:
+- On page load: find or create Enrollment record for Current User + this Course
+- Track last_lesson_viewed on the Enrollment so the user can resume where they left off
+- Display resume button on catalog card if Enrollment status = "in_progress"<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-quiz" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">5</div>
+            <div>
+              <div class="pb-title">Quiz Engine & Scoring Prompt</div>
+              <div class="pb-subtitle">Question display, answer capture, scoring, retry logic, and pass/fail gate</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(20,184,166,0.1);color:var(--teal);border:1px solid rgba(20,184,166,0.2);">Core</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the quiz engine for ClearPass Academy. The quiz appears in the Course Player sidebar after all lessons are completed.
+
+QUIZ DISPLAY:
+- Title: "Knowledge Check"
+- Subtitle: "Score 80% or higher to earn your certificate. You may retake the quiz."
+- Show all Quiz_Question records for this Course
+- Each question displays:
+  • Question text (bold)
+  • Four radio button options (A, B, C, D) styled as clickable card-style labels
+  • Option cards highlight on hover (blue border + light blue background)
+- "Submit Answers" button at the bottom (disabled until all questions answered)
+
+SUBMISSION WORKFLOW:
+1. On Submit: iterate through each question
+2. Compare user's selected answer to correct_answer field
+3. For each question:
+   - Correct: highlight option card GREEN, show explanation text in green feedback box
+   - Incorrect: highlight selected option RED, highlight correct option GREEN, show explanation in red feedback box
+   - Disable all radio buttons after submission
+4. Calculate score: (correct count / total questions) × 100, round to nearest integer
+5. Create a Quiz_Attempt record: user, facility, course, score_pct, passed (yes if score ≥ 80), attempt_number
+
+IF SCORE ≥ 80% (PASSED):
+- Show success modal (overlay) with:
+  • Animated score ring (CSS animation showing the percentage)
+  • "🎓 Certificate Earned" ribbon
+  • Score display (e.g. "3/3 — 100%")
+  • Learner name + course name
+  • Two buttons: "View & Print Certificate" | "Go to My Certificates"
+- Trigger certificate generation workflow (see certificate prompt)
+
+IF SCORE < 80% (FAILED):
+- Show inline message: "You scored X%. Score 80% or higher to pass. Review the lessons and try again."
+- Reset quiz after 3 seconds: clear all selections, re-enable radio buttons, re-show Submit button
+- Increment attempt_number on next Quiz_Attempt record
+
+RETRY LOGIC:
+- No limit on retries
+- Track all Quiz_Attempt records (user can see their attempt history on the Transcript page)
+- Certificate is only generated on first passing attempt — do not generate duplicate certificates<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-cert" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">6</div>
+            <div>
+              <div class="pb-title">Certificate Generation & QR Verification Prompt</div>
+              <div class="pb-subtitle">PDF generation via PDFMonkey, QR code via API, and the public verification page</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(232,168,32,0.1);color:var(--gold2);border:1px solid rgba(232,168,32,0.2);">Key Feature</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the certificate generation and verification system for ClearPass Academy.
+
+CERTIFICATE ID GENERATION:
+- Format: "CP-" + current year (4 digits) + "-" + 8 random alphanumeric characters (uppercase)
+- Example: CP-2025-A7K2M9XQ
+- Must be globally unique — check for duplicates before saving
+
+VERIFICATION URL:
+- Format: https://clearpass.academy/verify/[CERTIFICATE_ID]
+- This URL is embedded in the QR code
+- The /verify/ page is publicly accessible (no login required)
+
+CERTIFICATE RECORD CREATION (workflow triggered after passing quiz):
+1. Generate certificate_id (unique)
+2. Calculate expiry_date = completed_date + 2 years
+3. Build verification_url from certificate_id
+4. Create Certificate record with all fields populated
+5. Call QR code API (use QRickit API: GET https://qrickit.com/api/qr?d=[verification_url]&qrsize=150&t=p&e=m) — store returned image URL in Certificate's qr_code_url
+6. Call PDFMonkey API to generate PDF using the certificate template (see design below)
+7. Store returned PDF URL in Certificate's pdf_url
+8. Send email to learner (SendGrid) with PDF attached and "View Certificate" + "Download PDF" buttons
+
+CERTIFICATE VISUAL DESIGN (PDFMonkey template variables):
+{learner_name} — full name + credential (e.g. "Maria Santos, RN")
+{course_title} — course name
+{completed_date} — formatted as "May 14, 2025"
+{contact_hours} — number
+{score_pct} — percentage
+{expiry_date} — formatted date
+{regulatory_reference} — CFR citation
+{accreditation} — accreditation body
+{facility_name} — facility name
+{certificate_id} — unique ID
+{qr_code_url} — QR image URL
+
+CERTIFICATE PAGE DESIGN (in Bubble, for on-screen viewing):
+- Cream/parchment background (#faf7f0)
+- Decorative outer border frame (1px gold)
+- Inner border frame (0.5px gold, 6px inset)
+- Corner ornament SVGs (gold filigree in all 4 corners)
+- Official seal circle (bottom right area): star + "Certified" text
+- QR code (bottom right corner, below seal) — labeled "Scan to Verify"
+- Typography: Cormorant Garamond serif for all certificate text
+- Content centered: issuer name → "Certificate of Completion" → "This certifies that" → LEARNER NAME → "has successfully completed" → COURSE TITLE → metadata row → dual signature lines → certificate ID
+
+THREE ACTION BUTTONS above the on-screen certificate:
+1. [🖨 Print Certificate] — triggers window.print() via a Bubble HTML element; all non-certificate page elements hidden via @media print { display: none }
+2. [⬇ Download PDF] — opens the pdf_url stored on the Certificate record in a new tab (PDFMonkey URL) — this is the pre-generated PDF with all certificate content
+3. [📋 Copy Verify Link] — copies the verification_url to clipboard; button label changes to "✓ Copied" for 2 seconds via a Bubble conditional state
+
+PUBLIC VERIFICATION PAGE (/verify/:certificate_id):
+- No login required — publicly accessible
+- Navy background, cream card in center
+- ClearPass logo + "Certificate Verification Portal" heading
+- Look up Certificate record by certificate_id parameter
+- IF FOUND: show green "✓ Valid & Authentic Certificate" badge + all certificate details (learner name, course, date, hours, score, expiry, regulatory reference, facility)
+- IF NOT FOUND: show red "✗ Certificate Not Found" with instructions
+- "View Full Certificate" button opens the certificate display page
+- Include: "Verified by ClearPass Academy · clearpass.academy"<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-admin" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">7</div>
+            <div>
+              <div class="pb-title">Admin Compliance Dashboard Prompt</div>
+              <div class="pb-subtitle">Staff tracker, compliance heatmap, overdue alerts, and CSV export</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(20,184,166,0.1);color:var(--teal);border:1px solid rgba(20,184,166,0.2);">Admin</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the Admin Compliance Dashboard for ClearPass Academy. Only accessible to users where role = "admin". All data scoped to Current User's facility.
+
+COMPLIANCE DASHBOARD PAGE:
+
+STAT CARDS ROW (top):
+- Overdue Staff: count of Users in this facility whose any Assignment has status "overdue"
+- Compliance Rate: (Enrollments with status "completed" / total Enrollments for this facility) × 100 — display as percentage
+- Courses Assigned: total count of Enrollment records for this facility
+- AI Advisor Queries: count of AI_Session records for this facility this month
+- Survey Sim Runs: count of Quiz_Attempt records where course = "survey-sim" for this facility
+
+COMPLIANCE HEATMAP (grid of colored metric tiles):
+One tile per course showing completion rate for this facility:
+- Green tile: ≥90% completion
+- Blue tile: 70–89% completion
+- Amber tile: 50–69% completion  
+- Red tile: <50% completion
+Each tile shows: course short name + completion percentage
+
+COMPLIANCE BY COURSE TABLE:
+Columns: Course Name | Assigned | Complete | Rate | Progress Bar | Status Badge | Action
+- Filter by: All Courses / Required Only / At Risk (< 80%)
+- Status badges: "Complete" (green) / "On Track" (blue) / "At Risk" (amber) / "Overdue" (red)
+- Sort by: Rate (ascending to show worst first)
+
+STAFF TRACKER TABLE:
+Columns: Name | Credential | Role | Assigned Courses | Completed | Progress % | Status | Due Date | Action
+- Status badge logic:
+  • "Complete" — all assigned courses completed
+  • "In Progress" — some courses started, none overdue
+  • "At Risk" — due date within 7 days, not complete
+  • "Overdue" — due date passed, not complete
+  • "New" — no courses started
+- Action column: "View Details" (opens learner transcript) | "Send Reminder" (sends email) | "Remove" (deactivates account)
+- Overdue rows highlighted with light red background (#fff5f5)
+- "Export CSV" button — exports all rows as downloadable CSV file
+
+ACTIVITY ALERT FEED (right sidebar):
+- Real-time list of recent activity for this facility:
+  • Staff completed a course (green dot)
+  • Staff is overdue (red dot)
+  • New staff added (blue dot)
+  • AI Advisor query spike (purple dot)
+  • Survey Sim score improvement (teal dot)
+- Show last 20 events, newest first
+
+AUTOMATED ALERTS WORKFLOW:
+- Run daily at 8am: check all Assignments where due_date is in 7 days AND status ≠ "completed"
+- Send reminder email to the learner via SendGrid
+- Email subject: "Action Required: [Course Name] due in 7 days — ClearPass Academy"<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-ai" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">8</div>
+            <div>
+              <div class="pb-title">AI Compliance Advisor Prompt</div>
+              <div class="pb-subtitle">Claude API integration, chat UI, Policy Generator, and Survey Simulator</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(232,168,32,0.1);color:var(--gold2);border:1px solid rgba(232,168,32,0.2);">Command Plan</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build three AI-powered features for ClearPass Academy using the Anthropic Claude API via Bubble's API Connector. Only show these features to users whose facility plan = "command" or "network".
+
+--- FEATURE 1: AI COMPLIANCE ADVISOR ---
+
+PAGE: /ai-advisor
+LAYOUT: Centered, max-width 800px, navy background
+
+CHAT INTERFACE:
+- Disclaimer banner (amber): "For training and educational reference only. Not legal or regulatory advice."
+- Quick-prompt chips (clickable, auto-fill input):
+  "What F-tags are most commonly cited in SNF surveys?"
+  "How do I document an unavoidable pressure injury?"
+  "Walk me through PDPM ICD-10 mapping for a hip fracture"
+  "What are the October 2025 MDS v3.10 changes?"
+  "What triggers Immediate Jeopardy and what happens next?"
+  "What are the §483.85 mandatory compliance program elements?"
+- Chat window: scrollable, alternating AI (navy bubble) and User (blue bubble) messages
+- Input field + "Ask →" button
+- Show typing indicator (3 animated dots) while waiting for API response
+
+BUBBLE API CONNECTOR SETUP (Claude API):
+- API Name: Claude AI
+- Base URL: https://api.anthropic.com
+- Header: anthropic-version: 2023-06-01
+- Header: x-api-key: [your Anthropic API key — store in Bubble environment variables]
+- Header: Content-Type: application/json
+- Endpoint: POST /v1/messages
+- Body:
+  {
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 1024,
+    "system": "You are a CMS SNF compliance expert trained on 42 CFR Part 483 Subpart B, CMS State Operations Manual Appendix PP, MDS 3.0 guidance, PDPM rules, and FY 2025–2026 SNF PPS final rules. Answer questions about SNF compliance, F-tags, survey preparation, MDS coding, PDPM, or billing documentation. Reference F-tags where applicable. Be specific, practical, and concise. Start responses directly without preamble. This is for training purposes — always recommend consulting a healthcare attorney for specific situations.",
+    "messages": [{"role": "user", "content": "[User's message]"}]
+  }
+
+WORKFLOW:
+1. User types message + clicks Ask
+2. Add user message to chat display
+3. Show typing indicator
+4. Call Claude API via API Connector
+5. Extract response text from data.content[0].text
+6. Add AI response to chat display
+7. Save AI_Session record (or update existing one for this session)
+
+--- FEATURE 2: POLICY GENERATOR ---
+
+PAGE: /policy-generator
+LAYOUT: Two sections — input form (top) + generated output (bottom)
+
+INPUT FORM:
+- Facility Name (pre-filled from Current User's facility)
+- Effective Date (date picker, default today)
+- State (dropdown)
+- Author / Title (text input)
+- Policy Type (visual grid of clickable cards, 12 options):
+  Abuse Prevention (§483.12) | Pressure Injury (§483.25(b)) | Infection Control (§483.80) |
+  Antipsychotic GDR (§483.45(d)) | Care Planning (§483.21) | Resident Rights (§483.10) |
+  MDS Accuracy (§483.20) | Staffing Standards (§483.35) | QAPI Program (§483.75) |
+  Advance Directives (Part 489) | Compliance Program (§483.85) | Falls Prevention (§483.25(d))
+- "Generate Policy Document →" button (gold, full-width)
+
+CLAUDE API CALL FOR POLICY:
+System prompt: "You are an ANCC-accredited healthcare education content developer and CMS compliance expert specializing in SNF policy writing. Generate professional, CMS-compliant SNF policy and procedure documents."
+User message: "Generate a policy and procedure document for [Policy Type] under [CFR Reference]. Facility: [Facility Name]. State: [State]. Effective Date: [Date]. Approved By: [Author]. Include: Policy Number, Title, Regulatory Reference, Purpose, Scope, Definitions, Policy Statement, Step-by-Step Numbered Procedures, Staff Responsibilities by role, Documentation Requirements, Monitoring & Compliance section, Review Schedule, References."
+
+OUTPUT DISPLAY:
+- Generated policy text in a styled monospace font block
+- "📋 Copy" button (copies full text to clipboard)
+- "🖨 Print" button (opens print dialog)
+- "⬇ Download .txt" button
+
+--- FEATURE 3: SURVEY SIMULATOR ---
+
+PAGE: /survey-simulator
+5 scenario-based questions based on real CMS-2567 deficiency patterns.
+Each question shows: F-tag badge + Severity badge (Immediate Jeopardy / Actual Harm) + scenario text + 4 answer options
+On Submit: reveal correct answers + F-tag explanations + score (X/5 + percentage)
+Pass = 80%+, Fail = below 80%
+Save Quiz_Attempt record with course = "survey-simulator"<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div id="prompt-billing" class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(30,60,200,0.2);color:#93c5fd;">9</div>
+            <div>
+              <div class="pb-title">Stripe Billing & Subscription Prompt</div>
+              <div class="pb-subtitle">Plans, trial, webhooks, and plan-gating logic</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">Revenue</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the Stripe billing integration for ClearPass Academy using Bubble's official Stripe plugin.
+
+STRIPE PRODUCTS (create these in Stripe Dashboard first):
+- Essentials Monthly: $149/mo — Price ID: price_essentials_monthly
+- Essentials Annual: $1,490/yr ($127/mo) — Price ID: price_essentials_annual
+- Command Monthly: $349/mo — Price ID: price_command_monthly
+- Command Annual: $2,990/yr ($249/mo) — Price ID: price_command_annual
+- Network Monthly: $229/mo per facility — Price ID: price_network_monthly (quantity = number of facilities)
+
+14-DAY FREE TRIAL:
+- On signup: create Stripe Customer → create Stripe Subscription with trial_period_days: 14
+- No charge until trial ends — card required at signup but not charged
+- Bubble workflow: when Stripe Subscription is created → update Facility: plan = selected plan, subscription_status = "trialing", stripe_subscription_id = subscription ID
+
+STRIPE WEBHOOK HANDLING (set up endpoint in Bubble):
+Handle these events:
+- customer.subscription.updated → update Facility subscription_status
+- customer.subscription.deleted → update Facility subscription_status = "canceled" → restrict access
+- invoice.payment_failed → send payment failure email to admin → update status = "past_due"
+- invoice.payment_succeeded → update status = "active"
+- customer.subscription.trial_will_end → send 3-day warning email to admin
+
+PLAN-GATING LOGIC:
+Create a reusable condition check used across all pages and features:
+
+"Can access Command features?" = 
+  Current User's facility's plan is "command" AND
+  Current User's facility's subscription_status is in ("active", "trialing")
+
+Apply this condition to:
+- AI Compliance Advisor page: show "Upgrade to unlock" if false
+- Survey Simulator page: same
+- Policy Generator page: same
+- Course catalog: lock Command-plan courses with overlay if false
+- Staff tracker: limit to 30 users if plan = "essentials"
+
+BILLING MANAGEMENT PAGE (/billing):
+- Show current plan name + status + next billing date + amount
+- "Change Plan" button → opens Stripe Customer Portal (use Stripe plugin's customer portal action)
+- "Cancel Subscription" button → confirm dialog → cancel via Stripe → update Facility record
+- Invoice history table (pull from Stripe via API Connector)
+
+UPGRADE PROMPT MODALS:
+When a user on Essentials tries to access a Command feature:
+- Show upgrade modal: "Unlock AI Features with Command"
+- Display feature list + price comparison
+- "Upgrade Now" button → redirect to /billing with upgrade pre-selected<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ════════════════════════════
+         WEBFLOW + XANO
+    ════════════════════════════ -->
+    <div id="webflow" class="tool-section">
+      <div class="tool-header">
+        <div class="tool-icon-wrap" style="background:rgba(70,160,255,0.1);border-color:rgba(70,160,255,0.25);">🌊</div>
+        <div class="tool-meta">
+          <div class="tool-name">Webflow + Xano</div>
+          <div class="tool-tagline">The best no-code combination for teams who need design quality, code portability, and a scalable backend without Bubble lock-in. Webflow handles the frontend with pixel-perfect control; Xano provides a real backend API with auth, database, and business logic.</div>
+          <div class="tool-chips">
+            <span class="chip" style="background:rgba(70,160,255,0.1);color:#7dd3fc;border:1px solid rgba(70,160,255,0.25);">Code export</span>
+            <span class="chip" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">No vendor lock-in</span>
+            <span class="chip" style="background:rgba(167,139,250,0.08);color:var(--purple);border:1px solid rgba(167,139,250,0.2);">Design-first</span>
+            <span class="chip" style="background:rgba(244,63,94,0.08);color:#fda4af;border:1px solid rgba(244,63,94,0.2);">3–6 week build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout ca-teal" style="margin-bottom:20px;">
+        <strong>Stack Overview</strong>
+        <p>Webflow = frontend UI, CMS for course content, and hosting. Xano = backend API, PostgreSQL database, auth, business logic, and Claude API proxy. Connect them via Webflow's fetch() calls to Xano API endpoints. Add Memberstack or Webflow Auth for user management. Stripe billing via Xano webhook handlers.</p>
+      </div>
+
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(70,160,255,0.1);color:#7dd3fc;">1</div>
+            <div>
+              <div class="pb-title">Xano Backend Setup Prompt</div>
+              <div class="pb-subtitle">Full API specification for all endpoints — paste into Xano's AI builder</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(70,160,255,0.1);color:#7dd3fc;border:1px solid rgba(70,160,255,0.25);">Backend First</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the Xano backend for ClearPass Academy — a multi-tenant SNF compliance training platform.
+
+DATABASE TABLES (PostgreSQL via Xano):
+- facilities: id, name, plan, stripe_customer_id, stripe_subscription_id, subscription_status, max_staff, created_at
+- users: id, facility_id (FK), email, password_hash, first_name, last_name, credential, role, is_active, created_at
+- courses: id, course_slug, title, description, regulatory_reference, accreditation, contact_hours, role_audience (array), source, is_new, has_video, plan_required, sort_order, thumbnail_icon
+- lessons: id, course_id (FK), lesson_number, title, regulatory_ref, content_html, video_url, duration_minutes
+- quiz_questions: id, course_id (FK), question_text, option_a, option_b, option_c, option_d, correct_answer, explanation
+- enrollments: id, user_id (FK), facility_id (FK), course_id (FK), status, progress_pct, lessons_completed (array of lesson IDs), started_at, completed_at, due_date
+- quiz_attempts: id, user_id (FK), facility_id (FK), course_id (FK), score_pct, passed, attempt_number, attempted_at
+- certificates: id, certificate_id (unique text), user_id (FK), facility_id (FK), course_id (FK), learner_full_name, learner_credential, facility_name, course_title, regulatory_reference, accreditation, contact_hours, score_pct, completed_at, expiry_at, pdf_url, verification_url, qr_code_url
+- assignments: id, user_id (FK), facility_id (FK), course_id (FK), assigned_by (FK users), due_date, status, assigned_at
+- ai_sessions: id, user_id (FK), facility_id (FK), messages (JSON array), query_count, created_at
+
+API ENDPOINTS TO BUILD:
+
+AUTH:
+POST /auth/signup — create facility + admin user, create Stripe customer, return JWT
+POST /auth/login — verify credentials, return JWT + user object
+POST /auth/invite — admin creates staff invite link (scoped to facility)
+POST /auth/accept-invite — staff completes signup via invite link
+GET /auth/me — return current user from JWT
+
+COURSES:
+GET /courses — return all courses filtered by user's plan
+GET /courses/:slug — return course with lessons and quiz questions
+POST /courses/:slug/enroll — create enrollment record
+PATCH /courses/:slug/progress — update lesson completion and progress_pct
+
+QUIZ:
+POST /quiz/submit — receive answers array, score quiz, create quiz_attempt record, if passed trigger certificate generation
+GET /quiz/attempts/:course_id — return user's attempt history for a course
+
+CERTIFICATES:
+POST /certificates/generate — generate unique certificate_id, call QRickit API for QR code, call PDFMonkey API for PDF, save Certificate record, send email via SendGrid
+GET /certificates/verify/:certificate_id — PUBLIC endpoint (no auth required), return certificate data or 404
+GET /certificates/my — return all certificates for current user
+
+ADMIN:
+GET /admin/staff — return all users in current facility with their enrollment stats
+GET /admin/compliance — return compliance percentages per course for this facility
+POST /admin/assign — create assignment for a user
+POST /admin/remind/:user_id — trigger reminder email via SendGrid
+GET /admin/report — return CSV-formatted compliance report
+
+AI (Claude Proxy):
+POST /ai/chat — receive user message, call Anthropic Claude API server-side (keep API key secure), return response
+POST /ai/policy — receive policy type + facility details, call Claude API with policy generation prompt, return generated text
+
+STRIPE WEBHOOKS:
+POST /webhooks/stripe — handle subscription events, update facility subscription_status
+
+MIDDLEWARE:
+- JWT auth middleware on all protected routes
+- Facility isolation middleware: inject facility_id from JWT into all queries as a WHERE clause — users cannot access other facilities' data
+- Plan check middleware: verify user's facility plan allows access to requested resource<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(70,160,255,0.1);color:#7dd3fc;">2</div>
+            <div>
+              <div class="pb-title">Webflow Frontend Prompt</div>
+              <div class="pb-subtitle">Page structure, CMS setup, and API connection to Xano</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build the Webflow frontend for ClearPass Academy. The backend is Xano (API base URL: https://your-workspace.xano.io/api). Use Webflow's custom code blocks and fetch() to connect to Xano endpoints.
+
+WEBFLOW CMS COLLECTIONS (for course content — static data):
+1. Courses: slug, title, description, regulatory-reference, contact-hours, thumbnail-icon, plan-required, is-new, has-video
+2. Lessons: name, course (ref), lesson-number, regulatory-ref, content (rich text), video-url
+3. Quiz Questions: name, course (ref), question-text, option-a, option-b, option-c, option-d (do NOT store correct-answer or explanation in Webflow CMS — keep these in Xano only for security)
+
+PAGES TO CREATE IN WEBFLOW:
+
+1. /index — Marketing landing page
+   - Hero section: headline, sub, CTA buttons
+   - Features section: 3-column grid of differentiators
+   - Pricing section: 3-column pricing cards
+   - Social proof: stat counters (58 courses, 5 states, etc.)
+   - FAQ accordion
+   - Footer
+
+2. /signup — Onboarding (use Memberstack for auth OR custom JS + Xano /auth/signup)
+3. /dashboard — Learner dashboard (dynamic, pulls from Xano /courses + /enrollments)
+4. /catalog — Course grid (Webflow CMS Collection List + filter tabs via custom JS)
+5. /course/:slug — Course player (Webflow CMS template + Xano progress API)
+6. /certificates — My transcript (dynamic via Xano /certificates/my)
+7. /verify/:certificate_id — Public verification page (dynamic via Xano /certificates/verify/:id)
+8. /ai-advisor — Chat interface (custom JS + Xano /ai/chat)
+9. /policy-generator — Policy form + output (custom JS + Xano /ai/policy)
+10. /admin/dashboard — Compliance dashboard (dynamic via Xano /admin/compliance)
+11. /admin/staff — Staff tracker table (dynamic via Xano /admin/staff)
+12. /billing — Subscription management (Stripe Customer Portal redirect via Xano)
+
+DESIGN SYSTEM (Webflow Global Styles):
+Colors:
+  --navy: #0f1e35 (sidebar, headers)
+  --primary: #1a72e8 (buttons, links, active states)
+  --gold: #d4a832 (accent, certificates)
+  --success: #16a34a (complete badges)
+  --warning: #d97706 (overdue, at-risk)
+  --danger: #dc2626 (error states)
+  --bg: #f0f4f8 (page background)
+  --surface: #ffffff (cards)
+
+Typography:
+  Headings: Fraunces (Google Font) — display serif for H1–H3
+  Body: DM Sans (Google Font) — 14px base, 1.65 line-height
+  Monospace: JetBrains Mono — for certificate IDs, CFR citations
+
+WEBFLOW INTERACTIONS:
+- Filter chips: custom JS — on click, filter CMS Collection List by category tag
+- Progress bars: animate width on page load using Webflow interactions (trigger: scroll into view)
+- Quiz radio options: custom JS — style selected option, enable submit button
+- Chat interface: custom JS fetch() to Xano /ai/chat with streaming disabled (request/response only)
+
+CUSTOM CODE (add to page <head> where needed):
+Store JWT from Xano in localStorage after login:
+localStorage.setItem('clearpass_token', response.authToken)
+
+Pass JWT in all Xano API calls:
+headers: { 'Authorization': 'Bearer ' + localStorage.getItem('clearpass_token') }<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ════════════════════════════
+         GLIDE
+    ════════════════════════════ -->
+    <div id="glide" class="tool-section">
+      <div class="tool-header">
+        <div class="tool-icon-wrap" style="background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.22);">🟢</div>
+        <div class="tool-meta">
+          <div class="tool-name">Glide</div>
+          <div class="tool-tagline">Best for quickly validating the ClearPass concept with a real facility — build an internal MVP in days, not weeks. Cannot support Claude API calls, PDF certificates, or Stripe billing. Use this to prove demand before committing to a full build.</div>
+          <div class="tool-chips">
+            <span class="chip" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">1–2 week build</span>
+            <span class="chip" style="background:rgba(245,158,11,0.08);color:#fcd34d;border:1px solid rgba(245,158,11,0.2);">MVP / validation only</span>
+            <span class="chip" style="background:rgba(244,63,94,0.08);color:#fda4af;border:1px solid rgba(244,63,94,0.2);">No AI / No PDF certs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout ca-gold">
+        <strong>Use Glide for This</strong>
+        <p>Sign up a single pilot facility for free or $60/month. Track their staff's course completion in a Glide app backed by Google Sheets or Glide's built-in database. Let them use it for 30 days. If they love it and would pay for it, move to Bubble or Lovable for the full build.</p>
+      </div>
+
+      <div class="prompt-block">
+        <div class="pb-header" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(34,197,94,0.1);color:#86efac;">1</div>
+            <div>
+              <div class="pb-title">Glide MVP Prompt</div>
+              <div class="pb-subtitle">Internal compliance tracker and course catalog — paste into Glide AI</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build a staff compliance training tracker app in Glide for a skilled nursing facility (SNF).
+
+APP NAME: ClearPass Academy
+
+USER ROLES:
+- Admin (DON / Administrator): sees all staff, assigns courses, views compliance dashboard
+- Learner (nurses, CNAs, aides): sees their assigned courses, marks lessons complete, takes quizzes, downloads completion records
+
+DATA TABLES (use Glide built-in database):
+
+1. Staff
+   - Name (text)
+   - Email (email)
+   - Credential (choice: RN / LPN / CNA / HHA / Admin)
+   - Role (choice: learner / admin)
+   - Department (text)
+
+2. Courses
+   - Title (text)
+   - Description (text)
+   - Regulatory Reference (text)
+   - Contact Hours (number)
+   - Category (choice: CMS Required / Clinical / Safety / Legal / Infection Control)
+   - Required For (text — e.g. "All Staff" or "RN · LPN")
+   - Due Date (date)
+   - Thumbnail Emoji (text)
+
+3. Lessons
+   - Course (relation → Courses)
+   - Lesson Number (number)
+   - Title (text)
+   - Content (text — paste lesson text directly)
+   - Regulatory Reference (text)
+
+4. Completions
+   - Staff (relation → Staff)
+   - Course (relation → Courses)
+   - Completion Date (date, auto-set to today)
+   - Score (number)
+   - Status (choice: Completed / In Progress / Not Started)
+
+5. Quiz Questions
+   - Course (relation → Courses)
+   - Question (text)
+   - Option A (text)
+   - Option B (text)
+   - Option C (text)
+   - Option D (text)
+   - Correct Option (choice: A / B / C / D)
+
+PAGES TO BUILD:
+
+LEARNER VIEWS:
+1. My Dashboard — Show assigned courses, completion status badges, overall % complete
+2. Course Catalog — Tiles/cards showing all courses. Tap to open.
+3. Course Detail — Course description + list of lessons + Quiz button
+4. Lesson View — Display lesson content. "Mark Complete" button at bottom.
+5. Quiz View — Show questions one at a time. Submit. Show score. If ≥80%: show "Certificate Earned" and create Completion record.
+6. My Transcript — List of all completed courses with date and score
+
+ADMIN VIEWS:
+1. Compliance Dashboard — Progress bars per course showing % of staff completed
+2. Staff List — Table of all staff with completion % and overdue badges
+3. Staff Detail — Individual staff member's completion records
+4. Assign Course — Select staff + course + due date → creates assignment
+5. Course Manager — Add/edit course content
+
+DESIGN:
+- Clean, professional — navy sidebar (#0f1e35), white cards, blue primary actions
+- Status badges: green (Complete), amber (In Progress), red (Overdue), gray (Not Started)
+- Progress bars on all completion displays
+
+NOTE: For completion certificates, generate a simple formatted PDF using Glide's built-in PDF generation feature (available on Business plan) or link to a Google Doc template filled with the staff member's name and completion data.<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ════════════════════════════
+         LOVABLE / BOLT
+    ════════════════════════════ -->
+    <div id="lovable" class="tool-section">
+      <div class="tool-header">
+        <div class="tool-icon-wrap" style="background:rgba(244,63,94,0.08);border-color:rgba(244,63,94,0.22);">🔴</div>
+        <div class="tool-meta">
+          <div class="tool-name">Lovable / Bolt</div>
+          <div class="tool-tagline">Generate a working React/Next.js application from a single detailed prompt in hours. You own the code. Connect Supabase for the database, Stripe for billing, and the Claude API for AI features. Best path from zero to shippable prototype in 2–5 days.</div>
+          <div class="tool-chips">
+            <span class="chip" style="background:rgba(244,63,94,0.08);color:#fda4af;border:1px solid rgba(244,63,94,0.2);">Full code ownership</span>
+            <span class="chip" style="background:rgba(34,197,94,0.08);color:#86efac;border:1px solid rgba(34,197,94,0.2);">2–5 day build</span>
+            <span class="chip" style="background:rgba(167,139,250,0.08);color:var(--purple);border:1px solid rgba(167,139,250,0.2);">React + Supabase</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="pb-header open" onclick="togglePB(this)">
+          <div class="pb-left">
+            <div class="pb-num" style="background:rgba(244,63,94,0.1);color:#fda4af;">1</div>
+            <div>
+              <div class="pb-title">Master Build Prompt — Lovable & Bolt</div>
+              <div class="pb-subtitle">Single comprehensive prompt to generate the full ClearPass application — paste into Lovable or Bolt</div>
+            </div>
+          </div>
+          <div class="pb-right">
+            <span class="pb-phase" style="background:rgba(244,63,94,0.08);color:#fda4af;border:1px solid rgba(244,63,94,0.2);">Start Here</span>
+            <span class="pb-chev">▼</span>
+          </div>
+        </div>
+        <div class="pb-body">
+          <div class="prompt-label">Prompt</div>
+          <div class="prompt-text">Build a full-stack SaaS web application called ClearPass Academy using React, Tailwind CSS, Supabase, and Stripe. Deploy on Vercel.
+
+WHAT IT IS:
+ClearPass Academy is a compliance training LMS for skilled nursing facilities (SNFs). It delivers CMS-regulated courses, scored quizzes (80% pass threshold), QR-code-verified PDF certificates, an AI Compliance Advisor powered by Anthropic Claude, an admin compliance dashboard, and Stripe subscription billing.
+
+TECH STACK:
+- Frontend: React 18 with React Router v6
+- Styling: Tailwind CSS with custom design tokens (see colors below)
+- Database & Auth: Supabase (PostgreSQL + Row Level Security + Supabase Auth)
+- AI: Anthropic Claude API (claude-sonnet-4-20250514) via server-side API route
+- Payments: Stripe (subscriptions, 14-day trial, Customer Portal)
+- QR codes: qrcode.js library (client-side generation, stored as base64 data URL)
+- PDF certificates: @react-pdf/renderer — client-side download + server-side email attachment
+- Emails: Resend (transactional email)
+- Hosting: Vercel
+
+DESIGN TOKENS (add to tailwind.config.js):
+colors: {
+  navy: { DEFAULT: '#0f1e35', 2: '#162844', 3: '#1e3459' },
+  primary: { DEFAULT: '#1a72e8', light: '#3b8ef5', pale: '#e8f1fd' },
+  gold: { DEFAULT: '#d4a832', light: '#e8c044', pale: '#fdf8ec' },
+  success: '#16a34a', warning: '#d97706', danger: '#dc2626',
+  cream: '#faf7f0', surface: '#ffffff', bg: '#f0f4f8'
+}
+fonts: { display: ['Fraunces', 'serif'], body: ['DM Sans', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] }
+
+SUPABASE TABLES (with Row Level Security):
+Create these tables. Enable RLS on all. All policies filter by facility_id matching auth.jwt() claim 'facility_id' EXCEPT certificates table which allows public SELECT.
+
+facilities (id uuid pk, name text, plan text, stripe_customer_id text, stripe_subscription_id text, subscription_status text, max_staff int, created_at timestamptz)
+users (id uuid pk references auth.users, facility_id uuid references facilities, first_name text, last_name text, credential text, role text, is_active bool, created_at timestamptz)
+courses (id uuid pk, course_slug text unique, title text, description text, regulatory_reference text, accreditation text, contact_hours numeric, role_audience text[], plan_required text, sort_order int, thumbnail_icon text, is_new bool, has_video bool)
+lessons (id uuid pk, course_id uuid references courses, lesson_number int, title text, regulatory_ref text, content_html text, video_url text, duration_minutes int)
+quiz_questions (id uuid pk, course_id uuid references courses, question_text text, option_a text, option_b text, option_c text, option_d text, correct_answer text, explanation text)
+enrollments (id uuid pk, user_id uuid references users, facility_id uuid references facilities, course_id uuid references courses, status text, progress_pct numeric, lessons_completed uuid[], started_at timestamptz, completed_at timestamptz, due_date date)
+quiz_attempts (id uuid pk, user_id uuid references users, facility_id uuid references facilities, course_id uuid references courses, score_pct numeric, passed bool, attempt_number int, attempted_at timestamptz)
+certificates (id uuid pk, certificate_id text unique, user_id uuid references users, facility_id uuid references facilities, course_id uuid references courses, learner_full_name text, learner_credential text, facility_name text, course_title text, regulatory_reference text, accreditation text, contact_hours numeric, score_pct numeric, completed_at timestamptz, expiry_at timestamptz, pdf_url text, verification_url text, qr_code_url text)
+assignments (id uuid pk, user_id uuid references users, facility_id uuid references facilities, course_id uuid references courses, assigned_by uuid references users, due_date date, status text, assigned_at timestamptz)
+
+ROUTES:
+/ — Landing page (marketing)
+/signup — 4-step onboarding (plan → details → Stripe trial → success)
+/login — Login
+/dashboard — Learner dashboard (protected)
+/catalog — Course catalog with filters (protected)
+/course/:slug — Course player: sidebar outline + lesson content + video embed + quiz panel (protected)
+/certificates — My transcript (protected)
+/verify/:certificateId — Public certificate verification page (no auth)
+/ai-advisor — Claude chat interface (Command plan only)
+/survey-sim — Survey scenario simulator (Command plan only)
+/policy-gen — Policy document generator (Command plan only)
+/admin — Admin compliance dashboard (admin role only)
+/admin/staff — Staff tracker table (admin role only)
+/billing — Subscription management (admin role only)
+
+CORE COMPONENTS TO BUILD:
+
+1. AppShell — persistent left sidebar (240px, navy background) with role-aware navigation, sticky top bar with search, notifications icon, user avatar. Content area is scrollable.
+
+2. CourseCard — card component with colored thumbnail, emoji icon, role badge, title, description, status badge (Complete/In Progress/Overdue/Not Started), contact hours, regulatory reference.
+
+3. CoursePlayer — two-column layout: main content column (lesson header with gradient, scrollable lesson body, prev/next footer) + right sidebar (lesson outline with checkmarks, quiz panel).
+
+4. QuizPanel — displays quiz questions for the current course. On submit: scores answers, highlights correct/incorrect with color, shows explanation feedback, and if score ≥ 80% triggers certificate generation and shows success modal with animated score ring.
+
+5. Certificate — full-screen on-screen certificate component with: decorative border frames, corner SVG ornaments, official seal, learner name in Fraunces serif, course title, completion metadata row, dual signature lines, certificate ID, and a live QR code generated with qrcode.js encoding the verification URL. Include THREE action buttons above the certificate:
+   [🖨 Print Certificate] — calls window.print(); hide nav/buttons during print with @media print { .no-print { display:none } }
+   [⬇ Download PDF] — calls downloadCertPDF(certificate) which uses @react-pdf/renderer to generate and trigger browser download of CP-{certificateId}.pdf
+   [📋 Copy Verify Link] — copies verificationUrl to clipboard; button text changes to "✓ Copied" for 2 seconds
+
+5a. CertificatePDF — a separate @react-pdf/renderer Document component mirroring the on-screen certificate. Uses Document, Page (A4 landscape, orientation="landscape"), View, Text, Image, StyleSheet primitives. Embeds QR code as a base64 data URL image. Adds footer: "Verify at: {verificationUrl}". Export a downloadCertPDF(cert) async function: import { pdf } from '@react-pdf/renderer'; const blob = await pdf(<CertificatePDF cert={cert}/>).toBlob(); create object URL; trigger <a download="CP-{id}.pdf"> click; revoke URL.
+
+6. CertificateVerification — public page that accepts a certificateId URL param, queries Supabase certificates table (public read — no auth required), and shows either a green "Valid & Authentic" result card with all details, or a red "Certificate Not Found" error.
+
+7. AIChat — chat interface with message bubbles, quick-prompt chips, typing indicator. On message send: POST to /api/ai/chat server route which calls Anthropic Claude API with SNF compliance system prompt and returns the response.
+
+8. AdminDashboard — stat cards row, compliance-by-course table with progress bars and status badges, staff tracker table with overdue row highlighting, and an activity feed sidebar.
+
+API ROUTES (Vercel Edge Functions or Next.js API routes):
+/api/ai/chat — POST: receives { message }, calls Claude API server-side (ANTHROPIC_API_KEY in env), returns { response }
+/api/ai/policy — POST: receives { policyType, facilityName, state, date, author }, calls Claude API, returns { policy }
+/api/certificates/generate — POST: receives enrollment/quiz data, generates unique certificateId, generates QR code URL, calls PDF generation, saves to Supabase
+/api/stripe/webhook — POST: handles Stripe webhook events, updates Supabase facility subscription_status
+
+ENVIRONMENT VARIABLES NEEDED:
+VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+ANTHROPIC_API_KEY (server-side only — never expose to client)
+STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, VITE_STRIPE_PUBLISHABLE_KEY
+RESEND_API_KEY
+NEXT_PUBLIC_APP_URL (e.g. https://clearpass.academy)
+
+SEED DATA:
+Populate the courses table with these 13 courses (use the course_slug, title, regulatory_reference, contact_hours, plan_required, and thumbnail_icon values):
+1. cp-rr | Resident Rights & Dignity | 42 CFR §483.10 · F550–F585 | 1.0 | essentials | ⚖️
+2. cp-abuse | Abuse, Neglect & Exploitation Prevention | 42 CFR §483.12 · F600–F641 | 1.0 | essentials | 🛡️
+3. cp-qoc | Quality of Care Standards | 42 CFR §483.24–.25 · F675–F758 | 1.5 | essentials | 🏥
+4. cp-mds | MDS 3.0 & PDPM Compliance | 42 CFR §483.20 · F636–F641 | 2.0 | essentials | 📊
+5. cp-ic | Infection Prevention & Control | 42 CFR §483.80 · F880–F886 | 1.0 | essentials | 🦠
+6. cp-staffing | Staffing Requirements & QAPI | 42 CFR §483.35 · §483.75 | 1.0 | essentials | 👥
+7. cp-care | Comprehensive Care Planning | 42 CFR §483.21 · F636–F660 | 1.0 | essentials | 📋
+8. cp-billing | Billing, Documentation & Compliance | 42 CFR §483.85 · F895 | 1.0 | essentials | 💰
+9. cp-adrd | Alzheimer's & Related Dementia Training | 42 CFR §483.40 · F742 · FL DOEA §429.52 | 2.0 | command | 🧠
+10. cp-meds | Medication Management | 42 CFR §483.45 · F755–F761 | 1.0 | command | 💊
+11. cp-restraints | Physical & Chemical Restraints | 42 CFR §483.12(a)(2) · F604 | 1.0 | command | ⛓️
+12. cp-cna | CNA In-Service Training Requirements | 42 CFR §483.95 · §483.35(d) | 1.0 | command | 🎓
+13. cp-transfer | Transfer, Discharge & Transition Rights | 42 CFR §483.15 · F620–F625 | 1.0 | command | 🚗<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="notes-box">
+            <p><strong>How to use:</strong></p>
+            <ul>
+              <li><strong>Lovable:</strong> Go to lovable.dev → New Project → paste entire prompt. Lovable will generate the full application. Use follow-up prompts for each component you want to refine.</li>
+              <li><strong>Bolt:</strong> Go to bolt.new → paste prompt. Bolt is better for iterating quickly; use shorter follow-up prompts per feature.</li>
+              <li><strong>After generation:</strong> Connect your Supabase project (create one at supabase.com first), add your environment variables, run the SQL migrations for your tables, and deploy to Vercel with one click.</li>
+              <li><strong>Recommended flow:</strong> Generate → connect Supabase → seed courses data → test auth → test quiz → test certificate → connect Stripe → launch.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- content -->
+</div><!-- main -->
+</div><!-- shell -->
+
+<script>
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('on'));
+  event.target.classList.add('on');
+}
+
+function togglePB(hdr) {
+  const isOpen = hdr.classList.contains('open');
+  // Allow multiple open at once
+  hdr.classList.toggle('open');
+}
+
+function copyPrompt(btn) {
+  const block = btn.closest('.prompt-text');
+  // Get text excluding the button itself
+  const clone = block.cloneNode(true);
+  clone.querySelector('.copy-btn')?.remove();
+  const text = clone.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Open first prompt blocks by default
+document.querySelectorAll('.pb-header.open').forEach(h => {
+  // already open via class
+});
+</script>
+</body>
+</html>

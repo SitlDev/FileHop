@@ -1,0 +1,20 @@
+CREATE TABLE certificates (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  certificate_id text UNIQUE NOT NULL,
+  user_id uuid REFERENCES users(id) ON DELETE CASCADE,
+  facility_id uuid REFERENCES facilities(id) ON DELETE CASCADE,
+  course_id uuid REFERENCES courses(id) ON DELETE CASCADE,
+  learner_full_name text NOT NULL,
+  learner_credential text,
+  facility_name text NOT NULL,
+  course_title text NOT NULL,
+  regulatory_reference text,
+  accreditation text,
+  contact_hours numeric(4,1),
+  score_pct numeric(5,2),
+  completed_at timestamptz DEFAULT now(),
+  expiry_at timestamptz,
+  pdf_url text,
+  verification_url text NOT NULL,
+  qr_code_data text NOT NULL
+);
