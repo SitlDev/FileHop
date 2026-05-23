@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String     @id @default(cuid())
+  email                 String     @unique
+  password              String?    // nullable for OAuth users
+  name                  String?
+  googleId              String?    @unique
+  emailVerified         DateTime?
+  image                 String?
+  
+  // Storage
+  storageUsedBytes      BigInt     @default(0)
+  storageQuotaBytes     BigInt     @default(2147483648) // 2GB
+  
+  // Subscription
+  subscriptionStatus    String     @default("free") // free, active, cancelled
+  subscriptionId        String?
+  stripeCustomerId      String?
+  subscriptionEndDate   DateTime?
+  
+  // Audit
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+  
+  // Relations
+  uploads               Upload[]
+  payments              Payment[]
+  downloadLogs          DownloadLog[]
+  
+  @@index([email])
+  @@index([googleId])
+}
+
+model Upload {
+  id                    String     @id @default(cuid())
+  userId                String
+  user                  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  filename              String
+  fileSizeBytes         BigInt
+  fileHash              String     @unique // SHA-256 for deduplication
+  mimeType              String
+  
+  s3Key                 String     @unique
+  s3Url                 String?
+  
+  status                String     @default("pending") // pending, active, deleted
+  uploadedAt            DateTime   @default(now())
+  expiresAt             DateTime   // uploadedAt + 15 days
+  deletedAt             DateTime?
+  
+  downloadCount         Int        @default(0)
+  
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+  
+  // Relations
+  downloadLogs          DownloadLog[]
+  
+  @@index([userId])
+  @@index([status])
+  @@index([expiresAt])
+  @@index([fileHash])
+}
+
+model Payment {
+  id                    String     @id @default(cuid())
+  userId                String
+  user                  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  stripePaymentId       String     @unique
+  amount                Int        // cents
+  currency              String     @default("usd")
+  
+  paymentType           String     // one_time, subscription
+  paymentMethod         String?
+  
+  status                String     @default("succeeded") // pending, succeeded, failed
+  
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+  
+  @@index([userId])
+  @@index([stripePaymentId])
+}
+
+model DownloadLog {
+  id                    String     @id @default(cuid())
+  uploadId              String
+  upload                Upload     @relation(fields: [uploadId], references: [id], onDelete: Cascade)
+  
+  userId                String?    // nullable for anonymous downloads
+  user                  User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  ipAddress             String
+  userAgent             String?
+  
+  createdAt             DateTime   @default(now())
+  
+  @@index([uploadId])
+  @@index([userId])
+}
+
+model AdminLog {
+  id                    String     @id @default(cuid())
+  action                String     // refund, suspension, storage_adjustment
+  targetUserId          String?
+  reason                String?
+  details               String?    // JSON stringified for SQLite compatibility
+  
+  createdAt             DateTime   @default(now())
+  
+  @@index([action])
+}
