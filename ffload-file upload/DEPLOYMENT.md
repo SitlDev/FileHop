@@ -85,33 +85,43 @@ NEXT_PUBLIC_STRIPE_KEY=pk_live_...              # Must match backend key
 
 ## Deployment Options
 
-### Option 1: Vercel (Frontend) + Railway/Render (Backend)
+### Option 1: Vercel (Frontend Only) + Railway/Render (Backend)
 
-**Frontend Deployment (Vercel)**
+**⚠️ IMPORTANT: Only the Frontend deploys to Vercel**
+
+FileHop's architecture requires separate deployments:
+- **Frontend** (Next.js) → Vercel
+- **Backend** (Express API) → Railway, Render, or self-hosted
+- **Database** (PostgreSQL) → Railway, Render, or self-hosted
+
+**Frontend Deployment (Vercel) - Next.js Only**
 
 1. Push code to GitHub
-2. Connect GitHub repo to Vercel
+2. Connect frontend folder to Vercel
 3. Set environment variables in Vercel dashboard:
-   - `NEXT_PUBLIC_API_URL`
-   - `NEXT_PUBLIC_STRIPE_KEY`
-4. Deploy with `vercel deploy --prod`
+   - `NEXT_PUBLIC_API_URL` → Your backend API URL (e.g., https://api.yourdomain.com)
+   - `NEXT_PUBLIC_STRIPE_KEY` → Stripe public key (pk_live_...)
+4. Deploy with `vercel deploy --prod` from `frontend/` directory
 
-**Backend Deployment (Railway)**
+**Backend Deployment (Railway) - Recommended**
 
 1. Create Railway project
-2. Connect GitHub repo
-3. Add PostgreSQL database
-4. Set environment variables in Railway dashboard
-5. Deploy automatically on git push
+2. Connect GitHub repo (select backend folder)
+3. Add PostgreSQL database to project
+4. Set environment variables in Railway dashboard:
+   - All variables from `backend/.env.production`
+   - DATABASE_URL will be auto-generated
+5. Deploy - automatically triggers on git push to main
 
 **Backend Deployment (Render)**
 
-1. Create Render service
-2. Connect GitHub repo
+1. Create Render Web Service
+2. Connect GitHub repo (select backend folder)
 3. Set build command: `npm install && npm run build`
 4. Set start command: `npm start`
-5. Add PostgreSQL database
+5. Add PostgreSQL database to project
 6. Set environment variables in Render dashboard
+7. Deploy manually or auto-deploy on git push
 
 ### Option 2: Docker + Self-Hosted
 
