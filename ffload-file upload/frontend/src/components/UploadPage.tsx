@@ -49,13 +49,19 @@ export function UploadPage({ onSuccess }: UploadPageProps) {
       // Generate file hash
       const fileHash = await generateFileHash(selectedFile);
 
-      // Convert file to buffer
-      const fileBuffer = await selectedFile.arrayBuffer();
+      // Convert file to base64
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      const uint8Array = new Uint8Array(arrayBuffer);
+      let fileBase64 = '';
+      for (let i = 0; i < uint8Array.length; i++) {
+        fileBase64 += String.fromCharCode(uint8Array[i]);
+      }
+      fileBase64 = btoa(fileBase64);
 
       // Upload to backend
       const response = await apiClient.post('/api/uploads', {
         filename: selectedFile.name,
-        fileBuffer: new Uint8Array(fileBuffer),
+        fileBuffer: fileBase64,
         fileSizeBytes: selectedFile.size,
         mimeType: selectedFile.type,
         fileHash,
