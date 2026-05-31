@@ -1,0 +1,61 @@
+{
+  "$schema": "https://railway.app/schema.json",
+  "services": {
+    "postgres": {
+      "image": "postgres:16-alpine",
+      "variables": {
+        "POSTGRES_DB": "royalty",
+        "POSTGRES_USER": "royalty_user",
+        "POSTGRES_PASSWORD": "${{ secrets.DB_PASSWORD }}"
+      },
+      "healthCheck": {
+        "test": ["CMD-SHELL", "pg_isready -U royalty_user -d royalty"],
+        "interval": 10,
+        "timeout": 5,
+        "retries": 5
+      }
+    },
+    "redis": {
+      "image": "redis:7-alpine",
+      "healthCheck": {
+        "test": ["CMD", "redis-cli", "ping"],
+        "interval": 10,
+        "timeout": 5,
+        "retries": 5
+      }
+    },
+    "app": {
+      "build": {
+        "dockerfile": "Dockerfile"
+      },
+      "port": 3000,
+      "variables": {
+        "NODE_ENV": "production",
+        "DATABASE_URL": "${{ postgres.DATABASE_URL }}",
+        "REDIS_URL": "${{ redis.REDIS_URL }}",
+        "REDIS_HOST": "${{ redis.RAILWAY_PRIVATE_DOMAIN }}",
+        "REDIS_PORT": "6379",
+        "DB_HOST": "${{ postgres.RAILWAY_PRIVATE_DOMAIN }}",
+        "DB_PORT": "5432",
+        "DB_NAME": "royalty",
+        "DB_USER": "royalty_user",
+        "DB_PASSWORD": "${{ secrets.DB_PASSWORD }}",
+        "TOKEN_ENCRYPTION_KEY": "${{ secrets.TOKEN_ENCRYPTION_KEY }}",
+        "JWT_SECRET": "${{ secrets.JWT_SECRET }}"
+      },
+      "healthCheck": {
+        "path": "/api/health",
+        "interval": 30,
+        "timeout": 10
+      },
+      "depends_on": ["postgres"],
+      "startCommand": "pnpm run start",
+      "buildCommand": "pnpm install --frozen-lockfile && pnpm run build && pnpm exec prisma migrate deploy"
+    }
+  },
+  "plugins": [
+    {
+      "source": "https://github.com/railwayapp/plugins/tree/main/plugins/nodejs"
+    }
+  ]
+}
